@@ -1,0 +1,56 @@
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+provider=%PHILIPS%
+LayoutFile=layout.inf
+
+[Manufacturer]
+%MfgName%=Philips
+
+[Philips]
+%USB\VID_0471&PID_1210.DeviceDesc%=USBCONV.Dev, USB\VID_0471&PID_1210
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+USBCONV.Files.Ext = 10,System32\Drivers
+USBCONV.Files.Inf = 10,INF
+
+[USBCONV.Dev]
+CopyFiles=USBCONV.Files.Ext
+AddReg=USBCONV.AddReg
+
+[USBCONV.Dev.NT]
+CopyFiles=USBCONV.Files.Ext
+AddReg=USBCONV.AddReg
+
+[USBCONV.Dev.NT.Services]
+Addservice = USBCONV, 0x00000002, USBCONV.AddService
+
+[USBCONV.AddService]
+DisplayName    = %USBCONV.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 2                  ; SERVICE_AUTO_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\USBCONV.sys
+LoadOrderGroup = Base
+
+[USBCONV.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,USBCONV.sys
+HKLM,"System\Currentcontrolset\Services\USBCONV\Parameters","MaximumTransferSize",0x10001,65536
+HKLM,"System\Currentcontrolset\Services\USBCONV\Parameters","DebugLevel",0x10001,2
+
+
+[USBCONV.Files.Ext]
+USBCONV.sys
+
+
+;---------------------------------------------------------------;
+
+[Strings]
+PHILIPS="ZHIYUAN WIEGAND_TO_USB CONVERTOR"
+MfgName=""
+USB\VID_0471&PID_1210.DeviceDesc="ZHIYUAN WIEGAND_TO_USB CONVERTOR"
+USBCONV.SvcDesc="ZHIYUAN WIEGAND_TO_USB CONVERTOR"

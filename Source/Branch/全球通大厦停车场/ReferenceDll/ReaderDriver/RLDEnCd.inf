@@ -1,0 +1,63 @@
+[Version]
+Signature="$CHICAGO$"
+Class=USB
+provider=%RALID%
+LayoutFile=layout.inf
+
+[SourceDisksNames]
+1="IsoUsb Installation Disk",,0
+
+[SourceDisksFiles]
+RLDEnCd.sys = 1
+RLDEnCd.inf = 1
+
+[Manufacturer]
+%MfgName%=RALID
+
+[RALID]
+%USB\VID_0471&PID_1202.DeviceDesc%=RLDEnCd.Dev, USB\VID_0471&PID_1202
+
+[PreCopySection]
+HKR,,NoSetupUI,,1
+
+[DestinationDirs]
+RLDEnCd.Files.Ext = 10,System32\Drivers
+RLDEnCd.Files.Inf = 10,INF
+
+[RLDEnCd.Dev]
+CopyFiles=RLDEnCd.Files.Ext
+AddReg=RLDEnCd.AddReg
+
+[RLDEnCd.Dev.NT]
+CopyFiles=RLDEnCd.Files.Ext
+AddReg=RLDEnCd.AddReg
+
+[RLDEnCd.Dev.NT.Services]
+Addservice = RLDEnCd, 0x00000002, RLDEnCd.AddService
+
+[RLDEnCd.AddService]
+DisplayName    = %RLDEnCd.SvcDesc%
+ServiceType    = 1                  ; SERVICE_KERNEL_DRIVER
+StartType      = 2                  ; SERVICE_AUTO_START
+ErrorControl   = 1                  ; SERVICE_ERROR_NORMAL
+ServiceBinary  = %10%\System32\Drivers\RLDEnCd.sys
+LoadOrderGroup = Base
+
+[RLDEnCd.AddReg]
+HKR,,DevLoader,,*ntkern
+HKR,,NTMPDriver,,RLDEnCd.sys
+HKLM,"System\Currentcontrolset\Services\RLDEnCd\Parameters","MaximumTransferSize",0x10001,65536
+HKLM,"System\Currentcontrolset\Services\RLDEnCd\Parameters","DebugLevel",0x10001,2
+
+
+[RLDEnCd.Files.Ext]
+RLDEnCd.sys
+
+
+;---------------------------------------------------------------;
+
+[Strings]
+RALID="Guang Zhou ZLG_MCU Development Co. LTD."
+MfgName="RALID"
+USB\VID_0471&PID_1202.DeviceDesc="RALID Mifare USB Encoder"
+RLDEnCd.SvcDesc="RLDEnCd.Sys RALID Mifare USB Encoder"

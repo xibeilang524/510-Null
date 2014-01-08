@@ -1,0 +1,549 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2018980E-02D9-4AAA-BABF-5F41E997B0BB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ralid.Park.UserControls</RootNamespace>
+    <AssemblyName>Ralid.Park.UserControls</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.UserControls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.UserControls.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AxInterop.nvEPLMediaLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\AxInterop.nvEPLMediaLib.dll</HintPath>
+    </Reference>
+    <Reference Include="AxInterop.nvUnifiedControlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\AxInterop.nvUnifiedControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.nvEPLMediaLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\Interop.nvEPLMediaLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.nvUnifiedControlLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\Interop.nvUnifiedControlLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Ralid.GeneralLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\Ralid.GeneralLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AccessComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AccessComboBox.Designer.cs">
+      <DependentUpon>AccessComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CardGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CardGridView.Designer.cs">
+      <DependentUpon>CardGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CardTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CardTypeComboBox.designer.cs">
+      <DependentUpon>CardTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarTypePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="CarTypePanel.Designer.cs">
+      <DependentUpon>CarTypePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EventReportListBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EventReportListBox.Designer.cs">
+      <DependentUpon>EventReportListBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ManageCardTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ManageCardTypeComboBox.designer.cs">
+      <DependentUpon>ManageCardTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentCodeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PaymentCodeComboBox.Designer.cs">
+      <DependentUpon>PaymentCodeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PaymentModeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PaymentModeComboBox.Designer.cs">
+      <DependentUpon>PaymentModeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="StationNameComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StationNameComboBox.Designer.cs">
+      <DependentUpon>StationNameComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TextValueItem.cs" />
+    <Compile Include="UCAPMMonitor.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCAPMMonitor.Designer.cs">
+      <DependentUpon>UCAPMMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCCardTypeProperty.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCCardTypeProperty.Designer.cs">
+      <DependentUpon>UCCardTypeProperty.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCDateTimeInterval.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCDateTimeInterval.designer.cs">
+      <DependentUpon>UCDateTimeInterval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPictureGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPictureGrid.Designer.cs">
+      <DependentUpon>UCPictureGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPictureListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPictureListView.Designer.cs">
+      <DependentUpon>UCPictureListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="AlarmTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="AlarmTypeComboBox.Designer.cs">
+      <DependentUpon>AlarmTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CardStatusComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CardStatusComboBox.Designer.cs">
+      <DependentUpon>CardStatusComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CarTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CarTypeComboBox.Designer.cs">
+      <DependentUpon>CarTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceAddressComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EntranceAddressComboBox.Designer.cs">
+      <DependentUpon>EntranceAddressComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CustomDataGridView.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomDataGridView.Designer.cs">
+      <DependentUpon>CustomDataGridView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntranceComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EntranceComboBox.Designer.cs">
+      <DependentUpon>EntranceComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="HardwareTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HardwareTree.Designer.cs">
+      <DependentUpon>HardwareTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FunctionTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FunctionTree.Designer.cs">
+      <DependentUpon>FunctionTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OperatorComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OperatorComboBox.Designer.cs">
+      <DependentUpon>OperatorComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ParkCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="ParkCombobox.Designer.cs">
+      <DependentUpon>ParkCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RoleComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RoleComboBox.Designer.cs">
+      <DependentUpon>RoleComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCCard.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCCard.Designer.cs">
+      <DependentUpon>UCCard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCEntrance.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCEntrance.Designer.cs">
+      <DependentUpon>UCEntrance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\ACTIVideoControl.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\ACTIVideoControl.designer.cs">
+      <DependentUpon>ACTIVideoControl.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\ACTIVideoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\ACTIVideoPanel.Designer.cs">
+      <DependentUpon>ACTIVideoPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\FrmXinlutongContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\FrmXinlutongContainer.Designer.cs">
+      <DependentUpon>FrmXinlutongContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\UCVideoListView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\UCVideoListView.Designer.cs">
+      <DependentUpon>UCVideoListView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\UCVideoPanelGrid.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\UCVideoPanelGrid.Designer.cs">
+      <DependentUpon>UCVideoPanelGrid.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\VideoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\VideoPanel.designer.cs">
+      <DependentUpon>VideoPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\VideoPanelFactory.cs" />
+    <Compile Include="VideoPanels\VideoStatus.cs" />
+    <Compile Include="StationIDCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="StationIDCombobox.Designer.cs">
+      <DependentUpon>StationIDCombobox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\XingLuTongVideoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\XingLuTongVideoPanel.Designer.cs">
+      <DependentUpon>XingLuTongVideoPanel.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
+      <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
+      <Name>Ralid.Park.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.BusinessModel\Ralid.Park.BusinessModel.csproj">
+      <Project>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</Project>
+      <Name>Ralid.Park.BusinessModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CarTypePanel.resx">
+      <DependentUpon>CarTypePanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EventReportListBox.resx">
+      <DependentUpon>EventReportListBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EntranceComboBox.resx">
+      <DependentUpon>EntranceComboBox.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="HardwareTree.resx">
+      <DependentUpon>HardwareTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FunctionTree.resx">
+      <DependentUpon>FunctionTree.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.zh-Hant.resx" />
+    <EmbeddedResource Include="UCAPMMonitor.resx">
+      <DependentUpon>UCAPMMonitor.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCard.en.resx">
+      <DependentUpon>UCCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCard.resx">
+      <DependentUpon>UCCard.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCard.zh-Hant.resx">
+      <DependentUpon>UCCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCard.zh.resx">
+      <DependentUpon>UCCard.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCCardTypeProperty.resx">
+      <DependentUpon>UCCardTypeProperty.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDateTimeInterval.en.resx">
+      <DependentUpon>UCDateTimeInterval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDateTimeInterval.resx">
+      <DependentUpon>UCDateTimeInterval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCDateTimeInterval.zh-Hant.resx">
+      <DependentUpon>UCDateTimeInterval.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCEntrance.en.resx">
+      <DependentUpon>UCEntrance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCEntrance.resx">
+      <DependentUpon>UCEntrance.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCEntrance.zh-Hant.resx">
+      <DependentUpon>UCEntrance.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPictureGrid.resx">
+      <DependentUpon>UCPictureGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPictureListView.resx">
+      <DependentUpon>UCPictureListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\ACTIVideoControl.resx">
+      <DependentUpon>ACTIVideoControl.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\ACTIVideoPanel.resx">
+      <DependentUpon>ACTIVideoPanel.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\UCVideoListView.resx">
+      <DependentUpon>UCVideoListView.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\UCVideoPanelGrid.resx">
+      <DependentUpon>UCVideoPanelGrid.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\VideoPanel.resx">
+      <DependentUpon>VideoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\XingLuTongVideoPanel.resx">
+      <DependentUpon>XingLuTongVideoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="AxHVActiveX2Lib">
+      <Guid>{0495227E-10BE-47B9-826D-63E3D1AA5759}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>aximp</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+    <COMReference Include="HVActiveX2Lib">
+      <Guid>{0495227E-10BE-47B9-826D-63E3D1AA5759}</Guid>
+      <VersionMajor>1</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+    <COMReference Include="stdole">
+      <Guid>{00020430-0000-0000-C000-000000000046}</Guid>
+      <VersionMajor>2</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>primary</WrapperTool>
+      <Isolated>False</Isolated>
+    </COMReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\CardReader.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\NoImage.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\controls_play_back_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\arrow_sans_right_32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\button_red_close.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\capture.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atm_Disable.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\atm_Alarm.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

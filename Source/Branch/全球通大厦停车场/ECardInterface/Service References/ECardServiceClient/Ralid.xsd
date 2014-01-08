@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:element name="SaveSheet">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sheetID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="employeeNum" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="employeeName" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="telPhone" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="department" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="carPlate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="activationDateTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="places" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveSheetResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SaveSheetResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SheetStatus">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="sheetID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="status" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="activationDateTime" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SheetStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="SheetStatusResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEmployee">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="employeeNum" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteEmployeeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="DeleteEmployeeResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

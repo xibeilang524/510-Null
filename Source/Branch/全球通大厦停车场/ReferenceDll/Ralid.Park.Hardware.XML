@@ -1,0 +1,5351 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ralid.Park.Hardware</name>
+    </assembly>
+    <members>
+        <member name="T:Ralid.Park.Hardware.DeviceEvent">
+            <summary>
+            表示控制板产生的事件
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.EventIndex">
+            <summary>
+            获取或设置事件索引号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.EventDateTime">
+            <summary>
+            获取或设置事件发生时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.EventType">
+            <summary>
+            获取或设置事件类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.EventData">
+            <summary>
+            获取或设置事件的数据
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.CardID">
+            <summary>
+            获取或设置卡号(只有读卡事件时卡号才不为空)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.CardType">
+            <summary>
+            获取或设置卡类别
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.IsTempCardReader">
+            <summary>
+            获取或设置是否临时卡读卡器
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.IsOfflineHandle">
+            <summary>
+            获取或设置是否脱机模式处理
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.CarPlateOptions">
+            <summary>
+            获取或设置与车牌对比的相关设置
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.CarPlate">
+            <summary>
+            获取或设置车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.LastCarPlate">
+            <summary>
+            获取或设置上次识别到的车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.Reason">
+            <summary>
+            获取或设置卡片的错误代码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEvent.LastDateTime">
+            <summary>
+            上一次刷卡时间，用于出口事件中的入场时间
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CarSenseEventArgs">
+            <summary>
+            地感信号事件的参数
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceEventArgs">
+            <summary>
+            控制板事件参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEventArgs.EventIndex">
+            <summary>
+            获取或设置事件流水号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceEventArgs.EventDateTime">
+            <summary>
+            获取事件发生的时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CarSenseEventArgs.Loop">
+            <summary>
+            获取或设置产生信号的地感
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CarSenseEventArgs.CarSense">
+            <summary>
+            获取或设置地感信号状态
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkOptions">
+            <summary>
+            表示停车场选项
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkOptions.None">
+            <summary>
+            无
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkOptions.ForbidWhenFull">
+            <summary>
+            车场满位时禁止车辆进场
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.RegionStatusEventArgs">
+            <summary>
+            上传区域控制器实时状态信息事件参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.RegionStatusEventArgs.RegionStatus">
+            <summary>
+            获取或设置上传区域控制器实时状态信息
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DevicePaymentRecord">
+            <summary>
+            表示控制板产生的收费记录
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.PaymentRecordType">
+            <summary>
+            获取或设置记录类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.RecordIndex">
+            <summary>
+            获取或设置收费记录流水号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.PaymentCode">
+            <summary>
+            获取或设置收费事件代码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.DeviceID">
+            <summary>
+            获取或设置控制器标识
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.PaymentDateTime">
+            <summary>
+            获取或设置收费时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.CardID">
+            <summary>
+            获取或设置被收费的卡号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.Amount">
+            <summary>
+            获取或设置收费金额
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DevicePaymentRecord.FunctionCardID">
+            <summary>
+            获取或设置收费功能卡卡号
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.ScreenShowNumberEventArgs">
+            <summary>
+            上传屏显示数字信息事件参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ScreenShowNumberEventArgs.Number">
+            <summary>
+            获取或设置上传屏显示数字状态信息
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.DeviceInfo.Clone">
+            <summary>
+            获取一个自身的复制体
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.ID">
+            <summary>
+            获取或设置ID号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.SerialNum">
+            <summary>
+            获取或设置硬件序列号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.StrSerialNum">
+            <summary>
+            获取硬件序列号的字符串表示
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.Address">
+            <summary>
+            获取或设置设备地址
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.StrParkNum">
+            <summary>
+            获取或设置字符串格式的停车场编号(格式为整形编号的16进制表示形式，整形编号为3字节,所以字串格式长度为6）
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.StrDeviceNum">
+            <summary>
+            获取或设置字符串格式的设备编号(停车场控制板的编号)(格式为整形编号的16进制表示形式，整形编号为4字节,所以字串格式长度为8）
+            停车场控制板的编号=停车场编号(3B) + 控制器编号(1B=设备地址低字节)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.HardwareVersion">
+            <summary>
+            获取或设置硬件版本号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.SoftwareVersion">
+            <summary>
+            获取或设置软件版本号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.CommunicationVersion">
+            <summary>
+            获取或设置通讯版本号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DeviceInfo.DeviceNum">
+            <summary>
+            获取或设置停车场控制板的编号
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardButton">
+            <summary>
+            表示控制板上取卡按钮的枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardButton.Button1">
+            <summary>
+            取卡按钮1
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardButton.Button2">
+            <summary>
+            取卡按钮2
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.AccessGroupStatus.Invalid">
+            <summary>
+            无效权限
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardReadEventHandler">
+            <summary>
+            要处理的读卡事件处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.Reader.ReaderFunctionCode">
+            <summary>
+            表示专用读卡器通信协议的功能代码
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderFunctionCode.Response">
+            <summary>
+            响应帧
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderFunctionCode.ReadDate">
+            <summary>
+            读数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderFunctionCode.WriteData">
+            <summary>
+            写数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderFunctionCode.ExecuteCommand">
+            <summary>
+            执行命令
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkParams">
+            <summary>
+            表示停车场车位余位信息
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.Index">
+            <summary>
+            获取或设置车场信息存储编号(0-23)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.ParkNum">
+            <summary>
+            获取或设置停车场编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.StrParkNum">
+            <summary>
+            获取或设置字符串格式的停车场编号(格式为整形编号的16进制表示形式，整形编号为3字节,所以字串格式长度为6）
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.ParkSpace">
+            <summary>
+            获取或设置停车场车位数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.ParkVacant">
+            <summary>
+            获取或设置停车场车位余数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkParams.Options">
+            <summary>
+            获取或设置车场选项
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.DetectorWorkmode">
+            <summary>
+            车位探测器工作模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectorWorkmode.Normal">
+            <summary>
+            正常模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectorWorkmode.Reserve">
+            <summary>
+            预留模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectorWorkmode.ReserveRemind">
+            <summary>
+            预留提示模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectorWorkmode.UnKnow">
+            <summary>
+            未知模式
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.LEDAddress">
+            <summary>
+            表示控制板LED屏地址
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.LEDAddress.BoardLed">
+            <summary>
+            票箱屏
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.LEDAddress.ParkFullLed">
+            <summary>
+            满位屏
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.HeartBeatEventArgs.HeartBeat">
+            <summary>
+            获取或设置心跳包
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.HeartBeatEventArgs.Response">
+            <summary>
+            获取或设置是否回复心跳包
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.HeartBeatInfo.DestinationIP">
+            <summary>
+            获取或设置目的IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.HeartBeatInfo.DestinationEntranceNum">
+            <summary>
+            获取或设置目的控制器编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.HeartBeatInfo.Vacant">
+            <summary>
+            获取或设置空车位数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.CardID">
+            <summary>
+            获取或设置读到的卡号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.CardType">
+            <summary>
+            获取或设置读到的卡片类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.IsTempCardReader">
+            <summary>
+            获取或设置是否临时卡读卡器
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.CarPlateComparisonResult">
+            <summary>
+            获取或设置车牌对比的结果
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.CarPlate">
+            <summary>
+            获取或设置车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardDeniedEventArgs.Reader">
+            <summary>
+            获取或设置读卡的读卡器
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardButtonEventHandler">
+            <summary>
+            取卡按钮事件的处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardButtonEventArgs">
+            <summary>
+            取卡按钮事件的参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardButtonEventArgs.CardButton">
+            <summary>
+            获取或设置事件产生时按下的是哪个取卡按钮
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CarSenseHandler">
+            <summary>
+            表示要处理地感信号的处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceOperationResult">
+            <summary>
+            表示硬件操作的返回状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.DeviceError">
+            <summary>
+            发卡机/发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.NoCard">
+            <summary>
+            发卡机无卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.InvalidOpt">
+            <summary>
+            无效操作
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.CommunicationError">
+            <summary>
+            通讯故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperationResult.DataError">
+            <summary>
+            数据错误（收到的返回数据不能正确解析)
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardOperation">
+            <summary>
+            收卡发卡操作枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device1EjectCard">
+            <summary>
+            第一路收卡机/发卡机出卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device1CaptureCard">
+            <summary>
+            第一路收卡机/发卡机收卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device1StartCapture">
+            <summary>
+            第一路收卡机/发卡机开始收发卡状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device1StopCapture">
+            <summary>
+            第一路收卡机/发卡机结束收发卡状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device2EjectCard">
+            <summary>
+            第二路收卡机/发卡机出卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device2CaptureCard">
+            <summary>
+            第二路收卡机/发卡机收卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device2StartCapture">
+            <summary>
+            第二路收卡机/发卡机开始收发卡状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOperation.Device2StopCapture">
+            <summary>
+            第二路收卡机/发卡机结束收发卡状态
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.AddressHelper">
+            <summary>
+            用于从虚拟地址中解析出相关硬件的信息，包括硬件的总线编号，硬件类型，硬件的实际拨码地址等。
+            也可以通过硬件的这些信息构建一个虚拟地址
+            虚拟地址由以下四部分组成 是否有效位(bit16)+设备类型（bit14-bit15)+总线编号(bit12-bit13)+区域编号(bit6 -bit11)+设备编号(bit1-bit5)
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.CreateAddress(Ralid.Park.Hardware.ParkingGuide.DeviceType,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据设备类型，总线地址，和拨码地址生成相应的虚拟地址，默认有效标志为0，设备类型适用于区域控制器，车位探测器和引导屏
+            </summary>
+            <param name="deviceType"></param>
+            <param name="rootBusNum"></param>
+            <param name="regionNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.CreateAddress(System.Int32,Ralid.Park.Hardware.ParkingGuide.DeviceType,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            根据设备类型，总线地址，和拨码地址生成相应的虚拟地址，设备类型适用于区域控制器，车位探测器和引导屏
+            </summary>
+            <param name="deviceType"></param>
+            <param name="rootBusNum"></param>
+            <param name="regionNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.GetDeviceFlag(System.Int32)">
+            <summary>
+            解析出虚拟地址中的有效标志，0：有设备；1无设备。
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.GetDeviceType(System.Int32)">
+            <summary>
+            解析出虚拟地址中的硬件设备类型
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.GetRootBusNum(System.Int32)">
+            <summary>
+            解析出虚拟地址中的硬件总线编号
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.GetRegionNum(System.Int32)">
+            <summary>
+            解析出虚拟地址中的区域编号
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.GetDeviceNum(System.Int32)">
+            <summary>
+            获取虚拟地址中的设备编号
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.SetDeviceFlag(System.Int32,System.Int32)">
+            <summary>
+            设置虚拟地址中的设备有效标志本返回虚拟地址
+            </summary>
+            <param name="address"></param>
+            <param name="deviceFlag"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.SetDeviceType(System.Int32,Ralid.Park.Hardware.ParkingGuide.DeviceType)">
+            <summary>
+            设置虚拟地址中的设备类型并返回虚拟地址
+            </summary>
+            <param name="address"></param>
+            <param name="deviceType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.SetRootBusNum(System.Int32,System.Int32)">
+            <summary>
+            设置虚拟地址中的总线编码并返回虚拟地址
+            </summary>
+            <param name="address"></param>
+            <param name="rootBusNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.SetRegionNum(System.Int32,System.Int32)">
+            <summary>
+            设置虚拟地址中的区域控制器编号并返回虚拟地址
+            </summary>
+            <param name="address"></param>
+            <param name="regionNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.SetDeviceNum(System.Int32,System.Int32)">
+            <summary>
+            设置虚拟地址中的设备编号并返回虚拟地址
+            </summary>
+            <param name="address"></param>
+            <param name="deviceNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.AddressHelper.IsSameRegion(System.Int32,System.Int32)">
+            <summary>
+            判断两个虚拟地址是否在同一中央控制器同一总线同一区域控制器下
+            </summary>
+            <param name="address1"></param>
+            <param name="address2"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.AddressHelper.InvalidAddress">
+            <summary>
+            获取一个无效的设备地址
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_Tariff_ChargeProperty">
+            <summary>
+            费率收费属性枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.OverTimeInvalid">
+            <summary>
+            1）	按次收费时：=0每过T3点(BCD码，高字节表示时，低字节表示分)多收M2元，=1无效；
+            2）	按天、按停车时间、按时段收费时：=0超过T3天，超过的每天按M2元收费，=1无效。 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.DailyLimitInvalid">
+            <summary>
+            1）	按停车时间、时段收费时：=0每天限额M6元，=1无效。
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.IntervalTop1Invalid">
+            <summary>
+            1）按时段收费时： =0时段1最高金额M4[0]，=1无效。
+            2）按停车时间时： 每T7时间收费限额M5元。
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.IntervalTop2Invalid">
+            <summary>
+            按时段收费时： =0时段2最高金额M4[1]，=1无效。
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.Mode3Interval1Invalid">
+            <summary>
+            按时段收费时： =0时间段1有效， =1无效
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.Mode3Interval2Invalid">
+            <summary>
+            按时段收费时： =0时间段2有效， =1无效
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeProperty.MaximumAmountInvalid">
+            <summary>
+            =0每次收费有最高金额M7，=1无效。
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardDeniedEventHandler">
+            <summary>
+            卡片无效事件处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.Card">
+            <summary>
+            卡片
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Card.GetValidDateToBCDByes">
+            <summary>
+            获取有效日期的BCD字节组，年(BCD)月(BCD)日(BCD)，=0xFFFFFF表示永久有效
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Card.GetActivationDateToBCDBytes">
+            <summary>
+            获取启用日期的BCD字节组，年(BCD)月(BCD)日(BCD)，=0x000000表示未启用（卡片无效），=0xFFFFFF表示不判断启用期（卡片有效）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Card.Clone">
+            <summary>
+            复制自身
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CardID">
+            <summary>
+            获取或设置卡号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CardType">
+            <summary>
+            获取或设置卡片类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CarType">
+            <summary>
+            获取或设置车型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.IsValid">
+            <summary>
+            获取或设置卡片是否有效卡片
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.ValidDate">
+            <summary>
+            获取或设置卡片的有效日期
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.AccessID">
+            <summary>
+            获取或设置权限组ID
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.Options">
+            <summary>
+            获取或设置卡片属性
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.ActivationDate">
+            <summary>
+            获取或设置卡片启用日期
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.Type">
+            <summary>
+            获取或设置卡片名单类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CarPlate">
+            <summary>
+            获取获取设置车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.OfflineHandleWhenOfflineMode">
+            <summary>
+            脱机模式时按脱机模式处理
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CanRepeatIn">
+            <summary>
+            获取或设置卡片是否可以重复入场
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.CanRepeatOut">
+            <summary>
+            获取或设置卡片是否可以重复出场
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.HolidayEnabled">
+            <summary>
+            获取或设置卡片在节假日允许进出
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.WithCount">
+            <summary>
+            获取或设置卡片进出时是否参加车位计数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.ForbidWhenFull">
+            <summary>
+            获取或设置车场满位时是否允许入场
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Card.ForbidWhenExpired">
+            <summary>
+            获取或设置卡片过期后卡片是否有效
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.PacketCreater">
+            <summary>
+            表示停车场通讯包的生成器
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetDeviceInfoPacket">
+            <summary>
+            生成获取硬件信息的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetParkNumPacket(System.Byte[])">
+            <summary>
+            生成设置停车场控制板的编号的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetSerialNumPacket(System.Int64)">
+            <summary>
+            生成设置硬件序列号的通讯包
+            </summary>
+            <param name="serialNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetLANInfoPacket">
+            <summary>
+            生成获取LAN信息的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetLANInfoPacket(Ralid.Park.Hardware.LANInfo)">
+            <summary>
+            生成设置LAN参数的通讯包
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetIPPacket(System.Int32,System.String)">
+            <summary>
+            生成设置LAN参数中某个IP参数的通讯包,which表示设置哪个IP参数 1设置IP， 2设置子网掩码，3设置网关地址
+            </summary>
+            <param name="which"></param>
+            <param name="ip"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetDeviceTimePacket">
+            <summary>
+            生成获取硬件时间的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetDeviceTimePacket(System.DateTime)">
+            <summary>
+            生成设置硬件时间的通讯包
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetWorkmodePacket">
+            <summary>
+            生成获取硬件工作模式的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetWorkmodePacket(Ralid.Park.Hardware.WorkmodeInfo)">
+            <summary>
+            生成设置硬件工作模式的通讯包
+            </summary>
+            <param name="bs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetAccessGroupPacket">
+            <summary>
+            生成获取硬件权限组的通信包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetAccessGroupPacket(Ralid.Park.Hardware.AccessGroup)">
+            <summary>
+            生成设置硬件权限组的通信包
+            </summary>
+            <param name="accessGroup"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetAccessTimeZonePacket(System.Byte)">
+            <summary>
+            生成获取硬件权限组时间段的通信包
+            </summary>
+            <param name="index">权限组序号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetAccessTimeZonePacket(System.Byte,System.Collections.Generic.List{Ralid.Park.Hardware.H_AccessTimeZone})">
+            <summary>
+            生成设置硬件权限组时间段的通信包
+            </summary>
+            <param name="index">权限组序号</param>
+            <param name="accessTimeZone"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetWeekPropertyPacket">
+            <summary>
+            生成获取硬件周属性的通信包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetWeekPropertyPacket(Ralid.Park.Hardware.H_WeekProperty)">
+            <summary>
+            生成设置硬件周属性的通信包
+            </summary>
+            <param name="week"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetDateIntervalPacket(System.Byte)">
+            <summary>
+            生成获取硬件日期段的通信包
+            </summary>
+            <param name="count">日期段个数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetDateIntervalPacket(System.Collections.Generic.List{Ralid.Park.Hardware.H_DateInterval})">
+            <summary>
+            生成设置硬件日期段的通信包
+            </summary>
+            <param name="dateInterval">日期段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetDeviceStatusPacket">
+            <summary>
+            生成获取设备状态的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateTransparentTransferPacket(System.Byte,System.Byte[])">
+            <summary>
+            生成透明传输的通讯包
+            </summary>
+            <param name="commport"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetCardTypePropertyPacket">
+            <summary>
+            生成获取卡片类型属性的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetCardTypePropertyPacket(System.UInt16[])">
+            <summary>
+            生成设置卡片类型属性的通讯包
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateDeviceOperationPacket(System.Byte,System.Byte)">
+            <summary>
+            生成硬件操作的通讯包
+            </summary>
+            <param name="operationcode">操作码</param>
+            <param name="operation">状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateShowMessageOnLedPacket(System.String,Ralid.Park.Hardware.LEDAddress)">
+            <summary>
+            生成在LED上显示字符的通讯包
+            </summary>
+            <param name="msg"></param>
+            <param name="ledAddress"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSpeakAndPlayPaymentPacket(Ralid.Park.Hardware.CarType,System.String)">
+            <summary>
+            生成在LED上播入并显示保存的语句的通讯包
+            </summary>
+            <param name="carType"></param>
+            <param name="money"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateCardValidPacket(System.Int32,Ralid.Park.Hardware.CardType,System.DateTime)">
+            <summary>
+            生成通知控制器卡片有效的通讯包
+            </summary>
+            <param name="cardID"></param>
+            <param name="cardType"></param>
+            <param name="expiredDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateCardInvalidPacket(System.Int32,Ralid.Park.Hardware.CardType,Ralid.Park.Hardware.EventInvalidType)">
+            <summary>
+            生成通知控制器卡片无效的通讯包
+            </summary>
+            <param name="cardID"></param>
+            <param name="cardType"></param>
+            <param name="reason"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetParkInfoPacket(System.Byte)">
+            <summary>
+            生成获取车场信息的通讯包
+            </summary>
+            <param name="parkNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetParkInfoPacket(Ralid.Park.Hardware.ParkParams)">
+            <summary>
+            生成设置车场信息的通讯包
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetParkVacantLedMessagePacket">
+            <summary>
+            生成获取停车场满位屏文字信息的通讯包
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetParkVacantLedMessagePacket(System.String)">
+            <summary>
+            生成设置停车场满位屏参数的通讯包
+            </summary>
+            <param name="para"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetParkVacantFullLedMessagePacket">
+            <summary>
+            生成获取停车场满位屏车位已满文字信息的通讯包
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetParkVacantFullLedMessagePacket(System.String)">
+            <summary>
+            生成设置停车场满位屏车位已满文字信息的通讯包
+            </summary>
+            <param name="para"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetTariffPacket(Ralid.Park.Hardware.H_TariffType,Ralid.Park.Hardware.H_Tariff_CardType)">
+            <summary>
+            生成获取硬件费率的通信包
+            </summary>
+            <param name="tariffType"></param>
+            <param name="cardType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetTariffPacket(Ralid.Park.Hardware.H_TariffSetting)">
+            <summary>
+            生成设置硬件费率的通讯包
+            </summary>
+            <param name="tariffSetting"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetRecognizedCarPlatePacket">
+            <summary>
+            生成获取识别到的车牌号码的包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetEventStorageInfoPacket">
+            <summary>
+            生成获取事件存储信息的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetEventsPacket(System.Int32,System.Int32)">
+            <summary>
+            生成获取事件的通讯包
+            </summary>
+            <param name="beginIndex"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateClearEventRecordsPacket">
+            <summary>
+            生成删除所有事件记录的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetPaymentStorageInfoPacket">
+            <summary>
+            生成获取硬件中的收费记录存储信息的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetPaymentRecordPacket(System.Int32,System.Int32)">
+            <summary>
+            生成获取缴费记录的通讯包
+            </summary>
+            <param name="beginIndex"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateClearPaymentRecordsPacket">
+            <summary>
+            生成删除所有收费记录的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetCardPacket(System.UInt32)">
+            <summary>
+            生成获取卡片信息的通讯包
+            </summary>
+            <param name="beginIndex"></param>
+            <param name="count"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetCardsPacket(System.UInt32,System.Int32)">
+            <summary>
+            生成获取连续卡号卡片的通讯包
+            </summary>
+            <param name="cardID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateDeleteCardPakcet(System.UInt32)">
+            <summary>
+            生成删除卡片的通讯包
+            </summary>
+            <param name="cardID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateClearCardsPacket">
+            <summary>
+            生成清空所有卡片的通讯包
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSaveCardPacket(Ralid.Park.Hardware.Card)">
+            <summary>
+            生成保存卡片信息的通讯包
+            </summary>
+            <param name="card"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSaveCardsPacket(Ralid.Park.Hardware.Card[])">
+            <summary>
+            生成保存卡片信息的通讯包
+            </summary>
+            <param name="card"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateHeartBeatResponsePacket(Ralid.Park.Hardware.HeartBeatInfo)">
+            <summary>
+            生成回应硬件心跳包的通讯包
+            </summary>
+            <param name="heartBeat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateSetReaderKeyAppData(System.Byte,System.Byte,System.Byte[])">
+            <summary>
+            生成设置读卡器扇区和密钥的数据包
+            </summary>
+            <param name="commport"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketCreater.CreateGetParkingScreensPacket(System.Byte,System.Byte)">
+            <summary>
+            type=0所有的显示屏，type=1单个显示屏
+            index:当读取单个显示屏时，表示显示屏的编号0-255。当读取所有显示屏，忽略
+            </summary>
+            <param name="type"></param>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.Hardware.WorkmodeInfo">
+            <summary>
+            表示控制板一般参数设置
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.WorkmodeInfo.CardReadInterval">
+            <summary>
+            获取或设置读卡间隔（s)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.WorkmodeInfo.WorkmodeOptions">
+            <summary>
+            获取或设置工作模式选项
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingStatus">
+            <summary>
+            用于表示卡片的停车状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingStatus.None">
+            <summary>
+            卡片不在场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingStatus.InPark">
+            <summary>
+            卡片已入场
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_AccessTimeZone">
+             <summary>
+            权限组的有效时间段
+             </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_AccessTimeZone.GetBCDBytes">
+            <summary>
+            获取时间段的BCD码数组，前2字节为起始时分，后2字节为结束时分（BCD码），在时间段内表示允许卡片入场。无效时间段全部填入0xFF。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_AccessTimeZone.SetFromBCDBytes(System.Byte[])">
+            <summary>
+            从BCD码数组中设置时间段
+            </summary>
+            <param name="bytes"></param>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_AccessTimeZone.BeginTime">
+            <summary>
+            获取或设置权限开始时间点
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_AccessTimeZone.EndTime">
+            <summary>
+            获取或设置权限结束时间点
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_AccessTimeZone.IncludeHoliday">
+            <summary>
+            获取或设置节假日是否有效
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceVoiceAndMessage">
+            <summary>
+            表示控制板上可以同时播放和显示的语句枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_OK">
+            <summary>
+            正常
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_WXKP">
+            <summary>
+            无效卡片
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPGQ">
+            <summary>
+            卡片过期
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPYRC">
+            <summary>
+            卡片已入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPYCC">
+            <summary>
+            卡片已出场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPLXBF">
+            <summary>
+            卡片类型不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_MYKP">
+            <summary>
+            没有卡片
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CWYM">
+            <summary>
+            车位已满
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_MYJF">
+            <summary>
+            没有缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_ZLCSQXJF">
+            <summary>
+            滞留超时，请重新缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CPBF">
+            <summary>
+            车牌不相符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_YJFCPBF">
+            <summary>
+            已缴费，但车牌不相符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_TYLSK">
+            <summary>
+            停用临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_BYXJRQTCC">
+            <summary>
+            不允许进入嵌套车场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CCBHBF">
+            <summary>
+            车场编号不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_YEBZ">
+            <summary>
+            余额不足
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPSJJYCW">
+            <summary>
+            卡片数据校验错误
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPBBBF">
+            <summary>
+            卡片版本不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPWQY">
+            <summary>
+            卡片未到启用日期（卡片未启用）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPWQX">
+            <summary>
+            卡片无权限
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPSJCW">
+            <summary>
+            卡片无权限
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CKDFX">
+            <summary>
+            此卡待发行
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CKYZX">
+            <summary>
+            此卡已注销
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CKYGS">
+            <summary>
+            此卡已挂失
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CKYSD">
+            <summary>
+            此卡已锁定
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_JJRBYXJR">
+            <summary>
+            节假日不允许进入
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_KPBZMDZ">
+            <summary>
+            卡片不在名单中
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_WZDCX">
+            <summary>
+            未找到车型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_WSZTCFL">
+            <summary>
+            未设置停车费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_DQSJXYRCSJ">
+            <summary>
+            当前时间小于入场时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_DQSJXYJFSJ">
+            <summary>
+            当前时间小于缴费时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_FWQTXGZ">
+            <summary>
+            服务器通信故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_ZKZQGZ">
+            <summary>
+            主控制器故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_FKJGZ">
+            <summary>
+            发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_SKJGZ">
+            <summary>
+            发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_DZGZ">
+            <summary>
+            闸机系统故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_TXGZ">
+            <summary>
+            通信故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_HYGL">
+            <summary>
+            欢迎光临
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_HYGLQQK">
+            <summary>
+            欢迎光临，请取卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_HYGLQCK">
+            <summary>
+            欢迎光临，请插卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QSKHJHLSK">
+            <summary>
+            请刷卡、或交回临时卡	
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_ZZQRQSH">
+            <summary>
+            正在确认，请稍候
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_HYRC">
+            <summary>
+            欢迎入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_ZNYLSF">
+            <summary>
+            祝您一路顺风
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QCKHS">
+            <summary>
+            请插卡回收
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QCXSK">
+            <summary>
+            请重新刷卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QDJFZXJF">
+            <summary>
+            请到缴费中心缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_YEBZQCZ">
+            <summary>
+            余额不足，请充值
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QXSTCK">
+            <summary>
+            请先刷收费卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_QZSTCK">
+            <summary>
+            请再刷停车卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_YBSFKBF">
+            <summary>
+            与被收费卡不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_CPDBSBZZQR">
+            <summary>
+            车牌对比失败，正在确认
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoiceAndMessage.ePROMPT_WXSJ">
+            <summary>
+            无效事件
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.WorkmodeOptions">
+            <summary>
+            出入口工作模式选项枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.None">
+            <summary>
+            无选项
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.IsOffline">
+            <summary>
+            离线模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.NoneMaster">
+            <summary>
+            非主控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.IsEnterDevice">
+            <summary>
+            入口控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.NoneRoadGateModel">
+            <summary>
+            非路闸模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.TakeCardNeedCarSense">
+            <summary>
+            取卡(读卡)要求压地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.AllowEjectCardWhithoutRead">
+            <summary>
+            允许取卡后刷卡,即发卡机吐卡后如果未读到卡片，允许用户自行刷卡，而不用再收回
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.LightEnable">
+            <summary>
+            压地感开补光灯
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.ForbidExitWhenCardExpired">
+            <summary>
+            不允许过期卡片出场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.ExportCharge">
+            <summary>
+            出口收费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.ForbidEnterWhenFull">
+            <summary>
+            车场满时禁止进场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.EnableTempCard">
+            <summary>
+            临时卡允许进出
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.NoParkingCount">
+            <summary>
+            不进行车位计数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.WorkmodeOptions.Valid">
+            <summary>
+            控制器有效
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardReadEventArgs">
+            <summary>
+            读卡事件参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.CardID">
+            <summary>
+            获取或设置读到的卡号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.CardType">
+            <summary>
+            获取或设置读到的卡片类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.IsTempCardReader">
+            <summary>
+            获取或设置是否临时卡读卡器
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.IsOfflineHandle">
+            <summary>
+            获取或设置是否脱机模式处理
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.CarPlateOptions">
+            <summary>
+            获取或设置与车牌对比的相关设置
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.CarPlate">
+            <summary>
+            获取或设置车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.LastCarPlate">
+            <summary>
+            获取或设置卡片上次识别到的车牌号码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.Reason">
+            <summary>
+            获取或设置卡片的错误代码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.Reader">
+            <summary>
+            获取或设置读卡的读卡器
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.LastDateTime">
+            <summary>
+            上一次刷卡时间，用于出口事件中的入场时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.IsOpenGateWhenCarPlateComparisonFail">
+            <summary>
+            获取或设置是否车牌识别失败时抬闸
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.CarPlateComparisonResult">
+            <summary>
+            获取或设置车牌对比的结果
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.CardReadEventArgs.NeedPay">
+            <summary>
+            获取或设置是否需要缴费
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo">
+            <summary>
+            车位引导系统子设备信息类
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.HasDevice">
+            <summary>
+            获取是否具有设备
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.SubDeviceType">
+            <summary>
+            获取或设置设备类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.RootBusNum">
+            <summary>
+            获取或设置设备所在中央控制器的RS485总线编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.RegionNum">
+            <summary>
+            获取或设置区域控制器编码，当设备为中央控制器时全部为0。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.SubDeviceNum">
+            <summary>
+            获取或设置设备编码，当设备为区域控制器、中央控制器时全部为0。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.Address">
+            <summary>
+            获取或设置设备的虚拟地址
+            虚拟地址，存储相关硬件的信息，包括硬件的总线编号，硬件类型，硬件的实际拨码地址等。
+            虚拟地址由以下四部分组成 是否有效位(bit16)+设备类型（bit14-bit15)+总线编号(bit12-bit13)+区域编号(bit6 -bit11)+设备编号(bit1-bit5)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.Params">
+            <summary>
+            获取或设置设备参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.Index">
+            <summary>
+            获取或设置设备编码（用于车位引导屏）
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.Data">
+            <summary>
+            获取或设置设备附带的数据
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.DetectHeight">
+            <summary>
+            获取或设置车位探测器的探测高度
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.DetectInterval">
+            <summary>
+            获取或设置车位测试器的延时等级
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.ShowVacant">
+            <summary>
+            获取或设置是否显示车位数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.ShowArrow">
+            <summary>
+            获取或设置是否显示箭头
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.MovingArrow">
+            <summary>
+            获取或设置箭头是否滚动
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo.ArrowDirection">
+            <summary>
+            获取或设置箭头指示方向
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_TimeEntity">
+            <summary>
+            表示时间刻度
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TimeEntity.Hour">
+            <summary>
+            获取或设置小时数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TimeEntity.Minute">
+            <summary>
+            分钟数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TimeEntity.TotalMinutes">
+            <summary>
+            获取计算出的总分钟数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Success">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Invalid">
+            <summary>
+            无效卡片
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Type">
+            <summary>
+            卡片类型不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_OverDate">
+            <summary>
+            此卡已过期
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_HaveIn">
+            <summary>
+            此卡已在场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_StillOut">
+            <summary>
+            此卡已出场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_ForbidTempCard">
+            <summary>
+            停用临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_ParkFull">
+            <summary>
+            车位已满
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_DisableNestedPark">
+            <summary>
+            不允许进出嵌套车场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_ParkNumError">
+            <summary>
+            车场编号不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_CarPlateWrong">
+            <summary>
+            车牌识别失败
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_CarPlateWrongWithPaid">
+            <summary>
+            已缴费，但车牌不相符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.IVN_NotPaid">
+            <summary>
+            没有缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_OverTime">
+            <summary>
+            滞留超时，请重新缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_DataError">
+            <summary>
+            卡片数据校验错误
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_VersionError">
+            <summary>
+            卡片版本不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_NotActive">
+            <summary>
+            卡片未到生效期
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_NoAccessRight">
+            <summary>
+            权限不足
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_HolidayDisabled">
+            <summary>
+            节假日不允许进出
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_UnRegister">
+            <summary>
+            此卡未登记
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_NoCarType">
+            <summary>
+            未找到车型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_NoTariff">
+            <summary>
+            未设置停车费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_WrongInTime">
+            <summary>
+            入场时间晚于出场时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_WrongPaidTime">
+            <summary>
+            缴费时间晚于出场时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_InsertToRecovery">
+            <summary>
+            请插卡回收
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Recycled">
+            <summary>
+            此卡待发行
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Cancelled">
+            <summary>
+            此卡已注销
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Loss">
+            <summary>
+            此卡已挂失
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Lock">
+            <summary>
+            此卡已锁定
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_Balance">
+            <summary>
+            卡片余额不足
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.EventInvalidType.INV_UnKown">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardButton1Click">
+            <summary>
+            取卡按钮1被按下
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardButton2Click">
+            <summary>
+            取卡按钮2被按下
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.TakeACard">
+            <summary>
+            取走一张卡(取走发卡机吐出的卡片)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardIgnored">
+            <summary>
+            超时未取卡（即经过超时时间后仍未取走发卡机吐出的卡片)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CaptureACard">
+            <summary>
+            收卡机收卡一张
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardNotExists">
+            <summary>
+            无效卡片(卡片不存在)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardExpired">
+            <summary>
+            卡片过期
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Loop1On">
+            <summary>
+            压第1路地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Loop1Off">
+            <summary>
+            离开第1路地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Loop2On">
+            <summary>
+            压第2路地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Loop2Off">
+            <summary>
+            离开第2路地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.LightOn">
+            <summary>
+            开补光灯
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.LightOff">
+            <summary>
+            关补光灯
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.ReservedOutputOn">
+            <summary>
+            闭合预留继电器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.ReservedOutputOff">
+            <summary>
+            释放预留继电器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardPermitted">
+            <summary>
+            卡片抬闸放行事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.GateUp">
+            <summary>
+            抬杆到位
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.GateDown">
+            <summary>
+            落杆到位
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.DeviceError">
+            <summary>
+            控制器故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.DeviceReset">
+            <summary>
+            控制器复位
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.RecordFull">
+            <summary>
+            控制器记录满
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardDispenserError">
+            <summary>
+            发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.CardCollecterError">
+            <summary>
+            收卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.GateError">
+            <summary>
+            道闸系统故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader1Read">
+            <summary>
+            第1路在线读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader2Read">
+            <summary>
+            第2路在线读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader3Read">
+            <summary>
+            第3路在线读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address1ReaderRead">
+            <summary>
+            地址1读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address2ReaderRead">
+            <summary>
+            地址2读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address3ReaderRead">
+            <summary>
+            地址3读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address4ReaderRead">
+            <summary>
+            地址4读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address5ReaderRead">
+            <summary>
+            地址5读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Address6ReaderRead">
+            <summary>
+            地址6读卡器读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader1CardWaiting">
+            <summary>
+            第1路有效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader2CardWaiting">
+            <summary>
+            第2路有效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader3CardWaiting">
+            <summary>
+            第3路有效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader4CardWaiting">
+            <summary>
+            第4路有效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader5CardWaiting">
+            <summary>
+            第5路有效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader1CardDenied">
+            <summary>
+            第1路无效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader2CardDenied">
+            <summary>
+            第2路无效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader3CardDenied">
+            <summary>
+            第3路无效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader4CardDenied">
+            <summary>
+            第4路无效读卡事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceEventType.Reader5CardDenied">
+            <summary>
+            第5路无效读卡事件
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CommandType">
+            <summary>
+            表示包的类型，系统以包的类型区分包的用途
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetDeviceInfo">
+            <summary>
+            表示包的用途为获取硬件信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetDeviceInfo">
+            <summary>
+            表示包的用途为设置硬件信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetLAN">
+            <summary>
+            表示包的用途为表示包的用途为获取LAN信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SETLAN">
+            <summary>
+            表示包的用途为设置LAN信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetKey">
+            <summary>
+            表示设置项目密钥的命令
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetDeviceTime">
+            <summary>
+            表示包的用途为获取硬件时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetDeviceTime">
+            <summary>
+            表示包的用途为设置硬件时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetWorkmode">
+            <summary>
+            表示包的用途为获取工作模式信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetWorkmode">
+            <summary>
+            表示包的用途为设置工作模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetAccessGroup">
+            <summary>
+            表示包的用途为获取权限组信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetAccessGroup">
+            <summary>
+            表示包的用途为设置权限组信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetAccessTimeZone">
+            <summary>
+            表示包的用途为获取权限组的时间段
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetAccessTimeZone">
+            <summary>
+            表示包的用途为设置权限组的时间段
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetWeek">
+            <summary>
+            表示包的用途为获取设备周属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetWeek">
+            <summary>
+            表示包的用途为设置设备周属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetDateInterval">
+            <summary>
+            表示包的用途为获取设备日期段属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetDateInterval">
+            <summary>
+            表示包的用途为设置设备日期段属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_RestoreDefault">
+            <summary>
+            表示包的用途为恢复硬件出厂设置
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetStatus">
+            <summary>
+            表示包的用途为获取硬件状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_TransparentTransfer">
+            <summary>
+            表示包的用途为透明传输数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_Reset">
+            <summary>
+            表示包的用途为控制器复位
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetCardTypeProperty">
+            <summary>
+            表示包的用途为获取卡片类型的属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetCardTypeProperty">
+            <summary>
+            表示包的用途为设置卡片类型的属性
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_DeviceOperation">
+            <summary>
+            表示包的用途为硬件操作命令,硬件操作，包括抬落闸，补光灯等
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetParkInfo">
+            <summary>
+            表示包的用途为获取车场信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetParkInfo">
+            <summary>
+            表示包的用途为设置车场信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetLedPara">
+            <summary>
+            表示包的用途为获取控制器LED屏参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetLedPare">
+            <summary>
+            表示包的用途为设置控制器LED屏参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetTariff">
+            <summary>
+            表示包的用途为获取停车场缴费费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetTariff">
+            <summary>
+            表示包的用途为设置停车场缴费费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_CreateGetCarPlateNotifyControllerIP">
+            <summary>
+            表示包的用途为获取识别到的车牌需发送的控制器信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_SetCarPlateNotifyController">
+            <summary>
+            表示包的用途为设置识别到的车牌需发送的控制器信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_RecognizedCarPlate">
+            <summary>
+            表示包的用途为获取或设置识别到的车牌信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetEventStorageInfo">
+            <summary>
+            表示包的用途为获取事件存储信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetDeviceEvents">
+            <summary>
+            表示包的用途为获取硬件记录
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_ClearRecords">
+            <summary>
+            表示包的用途为清空记录
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetPaymentStorageInfo">
+            <summary>
+            表示包的用途为获取硬件中的收费记录存储信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetCardStorageInfo">
+            <summary>
+            表示包的用途为获取存储的卡片数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_GetCard">
+            <summary>
+            表示包的用途为获取卡片信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_DeleteCard">
+            <summary>
+            表示包的用途为删除卡片信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_LoadCards">
+            <summary>
+            表示包的用途为上载卡片信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_HeartBeat">
+            <summary>
+            表示包的用途为心跳包
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_EventNotify">
+            <summary>
+            表示包的用途为上传实时事件事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.CMD_DetetorsAndScreensInfoNotify">
+            <summary>
+            表示包的用途为上传车位和屏信息信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SearchDevice">
+            <summary>
+            表示包的用途为获取区域控制器下子设备（包括车位探测器和车位引导屏）信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetRegionController">
+            <summary>
+            表示包的用途为获取中央控制器总线下子设备（区域控制器）信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveRegionController">
+            <summary>
+            表示包的用途为设置中央控制器下子设备（区域控制器）信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetParkingScreen">
+            <summary>
+            表示包的用途为获取车位引导屏参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveParkingScreen">
+            <summary>
+            表示包的用途为设置车位引导屏参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetDetectorsToScreen">
+            <summary>
+            表示包的用途为获取车位引导屏管理的车位探测器信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveDetectorsToScreen">
+            <summary>
+            表示包的用途为设置车位引导屏管理的车位探测器信息
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetParkingDetector">
+            <summary>
+            表示包的用途为获取车位探测器参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveParkingDetector">
+            <summary>
+            表示包的用途为设置车位探测器参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetParkingDetectorStatus">
+            <summary>
+            表示包的用途为获取车位探测器状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SearchRegionController">
+            <summary>
+            表示包的用途为搜索中央控制器总线下的区域控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetDetectorWorkmode">
+            <summary>
+            表示包的用途为获取车位探测器工作模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveDetectorWorkmode">
+            <summary>
+            表示包的用途为设置车位探测器工作模式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_GetDetectorReserverInterval">
+            <summary>
+            表示包的用途为获取车位探测器预留时间段
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CommandType.ParkingGuide_SaveDetectorReserverInterval">
+            <summary>
+            表示包的用途为设置车位探测器预留时间段
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkVacantLedPara.Index">
+            <summary>
+            获取或设置参数的索引号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkVacantLedPara.ParkNum">
+            <summary>
+            获取或设置满位屏要显示空位数的停车场编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkVacantLedPara.StrParkNum">
+            <summary>
+            获取或设置字符串格式的停车场编号(格式为整形编号的16进制表示形式，整形编号为3字节,所以字串格式长度为6）
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkVacantLedPara.HostIP">
+            <summary>
+            获取或设置满位屏连接的控制器的IP
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo">
+            <summary>
+            车位/车位探测器预留时间段类
+            格式为 1字节标示字节（bit7：有效标志，0时间段有效，1时间段无效）+ 5字节（起始时间，年+月+日+时+分，BCD码格式）+ 5字节（结束时间，年+月+日+时+分，BCD码格式）+预留（1字节）
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.IntToBCD(System.Int32)">
+            <summary>
+            整数转换成BCD码，即每位数用一个四位的二进制码表示
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.BCDToInt(System.Byte)">
+            <summary>
+            BCD码转换成整数
+            </summary>
+            <param name="bcd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.IsInDateTime(System.DateTime)">
+            <summary>
+            该时间是否在预留时间段内
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.ReserverNum">
+            <summary>
+            时间段编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.Enabled">
+            <summary>
+            是否启用
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.Start">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.End">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.ReserverIntervalInfo.Bytes">
+            <summary>
+            获取或设置字节组格式数据
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceCardTypeProperty">
+            <summary>
+            控制器的卡片类型属性枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.EnterNotWriteCarPlate">
+            <summary>
+            入口车牌不写卡，默认；
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.NotCompareCarPlate">
+            <summary>
+            不对比车牌，默认；
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.CompareFailOpenGate">
+            <summary>
+            车牌识别抬闸失败时抬闸，默认；
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.WriteCardHandle">
+            <summary>
+            此卡类型按写卡方式处理，默认；
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.EnabledWiegand">
+            <summary>
+            允许在韦根读卡器刷卡，默认；
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceCardTypeProperty.Default">
+            <summary>
+            默认，默认全为1
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.PacketResolver">
+            <summary>
+            表示一个通讯包解析器
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.BytesIsAllZero(System.Byte[])">
+            <summary>
+            检查字节组是否全为0
+            </summary>
+            <param name="bytes"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetDeviceInfoFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从查询硬件信息返回的包中获取硬件信息
+            </summary>
+            <param name="packet"></param>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetLANInfoFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从查询LAN信息返回的包中获取LAN信息
+            </summary>
+            <param name="packet"></param>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetDeviceTimeFromPacket(Ralid.Park.Hardware.Packet,System.DateTime@)">
+            <summary>
+            从查询硬件时间返回的包中获取硬件时间
+            </summary>
+            <param name="packet"></param>
+            <param name="time"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetDeviceStatusFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从查询硬件状态的包中获取硬件状态信息
+            </summary>
+            <param name="packet"></param>
+            <param name="status"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetStorageInfoFromPacket(Ralid.Park.Hardware.Packet,System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            从查询存储信息返回的包中获取事件存储信息
+            </summary>
+            <param name="packet"></param>
+            <param name="capacity"></param>
+            <param name="totalCount"></param>
+            <param name="latestIndex"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetWorkmodeFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从查询硬件工作模式返回的包中获取硬件工作模式信息,
+            </summary>
+            <param name="packet"></param>
+            <param name="bs"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetRealTimeEventFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从实时上传事件包中获取事件，包解析错误时 entranceEvent为空值
+            </summary>
+            <param name="packet"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetDeviceOperationResultFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从硬件操作返回包中获取硬件操作的结果
+            </summary>
+            <param name="packet"></param>
+            <param name="ret"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetEventsFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取历史事件记录返回的包中获取事件信息
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetCardsFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取卡片信息返回的包中获取卡片信息,包解析有误时返回null
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetParkInfoFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取车场信息返回的包中获取车场信息，包解析有误时返回null
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetAccessGroupFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取硬件权限组返回的包中获取硬件权限组
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetAccessTimeZoneFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取硬件权限组时间段返回的包中获取硬件权限组时间段
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetWeekPropertyFromPacket(Ralid.Park.Hardware.Packet,Ralid.Park.Hardware.H_WeekProperty@)">
+            <summary>
+            从获取硬件周属性返回的包中获取硬件的周属性
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetDateIntervalFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取硬件日期段返回的包中获取硬件日期段
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetTariffFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取硬件费率返回的包中获取硬件费率
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetPaymentStorageInfoFromPacket(Ralid.Park.Hardware.Packet,System.Int32@,System.Int32@)">
+            <summary>
+            从查询收费记录存储信息返回的包中获取收费记录存储信息
+            </summary>
+            <param name="packet"></param>
+            <param name="capacity">收费记录容量</param>
+            <param name="latestIndex">当前收费记录流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.GetPaymentRecordsFromPacket(Ralid.Park.Hardware.Packet)">
+            <summary>
+            从获取收费记录返回的包中获取收费记录信息
+            </summary>
+            <param name="packet"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.ComparePacket(Ralid.Park.Hardware.Packet,Ralid.Park.Hardware.Packet)">
+            <summary>
+            对比两个数据包是否一致，两个包必须都不为空
+            </summary>
+            <param name="packet1"></param>
+            <param name="packet2"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.PacketResolver.CompareBytes(System.Byte[],System.Byte[])">
+            <summary>
+            对比两个字节组数据是否一致,必须都不为空
+            </summary>
+            <param name="data1"></param>
+            <param name="data2"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CarSenseState">
+            <summary>
+            地感信号枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarSenseState.CarLeave">
+            <summary>
+            车走
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarSenseState.CarArrive">
+            <summary>
+            车到
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.Reader.ReaderCommand">
+            <summary>
+            表示专用读卡器通信协议的命令
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderCommand.SETPARAM">
+            <summary>
+            读取或设置读卡器工作参数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderCommand.AUTODATA">
+            <summary>
+            自动上传卡片数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderCommand.WRITEDATA">
+            <summary>
+            修改卡片数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkingDetectorStatus.Empty">
+            <summary>
+            无车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkingDetectorStatus.Occupied">
+            <summary>
+            有车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkingDetectorStatus.Alarm">
+            <summary>
+            报警
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkingDetectorStatus.Unknow">
+            <summary>
+            未知
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.EventListener">
+            <summary>
+            表示网络设备的事件中心
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.EventListener.GetSingleton(System.Net.IPAddress,System.Int32)">
+            <summary>
+            返回一个单例
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.EventListener.LocalIP">
+            <summary>
+            获取通讯的本地IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.EventListener.LocalPort">
+            <summary>
+            获取通讯的本地端口号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DataRecievedEventArgs.SourceIP">
+            <summary>
+            获取或设置发送数据的源设备IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DataRecievedEventArgs.SourcePort">
+            <summary>
+            获取或设置发送数据的源设备端口号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.DataRecievedEventArgs.Data">
+            <summary>
+            获取或设置发送的数据
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_TimeInterval">
+            <summary>
+            表示时间段
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TimeInterval.GetBCDBytes">
+            <summary>
+            获取时间段的BCD码数组，前2字节为起始时分，后2字节为结束时分（BCD码），时间段如果未设置，如全部是0x00或0xFF则无效。
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TimeInterval.BeginTime">
+            <summary>
+            获取或设置时间段开始时间
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TimeInterval.EndTime">
+            <summary>
+            获取或设置时间段结束时间
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_Tariff_CardType">
+            <summary>
+            费率卡类型枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.OwnerCard">
+            <summary>
+            业主卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.MonthCard">
+            <summary>
+            月租卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.PrePayCard">
+            <summary>
+            储值卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.TempCard">
+            <summary>
+            临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.UserDefinedCard1">
+            <summary>
+            自定义卡1
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CardType.UserDefinedCard2">
+            <summary>
+            自定义卡2
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_DateEntity">
+            <summary>
+            表示日期刻度
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_DateEntity.Month">
+            <summary>
+            获取或设置月
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_DateEntity.Day">
+            <summary>
+            获取或设置日
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.HeartBeatEventHandler">
+            <summary>
+            心跳事件处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CarType">
+            <summary>
+            车型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarType.A">
+            <summary>
+            A类车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarType.B">
+            <summary>
+            B类车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarType.C">
+            <summary>
+            C类车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarType.D">
+            <summary>
+            D类车
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceSearcher">
+            <summary>
+            表示一个停车场控制板的硬件搜索器
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.DeviceSearcher.EnumAllParkDevices">
+            <summary>
+            搜索所有在线的控制板(由于广播消息不能跨路由器，所以只能搜索到同一路由器下面的所有控制板)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.Hardware.GateOperation">
+            <summary>
+            道闸动作枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.GateOperation.Stop">
+            <summary>
+            停闸
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.GateOperation.Open">
+            <summary>
+            抬闸
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.GateOperation.Close">
+            <summary>
+            落闸
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.ScreenArrowDirection">
+            <summary>
+            引导屏上箭头的指示方向
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ScreenArrowDirection.Forward">
+            <summary>
+            向前
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ScreenArrowDirection.Left">
+            <summary>
+            向左
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ScreenArrowDirection.Right">
+            <summary>
+            向右
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_TariffType">
+            <summary>
+            费率类型枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_TariffType.Tariff">
+            <summary>
+            未进入过内车场的费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_TariffType.InDoorTariff">
+            <summary>
+            进入过内车场的费率
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardType">
+            <summary>
+            卡片类型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.FreeCard">
+            <summary>
+            免费卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.OwnerCard">
+            <summary>
+            业主卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.MonthCard">
+            <summary>
+            月租卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.PrePayCard">
+            <summary>
+            储值卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.TempCard">
+            <summary>
+            临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.UserDefinedCard1">
+            <summary>
+            自定义卡1
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.UserDefinedCard2">
+            <summary>
+            自定义卡2
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.FunctionCard">
+            <summary>
+            收费功能卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardType.UnknownCard">
+            <summary>
+            未知卡
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.BootLoader">
+            <summary>
+            update hardware firmware
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.AccessGroup">
+            <summary>
+            权限组
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.AccessGroup.AddAccessTimeZones(System.Byte,Ralid.Park.Hardware.H_AccessTimeZone)">
+            <summary>
+            添加权限组的起始时间
+            </summary>
+            <param name="index">权限组序号（保存在硬件中位置，取值范围0-7）</param>
+            <param name="accessTimeZone"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.AccessGroup.GetAccessTimeZones(System.Byte)">
+            <summary>
+            获取权限组的起始时间
+            </summary>
+            <param name="index">权限组序号（保存在硬件中位置，取值范围0-7）</param>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.AccessGroup.DataLength">
+            <summary>
+            获取或设置数据长度
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.AccessGroup.Status">
+            <summary>
+            获取或设置权限状态 第7bit：=0有效权限，=1无效权限
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.AccessGroup.AccessIDS">
+            <summary>
+            获取或设置权限组编号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.AccessGroup.AccessTimeZones">
+            <summary>
+            获取权限组的起始时间
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceLoop">
+            <summary>
+            控制板上的地感枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceLoop.Loop1">
+            <summary>
+            第一路地感
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceLoop.Loop2">
+            <summary>
+            第二路地感
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.Reader.ReaderSetParamOptions">
+            <summary>
+            表示专用读卡器通信协议的读取设置读卡器工作参数的参数控制字
+            参数控制字由两字节组成，短整数，使用小端存储，它的每1位对应1个参数，第1字节的最低位对应参数1，第二字节的最高位对应参数16
+            参数4-16保留
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderSetParamOptions.SECTOR">
+            <summary>
+            操作扇区
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderSetParamOptions.KEYA">
+            <summary>
+            密钥A
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.Reader.ReaderSetParamOptions.IDLEN">
+            <summary>
+            序列号长度
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.Reset">
+            <summary>
+            复位控制器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.SetSerialNum(System.Int64)">
+            <summary>
+            设置硬件序列号
+            </summary>
+            <param name="serialNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.GetLANInfo(Ralid.Park.Hardware.LANInfo@)">
+            <summary>
+            获取控制板的LAN设置,信息保存到info中，失败时返回null
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.SetLANInfo(Ralid.Park.Hardware.LANInfo)">
+            <summary>
+            更新控制板下的LAN设置 (这个指令会重启硬件，在重启过程中下发的指令不会执行，在执行此命令后，要等待硬件状态正常后才执行另外的指令)
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.SetMAC(System.String)">
+            <summary>
+            设置MAC地址
+            </summary>
+            <param name="mac"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.SetKey(System.Byte[])">
+            <summary>
+            设置项目密钥
+            </summary>
+            <param name="key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.GetTime(System.DateTime@)">
+            <summary>
+            获取控制板时间
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.SetTime(System.DateTime)">
+            <summary>
+            同步控制器时间
+            </summary>
+            <param name="time"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.GetStatus">
+            <summary>
+            获取控制板的状态
+            </summary>
+            <param name="status"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.TransparentTransfer(System.Byte,System.Byte[])">
+            <summary>
+            透明传输(用于直接把数据发送到控制板的某个串口设备上)
+            </summary>
+            <param name="commport">数据发送的目标串口号</param>
+            <param name="data">发送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.GotoUpdating">
+            <summary>
+            控制器进入升级状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.GetDeviceInfo(Ralid.Park.Hardware.DeviceInfo@)">
+            <summary>
+            获取控制板中的硬件参数,信息保存到info中,失败时返回null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.LANDevice.RestoreDefault">
+            <summary>
+            恢复出厂（默认)设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANDevice.LANInfo">
+            <summary>
+            获取网络参数
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_Tariff_CarType">
+            <summary>
+            费率车型枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.A">
+            <summary>
+            A车型(正常日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.B">
+            <summary>
+            B车型(正常日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.C">
+            <summary>
+            C车型(正常日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.D">
+            <summary>
+            D车型(正常日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.A_Holiday">
+            <summary>
+            A车型(节假日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.B_Holiday">
+            <summary>
+            B车型(节假日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.C_Holiday">
+            <summary>
+            C车型(节假日)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_CarType.D_Holiday">
+            <summary>
+            D车型(节假日)
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_TariffInfo">
+            <summary>
+            硬件费率信息类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TariffInfo.GetBytes">
+            <summary>
+            获取硬件费率信息的字节组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.TariffType">
+            <summary>
+            获取或设置费率类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.CardType">
+            <summary>
+            卡类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.CarType">
+            <summary>
+            车类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.ChargeType">
+            <summary>
+            收费类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.ChargeProperty">
+            <summary>
+            收费属性
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T1">
+            <summary>
+            T1：2字节，入场T1（T1=0-65535）分钟，免费(mode1,mode2,mode3,mode4)。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T2">
+            <summary>
+            T2：2字节，缴费后，T2（T2=0-65535）分钟内需离开车场(mode1,mode2,mode3,mode4)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T3">
+            <summary>
+            T3，2字节，超过T3天，超过的每天按M2元收费(mode2,mode3,mode4)，超过T3（BCD进制格式,时（Byte 1）分（Byte2））时间，超过的每天按M2元收费(mode1)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T4">
+            <summary>
+            T4，2字节，入场时间不超过T4分钟，每T5分钟收取M1元; 入场时间超过T4分钟，超出部分每T6分钟收取M3元(mode3,mode4)。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T5">
+            <summary>
+            T5，2个2字节（2个时间段），入场时间没有超过T4分钟，每T5分钟收取M1元(mode3,mode4) 。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T6">
+             <summary>
+            T6，2个2字节（2个时间段），入场时间超过T4分钟，每T6分钟收取M3元(mode3,mode4) 。
+             </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.T7">
+            <summary>
+            T7，2字节，每T7（0-65535）分钟，最高限额M5元(mode4)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M1">
+             <summary>
+            M1，2个4字节（2个时间段），4字节，每次收取的停车费M1元(mode1)；每天收取的停车费M1元(mode2)；入场时间没有超过T4分钟，每T5分钟收取M1元(mode3,mode4)。
+             </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M2">
+            <summary>
+            M2，超过T3天，超过的每天按M2元收费(mode2,mode3,mode4)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M3">
+            <summary>
+            M3，2个4字节（2个时间段），入场时间超过T4分钟，超出部分每T6（T6=0-65535）分钟收取M3（M3=0-167772.15）元(mode3，mode4)。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M4">
+            <summary>
+            M4，2个4字节（2个时间段），时段1、2最高限额M4(mode3)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M5">
+            <summary>
+            M5，4字节，每T7分钟，最高限额M5元(mode4)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M6">
+            <summary>
+            M6，4字节，每天最高限额M6(mode3,mode4)。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.M7">
+            <summary>
+            M7，4字节，每次收费，最高限额M7元(mode1,mode2,mode3,mode4)。
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffInfo.TimeInterval">
+            <summary>
+            收费时间段（8Byte，字节型）：2个时间段，每个4字节。
+            第0-1字节：时间段1起始时分， 2字节，BCD进制格式。时（Byte 1）分（Byte2）；
+            第2-3字节：时间段1结束时分。
+            时间段如果未设置，如全部是0x00或0xFF则无效。
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_DateInterval">
+            <summary>
+            设备日期段属性
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_DateInterval.GetBCDBytes">
+            <summary>
+            获取时间段的BCD码数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_DateInterval.Status">
+            <summary>
+            获取或设置日期段的状态
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_DateInterval.BeginDate">
+            <summary>
+            获取或设置起始时间段
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_DateInterval.EndDate">
+            <summary>
+            获取或设置结束时间段
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.DeviceType">
+            <summary>
+            指定车位引导系统中的设备类型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DeviceType.CentralControl">
+            <summary>
+            中央控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DeviceType.RegionController">
+            <summary>
+            区域控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DeviceType.ParkingDetector">
+            <summary>
+            车位探测器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DeviceType.Sreen">
+            <summary>
+            显示屏
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.DetectorsStatusEventArgs">
+            <summary>
+            上传车位探测器实时状态信息事件参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.ParkingGuide.DetectorsStatusEventArgs.DetetorsStatus">
+            <summary>
+            获取或设置上传车位探测器实时状态信息
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DevicePaymentRecordType">
+            <summary>
+            收费记录类型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentRecordType.NotUpload">
+            <summary>
+            1：未上传记录；0：已上传记录。
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentRecordType.NoRecord">
+            <summary>
+            bit5-bit7：	111表示无记录
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentRecordType.HadData">
+            <summary>
+            bit5-bit7：	110表示有记录数据
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentRecordType.BadRecord">
+            <summary>
+            bit5-bit7：	100表示坏记录
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentRecordType.BadSector">
+            <summary>
+            bit5-bit7：	000表示坏扇区。
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DevicePaymentCode">
+            <summary>
+            表示收费事件代码
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentCode.Computer">
+            <summary>
+            电脑收费事件
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DevicePaymentCode.FunctionCard">
+            <summary>
+            功能卡收费事件
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CardOptions">
+            <summary>
+            卡片选项
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.None">
+            <summary>
+            未设置
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.OfflineHandleWhenOfflineMode">
+            <summary>
+            脱机模式时按脱机模式处理
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.ForbidRepeatIn">
+            <summary>
+            禁止重复入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.ForbidRepeatOut">
+            <summary>
+            禁止重复出场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.WithCount">
+            <summary>
+            出入场时参加车位计数
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.ForbidWhenFull">
+            <summary>
+            禁止车场满位时入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.HolidayEnabled">
+            <summary>
+            节假日允许进入车场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CardOptions.ForbidWhenExpired">
+            <summary>
+            禁止卡片过期时进出场
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.IPAddress">
+            <summary>
+            获取或设置控制板的IP地址(形如192.168.0.210)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.IPMask">
+            <summary>
+            获取或设置控制板的子网掩码(形如255.255.255.0)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.GateWay">
+            <summary>
+            获取或设置控制板的网关地址(形如192.168.0.1)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.MACAddress">
+            <summary>
+            获取或设置控制板的MAC地址(长度一般为12，如001497092A14）
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.ControlPort">
+            <summary>
+            获取或设置控制板的控制端口号，是与控制板通讯的主要端口号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.EventPort">
+            <summary>
+            获取或设置控制板上传事件所用的端口号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.MasterIP">
+            <summary>
+            获取或设置主控制器IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.EventListenerIP">
+            <summary>
+            获取或设置控制器的事件侦听者的IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.LANInfo.EventListenerPort">
+            <summary>
+            获取或设置控制器的事件侦听者的端口
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_WeekProperty">
+            <summary>
+            周属性枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.Disable">
+            <summary>
+            不启用
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.SundayIsWorkDay">
+            <summary>
+            周日是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.MondaIsWorkDay">
+            <summary>
+            周一是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.TuesdayIsWorkDay">
+            <summary>
+            周二是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.WednesdayIsWorkDay">
+            <summary>
+            周三是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.ThursdayIsWorkDay">
+            <summary>
+            周四是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.FridayIsWorkDay">
+            <summary>
+            周五是工作日
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_WeekProperty.SaturdayWorkDay">
+            <summary>
+            周六是工作日
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_Tariff_ChargeType">
+            <summary>
+            费率的收费类型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeType.Mode1">
+            <summary>
+            按次收费(mode1)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeType.Mode2">
+            <summary>
+            按天收费(mode2)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeType.Mode3">
+            <summary>
+            按时间段收费收费(mode3)
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_Tariff_ChargeType.Mode4">
+            <summary>
+            按停车时间收费(mode4)
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.UDPCommunication">
+            <summary>
+            表示一个UDP客户端
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.#ctor(System.String,System.Int32,System.Int32)">
+            <summary>
+            UDPCommunication构造函数
+            </summary>
+            <param name="remoteIP">远程主机的IP地址（以.分隔的字串)</param>
+            <param name="remotePort">远程主机的端口</param>
+            <param name="localPort"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.Send(System.Byte[])">
+            <summary>
+            发送数据
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.Send(Ralid.Park.Hardware.Packet,System.Int32)">
+            <summary>
+            发送消息包并返回收到的控制器返回包
+            </summary>
+            <param name="packet"></param>
+            <param name="timeout"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.Recieve(System.Int32,System.Net.IPEndPoint@)">
+            <summary>
+            接收数据，timeout表示超时的毫秒数
+            </summary>
+            <param name="timeout"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.BroadCast(Ralid.Park.Hardware.Packet,System.Int32)">
+            <summary>
+            发送广播包
+            </summary>
+            <param name="packet"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.ClearRecieveBuffer">
+            <summary>
+            清空接收缓冲区
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.UDPCommunication.Close">
+            <summary>
+            关闭,释放资源
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.UDPCommunication.RemoteIP">
+            <summary>
+            获取或设置远程计算机的IP（可以是广播地址)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.UDPCommunication.RemotePort">
+            <summary>
+            获取或设置远程计算机的端口号
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.UDPCommunication.IsForBroadcast">
+            <summary>
+            获取是否用于广播(即远程地址是否是一个广播地址)
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.UDPCommunication.LocalIP">
+            <summary>
+            获取通讯的本地IP
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.UDPCommunication.LocalPort">
+            <summary>
+            获取通讯的本地端口号
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.Packet">
+            <summary>
+            表示一个通讯包
+            包的结构：//帧头(1byte) +地址类型（1byte)+目的地址（2-8byte) +数据长度(2byte) + 命令码(2byte) +应用数据(0-480byte) + MAC（4Bbyte) +CRC(2byte)
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendByte(System.Byte)">
+            <summary>
+            在包的命令数据中追加一个字节
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendShort(System.Int16)">
+            <summary>
+             在包的命令数据中追加一个短整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendUShort(System.UInt16)">
+            <summary>
+             在包的命令数据中追加一个无符号短整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendInt(System.Int32)">
+            <summary>
+             在包的命令数据中追加一个整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendUint(System.UInt32)">
+            <summary>
+            在包的命令数据中追加一个无符号整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendLong(System.Int64)">
+            <summary>
+             在包的命令数据中追加一个长整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendULong(System.UInt64)">
+            <summary>
+             在包的命令数据中追加一个无符号长整形数
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendBytes(System.Byte[])">
+            <summary>
+            在包的命令数据中追加一个字节组
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.AppendBytes(System.Collections.Generic.List{System.Byte})">
+            <summary>
+            在包的命令数据中追加一个字节组
+            </summary>
+            <param name="data"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadByte(System.Int32,System.Int32)">
+            <summary>
+            从包的数据中读取一个字节的数据
+            </summary>
+            <param name="index">读取的起始位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadShort(System.Int32,System.Int32)">
+            <summary>
+            从包中读取两个字节的数据
+            </summary>
+            <param name="index">读取的起始位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadUShort(System.Int32,System.Int32)">
+            <summary>
+            从包中读取两个字节的数据
+            </summary>
+            <param name="index">读取的起始位置</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadInt(System.Int32,System.Int32)">
+            <summary>
+            从包中读取四个字节的数据
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadUInt(System.Int32,System.Int32)">
+            <summary>
+            从包中读取四个字节的数据
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadLong(System.Int32,System.Int32)">
+            <summary>
+            从包中读取8个字节的数据
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadULong(System.Int32,System.Int32)">
+            <summary>
+            从包中读取8个字节的数据
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.ReadBytes(System.Int32,System.Int32)">
+            <summary>
+            从包中读取n个字节的数据
+            </summary>
+            <param name="index">读取的起始位置</param>
+            <param name="count">读取的长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.Packet.GetBytes">
+            <summary>
+            获取整个包的字节数组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Packet.AddressType">
+            <summary>
+            获取或设置包的地址类型 
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Packet.Address">
+            <summary>
+            获取或设置包的目的地址
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Packet.CommandType">
+            <summary>
+            获取或设置命令码
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.Packet.AppData">
+            <summary>
+            获取包的应用数据(即包中的有效信息)
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceReader">
+            <summary>
+            控制板上的读卡器枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Reader1">
+            <summary>
+            读卡器一
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Reader2">
+            <summary>
+            读卡器二
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Reader3">
+            <summary>
+            读卡器三(收卡机和发卡机上的临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address1Reader">
+            <summary>
+            地址1读卡器（非临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address2Reader">
+            <summary>
+            地址2读卡器（非临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address3Reader">
+            <summary>
+            地址3读卡器（非临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address4Reader">
+            <summary>
+            地址4读卡器（临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address5Reader">
+            <summary>
+            地址5读卡器（临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.Address6Reader">
+            <summary>
+            地址6读卡器（临时卡读头）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceReader.DeskTopReader">
+            <summary>
+            桌面读卡器
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceVoice">
+            <summary>
+            控制板上可以播放的语音段
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_0">
+            <summary>
+            0
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_1">
+            <summary>
+            1
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_2">
+            <summary>
+            2
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_3">
+            <summary>
+            3
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_4">
+            <summary>
+            4
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_5">
+            <summary>
+            5
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_6">
+            <summary>
+            6
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_7">
+            <summary>
+            7
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_8">
+            <summary>
+            8
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_9">
+            <summary>
+            9
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_A">
+            <summary>
+            A
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_B">
+            <summary>
+            B
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_C">
+            <summary>
+            C
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_D">
+            <summary>
+            D
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_E">
+            <summary>
+            E
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_F">
+            <summary>
+            F
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_SHI">
+            <summary>
+            十
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_BAI">
+            <summary>
+            百
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_QIAN">
+            <summary>
+            千
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_WAN">
+            <summary>
+            万
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_DIAN">
+            <summary>
+            点
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_YUAN">
+            <summary>
+            元
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_JIAO">
+            <summary>
+            角
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_FEN">
+            <summary>
+            分
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CX">
+            <summary>
+            车型
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_YSJE">
+            <summary>
+            应收金额
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_HYGL">
+            <summary>
+            欢迎光临
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_HYGLQQK">
+            <summary>
+            欢迎光临，请取卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_HYGLQCK">
+            <summary>
+            欢迎光临，请插卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_QSKHJHLSK">
+            <summary>
+            请刷卡、或交回临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_WXKP">
+            <summary>
+            无效卡片
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPGQ">
+            <summary>
+            卡片过期 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPYRC">
+            <summary>
+            卡片已入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPYCC">
+            <summary>
+            卡片已出场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPLXBF">
+            <summary>
+            卡片类型不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_MYKP">
+            <summary>
+            没有卡片
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CWYM">
+            <summary>
+            车位已满
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_HYRC">
+            <summary>
+            欢迎入场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_MYJF">
+            <summary>
+            没有缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_ZLCSQCXJF">
+            <summary>
+            滞留超时，请重新缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CPBF">
+            <summary>
+            车牌不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_FWQTXGZ">
+            <summary>
+            服务器通信故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_ZKZQGZ">
+            <summary>
+            主控制器故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_FKJGZ">
+            <summary>
+            发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_SKJGZ">
+            <summary>
+            发卡机故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_DZGZ">
+            <summary>
+            闸机系统故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_TXGZ">
+            <summary>
+            通信故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_ZNYLSF">
+            <summary>
+            祝您一路顺风！
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_TYLSK">
+            <summary>
+            停用临时卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_ZZQRQSH">
+            <summary>
+            正在确认，请稍候
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_BYXJRQTCC">
+            <summary>
+            不允许进入嵌套车场
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CCBHBF">
+            <summary>
+            车场编号不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_YEBZ">
+            <summary>
+            余额不足
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_AXC">
+            <summary>
+            A型车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_BXC">
+            <summary>
+             B型车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CXC">
+            <summary>
+            C型车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_DXC">
+            <summary>
+            D型车
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_QCKHS">
+            <summary>
+            请插卡回收
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CKDFX">
+            <summary>
+            此卡待发行
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CKYZX">
+            <summary>
+            此卡已注销
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CKYGS">
+            <summary>
+            此卡已挂失 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_CKYSD">
+            <summary>
+            此卡已锁定
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPSJJYCW">
+            <summary>
+            卡片数据校验错误
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPBBBF">
+            <summary>
+            卡片版本不符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPWQY">
+            <summary>
+            卡片未到启用日期（卡片未启用）
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPWQX">
+            <summary>
+            卡片无权限
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPSJCW">
+            <summary>
+            卡片数据错误
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_QCXSK">
+            <summary>
+            请重新刷卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_QDJFZXJF">
+            <summary>
+            请到缴费中心缴费
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_YEBZQCZ">
+            <summary>
+            余额不足，请充值
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_JJRBYXJR">
+            <summary>
+            节假日不允许进入 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_KPBZMDZ">
+            <summary>
+            卡片不在名单中
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_WZDCX">
+            <summary>
+            未找到车型 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_WSZTCFL">
+            <summary>
+            未设置停车费率
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_DQSJXYRCSJ">
+            <summary>
+            当前时间小于入场时间 
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceVoice.eAUDIO_DQSJXYJFSJ">
+            <summary>
+            当前时间小于缴费时间
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice">
+            <summary>
+            表示一个停车场车位引导系统的中央控制器
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.BusesCount">
+            <summary>
+            中央控制器的总线数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.BusCapacity">
+            <summary>
+            总线上最多能带的设备数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.ScreenCapacity">
+            <summary>
+            中央控制器所能控制的引导屏最大数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.RegionControllerCapacity">
+            <summary>
+            区域控制器能带的最大子设备数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice._GetTimeOut">
+            <summary>
+            获取设备时接受数据的超时等待时间
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice._DetectordStatus">
+            <summary>
+            车位实时状态信息缓存
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.ListenEvents(System.Net.IPAddress,System.Int32)">
+            <summary>
+            收听控制板的实时事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.UnListenEvents(System.Net.IPAddress,System.Int32)">
+            <summary>
+            不再收听控制板的事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetCentralControllerAllSubDevices">
+            <summary>
+            获取中央控制器下所有子设备
+            </summary>
+            <param name="cc"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveRegionControllers(System.Int32,System.Collections.Generic.List{Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo})">
+            <summary>
+            保存某一总线下的所有区域控制器信息
+            参数不正确时抛出InvalidOperationException
+            </summary>
+            <param name="busNum"></param>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetRegionControllers(System.Int32)">
+            <summary>
+            获取保存在某一总线下的所有区域控制器（需先搜索区域控制器后中央控制器才会有保存记录）
+            没有找到或失败时返回null
+            </summary>
+            <param name="busNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveParkingScreens(System.Collections.Generic.List{Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo})">
+            <summary>
+            保存引导屏信息,256个屏，屏的编号为数组的索引
+            数组最大不能超出中央控制器的最大引导屏数,否则抛出InvalidOperationException异常
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveParkingScreen(Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo)">
+            <summary>
+            保存引导屏信息
+            </summary>
+            <param name="item"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetAllParkingScreens">
+            <summary>
+            获取保存的所有引导屏信息,没有找到或失败返回null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetParkingScreenWithIndex(System.Byte)">
+            <summary>
+            通过引导屏编号获取相应引导屏的信息
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetParkingScreen(System.Int32)">
+            <summary>
+            通过引导屏地址获取相应引导屏的信息
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetDetectorsOfScreen(System.Byte)">
+            <summary>
+            获取编号为index的引导屏管理的所有车位探测器信息
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveDetectorsOfScreen(System.Byte,System.Collections.Generic.List{System.Int32})">
+            <summary>
+            保存地址为address的引导屏管理的所有车位探测器信息
+            </summary>
+            <param name="index"></param>
+            <param name="detectors"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SearchRegionSubDevices(System.Int32)">
+            <summary>
+            搜索地址为address的区域控制器下的所有子设备（包括车位探测器和引导屏）
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SearchParkingDetectors(System.Int32)">
+            <summary>
+            搜索地址为address的区域控制器下的所有车位探测器
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SearchParkingScreens(System.Int32)">
+            <summary>
+            搜索地址为address的区域控制器下的所有车位引导屏
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveParkingDetectors(System.Int32,System.Collections.Generic.List{Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo})">
+            <summary>
+            保存某一区域控制器的车位探测器参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetParkingDetectors(System.Int32)">
+            <summary>
+            获取某一区域控制器的所有车位探测器参数
+            没有找到或失败时返回null
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetParkingDetector(System.Int32)">
+            <summary>
+            获取地址为address的车位探测器参数
+            没有找到或失败时返回null
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveParkingDetector(System.Int32,Ralid.Park.Hardware.ParkingGuide.SubDeviceInfo)">
+            <summary>
+            保存地址为address的车位探测器参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetDetectorStatus(System.Int32)">
+            <summary>
+            获取地址为address的车位探测器的状态
+            </summary>
+            <param name="address">车位探测器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetRegionDetectorsStatus(System.Int32)">
+            <summary>
+            获取地址为address的区域控制器下所有车位探测器的状态
+            </summary>
+            <param name="address">区域控制器地址</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetBusDetectorsStatus(System.Int32)">
+            <summary>
+            获取编号为busNum的总线下所有车位探测器的状态
+            </summary>
+            <param name="busNum">总线编号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SearchRegionControllers(System.Int32)">
+            <summary>
+            搜索某一路总线下的区域控制器，保存到中央控制器中
+            </summary>
+            <param name="busNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetDetectorWorkmode(System.Int32)">
+            <summary>
+            获取地址为address的车位探测器的工作模式
+            </summary>
+            <param name="address"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveDetectorWorkmode(System.Int32,System.Byte)">
+            <summary>
+            保存地址为address的车位探测器的工作模式
+            </summary>
+            <param name="address"></param>
+            <param name="workmode"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetDetectorReserverInterval(System.Int32,System.Byte)">
+            <summary>
+            获取地址为address的车位探测器的单个预留时间段
+            </summary>
+            <param name="address"></param>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.GetDetectorReserverIntervals(System.Int32,System.Collections.Generic.List{System.Byte})">
+            <summary>
+            获取地址为address的车位探测器的多个预留时间段
+            </summary>
+            <param name="address"></param>
+            <param name="numbers"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveDetectorReserverInterval(System.Int32,System.Byte,System.Byte[])">
+            <summary>
+            保存地址为address的车位探测器的单个预留时间段
+            </summary>
+            <param name="address"></param>
+            <param name="number"></param>
+            <param name="reserver"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SaveDetectorReserverIntervals(System.Int32,System.Collections.Generic.Dictionary{System.Byte,System.Byte[]})">
+            <summary>
+            保存地址为address的车位探测器的多个预留时间段
+            </summary>
+            <param name="address"></param>
+            <param name="reserver"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.SetLANInfoWithCheck(Ralid.Park.Hardware.LANInfo)">
+            <summary>
+            设置网络参数，但要与目前硬件的参数做对比，如果不一致才真正下发到硬件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.HeartBeat">
+            <summary>
+            当收到控制板发来的心跳包后产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.ScreenShowNumberNotityEvent">
+            <summary>
+            当收到控制板上传屏显示数字信息事件后产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.DetetorStatusNotityEvent">
+            <summary>
+            当收到控制板上传车位探测器实时状态信息事件后产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkingGuide.ParkGuideDevice.RegionStatusNotityEvent">
+            <summary>
+            当收到控制板上传区域控制器实时状态信息事件后产生此事件
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceStatus">
+            <summary>
+            控制器状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.Ok">
+            <summary>
+            设备正常
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.Error">
+            <summary>
+            故障
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.StorageFull">
+            <summary>
+            存储空间满
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.StorageAlarm">
+            <summary>
+            存储空间达到状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.NoCard">
+            <summary>
+            发卡机缺卡/打印机缺纸
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.LessCard">
+            <summary>
+            卡数量少
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.CardJam">
+            <summary>
+            卡纸/塞卡
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceStatus.OffLine">
+            <summary>
+            不在线
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_DateIntervalStatus">
+            <summary>
+            日期段属性状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_DateIntervalStatus.Disable">
+            <summary>
+            不启用
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.H_DateIntervalStatus.IsWorkDay">
+            <summary>
+            工作日
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.H_TariffSetting">
+            <summary>
+            表示硬件的费率
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TariffSetting.AddTariff(Ralid.Park.Hardware.H_Tariff_CarType,Ralid.Park.Hardware.H_TariffInfo)">
+            <summary>
+            增加费率
+            </summary>
+            <param name="carType"></param>
+            <param name="tariff"></param>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TariffSetting.GetTariff(Ralid.Park.Hardware.H_Tariff_CarType)">
+            <summary>
+            获取费率
+            </summary>
+            <param name="carType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TariffSetting.GetTariffBytes(Ralid.Park.Hardware.H_Tariff_CarType)">
+            <summary>
+            获取费率的字节组
+            </summary>
+            <param name="carType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.H_TariffSetting.GetInvalidBytes">
+            <summary>
+            获取无效费率的字节组
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffSetting.TariffType">
+            <summary>
+            获取或设置费率类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffSetting.CardType">
+            <summary>
+            获取或设置卡片类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffSetting.DateLenght">
+            <summary>
+            获取或设置数据类型
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.Hardware.H_TariffSetting.Tariffs">
+            <summary>
+            获取或设置费率
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkDevice">
+            <summary>
+            表示停车场控制板
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkDevice.MAXEVENTSPERTIME">
+            <summary>
+            每次通讯时一个包最多能包含的事件数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkDevice.MAXCARDSPERTIME">
+            <summary>
+            每次通讯时一个包最多能包含的卡片数量
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkDevice.MAXPAYMENTEVENTSPERTIME">
+            <summary>
+            每次通讯时一个包最多能包含的缴费事件数量
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.Reset">
+            <summary>
+            复位控制器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetParkNum(System.Byte[])">
+            <summary>
+            设置停车场控制板的编号
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetWorkmode(Ralid.Park.Hardware.WorkmodeInfo@)">
+            <summary>
+            获取控制板的工作模式,信息保存到info中,失败时返回null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetWorkmode(Ralid.Park.Hardware.WorkmodeInfo)">
+            <summary>
+            设置控制板的工作模式参数
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GateOperation(Ralid.Park.Hardware.GateOperation)">
+            <summary>
+            闸机操作(包括抬落闸等)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.LightOperation(Ralid.Park.Hardware.LightOperation)">
+            <summary>
+            补光灯操作
+            </summary>
+            <param name="opt">操作类型，0表示关灯，1表示开灯</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.CaptureCard(System.Int32)">
+            <summary>
+            让收卡机/发卡机收卡,失败时在result中返回错误原因
+            </summary>
+            <param name="deviceNum">出卡机号 1表示第一路出卡机，2表示第二路出卡机 目前只支持两路</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetCardCapturerSate(System.Byte)">
+            <summary>
+            设置收卡机状态(1表示收卡机处于收卡状态,0表示收卡机处于非收卡状态)
+            </summary>
+            <param name="state"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.EjectCard(System.Int32)">
+            <summary>
+            让发卡机/收卡机吐卡,失败时在result中返回错误原因
+            </summary>
+            <param name="deviceNum">出卡机号 1表示第一路出卡机，2表示第二路出卡机 目前只支持两路</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.Speak(Ralid.Park.Hardware.DeviceVoice)">
+            <summary>
+            播放语音
+            </summary>
+            <param name="voice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.ShowMessageOnLed(System.String,Ralid.Park.Hardware.LEDAddress)">
+            <summary>
+            控制LED显示屏显示字符
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetCompanyInfo(System.Boolean,System.Boolean,System.Boolean,System.String)">
+            <summary>
+            设置票箱屏永久显示信息
+            </summary>
+            <param name="showTime">是否显示日期时间</param>
+            <param name="hour12">是否以12小时制时间显示</param>
+            <param name="chineseTime">是否显示中文日期时间</param>
+            <param name="greeting">要永久显示的文字</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SpeakAndShow(Ralid.Park.Hardware.DeviceVoiceAndMessage)">
+            <summary>
+            播放语音，同时把播放内容显示到屏上
+            </summary>
+            <param name="voice"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SpeakAndPlayPayment(Ralid.Park.Hardware.CarType,System.String)">
+            <summary>
+            播放并显示应收金额
+            </summary>
+            <param name="carType"></param>
+            <param name="money"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.CardValid(System.Int32,Ralid.Park.Hardware.CardType,System.DateTime)">
+            <summary>
+            发送卡片有效指令
+            </summary>
+            <param name="cardID"></param>
+            <param name="cardType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.CardInvalid(System.Int32,Ralid.Park.Hardware.CardType,Ralid.Park.Hardware.EventInvalidType)">
+            <summary>
+            发送卡片无效指令
+            </summary>
+            <param name="cardID"></param>
+            <param name="cardType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.ListenEvents(System.Net.IPAddress,System.Int32)">
+            <summary>
+            收听控制板的实时事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.UnListenEvents(System.Net.IPAddress,System.Int32)">
+            <summary>
+            不再收听控制板的事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetEventStorageInfo(System.Int32@,System.Int32@,System.Int32@)">
+            <summary>
+            获取控制板事件存储信息
+            </summary>
+            <param name="capacity" >返回控制板上事件的容量</param>
+            <param name="totalCount">返回控制板上存放的事件记录数(目前不用,只返回0）</param>
+            <param name="latestIndex">返回最近一条事件记录的流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetEventRecords(System.Int32,System.Int32)">
+            <summary>
+            从控制器获取历史事件记录,没有记录或数据错误返回NULL
+            </summary>
+            <param name="beginIndex">要获取的第一个事件记录的流水号(控制器中事件的流水号从1开始)</param>
+            <param name="count">要获取的事件记录的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.ClearEventRecords">
+            <summary>
+            清空控制器的所有历史事件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetCard(System.UInt32)">
+            <summary>
+            获取卡号为cardID的卡片信息，无此卡片或获取失败时返回null
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetCards(System.UInt32,System.Int32)">
+            <summary>
+            获取卡号连续的多张卡片（如果连续的卡号中间有断号则返回的卡片数量会小于要获取的卡片数量)
+            </summary>
+            <param name="cardID">起始卡号</param>
+            <param name="count">要获取的卡片数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SaveCard(Ralid.Park.Hardware.Card)">
+            <summary>
+            保存卡片
+            </summary>
+            <param name="card">要保存的卡片信息</param>
+            <returns>成功时返回true</returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SaveCardEx(Ralid.Park.Hardware.Card)">
+            <summary>
+            保存卡片
+            </summary>
+            <param name="card">要保存的卡片信息</param>
+            <returns>成功时返回true</returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SaveCards(Ralid.Park.Hardware.Card[])">
+            <summary>
+            保存一批卡片,注意由于包的大小限制，这里卡片的数量不能超过20
+            </summary>
+            <param name="cards"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.DeleteCard(System.UInt32)">
+            <summary>
+            删除卡片，成功时返回true
+            </summary>
+            <param name="cardID">要删除卡片的卡号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.ClearCards">
+            <summary>
+            清空所有卡片,成功时返回true(这个方法执行会比较慢)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetParkLots(Ralid.Park.Hardware.ParkParams)">
+            <summary>
+            设置停车场车位信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetParkLots(System.Byte,Ralid.Park.Hardware.ParkParams@)">
+            <summary>
+            获取保存在硬件中某索引下的停车场车位信息，失败时返回null
+            </summary>
+            <param name="index"></param>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetParkVacantLedMessage(System.String)">
+            <summary>
+            设置停车场满位屏文字信息
+            </summary>
+            <param name="msg">满位屏文字信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetParkVacantLedPara(System.String@)">
+            <summary>
+            获取保存在硬件中某索引下的停车场满位屏文字信息,失败时返回null
+            </summary>
+            <param name="msg">满位屏文字信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetParkVacantFullLedMessage(System.String)">
+            <summary>
+            设置停车场满位屏车位已满文字信息
+            </summary>
+            <param name="msg">满位屏车位已满文字信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetParkVacantFullLedPara(System.String@)">
+            <summary>
+            获取保存在硬件中某索引下的停车场满位屏车位已满文字信息,失败时返回null
+            </summary>
+            <param name="msg">满位屏车位已满文字信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetAccessGroup(Ralid.Park.Hardware.AccessGroup@)">
+            <summary>
+            获取保存在硬件中的权限组信息
+            </summary>
+            <param name="accessGroup">权限组信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetAccessGroup(Ralid.Park.Hardware.AccessGroup)">
+            <summary>
+            设置硬件的权限组信息
+            </summary>
+            <param name="accessGroup">权限组信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetAccessTimeZone(System.Byte,System.Collections.Generic.List{Ralid.Park.Hardware.H_AccessTimeZone}@)">
+            <summary>
+            获取保存在硬件中的权限组时间段
+            </summary>
+            <param name="index">权限组序号</param>
+            <param name="accessTimeZone">限组时间段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetAccessTimeZone(System.Byte,System.Collections.Generic.List{Ralid.Park.Hardware.H_AccessTimeZone})">
+            <summary>
+            设置硬件的权限组时间段
+            </summary>
+            <param name="index">权限组序号</param>
+            <param name="accessTimeZone">限组时间段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetWeekProperty(Ralid.Park.Hardware.H_WeekProperty@)">
+            <summary>
+            获取保存在硬件中的周属性
+            </summary>
+            <param name="week"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetWeekProperty(Ralid.Park.Hardware.H_WeekProperty)">
+            <summary>
+            设置硬件的周属性
+            </summary>
+            <param name="week"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetDateInterval(System.Byte,System.Collections.Generic.List{Ralid.Park.Hardware.H_DateInterval}@)">
+            <summary>
+            获取保存在硬件中的日期段属性
+            </summary>
+            <param name="count">日期段个数</param>
+            <param name="dateInterval">日期段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetDateInterval(System.Collections.Generic.List{Ralid.Park.Hardware.H_DateInterval})">
+            <summary>
+            设置硬件的日期段属性
+            </summary>
+            <param name="dateInterval">日期段</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetTariff(Ralid.Park.Hardware.H_TariffType,Ralid.Park.Hardware.H_Tariff_CardType,Ralid.Park.Hardware.H_TariffSetting@)">
+            <summary>
+            获取保存在硬件中的费率
+            </summary>
+            <param name="tariffType">费率类型</param>
+            <param name="cardType">卡类型</param>
+            <param name="tariffSetting">费率</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetTariff(Ralid.Park.Hardware.H_TariffSetting)">
+            <summary>
+            设置硬件的费率
+            </summary>
+            <param name="tariffSetting"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetPaymentStorageInfo(System.Int32@,System.Int32@)">
+            <summary>
+            获取控制板收费记录存储信息
+            </summary>
+            <param name="capacity" >返回控制板上收费记录的容量</param>
+            <param name="latestIndex">返回最近一条收费记录的流水号</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetPaymentRecords(System.Int32,System.Int32)">
+            <summary>
+            从控制器获取收费记录,没有记录或数据错误返回NULL
+            </summary>
+            <param name="beginIndex">要获取的第一个收费记录的流水号(控制器中收费记录的流水号从1开始)</param>
+            <param name="count">要获取的收费记录的数量</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.ClearPaymentRecords">
+            <summary>
+            清空控制器的所有历史收费记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetReaderKeyA(System.Byte,System.Byte[])">
+            <summary>
+            设置读卡器的扇区和密钥A
+            </summary>
+            <param name="section">扇区</param>
+            <param name="keyData">密钥</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.HeartBeatResponse(Ralid.Park.Hardware.HeartBeatInfo)">
+            <summary>
+            回复心跳包
+            </summary>
+            <param name="heartBeat"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetCarPlateNotifyControllerIP">
+            <summary>
+            获取车牌识别结果要通知的控制器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetCarPlateNotifyController(System.Collections.Generic.List{System.String})">
+            <summary>
+            设置车牌识别结果要通知的控制器
+            </summary>
+            <param name="ips"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetCardTypeProperty">
+            <summary>
+            获取卡片类型属性
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetCardTypeProperty(System.UInt16[])">
+            <summary>
+            设置卡片类型属性
+            </summary>
+            <param name="property"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.GetRecognizedCarPlate(System.String@)">
+            <summary>
+            获取识别到的车牌号码
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetLANInfoWithCheck(Ralid.Park.Hardware.LANInfo)">
+            <summary>
+            设置网络参数，但要与目前硬件的参数做对比，如果不一致才真正下发到硬件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetWorkmodeWithCheck(Ralid.Park.Hardware.WorkmodeInfo)">
+            <summary>
+            设置工作模式,但要与目前硬件的参数做对比，如果不一致才真正下发到硬件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.Hardware.ParkDevice.SetDeviceInfoWithCheck(Ralid.Park.Hardware.DeviceInfo)">
+            <summary>
+            设置硬件参数,但要与目前硬件的参数做对比，如果不一致才真正下发到硬件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.DeviceReset">
+            <summary>
+            控制板复位时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CarSense">
+            <summary>
+            检测到地感信号时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CaptureACard">
+            <summary>
+            收卡机收卡一张时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardButtonClick">
+            <summary>
+            当按下取卡按钮时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.TakeACard">
+            <summary>
+            当发卡机吐出的卡被取走后产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardIgnored">
+            <summary>
+            当经过超时时间后仍未取走发卡机吐出的卡片时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardReading">
+            <summary>
+            当读卡器读到卡号时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardWaiting">
+            <summary>
+            有效卡片并等待上位机处理时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardPermitted">
+            <summary>
+            卡片有效并抬闸放行时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.CardDenied">
+            <summary>
+            卡片无效时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.GateUp">
+            <summary>
+            当闸抬起时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.GateDown">
+            <summary>
+            当闸落下时产生此事件
+            </summary>
+        </member>
+        <member name="E:Ralid.Park.Hardware.ParkDevice.HeartBeat">
+            <summary>
+            当收到控制板发来的心跳包后产生此事件
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.MACCalculator">
+            <summary>
+            用于计算通讯包的MAC部分
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.Hardware.MACCalculator.Encrypt(System.Byte[])">
+            <summary>
+            进行DES加密。
+            </summary>
+            <param name="inputByteArray">要加密的字节数组</param>
+            <returns>返回加密后的字节数组</returns>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceEventHandler">
+            <summary>
+            要处理控制板事件的处理函数
+            </summary>
+            <param name="sender"></param>
+            <param name="e"></param>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.RegionControllerStatus">
+            <summary>
+            区域控制器状态
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.RegionControllerStatus.Online">
+            <summary>
+            在线
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.RegionControllerStatus.Offline">
+            <summary>
+            断线
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.LightOperation">
+            <summary>
+            补光灯操作
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.LightOperation.LightOff">
+            <summary>
+            关闭
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.LightOperation.LightOn">
+            <summary>
+            打开
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.CarPlateComparisonResult">
+            <summary>
+            车牌对比结果
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarPlateComparisonResult.Success">
+            <summary>
+            车牌对比成功
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarPlateComparisonResult.Fail">
+            <summary>
+            车牌对比失败
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.CarPlateComparisonResult.Noncontrastive">
+            <summary>
+            不进行车牌对比
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.DetectInterval">
+             <summary>
+            车位探测器延时等级
+             </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Zero">
+            <summary>
+            0秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.One">
+            <summary>
+            1秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Two">
+            <summary>
+            2秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Three">
+            <summary>
+            3秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Four">
+            <summary>
+            4秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Six">
+            <summary>
+            6秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Eight">
+            <summary>
+            8秒
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectInterval.Sixteen">
+            <summary>
+            16秒
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.ParkingGuide.DetectHeight">
+            <summary>
+            车位探测器检测高度
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.One">
+            <summary>
+            1米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.OneDotFive">
+            <summary>
+            1.5
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.Two">
+            <summary>
+            2米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.TwoDotFive">
+            <summary>
+            2.5米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.Three">
+            <summary>
+            3米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.ThreeDotFive">
+            <summary>
+            3.5米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.Four">
+            <summary>
+            4米
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.ParkingGuide.DetectHeight.Five">
+            <summary>
+            4.5米
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.Hardware.DeviceOperation">
+            <summary>
+            控制板操作类型的枚举
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.GateOperation">
+            <summary>
+            闸杆操作
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.LightOperation">
+            <summary>
+            补光类操作
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.CardOperation">
+            <summary>
+            收卡发卡操作
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.Speak">
+            <summary>
+            播放语音
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.SpeakAndShow">
+            <summary>
+            播放并显示
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.SpeakAndPlayPayment">
+            <summary>
+            播放并显示收费金额
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.SetTimeShowMode">
+            <summary>
+            设置LED显示屏显示时间格式
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.ShowMessageOnLed">
+            <summary>
+            控制LED显示屏显示字符
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.CardValid">
+            <summary>
+            卡片有效
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.DeviceOperation.CardInvalid">
+            <summary>
+            卡片无效
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.AddressType.None">
+            <summary>
+            未指定
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.AddressType.Device">
+            <summary>
+            设备地址
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.AddressType.DeviceSn">
+            <summary>
+            设备序列号
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.Hardware.AddressType.MAC">
+            <summary>
+            MAC地址
+            </summary>
+        </member>
+    </members>
+</doc>

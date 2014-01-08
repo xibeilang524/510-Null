@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="a8da9e83-e7b3-4fff-9f2f-3f6184eab456" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://ralid-bruce/ParkWeb/Ralid.Park.WebService.ParkWebService.svc?wsdl" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="ParkWebService.wsdl" MetadataType="Wsdl" ID="e9858811-889f-4775-953a-8e5e94dca2af" SourceId="1" SourceUrl="http://ralid-bruce/ParkWeb/Ralid.Park.WebService.ParkWebService.svc?wsdl" />
+    <MetadataFile FileName="Ralid.xsd" MetadataType="Schema" ID="3898e69a-4086-417f-b92c-6f0f9257bac6" SourceId="1" SourceUrl="http://ralid-bruce/ParkWeb/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd0" />
+    <MetadataFile FileName="Ralid1.xsd" MetadataType="Schema" ID="0debebb2-a411-4e3a-8f76-98fb6c4aa05f" SourceId="1" SourceUrl="http://ralid-bruce/ParkWeb/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

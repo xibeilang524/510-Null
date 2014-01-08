@@ -1,0 +1,268 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ralid.BusinessModel</RootNamespace>
+    <AssemblyName>BusinessModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\AppSettings.cs" />
+    <Compile Include="Enum\EntranceWorkmodeOption.cs" />
+    <Compile Include="Enum\ActionType.cs" />
+    <Compile Include="Enum\CardStatus.cs" />
+    <Compile Include="Enum\CardType.cs" />
+    <Compile Include="Enum\EnumFieldDescriptionAttribute.cs" />
+    <Compile Include="Enum\EntranceStatus.cs" />
+    <Compile Include="Enum\EnumDescription.cs" />
+    <Compile Include="Enum\EventInvalidType.CS" />
+    <Compile Include="Enum\CarType.cs" />
+    <Compile Include="Enum\AlarmType.cs" />
+    <Compile Include="Enum\DivisionType.cs" />
+    <Compile Include="Enum\LinkMode.cs" />
+    <Compile Include="Enum\GateOperation.cs" />
+    <Compile Include="Enum\ParkingStatus.cs" />
+    <Compile Include="Enum\PaymentMode.cs" />
+    <Compile Include="Enum\Permissions.cs" />
+    <Compile Include="Enum\SystemType.cs" />
+    <Compile Include="Enum\TariffType.cs" />
+    <Compile Include="Enum\VipVisitorStatus.cs" />
+    <Compile Include="Factory\CardPaymentInfoFactory.cs" />
+    <Compile Include="Factory\ParkBillFactory.cs" />
+    <Compile Include="Interface\IReportHandler.cs" />
+    <Compile Include="Model\AccessInfo.cs" />
+    <Compile Include="Model\AccessSetting.cs" />
+    <Compile Include="Model\AccessTimeZone.cs" />
+    <Compile Include="Model\AccountingOption.cs" />
+    <Compile Include="Model\CanAddress.cs" />
+    <Compile Include="Model\CardEventRecord.cs" />
+    <Compile Include="Model\CardPaymentInfo.cs" />
+    <Compile Include="Model\CarPortSetting.cs" />
+    <Compile Include="Model\CenterChargeRecord.cs" />
+    <Compile Include="Model\DatetimeInterval.cs" />
+    <Compile Include="Model\HolidayInfo.cs" />
+    <Compile Include="Model\HolidaySetting.cs" />
+    <Compile Include="Model\ParkHardwareTree.cs" />
+    <Compile Include="Model\ParkAccountsInfo.cs" />
+    <Compile Include="Model\SnapShotID.cs" />
+    <Compile Include="Model\TariffBase.cs" />
+    <Compile Include="Model\TariffOfGuanZhou.cs" />
+    <Compile Include="Model\TariffOfLimitation.cs" />
+    <Compile Include="Model\TariffOfMidNight.cs" />
+    <Compile Include="Model\TariffPerDay.cs" />
+    <Compile Include="Model\TariffPerTime.cs" />
+    <Compile Include="Model\TariffSpecialTimezone.cs" />
+    <Compile Include="Model\TariffTimeZone.cs" />
+    <Compile Include="Model\TarrifSetting.cs" />
+    <Compile Include="Model\TempCard.cs" />
+    <Compile Include="Model\TollOptionSetting.cs" />
+    <Compile Include="Model\UserSetting.cs" />
+    <Compile Include="Notify\DeviceModeNotify.cs" />
+    <Compile Include="Notify\QueryParkFeeNotify.cs" />
+    <Compile Include="Notify\EntranceRemainTempCardNotify.cs" />
+    <Compile Include="Notify\RemoteReadCardNotify.cs" />
+    <Compile Include="Report\CardCaptureReport.cs" />
+    <Compile Include="Report\CardEventID.cs" />
+    <Compile Include="Report\CardEventReport.cs" />
+    <Compile Include="Model\ChargeUnit.cs" />
+    <Compile Include="Model\GeneralSetting.cs" />
+    <Compile Include="Model\SnapShot.cs" />
+    <Compile Include="Model\AlarmInfo.cs" />
+    <Compile Include="Model\CardChangeRecord.cs" />
+    <Compile Include="Model\CardChargeRecord.cs" />
+    <Compile Include="Model\CardDeferRecord.cs" />
+    <Compile Include="Model\CardDisableEnableRecord.cs" />
+    <Compile Include="Model\CardFlowStatistics.cs" />
+    <Compile Include="Model\CardLostRestoreRecord.cs" />
+    <Compile Include="Model\CardRecycleRecord.cs" />
+    <Compile Include="Model\CardReleaseRecord.cs" />
+    <Compile Include="Model\CarInfo.cs" />
+    <Compile Include="Model\OperatorLogInfo.cs" />
+    <Compile Include="Model\TimeEntity.cs" />
+    <Compile Include="Notify\FetchCardRequesNotify.cs" />
+    <Compile Include="Model\VideoSourceInfo.cs" />
+    <Compile Include="Model\WaitingCommandInfo.cs" />
+    <Compile Include="Notify\EventInvalidNotify.cs" />
+    <Compile Include="Notify\EventValidNotify.cs" />
+    <Compile Include="Notify\TempCardEventNotify.cs" />
+    <Compile Include="Notify\DeviceReSetNotify.cs" />
+    <Compile Include="Notify\DownLoadCardNotify.cs" />
+    <Compile Include="Notify\GateOperationNotify.cs" />
+    <Compile Include="Notify\FetchEventRequestNotify.cs" />
+    <Compile Include="Model\CardInfo.cs" />
+    <Compile Include="Model\EntranceInfo.cs" />
+    <Compile Include="Model\OperatorInfo.cs" />
+    <Compile Include="Model\ParkInfo.cs" />
+    <Compile Include="Model\RoleInfo.cs" />
+    <Compile Include="Model\SysparameterInfo.cs" />
+    <Compile Include="Model\WorkStationInfo.cs" />
+    <Compile Include="Notify\SetCardMachineNotify.cs" />
+    <Compile Include="Notify\SetLedDisplayNotify.cs" />
+    <Compile Include="Notify\SynTimeNotify.cs" />
+    <Compile Include="Notify\TakeOutCardNotify.cs" />
+    <Compile Include="Report\CardEventStatus.cs" />
+    <Compile Include="Report\ParkVacantReport.cs" />
+    <Compile Include="Report\EntranceRemainTempCardReport.cs" />
+    <Compile Include="Report\ReadCardReport.cs" />
+    <Compile Include="Report\ReportBase.cs" />
+    <Compile Include="Report\CarSenseReport.cs" />
+    <Compile Include="Result\CommandResult.cs" />
+    <Compile Include="Result\QueryResult.cs" />
+    <Compile Include="Result\QueryResultList.cs" />
+    <Compile Include="SearchCondition\AlarmSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardEventSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardPaymentRecordSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardSearchCondition.cs" />
+    <Compile Include="SearchCondition\DateTimeRange.cs" />
+    <Compile Include="SearchCondition\EntranceSearchCondition.cs" />
+    <Compile Include="SearchCondition\OperatorSearchCondition.cs" />
+    <Compile Include="SearchCondition\RecordSearchCondition.cs" />
+    <Compile Include="SearchCondition\SearchCondition.cs" />
+    <Compile Include="Report\ParkFullReport.cs" />
+    <Compile Include="Enum\ResultCode.cs" />
+    <Compile Include="Report\CardInvalidReport.cs" />
+    <Compile Include="Report\DeviceStatusReport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="SearchCondition\SnapShotSearchCondition.cs" />
+    <Compile Include="SearchCondition\VipSearchCondition.cs" />
+    <Compile Include="SearchCondition\VipVisitorLogSearchCondition.cs" />
+    <Compile Include="SearchCondition\WaitingCommandSearchCondition.cs" />
+    <Compile Include="Model\TariffOfMultTimezone.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\GeneralLibrary\GeneralLibrary.csproj">
+      <Project>{B4CB506B-1C5A-493A-8437-0BCEC14A2DB4}</Project>
+      <Name>GeneralLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
