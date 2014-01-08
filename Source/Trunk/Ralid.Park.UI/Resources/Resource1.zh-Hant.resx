@@ -1,0 +1,1041 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Form_Add" xml:space="preserve">
+    <value>增加</value>
+  </data>
+  <data name="Form_Alert" xml:space="preserve">
+    <value>注意</value>
+  </data>
+  <data name="Form_ExcelFilter" xml:space="preserve">
+    <value>Excel文檔|*.xls|所有檔(*.*)|*.*</value>
+  </data>
+  <data name="Form_ExitQuery" xml:space="preserve">
+    <value>確定要關閉此視窗嗎？</value>
+  </data>
+  <data name="Form_ExitSystemQuery" xml:space="preserve">
+    <value>確定要「退出系統」嗎？點擊 "確定" 將關閉停車場系統，點擊 "取消" 返回。</value>
+  </data>
+  <data name="Form_Query" xml:space="preserve">
+    <value>詢問</value>
+  </data>
+  <data name="FrmAccessLevelDetail_InvalidAccessName" xml:space="preserve">
+    <value>通道許可權名稱不能為空</value>
+  </data>
+  <data name="FrmAddCards_CardCount" xml:space="preserve">
+    <value>卡片數量:{0}</value>
+  </data>
+  <data name="FrmAddCards_CardExists" xml:space="preserve">
+    <value>卡片 {0} 已經在系統中存在</value>
+  </data>
+  <data name="FrmAddCards_Continue" xml:space="preserve">
+    <value>繼續操作</value>
+  </data>
+  <data name="FrmAddCards_InvalidCardType" xml:space="preserve">
+    <value>請選擇一種卡片類型</value>
+  </data>
+  <data name="FrmAddCards_InvalidOwnerName" xml:space="preserve">
+    <value>預設名稱不能為空</value>
+  </data>
+  <data name="FrmAddCards_Next" xml:space="preserve">
+    <value>下一步</value>
+  </data>
+  <data name="FrmAddCards_Processing" xml:space="preserve">
+    <value>完成{0}/共{1}</value>
+  </data>
+  <data name="FrmAPMDetail_InvalidSerialNum" xml:space="preserve">
+    <value>自助繳費機編號不能為空</value>
+  </data>
+  <data name="FrmCardEventReport_In" xml:space="preserve">
+    <value>入場</value>
+  </data>
+  <data name="FrmCardEventReport_Out" xml:space="preserve">
+    <value>出場</value>
+  </data>
+  <data name="FrmCardLostRestore_Lost" xml:space="preserve">
+    <value>卡片掛失</value>
+  </data>
+  <data name="FrmCardLostRestore_Restore" xml:space="preserve">
+    <value>卡片恢復</value>
+  </data>
+  <data name="FrmCardPaying_CancelPaymentAlarm" xml:space="preserve">
+    <value>取消的收費資訊:卡號{0} 收費時間{1} 入場時間{2} 收費金額{3}</value>
+  </data>
+  <data name="FrmCardPaying_CancelPaymentQuey" xml:space="preserve">
+    <value>此操作會把卡片上次收費記錄刪除,是否繼續?</value>
+  </data>
+  <data name="FrmCardPaying_CardWaitEnterSpeech" xml:space="preserve">
+    <value>{0}有車等待入場</value>
+  </data>
+  <data name="FrmCardPaying_CardWaitExitSpeech" xml:space="preserve">
+    <value>{0}车牌对比失败</value>
+  </data>
+  <data name="FrmCardPaying_CentralCharge" xml:space="preserve">
+    <value>中央收費處</value>
+  </data>
+  <data name="FrmCardPaying_MoneyLittleQuery" xml:space="preserve">
+    <value>實收金額不大於零，是否繼續?</value>
+  </data>
+  <data name="FrmCardPaying_MoneyMuchQuery" xml:space="preserve">
+    <value>實收金額大於應收金額，是否繼續？</value>
+  </data>
+  <data name="FrmCardPaying_NotTempCard" xml:space="preserve">
+    <value>非臨時卡片</value>
+  </data>
+  <data name="FrmCardPaying_Paying" xml:space="preserve">
+    <value>正在收費請稍候</value>
+  </data>
+  <data name="FrmCardPaying_PayingSpeech" xml:space="preserve">
+    <value>應收{0}元</value>
+  </data>
+  <data name="FrmCardPaymentRecordDetail_ModifyPayment" xml:space="preserve">
+    <value>修改收費資訊:"卡號{{{0}}} 收費時間{{{1}}} 入場時間{{{2}}} 應收金額{{{3}}} 實收金額{{{4}}} 說明{{{5}}}" 為 實收金額{{{6}}} 說明{{{7}}}</value>
+  </data>
+  <data name="FrmCards_CannotCharge" xml:space="preserve">
+    <value>卡片 {0} 不支援充值操作,卡片不是充值類卡,或者卡片還沒有發行!</value>
+  </data>
+  <data name="FrmChangePwd_InvalidConfirmPwd" xml:space="preserve">
+    <value>新密碼與確認密碼不一致!</value>
+  </data>
+  <data name="FrmChangePwd_InvalidNewPwd" xml:space="preserve">
+    <value>新密碼不能為空!</value>
+  </data>
+  <data name="FrmChangePwd_InvalidOldPwd" xml:space="preserve">
+    <value>舊密碼輸入不正確!</value>
+  </data>
+  <data name="FrmClose_EmptyPwd" xml:space="preserve">
+    <value>密碼不能為空!</value>
+  </data>
+  <data name="FrmDownloadAllCards_CardProcessing" xml:space="preserve">
+    <value>下載卡片{0}</value>
+  </data>
+  <data name="FrmDownloadAllCards_Clear" xml:space="preserve">
+    <value>正在清空卡片資訊...</value>
+  </data>
+  <data name="FrmDownloadAllCards_Complete" xml:space="preserve">
+    <value>下載完成!</value>
+  </data>
+  <data name="FrmDownloadAllCards_Label2" xml:space="preserve">
+    <value>卡片下載可能要花幾分鐘,具體由系統中卡片數量決定,請耐心等待...</value>
+  </data>
+  <data name="FrmDownloadAllCards_Seconds" xml:space="preserve">
+    <value>用時 {0} 秒</value>
+  </data>
+  <data name="FrmEntranceDetail_InvalidName" xml:space="preserve">
+    <value>通道名稱不能為空!</value>
+  </data>
+  <data name="FrmHolidayDetail_InvalidHoliday" xml:space="preserve">
+    <value>公休日開始時間不能大於結束時間！</value>
+  </data>
+  <data name="FrmLogin_AuthenFail" xml:space="preserve">
+    <value>使用者名或者密碼輸入不正確!</value>
+  </data>
+  <data name="FrmLogin_InvalidPwd" xml:space="preserve">
+    <value>密碼不能為空!</value>
+  </data>
+  <data name="FrmLogin_InvalidUserName" xml:space="preserve">
+    <value>使用者名不能為空!</value>
+  </data>
+  <data name="FrmMain_AlterStationIDQuery" xml:space="preserve">
+    <value>當前工作站已經更改，需要重新開機軟體才能生效，軟體現在關閉。</value>
+  </data>
+  <data name="FrmMain_DeleteEntranceQuery" xml:space="preserve">
+    <value>是否要刪除控制器及其下面所有節點?</value>
+  </data>
+  <data name="FrmMain_DeleteParkQuery" xml:space="preserve">
+    <value>是否要刪除停車場及其下面的所有節點?</value>
+  </data>
+  <data name="FrmMain_DeleteVideoQuery" xml:space="preserve">
+    <value>是否要刪除攝像機?</value>
+  </data>
+  <data name="FrmMain_lblOperator" xml:space="preserve">
+    <value>操作員:{0}</value>
+  </data>
+  <data name="FrmMain_lblStartFrom" xml:space="preserve">
+    <value>啟動時間:{0}</value>
+  </data>
+  <data name="FrmMain_lblStation" xml:space="preserve">
+    <value>當前工作站:{0}</value>
+  </data>
+  <data name="FrmMain_OperatorNotShift" xml:space="preserve">
+    <value>操作員 {0} 在本工作站接班後還未交班,請先進行交接班操作,其它收費操作員才可登錄!</value>
+  </data>
+  <data name="FrmMain_ShiftAlert" xml:space="preserve">
+    <value>離交班還有{0}分鐘</value>
+  </data>
+  <data name="FrmMain_ShitNow" xml:space="preserve">
+    <value>交班時間到</value>
+  </data>
+  <data name="FrmMain_SoftDogError" xml:space="preserve">
+    <value>加密狗訪問錯誤：沒有找到加密狗。如果加密狗已經插上，則可能是加密狗還沒有加密，請先聯繫廠家進行加密!</value>
+  </data>
+  <data name="FrmMain_SoftDogExpired" xml:space="preserve">
+    <value>軟體已經過期，請聯繫廠家延長期限!</value>
+  </data>
+  <data name="FrmMain_SoftDogExpiredAlert" xml:space="preserve">
+    <value>軟體已經過期，還可以再試用 {0} 天，請儘快與供應商聯繫延長您的軟體使用期!</value>
+  </data>
+  <data name="FrmMain_SoftDogNoRights" xml:space="preserve">
+    <value>加密狗許可權不足：原因可能是加密狗中沒有開放停車場許可權,請聯繫廠家開放相應的許可權!</value>
+  </data>
+  <data name="FrmMasterBase_DeleteQuery" xml:space="preserve">
+    <value>確實要刪除所選項嗎?</value>
+  </data>
+  <data name="FrmMasterBase_StatusBar" xml:space="preserve">
+    <value>總共 {0} 項</value>
+  </data>
+  <data name="FrmNetEntrance_EmptyName" xml:space="preserve">
+    <value>控制器名不能為空!</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidControlPort" xml:space="preserve">
+    <value>控制埠號不正確，請重新輸入!</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidEventPort" xml:space="preserve">
+    <value>事件埠號不正確，請重新輸入!</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidIP" xml:space="preserve">
+    <value>IP位址不正確，請重新輸入!</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidReadInterval" xml:space="preserve">
+    <value>讀卡間隔時間不正確，請重新輸入!</value>
+  </data>
+  <data name="FrmNetEntrance_MastExists" xml:space="preserve">
+    <value>停車場已經存在一個主控制器，不能再增加一個主控制器，如果要把這個控制器設置成主控制器，應先將停車場其它的主控制器改成非主控制器</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidOperatorNum" xml:space="preserve">
+    <value>操作員編號不能大於255或者小於1!</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidPwd" xml:space="preserve">
+    <value>操作員密碼不能為空!</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidUserID" xml:space="preserve">
+    <value>操作員登錄ID不能為空!</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidUserName" xml:space="preserve">
+    <value>操作員姓名不能為空!</value>
+  </data>
+  <data name="FrmOperatorLogReport_Fail" xml:space="preserve">
+    <value>匯出失敗</value>
+  </data>
+  <data name="FrmOperatorLogReport_NotFind" xml:space="preserve">
+    <value>未找到報表匯出範本</value>
+  </data>
+  <data name="FrmOperatorShift_InvalidCash" xml:space="preserve">
+    <value>上交的現金數量不正確，請重新輸入！</value>
+  </data>
+  <data name="FrmOperatorShift_InvalidTempCard" xml:space="preserve">
+    <value>上交的臨時卡數量不正確,請重新輸入!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidMinPort" xml:space="preserve">
+    <value>最低車位數不能大於最高車位數!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidName" xml:space="preserve">
+    <value>停車場名不能為空!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidTotalPort" xml:space="preserve">
+    <value>總車位數不能小於0或者大於65535!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidVacant" xml:space="preserve">
+    <value>余位數必須在總車位數與車位下限之間!</value>
+  </data>
+  <data name="FrmParkDeviceDetail_GetLanFail" xml:space="preserve">
+    <value>獲取LAN參數失敗</value>
+  </data>
+  <data name="FrmParkDeviceDetail_GetLanSuccess" xml:space="preserve">
+    <value>獲取LAN參數成功</value>
+  </data>
+  <data name="FrmParkDeviceDetail_SetLanFail" xml:space="preserve">
+    <value>LAN參數設置失敗</value>
+  </data>
+  <data name="FrmParkDeviceDetail_SetLanSuccess" xml:space="preserve">
+    <value>LAN參數設置成功</value>
+  </data>
+  <data name="FrmRoleDetail_InvalidRoleID" xml:space="preserve">
+    <value>角色ID不能為空!</value>
+  </data>
+  <data name="FrmSearchDevice_DeviceExists" xml:space="preserve">
+    <value>設備 {0} 在系統中已經存在</value>
+  </data>
+  <data name="FrmSnapshotExport_NoFolder" xml:space="preserve">
+    <value>沒有指定匯出目錄</value>
+  </data>
+  <data name="FrmSnapshotExport_Processing" xml:space="preserve">
+    <value>已經導入 {0} 條記錄，共有 {1} 條記錄</value>
+  </data>
+  <data name="FrmSnapshotViewer_ToFolderQuery" xml:space="preserve">
+    <value>圖片匯出成功，是否轉到圖片保存目錄?</value>
+  </data>
+  <data name="FrmSystemOption_DeleteMonthCardTariffQuery" xml:space="preserve">
+    <value>清除操作會刪除月卡收費規則，使月卡出場時不用再計費，是否繼續?</value>
+  </data>
+  <data name="FrmSystemOption_InvalidFreeTimeAfterPay" xml:space="preserve">
+    <value>收費後停留時間不正確!</value>
+  </data>
+  <data name="FrmSystemOption_InvalidMaxCarplateErrorChar" xml:space="preserve">
+    <value>允許車牌識別誤碼差位數不正確!</value>
+  </data>
+  <data name="FrmSystemOption_NoCarType" xml:space="preserve">
+    <value>至少要設置一種車型!</value>
+  </data>
+  <data name="FrmTariffSelection_InvaidFirstFee" xml:space="preserve">
+    <value>入場收費不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayFee" xml:space="preserve">
+    <value>白天時段收費金額不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayLimitFee" xml:space="preserve">
+    <value>選擇了白天最高收費,但收費金額不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayMinutes" xml:space="preserve">
+    <value>白天時間收費時間不能小於或等於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidFirstMinutes" xml:space="preserve">
+    <value>入場分鐘數不能小於零！</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidFreeMinutes" xml:space="preserve">
+    <value>免費時間必須設置於0-255之間!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidMidNightFee" xml:space="preserve">
+    <value>過零點改收金額不能小於零！</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidMoney" xml:space="preserve">
+    <value>收費金額不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightFee" xml:space="preserve">
+    <value>夜間收費金額不能小於零！</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightLimitation" xml:space="preserve">
+    <value>選擇了夜間最高收費,但收費金額不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightMinutes" xml:space="preserve">
+    <value>夜間收費分鐘不能小於或等於零！</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidRegularFee" xml:space="preserve">
+    <value>累計收費金額不能小於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidRegularMinutes" xml:space="preserve">
+    <value>累計分鐘不能小於或等於零!</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidTimezone" xml:space="preserve">
+    <value>時間段設置不正確，應設置成白天時段的開始時間等於夜晚時段的結束時間，白天時段的結束時間等於夜晚時段的開始時間</value>
+  </data>
+  <data name="FrmTariffSelectlion_InvalidDayFee" xml:space="preserve">
+    <value>每天最高限額不能小於零!</value>
+  </data>
+  <data name="FrmTempCardSetting_InvalidTempCard" xml:space="preserve">
+    <value>設置的臨時卡數量不正確,不能小於零!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidChannel" xml:space="preserve">
+    <value>視訊伺服器通道號不正確,通道號不能小於零!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidConnectTimeout" xml:space="preserve">
+    <value>連接逾時時間不能小於0!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidControlPort" xml:space="preserve">
+    <value>控制埠號不在1024與65535之間!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidIP" xml:space="preserve">
+    <value>視訊伺服器位址不能為空!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidName" xml:space="preserve">
+    <value>名稱不能為空!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidPwd" xml:space="preserve">
+    <value>密碼不能為空!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidStreamPort" xml:space="preserve">
+    <value>視頻流埠號不在1024與65535之間!</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidUserName" xml:space="preserve">
+    <value>使用者名不能為空!</value>
+  </data>
+  <data name="FrmWorkstationDetail_InvalidID" xml:space="preserve">
+    <value>工作站ID不能為空!</value>
+  </data>
+  <data name="FrmYCTPayment_BalanceNotEnough" xml:space="preserve">
+    <value>卡片餘額不足</value>
+  </data>
+  <data name="FrmYCTPayment_Fail" xml:space="preserve">
+    <value>扣款失敗</value>
+  </data>
+  <data name="FrmYCTPayment_PleaseRead" xml:space="preserve">
+    <value>請讀羊城通卡</value>
+  </data>
+  <data name="FrmYCTPayment_Success" xml:space="preserve">
+    <value>扣款成功</value>
+  </data>
+  <data name="UcCard_CannotDefer" xml:space="preserve">
+    <value>卡片 {0} 不支援延期操作,卡片不是延期類卡,或者卡片沒有發行!</value>
+  </data>
+  <data name="UcCard_CannotRecycle" xml:space="preserve">
+    <value>卡片 {0} 不支援回收操作,請確定卡片已經發行且不是臨時類卡!</value>
+  </data>
+  <data name="UcCard_CannotRelease" xml:space="preserve">
+    <value>卡片 {0} 不能再發行,請確保卡片是臨時卡或是已經回收的卡片!</value>
+  </data>
+  <data name="UcCard_DeleteCardQuery" xml:space="preserve">
+    <value>確實要刪除所選項嗎?</value>
+  </data>
+  <data name="UcCard_InvalidCardID" xml:space="preserve">
+    <value>卡號不是整型,或者卡號超出最大位數</value>
+  </data>
+  <data name="UcCard_InvalidCardType" xml:space="preserve">
+    <value>請選擇一種卡片類型</value>
+  </data>
+  <data name="UcCard_InvalidCarType" xml:space="preserve">
+    <value>請選擇一種車型</value>
+  </data>
+  <data name="UcCard_InvalidOwnerName" xml:space="preserve">
+    <value>車主姓名不能為空</value>
+  </data>
+  <data name="UcCard_TicketNotSupport" xml:space="preserve">
+    <value>紙票不支援發行操作</value>
+  </data>
+  <data name="FrmCardDisableEnable_Disable" xml:space="preserve">
+    <value>卡片禁用</value>
+  </data>
+  <data name="FrmCardDisableEnable_Enable" xml:space="preserve">
+    <value>卡片启用</value>
+  </data>
+  <data name="FrmSystemOption_InvalidMonth" xml:space="preserve">
+    <value>数据库优化时设置的保存抓拍图片月数不能小于零</value>
+  </data>
+  <data name="FrmSystemOption_SameAccessName" xml:space="preserve">
+    <value>系统中已经存在 权限组:{0} </value>
+  </data>
+  <data name="FrmLogin_InvalidDataBase" xml:space="preserve">
+    <value>資料庫不能為空</value>
+  </data>
+  <data name="FrmLogin_InvalidServer" xml:space="preserve">
+    <value>資料庫伺服器不能為空</value>
+  </data>
+  <data name="FrmWorkstationDetail_SameName" xml:space="preserve">
+    <value>系統中已經存在一個同名工作站,請輸入其它名稱</value>
+  </data>
+  <data name="FrmCenterCharge_RecordHandled" xml:space="preserve">
+    <value>卡片的上一收費記錄已經結算，不能再取消</value>
+  </data>
+  <data name="FrmReportBase_SaveSuccess" xml:space="preserve">
+    <value>保存成功!</value>
+  </data>
+  <data name="OperatorLogInAlarm" xml:space="preserve">
+    <value>登錄工作站:[{0}] 主機名稱:[{1}] 主機IP:[{2}] MAC:[{3}]</value>
+  </data>
+  <data name="FrmOperatorSettle_Tail" xml:space="preserve">
+    <value>操作員:                                      審核:</value>
+  </data>
+  <data name="FrmOperatorSettle_OK" xml:space="preserve">
+    <value>確定(&amp;O)</value>
+  </data>
+  <data name="FrmMain_ManualFile" xml:space="preserve">
+    <value>Ralid Park User Manual.doc</value>
+  </data>
+  <data name="FrmCarFlow_DateTime" xml:space="preserve">
+    <value>統計時間</value>
+  </data>
+  <data name="FrmCarFlow_In" xml:space="preserve">
+    <value>入場</value>
+  </data>
+  <data name="FrmCarFlow_Out" xml:space="preserve">
+    <value>出場</value>
+  </data>
+  <data name="FrmCarFlow_Total" xml:space="preserve">
+    <value>合計</value>
+  </data>
+  <data name="LEDType_YanSe" xml:space="preserve">
+    <value>LED桌面屏（A）</value>
+  </data>
+  <data name="LEDType_Zhongkuang" xml:space="preserve">
+    <value>LED屏（A）</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>廣州瑞立德停車場系統</value>
+  </data>
+  <data name="CarPlate_Fail" xml:space="preserve">
+    <value>車牌識別初始化失敗</value>
+  </data>
+  <data name="CarPlate_SavePara" xml:space="preserve">
+    <value>參數修改成功</value>
+  </data>
+  <data name="CarPlate_BlackOnWhite" xml:space="preserve">
+    <value>白底黑字</value>
+  </data>
+  <data name="CarPlate_BlackOnYellow" xml:space="preserve">
+    <value>黃底黑字</value>
+  </data>
+  <data name="CarPlate_RedOnBlack" xml:space="preserve">
+    <value>黑底紅字</value>
+  </data>
+  <data name="CarPlate_RedOnWhite" xml:space="preserve">
+    <value>白底紅字</value>
+  </data>
+  <data name="CarPlate_UnknowColor" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="CarPlate_WhiteOnBlack" xml:space="preserve">
+    <value>黑底白字</value>
+  </data>
+  <data name="CarPlate_WhiteOnBlue" xml:space="preserve">
+    <value>藍底白字</value>
+  </data>
+  <data name="CarPlate_WhiteOnGreen" xml:space="preserve">
+    <value>綠底白字</value>
+  </data>
+  <data name="CarPlate_WhiteOnRed" xml:space="preserve">
+    <value>紅底白字</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyCardType" xml:space="preserve">
+    <value>請設置卡片類型</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyCarport" xml:space="preserve">
+    <value>請設置車位數</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyFullColor" xml:space="preserve">
+    <value>請設置滿位顏色</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyVacantColor" xml:space="preserve">
+    <value>請選擇余位顏色</value>
+  </data>
+  <data name="FrmAreaDetail_InvalidCarport" xml:space="preserve">
+    <value>車位數不能小於余位數</value>
+  </data>
+  <data name="FrmMain_Setting" xml:space="preserve">
+    <value>設置</value>
+  </data>
+  <data name="LEDType_YanSe1" xml:space="preserve">
+    <value>LED桌面屏（A）</value>
+  </data>
+  <data name="LEDType_Zhongkuang1" xml:space="preserve">
+    <value>LED屏（A）</value>
+  </data>
+  <data name="FrmParkDetail_NoDeviceType" xml:space="preserve">
+    <value>沒有為停車場指定控制器類型</value>
+  </data>
+  <data name="FrmParkDetail_NoWorkMode" xml:space="preserve">
+    <value>沒有指定停車場的工作模式</value>
+  </data>
+  <data name="FrmParkDetail_WorkModeChangedAlert" xml:space="preserve">
+    <value>停車場的工作模式已經改變，如果要使改變生效，需要重啟軟體</value>
+  </data>
+  <data name="EnableWriteCard" xml:space="preserve">
+    <value>啟用脫機模式</value>
+  </data>
+  <data name="FrmCardRelease_ReadCard" xml:space="preserve">
+    <value>請讀取需要發行的卡片！</value>
+  </data>
+  <data name="FrmParkDetail_InvalidFullText" xml:space="preserve">
+    <value>满位字符最多只能输入31个汉字或63个字母数字！</value>
+  </data>
+  <data name="FrmParkDetail_InvalidVacantText" xml:space="preserve">
+    <value>车位余字符最多只能输入31个汉字或63个字母数字！</value>
+  </data>
+  <data name="FrmMain_DownloadVacantFail" xml:space="preserve">
+    <value>下發車位資訊失敗</value>
+  </data>
+  <data name="Form_SaveExcelFail" xml:space="preserve">
+    <value>保存到電子表格時出現錯誤！</value>
+  </data>
+  <data name="FrmCards_Card" xml:space="preserve">
+    <value>卡片</value>
+  </data>
+  <data name="FrmManageCardDetail_AddCard" xml:space="preserve">
+    <value>增加管理類卡片</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidCardID" xml:space="preserve">
+    <value>卡號不能為空!</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidCardType" xml:space="preserve">
+    <value>請選擇一種卡片類型!</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidOwner" xml:space="preserve">
+    <value>請選擇持卡人!</value>
+  </data>
+  <data name="FrmManageCardDetail_NotManagement" xml:space="preserve">
+    <value>卡片 {0} 不是管理類卡片！</value>
+  </data>
+  <data name="FrmSystemOption_ChangeKeySuccess" xml:space="preserve">
+    <value>修改密鑰成功！</value>
+  </data>
+  <data name="FrmSystemOption_CustomCardOnly" xml:space="preserve">
+    <value>每種原型卡類型為自定義卡片的只能設置一種自定義卡片！</value>
+  </data>
+  <data name="FrmSystemOption_DeafultCarType" xml:space="preserve">
+    <value>默認車型不能刪除！</value>
+  </data>
+  <data name="FrmSystemOption_InputConfirmNewKey" xml:space="preserve">
+    <value>請輸入12位確認新密鑰!</value>
+  </data>
+  <data name="FrmSystemOption_InputNewKey" xml:space="preserve">
+    <value>請輸入12位新密鑰!</value>
+  </data>
+  <data name="FrmSystemOption_InputOldKey" xml:space="preserve">
+    <value>請輸入12位舊密鑰!</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCompanyName" xml:space="preserve">
+    <value>公司名稱最多只能輸入22個漢字或45個字母數字！</value>
+  </data>
+  <data name="FrmSystemOption_InvalidOldKey" xml:space="preserve">
+    <value>舊密鑰不正確!</value>
+  </data>
+  <data name="FrmSystemOption_MostCustomCard" xml:space="preserve">
+    <value>最多只能設置六十二種自定義卡片！</value>
+  </data>
+  <data name="FrmSystemOption_MostHoliday" xml:space="preserve">
+    <value>系統最大支持設置8個節假日！</value>
+  </data>
+  <data name="FrmSystemOption_NewKeyInconformity" xml:space="preserve">
+    <value>新密鑰與確認新密鑰不一致!</value>
+  </data>
+  <data name="FrmSystemOption_NonCustomCardOnly" xml:space="preserve">
+    <value>每種原型卡類型為非自定義卡片的只能設置十五種自定義卡片！</value>
+  </data>
+  <data name="FrmSystemOption_SameTariff" xml:space="preserve">
+    <value>同一種卡片類型同一種車型的各種費率必須為同一種費率類型！</value>
+  </data>
+  <data name="FrmAccessGroup_AccessMax" xml:space="preserve">
+    <value>通道 {0} 設置的權限組已達最大值8個！</value>
+  </data>
+  <data name="FrmAccessGroup_IntervalMax" xml:space="preserve">
+    <value>通道 {0} 設置的時間段已達最大值4個！</value>
+  </data>
+  <data name="FrmAddCards_WriteCardFail" xml:space="preserve">
+    <value>卡片 {0} 寫入數據失敗</value>
+  </data>
+  <data name="FrmAddCards_WritingCard" xml:space="preserve">
+    <value>卡片 {0} 正在寫入數據，請稍候...</value>
+  </data>
+  <data name="FrmCardBulkChange_CloseQuery" xml:space="preserve">
+    <value>還有寫入修改後信息的卡片未保存，是否關閉？</value>
+  </data>
+  <data name="FrmCardBulkChange_HadWrite" xml:space="preserve">
+    <value>卡片 {0} 已寫入修改後信息！</value>
+  </data>
+  <data name="FrmCardBulkChange_NoReadData" xml:space="preserve">
+    <value>未能獲取到卡片數據！</value>
+  </data>
+  <data name="FrmCardBulkChange_OK" xml:space="preserve">
+    <value>確定</value>
+  </data>
+  <data name="FrmCardBulkChange_PleaseReadCard" xml:space="preserve">
+    <value>修改後信息寫入卡片，請讀卡！</value>
+  </data>
+  <data name="FrmCardBulkChange_ReadCard" xml:space="preserve">
+    <value>讀卡</value>
+  </data>
+  <data name="FrmCardBulkChange_SaveQuery" xml:space="preserve">
+    <value>還有卡片未寫入修改後的信息，是否確定保存卡片？</value>
+  </data>
+  <data name="FrmCardBulkChange_UnneedWrite" xml:space="preserve">
+    <value>卡片 {0} 不是需要修改的卡片！</value>
+  </data>
+  <data name="FrmCardBulkChange_WriteFail" xml:space="preserve">
+    <value>卡片 {0} 寫入修改後信息失敗！</value>
+  </data>
+  <data name="FrmCardBulkChange_WriteSuccess" xml:space="preserve">
+    <value>卡片 {0} 寫入修改後信息成功！</value>
+  </data>
+  <data name="FrmCardBulkChange_WritingCard" xml:space="preserve">
+    <value>卡片 {0} 正在寫入修改後數據，請稍候...</value>
+  </data>
+  <data name="FrmCardChangeKey_InputOldKey" xml:space="preserve">
+    <value>請輸入12位舊密鑰!</value>
+  </data>
+  <data name="FrmCardChangeKey_Start" xml:space="preserve">
+    <value>開始修改</value>
+  </data>
+  <data name="FrmCardChangeKey_Stop" xml:space="preserve">
+    <value>停止修改</value>
+  </data>
+  <data name="FrmCardCharge_InvalidAmounts" xml:space="preserve">
+    <value>充值金額不正確，充值後卡片餘額不能小於零！</value>
+  </data>
+  <data name="FrmCardCharge_ReadCard" xml:space="preserve">
+    <value>請讀取需要充值的卡片！</value>
+  </data>
+  <data name="FrmCardDefer_ReadCard" xml:space="preserve">
+    <value>請讀取需要延期的卡片！</value>
+  </data>
+  <data name="Form_Cancel" xml:space="preserve">
+    <value>取消</value>
+  </data>
+  <data name="Form_Stop" xml:space="preserve">
+    <value>停止</value>
+  </data>
+  <data name="FrmCardDetail_ReadCard" xml:space="preserve">
+    <value>請讀取卡片！</value>
+  </data>
+  <data name="FrmCardDisableEnable_ReadCard" xml:space="preserve">
+    <value>請讀取需要操作的卡片！</value>
+  </data>
+  <data name="FrmCardLostRestore_ReadCard" xml:space="preserve">
+    <value>請讀取需要操作的卡片！</value>
+  </data>
+  <data name="FrmCardRecycle_ReadCard" xml:space="preserve">
+    <value>請讀取需要回收的卡片！</value>
+  </data>
+  <data name="FrmDownLoadAccessSetting_Download" xml:space="preserve">
+    <value>控制器 {0} 正在下載通道權限</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Delete" xml:space="preserve">
+    <value>刪除卡片{0}</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteCard" xml:space="preserve">
+    <value>刪除卡片名單</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteCards" xml:space="preserve">
+    <value>刪除全部卡片名單</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteFinish" xml:space="preserve">
+    <value>刪除卡片完成！</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCard" xml:space="preserve">
+    <value>下載卡片</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCards" xml:space="preserve">
+    <value>下載全部卡片</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Entrance" xml:space="preserve">
+    <value>控制器</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDeleteAll" xml:space="preserve">
+    <value>未能刪除所有控制器的卡片！</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDownloadAll" xml:space="preserve">
+    <value>卡片未能下載到所有控制器！</value>
+  </data>
+  <data name="FrmDownLoadBase_Finish" xml:space="preserve">
+    <value>下載完成！</value>
+  </data>
+  <data name="FrmDownLoadBase_NotDownloadAll" xml:space="preserve">
+    <value>未能下載到所有控制器！</value>
+  </data>
+  <data name="FrmDownLoadBase_StopDownload" xml:space="preserve">
+    <value>正在停止，請稍候……</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardDataErr" xml:space="preserve">
+    <value>卡片數據無效！</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardDisabled" xml:space="preserve">
+    <value>卡片已鎖定</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardExpired" xml:space="preserve">
+    <value>卡片已過期</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardLoss" xml:space="preserve">
+    <value>卡片已掛失</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardRecycled" xml:space="preserve">
+    <value>卡片已註銷</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardUnActivate" xml:space="preserve">
+    <value>卡片未到生效期</value>
+  </data>
+  <data name="FrmCardCenterCharge_DeletePayment" xml:space="preserve">
+    <value>此操作會把卡片的繳費信息清除，是否繼續？</value>
+  </data>
+  <data name="FrmCardCenterCharge_FreeRemain" xml:space="preserve">
+    <value>已繳費，請在{0}分鐘內離場！</value>
+  </data>
+  <data name="FrmCardCenterCharge_NotCard" xml:space="preserve">
+    <value>讀卡器沒有找到繳費卡片，是否繼續？</value>
+  </data>
+  <data name="FrmCardCenterCharge_NotPaymentCard" xml:space="preserve">
+    <value>非收費卡片！</value>
+  </data>
+  <data name="FrmDownLoadAccessSetting_Text" xml:space="preserve">
+    <value>下發通道權限</value>
+  </data>
+  <data name="FrmDownLoadHolidaySetting_Download" xml:space="preserve">
+    <value>控制器 {0} 正在下載節假日</value>
+  </data>
+  <data name="FrmDownLoadHolidaySetting_Text" xml:space="preserve">
+    <value>下發節假日設置</value>
+  </data>
+  <data name="FrmDownLoadKeySetting_Download" xml:space="preserve">
+    <value>控制器 {0} 正在下載密鑰</value>
+  </data>
+  <data name="FrmDownLoadKeySetting_Text" xml:space="preserve">
+    <value>下發密鑰</value>
+  </data>
+  <data name="FrmDownLoadTariffSetting_Download" xml:space="preserve">
+    <value>控制器 {0} 正在下載費率</value>
+  </data>
+  <data name="FrmDownLoadTariffSetting_Text" xml:space="preserve">
+    <value>下發費率設置</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_InvalidCard" xml:space="preserve">
+    <value>無效卡片！</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_NotCurrentOperatorCard" xml:space="preserve">
+    <value>不是結算操作員的操作員卡！</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_NotOperatorCard" xml:space="preserve">
+    <value>不是操作員卡！</value>
+  </data>
+  <data name="FrmMain_CommunicationFailure" xml:space="preserve">
+    <value>初始化通訊失敗</value>
+  </data>
+  <data name="FrmMain_ConfirmIP" xml:space="preserve">
+    <value>初始化通訊失敗，請確定通訊IP是否正確！</value>
+  </data>
+  <data name="FrmMain_MasterConnected" xml:space="preserve">
+    <value>主數據庫連接</value>
+  </data>
+  <data name="FrmMain_MasterDisconnect" xml:space="preserve">
+    <value>主數據庫斷開</value>
+  </data>
+  <data name="FrmMain_StandbyConnected" xml:space="preserve">
+    <value>備用數據庫連接</value>
+  </data>
+  <data name="FrmMain_StandbyDisconnect" xml:space="preserve">
+    <value>備用數據庫斷開</value>
+  </data>
+  <data name="FrmLogin_MasterStandbySame" xml:space="preserve">
+    <value>主資料庫與備用資料庫不能為同一資料庫！</value>
+  </data>
+  <data name="FrmLogin_StandbyInvalid" xml:space="preserve">
+    <value>請輸入正確的備用資料庫！</value>
+  </data>
+  <data name="Form_Fail" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="Form_Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="FrmSyncDataToStandby_AccessSetting" xml:space="preserve">
+    <value>同步通道權限設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_BaseCardTypeSetting" xml:space="preserve">
+    <value>同步基本卡類</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Card" xml:space="preserve">
+    <value>同步卡片信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CarTypeSetting" xml:space="preserve">
+    <value>同步車型設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CloseAlarm1" xml:space="preserve">
+    <value>同步數據未完成，是否強制關閉窗口？</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CloseAlarm2" xml:space="preserve">
+    <value>注意：強制關閉可能會導致備用數據庫數據錯誤！</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Cover" xml:space="preserve">
+    <value>同步數據庫將覆蓋備用數據庫的數據，是否繼續？</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CustomCardTypeSetting" xml:space="preserve">
+    <value>同步自定義卡類</value>
+  </data>
+  <data name="FrmSyncDataToStandby_DataFinish" xml:space="preserve">
+    <value>同步數據完成！</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Entrance" xml:space="preserve">
+    <value>同步控制板信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_HolidaySetting" xml:space="preserve">
+    <value>同步公休日設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_KeySetting" xml:space="preserve">
+    <value>同步秘鑰設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Operator" xml:space="preserve">
+    <value>同步操作員信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_OptionsFinish" xml:space="preserve">
+    <value>同步系統設置完成！</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Park" xml:space="preserve">
+    <value>同步停車場信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Role" xml:space="preserve">
+    <value>同步角色信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Synchronizing" xml:space="preserve">
+    <value>正在</value>
+  </data>
+  <data name="FrmSyncDataToStandby_SynchronizingOptions" xml:space="preserve">
+    <value>正在同步系統設置......</value>
+  </data>
+  <data name="FrmSyncDataToStandby_TariffSetting" xml:space="preserve">
+    <value>同步費率設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Time" xml:space="preserve">
+    <value>用時</value>
+  </data>
+  <data name="FrmSyncDataToStandby_UserSetting" xml:space="preserve">
+    <value>同步用戶設置</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Video" xml:space="preserve">
+    <value>同步視頻信息</value>
+  </data>
+  <data name="FrmSyncDataToStandby_WorkStation" xml:space="preserve">
+    <value>同步工作站信息</value>
+  </data>
+  <data name="FrmCards_SyncCardToStandby" xml:space="preserve">
+    <value>同步 {0} 張卡片，共成功 {1} 張。</value>
+  </data>
+  <data name="FrmCardDataConvert_StartConvert" xml:space="preserve">
+    <value>開始轉換</value>
+  </data>
+  <data name="FrmCardDataConvert_StopConvert" xml:space="preserve">
+    <value>停止轉換</value>
+  </data>
+  <data name="FrmSystemOption_ParkingCommunicationIPChangedAlert" xml:space="preserve">
+    <value>停車場通訊IP已經改變，如果要使改變生效，需要重啟軟件</value>
+  </data>
+  <data name="FrmMain_MasterUnconnected" xml:space="preserve">
+    <value>主數據庫未連接</value>
+  </data>
+  <data name="FrmMain_StandbyUnconnected" xml:space="preserve">
+    <value>備用數據庫未連接</value>
+  </data>
+  <data name="FrmSystemOption_InputBaseCardTypeName" xml:space="preserve">
+    <value>請輸入基本卡類的自定義名稱！</value>
+  </data>
+  <data name="FrmSystemOption_InputCardSection" xml:space="preserve">
+    <value>請輸入卡片扇區！</value>
+  </data>
+  <data name="FrmMain_ImportDataErr" xml:space="preserve">
+    <value>記錄文件數據錯誤！</value>
+  </data>
+  <data name="FrmMain_ImportNoRecord" xml:space="preserve">
+    <value>沒有記錄！</value>
+  </data>
+  <data name="FrmMain_ImportNote" xml:space="preserve">
+    <value>數據導入狀態 成功:{0}  失敗:{1}  總共需導入: {2}</value>
+  </data>
+  <data name="Form_ExportSuccess" xml:space="preserve">
+    <value>導出成功！</value>
+  </data>
+  <data name="Form_XMLFilter" xml:space="preserve">
+    <value>XML文件|*.xml|所有文件(*.*)|*.*</value>
+  </data>
+  <data name="FrmSystemOption_Type" xml:space="preserve">
+    <value>型號</value>
+  </data>
+  <data name="FrmSystemOptions_ClearSnapshotComplete" xml:space="preserve">
+    <value>手動清除過期圖片 完成</value>
+  </data>
+  <data name="FrmSystemOptions_ClearSnapshotQuery" xml:space="preserve">
+    <value>手動清除過期圖片，系統會在一段時間內處於忙碌狀態，是否繼續？</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Fail" xml:space="preserve">
+    <value>下發失敗</value>
+  </data>
+</root>

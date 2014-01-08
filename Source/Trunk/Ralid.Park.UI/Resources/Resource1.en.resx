@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<root>
+  <!-- 
+    Microsoft ResX Schema 
+    
+    Version 2.0
+    
+    The primary goals of this format is to allow a simple XML format 
+    that is mostly human readable. The generation and parsing of the 
+    various data types are done through the TypeConverter classes 
+    associated with the data types.
+    
+    Example:
+    
+    ... ado.net/XML headers & schema ...
+    <resheader name="resmimetype">text/microsoft-resx</resheader>
+    <resheader name="version">2.0</resheader>
+    <resheader name="reader">System.Resources.ResXResourceReader, System.Windows.Forms, ...</resheader>
+    <resheader name="writer">System.Resources.ResXResourceWriter, System.Windows.Forms, ...</resheader>
+    <data name="Name1"><value>this is my long string</value><comment>this is a comment</comment></data>
+    <data name="Color1" type="System.Drawing.Color, System.Drawing">Blue</data>
+    <data name="Bitmap1" mimetype="application/x-microsoft.net.object.binary.base64">
+        <value>[base64 mime encoded serialized .NET Framework object]</value>
+    </data>
+    <data name="Icon1" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+        <value>[base64 mime encoded string representing a byte array form of the .NET Framework object]</value>
+        <comment>This is a comment</comment>
+    </data>
+                
+    There are any number of "resheader" rows that contain simple 
+    name/value pairs.
+    
+    Each data row contains a name, and value. The row also contains a 
+    type or mimetype. Type corresponds to a .NET class that support 
+    text/value conversion through the TypeConverter architecture. 
+    Classes that don't support this are serialized and stored with the 
+    mimetype set.
+    
+    The mimetype is used for serialized objects, and tells the 
+    ResXResourceReader how to depersist the object. This is currently not 
+    extensible. For a given mimetype the value must be set accordingly:
+    
+    Note - application/x-microsoft.net.object.binary.base64 is the format 
+    that the ResXResourceWriter will generate, however the reader can 
+    read any of the formats listed below.
+    
+    mimetype: application/x-microsoft.net.object.binary.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Binary.BinaryFormatter
+            : and then encoded with base64 encoding.
+    
+    mimetype: application/x-microsoft.net.object.soap.base64
+    value   : The object must be serialized with 
+            : System.Runtime.Serialization.Formatters.Soap.SoapFormatter
+            : and then encoded with base64 encoding.
+
+    mimetype: application/x-microsoft.net.object.bytearray.base64
+    value   : The object must be serialized into a byte array 
+            : using a System.ComponentModel.TypeConverter
+            : and then encoded with base64 encoding.
+    -->
+  <xsd:schema id="root" xmlns="" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata">
+    <xsd:import namespace="http://www.w3.org/XML/1998/namespace" />
+    <xsd:element name="root" msdata:IsDataSet="true">
+      <xsd:complexType>
+        <xsd:choice maxOccurs="unbounded">
+          <xsd:element name="metadata">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" />
+              </xsd:sequence>
+              <xsd:attribute name="name" use="required" type="xsd:string" />
+              <xsd:attribute name="type" type="xsd:string" />
+              <xsd:attribute name="mimetype" type="xsd:string" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="assembly">
+            <xsd:complexType>
+              <xsd:attribute name="alias" type="xsd:string" />
+              <xsd:attribute name="name" type="xsd:string" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="data">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+                <xsd:element name="comment" type="xsd:string" minOccurs="0" msdata:Ordinal="2" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" msdata:Ordinal="1" />
+              <xsd:attribute name="type" type="xsd:string" msdata:Ordinal="3" />
+              <xsd:attribute name="mimetype" type="xsd:string" msdata:Ordinal="4" />
+              <xsd:attribute ref="xml:space" />
+            </xsd:complexType>
+          </xsd:element>
+          <xsd:element name="resheader">
+            <xsd:complexType>
+              <xsd:sequence>
+                <xsd:element name="value" type="xsd:string" minOccurs="0" msdata:Ordinal="1" />
+              </xsd:sequence>
+              <xsd:attribute name="name" type="xsd:string" use="required" />
+            </xsd:complexType>
+          </xsd:element>
+        </xsd:choice>
+      </xsd:complexType>
+    </xsd:element>
+  </xsd:schema>
+  <resheader name="resmimetype">
+    <value>text/microsoft-resx</value>
+  </resheader>
+  <resheader name="version">
+    <value>2.0</value>
+  </resheader>
+  <resheader name="reader">
+    <value>System.Resources.ResXResourceReader, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <resheader name="writer">
+    <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </resheader>
+  <data name="Form_Add" xml:space="preserve">
+    <value>Add</value>
+  </data>
+  <data name="Form_Alert" xml:space="preserve">
+    <value>Alert</value>
+  </data>
+  <data name="Form_ExcelFilter" xml:space="preserve">
+    <value>Excel doc|*.xls|all documents(*.*)|*.*</value>
+  </data>
+  <data name="Form_ExitQuery" xml:space="preserve">
+    <value>Are you sure to close this window?</value>
+  </data>
+  <data name="Form_ExitSystemQuery" xml:space="preserve">
+    <value>Are you sure to quit from this system? Please click "confirmation" to close parking system, click" cancel" to return</value>
+  </data>
+  <data name="Form_Query" xml:space="preserve">
+    <value>Query</value>
+  </data>
+  <data name="FrmAccessLevelDetail_InvalidAccessName" xml:space="preserve">
+    <value>Access name should not be empty.</value>
+  </data>
+  <data name="FrmAddCards_CardCount" xml:space="preserve">
+    <value>Card Quantity:{0}</value>
+  </data>
+  <data name="FrmAddCards_CardExists" xml:space="preserve">
+    <value>Card {0} is existing in the system.</value>
+  </data>
+  <data name="FrmAddCards_Continue" xml:space="preserve">
+    <value>Continue</value>
+  </data>
+  <data name="FrmAddCards_InvalidCardType" xml:space="preserve">
+    <value>Please choose card type</value>
+  </data>
+  <data name="FrmAddCards_InvalidOwnerName" xml:space="preserve">
+    <value>Default name should not be empty.</value>
+  </data>
+  <data name="FrmAddCards_Next" xml:space="preserve">
+    <value>Next</value>
+  </data>
+  <data name="FrmAddCards_Processing" xml:space="preserve">
+    <value>Completing {0}/total {1}</value>
+  </data>
+  <data name="FrmAPMDetail_InvalidSerialNum" xml:space="preserve">
+    <value>The serialnum of  APM should not be empty.</value>
+  </data>
+  <data name="FrmCardEventReport_In" xml:space="preserve">
+    <value>In</value>
+  </data>
+  <data name="FrmCardEventReport_Out" xml:space="preserve">
+    <value>Out</value>
+  </data>
+  <data name="FrmCardLostRestore_Lost" xml:space="preserve">
+    <value>Lost</value>
+  </data>
+  <data name="FrmCardLostRestore_Restore" xml:space="preserve">
+    <value>Restore</value>
+  </data>
+  <data name="FrmCardPaying_CancelPaymentAlarm" xml:space="preserve">
+    <value>Canceled charging information: card number{0}  charging time{1} in-time{2} charging amount{3}</value>
+  </data>
+  <data name="FrmCardPaying_CancelPaymentQuey" xml:space="preserve">
+    <value>Are you sure to cancel the card's  last payment?</value>
+  </data>
+  <data name="FrmCardPaying_CardWaitEnterSpeech" xml:space="preserve">
+    <value>{0}there are cars waiting to entry.</value>
+  </data>
+  <data name="FrmCardPaying_CardWaitExitSpeech" xml:space="preserve">
+    <value>{0}car plate compared failure.</value>
+  </data>
+  <data name="FrmCardPaying_CentralCharge" xml:space="preserve">
+    <value>PayingRoom</value>
+  </data>
+  <data name="FrmCardPaying_MoneyLittleQuery" xml:space="preserve">
+    <value>The paid is not bigger than 0, will you continue to do this?</value>
+  </data>
+  <data name="FrmCardPaying_MoneyMuchQuery" xml:space="preserve">
+    <value>The paidt is bigger than amount,will you continue to do this?</value>
+  </data>
+  <data name="FrmCardPaying_NotTempCard" xml:space="preserve">
+    <value>Card is not tempcard</value>
+  </data>
+  <data name="FrmCardPaying_Paying" xml:space="preserve">
+    <value>Paying, please wait…</value>
+  </data>
+  <data name="FrmCardPaying_PayingSpeech" xml:space="preserve">
+    <value>Account {0} yuan</value>
+  </data>
+  <data name="FrmCardPaymentRecordDetail_ModifyPayment" xml:space="preserve">
+    <value>revise charging information:\"card number{{{0}}} charging time{{{1}}} in-time{{{2}}} receivable account{{{3}}} paid-in amount{{{4}}} specification{{{5}}}\" paid-in amount{{{6}}} specification{{{7}}}</value>
+  </data>
+  <data name="FrmCards_CannotCharge" xml:space="preserve">
+    <value>Card {0} cannot charge.</value>
+  </data>
+  <data name="FrmChangePwd_InvalidConfirmPwd" xml:space="preserve">
+    <value>New password cannot match conformation password.</value>
+  </data>
+  <data name="FrmChangePwd_InvalidNewPwd" xml:space="preserve">
+    <value>New password should not be empty.</value>
+  </data>
+  <data name="FrmChangePwd_InvalidOldPwd" xml:space="preserve">
+    <value>Old password is incorrect.</value>
+  </data>
+  <data name="FrmClose_EmptyPwd" xml:space="preserve">
+    <value>Password should not be empty.</value>
+  </data>
+  <data name="FrmDownloadAllCards_CardProcessing" xml:space="preserve">
+    <value>Dowmloading cards</value>
+  </data>
+  <data name="FrmDownloadAllCards_Clear" xml:space="preserve">
+    <value>Clear cards...</value>
+  </data>
+  <data name="FrmDownloadAllCards_Complete" xml:space="preserve">
+    <value>Dowmload is finished.</value>
+  </data>
+  <data name="FrmDownloadAllCards_Label2" xml:space="preserve">
+    <value>it will takes minutes to download cards, please be waitng…</value>
+  </data>
+  <data name="FrmDownloadAllCards_Seconds" xml:space="preserve">
+    <value>{0} seconds</value>
+  </data>
+  <data name="FrmEntranceDetail_InvalidName" xml:space="preserve">
+    <value>The controller name should not be empty.</value>
+  </data>
+  <data name="FrmHolidayDetail_InvalidHoliday" xml:space="preserve">
+    <value>The starting date of holiday cannot be bigger than the end date.</value>
+  </data>
+  <data name="FrmLogin_AuthenFail" xml:space="preserve">
+    <value>Incorrect user password</value>
+  </data>
+  <data name="FrmLogin_InvalidPwd" xml:space="preserve">
+    <value>Password should not be empty.</value>
+  </data>
+  <data name="FrmLogin_InvalidUserName" xml:space="preserve">
+    <value>User name should not be empty.</value>
+  </data>
+  <data name="FrmMain_AlterStationIDQuery" xml:space="preserve">
+    <value>Current workstation has changed, you need to restart the software to work, software is now closed.</value>
+  </data>
+  <data name="FrmMain_DeleteEntranceQuery" xml:space="preserve">
+    <value>Will you delete controller and its suboridate nodes?</value>
+  </data>
+  <data name="FrmMain_DeleteParkQuery" xml:space="preserve">
+    <value>Will you delete the parking yard and its suboridate nodes?</value>
+  </data>
+  <data name="FrmMain_DeleteVideoQuery" xml:space="preserve">
+    <value>Will you delete camera?</value>
+  </data>
+  <data name="FrmMain_lblOperator" xml:space="preserve">
+    <value>Operator:{0}</value>
+  </data>
+  <data name="FrmMain_lblStartFrom" xml:space="preserve">
+    <value>StartFrom:{0}</value>
+  </data>
+  <data name="FrmMain_lblStation" xml:space="preserve">
+    <value>Station:{0}</value>
+  </data>
+  <data name="FrmMain_OperatorNotShift" xml:space="preserve">
+    <value>Operator {0} not Shift yet,Please!</value>
+  </data>
+  <data name="FrmMain_ShiftAlert" xml:space="preserve">
+    <value>Remaining {0} minutes before shift time.</value>
+  </data>
+  <data name="FrmMain_ShitNow" xml:space="preserve">
+    <value>Shift hour is on</value>
+  </data>
+  <data name="FrmMain_SoftDogError" xml:space="preserve">
+    <value>Access denied: it doesn't find softdog; or the softdog hasn't been encypted,please contact the supplier.</value>
+  </data>
+  <data name="FrmMain_SoftDogExpired" xml:space="preserve">
+    <value>The software is expired,please contact the supplier to extend the validity.</value>
+  </data>
+  <data name="FrmMain_SoftDogExpiredAlert" xml:space="preserve">
+    <value>The software is expired(after {0} days) ,please contact the supplier to extend the validity.</value>
+  </data>
+  <data name="FrmMain_SoftDogNoRights" xml:space="preserve">
+    <value>Dongle encyption is insuffient; there is no parking authority in dongle,please contact the supplier to grant relevant authority.</value>
+  </data>
+  <data name="FrmMasterBase_DeleteQuery" xml:space="preserve">
+    <value>Are you sure to delete this selected item?</value>
+  </data>
+  <data name="FrmMasterBase_StatusBar" xml:space="preserve">
+    <value>Total {0}</value>
+  </data>
+  <data name="FrmNetEntrance_EmptyName" xml:space="preserve">
+    <value>Controller name should not be empty.</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidControlPort" xml:space="preserve">
+    <value>Controller port is incorrect, please reenter it.</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidEventPort" xml:space="preserve">
+    <value>Event port is incorrect,please reenter it.</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidIP" xml:space="preserve">
+    <value>IP address is incorrect, please reenter it.</value>
+  </data>
+  <data name="FrmNetEntrance_InvalidReadInterval" xml:space="preserve">
+    <value>Interval time is incorrect,please reenter it.</value>
+  </data>
+  <data name="FrmNetEntrance_MastExists" xml:space="preserve">
+    <value>it cannot add another main controller for that it already has one; if you want to configure this controller to a main controller, please change other main controllers to no-main controller.</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidOperatorNum" xml:space="preserve">
+    <value>the serial number of operator should falls between 1 and 255. </value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidPwd" xml:space="preserve">
+    <value>Operatore password should not be empty.</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidUserID" xml:space="preserve">
+    <value>Operator ID should not be empty.</value>
+  </data>
+  <data name="FrmOperatorDetail_InvalidUserName" xml:space="preserve">
+    <value>Operator name should not be empty.</value>
+  </data>
+  <data name="FrmOperatorLogReport_Fail" xml:space="preserve">
+    <value>export failed</value>
+  </data>
+  <data name="FrmOperatorLogReport_NotFind" xml:space="preserve">
+    <value>Not find report exporting template</value>
+  </data>
+  <data name="FrmOperatorShift_InvalidCash" xml:space="preserve">
+    <value>wrong cash number, please reenter it.</value>
+  </data>
+  <data name="FrmOperatorShift_InvalidTempCard" xml:space="preserve">
+    <value>invalid temporary card, please reenter it.</value>
+  </data>
+  <data name="FrmParkDetail_InvalidMinPort" xml:space="preserve">
+    <value>MinPort cannot bigger than TotalPort.</value>
+  </data>
+  <data name="FrmParkDetail_InvalidName" xml:space="preserve">
+    <value>the parking yard name should not be empty.</value>
+  </data>
+  <data name="FrmParkDetail_InvalidTotalPort" xml:space="preserve">
+    <value>TotalPort must be in range(0-32767).</value>
+  </data>
+  <data name="FrmParkDetail_InvalidVacant" xml:space="preserve">
+    <value>Vacant must between MinPort and TotalPort.</value>
+  </data>
+  <data name="FrmParkDeviceDetail_GetLanFail" xml:space="preserve">
+    <value>Get LANInfo Failed.</value>
+  </data>
+  <data name="FrmParkDeviceDetail_GetLanSuccess" xml:space="preserve">
+    <value>Get LANInfo Successed.</value>
+  </data>
+  <data name="FrmParkDeviceDetail_SetLanFail" xml:space="preserve">
+    <value>invalid LAN data configuration</value>
+  </data>
+  <data name="FrmParkDeviceDetail_SetLanSuccess" xml:space="preserve">
+    <value>valid LAN data configuration</value>
+  </data>
+  <data name="FrmRoleDetail_InvalidRoleID" xml:space="preserve">
+    <value>role ID should not be empty.</value>
+  </data>
+  <data name="FrmSearchDevice_DeviceExists" xml:space="preserve">
+    <value>device {0} is existing in the system.</value>
+  </data>
+  <data name="FrmSnapshotExport_NoFolder" xml:space="preserve">
+    <value>No pointed exported </value>
+  </data>
+  <data name="FrmSnapshotExport_Processing" xml:space="preserve">
+    <value>{0}records have been imported; the total amount of records are {1}.</value>
+  </data>
+  <data name="FrmSnapshotViewer_ToFolderQuery" xml:space="preserve">
+    <value>pictures are exported successfully, would you like to return to picture storage root?</value>
+  </data>
+  <data name="FrmSystemOption_DeleteMonthCardTariffQuery" xml:space="preserve">
+    <value>clearup: the rule of month card charge will be deleted, will you process for it cannot charge</value>
+  </data>
+  <data name="FrmSystemOption_InvalidFreeTimeAfterPay" xml:space="preserve">
+    <value>the stopping time after charging is invalid.</value>
+  </data>
+  <data name="FrmSystemOption_InvalidMaxCarplateErrorChar" xml:space="preserve">
+    <value>MaxCarPlateErrorChar must between 0 and 7.</value>
+  </data>
+  <data name="FrmSystemOption_NoCarType" xml:space="preserve">
+    <value>the card type should not be empty.</value>
+  </data>
+  <data name="FrmTariffSelection_InvaidFirstFee" xml:space="preserve">
+    <value>FirstFee Cannot be negative.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayFee" xml:space="preserve">
+    <value>the charging amount should not be less than 0 at daytime.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayLimitFee" xml:space="preserve">
+    <value>DayLimitFee cannot be nagative.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidDayMinutes" xml:space="preserve">
+    <value>charging time at daylight shouldn't be less than or equal to 0.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidFirstMinutes" xml:space="preserve">
+    <value>the entry time should not be less than 0.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidFreeMinutes" xml:space="preserve">
+    <value>Free time should falls between 0--255 minutes.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidMidNightFee" xml:space="preserve">
+    <value>MidNightFee cannot be negative.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidMoney" xml:space="preserve">
+    <value>the charges should not be less than 0</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightFee" xml:space="preserve">
+    <value>the chargers at night should not be less than 0(0 is not included)</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightLimitation" xml:space="preserve">
+    <value>NightLimitation cannot be negative.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidNightMinutes" xml:space="preserve">
+    <value>the charging minute at night should not be less than 0(0 is not included)</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidRegularFee" xml:space="preserve">
+    <value>the charging amount should not be less than or equal to 0.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidRegularMinutes" xml:space="preserve">
+    <value>the accumulating minute should not be less than or equal to 0.</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidTimezone" xml:space="preserve">
+    <value>Invalid Timezone.</value>
+  </data>
+  <data name="FrmTariffSelectlion_InvalidDayFee" xml:space="preserve">
+    <value>the max limit per day shouldn't be less than 0.</value>
+  </data>
+  <data name="FrmTempCardSetting_InvalidTempCard" xml:space="preserve">
+    <value>wrong temporary card number, no less than 0.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidChannel" xml:space="preserve">
+    <value>the channel number of video server is incorrect;it should not be less than 0.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidConnectTimeout" xml:space="preserve">
+    <value>the time margin of connection time-out should not be less than 0.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidControlPort" xml:space="preserve">
+    <value>controlling port number doesn't fall between 1024 and 65535.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidIP" xml:space="preserve">
+    <value>video server address should not be empty.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidName" xml:space="preserve">
+    <value>name should not be empty.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidPwd" xml:space="preserve">
+    <value>password should not be empty.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidStreamPort" xml:space="preserve">
+    <value>Stream port should not fall between 1024 and 65535.</value>
+  </data>
+  <data name="FrmVideosourceDetail_InvalidUserName" xml:space="preserve">
+    <value>User name should not be empty.</value>
+  </data>
+  <data name="FrmWorkstationDetail_InvalidID" xml:space="preserve">
+    <value>Workstation ID should not be empty.</value>
+  </data>
+  <data name="FrmYCTPayment_BalanceNotEnough" xml:space="preserve">
+    <value>card balance is not enough.</value>
+  </data>
+  <data name="FrmYCTPayment_Fail" xml:space="preserve">
+    <value>invalid deduction</value>
+  </data>
+  <data name="FrmYCTPayment_PleaseRead" xml:space="preserve">
+    <value>Please read YangChengTong card.</value>
+  </data>
+  <data name="FrmYCTPayment_Success" xml:space="preserve">
+    <value>valid deduction</value>
+  </data>
+  <data name="UcCard_CannotDefer" xml:space="preserve">
+    <value>card {0} cannot support deferred operation.</value>
+  </data>
+  <data name="UcCard_CannotRecycle" xml:space="preserve">
+    <value>card {0} cannot support recycle operation.</value>
+  </data>
+  <data name="UcCard_CannotRelease" xml:space="preserve">
+    <value>card {0} cannot release.</value>
+  </data>
+  <data name="UcCard_DeleteCardQuery" xml:space="preserve">
+    <value>Are you sure to delete this selected item?</value>
+  </data>
+  <data name="UcCard_InvalidCardID" xml:space="preserve">
+    <value>Card number isn't an interger, or the card number is beyond maximum digits.</value>
+  </data>
+  <data name="UcCard_InvalidCardType" xml:space="preserve">
+    <value>Please choose card type</value>
+  </data>
+  <data name="UcCard_InvalidCarType" xml:space="preserve">
+    <value>Please choose vehicle type</value>
+  </data>
+  <data name="UcCard_InvalidOwnerName" xml:space="preserve">
+    <value>the name should not be empty.</value>
+  </data>
+  <data name="UcCard_TicketNotSupport" xml:space="preserve">
+    <value>Ticket cannot release!</value>
+  </data>
+  <data name="FrmLogin_InvalidDataBase" xml:space="preserve">
+    <value>Database should not be empty</value>
+  </data>
+  <data name="FrmLogin_InvalidServer" xml:space="preserve">
+    <value>Server should not be empty</value>
+  </data>
+  <data name="FrmWorkstationDetail_SameName" xml:space="preserve">
+    <value>A workstation with the same name already exists in the system, please enter a different name</value>
+  </data>
+  <data name="FrmCenterCharge_RecordHandled" xml:space="preserve">
+    <value>Card's Last PaymentRecord has been settled and cannot be canceled</value>
+  </data>
+  <data name="FrmReportBase_SaveSuccess" xml:space="preserve">
+    <value>Save success!</value>
+  </data>
+  <data name="OperatorLogInAlarm" xml:space="preserve">
+    <value>Station:[{0}]  Host:[{1}]  IP:[{2}]  MAC:[{3}]</value>
+  </data>
+  <data name="FrmOperatorSettle_Tail" xml:space="preserve">
+    <value>Operator:                                      Approver:</value>
+  </data>
+  <data name="FrmOperatorSettle_OK" xml:space="preserve">
+    <value>OK(&amp;O)</value>
+  </data>
+  <data name="FrmMain_ManualFile" xml:space="preserve">
+    <value>Ralid Park User Manual_en.doc</value>
+  </data>
+  <data name="FrmCarFlow_DateTime" xml:space="preserve">
+    <value>Datetime</value>
+  </data>
+  <data name="FrmCarFlow_In" xml:space="preserve">
+    <value>In</value>
+  </data>
+  <data name="FrmCarFlow_Out" xml:space="preserve">
+    <value>Out</value>
+  </data>
+  <data name="FrmCarFlow_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="LEDType_YanSe" xml:space="preserve">
+    <value>Table LED (A)</value>
+  </data>
+  <data name="LEDType_Zhongkuang" xml:space="preserve">
+    <value>LED (A)</value>
+  </data>
+  <data name="CompanyName" xml:space="preserve">
+    <value>Ralid Parking System</value>
+  </data>
+  <data name="CarPlate_Fail" xml:space="preserve">
+    <value>Carplate module init fail</value>
+  </data>
+  <data name="CarPlate_SavePara" xml:space="preserve">
+    <value>Parameter save success</value>
+  </data>
+  <data name="CarPlate_BlackOnWhite" xml:space="preserve">
+    <value>Black On White</value>
+  </data>
+  <data name="CarPlate_BlackOnYellow" xml:space="preserve">
+    <value>Black On Yellow</value>
+  </data>
+  <data name="CarPlate_RedOnBlack" xml:space="preserve">
+    <value>Red On Black</value>
+  </data>
+  <data name="CarPlate_RedOnWhite" xml:space="preserve">
+    <value>Red On White</value>
+  </data>
+  <data name="CarPlate_UnknowColor" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
+  <data name="CarPlate_WhiteOnBlack" xml:space="preserve">
+    <value>White On Black</value>
+  </data>
+  <data name="CarPlate_WhiteOnBlue" xml:space="preserve">
+    <value>White On Blue</value>
+  </data>
+  <data name="CarPlate_WhiteOnGreen" xml:space="preserve">
+    <value>White On Green</value>
+  </data>
+  <data name="CarPlate_WhiteOnRed" xml:space="preserve">
+    <value>White On Red</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyCardType" xml:space="preserve">
+    <value>CardType not set</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyCarport" xml:space="preserve">
+    <value>Carport not set</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyFullColor" xml:space="preserve">
+    <value>FullColor not set</value>
+  </data>
+  <data name="FrmAreaDetail_EmptyVacantColor" xml:space="preserve">
+    <value>VacantColor not set</value>
+  </data>
+  <data name="FrmAreaDetail_InvalidCarport" xml:space="preserve">
+    <value>Vacant greater than carport</value>
+  </data>
+  <data name="FrmMain_Setting" xml:space="preserve">
+    <value>Edit</value>
+  </data>
+  <data name="LEDType_YanSe1" xml:space="preserve">
+    <value>Table LED (A)</value>
+  </data>
+  <data name="LEDType_Zhongkuang1" xml:space="preserve">
+    <value>LED (A)</value>
+  </data>
+  <data name="FrmParkDetail_NoDeviceType" xml:space="preserve">
+    <value>Not select device type</value>
+  </data>
+  <data name="FrmParkDetail_NoWorkMode" xml:space="preserve">
+    <value>Not select workmode</value>
+  </data>
+  <data name="FrmParkDetail_WorkModeChangedAlert" xml:space="preserve">
+    <value>Workmode have changed, if you want the change to take effect, you need to restart software</value>
+  </data>
+  <data name="EnableWriteCard" xml:space="preserve">
+    <value>Enable Offline Mode</value>
+  </data>
+  <data name="FrmCardRelease_ReadCard" xml:space="preserve">
+    <value>Please read the issued card!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidFullText" xml:space="preserve">
+    <value>Full character can only input 31 Chinese characters or 63 alphanumeric!</value>
+  </data>
+  <data name="FrmParkDetail_InvalidVacantText" xml:space="preserve">
+    <value>Parking spaces character can only input 31 Chinese characters or 63 alphanumeric!</value>
+  </data>
+  <data name="FrmMain_DownloadVacantFail" xml:space="preserve">
+    <value>Download vacant fail!</value>
+  </data>
+  <data name="Form_SaveExcelFail" xml:space="preserve">
+    <value>Fail to save to spreadsheet!</value>
+  </data>
+  <data name="FrmCards_Card" xml:space="preserve">
+    <value>Cards</value>
+  </data>
+  <data name="FrmManageCardDetail_AddCard" xml:space="preserve">
+    <value>Add management card</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidCardID" xml:space="preserve">
+    <value>Invalid CardID.</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidCardType" xml:space="preserve">
+    <value>Invalid card type.</value>
+  </data>
+  <data name="FrmManageCardDetail_InvalidOwner" xml:space="preserve">
+    <value>Invalid owner.</value>
+  </data>
+  <data name="FrmManageCardDetail_NotManagement" xml:space="preserve">
+    <value>Card {0} not a management card.</value>
+  </data>
+  <data name="FrmSystemOption_ChangeKeySuccess" xml:space="preserve">
+    <value>Change key success.</value>
+  </data>
+  <data name="FrmSystemOption_CustomCardOnly" xml:space="preserve">
+    <value>Each prototype card type for custom card can set a custom card.</value>
+  </data>
+  <data name="FrmSystemOption_DeafultCarType" xml:space="preserve">
+    <value>The default car type cannot be deleted.</value>
+  </data>
+  <data name="FrmSystemOption_InputConfirmNewKey" xml:space="preserve">
+    <value>Please enter the 12 confirm new key.</value>
+  </data>
+  <data name="FrmSystemOption_InputNewKey" xml:space="preserve">
+    <value>Please enter the 12 new key.</value>
+  </data>
+  <data name="FrmSystemOption_InputOldKey" xml:space="preserve">
+    <value>Please enter the 12 old key.</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCompanyName" xml:space="preserve">
+    <value>Company name can only input 22 Chinese characters or 45 alphanumeric.</value>
+  </data>
+  <data name="FrmSystemOption_InvalidOldKey" xml:space="preserve">
+    <value>Invalid Old Key.</value>
+  </data>
+  <data name="FrmSystemOption_MostCustomCard" xml:space="preserve">
+    <value>Can only set up 62 custom cards.</value>
+  </data>
+  <data name="FrmSystemOption_MostHoliday" xml:space="preserve">
+    <value>System  maximum support set up 8 holidays.</value>
+  </data>
+  <data name="FrmSystemOption_NewKeyInconformity" xml:space="preserve">
+    <value>The new key and confirm new key is not consistent!</value>
+  </data>
+  <data name="FrmSystemOption_NonCustomCardOnly" xml:space="preserve">
+    <value>Each prototype card type for non custom card can only be set 15 kinds of custom card!</value>
+  </data>
+  <data name="FrmSystemOption_SameTariff" xml:space="preserve">
+    <value>The same types of card the same kinds of models of various rate must rate for the same type.</value>
+  </data>
+  <data name="FrmAccessGroup_AccessMax" xml:space="preserve">
+    <value>Channel {0} has set 8 group permissions.</value>
+  </data>
+  <data name="FrmAccessGroup_IntervalMax" xml:space="preserve">
+    <value>Channel {0} has set 4 group time quantum!</value>
+  </data>
+  <data name="FrmAddCards_WriteCardFail" xml:space="preserve">
+    <value>Card {0} failed to write data</value>
+  </data>
+  <data name="FrmAddCards_WritingCard" xml:space="preserve">
+    <value>Card {0} is writing data, please wait...</value>
+  </data>
+  <data name="FrmCardBulkChange_CloseQuery" xml:space="preserve">
+    <value>Has write the modified information card has not been saved, whether close?</value>
+  </data>
+  <data name="FrmCardBulkChange_HadWrite" xml:space="preserve">
+    <value>Card {0} has been written to the modified information.</value>
+  </data>
+  <data name="FrmCardBulkChange_NoReadData" xml:space="preserve">
+    <value>Failed to read the card data.</value>
+  </data>
+  <data name="FrmCardBulkChange_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="FrmCardBulkChange_PleaseReadCard" xml:space="preserve">
+    <value>Modified information written to the card, please read the card.</value>
+  </data>
+  <data name="FrmCardBulkChange_ReadCard" xml:space="preserve">
+    <value>Read</value>
+  </data>
+  <data name="FrmCardBulkChange_SaveQuery" xml:space="preserve">
+    <value>Has cards did not write the modified information, whether save the card?</value>
+  </data>
+  <data name="FrmCardBulkChange_UnneedWrite" xml:space="preserve">
+    <value>Card {0} is not need to modified information.</value>
+  </data>
+  <data name="FrmCardBulkChange_WriteFail" xml:space="preserve">
+    <value>Card {0} to write the modified information failure.</value>
+  </data>
+  <data name="FrmCardBulkChange_WriteSuccess" xml:space="preserve">
+    <value>Card {0} to write the modified information successfully.</value>
+  </data>
+  <data name="FrmCardBulkChange_WritingCard" xml:space="preserve">
+    <value>Card {0} is written to the modified data, please wait...</value>
+  </data>
+  <data name="FrmCardChangeKey_InputOldKey" xml:space="preserve">
+    <value>Please enter the 12 old key.</value>
+  </data>
+  <data name="FrmCardChangeKey_Start" xml:space="preserve">
+    <value>Start</value>
+  </data>
+  <data name="FrmCardChangeKey_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="FrmCardCharge_InvalidAmounts" xml:space="preserve">
+    <value>Recharge amount is not correct, recharge card balance cannot be less than zero.</value>
+  </data>
+  <data name="FrmCardCharge_ReadCard" xml:space="preserve">
+    <value>Please read the need to recharge card.</value>
+  </data>
+  <data name="FrmCardDefer_ReadCard" xml:space="preserve">
+    <value>Please read the need to defer card.</value>
+  </data>
+  <data name="Form_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="Form_Stop" xml:space="preserve">
+    <value>Stop</value>
+  </data>
+  <data name="FrmCardDetail_ReadCard" xml:space="preserve">
+    <value>Please read card.</value>
+  </data>
+  <data name="FrmCardDisableEnable_ReadCard" xml:space="preserve">
+    <value>Please read card.</value>
+  </data>
+  <data name="FrmCardLostRestore_ReadCard" xml:space="preserve">
+    <value>Please read card.</value>
+  </data>
+  <data name="FrmCardRecycle_ReadCard" xml:space="preserve">
+    <value>Please read card.</value>
+  </data>
+  <data name="FrmDownLoadAccessSetting_Download" xml:space="preserve">
+    <value>Entrance {0} downloading access</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Delete" xml:space="preserve">
+    <value>delete card {0}</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteCard" xml:space="preserve">
+    <value>Delete card</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteCards" xml:space="preserve">
+    <value>Delete all cards</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DeleteFinish" xml:space="preserve">
+    <value>Delete complete.</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCard" xml:space="preserve">
+    <value>Download card</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCards" xml:space="preserve">
+    <value>Download all cards</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Entrance" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDeleteAll" xml:space="preserve">
+    <value>Failed to delete all cards of the controller.</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDownloadAll" xml:space="preserve">
+    <value>Failed to download all cards of the controller.</value>
+  </data>
+  <data name="FrmDownLoadBase_Finish" xml:space="preserve">
+    <value>Download complete.</value>
+  </data>
+  <data name="FrmDownLoadBase_NotDownloadAll" xml:space="preserve">
+    <value>Failed to download all of the controller.</value>
+  </data>
+  <data name="FrmDownLoadBase_StopDownload" xml:space="preserve">
+    <value>Stopping, please wait......</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardDataErr" xml:space="preserve">
+    <value>Invalid card data.</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardDisabled" xml:space="preserve">
+    <value>Card has been locked</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardExpired" xml:space="preserve">
+    <value>Card has expired</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardLoss" xml:space="preserve">
+    <value>Card has been reported the loss</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardRecycled" xml:space="preserve">
+    <value>Card has been cancelled</value>
+  </data>
+  <data name="FrmCardCenterCharge_CardUnActivate" xml:space="preserve">
+    <value>Before the effective date</value>
+  </data>
+  <data name="FrmCardCenterCharge_DeletePayment" xml:space="preserve">
+    <value>This operation will clear card payment information, continue?</value>
+  </data>
+  <data name="FrmCardCenterCharge_FreeRemain" xml:space="preserve">
+    <value>Already payment, please leave in {0} minutes.</value>
+  </data>
+  <data name="FrmCardCenterCharge_NotCard" xml:space="preserve">
+    <value>Card reader found no payment card, continue?</value>
+  </data>
+  <data name="FrmCardCenterCharge_NotPaymentCard" xml:space="preserve">
+    <value>Non-charge card.</value>
+  </data>
+  <data name="FrmDownLoadAccessSetting_Text" xml:space="preserve">
+    <value>Download access</value>
+  </data>
+  <data name="FrmDownLoadHolidaySetting_Download" xml:space="preserve">
+    <value>Entrance {0} downloading holiday</value>
+  </data>
+  <data name="FrmDownLoadHolidaySetting_Text" xml:space="preserve">
+    <value>Download holiday</value>
+  </data>
+  <data name="FrmDownLoadKeySetting_Download" xml:space="preserve">
+    <value>Entrance {0} downloading key</value>
+  </data>
+  <data name="FrmDownLoadKeySetting_Text" xml:space="preserve">
+    <value>Dowanload key</value>
+  </data>
+  <data name="FrmDownLoadTariffSetting_Download" xml:space="preserve">
+    <value>Entrance {0} downloading tariff</value>
+  </data>
+  <data name="FrmDownLoadTariffSetting_Text" xml:space="preserve">
+    <value>Download tariff</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_InvalidCard" xml:space="preserve">
+    <value>Invalid card.</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_NotCurrentOperatorCard" xml:space="preserve">
+    <value>Not settlement operator operator card.</value>
+  </data>
+  <data name="FrmOperatorCardCashComfirm_NotOperatorCard" xml:space="preserve">
+    <value>Not operator card.</value>
+  </data>
+  <data name="FrmMain_CommunicationFailure" xml:space="preserve">
+    <value>Initialize communication failure</value>
+  </data>
+  <data name="FrmMain_ConfirmIP" xml:space="preserve">
+    <value>Initialization of communication failure, please make sure the address is correct IP!</value>
+  </data>
+  <data name="FrmMain_MasterConnected" xml:space="preserve">
+    <value>Master Connected</value>
+  </data>
+  <data name="FrmMain_MasterDisconnect" xml:space="preserve">
+    <value>Master Disconnected</value>
+  </data>
+  <data name="FrmMain_StandbyConnected" xml:space="preserve">
+    <value>Standby Connected</value>
+  </data>
+  <data name="FrmMain_StandbyDisconnect" xml:space="preserve">
+    <value>Standby Disconnected</value>
+  </data>
+  <data name="FrmLogin_MasterStandbySame" xml:space="preserve">
+    <value>The master database and standby database cannot be the same database!</value>
+  </data>
+  <data name="FrmLogin_StandbyInvalid" xml:space="preserve">
+    <value>Please enter the valid standby database!</value>
+  </data>
+  <data name="Form_Fail" xml:space="preserve">
+    <value>fail</value>
+  </data>
+  <data name="Form_Success" xml:space="preserve">
+    <value>success</value>
+  </data>
+  <data name="FrmSyncDataToStandby_AccessSetting" xml:space="preserve">
+    <value>Synchronous AccessSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_BaseCardTypeSetting" xml:space="preserve">
+    <value>Synchronous BaseCardTypeSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Card" xml:space="preserve">
+    <value>Synchronous Card</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CarTypeSetting" xml:space="preserve">
+    <value>Synchronous CarTypeSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CloseAlarm1" xml:space="preserve">
+    <value>Synchronous data is not complete, is forced to close the form?</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CloseAlarm2" xml:space="preserve">
+    <value>Note: forced to close may lead to the standby database data error!</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Cover" xml:space="preserve">
+    <value>Synchronous database will cover the standby database data, do you want to continue?</value>
+  </data>
+  <data name="FrmSyncDataToStandby_CustomCardTypeSetting" xml:space="preserve">
+    <value>Synchronous CustomCardTypeSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_DataFinish" xml:space="preserve">
+    <value>Synchronous Data Finish.</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Entrance" xml:space="preserve">
+    <value>Synchronous Device</value>
+  </data>
+  <data name="FrmSyncDataToStandby_HolidaySetting" xml:space="preserve">
+    <value>Synchronous HolidaySetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_KeySetting" xml:space="preserve">
+    <value>Synchronous KeySetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Operator" xml:space="preserve">
+    <value>Synchronous Operator</value>
+  </data>
+  <data name="FrmSyncDataToStandby_OptionsFinish" xml:space="preserve">
+    <value>Synchronous Options Finish.</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Park" xml:space="preserve">
+    <value>Synchronous Park</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Role" xml:space="preserve">
+    <value>Synchronous Role</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Synchronizing" xml:space="preserve">
+    <value>Start To </value>
+  </data>
+  <data name="FrmSyncDataToStandby_SynchronizingOptions" xml:space="preserve">
+    <value>Synchronizing Options ......</value>
+  </data>
+  <data name="FrmSyncDataToStandby_TariffSetting" xml:space="preserve">
+    <value>Synchronous TariffSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Time" xml:space="preserve">
+    <value>Time</value>
+  </data>
+  <data name="FrmSyncDataToStandby_UserSetting" xml:space="preserve">
+    <value>Synchronous UserSetting</value>
+  </data>
+  <data name="FrmSyncDataToStandby_Video" xml:space="preserve">
+    <value>Synchronous Video</value>
+  </data>
+  <data name="FrmSyncDataToStandby_WorkStation" xml:space="preserve">
+    <value>Synchronous WorkStation</value>
+  </data>
+  <data name="FrmCards_SyncCardToStandby" xml:space="preserve">
+    <value>Synchronous {0} card, {1} successfully.</value>
+  </data>
+  <data name="FrmCardDataConvert_StartConvert" xml:space="preserve">
+    <value>Start Convert</value>
+  </data>
+  <data name="FrmCardDataConvert_StopConvert" xml:space="preserve">
+    <value>Stop Convert</value>
+  </data>
+  <data name="FrmSystemOption_ParkingCommunicationIPChangedAlert" xml:space="preserve">
+    <value>Commnunication IP have changed, if you want the change to take effect, you need to restart software</value>
+  </data>
+  <data name="FrmMain_MasterUnconnected" xml:space="preserve">
+    <value>Master Unconnected</value>
+  </data>
+  <data name="FrmMain_StandbyUnconnected" xml:space="preserve">
+    <value>Standby Unconnected</value>
+  </data>
+  <data name="FrmSystemOption_InputBaseCardTypeName" xml:space="preserve">
+    <value>Please input the custom name of the basic card type.</value>
+  </data>
+  <data name="FrmSystemOption_InputCardSection" xml:space="preserve">
+    <value>Please input card sector.</value>
+  </data>
+  <data name="FrmMain_ImportDataErr" xml:space="preserve">
+    <value>Reocrd data error.</value>
+  </data>
+  <data name="FrmMain_ImportNoRecord" xml:space="preserve">
+    <value>No record.</value>
+  </data>
+  <data name="FrmMain_ImportNote" xml:space="preserve">
+    <value>Data import status success:{0}  fail:{1}  total: {2}</value>
+  </data>
+  <data name="Form_ExportSuccess" xml:space="preserve">
+    <value>Export success.</value>
+  </data>
+  <data name="Form_XMLFilter" xml:space="preserve">
+    <value>XML File|*.xml|All Files(*.*)|*.*</value>
+  </data>
+  <data name="FrmSystemOption_Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="FrmSystemOptions_ClearSnapshotComplete" xml:space="preserve">
+    <value>Manual purge outdated picture is finished</value>
+  </data>
+  <data name="FrmSystemOptions_ClearSnapshotQuery" xml:space="preserve">
+    <value>Manual removal of expired images, you will be busy for a long time, do you want to continue?</value>
+  </data>
+  <data name="FrmDownLoadAllCards_Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+</root>

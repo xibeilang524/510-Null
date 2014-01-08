@@ -1,0 +1,227 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E20CEF9A-8E63-4711-A868-E03BBFABCD01}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ralid.Park.DAL</RootNamespace>
+    <AssemblyName>Ralid.Park.DAL</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\Debug\Ralid.Park.DAL.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.DAL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+    <DocumentationFile>..\Debug\Ralid.Park.DAL.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>..\Debug\Ralid.Park.DAL.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.DAL.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisIgnoreBuiltInRuleSets>true</CodeAnalysisIgnoreBuiltInRuleSets>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <CodeAnalysisIgnoreBuiltInRules>true</CodeAnalysisIgnoreBuiltInRules>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ralid.GeneralLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\Ralid.GeneralLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IDAL\IAlarmProvider.cs" />
+    <Compile Include="IDAL\IAPMProvider.cs" />
+    <Compile Include="IDAL\ICardDeleteRecordProvider.cs" />
+    <Compile Include="IDAL\ICardPaymentRecordProvider.cs" />
+    <Compile Include="IDAL\ICardChargeRecordProvider.cs" />
+    <Compile Include="IDAL\ICardDeferRecordProvider.cs" />
+    <Compile Include="IDAL\ICardDisableEnableRecordProvider.cs" />
+    <Compile Include="IDAL\ICardEventProvider.cs" />
+    <Compile Include="IDAL\ICardLostRestoreRecordProvider.cs" />
+    <Compile Include="IDAL\ICardProvider.cs" />
+    <Compile Include="IDAL\ICardRecycleRecordProvider.cs" />
+    <Compile Include="IDAL\ICardReleaseRecordProvider.cs" />
+    <Compile Include="IDAL\IEntranceProvider.cs" />
+    <Compile Include="IDAL\IOperatorLogProvider.cs" />
+    <Compile Include="IDAL\IOperatorProvider.cs" />
+    <Compile Include="IDAL\IParkCarPortProvider.cs" />
+    <Compile Include="IDAL\IParkProvider.cs" />
+    <Compile Include="IDAL\IAPMLogProvider.cs" />
+    <Compile Include="IDAL\IRoleProvider.cs" />
+    <Compile Include="IDAL\IServerDatetimeProvider.cs" />
+    <Compile Include="IDAL\ISnapShotProvider.cs" />
+    <Compile Include="IDAL\ISysParameterProvider.cs" />
+    <Compile Include="IDAL\ITransactionsWork.cs" />
+    <Compile Include="IDAL\IUnitWork.cs" />
+    <Compile Include="IDAL\IVideoSourceProvider.cs" />
+    <Compile Include="IDAL\IWaitingCommandProvider.cs" />
+    <Compile Include="IDAL\IWorkstationProvider.cs" />
+    <Compile Include="IDAL\IProvider.cs" />
+    <Compile Include="IDAL\IYangChenTongLogProvider.cs" />
+    <Compile Include="LinqDataProvider\APMProvider.cs" />
+    <Compile Include="LinqDataProvider\CardDeleteRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\ParkCarPortProvider.cs" />
+    <Compile Include="LinqDataProvider\ParkDataContextFactory.cs" />
+    <Compile Include="LinqDataProvider\ParkingDataContext.cs" />
+    <Compile Include="LinqDataProvider\AlarmProvider.cs" />
+    <Compile Include="LinqDataProvider\CardChargeRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardDeferRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardDisableEnableRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardEventProvider.cs" />
+    <Compile Include="LinqDataProvider\CardLostRestoreRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardPaymentRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardProvider.cs" />
+    <Compile Include="LinqDataProvider\CardRecycleRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\CardReleaseRecordProvider.cs" />
+    <Compile Include="LinqDataProvider\EntranceProvider.cs" />
+    <Compile Include="LinqDataProvider\OperatorLogProvider.cs" />
+    <Compile Include="LinqDataProvider\OperatorProvider.cs" />
+    <Compile Include="LinqDataProvider\ParkProvider.cs" />
+    <Compile Include="LinqDataProvider\APMLogProvider.cs" />
+    <Compile Include="LinqDataProvider\ProviderBase.cs" />
+    <Compile Include="LinqDataProvider\ResultCodeResolver.cs" />
+    <Compile Include="LinqDataProvider\RoleProvider.cs" />
+    <Compile Include="LinqDataProvider\ServerDateTimeProvider.cs" />
+    <Compile Include="LinqDataProvider\SnapShotProvider.cs" />
+    <Compile Include="LinqDataProvider\SysparameterProvider.cs" />
+    <Compile Include="LinqDataProvider\TransactionsWork.cs" />
+    <Compile Include="LinqDataProvider\VideoSourceProvider.cs" />
+    <Compile Include="LinqDataProvider\WaitingCommandProvider.cs" />
+    <Compile Include="LinqDataProvider\WorkstationProvider.cs" />
+    <Compile Include="LinqDataProvider\UnitWork.cs" />
+    <Compile Include="LinqDataProvider\YangChenTongLogProvider.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="IDAL\ProviderFactory.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ralid.Park.BusinessModel\Ralid.Park.BusinessModel.csproj">
+      <Project>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</Project>
+      <Name>Ralid.Park.BusinessModel</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="LinqDataProvider\ParkingMapping.xml">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

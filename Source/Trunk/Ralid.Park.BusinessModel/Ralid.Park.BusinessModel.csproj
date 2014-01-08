@@ -1,0 +1,382 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>9.0.21022</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ralid.Park.BusinessModel</RootNamespace>
+    <AssemblyName>Ralid.Park.BusinessModel</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <StartupObject>
+    </StartupObject>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>3.5</OldToolsVersion>
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>
+    </DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <DocumentationFile>..\Debug\Ralid.Park.BusinessModel.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.BusinessModel.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+    <DocumentationFile>..\Debug\Ralid.Park.BusinessModel.XML</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <OutputPath>..\debug\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>..\Debug\Ralid.Park.BusinessModel.XML</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisLogFile>..\Debug\Ralid.Park.BusinessModel.dll.CodeAnalysisLog.xml</CodeAnalysisLogFile>
+    <CodeAnalysisUseTypeNameInSuppression>true</CodeAnalysisUseTypeNameInSuppression>
+    <CodeAnalysisModuleSuppressionsFile>GlobalSuppressions.cs</CodeAnalysisModuleSuppressionsFile>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>BasicDesignGuidelineRules.ruleset</CodeAnalysisRuleSet>
+    <CodeAnalysisRuleSetDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\\Rule Sets</CodeAnalysisRuleSetDirectories>
+    <CodeAnalysisRuleDirectories>;C:\Program Files (x86)\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Ralid.GeneralLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\ReferenceDll\Ralid.GeneralLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Net">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Runtime.Serialization">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.ServiceModel">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <RequiredTargetFramework>3.5</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Configuration\AppSettings.cs" />
+    <Compile Include="Enum\APMStatus.cs" />
+    <Compile Include="Enum\CardOptions.cs" />
+    <Compile Include="Enum\CarPlateComparisonResult.cs" />
+    <Compile Include="Enum\CommandType.cs" />
+    <Compile Include="Enum\DataBaseConnectionStatus.cs" />
+    <Compile Include="Enum\DataBaseType.cs" />
+    <Compile Include="Enum\EntranceCardTypeProperty.cs" />
+    <Compile Include="Enum\DiscountCalculateType.cs" />
+    <Compile Include="Enum\EntranceDeviceType.cs" />
+    <Compile Include="Enum\EntranceReader.cs" />
+    <Compile Include="Enum\EntranceWorkmodeOption.cs" />
+    <Compile Include="Enum\ActionType.cs" />
+    <Compile Include="Enum\CardStatus.cs" />
+    <Compile Include="Enum\CardType.cs" />
+    <Compile Include="Enum\EntranceStatus.cs" />
+    <Compile Include="Enum\EventInvalidType.CS" />
+    <Compile Include="Enum\AlarmType.cs" />
+    <Compile Include="Enum\DivisionType.cs" />
+    <Compile Include="Enum\RecordType.cs" />
+    <Compile Include="Enum\LinkMode.cs" />
+    <Compile Include="Enum\GateOperation.cs" />
+    <Compile Include="Enum\ParkingStatus.cs" />
+    <Compile Include="Enum\PaymentCode.cs" />
+    <Compile Include="Enum\PaymentMode.cs" />
+    <Compile Include="Enum\PaymentOperationLogType.cs" />
+    <Compile Include="Enum\Permissions.cs" />
+    <Compile Include="Enum\SystemType.cs" />
+    <Compile Include="Enum\TariffType.cs" />
+    <Compile Include="Enum\VipVisitorStatus.cs" />
+    <Compile Include="Enum\ParkWorkMode.cs" />
+    <Compile Include="Factory\CardPaymentInfoFactory.cs" />
+    <Compile Include="Factory\ParkBillFactory.cs" />
+    <Compile Include="Interface\IReportHandler.cs" />
+    <Compile Include="Model\AccessInfo.cs" />
+    <Compile Include="Model\AccessSetting.cs" />
+    <Compile Include="Model\AccessTimeZone.cs" />
+    <Compile Include="Model\AccountingOption.cs" />
+    <Compile Include="Model\APM.cs" />
+    <Compile Include="Model\BaseCardTypeSetting.cs" />
+    <Compile Include="Model\CanAddress.cs" />
+    <Compile Include="Model\CardChargeRecordSerializer.cs" />
+    <Compile Include="Model\CardDateResolver.cs" />
+    <Compile Include="Model\CardDeleteRecord.cs" />
+    <Compile Include="Model\CardEventRecord.cs" />
+    <Compile Include="Model\CardOperationManager.cs" />
+    <Compile Include="Model\CardPaymentInfo.cs" />
+    <Compile Include="Model\CardPaymentInfoSerializer.cs" />
+    <Compile Include="Model\CarPortSetting.cs" />
+    <Compile Include="Model\CarTypeSetting.cs" />
+    <Compile Include="Model\CollectInfo.cs" />
+    <Compile Include="Model\CustomCardTypeSetting.cs" />
+    <Compile Include="Model\DataBaseConnectionsManager.cs" />
+    <Compile Include="Model\DatetimeInterval.cs" />
+    <Compile Include="Model\DiscountCalculateSetting.cs" />
+    <Compile Include="Model\DiscountMeta.cs" />
+    <Compile Include="Model\DiscountRecordInfo.cs" />
+    <Compile Include="Model\GlobalVariables.cs" />
+    <Compile Include="Model\HolidayInfo.cs" />
+    <Compile Include="Model\HolidaySetting.cs" />
+    <Compile Include="Model\KeySetting.cs" />
+    <Compile Include="Model\ParkAccountsInfo.cs" />
+    <Compile Include="Model\APMLog.cs" />
+    <Compile Include="Model\ParkCarPort.cs" />
+    <Compile Include="Model\ParkingParameterDataBuffer.cs" />
+    <Compile Include="Model\RecordTypeSerializer.cs" />
+    <Compile Include="Model\SQLStringHelper.cs" />
+    <Compile Include="Model\TariffBase.cs" />
+    <Compile Include="Model\TariffOfDixiakongjian.cs" />
+    <Compile Include="Model\TariffOfTurning.cs" />
+    <Compile Include="Model\TariffOfGuanZhou.cs" />
+    <Compile Include="Model\TariffOfLimitation.cs" />
+    <Compile Include="Model\TariffPerDay.cs" />
+    <Compile Include="Model\TariffPerTime.cs" />
+    <Compile Include="Model\TariffSpecialTimezone.cs" />
+    <Compile Include="Model\TariffTimeZone.cs" />
+    <Compile Include="Model\TarrifSetting.cs" />
+    <Compile Include="Model\TimeZone.cs" />
+    <Compile Include="Model\TollOptionSetting.cs" />
+    <Compile Include="Model\WintoneCarPlateSetting.cs" />
+    <Compile Include="Model\YangChenTongLog.cs" />
+    <Compile Include="Model\ZSTSetting.cs" />
+    <Compile Include="Notify\DeviceModeNotify.cs" />
+    <Compile Include="Notify\QueryParkFeeNotify.cs" />
+    <Compile Include="Notify\EntranceRemainTempCardNotify.cs" />
+    <Compile Include="Notify\RemoteReadCardNotify.cs" />
+    <Compile Include="ParkingGuide\AddressHelper.cs" />
+    <Compile Include="ParkingGuide\ArrowDirection.cs" />
+    <Compile Include="ParkingGuide\CentralController.cs" />
+    <Compile Include="ParkingGuide\DetectHeight.cs" />
+    <Compile Include="ParkingGuide\DetectInterval.cs" />
+    <Compile Include="ParkingGuide\DeviceBase.cs" />
+    <Compile Include="ParkingGuide\DeviceType.cs" />
+    <Compile Include="ParkingGuide\ParkingDetector.cs" />
+    <Compile Include="ParkingGuide\ParkingDetectorStatus.cs" />
+    <Compile Include="ParkingGuide\ParkingGuidBus.cs" />
+    <Compile Include="ParkingGuide\ParkingScreen.cs" />
+    <Compile Include="ParkingGuide\RegionController.cs" />
+    <Compile Include="ParkingGuide\SubDevice.cs" />
+    <Compile Include="Report\AlarmReport.cs" />
+    <Compile Include="Report\ButtonClickedReport.cs" />
+    <Compile Include="Report\CardCaptureReport.cs" />
+    <Compile Include="Report\CardEventID.cs" />
+    <Compile Include="Report\CardEventReport.cs" />
+    <Compile Include="Model\ChargeUnit.cs" />
+    <Compile Include="Model\UserSetting.cs" />
+    <Compile Include="Model\SnapShot.cs" />
+    <Compile Include="Model\AlarmInfo.cs" />
+    <Compile Include="Model\CardChargeRecord.cs" />
+    <Compile Include="Model\CardDeferRecord.cs" />
+    <Compile Include="Model\CardDisableEnableRecord.cs" />
+    <Compile Include="Model\CardFlowStatistics.cs" />
+    <Compile Include="Model\CardLostRestoreRecord.cs" />
+    <Compile Include="Model\CardRecycleRecord.cs" />
+    <Compile Include="Model\CardReleaseRecord.cs" />
+    <Compile Include="Model\OperatorSettleLog.cs" />
+    <Compile Include="Model\TimeEntity.cs" />
+    <Compile Include="Notify\FetchCardRequesNotify.cs" />
+    <Compile Include="Model\VideoSourceInfo.cs" />
+    <Compile Include="Model\WaitingCommandInfo.cs" />
+    <Compile Include="Notify\EventInvalidNotify.cs" />
+    <Compile Include="Notify\EventValidNotify.cs" />
+    <Compile Include="Notify\TempCardEventNotify.cs" />
+    <Compile Include="Notify\DeviceReSetNotify.cs" />
+    <Compile Include="Notify\DownLoadCardNotify.cs" />
+    <Compile Include="Notify\GateOperationNotify.cs" />
+    <Compile Include="Notify\FetchEventRequestNotify.cs" />
+    <Compile Include="Model\CardInfo.cs" />
+    <Compile Include="Model\EntranceInfo.cs" />
+    <Compile Include="Model\OperatorInfo.cs" />
+    <Compile Include="Model\ParkInfo.cs" />
+    <Compile Include="Model\RoleInfo.cs" />
+    <Compile Include="Model\SysparameterInfo.cs" />
+    <Compile Include="Model\WorkStationInfo.cs" />
+    <Compile Include="Notify\SetCardMachineNotify.cs" />
+    <Compile Include="Notify\SetLedDisplayNotify.cs" />
+    <Compile Include="Report\CardEventStatus.cs" />
+    <Compile Include="Report\CardTakeoutReport.cs" />
+    <Compile Include="Report\CarPlateComparer.cs" />
+    <Compile Include="Report\CommandEchoReport.cs" />
+    <Compile Include="Report\DeviceResetReport.cs" />
+    <Compile Include="Report\OfflineCardReadReport.cs" />
+    <Compile Include="Report\ParkVacantReport.cs" />
+    <Compile Include="Report\EntranceRemainTempCardReport.cs" />
+    <Compile Include="Report\CardReadReport.cs" />
+    <Compile Include="Report\ReaderLogReport.cs" />
+    <Compile Include="Report\ReportBase.cs" />
+    <Compile Include="Report\CarSenseReport.cs" />
+    <Compile Include="Report\WaitingCommandID.cs" />
+    <Compile Include="Resouce\AlarmTypeDescription.cs" />
+    <Compile Include="Resouce\APMStatusDescription.cs" />
+    <Compile Include="Resouce\CardInvalidDescripition.cs" />
+    <Compile Include="Resouce\CardStatusDescription.cs" />
+    <Compile Include="Resouce\CarTypeDescription.cs" />
+    <Compile Include="Resouce\EntranceDeviceTypeDescription.cs" />
+    <Compile Include="Resouce\EntranceStatusDescription.cs" />
+    <Compile Include="Resouce\ParkingStatusDescription.cs" />
+    <Compile Include="Resouce\ParkWorkModeDescription.cs" />
+    <Compile Include="Resouce\PaymentCodeDescription.cs" />
+    <Compile Include="Resouce\PaymentModeDescription.cs" />
+    <Compile Include="Resouce\APMLogTypeDescription.cs" />
+    <Compile Include="Resouce\PermissionDescription.cs" />
+    <Compile Include="Resouce\PrinterStatusDescription.cs" />
+    <Compile Include="Resouce\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Resouce\ResultCodeDecription.cs" />
+    <Compile Include="Resouce\TariffTypeDescription.cs" />
+    <Compile Include="Resouce\WorkModeDescription.cs" />
+    <Compile Include="Result\CommandResult.cs" />
+    <Compile Include="Result\QueryResult.cs" />
+    <Compile Include="Result\QueryResultList.cs" />
+    <Compile Include="Result\ResultCode.cs" />
+    <Compile Include="Report\CardInvalidReport.cs" />
+    <Compile Include="Report\DeviceStatusReport.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SearchCondition\AlarmSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardEventSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardPaymentRecordSearchCondition.cs" />
+    <Compile Include="SearchCondition\CardSearchCondition.cs" />
+    <Compile Include="SearchCondition\DateTimeRange.cs" />
+    <Compile Include="SearchCondition\EntranceSearchCondition.cs" />
+    <Compile Include="SearchCondition\OperatorSearchCondition.cs" />
+    <Compile Include="SearchCondition\APMLogSearchCondition.cs" />
+    <Compile Include="SearchCondition\ParkCarPortSearchCondition.cs" />
+    <Compile Include="SearchCondition\RecordSearchCondition.cs" />
+    <Compile Include="SearchCondition\SearchCondition.cs" />
+    <Compile Include="SearchCondition\SnapShotSearchCondition.cs" />
+    <Compile Include="SearchCondition\WaitingCommandSearchCondition.cs" />
+    <Compile Include="Security\CryptoTripleDes.cs" />
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="Resouce\Resource1.en.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resouce\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resouce\Resource1.zh-Hant.resx">
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

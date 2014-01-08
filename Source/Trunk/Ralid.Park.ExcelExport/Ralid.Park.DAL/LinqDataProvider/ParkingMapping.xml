@@ -1,0 +1,318 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Database Name="parking" xmlns="http://schemas.microsoft.com/linqtosql/mapping/2007">
+  <Table Name="dbo.Alarm" Member="Ralid.Park.BusinessModel.Model.AlarmInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.AlarmInfo">
+      <Column Name="AlarmID" Member="AlarmID" DbType="Int NOT NULL" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert"/>
+      <Column Name="AlarmDateTime" Member="AlarmDateTime" DbType="datetime NOT NULL" CanBeNull="false" />
+      <Column Name="AlarmSource" Member="AlarmSource" DbType="VarChar(50)" />
+      <Column Name="AlarmType" Member="AlarmType"   DbType="VarChar(20)" />
+      <Column Name="AlarmValue" Member="AlarmValue"  DbType="VarChar(100)" />
+      <Column Name="AlarmDescr" Member="AlarmDescr"  DbType="VarChar(100)" />
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Car" Member="Ralid.Park.BusinessModel.Model.CarInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.CarInfo">
+      <Column Name="CarID" Member="CarID"  DbType="int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="OwnerName" Member="OwnerName"  DbType="VarChar(20) NOT NULL"/>
+      <Column Name="CarPlate" Member="CarPlate"  DbType="VarChar(50)" />
+      <Column Name="CarColor" Member="CarColor"  DbType="VarChar(20)" />
+      <Column Name="IDNum" Member="IDNum"  DbType="VarChar(30)" />
+      <Column Name="OwnerTel" Member="OwnerTel"  DbType="VarChar(30)" />
+      <Column Name="OwnerAddress" Member="OwnerAddress"  DbType="VarChar(80)" />
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Card" Member="Ralid.Park.BusinessModel.Model.CardInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardInfo">
+      <Column Name="CardID" Member="CardID" DbType="varchar(20)" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="CardType" Member="_CardType" DbType="TinyInt NOT NULL" />
+      <Column Name="Status" Member="Status"  DbType="TinyInt NOT NULL" />
+      <Column Name="CarType" Member="CarType" DbType="TinyInt NOT NULL" />
+      <Column Name="ParkingFlag" Member="ParkingStatus"  DbType="tinyint not null" />
+      <Column Name="LastDateTime" Member="LastDateTime"  DbType="DateTime not null" />
+      <Column Name="LastEntrance" Member="LastEntrance"  DbType="int not null" />
+      <Column Name="LastCarPlate" Member="LastCarPlate"  DbType="varchar(50) null" />
+      <Column Name="AccessID" Member="AccessID"  DbType="tinyint not null" />
+      <Column Name="ActivationDate" Member="ActivationDate" DbType="datetime not null"/>
+      <Column Name="ValidDate" Member="ValidDate"  DbType="DateTime NOT NULL"/>
+      <Column Name="HolidayEnabled" Member="HolidayEnabled" DbType="bit not null"/>
+      <Column Name="Balance" Member="Balance"  DbType="Decimal(10,2) NOT NULL" />
+      <Column Name="Deposit" Member="Deposit" DbType="Decimal(10,2) not null"/>
+      <Column Name="CarID" Member="CarID"  DbType="Int NOT NULL" />
+      <Association Name="FK_Card_Car" Member="CarInfo"  ThisKey="CarID"  IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardChange" Member="Ralid.Park.BusinessModel.Model.CardChangeRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardChangeRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OriginalID" Member="OriginalID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ChangeDateTime" Member="ChangeDateTime"  DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="ChangeMoney" Member="ChangeMoney"  DbType="Decimal(10,2) NOT NULL" />
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StationID" Member="StationID"  DbType="VarChar(4) NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardCharge" Member="Ralid.Park.BusinessModel.Model.CardChargeRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardChargeRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="ChargeDateTime" Member="ChargeDateTime"  DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="ChargeAmount" Member="ChargeAmount"  DbType="Decimal(10,2) NOT NULL" CanBeNull ="false" />
+      <Column Name="Payment" Member="Payment"  DbType="Decimal(10,2) NOT NULL"  CanBeNull ="false"/>
+      <Column  Name="PaymentMode" Member="PaymentMode" DbType="tinyint not null"/>
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StationID" Member="StationID"  DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardDefer" Member="Ralid.Park.BusinessModel.Model.CardDeferRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardDeferRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="DeferDateTime" Member="DeferDateTime"  DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="OriginalDate" Member="OriginalDate"  DbType="DateTime" />
+      <Column Name="CurrentDate" Member="CurrentDate"  DbType="DateTime" />
+      <Column Name="DeferMoney" Member="DeferMoney"  DbType="Decimal(10,2) NOT NULL" />
+      <Column Name="PaymentMode" Member="PaymentMode" DbType="tinyint not null"/>
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StationID" Member="StationID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Member="Memo" DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardDisableEnable" Member="Ralid.Park.BusinessModel.Model.CardDisableEnableRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardDisableEnableRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="DisableOperator" Member="DisableOperator"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="DisableDateTime" Member="DisableDateTime"  DbType="DateTime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="DisableMemo" Member="DisableMemo"  DbType="VarChar(200)" />
+      <Column Name="DisableStationID" Member="DisableStationID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="EnableOperator" Member="EnableOperator"  DbType="VarChar(20)" />
+      <Column Name="EnableDateTime" Member="EnableDateTime"  DbType="DateTime"  CanBeNull="true"/>
+      <Column Name="EnableMemo" Member="EnableMemo" DbType="VarChar(200)" />
+      <Column Name="EnableStationId" Member="EnableStationID"  DbType="VarChar(20)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardEvent" Member="Ralid.Park.BusinessModel.Model.CardEventRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardEventRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="EventDateTime" Member="EventDateTime"  DbType="DateTime NOT NULL" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName"  DbType="Varchar(20) null"/>
+      <Column Name="EntranceID" Member="EntranceID"  DbType="int not null" />
+      <Column Name="EntranceName" Member="EntranceName"  DbType="varchar(50) null" />
+      <Column Name="LastDateTime" Member="LastDateTime" DbType="DateTime null"/>
+      <Column Name="IsExitEvent" Member="IsExitEvent" DbType="bit not null"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyInt"/>
+      <Column Name="EventType" Member="EventType" DbType="tinyint not null" />
+      <Column Name="EventStatus" Member="EventStatus"  DbType="tinyInt"/>
+      <Column Name="ParkingStatus" Member="ParkingStatus"  DbType="tinyInt"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="OperatorNum" Member="OperatorID"  DbType="varchar(20) null" />
+      <Column Name="StationID" Member="StationID" DbType="varchar(20) null"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.CardPaymentRecord" Member="Ralid.Park.BusinessModel.Model.CardPaymentInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardPaymentInfo">
+      <Column Name="ID" Member="ID"  DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="CardID" Member="CardID" DbType="VARCHAR(20) NOT NULL"/>
+      <Column Name="ChargeDateTime" Member="ChargeDateTime" DbType="datetime not null"/>
+      <Column Name="EnterDateTime" Member="EnterDateTime" DbType="dateTime null" />
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyInt not null"/>
+      <Column Name="CarType" Member="CarType" DbType="tinyint not null"/>
+      <Column Name="TariffType" Member="TariffType" DbType="tinyint not null"/>
+      <Column Name="LastAccounts" Member="LastAccounts" DbType="decimal(10,2) not null"/>
+      <Column Name="HavePaid" Member="HavePaid" DbType="decimal(10,2) not null"/>
+      <Column Name="Accounts" Member="TotalAccounts" DbType="decimal(10,2) not null"/>
+      <Column Name="Paid" Member="Paid" DbType="decimal(10,2) not null"/>
+      <Column Name="PaymentMode" Member="PaymentMode" DbType="tinyint not null"/>
+      <Column Name="OperatorNum" Member="OperatorID" DbType="varchar(20)"/>
+      <Column Name="StationID" Member="StationID" DbType="varchar(50) not null"/>
+      <Column Name="Memo" Member="Memo" DbType="varchar(200) null"/> 
+    </Type>
+  </Table>
+  <Table Name="dbo.CardLostRestore" Member="Ralid.Park.BusinessModel.Model.CardLostRestoreRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardLostRestoreRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="LostDateTime" Member="LostDateTime" DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="LostOperator" Member="LostOperator"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="LostMemo" Member="LostMemo" DbType="VarChar(200)" />
+      <Column Name="LostStationID" Member="LostStation"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="CardStatus" Member="CardStatus" DbType="TinyInt NOT NULL" />
+      <Column Name="RestoreOperator" Member="RestoreOperator"  DbType="VarChar(20)" />
+      <Column Name="RestoreDateTime" Member="RestoreDateTime"  DbType="dateTime" CanBeNull="true" />
+      <Column Name="RestoreMemo" Member="RestoreMemo"  DbType="VarChar(200)" />
+      <Column Name="RestoreStationId" Member="RestoreStation" DbType="VarChar(20)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardRecycle" Member="Ralid.Park.BusinessModel.Model.CardRecycleRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardRecycleRecord">
+      <Column Name="CardID" Member="CardID" DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="RecycleDateTime" Member="RecycleDateTime" DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyint not null"/>
+      <Column Name="Balance" Member="Balance" DbType="decimal(10,2) not null"/>
+      <Column Name="ValidDate" Member="ValidDate" DbType="datetime not null"/>
+      <Column Name="Deposit" Member="Deposit" DbType="decimal(10,2) not null"/>
+      <Column Name="RecycleMoney" Member="RecycleMoney"  DbType="Decimal(10,2) NOT NULL" />
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StationID" Member="StationID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.CardRelease" Member="Ralid.Park.BusinessModel.Model.CardReleaseRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.CardReleaseRecord">
+      <Column Name="CardID" Member="CardID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="ReleaseDateTime" Member="ReleaseDateTime"  DbType="dateTime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OwnerName" Member="OwnerName" DbType="varchar(100) null"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="varchar(20) null"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyInt not null"/>
+      <Column Name="ReleaseMoney" Member="ReleaseMoney" DbType="Decimal(10,2) NOT NULL" />
+      <Column Name="PaymentMode" Member="PaymentMode" DbType="tinyint NOT NULL"/>
+      <Column Name="Balance" Member="Balance" DbType="Decimal(10,2) not null" />
+      <Column Name="ActivationDate" Member="ActivationDate" DbType="Datetime not null"/>
+      <Column Name="ValidDate" Member="ValidDate" DbType="DateTime not null"/>
+      <Column Name="HolidayEnabled" Member="HolidayEnabled" DbType="bit not null"/>
+      <Column Name="Deposit" Member="Deposit" DbType="Decimal(10,2) not null"/>
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="StationID" Member="StationID" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Entrance" Member="Ralid.Park.BusinessModel.Model.EntranceInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.EntranceInfo">
+      <Column Name="EntranceID" Member="EntranceID"  DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="EntranceName" Member="EntranceName"  DbType="VarChar(30) NOT NULL" />
+      <Column Name="IPAddress" Member="IPAddress"  DbType="varchar(20) NOT NULL" />
+      <Column Name="IPMask" Member="IPMask"  DbType="varchar(20) NOT NULL" />
+      <Column Name="Gateway" Member="Gateway"  DbType="varchar(20) NOT NULL" />
+      <Column Name="MasterIP" Member="MasterIP"  DbType="varchar(20) NOT NULL" />
+      <Column Name="ControlPort" Member="ControlPort"  DbType="int not null" />
+      <Column Name="EventPort" Member="EventPort"  DbType="int not null" />
+      <Column Name="MACAddress" Member="MACAddress"  DbType="VarChar(30) null" />
+      <Column Name="WorkMode" Member="_WorkMode"  DbType="int not null" />
+      <Column Name="ReadCardInterval" Member="ReadCardInterval"  DbType="int not null" />
+      <Column Name="ParkID" Member="ParkID" DbType="Int NOT NULL" />
+      <Column Name="TicketPrinterCOMPort" Member="TicketPrinterCOMPort"  DbType="tinyint not null" />
+      <Column Name="TicketReaderCOMPort" Member="TicketReaderCOMPort" DbType="tinyint not null" />
+      <Column Name="TempCard" Member="TempCard" DbType="int not null"/>
+      <Column Name="EnableMinTempCardAlarm" Member="EnableMinTempCardAlarm" DbType="bit not null"/>
+      <Column Name="MinTempCard" Member="MinTempCard" DbType="int not null"/>
+      <Column Name="Memo" Member="Memo" DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Operator" Member="Ralid.Park.BusinessModel.Model.OperatorInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.OperatorInfo">
+      <Column Name="OperatorID" Member="OperatorID" DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OperatorName" Member="OperatorName"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="OperatorPwd" Member="_Password"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Member="RoleID" DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="OperatorNum" Member="OperatorNum"  DbType="Int" />
+      <Association Name="FK_Operator_Role" Member="Role"  ThisKey="RoleID" OtherKey="RoleID" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.OperatorLog" Member="Ralid.Park.BusinessModel.Model.OperatorLogInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.OperatorLogInfo">
+      <Column Name="OperatorID" Member="OperatorID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OnDutyDateTime" Member="OnDutyDateTime"  DbType="datetime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OffDutyDateTime" Member="OffDutyDateTime"  DbType="dateTime not null" />
+      <Column Name="StationID" Member="StationID"  DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="TempCardInherit" Member="TempCardInherit" DbType="int not null"/>
+      <Column Name="TempCardRecycle" Member="TempCardRecycle" DbType="int not null"/>
+      <Column Name="TempCardHandIn" Member="TempCardHandIn" DbType="int not null"/>
+      <Column Name="CashInherit" Member="CashInherit"  DbType="Decimal(10,2) not null" />
+      <Column Name="CashParkPlan" Member="CashParkPlan"  DbType="Decimal(10,2) not null" />
+      <Column Name="CashParkFact" Member="CashParkFact"  DbType="Decimal(10,2) not null" />
+      <Column Name="CashOfCard" Member="CashOfCard" DbType="Decimal(10,2) not null"/>
+      <Column Name="CashOfDeposit" Member="CashOfDeposit" DbType="Decimal(10,2) not null"/>
+      <Column Name="CashOfCardRecycle" Member="CashOfCardRecycle" DbType="Decimal(10,2) not null"/>
+      <Column Name="CashHandIn" Member="CashHandIn" DbType="Decimal(10,2) not null"/>
+      <Column Name="NonCashParkPlan" Member="NonCashParkPlan"  DbType="Decimal(10,2) not null" />
+      <Column Name="NonCashParkFact" Member="NonCashParkFact"  DbType="Decimal(10,2) not null" />
+      <Column Name="NonCashOfCard" Member="NonCashOfCard" DbType="Decimal(10,2) not null"/>
+      <Column Name="NonCashOfDeposit" Member="NonCashOfDeposit" DbType="Decimal(10,2) not null"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.Park" Member="Ralid.Park.BusinessModel.Model.ParkInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.ParkInfo">
+      <Column Name="ParkID" Member="ParkID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ParkName" Member="ParkName"  DbType="VarChar(30) NOT NULL" CanBeNull="false" />
+      <Column Name="TotalPosition" Member="TotalPosition"  DbType="SmallInt NOT NULL" />
+      <Column Name="MinPosition" Member="MinPosition"  DbType="SmallInt NOT NULL" />
+      <Column Name="Vacant" Member="Vacant" DbType="SmallInt NOT NULL" />
+      <Column Name="ParkFullText" Member="ParkFullText" DbType="VarChar(20)" />
+      <Column Name="VacantText" Member="VacantText" DbType="VarChar(20)" />
+      <Column Name="ParkAdapterUri" Member="ParkAdapterUri" DbType="varchar(200)"/>
+      <Column Name="CommPort" Member="CommPort" DbType="tinyInt not null"/>
+      <Column Name="HostWorkstation" Member="HostWorkstation" DbType="varchar(50) null" />
+      <Column Name="CarPlateRecognizeUri" Member="CarPlateRecognizeUri" DbType="varchar(200) null"/>
+      <Column Name="Memo" Member="Memo" DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Role" Member="Ralid.Park.BusinessModel.Model.RoleInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.RoleInfo">
+      <Column Name="RoleID" Member="RoleID"  DbType="NVarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Description" Member="Description"  DbType="VarChar(200)" />
+      <Column Name="Permission" Member="Permission"  DbType="VarChar(200)" />
+    </Type>
+  </Table>
+  <Table Name="SnapShot" Member="Ralid.Park.BusinessModel.Model.SnapShot">
+    <Type Name="Ralid.Park.BusinessModel.Model.SnapShot">
+      <Column Name="ShotAt" Member="ShotAt" DbType="DateTime not null" IsPrimaryKey="true"/>
+      <Column Name="VideoSourceID" Member="VideoSourceID" DbType="int not null" IsPrimaryKey="true"/>
+      <Column Name="Photo" Member="_ImageData" DbType="image"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.Sysparameter" Member="Ralid.Park.BusinessModel.Model.SysparameterInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.SysparameterInfo">
+      <Column Name="Parameter" Member="Parameter"  DbType="VarChar(30)" IsPrimaryKey="true" />
+      <Column Name="ParameterValue" Member="ParameterValue" DbType="VarChar(4000)" />
+      <Column Name="Description" Member="Description" DbType="VarChar(100)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.VideoSource" Member="Ralid.Park.BusinessModel.Model.VideoSourceInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.VideoSourceInfo">
+      <Column Name="VideoID" Member="VideoID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="VideoName" Member="VideoName"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="MediaSource" Member="MediaSource"  DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="Channel" Member="Channel"  DbType="int NOT NULL"/>
+      <Column Name="UserName" Member="UserName"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="Password" Member="Password"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="ControlPort" Member="ControlPort" DbType="Int NOT NULL" />
+      <Column Name="StreamPort" Member="StreamPort"  DbType="Int NOT NULL" />
+      <Column Name="AutoReconnect" Member="AutoReconnect" DbType="bit NOT NULL" />
+      <Column Name="AutoReconnectInterval" Member="AutoReconnectInterval" DbType="Int NOT NULL" />
+      <Column Name="ConnectTimeOut" Member="ConnectTimeOut" DbType="int not null"/>
+      <Column Name="IsForCarPlate" Member="IsForCarPlate" DbType="bit not null"/>
+      <Column Name="EntranceID" Member="EntranceID" DbType="Int NOT NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WaitingCommand" Member="Ralid.Park.BusinessModel.Model.WaitingCommandInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.WaitingCommandInfo">
+      <Column Name="CardID" Member="CardID"  DbType="varchar(20)" IsPrimaryKey="true" />
+      <Column Name="ParkID" Member="ParkID"  DbType="int" IsPrimaryKey="true" />
+      <Column Name="Action" Member="Action" DbType="tinyint not null" />
+    </Type>
+  </Table>
+  <Table Name="dbo.WorkStation" Member="Ralid.Park.BusinessModel.Model.WorkStationInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.WorkStationInfo">
+      <Column Name="StationID" Member="StationID" DbType="VarChar(20) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="StationName" Member="StationName"  DbType="VarChar(20) NOT NULL" CanBeNull="false" />
+      <Column Name="EntranceID" Member="_EntranceIDs"  DbType="VarChar(200)" />
+      <Column Name="CenterCharge" Member="_CenterCharge"  DbType="VarChar(1) NOT NULL" CanBeNull="false" />
+      <Column Name="Cards" Member="Cards" DbType="int not null" />
+      <Column Name="Cash" Member="Cash" DbType="decimal(10,2) not  null"/>
+      <Column Name="OnDutyOperator" Member="OnDutyOperator" DbType="varchar(20) null"/>
+      <Column Name="OnDutyDateTime" Member="OnDutyDateTime" DbType="datetime null"/>
+      <Column Name="Memo" Member="Memo"  DbType="VarChar(200)" />
+    </Type>
+  </Table>
+</Database>
