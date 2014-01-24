@@ -1,0 +1,175 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>URL Command Specification Version</title>
+</head>
+
+<body>
+
+<p align="center"><font size="7" face="Arial">URL Command Specification</font></p>
+<p></p>
+<p></p>
+<p></p>
+<p align="center"><font face="Arial" size="6">VERSION V2.0.05</font></p>
+<p></p>
+<div align="center">
+	<table border="1" width="80%" id="table1" cellspacing="0" cellpadding="0">
+		<tr>
+			<td width="123" align="center"><font size="4" face="Arial">Version</font></td>
+			<td align="center" width="156"><font size="4" face="Arial">Date</font></td>
+			<td align="center"><font size="4" face="Arial">Description</font></td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font face="Arial" size="2">V2.0.00</font></td>
+			<td align="center" width="156"><font face="Arial" size="2">2007/11/23</font></td>
+			<td align="center">
+			<ul>
+				<li>
+				<p align="left"><font face="Arial" size="2">Document created</font></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font face="Arial" size="2">V2.0.01</font></td>
+			<td align="center" width="156"><font face="Arial" size="2">2007/12/26</font></td>
+			<td align="center">
+			<ul>
+				<li>
+				<p align="left"><font face="Arial" size="2">Add Description of 
+				URL, Return Message sections</font></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font face="Arial" size="2">V2.0.02</font></td>
+			<td align="center" width="156"><font face="Arial" size="2">2008/01/03</font></td>
+			<td align="left">
+			<ul>
+				<li><font face="Arial" size="2">Add UPDATE CGI, URL CGI and QUAD CGI, ACTIVEX_URL and FW_UPG_STATUS in SYSTEM CGI</font></li>
+				<li><font face="Arial" size="2">Correct the DIO_STATUS URL in MPEG4 CGI</font></li>
+				<li><font face="Arial" size="2">Add the Daylight Saving Design Specification and Camera Doctor Design Specification
+				</font></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font size="2" face="Arial">V2.0.03</font></td>
+			<td align="center" width="156"><font face="Arial" size="2">
+			2008/01/24</font></td>
+			<td align="left">
+			<ul>
+				<li><font face="Arial" size="2">Change the MOTION_CONFIG, 
+			MOTION_CONFIG_GET URLs in ENCODER CGI</font></li>
+				<li><font face="Arial" size="2">MOTION_OBJ and SNAPSHOT 
+			URLs in ENCODER CGI</font></li>
+				<li><font face="Arial" size="2">Add &quot;invalid parameters&quot; error message in the 
+			return of URL.</font></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font face="Arial" size="2">V2.0.04</font></td>
+			<td align="center" width="156"><font face="Arial" size="2">
+			2008/03/11</font></td>
+			<td align="left">
+			<ul>
+				<li><font face="Arial" size="2">Correct MOTION_SENSITIVE in MPEG4 and ENCODER CGIs.</font></li>
+				<li><font face="Arial" size="2">Correct the input argument of VIDEO_SHUTTER_SPEED in ENCODER CGI.</font></li>
+				<li><font face="Arial" size="2">Add VIDEO_IRIS. VIDEO_BLC_MODE, VIDEO_SENSEUP_LEVEL, 
+			VIDEO_DAYNIGHT_MODE, CAMERA_PRESET, DIO_OUTPUT in ENCOER CGI. </font></li>
+				<li><font face="Arial" size="2">Add the Content-Length in HTTP Header in all POST reply messages (refer to UPDATE and 80503736 CGIs).</font></li>
+				<li><font face="Arial" size="2">Add PTZ URLs (ADDR, PTZ_VENDOR, 
+				ZOOM, ZOOM_POSITION, FOCUS, FOCUS_POSITION, MOVE, MOVE_LIMIT, 
+				MOVE_LIMIT_GET, MOVE_MAX_SPEED_GET, POSITION, POSITION_GET) in ENCODER CGI.</font></li>
+				<li><font face="Arial" size="2">Add PTZ_IMAGE URL in UPDATE CGI.
+				</font></li>
+			</ul>
+			</td>
+		</tr>
+		<tr>
+			<td width="123" align="center"><font face="Arial" size="2">V2.0.05</font></td>
+			<td align="center" width="156"><font size="2" face="Arial">
+			2008/05/22</font></td>
+			<td align="left">
+			<ul>
+				<li><font face="Arial" size="2">Add the motion region 
+				specification in MOTION_SETTING URL in MPEG4 and MOTION_CONFIG 
+				URL in ENCODER.</font></li>
+			</ul>
+			</td>
+		</tr>
+	</table>
+</div>
+<p align="left"></p>
+<hr>
+<p align="left"><font face="Arial" size="5">
+<a href="General/GeneralDescription.htm">Description of URL</a></font></p>
+<p align="left"><font face="Arial" size="5"><a href="General/ReturnMessage.htm">Specification of Return Message</a></font></p>
+<p align="left"><font size="5" face="Arial">List by CGI Program</font></p>
+<blockquote>
+	<p align="left"><font face="Arial"><a href="System/system.htm">SYSTEM CGI</a>, 
+	<a href="Mpeg4/mpeg4.htm">MPEG4 CGI</a>, <a href="Encoder/Encoder.htm">ENCODER CGI</a>, 
+	<a href="Url/url.htm">URL CGI</a>, 
+	<a href="Decoder/decoder.htm">DECODER CGI</a>, 
+	<a href="Update/update.htm">UPDATE CGI</a>, 
+	<a href="Quad/quad.htm">QUAD CGI</a></font></p>
+</blockquote>
+<p align="left"><font face="Arial" size="5">List by PLATFORM</font></p>
+<blockquote>
+	<table border="1" width="80%" id="table2">
+		<tr>
+			<td colspan="2"><font face="Arial" size="4">WPL Platform</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">ENCODER</font></i></td>
+			<td><font face="Arial">1-Channel, 2-Channel, QUAD</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">DECODER</font></i></td>
+			<td><font face="Arial">1-Channel</font></td>
+		</tr>
+		<tr>
+			<td colspan="2"><font face="Arial" size="4">EPL Platform</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">ENCODER</font></i></td>
+			<td><font face="Arial">1-Channel</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">DECODER</font></i></td>
+			<td><font face="Arial">1-Channel</font></td>
+		</tr>
+		<tr>
+			<td colspan="2"><font face="Arial" size="4">Multi-Channel Encoder</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">Router</font></i></td>
+			<td><font face="Arial">4-Channel, 8-Channel, 16-Channel</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">Video Server</font></i></td>
+			<td><font face="Arial">4-Channel, 8-Channel, 16-Channel</font></td>
+		</tr>
+		<tr>
+			<td colspan="2"><font face="Arial" size="4">Platform T</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">ENCODER</font></i></td>
+			<td><font face="Arial">1-Channel, 4-Channel</font></td>
+		</tr>
+		<tr>
+			<td width="172"><i><font face="Arial">DECODER</font></i></td>
+			<td><font face="Arial">1-Channel</font></td>
+		</tr>
+	</table>
+</blockquote>
+
+<p><font face="Arial" size="5">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

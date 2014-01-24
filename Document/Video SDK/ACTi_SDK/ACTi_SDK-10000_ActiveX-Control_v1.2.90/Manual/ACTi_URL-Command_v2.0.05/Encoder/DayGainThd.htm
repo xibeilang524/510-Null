@@ -1,0 +1,102 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>DAY_GAIN_THD</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">DAY_GAIN_THD</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Get or Set the sensor's gain threshold to enter the 
+	low light mode.</font></p>
+	<p><font face="Arial">The video quality is poor due to much noise when the 
+	light condition is bad. To have better video quality, the sensor will 
+	increase its gain to improve the video quality. However, the gain might be 
+	saturated and could not improve the quality anymore. The camera could 
+	monitor the gain situation to know the lighting condition. If the lighting 
+	condition was poor (gain is very high), it could remove the color 
+	information from the image to filter the color noise. When the lighting 
+	condition get better (gain was dropped), the sensor could restore the 
+	original image setting to get the colorful picture. This URL sets the gain 
+	threshold to trigger the low light condition.</font></p>
+	<p><font face="Arial">This URL will not take effect if the CDS is used for 
+	low light detection. Please refer the
+	<a href="../../CameraSetupDesignSpec/CameraSetupDesignSpec.htm">Camera Setup 
+	Design Specification</a> for further details.</font></p>
+	<p><font face="Arial">The error message will be returned if the encoder does 
+	not support this URL.</font></p>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<font face="Arial">Percentage of the gain. (0~100),</font><br>
+	<font face="Arial">where 100: disable gain detection algorithm.</font>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Readable and Writable</font></li>
+	<li><font face="Arial">On-Fly</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<font face="Arial" size="3">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial" size="3">OK: DAY_GAIN_THRESHOLD='80'</font><br>
+</blockquote>
+<ul>
+	<li>
+	<font face="Arial" size="3">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial" size="3">OK:DAY_GAIN_THRESHOLD='80'</font><br>
+	<font face="Arial" size="3">or</font><br>
+	<font face="Arial" size="3">ERROR: DAY_GAIN_THRESHOLD='80'</font><br>
+</blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">EPL Platform : All Encoders with sensor MT9V135 or 
+	MT9M131</font></li>
+	<li><font face="Arial">PlatfotmT : All Encoders with sensor MT9M131</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="VideoMirrorMode.htm">VIDEO_MIRROR_MODE</a>,
+	<a href="VideoFlipMode.htm">VIDEO_FLIP_MODE</a>,
+	<a href="LensCompensation.htm">LENS_COMPENSATION</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<p>
+	<font face="Arial">http://ip:port/cgi-bin/encoder?USER=Admin&amp;PWD=123456&amp;</font><font face="Arial" size="3">DAY_GAIN_THRESHOLD</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">http://ip:port/cgi-bin/cmd/encoder?</font><font face="Arial" size="3">DAY_GAIN_THRESHOLD</font></p>
+</blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/encoder?USER=Admin&amp;PWD=123456&amp;</font><font face="Arial" size="3">DAY_GAIN_THRESHOLD=</font><font face="Arial">80</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">http://ip:port/cgi-bin/cmd/encoder?</font><font face="Arial" size="3">DAY_GAIN_THRESHOLD=</font><font face="Arial">80</font></blockquote>
+
+<p><font face="Arial">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>, <a href="Encoder.htm">
+	ENCODER CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

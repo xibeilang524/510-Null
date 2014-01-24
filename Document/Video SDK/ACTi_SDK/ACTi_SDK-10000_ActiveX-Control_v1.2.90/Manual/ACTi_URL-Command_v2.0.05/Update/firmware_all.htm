@@ -1,0 +1,197 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>FIRMWARE_ALL</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">FIRMWARE_ALL</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Upload the firmware image file to the all video 
+	servers' flash in the Multi-Channel Encoder. This URL is used in the 
+	Multi-Channel Encoder devices only. The MD5 file is needed for file integrity check. Therefore, there are 
+	two image files will be uploaded in this URL. One is for firmware image and 
+	the other one is MD5 file.</font></p>
+	<p><font face="Arial">The format of this URL http://172.16.3.21/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;FIRMWARE_ALL is listed below.</font></p>
+	<p><b><font face="Arial">Stage 1: Send this URL to the device for image and 
+	MD5 file 
+	upload</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">GET /cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE_ALL 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Accept-Language: zh-tw <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Connection: Keep-Alive</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_all_get.bmp" width="533" height="287"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 2 : Device reply the URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/html <br>
+		<br>
+		&lt;html&gt;&lt;head&gt;&lt;title&gt;UPLOAD FILES&lt;/title&gt;&lt;/head&gt;<br>
+		&lt;meta http-equiv=&quot;PRAGMA&quot; content=&quot;NO-CACHE&quot;&gt;<br>
+		&lt;body&gt;<br>
+		&lt;form name=&quot;UPLOAD_FORM&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; 
+		action=&quot;update?FwSave05_1&quot;&gt;<br>
+		Firmware : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_IMAGE&quot; size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		MD5 : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_MD5&quot; size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;input type=&quot;submit&quot; value=&quot;Apply&quot; name=&quot;URL_FIRMWARE_SUBMIT&quot;&gt;<br>
+		&lt;input type=&quot;reset&quot; value=&quot;Reset&quot; name=&quot;URL_FIRMWARE_RESET&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;/form&gt;<br>
+		&lt;/body&gt;&lt;/html&gt;</span></font></p>
+		<p><font face="Arial"><span style="font-weight: 700">Note: </span>The 
+		action string update?FwSave05_1 indicates this is the FIRMWARE_ALL URL 
+		in update CGI in 4CH Multi-Channel Encoder. The rule of this mapping 
+		is </font></p>
+		<p><font face="Arial">FwSavenn_m</font><br>
+		<font face="Arial">where</font><br>
+		<font face="Arial">nn : the indication of the router, a video server 
+		or all video servers. </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00 : router, </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;= : Maximum Channel : the 
+		channel nn video server, </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp; : Maximum Channel + 1 : 
+		All video servers.</font><br>
+		<font face="Arial">m : 1 : the firmware version and firmware type are 
+		checked before firmware upgrade.</font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 : not check is 
+		applied</font><br>
+		<font face="Arial">In this URL, the m is fixed to 1</font> </p>
+		<p><i><u><font face="Arial">Hex Dump Format</font></u></i></p>
+		<p>
+		<img border="0" src="images/firmware_all_reply.bmp" width="533" height="385"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 3: Upload the image file to device and get 
+	the return code</font></b></p>
+	<blockquote>
+		<p><i><u><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">ASCII Format</span></font></u></i></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">POST /cgi-bin/update?FwSave05_1 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Referer: http://172.16.3.21/cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE_ALL
+		<br>
+		Accept-Language: zh-tw <br>
+		Content-Type: multipart/form-data; 
+		boundary=---------------------------7d836b286e0708 <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Content-Length: 2503868 <br>
+		Connection: Keep-Alive <br>
+		Cache-Control: no-cache <br>
+		<br>
+		-----------------------------7d836b286e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_IMAGE&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\AEC1100\release\220-V3.09.01\A1D-220-V3.09.01-AC.upg&quot;
+		<br>
+		Content-Type: application/x-gzip-compressed</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">......................................</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		-----------------------------7d836b286e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_MD5&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\AEC1100\release\220-V3.09.01\A1D-220-V3.09.01-AC.md5&quot;
+		<br>
+		Content-Type: application/octet-stream <br>
+		<br>
+		IMG_MD5='15ff269d2b8735e31f62b4bdbea097ba'<br>
+		<br>
+		<br>
+		-----------------------------7d836b286e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_SUBMIT&quot; <br>
+		<br>
+		Apply <br>
+		-----------------------------7d836b286e0708--</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_all_upload.bmp" width="533" height="981"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 4: device reply this URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/plain <br>
+		Content-Length: 3 <br>
+		<br>
+		OK<br>
+		</span></font><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/ok_reply.bmp" width="534" height="66"><br>
+		</p>
+	</blockquote>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<p><font face="Arial">None</font></p>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Write Only</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<font face="Arial" size="3">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial" size="3">OK</font><br><font face="Arial">or </font><br>
+	<font face="Arial">ERROR: <a href="../General/ReturnMessage.htm">
+	Description of Error</a></font><br>
+</blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">Multi-Channel Encoder : Router Only</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p align="left"><font face="Arial"><a href="ConfigGet.htm">CONFIG_GET</a>,
+	<a href="ConfigSet.htm">CONFIG_SET</a>, <a href="firmwre.htm">FIRMWARE</a>,
+	<a href="profile.htm">PROFILE</a>, <a href="ProfilePack.htm">PROFILE_PACK</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<p>
+	<font face="Arial">http://ip:port/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;FIRMWARE_ALL</font></p>
+</blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>,
+	<a href="update.htm">UPDATE CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ZigbeeCom", "ZigbeeCom\ZigbeeCom.vcproj", "{E9AADF13-959E-4104-8ACE-3002A4E94183}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|HPC-3000 (ARMV4I) = Debug|HPC-3000 (ARMV4I)
+		Release|HPC-3000 (ARMV4I) = Release|HPC-3000 (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Debug|HPC-3000 (ARMV4I).ActiveCfg = Debug|HPC-3000 (ARMV4I)
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Debug|HPC-3000 (ARMV4I).Build.0 = Debug|HPC-3000 (ARMV4I)
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Debug|HPC-3000 (ARMV4I).Deploy.0 = Debug|HPC-3000 (ARMV4I)
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Release|HPC-3000 (ARMV4I).ActiveCfg = Release|HPC-3000 (ARMV4I)
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Release|HPC-3000 (ARMV4I).Build.0 = Release|HPC-3000 (ARMV4I)
+		{E9AADF13-959E-4104-8ACE-3002A4E94183}.Release|HPC-3000 (ARMV4I).Deploy.0 = Release|HPC-3000 (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

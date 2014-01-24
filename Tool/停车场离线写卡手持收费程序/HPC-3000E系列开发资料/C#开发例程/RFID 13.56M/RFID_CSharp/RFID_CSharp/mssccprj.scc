@@ -1,0 +1,5 @@
+SCC = This is a Source Code Control file
+
+[RFID_CSharp.csproj]
+SCC_Aux_Path = "\\192.168.16.20\Vss DB"
+SCC_Project_Name = "$/003-软件系统/020-停车场系统/Tools/停车场离线写卡手持收费程序/HPC-3000E系列开发资料/C#开发例程/RFID 13.56M/RFID_CSharp/RFID_CSharp", KCFHAAAA

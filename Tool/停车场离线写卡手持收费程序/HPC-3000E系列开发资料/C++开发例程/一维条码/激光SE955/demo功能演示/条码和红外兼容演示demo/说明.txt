@@ -1,0 +1,2 @@
+1. 将Zhiyuan Electronic SE2IR.cab拷贝到FlashDisk下，双击安装Zhiyuan Electronic SE2IR.cab驱动即可,安装后重启一次，驱动就会自动加载了；
+2. 如果已经安装了，就无需再安装了。

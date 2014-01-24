@@ -1,0 +1,153 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>UPDATE CGI Program</title>
+</head>
+
+<body>
+
+<p align="center"><font face="Arial" size="6">UPDATE CGI Program</font></p>
+<p align="left"><font face="Arial">This CGI provides the functions to upload the 
+binary image or configuration to the device's flash and retrieve the 
+configuration from the device.</font></p>
+<p align="left"><font face="Arial">The are two stages of these URLs. The first 
+stage is the URL command using HTTP GET method to send the file upload form to 
+remote host. In the second stage, the remote host upload its image file to the 
+device through HTTP POST method.</font></p>
+<p align="left"><font face="Arial">After the execution of the URL, the device 
+configuration will be saved to the flash before be rebooted. 
+The remote host has to wait for the reply message to know if the file upload 
+process is successful or not. Please refer the
+<a href="../General/ReturnMessage.htm">return of URL</a> for further details.</font></p>
+<p align="left"><font face="Arial">Only root could set the configuration through 
+this SYSTEM CGI. The error message will be returned if the logon user level is 
+not root. 
+</font></p>
+<p align="left"><font face="Arial">In the Multi-Channel Encoder, the CHANNEL command will be 
+used to for the specific channel video server update. The
+<a href="../General/GeneralDescription.htm">URL Type1 format</a> is supported 
+only in this CGI and there must be only one command in an URL command.</font></p>
+<p align="left"><font face="Arial" size="5">List of URLs</font></p>
+<blockquote>
+	<table border="1" width="90%" id="table3">
+		<tr>
+			<td rowspan="3" align="center" width="25%">
+			<font face="Arial" size="5">URL</font></td>
+			<td colspan="8" align="center"><font face="Arial" size="5">Attribute<sup><a href="#Remark1">1</a></sup></font></td>
+		</tr>
+		<tr>
+			<td colspan="2" align="center"><font face="Arial" size="4">WPL 
+			Platform</font></td>
+			<td colspan="2" align="center"><font face="Arial" size="4">EPL 
+			Platfrom</font></td>
+			<td colspan="2" align="center"><font face="Arial" size="4">Platform 
+			T</font></td>
+			<td colspan="2" align="center"><font face="Arial" size="4">Multi-Channel Encoder</font></td>
+		</tr>
+		<tr>
+			<td align="center" width="9%"><i><font face="Arial">Encoder</font></i></td>
+			<td align="center" width="7%"><i><font face="Arial">Decoder</font></i></td>
+			<td align="center" width="8%"><i><font face="Arial">Encoder</font></i></td>
+			<td align="center" width="8%"><i><font face="Arial">Decoder</font></i></td>
+			<td align="center" width="8%"><i><font face="Arial">Encoder</font></i></td>
+			<td align="center" width="8%"><i><font face="Arial">Decoder</font></i></td>
+			<td align="center" width="9%"><i><font face="Arial">Router</font></i></td>
+			<td align="center" width="10%"><i><font face="Arial">Video Server<sup><a href="#Remark3">3</a></sup></font></i></td>
+		</tr>
+		<tr>
+			<td align="left" width="25%">
+			<font face="Arial" size="2"><a href="ConfigGet.htm">CONFIG_GET</a></font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">RO</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">RO</font></td>
+			<td width="8%" align="center"><font size="2" face="Arial">RO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">RO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">RO</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">RO</font></td>
+			<td width="10%" align="center"><font face="Arial" size="2">None</font></td>
+		</tr>
+		<tr>
+			<td align="left" width="25%">
+			<font face="Arial" size="2"><a href="ConfigSet.htm">CONFIG_SET</a></font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="10%" align="center"><font face="Arial" size="2">None</font></td>
+		</tr>
+		<tr>
+			<td align="left" width="25%">
+			<font face="Arial" size="2"><a href="firmwre.htm">FIRMWARE</a></font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="10%" align="center"><font face="Arial" size="2">None</font></td>
+		</tr>
+		<tr>
+			<td align="left" width="25%">
+			<font size="2" face="Arial"><a href="firmware_all.htm">FIRMWARE_ALL</a></font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+		</tr>
+		<tr>
+			<td align="left" width="25%">
+			<font face="Arial" size="2"><a href="profile.htm">PROFILE</a></font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="7%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">WO</font></td>
+			<td width="8%" align="center"><font face="Arial" size="2">None</font></td>
+			<td width="9%" align="center"><font face="Arial" size="2">WO<sup><a href="#Remark2">2</a></sup></font></td>
+			<td width="10%" align="center"><font face="Arial" size="2">None</font></td>
+		</tr>
+		</table>
+</blockquote>
+<p><font face="Arial" size="5">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a></font></p>
+</blockquote>
+<div align="center">
+	<p align="left"><font face="Arial" size="5">Foot Note</font></div>
+<div align="center">
+	<table border="1" width="95%" id="table2">
+		<tr>
+			<td width="23" align="center"><a name="Remark1">
+			<font size="2" face="Arial">1</font></a></td>
+			<td><font face="Arial" size="2">Access Mode. It could be RW 
+			(Readable and Writeable), RO (Read Only), WO (Write Only) or None 
+			(not supported)</font></td>
+		</tr>
+		<tr>
+			<td width="23" align="center"><font face="Arial" size="2">
+			<a name="Remark2">2</a></font></td>
+			<td><font face="Arial" size="2">Only available in 4CH and 16CH 
+			Encoder devices in the Multi-Channel Encoder Platform</font></td>
+		</tr>
+		<tr>
+			<td width="23" align="center"><font face="Arial" size="2">
+			<a name="Remark3">3</a></font></td>
+			<td><font face="Arial" size="2">All URLs will be handled by the 
+			Router. The Router will parser the URL to video server if the URL is 
+			the channel-level URL.</font></td>
+		</tr>
+		</table>
+</div>
+
+</body>
+
+</html>

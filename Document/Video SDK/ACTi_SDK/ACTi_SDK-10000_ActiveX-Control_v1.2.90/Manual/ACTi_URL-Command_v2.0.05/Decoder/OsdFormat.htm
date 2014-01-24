@@ -1,0 +1,118 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>OSD_POSITION</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">OSD_FORMAT</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Get or Set the OSD format on the TV screen. </font></p>
+	<p><font face="Arial">The Decoder could show some information of Encoder or 
+	itself on the TV screen. The value in some bits in input argument of this URL 
+	controls if the specific information could be on the TV screen or not. The 
+	bitmap of the input argument and the OSD information is listed below.</font></p>
+	<table border="1" width="60%" id="table2">
+		<tr>
+			<td align="center" width="379"><font size="4" face="Arial">
+			bit in the Input argument</font></td>
+			<td align="center"><font face="Arial" size="4">Information on the 
+			OSD</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 0</font></td>
+			<td width="379"><font face="Arial">Date and Time information of the 
+			encoder</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 1</font></td>
+			<td width="379"><font face="Arial">The IP addresses of the encoder</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 2</font></td>
+			<td width="379"><font face="Arial">The camera name of the encoder</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 3</font></td>
+			<td width="379"><font face="Arial">The IP addresses of the Decoder
+			</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 4</font></td>
+			<td width="379"><font face="Arial">The Motion Trigger form the 
+			encoder</font></td>
+		</tr>
+		<tr>
+			<td width="379" align="center"><font face="Arial">BIT 5</font></td>
+			<td width="379"><font face="Arial">The DI Trigger from the Decoder</font></td>
+		</tr>
+	</table>
+	<p><font face="Arial">When the bit in the input argument is set, the 
+	associated information will be shown on the OSD. Otherwise, the associated 
+	information will not be shown. For example, the Date and Camera name will be 
+	shown on the OSD in the OSD_FORMAT=0x05.</font></p>
+	<p><font face="Arial">The high bits, bit 6 and 7, in the input argument 
+	value will be ignored if they are not zero.</font></p>
+</blockquote>
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<font face="Arial">Hexadecimal Value: 0x00~0x2F.</font></blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Readable and Writable</font></li>
+	<li><font face="Arial">On-Fly</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote><font face="Arial">OSD_FORMAT='0x2f'</font><br>
+</blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote><font face="Arial">OK: OSD_FORMAT='0x2f'</font><br>
+	<font face="Arial">or</font><br><font face="Arial">ERROR: OSD_FORMAT='0x2f'</font></blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">WPL Decoder Devices</font></li>
+	<li><font face="Arial">EPL Decoder Devices</font></li>
+	<li><font face="Arial">PlatformT Decoder Devices</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="Osd.htm">OSD</a>, <a href="OsdPosition.htm">OSD_POSITION</a>,
+	<a href="OsdPositionRange.htm">OSD_POSITION_RANGE</a>,
+			<a href="OsdDateFormat.htm">OSD_DATE_FORMAT</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/decoder?USER=Admin&amp;PWD=123456&amp;OSD_FORMAT</font><br>
+	<font face="Arial">or</font><br><font face="Arial">http://ip:port/cgi-bin/cmd/decoder?OSD_FORMAT</font></blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/decoder?USER=Admin&amp;PWD=123456&amp;OSD_FORMAT=0x2f</font><br>
+	<foont face="Arial"><font face="Arial">or</font></font><br><font face="Arial">http://ip:port/cgi-bin/cmd/decoder?OSD_FORMAT=0x2f</font></blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>, <a href="decoder.htm">
+	DECODER CGI</a></font></p>
+</blockquote>
+<p><br></p>
+
+</body>
+
+</html>

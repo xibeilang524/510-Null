@@ -1,0 +1,148 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>VIDEO_TV</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">VIDEO_TV</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Get or Set Analog TV setting (NTSC or PAL). The 
+	. In EPL, PlatformT and Multi-Channel Encoder devices, attribute of this 
+	setting is vary from device to device. The special notes for these devices 
+	are given below.</font></p>
+	<p><font face="Arial">If the CHANNEL=n was not set with this URL to the 
+	Multi-Channel device,  
+	this command is read-only command and the CHANNLE 1 video server's VIDEO_TV configurations will be returned. If the 
+	CHANNEL 1 video server does not connect to the router, the error message 
+	will be returned.</font></p>
+	<p><font face="Arial">When write, the error message will be returned if this 
+	URL in the device is read-only.</font></p>
+	<table border="1" width="80%" id="table1">
+		<tr>
+			<td width="387"><b><font face="Arial">Device</font></b></td>
+			<td><b><font face="Arial">Note</font></b></td>
+		</tr>
+		<tr>
+			<td width="387"><font face="Arial">Video Server in EPL Platform</font></td>
+			<td><font face="Arial">VIDEO_TV is read-only command</font></td>
+		</tr>
+		<tr>
+			<td width="387"><font face="Arial">Video Server in 4CH and 16CH 
+			Multi-Channel Encoder</font></td>
+			<td><font face="Arial">VIDEO_TV is read-only command</font></td>
+		</tr>
+		<tr>
+			<td width="387"><font face="Arial">CMOS (Non-MegaPixel) camera in 
+			EPL Platform</font></td>
+			<td><font face="Arial">VIDEO_TV is read-write command and on-fly 
+			change</font></td>
+		</tr>
+		<tr>
+			<td width="387"><font face="Arial">CMOS (MegaPixel) camera in EPL 
+			platform</font></td>
+			<td><font face="Arial">VIDEO_TV is read-only command and always 
+			return NTSC</font></td>
+		</tr>
+		<tr>
+			<td width="387"><font face="Arial">Video Server in PlatformT</font></td>
+			<td><font face="Arial">VIDEO_TV is read-only command</font></td>
+		</tr>
+		</table>
+	<p><u><i><b><font face="Arial">Note for Decoder</font></b></i></u></p>
+	<blockquote>
+		<p><font face="Arial">In Decoder Devices, the format of the Video Out 
+		was decided by the video source received from the encoder. For example, 
+		the Video Out format is NTSC when the decoder received the NTSC video 
+		stream from the encoder. However, the VIDEO_TV configuration in the 
+		decoder is used for the initializing the display of Video Out (including 
+		the OSD position, blue screen if there is no video).</font></p>
+	</blockquote>
+</blockquote>
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<font face="Arial">NTSC, PAL</font><br>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Readable and Writable (device dependence)</font></li>
+	<li><font face="Arial">On-Fly (device dependence)</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">VIDEO_TV='NTSC'</font><br>
+</blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">OK: VIDEO_TV='NTSC'</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">ERROR: VIDEO_TV='NTSC'</font><br>
+</blockquote>
+<p><font face="Arial"><font size="4">Applicability</font></font></p>
+<ul>
+	<li><font face="Arial">WPL Platform : All encoder Devices</font></li>
+	<li><font face="Arial">EPL Platform : All encoder Devices</font></li>
+	<li><font face="Arial">PlatformT : All encoder Devices</font></li>
+	<li><font face="Arial">Multi-Channel Encoder : All Devices</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<ul>
+	<li><font face="Arial">In mpeg4 CGI</font></li>
+</ul>
+<blockquote>
+	<p><font face="Arial"><a href="../Mpeg4/VideoFps.htm">VIDEO_FPS</a>, 
+	<a href="../Mpeg4/VideoFpsNum.htm">VIDEO_VARIABLE_FPS</a></font></p>
+</blockquote>
+<ul>
+	<li><font face="Arial">In encoder CGI</font></li>
+</ul>
+<blockquote>
+	<p><font face="Arial"><a href="../Mpeg4/VideoFps.htm">VIDEO_FPS</a>, 
+	<a href="../Mpeg4/VideoFpsNum.htm">VIDEO_VARIABLE_FPS</a>, 
+	<a href="../Encoder/VariableFpsNum.htm">VARIABLE_FPS_NUM</a>, 
+	<a href="../Encoder/VideoMjpegFps.htm">VIDEO_MJPEG_FPS</a>, 
+	<a href="../Encoder/VideoH264Fps.htm">VIDEO_H264_FPS</a></font></p>
+</blockquote>
+<ul>
+	<li><font face="Arial">In system CGI</font></li>
+</ul>
+<blockquote>
+	<p><font face="Arial"><a href="VideoFps.htm">VIDEO_FPS</a> 
+	(Read-Only)</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/system?USER=Admin&amp;PWD=123456&amp;VIDEO_TV</font><br>
+	<font face="Arial">or</font><br><font face="Arial">http://ip:port/cgi-bin/cmd/system?VIDEO_TV</font></blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/system?USER=Admin&amp;PWD=123456&amp;VIDEO_TV=NTSC</font><br>
+	<foont face="Arial">or</font><br><font face="Arial">http://ip:port/cgi-bin/cmd/system?VIDEO_TV=NTSC</font></blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>, <a href="system.htm">
+	SYSTEM CGI</a></font></p>
+</blockquote>
+<p><br></p>
+
+</body>
+
+</html>

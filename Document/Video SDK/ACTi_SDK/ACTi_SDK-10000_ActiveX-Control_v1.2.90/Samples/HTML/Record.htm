@@ -1,0 +1,451 @@
+<html>
+<head>
+    <title>Record</title>
+</head>
+<script>
+	window.onload = function() {
+		try {
+			document.getElementById('Get_Version').value = oPreview0.Version ;
+			oPreview0.SetTitleBarTextLayout(9, 12, 10, 19, 1, 14, 2, 14, 3, 18, 5, 12, 6, 12, 7, 0, 0, 0, 0, 0);
+			Discon.disabled = true;
+			Play.disabled = true;
+			Stop.disabled = true;
+			DisableButton();
+		} catch(e) {
+			debug(e);
+		}
+	}
+	
+	function GetProperty( nSEQ ) {
+		try {
+			//eval( 'Get_ID.value = oPreview'+nSEQ+'.ID' ) ;
+			//eval( 'Get_MediaType.value = oPreview'+nSEQ+'.MediaType' ) ; 
+			
+			//eval( 'Get_MediaSource.value = oPreview'+nSEQ+'.MediaSource' ) ; 
+			//eval( 'Get_MediaUserName.value = oPreview'+nSEQ+'.MediaUserName' ) ; 
+			
+			eval( 'Get_NetworkStatus.value = oPreview'+nSEQ+'.NetworkStatus' ) ; 
+			eval( 'Get_ContentStatus.value = oPreview'+nSEQ+'.ContentStatus' ) ;
+			eval( 'Get_RecordMode.value = oPreview'+nSEQ+'.RecordType' ) ;
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function SetSetting() {
+		try {
+			oPreview0.MediaType=Put_MediaType.value;
+			oPreview0.ID=Put_ID.value;
+			oPreview0.MediaSource=Put_MediaSource.value;
+			oPreview0.MediaUserName=Put_MediaUserName.value;
+			oPreview0.MediaPassword=Put_MediaPassword.value;
+			oPreview0.Httpport=Put_Httpport.value;
+			oPreview0.RegisterPort=Put_RegisterPort.value;
+			oPreview0.ControlPort=Put_ControlPort.value;
+			oPreview0.StreamingPort=Put_StreamingPort.value;
+			oPreview0.MulticastPort=Put_MulticastPort.value;
+		} catch(e) {
+			debug(e)
+		}
+	}
+	function SetRecordType(){
+		try{
+			oPreview0.RecordType=Put_RecordType.value;		
+		} catch(e) {
+			debug(e)
+		}
+	}
+	function AddOption( szinnerText ) {
+		try {
+			var nLen = lstEventList.options.length ;
+			for ( i=nLen;i>=300;i--) {
+				lstEventList.remove(i-1) ;
+			}
+			
+			var NewOP = document.createElement("OPTION");
+
+			lstEventList.options.add(NewOP, 0);
+			
+			NewOP.value = '';
+			NewOP.innerText = szinnerText ;
+			NewOP.selected = true;
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnTimeCode(nID,szTime) {
+		try {
+			var NewOP = document.createElement("OPTION");
+			lstOnTimeCode.options.add(NewOP, 0);
+			NewOP.value = '';
+			NewOP.innerText = "ID:" + nID + "  Time:" + szTime ;
+			NewOP.selected = true;
+		} catch(e) {
+			debug(e);
+		}
+	}
+			
+	function OnConnect(nID, successful) {
+		try {
+			AddOption( 'OnConnect: ID=' + nID + ',successful=' + successful ) ;
+			if (successful){
+				Discon.disabled = false;
+				Play.disabled = false;
+				Stop.disabled = false;				
+			}
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnPlay(nID) {
+		try {
+			AddOption( 'OnPlay: ID=' + nID ) ;
+			EnableButton();
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnStop(nID) {
+		try {
+			AddOption( 'OnStop: ID=' + nID ) ;
+			DisableButton();
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnDisconnect(nID) {
+		try {
+			AddOption( 'OnDisconnect: ID=' + nID ) ;
+			Play.disabled = true;
+			Stop.disabled = true;
+			DisableButton();
+			window.clearTimeout(FlushTimer) ;		
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnStartRecord (nID, successful, szFileName) {
+		try {
+			AddOption( 'OnStartRecord: ID=' + nID + ',successful=' + successful + ',filename=' + szFileName ) ;
+		} catch(e) {
+			debug(e)
+			alert(e.description)
+		}
+	}
+	
+	function OnStopRecord(nID, szFileName) {
+		try {
+			window.clearTimeout(FlushTimer) ;
+			AddOption( 'OnStopRecord: ID=' + nID + ',filename=' + szFileName ) ;
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnRecordFlush(szFileName, szBeginTime, szEndTime, nDuration) {
+		try {
+			AddOption( 'OnRecordFlush:' + szFileName ) ;
+			AddOption( 'OnRecordFlush:' + szBeginTime ) ;
+			AddOption( 'OnRecordFlush:' + szEndTime ) ;
+			AddOption( 'OnRecordFlush:' + nDuration ) ;
+			GetProperty(0);
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function OnSaveImage(nID, successful, szFileName) {
+		try {
+			AddOption( 'OnSaveImage: ID=' + nID + ',successful=' + successful + ',filename=' + szFileName ) ;
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	var nFile = 0 ;
+	var nFile1 = 0 ;
+	var Reduplicate = 0;
+	var FlushTimer = null ;
+	
+	function StartRec() {
+		try {
+			window.clearTimeout(FlushTimer) ;
+
+			if ( oPreview0.RecordType == "0" ) {
+				oPreview0.StartRecord('c:\\RecTest\\Record' + nFile + '.raw');
+			} else if ( oPreview0.RecordType == "1" ) {
+				oPreview0.StartRecord('c:\\RecTest\\Record' + nFile + '.avi');
+			}
+			nFile++ ;
+
+			if (nFile > 200) nFile = 0 ;
+
+		} catch(e) {
+			debug(e)
+		}
+	}
+
+	function Snapshot(pType) {
+		try {
+			window.clearTimeout(FlushTimer) ;
+			ReduplicateTitleBarText.checked == true ? Reduplicate = 1 : Reduplicate = 0;
+			r_Color.value = r_Color.value > 255 ? 255 : r_Color.value;
+			g_Color.value = g_Color.value > 255 ? 255 : g_Color.value;
+			b_Color.value = b_Color.value > 255 ? 255 : g_Color.value;
+			if ( pType == "0" ) {
+				oPreview0.SnapShot(pType, 'c:\\RecTest\\Snapshot' + nFile1 + '.bmp', Reduplicate, r_Color.value, g_Color.value, b_Color.value);
+			} else if ( pType == "1" ) {
+				oPreview0.SnapShot(pType, 'c:\\RecTest\\Snapshot' + nFile1 + '.jpg', Reduplicate, r_Color.value, g_Color.value, b_Color.value);
+			}
+			nFile1++ ;
+
+			if (nFile1 > 200) nFile1 = 0 ;
+			FlushTimer = window.setTimeout( "StartRec()", 20 * 1000) ;
+		} catch(e) {
+			debug(e)
+		}
+	}
+
+	function StartAlarmRec() {
+		try {
+			oPreview0.StartAlarmRecord('c:\\RecTest\\AlarmRecord' + nFile + '.RAW');
+			nFile++ ;	
+		} catch(e) {
+			debug(e)
+		}
+	}
+	
+	function debug(errMsg, enable) {  //debug information
+		try {
+			if(enable == 1) return;
+			var msg;
+			if(!errMsg) {
+				alert("event error");
+			} else {
+				msg = "js error Number: " + errMsg.number + "\n";
+				msg += "js error Name: " + errMsg.name + "\n";
+				msg += "js error Line Number: " + errMsg.lineNumber + "\n";
+				msg += "js error Description: " + errMsg.description + "\n";
+				msg += "js error Message: " + errMsg.message + "\n";
+			}
+			if(!enable) {
+				alert(msg);
+			} else if(enable == 2) {
+				alert(errMsg);
+			}
+		} catch(wrong) {
+			alert(wrong);
+		}
+	}
+	
+	function EnableButton() {
+		Put_MediaType.disabled = true;
+		Put_ID.disabled = true;
+		Put_MediaSource.disabled = true;
+		Put_MediaUserName.disabled = true;
+		Put_MediaPassword.disabled = true;
+		Put_Httpport.disabled = true;
+		Put_RegisterPort.disabled = true;
+		Put_ControlPort.disabled = true;
+		Put_StreamingPort.disabled = true;
+		Put_MulticastPort.disabled = true;
+		Put_RecordType.disabled = false;
+		SetType.disabled = false;
+		SetDecode0.disabled = false;
+		SetDecode1.disabled = false;
+		SetStretch0.disabled = false;
+		SetStretch1.disabled = false;
+		Mute0.disabled = false;
+		Mute1.disabled = false;
+		StartRecord.disabled = false;
+		StopRecord.disabled = false;
+		SnapshotBMP.disabled = false;
+		SnapshotJPG.disabled = false;
+		ReduplicateTitleBarText.disabled = false;
+		r_Color.disabled = false;
+		g_Color.disabled = false;
+		b_Color.disabled = false;
+	}
+	function DisableButton() {
+		Put_MediaType.disabled = false;
+		Put_ID.disabled = false;
+		Put_MediaSource.disabled = false;
+		Put_MediaUserName.disabled = false;
+		Put_MediaPassword.disabled = false;
+		Put_Httpport.disabled = false;
+		Put_RegisterPort.disabled = false;
+		Put_ControlPort.disabled = false;
+		Put_StreamingPort.disabled = false;
+		Put_MulticastPort.disabled = false;
+		Put_RecordType.disabled = true;
+		SetType.disabled = true;
+		SetDecode0.disabled = true;
+		SetDecode1.disabled = true;
+		SetStretch0.disabled = true;
+		SetStretch1.disabled = true;
+		Mute0.disabled = true;
+		Mute1.disabled = true;
+		StartRecord.disabled = true;
+		StopRecord.disabled = true;
+		SnapshotBMP.disabled = true;
+		SnapshotJPG.disabled = true;
+		ReduplicateTitleBarText.disabled = true;
+		r_Color.disabled = true;
+		g_Color.disabled = true;
+		b_Color.disabled = true;
+	}
+</script>
+<body style="margin:0px 0px 0px 0px; background-color:#F1F1F1;">
+	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+		<tr>
+			<td>
+				<table border="0" cellpadding="5" cellspacing="0" width="100%">
+					<tr>
+						<td valign="top">
+							<fieldset>
+							<legend><span style="font-weight:bold; color:#FF0000; ">Basic Setting</span></legend>
+							<table border="0" cellpadding="0" cellspacing="0">
+								<tr>
+									<td>MediaType</td>
+									<td>
+										<select Name="Put_MediaType" id="Put_MediaType">
+											<option value="1">1 for Preview</option>
+											<option value="1" selected>1 for Record</option>
+											<option value="1">1 for Motion</option>
+											<option value="1">1 for QuadURL</option>
+											<option value="2">2 for Playback</option>
+											<option value="4">4 for PTZ</option>
+											<option value="100">100 for Multicast without control</option>
+											<option value="101">101 for Multicast with control</option>
+										</select>
+									</td>
+								</tr>
+								<tr>
+									<td>ID</td>
+									<td><input Name="Put_ID" size="9" value="1" /></td>
+								</tr>
+								<tr>
+									<td>MediaSource</td>
+									<td><input Name="Put_MediaSource" size="9" value="172.16.17.62" /></td>
+								</tr>
+								<tr>
+									<td>MediaUserName</td>
+									<td><input Name="Put_MediaUserName" size="9" value="Admin" id="Text1" /></td>
+								</tr>
+								<tr>
+									<td>MediaPassword</td>
+									<td><input type="password" Name="Put_MediaPassword" size="9" value="123456" /></td>
+								</tr>
+								<tr>
+									<td>Http</td>
+									<td><input Name="Put_Httpport" size="9" value="80" ID="Text11" /></td>
+								</tr>
+								<tr>
+									<td>RegisterPort</td>
+									<td><input Name="Put_RegisterPort" size="9" value="6000" ID="Text15" /></td>
+								</tr>
+								<tr>
+									<td>ControlPort</td>
+									<td><input Name="Put_ControlPort" size="9" value="6001" ID="Text16" /></td>
+								</tr>
+								<tr>
+									<td>StreamingPort</td>
+									<td><input Name="Put_StreamingPort" size="9" value="6002" ID="Text17" /></td>
+								</tr>
+								<tr>
+									<td>MulticastPort</td>
+									<td><input Name="Put_MulticastPort" size="9" value="5000" ID="Text21" /></td>
+								</tr>								
+							</table>
+							</fieldset>
+							<br>
+							<fieldset>
+							<legend style="font-weight:bold; color:blue; cursor:pointer;">Setting Record Type</legend>
+							<table>
+								<tr>
+									<td>RecordType</td>
+									<td><select Name="Put_RecordType" align="left">
+										<option value="0" selected>.RAW</option>
+										<option value="1">.AVI</option>
+									</select></td>
+								</tr>
+								<tr>
+									<td colspan="2" align="left">
+										<input Name="SetType" id="SetType" type="button" value="Set Setting" onclick="SetRecordType()" />
+									</td>
+								</tr>
+							</table>
+							</fieldset>
+							<fieldset>
+							<legend style="font-weight:bold; color:blue; cursor:pointer;">Event Information</legend>
+							<table border="0" cellpadding="0" cellspacing="0" ID="Table3">
+									<tr>
+										<td>OnTimeCode:</td>
+									</tr>
+									<tr>
+										<td><select name="lstOnTimeCode" size="5" style="WIDTH: 500px" ID="Select1"></select></td>
+									</tr>
+									<tr>
+										<td><hr/>Event List:</td>
+									</tr>
+									<tr>
+										<td><select name="lstEventList" size="5" style="WIDTH: 500px" ID="Select2"></select></td>
+									</tr>
+								</table>
+							</fieldset>
+						</td>
+						<td valign="top">
+							Your Version<input Name="Get_Version" size="40" /><br>
+							<OBJECT id="oPreview0" height="240" width="352" 
+            data="data:application/x-oleobject;base64,P2/zpuA6i0WvxKqCVl4L+BAHAABhJAAAzhgAAA==" 
+            classid="CLSID:F8E691A0-C92E-4E42-9CDA-62FC07A9483B" VIEWASTEXT></OBJECT>
+							<script for="oPreview0" event="OnConnect(nID,successful)">OnConnect(nID,successful);</script>
+							<script for="oPreview0" event="OnTimeCode(nID,szTime)">OnTimeCode(nID,szTime);</script>
+							<script for="oPreview0" event="OnPlay(nID)">OnPlay(nID);</script>
+							<script for="oPreview0" event="OnStop(nID)">OnStop(nID);</script>
+							<script for="oPreview0" event="OnDisconnect(nID)">OnDisconnect(nID);</script>
+							<script for="oPreview0" event="OnStartRecord(nID,successful, szFileName)">OnStartRecord(nID,successful, szFileName);</script>
+							<script for="oPreview0" event="OnStopRecord(nID, szFileName)">OnStopRecord(nID, szFileName);</script>
+							<script for="oPreview0" event="OnSaveImage(nID,successful, szFileName)">OnSaveImage(nID,successful, szFileName);</script>
+							<p>
+							<fieldset>
+								<legend style="font-weight:bold; color:blue;">Control Interface</legend>
+								<input type="button" value="SetActive(1)" onclick="oPreview0.SetControlActive(1);" title="set screen actived"/>
+								<input type="button" value="SetActive(0)" onclick="oPreview0.SetControlActive(0);" title="set screen inactived"/><br/>
+								<input type="button" value="TitleBar(1)" onclick="oPreview0.DisplayTitleBar(1);" title="show screen title bar"/>
+								<input type="button" value="TitleBar(0)" onclick="oPreview0.DisplayTitleBar(0);" title="hide screen title bar"/><br/>
+								<input type="button" value="EnableTitleEvent()" onclick="oPreview0.EnableTitleEvent();" title="EnableTitleEvent"/>
+								<input type="button" value="DisableTitleEvent()" onclick="oPreview0.DisableTitleEvent();" title="DisableTitleEvent"/><br/>
+								<input type="button" value="Connect" onclick="SetSetting();oPreview0.connect(0);GetProperty(0);" />
+								<input type="button" value="DisConn" onclick="oPreview0.Stop();oPreview0.Disconnect();GetProperty(0);"id="Discon" name="Discon" /> 
+								<input Name="Get_NetworkStatus" size="4" /><br />
+								<input type="button" value="Play" onclick="oPreview0.Play();GetProperty(0);" id="Play" name="Play" /> 
+								<input type="button" value="Stop" onclick="oPreview0.Stop();GetProperty(0);" id="Stop" name="Stop" />
+								<input Name="Get_ContentStatus" size="4" /><br />
+								<input type="button" value="SetDecodeI(1)" onclick="oPreview0.SetDecodeI(1);" id="SetDecode1" name="SetDecode1" /> <input type="button" value="SetStretch(1)" onclick="oPreview0.StretchToFit = 0;" id="SetStretch0" name="SetStretch0" /><br />
+								<input type="button" value="SetDecodeI(0)" onclick="oPreview0.SetDecodeI(0);" id="SetDecode0" name="SetDecode0" /> <input type="button" value="SetStretch(0)" onclick="oPreview0.StretchToFit = 1;" id="SetStretch1" name="SetStretch1" /><br />
+								<input type="button" value="SetMute(1)" onclick="oPreview0.Mute = 1;" id="Mute1" name="Mute1" /> <input type="button" value="SetMute(0)" onclick="oPreview0.Mute = 0;" id="Mute0" name="Mute0" /><br />
+								<input type="button" value="StartRecord" onclick="StartRec(); GetProperty(0);" id="StartRecord" name="StartRecord" /> 
+								<input type="button" value="StopRecord" onclick="oPreview0.StopRecord();GetProperty(0);" id="StopRecord" name="StopRecord" />
+								<input Name="Get_RecordMode" size="4" ID="Text7" /><br />
+								<input type="button" value="Snapshot BMP" onclick="Snapshot(0);" id="SnapshotBMP" name="SnapshotBMP" /> 
+								<input type="button" value="Snapshot JPG" onclick="Snapshot(1);" id="SnapshotJPG" name="SnapshotJPG" /><br />
+								<input type="checkbox" NAME="ReduplicateTitleBarText" />Reduplicate Title Bar Text<br />
+								<input Name="r_Color" value="0" size="3" ID="r_Color" Maxlength="3" /><font color="red">Red Color</font>
+								<input Name="g_Color" value="0" size="3" ID="g_Color" Maxlength="3" /><font color="green">Green Color</font>
+								<input Name="b_Color" value="0" size="3" ID="b_Color" Maxlength="3" /><font color="blue">Blue Color</font>
+							</fieldset>
+							</p>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+</body>
+</html>

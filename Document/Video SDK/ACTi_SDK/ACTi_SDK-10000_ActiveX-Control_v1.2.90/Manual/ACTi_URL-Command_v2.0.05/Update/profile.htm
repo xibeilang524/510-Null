@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>PROFILER</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">PROFILE</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Upload the camera profile image file to the device's 
+	flash.</font></p>
+	<p><font face="Arial">The format of this URL http://172.16.3.21/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;PROFILE is listed below.</font></p>
+	<p><b><font face="Arial">Stage 1: Send this URL to the device for camera 
+	profile file 
+	upload</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">GET /cgi-bin/update?USER=admin&amp;PWD=123456&amp;PROFILE 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Accept-Language: zh-tw <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Connection: Keep-Alive</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/profile_get.bmp" width="533" height="287"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 2 : Device reply the URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/html <br>
+		<br>
+		&lt;html&gt;&lt;head&gt;&lt;title&gt;UPLOAD FILES&lt;/title&gt;&lt;/head&gt;<br>
+		&lt;meta http-equiv=&quot;PRAGMA&quot; content=&quot;NO-CACHE&quot;&gt;&lt;body&gt;<br>
+		&lt;form name=&quot;UPLOAD_FORM&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; 
+		action=&quot;update?PROFILE_SAVE&quot;&gt;<br>
+		Config File : &lt;input type=&quot;FILE&quot; name=&quot;URL_PROFILE_IMAGE&quot; size=&quot;60&quot;&gt;&lt;br&gt;<br>
+		&lt;input type=&quot;submit&quot; value=&quot;Apply&quot; name=&quot;URL_FIRMWARE_SUBMIT&quot;&gt;<br>
+		&lt;input type=&quot;reset&quot; value=&quot;Reset&quot; name=&quot;URL_FIRMWARE_RESET&quot;&gt;&lt;br&gt;<br>
+		&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;</span></font></p>
+		<p>
+		<u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/profile_get_reply.bmp" width="533" height="329"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 3: Upload the image file to device and get 
+	the return code</font></b></p>
+	<blockquote>
+		<p><i><u><font face="Arial">ASCII Format</font></u></i></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">POST /cgi-bin/update?PROFILE_SAVE 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Referer: http://172.16.3.21/cgi-bin/update?USER=admin&amp;PWD=123456&amp;PROFILE
+		<br>
+		Accept-Language: zh-tw <br>
+		Content-Type: multipart/form-data; 
+		boundary=---------------------------7d8261316e0708 <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Content-Length: 1046 <br>
+		Connection: Keep-Alive <br>
+		Cache-Control: no-cache <br>
+		<br>
+		-----------------------------7d8261316e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_PROFILE_IMAGE&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\AEC1100\release\220-V3.09.01\profile\ADV7180-RXX_V080313A.bin&quot;
+		<br>
+		Content-Type: application/x-gzip-compressed</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		......................................</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		-----------------------------7d8261316e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_SUBMIT&quot; <br>
+		<br>
+		Apply <br>
+		-----------------------------7d8261316e0708--</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/profile_opload.bmp" width="533" height="773"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 4: device reply this URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII Format</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/plain <br>
+		Content-Length: 3 <br>
+		<br>
+		OK</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p><img border="0" src="images/ok_reply.bmp" width="534" height="66"><br></p>
+	</blockquote>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<p><font face="Arial">None</font></p>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Write Only</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<font face="Arial" size="3">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial" size="3">OK</font><br><font face="Arial">or </font><br>
+	<font face="Arial">ERROR: profile image</font><br>
+</blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">EPL Platform : All Encoder Devices</font></li>
+	<li><font face="Arial">PlatfotmT : All Encoder Devices</font></li>
+	<li><font face="Arial">Multi-Channel Encodeer: Only Router</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="ConfigGet.htm">CONFIG_GET</a>,
+	<a href="ConfigSet.htm">CONFIG_SET</a>, <a href="firmware.htm">FIRMWARE</a>,
+	<a href="firmware_all.htm">FIRMWARE_ALL</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<p>
+	<font face="Arial">http://ip:port/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;PROFILE</font></p>
+</blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>,
+	<a href="update.htm">UPDATE CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

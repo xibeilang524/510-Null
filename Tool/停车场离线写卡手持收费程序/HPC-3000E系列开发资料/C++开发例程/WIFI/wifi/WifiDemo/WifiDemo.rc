@@ -1,0 +1,231 @@
+//Microsoft eMbedded Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+#include "newres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// Chinese (P.R.C.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "#include ""newres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)\r\n"
+    "#ifdef _WIN32\r\n"
+    "LANGUAGE 9, 1\r\n"
+    "#pragma code_page(1252)\r\n"
+    "#endif //_WIN32\r\n"
+    "#include ""res\\WifiDemo.rc2""  // non-Microsoft eMbedded Visual C++ edited resources\r\n"
+    "#include ""afxres.rc""         // Standard components\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON    DISCARDABLE     "res\\WifiDemo.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_WIFIDEMO_DIALOG DIALOGEX 0, 0, 130, 146
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW | 0x80000000L
+CAPTION "WifiDemo"
+FONT 8, "System"
+BEGIN
+    LTEXT           "网卡名称",IDC_STATIC,1,8,35,8
+    LTEXT           "网络个数",IDC_STATIC,1,21,35,8
+    EDITTEXT        IDC_EDIT_WIRELESSCARD_GUID,39,7,88,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_WIRELESSNET_COUNTS,39,20,88,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LTEXT           "已连接到",IDC_STATIC,1,35,35,8
+    EDITTEXT        IDC_EDIT_ASSOCIATED_SSID,39,34,88,12,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    LISTBOX         IDC_LIST_WIRELESSNET_SSID,4,49,123,74,
+                    LBS_NOINTEGRALHEIGHT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "刷新",IDC_BUTTON_REFRESH,3,127,22,17
+    PUSHBUTTON      "配置WZC...",IDC_BUTTON_WZC_CONTEXT,82,127,45,17
+    PUSHBUTTON      "断开",IDC_BUTTON_REMOVE_PREFERRED_NETWORK_LIST,27,127,
+                    23,17
+END
+
+IDD_DIALOG_WLAN_INFO DIALOG DISCARDABLE  0, 0, 127, 113
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "网络信息"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "连接",IDOK,10,97,41,14
+    PUSHBUTTON      "取消",IDCANCEL,74,97,41,14
+    LTEXT           "网络名称",IDC_STATIC,1,5,37,8
+    LTEXT           "MAC地址",IDC_STATIC,2,17,37,8
+    EDITTEXT        IDC_EDIT_SSID,42,5,84,10,ES_AUTOHSCROLL | WS_DISABLED
+    EDITTEXT        IDC_EDIT_MAC,42,16,84,10,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "信号强度",IDC_STATIC,2,29,37,8
+    EDITTEXT        IDC_EDIT_RSSI,42,27,84,10,ES_AUTOHSCROLL | WS_DISABLED
+    LTEXT           "加密方式",IDC_STATIC,2,40,37,8
+    EDITTEXT        IDC_EDIT_PRIVACY_MODE,42,38,84,10,ES_AUTOHSCROLL | 
+                    WS_DISABLED
+    EDITTEXT        IDC_EDIT_PRIVACY_KEY,43,71,82,12,ES_AUTOHSCROLL
+    LTEXT           "网络密钥",IDC_STATIC,3,73,37,8
+END
+
+IDD_DIALOG_WZC_CONTEXT DIALOG DISCARDABLE  0, 0, 122, 117
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "WZC配置"
+FONT 10, "System"
+BEGIN
+    DEFPUSHBUTTON   "设置",IDOK,8,103,47,12
+    PUSHBUTTON      "取消",IDCANCEL,65,103,47,12
+    LTEXT           "刷新间隔",IDC_STATIC,2,7,39,9
+    EDITTEXT        IDC_EDIT_WZC_SCAN_TIME_OUT,41,6,58,12,ES_AUTOHSCROLL
+    LTEXT           "ms",IDC_STATIC,104,7,11,8
+    LTEXT           "已关联时刷新间隔",IDC_STATIC,2,23,72,9
+    EDITTEXT        IDC_EDIT_WZC_SCAN_TIME_OUT_CONNECT,41,33,58,12,
+                    ES_AUTOHSCROLL
+    LTEXT           "ms",IDC_STATIC,104,34,11,8
+    LTEXT           "关联超时间隔",IDC_STATIC,2,49,72,9
+    EDITTEXT        IDC_EDIT_WZC_SCAN_TIME_OUT_ASSOCIATION,41,59,58,12,
+                    ES_AUTOHSCROLL
+    LTEXT           "ms",IDC_STATIC,104,60,11,8
+    LTEXT           "未关联时刷新间隔",IDC_STATIC,2,76,72,9
+    EDITTEXT        IDC_EDIT_WZC_SCAN_TIME_OUT_DISCONNECT,41,86,58,12,
+                    ES_AUTOHSCROLL
+    LTEXT           "ms",IDC_STATIC,104,87,11,8
+END
+
+
+#ifndef _MAC
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "040904B0"
+        BEGIN
+            VALUE "CompanyName", "ZhiYuan\0"
+            VALUE "FileDescription", "WifiDemo WCE MFC Application\0"
+            VALUE "FileVersion", "1, 0, 0, 1\0"
+            VALUE "InternalName", "WifiDemo\0"
+            VALUE "LegalCopyright", "Copyright ? 2011\0"
+            VALUE "LegalTrademarks", "\0"
+            VALUE "OriginalFilename", "WifiDemo.exe\0"
+            VALUE "ProductName", "WifiDemo Application\0"
+            VALUE "ProductVersion", "1, 0, 0, 1\0"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x409, 1200
+    END
+END
+
+#endif    // !_MAC
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_DIALOG_WZC_CONTEXT, DIALOG
+    BEGIN
+        RIGHTMARGIN, 121
+        VERTGUIDE, 2
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // Chinese (P.R.C.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE 9, 1
+#pragma code_page(1252)
+#endif //_WIN32
+#include "res\WifiDemo.rc2"  // non-Microsoft eMbedded Visual C++ edited resources
+#include "afxres.rc"         // Standard components
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+
