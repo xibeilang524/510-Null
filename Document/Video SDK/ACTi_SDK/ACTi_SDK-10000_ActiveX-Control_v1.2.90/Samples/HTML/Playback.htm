@@ -1,0 +1,474 @@
+<html>
+	<head>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<script type="text/javascript" language="javascript">
+	<!--//
+		window.onload = function() {
+			//var objMedia = new ActiveXObject("NVUNIFIEDCONTROL.nvUnifiedControlCtrl.1");
+			Get_Version.value = oPreview0.Version ;
+			Button10.disabled = true;
+			Button11.disabled = true;
+			Button12.disabled = true;
+			DisableButton();
+			oPreview0.SetTitleBarTextLayout(9, 12, 10, 19, 1, 14, 2, 14, 3, 18, 5, 12, 6, 12, 7, 0, 0, 0, 0, 0);
+		}
+		var nFile = 0;
+		var nFile1 = 0;
+		var FlushTimer = null ;
+		function Snapshot(pType) {
+			try {
+				window.clearTimeout(FlushTimer) ;
+				ReduplicateTitleBarText.checked == true ? Reduplicate = 1 : Reduplicate = 0;
+				r_Color.value = r_Color.value > 255 ? 255 : r_Color.value;
+				g_Color.value = g_Color.value > 255 ? 255 : g_Color.value;
+				b_Color.value = b_Color.value > 255 ? 255 : b_Color.value;
+				if ( pType == "0" ) {
+					oPreview0.SnapShot(pType, 'c:\\RecTest\\Snapshot' + nFile + '.bmp', Reduplicate, r_Color.value, g_Color.value, b_Color.value);
+				} else if ( pType == "1" ) {
+					oPreview0.SnapShot(pType, 'c:\\RecTest\\Snapshot' + nFile1 + '.jpg', Reduplicate, r_Color.value, g_Color.value, b_Color.value);
+				}
+				nFile++ ;
+				nFile1++ ;
+				nFile = nFile > 200 ? 0 : nFile;
+				nFile1 = nFile1 > 200 ? 0 : nFile1;
+				FlushTimer = window.setTimeout( "StartRec()", 20 * 1000) ;
+			} catch(e) {
+				debug(e)
+			}
+		}
+		function SetTime() {
+			try {
+				oPreview0.Pause() ;
+				alert(oPreview0.BeginTime)
+				var intGet_CurrentTime = new Date() ;
+				var s = Number(oPreview0.BeginTime) ;
+				intGet_CurrentTime.setTime(s) ;
+				//alert(sTime.valueOf()/1000-sTime.getTimezoneOffset()*60)
+				alert(intGet_CurrentTime)
+				var d = Date.UTC(intGet_CurrentTime.getFullYear(),(parseInt(intGet_CurrentTime.getMonth())),intGet_CurrentTime.getDate(),intGet_CurrentTime.getHours(),intGet_CurrentTime.getMinutes(),intGet_CurrentTime.getSeconds());
+				alert(d)
+				oPreview0.SetCurrentTime( parseInt(d/1000) + parseInt(Put_CurrentTime.value) ) ;
+				oPreview0.Play();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function SetNParameter() {
+			try {
+				oPreview0.MediaType=Put_MediaType.value;
+				oPreview0.MediaSource=Put_MediaSource.value;
+				oPreview0.ID=Put_ID.value;
+				oPreview0.Connect(0);
+				oPreview0.play();
+				if(oPreview0.NetworkStatus != 0){
+					Button10.disabled = false;
+					Button11.disabled = false;
+					Button12.disabled = false;
+					document.getElementById("beginTime").innerHTML = oPreview0.GetBeginTimeString();
+					document.getElementById("endTime").innerHTML = oPreview0.GetEndTimeString();
+				}
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function AddOption( szinnerText ) {
+			try {
+				var nLen = lstEventList.options.length ;
+				for ( i=nLen;i>=300;i--) { lstEventList.remove(i-1) ; }
+				var NewOP = document.createElement("OPTION");
+				lstEventList.options.add(new Option(szinnerText), 0);
+				lstEventList.options[0].selected = true;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function OnConnect(nID, successful) {
+			try {
+				AddOption( 'OnConnect: ID=' + nID + ',successful=' + successful ) ;	
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function ResolutionType(num){
+			switch (num){
+				case 0:
+					return "NTSC 720x480";
+				case 1:
+					return "NTSC 352x240"
+				case 2:
+					return "NTSC 160x122";
+				case 3:
+					return "PAL 720x576";
+				case 4:
+					return "PAL 352x288";
+				case 5:
+					return "PAL 176x144";
+				case 6:
+					return "NTSC 176x120";
+				case 64:
+					return "NTSC 640x480";
+				case 65:
+					return "NTSC 1280x720";
+				case 66:
+					return "NTSC 1280x960";
+				case 67:
+					return "NTSC 1280x1024";
+				case 68:
+					return "NTSC 1600x1200";
+				case 69:
+					return "NTSC 1920x1080";
+				case 70:
+					return "NTSC 320x240";
+				case 71:
+					return "NTSC 160x120";
+				case 192:
+					return "PAL 640x480";
+				default:
+					return num
+				}
+		}
+		
+		function BitRateType(num){
+			switch (num){
+				case 0:
+					return "28 Kbps";
+				case 1:
+					return "56 Kbps";
+				case 2:
+					return "128 Kbps";
+				case 3:
+					return "256 Kbps";
+				case 4:
+					return "384 Kbps";
+				case 5:
+					return "500 Kbps";
+				case 6:
+					return "750 Kbps";
+				case 7:
+					return "1 Mbps";
+				case 8:
+					return "1.2 Mbps";
+				case 9:
+					return "1.5 Mbps";
+				case 10:
+					return "2 Mbps";
+				case 11:
+					return "2.5 Mbps";
+				case 12:
+					return "3 Mbps";
+				case 13:
+					return "3.5 Mbps";
+				case 14:
+					return "4 Mbps";
+				case 15:
+					return "4.5 Mbps";
+				case 16:
+					return "5 Mbps";
+				case 17:
+					return "5.5 Mbps";
+				case 18:
+					return "6 Mbps";
+				default:
+					return num
+			}
+		}
+		
+		function OnPlay(nID) {
+			try {
+				AddOption( 'OnPlay: ID=' + nID ) ;	
+				FPS.innerHTML = oPreview0.FPS;
+				Resolution.innerHTML = ResolutionType(oPreview0.Resolution);			
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function OnStop(nID) {
+			try {
+				AddOption( 'OnStop: ID=' + nID ) ;	
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function OnDisconnect(nID) {
+			try {
+				AddOption( 'OnDisconnect: ID=' + nID ) ;	
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnPlaybackComplete(nID) {
+			try {
+				AddOption( 'OnPlaybackComplete: ID=' + nID ) ;	
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnTimeCode(nID,szTime) {
+			try {
+				var NewOP = document.createElement("OPTION");
+				lstOnTimeCode.options.add(NewOP, 0);
+				NewOP.value = '';
+				NewOP.innerText = "ID:" + nID + "  Time:" + szTime ;
+				NewOP.selected = true;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function ChgPlayRate( srcObj ) {
+			try {
+				oPreview0.SetPlayRate( srcObj.value ) ;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function CHK_STREAMINGENGINE( srcObj ) {
+			try {
+				Put_ASEServerIP.disabled = !srcObj.checked ;
+				Put_ASEUsername.disabled = !srcObj.checked ;
+				Put_ASEPassword.disabled = !srcObj.checked ;
+				Put_ASEControlPort.disabled = !srcObj.checked ;
+				Put_ASEStreamingPort.disabled = !srcObj.checked ;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnSaveImage(nID, successful, szFileName) {
+			try {
+				AddOption( 'OnSaveImage: ID=' + nID + ',successful=' + successful + ',filename=' + szFileName ) ;
+			} catch(e) {
+				debug(e)
+			}
+		}		
+		
+		function GetProperty( nSEQ ) {		
+			try {
+				eval( 'Get_NetworkStatus.value = oPreview'+nSEQ+'.NetworkStatus' ) ; 
+				eval( 'Get_ContentStatus.value = oPreview'+nSEQ+'.ContentStatus' ) ;
+				
+				eval( 'Get_Duration.value = oPreview'+nSEQ+'.Duration' ) ;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function SetInputTime(){
+			if(SetCurrentTimeValue.value == "") return;
+			var time = new Date(SetCurrentTimeValue.value);
+			var seconds	= Date.UTC(time.getFullYear(), parseInt(time.getMonth()), time.getDate(), time.getHours(), time.getMinutes(), time.getSeconds()) / 1000;
+			oPreview0.SetCurrentTime(seconds);
+		}
+		
+		function debug(errMsg, enable) {  //debug information
+			try {
+				if(enable == 1) return;
+				var msg;
+				if(!errMsg) {
+					alert("event error");
+				} else {
+					msg = "js error Number: " + errMsg.number + "\n";
+					msg += "js error Name: " + errMsg.name + "\n";
+					msg += "js error Line Number: " + errMsg.lineNumber + "\n";
+					msg += "js error Description: " + errMsg.description + "\n";
+					msg += "js error Message: " + errMsg.message + "\n";
+				}
+				if(!enable) {
+					alert(msg);
+				} else if(enable == 2) {
+					alert(errMsg);
+				}
+			} catch(wrong) {
+				alert(wrong);
+			}
+		}
+		
+	function EnableButton() {
+		Button13.disabled = false;
+		Button14.disabled = false;
+		Button15.disabled = false;
+		Button16.disabled = false;
+		Button17.disabled = false;
+		Button18.disabled = false;
+		Button19.disabled = false;
+		Button20.disabled = false;
+		SnapshotBMP.disabled = false;
+		SnapshotJPG.disabled = false;
+		ReduplicateTitleBarText.disabled = false;
+		r_Color.disabled = false;
+		g_Color.disabled = false;
+		b_Color.disabled = false;
+	}
+	function DisableButton() {
+		Button13.disabled = true;
+		Button14.disabled = true;
+		Button15.disabled = true;
+		Button16.disabled = true;
+		Button17.disabled = true;
+		Button18.disabled = true;
+		Button19.disabled = true;
+		Button20.disabled = true;
+		SnapshotBMP.disabled = true;
+		SnapshotJPG.disabled = true;
+		ReduplicateTitleBarText.disabled = true;
+		r_Color.disabled = true;
+		g_Color.disabled = true;
+		b_Color.disabled = true;
+	}
+	//-->
+		</script>
+	</head>
+	<body style="margin:0px 0px 0px 0px; background-color:#F1F1F1;">
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							<td valign="top">
+							<fieldset>
+								<legend><span style="font-weight:bold; color:#FF0000; ">Basic Setting</span></legend>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>MediaType</td>
+										<td>
+											<select Name="Put_MediaType" id="Put_MediaType">
+												<option value="1">1 for Preview</option>
+												<option value="1">1 for Record</option>
+												<option value="1">1 for Motion</option>
+												<option value="1">1 for QuadURL</option>
+												<option value="2" selected>2 for Playback</option>
+												<option value="4">4 for PTZ</option>
+												<option value="100">100 for Multicast without control</option>
+												<option value="101">101 for Multicast with control</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>ID</td>
+										<td><input Name="Put_ID" size="9" value="1"></td>
+									</tr>
+									<tr>
+										<td>MediaSource</td>
+										<td><input type="file" Name="Put_MediaSource" size="22"></td>
+									</tr>
+									<tr>
+										<td>Duration</td>
+										<td><input Name="Get_Duration" size="9" ID="Text32"></td>
+									</tr>
+									<tr>
+										<td>setting
+										</td>
+										<td><input Type="button" Name="setting" size="9" ID="Text4" onclick="SetNParameter()" value="Connect"></td>
+									</tr>
+								</table>
+							</fieldset>
+							<fieldset>
+								<legend style="font-weight:bold; color:blue;">Video file information</legend>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>begin time:</td>
+										<td id="beginTime"></td>
+									</tr>
+									<tr>
+										<td>end time:</td>
+										<td id="endTime"></td>
+									</tr>
+									<tr>
+										<td>Resolution</td>
+										<td id="Resolution"></td>
+									</tr>
+									<tr>
+										<td>FPS:</td>
+										<td id="FPS"></td>
+									</tr>
+									<tr>
+										<td>set current:</td>
+										<td><input name="SetCurrentTimeValue" id="SetCurrentTimeValue"></td>
+									</tr>
+									<tr>
+										<td></td>
+										<td><input type="button" value="SetCurrentTime" name="SetCurrentTime" id="SetCurrentTime" onclick="SetInputTime();"></td>
+									</tr>
+								</table>
+							</fieldset>
+							<fieldset>
+								<legend style="font-weight:bold; color:blue;">Event List</legend>
+								<table border="0" cellpadding="0" cellspacing="0" ID="Table3">
+									<tr>
+										<td>Event List:</td>
+									</tr>
+									<tr>
+										<td><select name="lstEventList" size="5" style="WIDTH: 300px" ID="Select2"></select></td>
+									</tr>
+									<tr>
+										<td>OnTimeCode:</td>
+									</tr>
+									<tr>
+										<td><select name="lstOnTimeCode" size="5" style="WIDTH: 300px" ID="Select1"></select></td>
+									</tr>
+								</table>
+							</fieldset>
+							</td>
+							<td valign="top">
+								Your Version<input Name="Get_Version" size="40"><br>
+								<OBJECT id="oPreview0" height="240" width="352" data="data:application/x-oleobject;base64,oJHm+C7JQk6c2mL8B6lIOwAAAQBhJAAAzhgAAAAAAAA="
+									classid="CLSID:F8E691A0-C92E-4E42-9CDA-62FC07A9483B" VIEWASTEXT>
+								</OBJECT>
+								<br>
+								<script for="oPreview0" event="OnConnect(nID, successful)">OnConnect(nID, successful);</script>
+								<script for="oPreview0" event="OnPlay(nID)">OnPlay(nID);</script>
+								<script for="oPreview0" event="OnStop(nID)">OnStop(nID);</script>
+								<script for="oPreview0" event="OnDisconnect(nID)">OnDisconnect(nID);</script>
+								<script for="oPreview0" event="OnSaveImage(nID,successful, szFileName)">OnSaveImage(nID,successful, szFileName);</script>
+								<script for="oPreview0" event="OnTimeCode(nID,szTime)">OnTimeCode(nID,szTime);</script>
+								<script for="oPreview0" event="OnPlaybackComplete(nID)">OnPlaybackComplete(nID)</script><br>		
+							<fieldset>
+								<legend style="font-weight:bold; color:blue;">Control Interface</legend>
+								<input type="button" value="SetActive(1)" onclick="oPreview0.SetControlActive(1);" ID="Button2"	NAME="Button2"> 
+								<input type="button" value="SetActive(0)" onclick="oPreview0.SetControlActive(0);" ID="Button3"	NAME="Button3"><br>	
+								<input type="button" value="TitleBar(1)" onclick="oPreview0.DisplayTitleBar(1);" ID="Button4" NAME="Button4"> 
+								<input type="button" value="TitleBar(0)" onclick="oPreview0.DisplayTitleBar(0);" ID="Button5" NAME="Button5"><br>
+								<input type="button" value="Play" onclick="oPreview0.Connect(0);oPreview0.StartStream();oPreview0.Play();oPreview0.Mute = 0;GetProperty(0);EnableButton();"	ID="Button10" NAME="Button10"> 
+								<input type="button" value="Pause" onclick="oPreview0.Pause();oPreview0.StopStream();GetProperty(0);" ID="Button11" NAME="Button11"> 
+								<input type="button" value="Stop" onclick="oPreview0.Stop();oPreview0.StopStream();oPreview0.Disconnect();GetProperty(0);DisableButton();" ID="Button12" NAME="Button12"> 
+								<font>Play Rate:</font><select id="PlayRate" onchange="ChgPlayRate(this);">							
+									<option value="0">1/2</option>
+									<option value="1" selected>1</option>
+									<option value="2">2</option>
+									<option value="3">4</option>
+									<option value="4">8</option>
+								</select><br>
+								<input type="button" value="Backward" onclick="oPreview0.SetPlayDirection(0);" ID="Button13" NAME="Button13"> 
+								<input type="button" value="Forward" onclick="oPreview0.SetPlayDirection(1);" ID="Button14" NAME="Button14">
+								<font>Network Status</font><input Name="Get_NetworkStatus" size="4"><br>
+								<input type="button" value="<StepFrame" onclick="oPreview0.Pause();oPreview0.PlayByFrame(0);" ID="Button15" NAME="Button15"> 
+								<input type="button" value="StepFrame>" onclick="oPreview0.Pause();oPreview0.PlayByFrame(1);" ID="Button16" NAME="Button16">
+								<font>Content Status</font><input Name="Get_ContentStatus" size="4"><br>
+								<input type="button" value="SetDecodeI(1)" onclick="oPreview0.SetDecodeI(1);" ID="Button17"
+									NAME="Button17"> <input type="button" value="SetStretch(1)" onclick="oPreview0.StretchToFit = 1;" ID="Button18"
+									NAME="Button1"><br>
+								<input type="button" value="SetDecodeI(0)" onclick="oPreview0.SetDecodeI(0);" ID="Button19"
+									NAME="Button19"> <input type="button" value="SetStretch(0)" onclick="oPreview0.StretchToFit = 0;" ID="Button20"
+									NAME="Button20"><br>
+								<input style="DISPLAY:none" type="button" value="SetCurrentTime" onclick="SetTime();GetProperty(0);" id="Button1"
+									name="Button1"> <input style="DISPLAY:none" id="Put_CurrentTime" size="14" value="0" NAME="Put_CurrentTime">
+								<input type="button" value="Snapshot BMP" onclick="Snapshot(0);" id="SnapshotBMP" name="SnapshotBMP">
+								<input type="button" value="Snapshot JPG" onclick="Snapshot(1);" id="SnapshotJPG" name="SnapshotJPG"><br>
+								<input type="checkbox" NAME="ReduplicateTitleBarText">Reduplicate Title Bar 
+								Text<br>
+								<input Name="r_Color" value="0" size="3" ID="r_Color" Maxlength="3"><font color="red">Red Color</font> 
+								<input Name="g_Color" value="0" size="3" ID="g_Color" Maxlength="3"><font color="green">Green Color</font> 
+								<input Name="b_Color" value="0" size="3" ID="b_Color" Maxlength="3"><font color="blue">Blue Color</font>
+							</fieldset>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

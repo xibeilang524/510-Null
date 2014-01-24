@@ -1,0 +1,82 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>AUDIO_OUT_VOLUME</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">AUDIO_OUT_LEVEL</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Get or Set the AudioOut level configuration. Check 
+	the device specification is needed before use this command. Only  
+	audio device supports this URL.</font></p>
+	<p><font face="Arial">This URL is only for WPL Decoder Devices because their 
+	AudioOut Volume range is very different from EPL and PlatformT Decoder 
+	devices. In the WPL Decoder Devices, there are four levels of the AudioOut, 
+	MUTE, SMALL, MIDDLE and HIGH.</font></p>
+</blockquote>
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<font face="Arial">MUTE, SMALL, MIDDLE or HIGH</font><br>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Readable and Writable</font></li>
+	<li><font face="Arial">On-Fly</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">AUDIO_OUT_LEVEL='HIGH'</font><br>
+</blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">OK: AUDIO_OUT_LEVEL='HIGH'</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">ERROR: AUDIO_OUT_LEVEL='HIGH'</font><br>
+</blockquote>
+<p><font face="Arial"><font size="4">Applicability</font></font></p>
+<ul>
+	<li><font face="Arial">WPL Decoder Devices (version V2.05.01 and later)</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="AudioOutVolume.htm">AUDIO_OUT_VOLUME</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Read Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/system?USER=Admin&amp;PWD=123456&amp;AUDIO_OUT_LEVEL<br>
+	or<br>http://ip:port/cgi-bin/cmd/system?AUDIO_OUT_LEVEL</font></blockquote>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/system?USER=Admin&amp;PWD=123456&amp;AUDIO_OUT_LEVELE=HIGH<br>
+	<foont face="Arial">or<br>http://ip:port/cgi-bin/cmd/system?AUDIO_OUT_LEVELE=HIGH</font></blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>, <a href="system.htm">
+	SYSTEM CGI</a></font></p>
+</blockquote>
+<p><br>
+	</font>
+</p>
+
+</body>
+
+</html>

@@ -1,0 +1,131 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>DIO_OUTPUT</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">DIO_OUTPUT</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Set the device's individual DOs signal level. </font></p>
+	<p><font face="Arial">The input argument is in hexadecimal and is divided 
+	into two parts. The first part is the DO signal bit mapping and the second 
+	part is the DO signal level. This is different to
+	<a href="../Mpeg4/DioOutput.htm">DIO_OUTPUT</a> in
+	<a href="../Mpeg4/mpeg4.htm">MPEG4 CGI</a>. The mapping of 
+	the hexadecimal value to the DOs are listed below.</font></p>
+	<table border="1" width="70%" id="table1">
+		<tr>
+			<td width="370"><b><font face="Arial">Bit and value in the input 
+			argument</font></b></td>
+			<td><b><font face="Arial">Description</font></b></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 0 = 0</font></td>
+			<td><font face="Arial">Set DO1 is Low</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 0 = 1</font></td>
+			<td><font face="Arial">Set DO1 is High</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 1 = 0</font></td>
+			<td><font face="Arial">Set DO2 is Low</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 1 = 1</font></td>
+			<td><font face="Arial">Set DO2 is High</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 2,3</font></td>
+			<td><font face="Arial">Not Used. They should be set to 0s</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 4 = 1</font></td>
+			<td><font face="Arial">Bit 0 is valid for DO1</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 4 = 0</font></td>
+			<td><font face="Arial">Bit 0 is not valid for DO1</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 5 = 1</font></td>
+			<td><font face="Arial">Bit 1 is valid for DO2</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 5 = 0</font></td>
+			<td><font face="Arial">Bit 1 is not valid for DO2</font></td>
+		</tr>
+		<tr>
+			<td width="370"><font face="Arial">Bit 6,7</font></td>
+			<td><font face="Arial">Not Used. They should be set to 0s</font></td>
+		</tr>
+	</table>
+	<p><font face="Arial">Example:</font></p>
+	<blockquote>
+		<p><font face="Arial">The DIO_OUTPUT=0x21 will set the DO2 to low but 
+		DO1 level will not be updated.</font></p>
+		<p><font face="Arial">The DIO_OUTPUT=0x00 will do nothing to DO1 and 
+		DO2.</font></p>
+		<p><font face="Arial">The DIO_OUTPUT=0x11 will set the DO1 to high but 
+		DO2 level will not be updated</font></p>
+		<p><font face="Arial">The DIO_OUTPUT=0x32 will set the DO1 to low and 
+		DO2 to high.</font></p>
+	</blockquote>
+	<p><font face="Arial">The value in the return message is the echo of the 
+	input argument. It does not reflect the DO signal after this command.</font></p>
+	<p><font face="Arial">If the CHANNEL=n was not set with this URL to the 
+	Multi-Channel device, the error message 
+	will be returned.</font></p>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<p><font face="Arial">0xn (1byte hexadecimal value)</font></p>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Write Only</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<pre><font face="Arial" size="3">Write Operation</font></pre></li>
+</ul>
+<blockquote>
+	<font face="Arial" size="3">OK: DIO_OUTPUT='0x30'</font>
+<br>
+</blockquote>
+<p><font face="Arial"><font size="4">Applicability</font></font></p>
+<ul>
+	<li><font face="Arial">WPL Platform : All&nbsp; Devices</font></li>
+	<li><font face="Arial">EPL Platform : All Devices</font></li>
+	<li><font face="Arial">PlatfotmT : All Devices</font></li>
+	<li><font face="Arial">Multi-Channel Encoder : All Video Servers</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/encoder?USER=Admin&amp;PWD=123456&amp;DIO_OUTPUT=0x31</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">http://ip:port/cgi-bin/cmd/encoder?DIO_OUTPUT=0x31</font></blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>, <a href="Encoder.htm">
+	ENCODER_CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

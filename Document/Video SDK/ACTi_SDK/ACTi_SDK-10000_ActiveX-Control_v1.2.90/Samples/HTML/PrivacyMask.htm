@@ -1,0 +1,592 @@
+<html>
+	<head>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<script type="text/javascript" language="javascript">
+		<!--//
+			
+			window.onload = function () {
+				try {
+					document.getElementById('Get_Version').value = oPreview0.Version ;
+					Discon.disabled = true;
+					Play.disabled = true;
+					Stop.disabled = true;
+					DisableButton();					
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function GetProperty( nSEQ ) {
+				try {
+					eval( 'Get_NetworkStatus.value = oPreview'+nSEQ+'.NetworkStatus' ) ; 
+					eval( 'Get_ContentStatus.value = oPreview'+nSEQ+'.ContentStatus' ) ;
+ 
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function SetProperty() {
+				try {
+					oPreview0.Resolution    = Get_Resolution.value ;
+					oPreview0.Fps           = Get_Fps.value ;
+					oPreview0.BitRate       = Get_BitRate.value ;
+					oPreview0.Brightness    = Get_Brightness.value ;
+					oPreview0.Contrast      = Get_Contrast.value ;
+					oPreview0.Hue           = Get_Hue.value ;
+					oPreview0.Saturation    = Get_Saturation.value ;
+				} catch(e) {
+					alert('You should complete "Basic Setting" first and connect to the valid streaming server');
+				}
+			}
+			
+			function SetConnectSetting() {
+				try {
+					oPreview0.MediaType=Put_MediaType.value;
+					oPreview0.ID=Put_ID.value;
+					oPreview0.MediaSource=Put_MediaSource.value;
+					oPreview0.MulticastIP=Put_MulticastIP.value;
+					oPreview0.MediaChannel=Put_MediaChannel.value;
+					oPreview0.MediaUserName=Put_MediaUserName.value;
+					oPreview0.MediaPassword=Put_MediaPassword.value;
+					oPreview0.Httpport=Put_Httpport.value;
+					oPreview0.RegisterPort=Put_RegisterPort.value;
+					oPreview0.ControlPort=Put_ControlPort.value;
+					oPreview0.StreamingPort=Put_StreamingPort.value;
+					oPreview0.MulticastPort=Put_MulticastPort.value;
+					if (EnableEngine.checked){
+				        oPreview0.ASEMediaSource = Put_ASEMediaSource.value;
+				        oPreview0.ASEMediaUserName = Put_ASEMediaUserName.value;
+				        oPreview0.ASEMediaPassword = Put_ASEMediaPassword.value;
+				        oPreview0.ASEControlPort = Put_ASEControlPort.value;
+				        oPreview0.ASEStreamingPort = Put_ASEStreamingPort.value;
+				        oPreview0.EnableASE = true;
+					}
+				    else
+				        oPreview0.EnableASE = false;	
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function SetOtherSetting() {
+				try {
+					oPreview0.CodecType=Put_CodecType.value;
+					oPreview0.RenderType=Put_RenderType.value;
+					oPreview0.ConnectTimeOut=Put_ConnectTimeOut.value;
+					oPreview0.DisplayTitleBar(Put_DisplayTitleBar.value);
+					oPreview0.Caption=Put_Caption.value;
+					oPreview0.Saturation=Get_Saturation.value;
+					oPreview0.Hue=Get_Hue.value;
+					oPreview0.Contrast=Get_Contrast.value;
+					oPreview0.Brightness=Get_Brightness.value;
+					GetProperty(0);
+				} catch(e) {
+					alert('You should complete "Basic Setting" first and connect to the valid streaming server');
+				}
+			}
+			
+			function AddOption( szinnerText ) {
+				try {
+					var NewOP = document.createElement("OPTION");
+					lstEventList.options.add(NewOP, 0);					
+					NewOP.value = '';
+					NewOP.innerText = szinnerText ;
+					NewOP.selected = true;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnConnect(nID, successful) {
+				try {
+					AddOption( 'OnConnect: ID=' + nID + ',successful=' + successful) ;
+					if (successful){
+						Discon.disabled = false;
+						Play.disabled = false;
+						Stop.disabled = false;
+					}
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnPlay(nID) {
+				try {
+					AddOption( 'OnPlay: ID=' + nID ) ;	
+					EnableButton();
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnStop(nID) {
+				try {
+					AddOption( 'OnStop: ID=' + nID ) ;
+					oPreview0.FreeAudioToken();
+					DisableButton();
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnDisconnect(nID) {
+				try {
+					AddOption( 'OnDisconnect: ID=' + nID ) ;	
+					Play.disabled = true;
+					Stop.disabled = true;
+					oPreview0.FreeAudioToken();
+					DisableButton();
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnMouseKeyDoubleClick(nID, nBtn, nX, nY) {
+				try {
+					AddOption( 'OnMouseKeyDoubleClick:ID=' + nID + ', nBtn=' + nBtn + ', nX=' + nX + ', nY=' + nY ) ;
+					if (oPreview0.width == 360) {
+						oPreview0.width = 720 ;
+						oPreview0.height= 480 ;
+					} else {
+						oPreview0.width = 352 ;
+						oPreview0.height= 240 ;
+					}
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function ResChange() {
+				try {
+					var l = Get_Fps.length ;
+					for ( i=0 ; i<l ; i++ ) { Get_Fps.remove(0) ; }
+					if ( Get_Resolution.value > 2 ) {
+						Get_Fps.add(new Option(25,25))
+						Get_Fps.add(new Option(12,12))
+						Get_Fps.add(new Option(8,8))
+					} else {
+						Get_Fps.add(new Option(30,30))
+						Get_Fps.add(new Option(15,15))
+						Get_Fps.add(new Option(10,10))
+						Get_Fps.add(new Option(7,7))
+					}
+					for ( i=6 ; i>0 ; i-- ) { Get_Fps.add(new Option(i,i)) }
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function SetPrivacyMask(clearMask, setMask){
+				try {
+					switch(clearMask){
+						case 1:
+							sX1.value = 0;
+						    hX1.value = 0;
+						    sY1.value = 0;
+						    wY1.value = 0;
+						    oPreview0.SetPrivacyMask (1, 0, 0, 0, 0);
+							break;
+						case 2:
+							sX2.value = 0;
+						    hX2.value = 0;
+						    sY2.value = 0;
+						    wY2.value = 0;
+						    oPreview0.SetPrivacyMask (2, 0, 0, 0, 0);
+							break;
+						case 3:
+							sX3.value = 0;
+						    hX3.value = 0;
+						    sY3.value = 0;
+						    wY3.value = 0;
+						    oPreview0.SetPrivacyMask (3, 0, 0, 0, 0);
+							break;
+						default:
+							break;
+					}
+					switch(setMask){
+						case 1:
+							oPreview0.SetPrivacyMask(1, sX1.value, sY1.value, hX1.value, wY1.value);
+							break;
+						case 2:
+							oPreview0.SetPrivacyMask(2, sX2.value, sY2.value, hX2.value, wY2.value);
+							break;
+						case 3:
+							oPreview0.SetPrivacyMask(3, sX3.value, sY3.value, hX3.value, wY3.value);
+							break;
+						default:
+							break;
+					}
+				} catch(wrong) {
+					alert(wrong.description);
+				}			
+			}
+			/*function SetQualControl(nCH){
+				var szURLCmd, szURLRcv;
+				try {
+					switch(nCH){
+						case 0:
+							szURLCmd = "http://" + Put_MediaSource.value + ":" + Put_Httpport.value + "/cgi-bin/quad?USER=" + Put_MediaUserName.value + "&PWD=" + Put_MediaPassword.value + "&DISPLAY=0";
+						    if (oPreview0.EnableASE)
+						        szURLRcv = oPreview0.SendURLCmdToSE(szURLCmd);
+						    else
+						        szURLRcv = oPreview0.SendURLCmd(szURLCmd);		
+							break;
+						case 1:
+						    szURLCmd = "http://" + Put_MediaSource.value + ":" + Put_Httpport.value + "/cgi-bin/quad?USER=" + Put_MediaUserName.value + "&PWD=" + Put_MediaPassword.value + "&DISPLAY=1";
+						    if (oPreview0.EnableASE)
+						        szURLRcv = oPreview0.SendURLCmdToSE(szURLCmd);
+						    else
+						        szURLRcv = oPreview0.SendURLCmd(szURLCmd);		
+							break;
+						case 2:
+							szURLCmd = "http://" + Put_MediaSource.value + ":" + Put_Httpport.value + "/cgi-bin/quad?USER=" + Put_MediaUserName.value + "&PWD=" + Put_MediaPassword.value + "&DISPLAY=2";
+						    if (oPreview0.EnableASE)
+						        szURLRcv = oPreview0.SendURLCmdToSE(szURLCmd);
+						    else
+						        szURLRcv = oPreview0.SendURLCmd(szURLCmd);		
+							break;
+						case 3:
+							szURLCmd = "http://" + Put_MediaSource.value + ":" + Put_Httpport.value + "/cgi-bin/quad?USER=" + Put_MediaUserName.value + "&PWD=" + Put_MediaPassword.value + "&DISPLAY=3";
+						    if (oPreview0.EnableASE)
+						        szURLRcv = oPreview0.SendURLCmdToSE(szURLCmd);
+						    else
+						        szURLRcv = oPreview0.SendURLCmd(szURLCmd);		
+							break;
+						case 4:
+							szURLCmd = "http://" + Put_MediaSource.value + ":" + Put_Httpport.value + "/cgi-bin/quad?USER=" + Put_MediaUserName.value + "&PWD=" + Put_MediaPassword.value + "&DISPLAY=4";
+						    if (oPreview0.EnableASE)
+						        szURLRcv = oPreview0.SendURLCmdToSE(szURLCmd);
+						    else
+						        szURLRcv = oPreview0.SendURLCmd(szURLCmd);		
+							break;
+						default:
+							break;
+					}
+				} catch(wrong) {
+					alert(wrong.description);
+				}			
+			}
+			function SendURLCmd(){
+				try {
+					if (oPreview0.EnableASE)
+						oPreview0.SendURLCmdToSE(URLText.value);
+					else
+						oPreview0.SendURLCmd(URLText.value);
+					AddOption(oPreview0.SendURLCmd(URLText.value));
+				} catch(wrong) {
+					alert(wrong);
+				}			
+			}*/
+			function color(){
+				try {
+					R.value = R.value > 255 ? 255 : R.value;
+					G.value = G.value > 255 ? 255 : G.value;
+					B.value = B.value > 255 ? 255 : B.value;
+					nFontR.value = nFontR.value > 255 ? 255 : nFontR.value;
+					nFontG.value = nFontG.value > 255 ? 255 : nFontG.value;
+					nFontB.value = nFontB.value > 255 ? 255 : nFontB.value;
+				} catch(wrong) {
+					alert(wrong);
+				}			
+			}
+			function EnablePrivacyMask(){
+				try {
+					if(chkPrivacyMask.checked){
+						oPreview0.EnablePrivacyMask (1, R.value, G.value, B.value);
+						Table3.disabled = false;
+						Table4.disabled = false;
+						Table5.disabled = false;
+						Table6.disabled = false;
+						Table7.disabled = false;
+					}
+					else{
+						oPreview0.EnablePrivacyMask (0, 0, 0, 0);
+						Table3.disabled = true;
+						Table4.disabled = true;
+						Table5.disabled = true;
+						Table6.disabled = true;
+						Table7.disabled = true;
+					}
+				} catch(wrong) {
+					alert(wrong);
+				}			
+			}
+			function EnableButton() {				
+				Put_MediaType.disabled = true;
+				Table0.disabled = true;
+				Table2.disabled = false;
+			}
+			function DisableButton() {
+				Table0.disabled = false;
+				Table2.disabled = true;
+				Table3.disabled = true;
+				Table4.disabled = true;
+				Table5.disabled = true;
+				Table6.disabled = true;	
+				Table7.disabled = true;
+			}
+	
+			function debug(errMsg, enable) {  //debug information
+				try {
+					if(enable == 1) return;
+					var msg;
+					if(!errMsg) {
+						alert("event error");
+					} else {
+						msg = "js error Number: " + errMsg.number + "\n";
+						msg += "js error Name: " + errMsg.name + "\n";
+						msg += "js error Line Number: " + errMsg.lineNumber + "\n";
+						msg += "js error Description: " + errMsg.description + "\n";
+						msg += "js error Message: " + errMsg.message + "\n";
+					}
+					if(!enable) {
+						alert(msg);
+					} else if(enable == 2) {
+						alert(errMsg);
+					}
+				} catch(wrong) {
+					alert(wrong);
+				}
+			}
+		//-->
+		</script>
+	</head>
+	<body style="margin:0px 0px 0px 0px; background-color:#F1F1F1;">
+		<table border="0" cellpadding="0" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					<table border="0" cellpadding="5" cellspacing="0" width="100%">
+						<tr>
+							<td valign="top">
+							<fieldset>
+								<legend><span style="font-weight:bold; color:#FF0000; ">Basic Setting</span></legend>
+								<table border="0" cellpadding="0" cellspacing="0" id="Table0">
+									<tr>
+										<td>MediaType</td>
+										<td>
+											<select Name="Put_MediaType" id="Put_MediaType">
+												<option value="1" selected>1 for Preview</option>
+												<option value="1">1 for Record</option>
+												<option value="1">1 for Motion</option>
+												<option value="1">1 for QuadURL</option>
+												<option value="2">2 for Playback</option>
+												<option value="4">4 for PTZ</option>
+												<option value="100">100 for Multicast without control</option>
+												<option value="101">101 for Multicast with control</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>ID</td>
+										<td><input Name="Put_ID" size="9" value="1"></td>
+									</tr>
+									<tr>
+										<td>MediaSource</td>
+										<td><input Name="Put_MediaSource" size="9" value="172.16.1.123" id="Text6"></td>
+									</tr>
+									<tr>
+										<td>MulticastIP</td>
+										<td><input Name="Put_MulticastIP" size="9" value="228.5.6.103"></td>
+									</tr>
+									<tr>
+										<td>MediaChannel</td>
+										<td><input Name="Put_MediaChannel" size="9" value="1"></td>
+									</tr>
+									<tr>
+										<td><nobr>Media UserName</nobr></td>
+										<td><input Name="Put_MediaUserName" size="9" value="Admin"></td>
+									</tr>
+									<tr>
+										<td>Media Password</td>
+										<td><input type="password" Name="Put_MediaPassword" size="9" value="123456"></td>
+									</tr>
+									<tr>
+										<td>Http</td>
+										<td><input Name="Put_Httpport" size="9" value="80" ID="Text11"></td>
+									</tr>
+									<tr>
+										<td>RegisterPort</td>
+										<td><input Name="Put_RegisterPort" size="9" value="6000" ID="Text15"></td>
+									</tr>
+									<tr>
+										<td>ControlPort</td>
+										<td><input Name="Put_ControlPort" size="9" value="6001" ID="Text16"></td>
+									</tr>
+									<tr>
+										<td>StreamingPort</td>
+										<td><input Name="Put_StreamingPort" size="9" value="6002" ID="Text17"></td>
+									</tr>
+									<tr>
+										<td>MulticastPort</td>
+										<td><input Name="Put_MulticastPort" size="9" value="5000" ID="Text21"></td>
+									</tr>
+								</table>
+							</fieldset>
+							<hr/>
+							<fieldset>
+							<legend style="font-weight:bold; color:blue;">Streaming Engine Setting</legend>
+								<table border="0" cellpadding="0" cellspacing="0" ID="Table1">
+									<tr>
+										<td colspan="2"><input type="checkbox" Name="EnableEngine" id="EnableEngine">Enable Engine Streaming</td>										
+									</tr>
+									<tr>
+										<td>Engine Server IP</td>
+										<td><input size="9" value="172.16.1.204" Name="Put_ASEMediaSource" id="Put_ASEMediaSource"></td>
+									</tr>
+									<tr>
+										<td>Engine Username</td>
+										<td><input size="9" value="Admin" Name="Put_ASEMediaUserName" id="Put_ASEMediaUserName"></td>
+									<tr>
+										<td>Engine Password</td>
+										<td><input size="9" type="password" value="123456" Name="Put_ASEMediaPassword" id="Put_ASEMediaPassword"></td>
+									</tr>
+									<tr>
+										<td>Engine Control Port</td>
+										<td><input size="9" value="6001" Name="Put_ASEControlPort" id="Put_ASEControlPort"></td>
+									<tr>
+										<td>Engine Streaming Prot</td>
+										<td><input size="9" value="6002" Name="Put_ASEStreamingPort" id="Put_ASEStreamingPort"></td>
+									</tr>				
+								</table>
+							</fieldset>
+							</td>
+							<td valign="top">
+							ActiveX Control Version<input Name="Get_Version" id="Get_Version" size="29" style="WIDTH: 208px; HEIGHT: 22px"><br/>
+						<OBJECT id="oPreview0" height="240" width="352" data="data:application/x-oleobject;base64,P2/zpuA6i0WvxKqCVl4L+BAHAABhJAAAzhgAAA==" classid="CLSID:F8E691A0-C92E-4E42-9CDA-62FC07A9483B" VIEWASTEXT></OBJECT>
+							<fieldset>
+								<script for="oPreview0" event="OnConnect(nID, successful)">OnConnect(nID, successful);</script>
+								<script for="oPreview0" event="OnPlay(nID)">OnPlay(nID);</script>
+								<script for="oPreview0" event="OnStop(nID)">OnStop(nID);</script>
+								<script for="oPreview0" event="OnDisconnect(nID)">OnDisconnect(nID);</script>
+								<script for="oPreview0" event="OnMouseKeyDoubleClick(nID, nBtn, nX, nY)">OnMouseKeyDoubleClick(nID, nBtn, nX, nY);</script>
+								<input type="button" value="Connect" onclick="SetConnectSetting();oPreview0.Connect(0);GetProperty(0);" title="connect to the streaming server"/>
+								<input type="button" value="DisConnect" onclick="oPreview0.Stop();oPreview0.Disconnect();GetProperty(0);" id="Discon" name="Discon" title="disconnect to the streaming server"/>
+								<input Name="Get_NetworkStatus" size="4" title="connect/disconnect debug information (read-only)"/><br />
+								<!--
+								<input type="button" value="StartStream" onclick="oPreview0.StartStream();GetProperty(0);">
+								<input type="button" value="StopStream" onclick="oPreview0.StopStream();GetProperty(0);alert(oPreview0.ContentStatus)"><br />
+								-->
+								<input type="button" value="Play" onclick="oPreview0.Play();GetProperty(0);" id="Play" name="Play" title="play video"/>
+								<input type="button" value="Stop" onclick="oPreview0.Stop();GetProperty(0);" id="Stop" name="Stop" title="stop video"/>
+								<input Name="Get_ContentStatus" size="4" title="start/stop debug information (read-only)"/><br/>
+							</fieldset>
+							<fieldset>
+							<legend style="font-weight:bold; color:blue; cursor:pointer;">Event Information</legend>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td><hr/>Event List:</td>
+									</tr>
+									<tr>
+										<td><select name="lstEventList" size="6" style="WIDTH: 250px" ID="Select2"></select></td>
+									</tr>
+								</table>
+							</fieldset>
+							</td>
+							<td valign="top">
+								<fieldset>
+								<legend style="font-weight:bold; color:blue;">PrivacyMask</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table2">
+										<tr>
+											<td colspan="6"><input type="checkbox" Name="chkPrivacyMask" id="chkPrivacyMask" onclick="EnablePrivacyMask();color();">Enable Privacy Mask in Color</td>										
+										</tr>
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="R" id="R"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="G" id="G"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="B" id="B"></td>	
+										</tr>
+									</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue;">PrivacyMask1</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table3">
+										<tr>
+											<td><input style="width:160px;" type="button" value="ClearPrivacyMask1" onclick="SetPrivacyMask(1,0);" id="ClearPrivacyMask1" name="ClearPrivacyMask1"></td>
+											<td>StartX<input size="3" type="text" value="0" name="sX1" id="sX1"></td>
+											<td>StartY<input size="3" type="text" value="0" name="sY1" id="sY1"></td>
+										</tr>
+										<tr>
+											<td><input style="width:160px;" type="button" value="Set Privacy Mask Region" onclick="SetPrivacyMask(0,1);" id="SetPrivacyMask1" name="SetPrivacyMask1"></td>
+											<td>Height<input size="3" type="text" value="0" name="hX1" id="hX1"></td>
+											<td>Width<input size="3" type="text" value="0" name="wY1" id="wY1"></td>
+										</tr>
+									</table>
+								</fieldset>								
+								<fieldset>
+								<legend style="font-weight:bold; color:blue;">PrivacyMask2</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table4">
+										<tr>
+											<td><input style="width:160px;" type="button" value="ClearPrivacyMask2" onclick="SetPrivacyMask(2,0);" id="ClearPrivacyMask2" name="ClearPrivacyMask2"></td>
+											<td>StartX<input size="3" type="text" value="0" name="sX2" id="sX2"></td>
+											<td>StartY<input size="3" type="text" value="0" name="sY2" id="sY2"></td>
+										</tr>
+										<tr>
+											<td><input style="width:160px;" type="button" value="Set Privacy Mask Region" onclick="SetPrivacyMask(0,2);" id="SetPrivacyMask2" name="SetPrivacyMask2"></td>
+											<td>Height<input size="3" type="text" value="0" name="hX2" id="hX2"></td>
+											<td>Width<input size="3" type="text" value="0" name="wY2" id="wY2"></td>
+										</tr>
+									</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue;">PrivacyMask3</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table5">
+										<tr>
+											<td><input style="width:160px;" type="button" value="ClearPrivacyMask1" onclick="SetPrivacyMask(3,0);" id="ClearPrivacyMask3" name="ClearPrivacyMask3"></td>
+											<td>StartX<input size="3" type="text" value="0" name="sX3" id="sX3"></td>
+											<td>StartY<input size="3" type="text" value="0" name="sY3" id="sY3"></td>
+										</tr>
+										<tr>
+											<td><input style="width:160px;" type="button" value="Set Privacy Mask Region" onclick="SetPrivacyMask(0,3);" id="SetPrivacyMask3" name="SetPrivacyMask3"></td>
+											<td>Height<input size="3" type="text" value="0" name="hX3" id="hX3"></td>
+											<td>Width<input size="3" type="text" value="0" name="wY3" id="wY3"></td>
+										</tr>
+									</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Set Text Out</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table6" width="100%">
+										<tr>
+											<td >X<input size="3" type="text" value="0" name="nX" id="nX">Y<input size="3" type="text" value="0" name="nY" id="nY"></td>
+											<td colspan="3">Text<input size="20" type="text" value="Text" name="strTextOut" id="strTextOut"></td>
+										</tr>
+										<tr>
+											<td colspan="2">Text Out Height<input size="3" type="text" value="10" name="nFontHeight" id="nFontHeight"></td>
+											<td colspan="2">Text Out Width<input size="3" type="text" value="20" name="nFontWidth" id="nFontWidth"></td>
+											
+										</tr>
+										<tr>
+											<td>FontColor <font color="red">R</font><input size="3" type="text" value="0" name="nFontR" id="nFontR"></td>
+											<td><font color="green">G</font><input size="3" type="text" value="0" name="nFontG" id="nFontG"></td>
+											<td><font color="blue">B</font><input size="3" type="text" value="0" name="nFontB" id="nFontB"></td>
+											<td><input type="button" value="SetTextOut" onclick="color();oPreview0.SetTextOut (nX.value, nY.value, strTextOut.value, 'Arial', 1, nFontWidth.value, nFontHeight.value, nFontR.value, nFontG.value, nFontB.value);" name="SetTextOut" id="SetTextOut"></td>
+										</tr>									
+									</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Image Reverse</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table7" width="100%">
+										<tr>
+											<td><input type="button" name="MirrorImage1" value="MirrorImage(1)" id="MirrorImage1" onclick="oPreview0.MirrorImage(1);" /></td>
+											<td><input type="button" name="MirrorImage0" value="MirrorImage(0)" id="MirrorImage0" onclick="oPreview0.MirrorImage(0);" /></td>
+										</tr>
+										<tr>
+											<td><input type="button" name="FlipImage1" value="FlipImage(1)" id="FlipImage1" onclick="oPreview0.FlipImage(1);" /></td>
+											<td><input type="button" name="FlipImage0" value="FlipImage(0)" id="FlipImage0" onclick="oPreview0.FlipImage(0);" /></td>
+										</tr>
+									</table>
+								</fieldset>
+<!--
+								<fieldset>
+									<input name="DeviceChipType" id="DeviceChipType" />
+									<input type="button" value="RequestsToCheckDeviceChipType" name="RequestsToCheckDeviceChipType" id="RequestsToCheckDeviceChipType" onclick="alert('a');oPreview0.RequestsToCheckDeviceChipType();alert('b');DeviceChipType.value=oPreview0.DeviceChipType" />
+								</fieldset>
+-->
+								</p>
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

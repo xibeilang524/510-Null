@@ -1,0 +1,623 @@
+<html>
+	<head>
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5">
+		<script type="text/javascript" language="javascript">
+		<!--//
+			var record_num = 0
+			window.onload = function() {
+				//var objMedia = new ActiveXObject("NVUNIFIEDCONTROL.nvUnifiedControlCtrl.1");
+				Get_Version.value = oPreview0.Version ;
+				Button1.disabled = true;
+				Play.disabled = true;
+				Stop.disabled = true;
+				DisableButton();
+			}
+			
+			function SetNecessaryParam() {
+				try {
+					oPreview0.MediaType = Put_MediaType.value;
+					oPreview0.ID = Put_ID.value;
+					oPreview0.MediaSource = Put_MediaSource.value;
+					oPreview0.MediaPassword = Put_MediaPassword.value;
+					oPreview0.MediaUserName = Put_MediaUserName.value;
+					oPreview0.Httpport=Put_Httpport.value;
+					oPreview0.RegisterPort=Put_RegisterPort.value;
+					oPreview0.ControlPort=Put_ControlPort.value;
+					oPreview0.StreamingPort=Put_StreamingPort.value;
+					oPreview0.MulticastPort=Put_MulticastPort.value;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function SetOtherParam() {
+				try {
+					oPreview0.PreRecordTime = Put_PreRecordingTime.value ;
+					oPreview0.PostRecordingTime = Put_PostRecordingTime.value;
+					oPreview0.MotionDetectionAlertDuration = Put_MDAlertDuration.value;
+					oPreview0.MotionDetectionInterval = Put_MDInterval.value;
+					oPreview0.DigitalInputInterval = Put_DIInterval.value;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function GetProperty( nSEQ ) {
+				try {
+					//eval( 'Get_ID.value = oPreview'+nSEQ+'.ID' ) ;
+					//eval( 'Get_MediaType.value = oPreview'+nSEQ+'.MediaType' ) ; 
+
+					//eval( 'Get_MediaSource.value = oPreview'+nSEQ+'.MediaSource' ) ; 
+					//eval( 'Get_MediaUserName.value = oPreview'+nSEQ+'.MediaUserName' ) ; 
+					eval( 'Put_PreRecordingTime.value = oPreview'+nSEQ+'.PreRecordingTime?oPreview' + nSEQ+'.PreRecordingTime:5' ) ;
+					eval( 'Put_PostRecordingTime.value = oPreview'+nSEQ+'.PostRecordingTime' ) ;
+
+					eval( 'Put_MDInterval.value = oPreview'+nSEQ+'.MotionDetectionInterval' ) ;
+					eval( 'Put_DIInterval.value = oPreview'+nSEQ+'.DigitalInputInterval' ) ;
+
+					eval( 'Get_NetworkStatus.value = oPreview'+nSEQ+'.NetworkStatus' ) ; 
+					eval( 'Get_ContentStatus.value = oPreview'+nSEQ+'.ContentStatus' ) ;
+					return;
+				} catch(e) {
+					debug(e);
+				}
+			}
+
+			function AddOption( szinnerText ) {
+				try {
+				
+					var nLen = lstEventList.options.length ;
+					for(i = nLen; i >= 300; i--) {
+						lstEventList.remove(i-1) ;
+					}
+					
+					var NewOP = document.createElement("OPTION");
+
+					lstEventList.options.add(NewOP, 0);
+					
+					NewOP.value = '';
+					NewOP.innerText = szinnerText ;
+					NewOP.selected = true;
+					
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnConnect(nID,successful) {
+				try {
+					AddOption( 'OnConnect: ID=' + nID + 'successful=' + successful ) ;	
+					if (successful){
+						Button1.disabled = false;
+						Play.disabled = false;
+						Stop.disabled = false;
+					}
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnPlay(nID) {
+				try {
+					AddOption( 'OnPlay: ID=' + nID ) ;	
+					if(nID)	EnableButton(); 
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnStop(nID) {
+				try {
+					AddOption( 'OnStop: ID=' + nID ) ;	
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnDisconnect(nID) {
+				try {
+					AddOption( 'OnDisconnect: ID=' + nID ) ;	
+					Play.disabled = true;
+					Stop.disabled = true;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnTimeCode(nID,szTime) {
+				try {
+					var NewOP = document.createElement("OPTION");
+					lstOnTimeCode.options.add(NewOP, 0);
+					
+					NewOP.value = '';
+					NewOP.innerText = "ID:" + nID + "  Time:" + szTime ;
+					NewOP.selected = true;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnStartRecord (nID, successful, szFileName) {	
+				try {
+					AddOption( 'OnStartRecord: ID=' + nID + ',successful=' + successful + ',filename=' + szFileName ) ;	
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnStopRecord(nID, szFileName) {
+				try {
+					AddOption( 'OnStopRecord: ID=' + nID + ',filename=' + szFileName ) ;
+					StopRecord.disabled = true;
+					StopAlarmRecord.disabled = true;
+					LastRecFileSize.innerHTML = oPreview0.LastRecFileSize;
+					longLastRecFileSize.innerHTML = oPreview0.longLastRecFileSize;
+					strLastRecFileSize.innerHTML = oPreview0.strLastRecFileSize;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnDIEvent(nID, nDI ) {
+				try {
+					AddOption( 'OnDIEvent: ID=' + nID + ',nDI=' + nDI ) ;	
+				} catch(e) {
+					debug(e);
+				}
+			}
+
+			function OnDIEventEnd(nID) {
+				try {
+					AddOption( 'OnDIEventEnd:ID=' + nID) ;	
+				} catch(e) {
+					debug(e);
+				}
+			}
+
+			function OnMDSettingEx(nID, nIndex, nX, nY, nW, nH, Sens, enable, nTime) {
+				try {
+					AddOption( 'OnMDSettingEx: ID=' + nID + ',index='+nIndex+',x='+nX+',y='+nY+',w='+nW+',h='+nH+',sens='+Sens+',enable='+enable+',nTime='+nTime ) ;
+					SaveMD.disabled = false;
+					EnableMD1.disabled = false;
+					EnableMD2.disabled = false;
+					EnableMD3.disabled = false;
+					EnableMD.disabled = true;
+					DisableMD.disabled = true;
+					switch ( nIndex ) {
+						case 1 :
+							if(Sens){
+								Set_MD1Sens.value = Sens;
+								if(Sens > 0) {Set_MD1Sens.disabled = false;MDdefault1.disabled = false;}
+								EnableMD1.checked = true;
+							}
+						break
+						case 2 :
+							if(Sens){
+								Set_MD2Sens.value = Sens;
+								if(Sens > 0) {Set_MD2Sens.disabled = false;MDdefault2.disabled = false;}
+								EnableMD2.checked = true;
+							}
+						break
+						case 3 :
+							if(Sens){
+								Set_MD3Sens.value = Sens;
+								if(Sens > 0) {Set_MD3Sens.disabled = false;MDdefault3.disabled = false;}
+								EnableMD3.checked = true;
+							}
+						break
+						default :					
+					}
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnMDSettingChanege(nID, nIndex) {
+				try {
+					AddOption( 'OnMDSettingChange: ID=' + nID + ',index='+nIndex ) ;
+				} catch(e) {
+					debug(e);
+				}
+			}
+
+			function MDdefault(num){
+				oPreview0.SetMotionSetting(num, 10, 10, 200, 200, 50);
+				eval('Set_MD' + num + 'Sens.value=50');
+			}
+			
+			function MDEnable(box, num){
+				if(box.checked){
+					var StartX = oPreview0.GetMotionStartX(num);
+						StartY = oPreview0.GetMOtionStartY(num);
+						EndX = oPreview0.GetMotionEndX(num);
+						EndY = oPreview0.GetMotionEndY(num);
+						Sens = oPreview0.GetMotionSensitive(num);
+						eval('Set_MD' + num + 'Sens.disabled=false');
+						eval('MDdefault' + num + '.disabled=false');
+						if(Sens == 0){
+							Sens = 50;
+							eval('Set_MD' + num + 'Sens.value=' + Sens);
+						}
+					oPreview0.SetMotionSetting(num,StartX,StartY,EndX,EndY,Sens);
+				} else{
+					oPreview0.SetMotionSensitivity(num, 0);
+					eval('Set_MD' + num + 'Sens.value=0');
+					eval('Set_MD' + num + 'Sens.disabled=true');
+					eval('MDdefault' + num + '.disabled=true');
+				}
+			}
+			
+			function SaveMDSetting(){
+					oPreview0.SetMotionSensitivity( 1, Set_MD1Sens.value)
+					if (Set_MD1Sens.value == "0") EnableMD1.checked = false;
+					oPreview0.SetMotionSensitivity( 2, Set_MD2Sens.value)
+					if (Set_MD2Sens.value == "0") EnableMD2.checked = false;
+					oPreview0.SetMotionSensitivity( 3, Set_MD3Sens.value)
+					if (Set_MD3Sens.value == "0") EnableMD3.checked = false;	
+					EnableMD.disabled = false;
+					DisableMD.disabled = false;
+					EnableMD1.disabled = true;
+					EnableMD2.disabled = true;
+					EnableMD3.disabled = true;
+					Set_MD1Sens.disabled = true;
+					Set_MD2Sens.disabled = true;
+					Set_MD3Sens.disabled = true;
+					MDdefault1.disabled = true;
+					MDdefault2.disabled = true;
+					MDdefault3.disabled = true;
+					SaveMD.disabled = true;		
+			}
+			var nFile = 0 ;
+			var bMDRec = 0 ;
+			
+			function OnMDEventEnd(nID) {
+				try {
+					AddOption( 'OnMDEventEnd:ID=' + nID ) ;
+					GetProperty(0);
+					bMDRec = 0 ;
+				} catch(e) {
+					debug(e);
+				}
+			}
+			
+			function OnMDEventStart(nID ,nMD ) {
+				try {
+					oPreview0.StartAlarmRecord("C:\test.raw");
+					AddOption( 'OnMDEventStart:ID=' + nID + ',nMD=' + nMD ) ;
+				} catch(e) {
+					debug(e);
+				}
+			}
+/*			
+			function OnRecordFlush(szFileName, szBeginTime, szEndTime, nDuration) {
+				try {
+					AddOption( 'OnRecordFlush:' + szFileName ) ;
+					AddOption( 'OnRecordFlush:' + szBeginTime ) ;
+					AddOption( 'OnRecordFlush:' + szEndTime ) ;
+					AddOption( 'OnRecordFlush:' + nDuration ) ;
+				} catch(e) {
+					debug(e);
+				}
+			}
+*/			
+			function DigitalOutput(nIndex){
+				try {
+					switch(nIndex){
+						case '-1':
+							oPreview0.DigitalOutput(0,0,0,0);
+							break;
+						case '1':
+							oPreview0.DigitalOutput(1,0,0,0);
+							break;
+						case '2':
+							oPreview0.DigitalOutput(0,1,0,0);
+							break;
+						case '3':
+							oPreview0.DigitalOutput(1,1,0,0);
+							break;
+					}
+				} catch(e) {
+					debug(e);
+				}
+			}
+			function EnableButton() {
+				Put_MediaType.disabled = true;
+				Put_ID.disabled = true;
+				Put_MediaSource.disabled = true;
+				Put_MediaUserName.disabled = true;
+				Put_MediaPassword.disabled = true;
+				Put_Httpport.disabled = true;
+				Put_RegisterPort.disabled = true;
+				Put_ControlPort.disabled = true;
+				Put_StreamingPort.disabled = true;
+				Put_MulticastPort.disabled = true;						
+				SetDecode0.disabled = false;
+				SetDecode1.disabled = false;
+				SetStretch0.disabled = false;
+				SetStretch1.disabled = false;
+				Mute0.disabled = false;
+				Mute1.disabled = false;
+				StartMD.disabled = false;
+				EnableMD.disabled = false;
+				DisableMD.disabled = false;
+				EnableDI.disabled = false;
+				DisableDI.disabled = false;;
+				Get_SendDO.disabled = false;;
+				SendDO.disabled = false;;
+				StartRecord.disabled = false;
+				StartAlarmRecord.disabled = false;
+			}
+			function DisableButton() {
+				Put_MediaType.disabled = false;
+				Put_ID.disabled = false;
+				Put_MediaSource.disabled = false;
+				Put_MediaUserName.disabled = false;
+				Put_MediaPassword.disabled = false;
+				Put_Httpport.disabled = false;
+				Put_RegisterPort.disabled = false;
+				Put_ControlPort.disabled = false;
+				Put_StreamingPort.disabled = false;
+				Put_MulticastPort.disabled = false;
+				SetDecode0.disabled = true;
+				SetDecode1.disabled = true;
+				SetStretch0.disabled = true;
+				SetStretch1.disabled = true;
+				Mute0.disabled = true;
+				Mute1.disabled = true;
+				StartMD.disabled = true;
+				SaveMD.disabled = true;
+				EnableMD1.disabled = true;
+				EnableMD2.disabled = true;
+				EnableMD3.disabled = true;
+				Set_MD1Sens.disabled = true;
+				Set_MD2Sens.disabled = true;
+				Set_MD3Sens.disabled = true;
+				MDdefault1.disabled = true;
+				MDdefault2.disabled = true;
+				MDdefault3.disabled = true;
+				EnableMD.disabled = true;
+				DisableMD.disabled = true;
+				EnableDI.disabled = true;
+				DisableDI.disabled = true;
+				Get_SendDO.disabled = true;
+				SendDO.disabled = true;
+				StopRecord.disabled = true;
+				StopAlarmRecord.disabled = true;
+				StartRecord.disabled = true;
+				StartAlarmRecord.disabled = true;
+			}
+
+			function debug(errMsg, enable) {  //debug information
+				try {
+					if(enable == 1) return;
+					var msg;
+					if(!errMsg) {
+						alert("event error");
+					} else {
+						msg = "js error Number: " + errMsg.number + "\n";
+						msg += "js error Name: " + errMsg.name + "\n";
+						msg += "js error Line Number: " + errMsg.lineNumber + "\n";
+						msg += "js error Description: " + errMsg.description + "\n";
+						msg += "js error Message: " + errMsg.message + "\n";
+					}
+					if(!enable) {
+						alert(msg);
+					} else if(enable == 2) {
+						alert(errMsg);
+					}
+				} catch(wrong) {
+					alert(wrong);
+				}
+			}
+			//-->
+		</script>
+	</head>
+	<body style="margin:0px 0px 0px 0px; background-color:#F1F1F1;">
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					<table border="0" cellpadding="5" cellspacing="0" width="100%">
+						<tr>
+							<td valign="top">
+								<fieldset>
+								<legend><span style="font-weight:bold; color:#FF0000; ">Basic Setting</span></legend>
+								<table border="0" cellpadding="0" cellspacing="0">
+									<tr>
+										<td>MediaType</td>
+										<td>
+											<select Name="Put_MediaType" id="Put_MediaType">
+												<option value="1">1 for Preview</option>
+												<option value="1">1 for Record</option>
+												<option value="1" selected>1 for Motion</option>
+												<option value="1">1 for QuadURL</option>
+												<option value="2">2 for Playback</option>
+												<option value="4">4 for PTZ</option>
+											</select>
+										</td>
+									</tr>
+									<tr>
+										<td>ID</td>
+										<td><input Name="Put_ID" size="9" value="1" /></td>
+									</tr>
+									<tr>
+										<td>MediaSource</td>
+										<td><input Name="Put_MediaSource" size="9" value="172.16.17.62" /></td>
+									</tr>
+									<tr>
+										<td>MediaUserName</td>
+										<td><input Name="Put_MediaUserName" size="9" value="Admin" /></td>
+									</tr>
+									<tr>
+										<td>MediaPassword</td>
+										<td><input type="password" Name="Put_MediaPassword" size="9" value="123456" /></td>
+									</tr>
+									<tr>
+										<td>Http</td>
+										<td><input Name="Put_Httpport" size="9" value="80" ID="Text11" /></td>
+									</tr>
+									<tr>
+										<td>RegisterPort</td>
+										<td><input Name="Put_RegisterPort" size="9" value="6000" ID="Text15" /></td>
+									</tr>
+									<tr>
+										<td>ControlPort</td>
+										<td><input Name="Put_ControlPort" size="9" value="6001" ID="Text16" /></td>
+									</tr>
+									<tr>
+										<td>StreamingPort</td>
+										<td><input Name="Put_StreamingPort" size="9" value="6002" ID="Text17" /></td>
+									</tr>
+									<tr>
+										<td>MulticastPort</td>
+										<td><input Name="Put_MulticastPort" size="9" value="5000" ID="Text21" /></td>
+									</tr>				
+								</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Other Setting</legend>
+								<table border="0" cellpadding="0" cellspacing="0" ID="Table1">
+									<tr>
+										<td colspan="2"><input type="button" value="Set Other Paramater" onclick="SetOtherParam();" /></td>
+									</tr>
+									<tr>
+										<td>PreEvent Time</td>
+										<td><input Name="Put_PreRecordingTime" size="9" ID="Text2" value="0" /></td>
+									</tr>
+									<tr>
+										<td>PostEvent Time</td>
+										<td><input Name="Put_PostRecordingTime" size="9" ID="Text4" value="0" /></td>
+									</tr>
+									<tr>
+										<td>Motion Duration</td>
+										<td><input Name="Put_MDAlertDuration" size="9" ID="Text6" value="0" /></td>
+									</tr>
+									<tr>
+										<td>Motion Interval</td>
+										<td><input Name="Put_MDInterval" size="9" value="0" /></td>
+									</tr>
+									<tr>
+										<td>DI Interval</td>
+										<td><input Name="Put_DIInterval" size="9" ID="Text7" value="0" /></td>
+									</tr>
+								</table>
+								<div><span>LastRecFileSize:</span><span id="LastRecFileSize"></span></div>
+								<div><span>longLastRecFileSize:</span><span id="longLastRecFileSize"></span></div>
+								<div><span>strLastRecFileSize:</span><span id="strLastRecFileSize"></span></div>
+								</fieldset>
+							</td>
+							<td valign="top">
+								<fieldset>
+									<legend style="font-weight:bold; color:blue; cursor:pointer;">Color Setting</legend>
+									<table border="0" cellpadding="0" cellspacing="0" ID="Table2">
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="SetTitleActiveColorR" id="SetTitleActiveColorR"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="SetTitleActiveColorG" id="SetTitleActiveColorG"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="SetTitleActiveColorB" id="SetTitleActiveColorB"></td>	
+											<td><input type="button" style="width:180px" value="SetTitleActiveColor" id="SetTitleActiveColor" name="SetTitleActiveColor" onclick="oPreview0.SetTitleActiveColor(10, SetTitleActiveColorR.value, SetTitleActiveColorG.value,  SetTitleActiveColorB.value);"></td>
+										</tr>
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="SetTitleNonActiveColorR" id="SetTitleNonActiveColorR"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="SetTitleNonActiveColorG" id="SetTitleNonActiveColorG"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="SetTitleNonActiveColorB" id="SetTitleNonActiveColorB"></td>	
+											<td><input type="button" style="width:180px" value="SetTitleNonActiveColor" id="SetTitleNonActiveColor" name="SetTitleNonActiveColor" onclick="oPreview0.SetTitleNonActiveColor(10, SetTitleNonActiveColorR.value, SetTitleNonActiveColorG.value,  SetTitleNonActiveColorB.value);"></td>
+										</tr>
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="SetTitleEventColorR" id="SetTitleEventColorR"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="SetTitleEventColorG" id="SetTitleEventColorG"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="SetTitleEventColorB" id="SetTitleEventColorB"></td>	
+											<td><input type="button" style="width:180px" value="SetTitleEventColor" id="SetTitleEventColor" name="SetTitleEventColor" onclick="oPreview0.SetTitleEventColor(10, SetTitleEventColorR.value, SetTitleEventColorG.value,  SetTitleEventColorB.value);"></td>
+										</tr>
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="SetPlayingBackgroundColorR" id="SetPlayingBackgroundColorR"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="SetPlayingBackgroundColorG" id="SetPlayingBackgroundColorG"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="SetPlayingBackgroundColorB" id="SetPlayingBackgroundColorB"></td>	
+											<td><input type="button" style="width:180px" value="SetPlayingBackgroundColor" id="SetPlayingBackgroundColor" name="SetPlayingBackgroundColor" onclick="oPreview0.SetPlayingBackgroundColor(SetPlayingBackgroundColorR.value, SetPlayingBackgroundColorG.value,  SetPlayingBackgroundColorB.value);"></td>
+										</tr>
+										<tr>
+											<td><font color="red">R</font></td><td><input size="3" value="0" Name="SetDefaultBackgroundColorR" id="SetDefaultBackgroundColorR"></td>
+											<td><font color="green">G</font></td><td><input size="3" value="0" Name="SetDefaultBackgroundColorG" id="SetDefaultBackgroundColorG"></td>
+											<td><font color="blue">B</font></td><td><input size="3" value="0" Name="SetDefaultBackgroundColorB" id="SetDefaultBackgroundColorB"></td>	
+											<td><input type="button" style="width:180px" value="SetDefaultBackgroundColor" id="SetDefaultBackgroundColor" name="SetDefaultBackgroundColor" onclick="oPreview0.SetDefaultBackgroundColor(SetDefaultBackgroundColorR.value, SetDefaultBackgroundColorG.value,  SetDefaultBackgroundColorB.value);"></td>
+										</tr>
+									</table>
+								</fieldset>
+								<fieldset>
+									<legend style="font-weight:bold; color:blue; cursor:pointer;">Control Basic Setting</legend>
+									<input type="button" value="SetActive(1)" onclick="oPreview0.SetControlActive(1);" title="set screen actived"/>
+									<input type="button" value="SetActive(0)" onclick="oPreview0.SetControlActive(0);" title="set screen inactived"/><br/>
+									<input type="button" value="TitleBar(1)" onclick="oPreview0.DisplayTitleBar(1);" title="show screen title bar"/>
+									<input type="button" value="TitleBar(0)" onclick="oPreview0.DisplayTitleBar(0);" title="hide screen title bar"/><br/>
+									<input type="button" value="SetMute(1)" onclick="oPreview0.Mute = 1;" id="Mute1" name="Mute1">
+									<input type="button" value="SetMute(0)" onclick="oPreview0.Mute = 0;" id="Mute0" name="Mute0"><br/>
+									<input type="button" value="SetDecodeI(1)" onclick="oPreview0.SetDecodeI(1);" id="SetDecode1" name="SetDecode1"> <input type="button" value="SetStretch(1)" onclick="oPreview0.StretchToFit = 0;" id="SetStretch0" name="SetStretch0"><br/>
+									<input type="button" value="SetDecodeI(0)" onclick="oPreview0.SetDecodeI(0);" id="SetDecode0" name="SetDecode0"> <input type="button" value="SetStretch(0)" onclick="oPreview0.StretchToFit = 1;" id="SetStretch1" name="SetStretch1"><br/>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Event Information</legend>
+								<table border="0" cellpadding="0" cellspacing="0" ID="Table3">
+									<tr>
+										<td>Event List:</td>
+									</tr>
+									<tr>
+										<td><select name="lstEventList" size="5" style="WIDTH: 300px" ID="Select2"></select></td>
+									</tr>
+									<tr>
+										<td>OnTimeCode:</td>
+									</tr>
+									<tr>
+										<td><select name="lstOnTimeCode" size="5" style="WIDTH: 300px" ID="Select1"></select></td>
+									</tr>
+								</table>
+								</fieldset>
+							</td>
+							<td valign="top">
+								Your Version<input Name="Get_Version" size="40"><br/>
+								<OBJECT id="oPreview0" height="240" width="352" data="data:application/x-oleobject;base64,P2/zpuA6i0WvxKqCVl4L+BAHAABhJAAAzhgAAA==" classid="CLSID:F8E691A0-C92E-4E42-9CDA-62FC07A9483B" VIEWASTEXT></OBJECT>
+								<script for="oPreview0" event="OnConnect(nID,successful)">OnConnect(nID,successful);</script>
+								<script for="oPreview0" event="OnPlay(nID)">OnPlay(nID);</script>
+								<script for="oPreview0" event="OnStop(nID)">OnStop(nID);</script>
+								<script for="oPreview0" event="OnDisconnect(nID)">OnDisconnect(nID);</script>
+								<script for="oPreview0" event="OnTimeCode(nID,szTime)">OnTimeCode(nID,szTime);</script>
+								<script for="oPreview0" event="OnMDSettingEx(nID,nIndex, nX, nY, nW, nH, Sens, enable, nTime)">OnMDSettingEx(nID, nIndex, nX, nY, nW, nH, Sens, enable, nTime);</script>
+								<script for="oPreview0" event="OnMDSettingChange(nID,nIndex)">OnMDSettingChanege(nID, nIndex);</script>
+								<script for="oPreview0" event="OnMDEventStart(nID, nMD)">OnMDEventStart(nID, nMD);</script>
+								<script for="oPreview0" event="OnMDEventEnd(nID)">;OnMDEventEnd(nID);</script>							
+								<script for="oPreview0" event="OnStartRecord(nID, successful, szFileName)">OnStartRecord(nID, successful, szFileName);</script>								
+								<script for="oPreview0" event="OnStopRecord(nID, szFileName)">OnStopRecord(nID, szFileName);</script>
+								<script for="oPreview0" event="OnDIEvent(nID, nDI)">OnDIEvent(nID, nDI);</script>
+								<script for="oPreview0" event="OnDIEventEnd(nID)">OnDIEventEnd(nID);</script>
+								<p />
+								<fieldset>
+									<input type="button" value="Connect" onclick="SetNecessaryParam();oPreview0.Connect(0);GetProperty(0);">
+									<input type="button" value="DisConn" onclick="oPreview0.Stop();oPreview0.Disconnect();GetProperty(0); DisableButton();" id="Button1" name="Button1"> 
+									<input Name="Get_NetworkStatus" size="4"><br/>
+									<input type="button" value="Play" onclick="oPreview0.Play();GetProperty(0);SetOtherParam();" id="Play" name="Play"> <input type="button" value="Stop" onclick=";oPreview0.Stop();GetProperty(0);" id="Stop" name="Stop">
+									<input Name="Get_ContentStatus" size="4"><br/>									
+									<input type="button" value="Start MD Setting" onclick="oPreview0.StartMDSetup();oPreview0.EnableMotionSetting(1);" id="StartMD" name="StartMD">
+									<input type="button" value="Save MD Setting" onclick="SaveMDSetting();oPreview0.StopMDSetup();oPreview0.EnableMotionSetting(0);SaveMDSetting();" id="SaveMD" name="SaveMD"><br/>
+									<font>Enable MD1</font><input type="checkbox" name="EnableMD1" id="EnableMD1" onclick="MDEnable(this, 1)">Sens<input Name="Set_MD1Sens" size="8" Maxlength="3" value="0"><input type="button" value="default" onclick="MDdefault(1)" id="MDdefault1" name="MDdefault1" /><br/>
+									<font>Enable MD2</font><input type="checkbox" name="EnableMD2" id="EnableMD2" onclick="MDEnable(this, 2)">Sens<input Name="Set_MD2Sens" size="8" Maxlength="3" value="0"><input type="button" value="default" onclick="MDdefault(2)" id="MDdefault2" name="MDdefault2" /><br/>
+									<font>Enable MD3</font><input type="checkbox" name="EnableMD3" id="EnableMD3" onclick="MDEnable(this, 3)">Sens<input Name="Set_MD3Sens" size="8" Maxlength="3" value="0"><input type="button" value="default" onclick="MDdefault(3)" id="MDdefault3" name="MDdefault3" /><br/>									
+									<input type="button" value="EnableMD" onclick="oPreview0.EnableMotionDetection();" id="EnableMD" name="EnableMD"> <input type="button" value="DisableMD" onclick="oPreview0.DisableMotionDetection();" id="DisableMD" name="DisableMD"><br/>
+									<input type="button" value="EnableDI" onclick="oPreview0.EnableDigitalInput();" id="EnableDI" name="EnableDI"> <input type="button" value="DisableDI" onclick="oPreview0.DisableDigitalInput();" id="DisableDI" name="DisableDI"><br/>
+									<select Name="Get_SendDO">
+										<option value="-1">-1 for Disable DO</option>
+										<option value="1" selected>1 for DO1</option>
+										<option value="2">2 for DO2</option>
+										<option value="3">3 for DO1&DO2</option>
+									</select>
+									<input type="button" value="SendDO" onclick="DigitalOutput(Get_SendDO.value);" id="SendDO" name="SendDo"><br />
+									<input type="button" value="StartRecord" onclick='oPreview0.StartRecord("C:\\record" + record_num + ".raw");record_num++;StopRecord.disabled=false;'	 id="StartRecord" name="StartRecord" /><input type="button" value="StopRecord" onclick="oPreview0.StopRecord();this.disable=true" id="StopRecord" name="StopRecord" /><br />
+									<input type="button" value="StartAlarmRecord" onclick="oPreview0.StartAlarmRecord('c:\\record' + record_num + '.raw');record_num++;StopAlarmRecord.disabled=false;" id="StartAlarmRecord" name="StartAlarmRecord"><input type="button" value="StopAlarmRecord" onclick="oPreview0.StopAlarmRecord();this.disabled=true" id="StopAlarmRecord" name="StopAlarmRecord" /><br />
+								</fieldset>
+							</td>
+							<td>
+							
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

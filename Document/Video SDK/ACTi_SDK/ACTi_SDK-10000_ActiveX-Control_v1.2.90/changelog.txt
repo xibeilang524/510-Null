@@ -1,0 +1,418 @@
+## v1.2.8.998
+FIX:
+ 1. Update ADK.
+
+## v1.2.8.997
+FIX:
+ 1. 當使用MOTION_STATUS去得到motion settings時,參數parsing error.
+
+## v1.2.8.996
+MOD
+ 1. 檢查Motion Setup時，如果region超過Control大小，則進行微調。
+ 2. 將比例的算法改為坐標方式計算，並mark StopMDSetup()中會產生誤差的程式。
+ 3. 於DisconnectMain()中設定TitleBar與MotionDetection為Disable，切換Media時，AP需要重新Enable。
+
+## v1.2.8.995
+MOD
+ 1. PlayBack播放時，檢查Header是否為Video.
+ADD
+ 1. [id(234), helpstring("method EnableTitleEvent")] LONG EnableTitleEvent(void);
+ 2. [id(235), helpstring("method DisableTitleEvent")] void DisableTitleEvent(void);
+
+## v1.2.8.994
+MOD
+ 1. Modify ADK render method.
+ADD
+ 1. [id(37)] void OnAutoReconnect(LONG nID);
+MOV
+ 1. [id(233), helpstring("method SetRenderHeight")] void SetRenderHeight(LONG iHeight);
+
+## v1.2.8.993
+ MOD:
+ 1. Modify PTZ file (Pleco-Pleco D)
+
+## v1.2.8.992
+ MOD:
+ 1. Modify PTZ file (Pleco-Pleco D)
+ ADD:
+ 1. [id(234) , helpstring("property Is4VGAMode")] VARIANT_BOOL Is4VGAMode;
+
+## v1.2.8.991
+ADD:
+ 1. [id(233), helpstring("method SetRenderHeight")] void SetRenderHeight(LONG iHeight);
+MOD:
+ 1. Update ADK
+
+## v1.2.8.990
+MOD:
+ 1. When playbavk mode, setting connection timeout to 5s
+
+## v1.2.8.989
+FIX:
+ 1. Fixed sometimes control get x.y position error
+
+## v1.2.8.988
+## v1.2.8.987
+MOD:
+ 1. Update ADK
+
+## v1.2.8.985
+FIX:
+ 1. Fixed audio talk issue
+
+## v1.2.8.984
+FIX:
+ 1. Fixed SendURLCmd problem
+
+## v1.2.8.983
+FIX:
+ 1. Fixed streaming by HTTP,RTP from AXIS issue.
+
+## v1.2.8.982
+FIX:
+ 1. Support Multipart http streaming.
+ 2. Fixed get error resolution from AXIS.
+
+## v1.2.8.981
+FIX:
+ 1. Remember auto reconnect flag
+
+## v1.2.8.980
+MOD:
+ 1. Support to receive stream H264 on RTP from AXIS's IP Camera.
+
+## v1.2.8.979
+FIX:
+ 1. Fixed SendURLCmd parsing uri failed.
+ 2. Fixed Resize function.
+ 3. Fixed when network recovery ,live stream will auto reconnect if auto reconnect sets to TRUE.
+
+## v1.2.8.978
+FIX:
+ 1. Fixed Sync playback時,顯示時間錯誤.
+ 2. Modified 在initial時,Start up socket.
+
+## v1.2.8.974
+FIX:
+ 1. When Sync playback ,snapshot will fail ,if there is no image.
+ 2. When disconnecting ,one of cameras at auto reconnect mode will give up.
+
+## v1.2.8.973
+FIX
+ 1. When snapshot failed, modify snapshot times.
+
+## v1.2.8.972
+FIX:
+ 1. 修改再拿到ImageCB的width and height再new memory,防止memory copy error
+ 2. Update ADK(H264 support 1920x1072 check from the seq header)
+
+## v1.2.8.971
+MOD:
+ 1. 修改network status給AP判斷
+
+## v1.2.8.970
+FIX:
+ 1. Create folder時,判斷槽區大於等於Z
+MOD:
+ 1. 於ActiveMonitor內只要已拉進來的channel還未disconnect掉或還在auto reconnect則於video title bar上仍會顯示其channel id and name
+
+## v1.2.8.969
+MOD:
+ 1. Modify snapshot時,會先return,等待真正ImageCB後,再回傳filename及成功與否,避免Decode I時,因frame超過2秒而snapshot failed.
+
+## v1.2.8.968
+FIX:
+ 1. Fixed some snapshot bug
+
+## v1.2.8.967
+MOD:
+ 1. Modify snapshot function
+
+## v1.2.8.966
+MOD:
+ 1. Update ADK
+
+## v1.2.8.965
+FIX:
+ 1. When disconnected, Close connect thread.
+ 2. Snapshot buffer size is dynamic adjustment.
+
+## v1.2.8.964
+FIX:
+ 1. Fixed when pause the video at playback mode, title bar will become black.
+
+## v1.2.8.963
+FIX:
+ 1. Fixed when disable stretch mode caused abnormal result
+
+## v1.2.8.962
+FIX:
+ 1. After disconnecting, auto reconnect will stop
+
+## v1.2.8.961
+MOD:
+ 1. Send ptz stop command 不擋之前有沒有下過start ptz
+
+## v1.2.8.960
+FIX:
+ 1. Fixed if snapshot file path 有非英文字的問題
+
+## v1.2.8.959
+MOD:
+ 1. Update KMpeg4.lib
+
+## v1.2.8.958
+FIX:
+ 1. 連續按Connect and Disconnect時,會hang住的問題
+
+## v1.2.8.957
+FIX:
+ 1. When motion 結束時發event end給AP
+
+## v1.2.8.956
+FIX:
+ 1. When mouse leave active window, control will trigger mouse left button up.
+
+## v1.2.8.955
+MOD:
+ 1. Remove GMT from Live/control title bar and show local pc time
+
+## v1.2.8.954
+FIX:
+ 1. 計算TimeZone的方式
+
+## v1.2.8.953
+MOD:
+ 1. Video loss 時,燈號為黃燈,若device 為acd2000Q quad mode時要4 ch一起video loss才會黃燈
+
+## v1.2.8.952
+ADD:
+ 1. add new interface "RefreshControl()"
+
+## v1.2.8.951
+MOD:
+ 1. Get device setting and PTZ Preset 的Preview不show紅框紅bar
+FIX:
+ 1. 更改計算FPS的方式
+
+## v1.2.8.950
+FIX:
+ 1. PIR的紅框加大
+
+## v1.2.8.949
+MOD:
+ 1. Using ADK to compile control
+
+## v1.2.8.948
+FIX:
+ 1. 修改SetQuadeDeviceMode裡不去判斷Device Type,直接把AP傳來的值寫入
+
+## v1.2.8.947
+FIX:
+ 1. PIR and Motion sync with device
+ 2. 在收到Video loss callback時,同時把motion disable
+ 3. 先丟playback complete給AP再去StopRecord,縮短playback complete出現的時間
+
+## v1.2.8.946
+FIX:
+ 1.  Support new ACD2000Q FW
+
+## v1.2.8.926
+MOD:
+ 1.  Support dual stream device settings.
+
+## v1.2.8.925
+FIX:
+ 1.  If mouse is out of player's monitor,auto call mouse up function
+
+## v1.2.8.924
+ADD:
+1.	[id(227), helpstring("method DevicePrivacyMask")] BSTR DevicePrivacyMask(LONG nEnable);
+2.	[id(228), helpstring("method SnapShotEx4CMS")] BSTR SnapShotEx4CMS(LONG IFormat, LPCTSTR FileFolder, LONG ReduplicateTitleBarText, LONG R_TextColor, LONG G_TextColor, LONG B_TextColor, LPCTSTR NVRName, LPCTSTR CamName);
+
+FIX:
+ 1.  If get file time is too long, show empty instead of "1970/01/01"
+
+## v1.2.8.8
+FIX:
+ 1.  When the EnableRender set to false then don't start decoder's thread.
+ 2.  Removed double memory buffer in preview thread.
+ 3.  Fix when decode's thread slow then receive's thread will be cause a lot of frames in queue.
+ 4.  Fix play and pause in playback then play's speed not correct.
+ 5.
+ Resolve hostname to ip address when reconnect.
+
+
+ADD:
+ 2.  Support maximun streaming time.
+
+
+## v1.2.8.7
+FIX:
+ 1.  Fix playback timecode issue.(28s->28s)
+ 2.  Supported large raw file of size >2gb.
+ 3.  Fix IRIS STOP issue.
+
+ADD:
+ 1.  The SetTitleBarTextLayout support ms.
+ 2.  Add methods:
+     	ShowRealFPS
+    	SetRealFpsFontColor
+	SetTextOutEx
+
+
+## v1.2.8.6
+FIX:
+ 1.  The fps not correct in sequence header on PAL's camera.
+ 2.  After operation methods of FilpImage and MirrorImage then PTZ's function not correct.
+ 3.  The SetDefaultBackgroundColor not work.
+
+ADD:
+ 1.  Add some methods and events:
+     methods : SetBorderWidth , SetBorderColor,  GetNumberOfMonitors
+     evnets:   OnKeyDown, OnKeyUp
+
+## v1.2.8.5
+ADD:
+ 1.   Add method of SetVideoTransformConfig to configuration streaming engine resize video.
+MOD:
+ 1.   Content type _MEDIA_TYPE_PREVIEW_AHTTP=8, _MEDIA_TYPE_PREVIEW_AHTTP_WITHOUT_CONTROL=9.
+REMOVE:
+ 1.   Remove two method OpenFolderDialog and OpenFileDialog.
+
+
+## v1.2.8.4
+ADD:
+ 1.  Methods:
+		SnapshotWithTitleBar
+FIX:
+ 1.  SetCurrentTime with timezone issue.
+	 
+## v1.2.8.3
+MOD:
+ 1.  Support MOTION_CONFIG url command to get/set motion region's information.
+ 2.  Motion and VLoss are in B2 header and definition in streaming protocol version v1.0.07.
+ 3.  Modify event of OnMDSetting's parameter 
+         void OnMDSetting(LONG nID, LONG nIndex, LONG nX, LONG nY, LONG nW, LONG nH, LONG nSens, LONG enable)
+     The parameter of enable will be specify of region enable status.
+
+ADD:
+ 1.  Methods:	
+		GetMotionRegionEnable, SetMotionRegionEnable to get/set each one of region.
+		OpenFolderDialog is popup a dialog to select folder path.
+		OpenFileDialog is popup a dialog to select file path.
+FIX:  
+ 1.  Many times disconnect/reconnect during motion setting, then motion setting will be lost.
+ 2.  The motion setting via RTP will be failed.
+	
+
+## v1.2.8.2
+ADD:
+ 1.  The AHTTP has been supported.
+
+FIX: 
+ 1.  No TEARDOWN command when RTP session closes.
+ 2.  The destination port in client's RTCP is 0.
+ 3.  Cannot hear a sound  when play a file is RTP with audio.
+
+## v1.2.8.1
+ADD: Properties:
+     		 TCPVideoStreamID :  to specify video track, value 0 to 255 for 1 to 256 video track.
+		 RTPVideoTrackNumber: set it to 0, ARTP will use 1st video track,  1 to 255 is for specify video track.
+		 RTPAudioTrackNumber: set it to 0, ARTP will use 1st audio track,  1 to 255 is for specify audio track.
+
+
+## v1.2.8.0
+FIX:
+ 1.  Digital Zoom doesn't work when playback and pause.
+
+## v1.2.7.9
+MOV:  	
+ 1.  Removed VideoTrackIDOnRTP and AudioTrackIDOnRTP, and change ChannelNumber size to integer.
+ADD:
+ 1.  ARAW has been supported timezone.
+
+
+## v1.2.7.8
+ADD :
+ 1. Supported RTP over UDP with multi tracks.
+ 2. Support motion detection setting on ACD2000Q at single/quad mode.
+
+FIX:
+ 1. H.264 decode failed issue.
+
+
+## v1.2.7.7
+FIX : 
+ 1. Resize font size when SetTextOut on full screen.
+ 2. Screen freeze when exit full screen mode.
+ADD :
+ 1. Add three PTZ protocals 8211_VISCA, 8511_VISCA, SONY_VISCA.
+MOD:
+ 1. Removed StreamID and using ChannelNumber instead.(rs232-setting issue)
+
+## v1.2.7.5
+FIX : 
+ 1. H.264 Screen flash caused by enable audio issue.
+
+## v1.2.7.4
+FIX : 
+ 1. Change resolution on H.264 and MJpeg preview might cause crash issue.
+
+## v1.2.7.3
+FIX : 
+ 1. Timecode wrong displaying issue.
+
+## v1.2.7.2
+FIX : 
+ 1. Disable title bar casue black screen issue.
+
+## v1.2.7.1
+MOD : 
+ 1. Read 4096 bytes of result to return send url commands.
+
+## v1.2.7.0
+MOD : 
+ 1. 82xx 85xx preset from 16 to 32
+ 2. Enable Snapshot after puase (in Playback mode)
+ 3. 82xx Mouse PTZ, Zoom in/out will not be displayed
+
+## v1.2.6.9
+FIX : 
+ 1. Crash bug @ disconnect stage ( Caused by release sound device )
+
+## v1.2.6.8
+FIX : 
+ 1. Patrol cause crash bug.
+
+## v1.2.6.7
+FIX : 
+ 1. MousePTZ under non-connection cause hand issue.
+
+## v1.2.6.6
+MOD : 
+ 1. FFM-H264 replace IPP-H264
+
+## v1.2.6.5
+ADD : 
+ 1. add EnableDeocder for enable ( 1 ) / disable ( 0 ) decoder
+
+## v1.2.6.4
+FIX : 
+	1. Mouse PTZ PAN speed fixup
+
+## v1.2.6.3
+MOD : 
+	1. PTZ Stop sequence
+
+## v1.2.6.2
+FIX : 
+	1. Playabck didn't send FILE_COMPLETE
+		- ASE upgrade to 1.2.13
+	2. VIDEOTEC_MACRO wrong spelling cause load resource fail issue.
+
+
+## v1.2.6.1
+FIX : 
+	1. Playabck fastforward error
+		- Playback check FPS function cause timestemp is reset.

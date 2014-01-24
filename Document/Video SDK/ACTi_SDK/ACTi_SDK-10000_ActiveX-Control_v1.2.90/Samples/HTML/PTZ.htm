@@ -1,0 +1,845 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en">
+	<head>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="vs_targetSchema" content="http://schemas.microsoft.com/intellisense/ie5" />
+		<script type="text/javascript">
+		<!--//
+		window.onload = function() {
+			try {
+			    Get_Version.value = oPreview0.Version;
+				Button2.disabled = true;
+				Button3.disabled = true;
+				Button4.disabled = true;
+				DisableButton();
+				DisablePTZButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function GetProperty( nSEQ ) {
+			try {
+			/*
+				eval( 'Get_ID.value = oPreview'+nSEQ+'.ID' ) ;
+				eval( 'Get_MediaType.value = oPreview'+nSEQ+'.MediaType' ) ; 
+				
+				eval( 'Get_MediaSource.value = oPreview'+nSEQ+'.MediaSource' ) ; 
+				eval( 'Get_MediaUserName.value = oPreview'+nSEQ+'.MediaUserName' ) ; 
+				
+				eval( 'Get_Vendor.value = oPreview'+nSEQ+'.Vendor' ) ;
+				eval( 'Get_Protocol.value = oPreview'+nSEQ+'.Protocol' ) ;
+				eval( 'Get_PTZFile.value = oPreview'+nSEQ+'.PTZFile' ) ;
+				eval( 'Get_AddressID.value = oPreview'+nSEQ+'.AddressID' ) ;
+				eval( 'Get_Parity.value = oPreview'+nSEQ+'.Parity' ) ;
+				eval( 'Get_BaudRate.value = oPreview'+nSEQ+'.BaudRate' ) ;
+			*/		
+				eval( 'Get_NetworkStatus.value = oPreview'+nSEQ+'.NetworkStatus' ) ; 
+				eval( 'Get_ContentStatus.value = oPreview'+nSEQ+'.ContentStatus' ) ;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		
+		function PRESET( szCmd, nNum ) {
+			try {
+				oPreview0.PTZPreset( szCmd, nNum ) ;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function SetSetting() {
+			try {
+				oPreview0.MediaType=Put_MediaType.value;
+				oPreview0.ID=Put_ID.value;
+				oPreview0.MediaSource=Put_MediaSource.value;
+				oPreview0.MediaUsername=Put_MediaUserName.value;
+				oPreview0.MediaPassword=Put_MediaPassword.value;
+				oPreview0.Httpport=Put_Httpport.value;
+				oPreview0.RegisterPort=Put_RegisterPort.value;
+				oPreview0.ControlPort=Put_ControlPort.value;
+				oPreview0.StreamingPort=Put_StreamingPort.value;
+				oPreview0.MulticastPort=Put_MulticastPort.value;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function SetPTZSetting() {
+			try {
+				if ( ProtocolType.value == "0" ) {
+					oPreview0.PTZFile = "" ;
+					oPreview0.Vendor=Put_Vendor.value ;
+					oPreview0.Protocol=Put_Protocol.value ;
+				} else {
+					oPreview0.PTZFile=Put_PTZFile.value;
+				}
+				oPreview0.Addressid=Put_AddressID.value;
+				oPreview0.Parity=Put_Parity.value;
+				oPreview0.BaudRate=Put_BaudRate.value;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function CheckPTZStatus(){
+			try {
+				PTZStatus.value = oPreview0.PTZStatus;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function EnablePTZOption() {
+			try {
+				//alert(oPreview0.NetworkStatus); return;
+				if ( oPreview0.NetworkStatus == 0 ) return ;
+
+				var sLen = Put_Vendor.options.length ;
+				if (sLen>0) for ( i=0 ; i<sLen ; i++ ) { Put_Vendor.remove(0)	}
+				
+				defTBL_PTZOPTION.disabled = false ;
+				
+				var sTmp = oPreview0.EnumerateVendor() ;
+				sTmp = sTmp.split(",") ;
+				var sVendor = sTmp.slice(1)
+				sVendor.sort() ;
+				for ( i=0 ; i<sVendor.length ; i++ ) { Put_Vendor.add(new Option(sVendor[i],sVendor[i])) ; }
+				
+				if (Put_Vendor.options.length>0) {
+					Put_Vendor.selectedIndex = 0 ;
+					RefreshProtocol() ;
+				}
+				
+				ProtocolType.disabled = false ;
+				ProtocolChange() ;
+				Put_AddressID.disabled = false ;
+				Put_Parity.disabled = false ;
+				Put_BaudRate.disabled = false ;
+				EnablePTZButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function DisablePTZOption() {
+			try {
+				defTBL_PTZOPTION.disabled = true ;
+				ProtocolType.disabled = true ;
+				Put_Vendor.disabled = true ;
+				Put_Protocol.disabled = true ;
+				Put_PTZFile.disabled = true ;
+				Put_AddressID.disabled = true ;
+				Put_Parity.disabled = true ;
+				Put_BaudRate.disabled = true ;
+				DisablePTZButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function ProtocolChange() {
+			try {
+				if ( ProtocolType.value == "0" ) {
+					Put_Vendor.disabled = false ;
+					Put_Protocol.disabled = false ;
+					Put_PTZFile.disabled = true ;
+				} else {
+					Put_Vendor.disabled = true ;
+					Put_Protocol.disabled = true ;
+					Put_PTZFile.disabled = false ;
+				}
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function RefreshProtocol() {
+			try {
+				var sLen = Put_Protocol.options.length ;
+				for ( i=0 ; i<sLen ; i++ ) { Put_Protocol.remove(0)	}
+				if ( Put_Vendor.value == "" ) return ;
+				var sTmp = oPreview0.EnumerateProtocol(Put_Vendor.value) ;
+				sTmp = sTmp.split(",") ;
+				var sProtocol = sTmp.slice(1) ;
+				sProtocol.sort() ;
+				for ( i=0 ; i<sProtocol.length ; i++ ) { Put_Protocol.add(new Option(sProtocol[i],sProtocol[i])) ; }
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function AddOption( szinnerText ) {
+			try {
+				var nLen = lstEventList.options.length ;
+				for ( i=nLen;i>=300;i--) {
+					lstEventList.remove(i-1) ;
+				}
+				
+				var NewOP = document.createElement("OPTION");
+
+				lstEventList.options.add(NewOP, 0);
+				
+				NewOP.value = '';
+				NewOP.innerText = szinnerText ;
+				NewOP.selected = true;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnConnect(nID,successful) {
+			try {
+				AddOption( 'OnConnect: ID=' + nID + ',successful=' + successful ) ;
+				if(successful){
+					Button2.disabled = false;
+					Button3.disabled = false;
+					Button4.disabled = false;
+				}
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnPlay(nID) {
+			try {
+				AddOption( 'OnPlay: ID=' + nID ) ;	
+				EnableButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnStop(nID) {
+			try {
+				AddOption( 'OnStop: ID=' + nID) ;
+				DisableButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnDisconnect(nID) {
+			try {
+				AddOption( 'OnDisconnect: ID=' + nID ) ;	
+				Button3.disabled = true;
+				Button4.disabled = true;
+				DisableButton();
+			} catch(e) {
+				debug(e);
+			}
+		}
+		function OnTimeCode(nID,szTime) {
+			try {
+				var NewOP = document.createElement("OPTION");
+				lstOnTimeCode.options.add(NewOP, 0);
+				NewOP.value = '';
+				NewOP.innerText = "ID:" + nID + "  Time:" + szTime ;
+				NewOP.selected = true;
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function OnRS232Event(nID, szData, nLen) {
+			try {
+				AddOption( 'OnRS232Event: ID=' + nID + ',szData=' + szData ) ;	
+				AddOption( 'OnRS232Event: nLen=' + nLen ) ;	
+			} catch(e) {
+				debug(e);
+			}
+		}
+		
+		function EnableButton(){
+			try {
+				Put_MediaType.disabled = true;
+				Put_ID.disabled = true;
+				Put_MediaSource.disabled = true;
+				Put_MediaUserName.disabled = true;
+				Put_MediaPassword.disabled = true;
+				Put_Httpport.disabled = true;
+				Put_RegisterPort.disabled = true;
+				Put_ControlPort.disabled = true;
+				Put_StreamingPort.disabled = true;
+				Put_MulticastPort.disabled = true;
+				PutPanSpeed.disabled = false;
+				PutTiltSpeed.disabled = false;
+				Select1.disabled = false;
+				Select2.disabled = false;
+				Select3.disabled = false;
+				Select4.disabled = false;
+				Select5.disabled = false;
+				Select6.disabled = false;
+				Select9.disabled = false;
+				Button5.disabled = false;
+				Button6.disabled = false;
+				Button7.disabled = false;
+				Button8.disabled = false;
+				Button9.disabled = false;
+				Button10.disabled = false;
+				Button11.disabled = false;
+				Button12.disabled = false;
+				Button13.disabled = false;
+				Button14.disabled = false;
+				Button15.disabled = false;
+				Button16.disabled = false;
+				Button17.disabled = false
+				Button18.disabled = false;
+				Button19.disabled = false;
+			} catch(e) {
+				debug(e);
+			}		
+		}
+		
+		function DisableButton(){
+			try {
+				Put_MediaType.disabled = false;
+				Put_ID.disabled = false;
+				Put_MediaSource.disabled = false;
+				Put_MediaUserName.disabled = false;
+				Put_MediaPassword.disabled = false;
+				Put_Httpport.disabled = false;
+				Put_RegisterPort.disabled = false;
+				Put_ControlPort.disabled = false;
+				Put_StreamingPort.disabled = false;
+				Put_MulticastPort.disabled = false;
+				PutPanSpeed.disabled = true;
+				PutTiltSpeed.disabled = true;
+				Select1.disabled = true;
+				Select2.disabled = true;
+				Select3.disabled = true;
+				Select4.disabled = true;
+				Select5.disabled = true;
+				Select6.disabled = true;
+				Select9.disabled = true;
+				Button5.disabled = true;
+				Button6.disabled = true;
+				Button7.disabled = true;
+				Button8.disabled = true;
+				Button9.disabled = true;
+				Button10.disabled = true;
+				Button11.disabled = true;
+				Button12.disabled = true;
+				Button13.disabled = true;
+				Button14.disabled = true;
+				Button15.disabled = true;
+				Button16.disabled = true;
+				Button17.disabled = true;
+				Button18.disabled = true;
+				Button19.disabled = true;
+				DigitalZoomInStep.disabled = true;
+				DigitalZoomOutStep.disabled = true;
+				DigitalMoveUpStep.disabled = true;
+				DigitalMoveDownStep.disabled = true;
+				DigitalMoveLeftStep.disabled = true;
+				DigitalMoveRightStep.disabled = true;
+				DigitalZoomOutMax.disabled = true;
+				DigitalZoomIn.disabled = true;
+				DigitalZoomOut.disabled = true;
+				DigitalMoveUp.disabled = true;
+				DigitalMoveDown.disabled = true;
+				DigitalMoveLeft.disabled = true;
+				DigitalMoveRight.disabled = true;
+			} catch(e) {
+				debug(e);
+			}		
+		}
+		
+		function EnablePTZButton(){
+			try {
+				Set1.disabled = false;
+				Set2.disabled = false;
+				Set3.disabled = false;
+				Set4.disabled = false;
+				Set5.disabled = false;
+				Set6.disabled = false;
+				Set7.disabled = false;
+				Set8.disabled = false;
+				Set9.disabled = false;
+				Set10.disabled = false;
+				Set11.disabled = false;
+				Set12.disabled = false;
+				Set13.disabled = false;
+				Set14.disabled = false;
+				Set15.disabled = false;
+				Set16.disabled = false;
+				Clear1.disabled = false;
+				Clear2.disabled = false;
+				Clear3.disabled = false;
+				Clear4.disabled = false;
+				Clear5.disabled = false;
+				Clear6.disabled = false;
+				Clear7.disabled = false;
+				Clear8.disabled = false;
+				Clear9.disabled = false;
+				Clear10.disabled = false;
+				Clear11.disabled = false;
+				Clear12.disabled = false;
+				Clear13.disabled = false;
+				Clear14.disabled = false;
+				Clear15.disabled = false;
+				Clear16.disabled = false;
+				Goto1.disabled = false;
+				Goto2.disabled = false;
+				Goto3.disabled = false;
+				Goto4.disabled = false;
+				Goto5.disabled = false;
+				Goto6.disabled = false;
+				Goto7.disabled = false;
+				Goto8.disabled = false;
+				Goto9.disabled = false;
+				Goto10.disabled = false;
+				Goto11.disabled = false;
+				Goto12.disabled = false;
+				Goto13.disabled = false;
+				Goto14.disabled = false;
+				Goto15.disabled = false;
+				Goto16.disabled = false;
+				DigitalZoomInStep.disabled = false;
+				DigitalZoomOutStep.disabled = false;
+				DigitalMoveUpStep.disabled = false;
+				DigitalMoveDownStep.disabled = false;
+				DigitalMoveLeftStep.disabled = false;
+				DigitalMoveRightStep.disabled = false;
+				DigitalZoomOutMax.disabled = false;
+				DigitalZoomIn.disabled = false;
+				DigitalZoomOut.disabled = false;
+				DigitalMoveUp.disabled = false;
+				DigitalMoveDown.disabled = false;
+				DigitalMoveLeft.disabled = false;
+				DigitalMoveRight.disabled = false;
+			} catch(e) {
+					debug(e);
+				}		
+		}
+		
+		function DisablePTZButton(){
+			try {
+				Set1.disabled = true;
+				Set2.disabled = true;
+				Set3.disabled = true;
+				Set4.disabled = true;
+				Set5.disabled = true;
+				Set6.disabled = true;
+				Set7.disabled = true;
+				Set8.disabled = true;
+				Set9.disabled = true;
+				Set10.disabled = true;
+				Set11.disabled = true;
+				Set12.disabled = true;
+				Set13.disabled = true;
+				Set14.disabled = true;
+				Set15.disabled = true;
+				Set16.disabled = true;
+				Clear1.disabled = true;
+				Clear2.disabled = true;
+				Clear3.disabled = true;
+				Clear4.disabled = true;
+				Clear5.disabled = true;
+				Clear6.disabled = true;
+				Clear7.disabled = true;
+				Clear8.disabled = true;
+				Clear9.disabled = true;
+				Clear10.disabled = true;
+				Clear11.disabled = true;
+				Clear12.disabled = true;
+				Clear13.disabled = true;
+				Clear14.disabled = true;
+				Clear15.disabled = true;
+				Clear16.disabled = true;
+				Goto1.disabled = true;
+				Goto2.disabled = true;
+				Goto3.disabled = true;
+				Goto4.disabled = true;
+				Goto5.disabled = true;
+				Goto6.disabled = true;
+				Goto7.disabled = true;
+				Goto8.disabled = true;
+				Goto9.disabled = true;
+				Goto10.disabled = true;
+				Goto11.disabled = true;
+				Goto12.disabled = true;
+				Goto13.disabled = true;
+				Goto14.disabled = true;
+				Goto15.disabled = true;
+				Goto16.disabled = true;
+			} catch(e) {
+					debug(e);
+				}		
+		}
+		
+		function debug(errMsg, enable) {  //debug information
+			try {
+				if(enable == 1) return;
+				var msg;
+				if(!errMsg) {
+					alert("event error");
+				} else {
+					msg = "js error Number: " + errMsg.number + "\n";
+					msg += "js error Name: " + errMsg.name + "\n";
+					msg += "js error Line Number: " + errMsg.lineNumber + "\n";
+					msg += "js error Description: " + errMsg.description + "\n";
+					msg += "js error Message: " + errMsg.message + "\n";
+				}
+				if(!enable) {
+					alert(msg);
+				} else if(enable == 2) {
+					alert(errMsg);
+				}
+			} catch(wrong) {
+				alert(wrong);
+			}
+		}
+		//-->
+		</script>
+	</head>
+	<body style="margin:0px 0px 0px 0px; background-color:#F1F1F1;">
+		<table border="0" cellpadding="5" cellspacing="0" width="100%">
+			<tr>
+				<td>
+					<table border="0" cellpadding="0" cellspacing="0" width="100%">
+						<tr>
+							<td valign="top">
+								<fieldset>
+									<legend style="font-weight:bold; color:blue; cursor:pointer;">Basic Setting</legend>
+									<table border="0" cellpadding="0" cellspacing="0">
+										<tr>
+											<td>MediaType</td>
+											<td>
+												<select name="Put_MediaType" id="Put_MediaType">
+													<option value="1" selected>1 for Preview</option>
+													<option value="1">1 for Record</option>
+													<option value="1">1 for Motion</option>
+													<option value="1">1 for QuadURL</option>
+													<option value="2">2 for Playback</option>
+													<option value="4">4 for PTZ</option> 
+													<option value="7">7 for RTP</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>ID</td>
+											<td><input name="Put_ID" size="9" value="1"></td>
+										</tr>
+										<tr>
+											<td>MediaSource</td>
+											<td><input name="Put_MediaSource" size="9" value="172.16.1.146" /></td>
+										</tr>
+										<tr>
+											<td>MediaUserName</td>
+											<td><input name="Put_MediaUserName" size="9" value="Admin" /></td>
+										</tr>
+										<tr>
+											<td>MediaPassword</td>
+											<td><input type ="password" name="Put_MediaPassword" size="9" value="123456" /></td>
+										</tr>
+									<tr>
+										<td>Http</td>
+										<td><input Name="Put_Httpport" size="9" value="80" ID="Text11"></td>
+									</tr>
+									<tr>
+										<td>RegisterPort</td>
+										<td><input Name="Put_RegisterPort" size="9" value="6000" ID="Text15"></td>
+									</tr>
+									<tr>
+										<td>ControlPort</td>
+										<td><input Name="Put_ControlPort" size="9" value="6001" ID="Text16"></td>
+									</tr>
+									<tr>
+										<td>StreamingPort</td>
+										<td><input Name="Put_StreamingPort" size="9" value="6002" ID="Text17"></td>
+									</tr>
+									<tr>
+										<td>MulticastPort</td>
+										<td><input Name="Put_MulticastPort" size="9" value="5000" ID="Text21"></td>
+									</tr>				
+									</table>
+								</fieldset>
+								<fieldset>
+									<legend style="font-weight:bold; color:blue; cursor:pointer;">PTZ Setting</legend>
+									<table border="0" cellpadding="0" cellspacing="0" id="defTBL_PTZOPTION" disabled>
+										<tr>
+											<td colspan="2" align="center">
+												<input type="button" onclick="SetPTZSetting()" value="Set PTZ Setting">
+											</td>
+										</tr>
+										<tr>
+											<td colspan="2" align="center">
+												<select id="ProtocolType" onchange="ProtocolChange()" disabled>
+													<option value="0">Use Built-in Protocol</option>
+													<option value="1">Use Protocol File</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>Vender</td>
+											<td><select name="Put_Vendor" onchange="RefreshProtocol()" disabled></select></td>
+										</tr>
+										<tr>
+											<td>Protocol</td>
+											<td><select name="Put_Protocol" disabled></select></td>
+										</tr>
+										<tr>
+											<td>PTZFile</td>
+											<td><input name="Put_PTZFile" size="9" disabled></td>
+										</tr>
+										<tr>
+											<td>AddressID</td>
+											<td><input name="Put_AddressID" size="9" value="1" id="Text5" disabled /></td>
+										</tr>
+										<tr>
+											<td>Parity</td>
+											<td>
+												<select name="Put_Parity" disabled>
+													<option value="E81">E81</option>
+													<option value="N81">N81</option>
+													<option value="O81">O81</option>
+												</select>
+											</td>
+										</tr>
+										<tr>
+											<td>BaudRate</td>
+											<td>
+												<select name="Put_BaudRate" disabled>
+													<option value="2400">2400</option>
+													<option value="4800">4800</option>
+													<option value="9600">9600</option>
+													<option value="19200">19200</option>
+													<option value="38400">38400</option>
+													<option value="57600">57600</option>
+													<option value="115200">115200</option>
+												</select>
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+							</td>
+							<td valign="top">
+								<fieldset>
+									<legend style="font-weight:bold; color:blue; cursor:pointer;">PTZ Command</legend>
+									<table cellpadding="0" cellspacing="0" border="0">
+										<tr>
+											<input type="button" value="Connect" onclick="SetSetting();oPreview0.Connect(0);GetProperty(0);" id="Button1" name="Button1">
+											&nbsp;
+											<input type="button" value="DisConn" onclick="oPreview0.Stop();oPreview0.Disconnect();DisablePTZOption();GetProperty(0);"id ="Button2" name="Button2">
+											&nbsp;
+											<input name="Get_NetworkStatus" size="4" id="Text1"><br/>
+											<input type="button" value="Play" onclick="oPreview0.Play();GetProperty(0);if(defTBL_PTZOPTION.disabled) EnablePTZOption();" id="Button3" name="Button3">
+											&nbsp;
+											<input type="button" value="Stop" onclick="oPreview0.Stop();GetProperty(0);" id="Button4" name="Button4">
+											&nbsp;
+											<input name="Get_ContentStatus" size="4" id="Text2"><br/>
+										</tr>
+										<tr>
+											<td>
+												<hr />
+												<input type="button" value="EnablePTZ" onclick="oPreview0.EnablePTZ();CheckPTZStatus();" id="Button5" name="Button5">
+												<input type="button" value="DisablePTZ" onclick="oPreview0.DisableMousePTZ();oPreview0.DisablePTZ();CheckPTZStatus();" id="Button6" name="Button6">
+												<input name="PTZStatus" size="4" id="PTZStatus"/><br />
+												<input type="button" value="EnableMousePTZ" onclick="oPreview0.EnablePTZ();oPreview0.EnableMousePTZ();CheckPTZStatus();" id="Button7" name="Button7" style="width:140px">
+												<input type="button" value="DisableMousePTZ" onclick="oPreview0.DisableMousePTZ();CheckPTZStatus();" id="Button8" name="Button8" style="width:140px"><br/>
+												<input type="button" value="EnableAbsPosition" onclick="oPreview0.EnablePTZ();oPreview0.EnableAbsPosition();CheckPTZStatus();" style="width:140px" id="Button17" name="Button17">
+												<input type="button" value="DisableAbsPosition" onclick="oPreview0.DisableAbsPosition();CheckPTZStatus();" style="width:140px" id="Button18" name="Button18">
+												<hr />
+												<span>PanSpeed:</span>
+												<select name="Put_PanSpeed" size="1" value="1" id="PutPanSpeed" onchange="oPreview0.PTZPanSpeed = Put_PanSpeed.value;">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select>&nbsp;
+												<span>TiltSpeed:</span>
+												<select name="Put_TiltSpeed" size="1" value="1" id="PutTiltSpeed" onchange="oPreview0.PTZTiltSpeed = Put_TiltSpeed.value;">
+													<option value="1">1</option>
+													<option value="2">2</option>
+													<option value="3">3</option>
+													<option value="4">4</option>
+													<option value="5">5</option>
+												</select><br/>
+												<select name="Put_Move" size="1" id="Select1">
+													<option value="LEFT">LEFT</option>
+													<option value="RIGHT">RIGHT</option>
+													<option value="UP">UP</option>
+													<option value="DOWN">DOWN</option>
+													<option value="UPLEFT">UPLEFT</option>
+													<option value="UPRIGHT">UPRIGHT</option>
+													<option value="DOWNLEFT">DOWNLEFT</option>
+													<option value="DOWNRIGHT">DOWNRIGHT</option>
+													<option value="STOP">STOP</option>
+													<option value="HOME">HOME</option>
+												</select>
+												<input type="button" value="PTZMove" onclick="oPreview0.PTZMove(Put_Move.options[Put_Move.selectedIndex].value);" id="Button11" name="Button11"><br />
+												<select name="Put_ZOOM" size="1" id="Select2">
+													<option value="IN">IN</option>
+													<option value="OUT">OUT</option>
+													<option value="STOP">STOP</option>
+												</select>
+												<input type="button" value="PTZZoom" onclick="oPreview0.PTZZoom(Put_ZOOM.options[Put_ZOOM.selectedIndex].value);"
+													id="Button12" name="Button12"><br/>
+												<select name="Put_FOCUS" size="1" id="Select3">
+													<option value="IN">IN</option>
+													<option value="OUT">OUT</option>
+													<option value="STOP">STOP</option>
+												</select>
+												<input type="button" value="PTZFocus" onclick="oPreview0.PTZFocus(Put_FOCUS.options[Put_FOCUS.selectedIndex].value);"
+													id="Button13" name="Button13">
+												<select name="Put_IRIS" size="1" id="Select4">
+													<option value="IN">IN</option>
+													<option value="OUT">OUT</option>
+													<option value="STOP">STOP</option>
+													<option value="AUTO">AUTO</option>
+												</select>
+												<input type="button" value="PTZIris" onclick="oPreview0.PTZIris(Put_IRIS.options[Put_IRIS.selectedIndex].value);"
+													id="Button14" name="Button14"><br/>
+												<select name="Put_OSD" size="1" id="Select5">
+													<option value="ON">ON</option>
+													<option value="OFF">OFF</option>
+													<option value="LEFT">LEFT</option>
+													<option value="RIGHT">RIGHT</option>
+													<option value="UP">UP</option>
+													<option value="DOWN">DOWN</option>
+													<!--option value="STOP">STOP</option-->
+													<option value="LEAVE">LEAVE</option>
+													<option value="ENTER">ENTER</option>
+												</select>
+												<input type="button" value="PTZOSD" onclick="oPreview0.PTZOSD(Put_OSD.options[Put_OSD.selectedIndex].value);" id="Button15" name="Button15">
+												<select name="Put_BLC" id="Select6" size="1">
+													<option value="ON">ON</option>
+													<option value="OFF">OFF</option>
+												</select>
+												<input type="button" value="PTZBLC" onclick="oPreview0.PTZBLC(Put_BLC.options[Put_BLC.selectedIndex].value);" id="Button16" name="Button16"><br />
+												<select name="Put_DayNight" id="Select9" size="1">
+													<option value="ON">ON</option>
+													<option value="OFF">OFF</option>
+													<option value="AUTOON">AUTOON</option>
+													<option value="AUTOOFF">AUTOOFF</option>
+												</select>
+												<input type="button" value="PTZDayNight" onclick="oPreview0.PTZDayNight(Put_DayNight.options[Put_DayNight.selectedIndex].value);" id="Button19" name="Button19"><br />
+											</td>
+										</tr>
+									</table>
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Event Information</legend>
+									<table border="0" cellpadding="0" cellspacing="0" id="Table3">
+										<tr>
+											<td>Event List:</td>
+										</tr>
+										<tr>
+											<td><select name="lstEventList" size="6" style="WIDTH: 300px" id="Select7"></select>
+											</td>
+										</tr>
+										<tr>
+											<td>OnTimeCode:</td>
+										</tr>
+										<tr>
+											<td><select name="lstOnTimeCode" size="6" style="WIDTH: 300px" id="Select8"></select></td>
+										</tr>
+									</table>
+								</fieldset>
+							</td>
+							<td valign="top">
+								Your Version<input name="Get_Version" size="40"><br/>
+								<OBJECT id="oPreview0" height="240" width="352" data="data:application/x-oleobject;base64,P2/zpuA6i0WvxKqCVl4L+BAHAABhJAAAzhgAAA==" classid="CLSID:F8E691A0-C92E-4E42-9CDA-62FC07A9483B" VIEWASTEXT></OBJECT>
+								<script type="text/javascript" for="oPreview0" event="OnConnect(nID,successful)">OnConnect(nID,successful);</script>
+								<script type="text/javascript" for="oPreview0" event="OnPlay(nID)">OnPlay(nID);</script>
+								<script type="text/javascript" for="oPreview0" event="OnStop(nID)">OnStop(nID);</script>
+								<script type="text/javascript" for="oPreview0" event="OnDisconnect(nID)">OnDisconnect(nID);</script>
+								<script for="oPreview0" event="OnTimeCode(nID,szTime)">OnTimeCode(nID,szTime);</script>
+								<script type="text/javascript" for="oPreview0" event="OnRS232Event(nID, szData, nLen)">OnRS232Event(nID, szData, nLen);</script>
+								<p>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Digital Setting</legend>
+									<input type="button" value="EnableMouseDigitalPTZ" onclick="oPreview0.EnableMouseDigitalPTZ();" id="Button9" name="Button9" style="width:145px">
+									<input type="button" value="DisableMouseDigitalPTZ" onclick="oPreview0.DisableMouseDigitalPTZ();" id="Button10" name="Button10" style="width:150px"><br/>
+									<input name="DigitalZoomInStep" id="DigitalZoomInStep" size="1" value="1" />
+									<input type="button" id="DigitalZoomIn" value="DigitalZoomIn" onclick="oPreview0.DigitalZoomIn(DigitalZoomInStep.value);" style="width:100px"/>
+									<input name="DigitalZoomOutStep" id="DigitalZoomOutStep" size="1" value="1"/>
+									<input type="button" id="DigitalZoomOut" value="DigitalZoomOut" onclick="oPreview0.DigitalZoomOut(DigitalZoomOutStep.value)" style="width:100px"/>
+									<input name="DigitalMoveLeftStep" id="DigitalMoveLeftStep" size="1" value="1"/>
+									<input type="button" id="DigitalMoveLeft" value="DigitalMoveLeft" onclick="oPreview0.DigitalMoveLeft(DigitalMoveLeftStep.value)" style="width:100px"/>
+									<input name="DigitalMoveRightStep" id="DigitalMoveRightStep" size="1" value="1"/>
+									<input type="button" id="DigitalMoveRight" value="DigitalMoveRight" onclick="oPreview0.DigitalMoveRight(DigitalMoveRightStep.value)" style="width:100px"/>
+									<input name="DigitalMoveUpStep" id="DigitalMoveUpStep" size="1" value="1"/>
+									<input type="button" id="DigitalMoveUp" value="DigitalMoveUp" onclick="oPreview0.DigitalMoveUp(DigitalMoveUpStep.value)" style="width:100px"/>
+									<input name="DigitalMoveDownStep" id="DigitalMoveDownStep" size="1" value="1"/>
+									<input type="button" id="DigitalMoveDown" value="DigitalMoveDown" onclick="oPreview0.DigitalMoveDown(DigitalMoveDownStep.value)" style="width:100px"/>
+									<input type="button" id="DigitalZoomOutMax" value="DigitalZoomOutMax" onclick="oPreview0.DigitalZoomOutMax()" />
+								</fieldset>
+								<fieldset>
+								<legend style="font-weight:bold; color:blue; cursor:pointer;">Camera Location Setting</legend>
+									<table>
+										<tr>
+											<td>Set</td>
+											<td><input type="button" value="1" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set1" ID="Set1"></td>
+											<td><input type="button" value="2" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set2" ID="Set2"></td>
+											<td><input type="button" value="3" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set3" ID="Set3"></td>
+											<td><input type="button" value="4" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set4" ID="Set4"></td>
+											<td><input type="button" value="5" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set5" ID="Set5"></td>
+											<td><input type="button" value="6" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set6" ID="Set6"></td>
+											<td><input type="button" value="7" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set7" ID="Set7"></td>
+											<td><input type="button" value="8" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set8" ID="Set8"></td>
+											<td><input type="button" value="9" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set9" ID="Set9"></td>
+											<td><input type="button" value="10" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set10" ID="Set10"></td>
+											<td><input type="button" value="11" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set11" ID="Set11"></td>
+											<td><input type="button" value="12" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set12" ID="Set12"></td>
+											<td><input type="button" value="13" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set13" ID="Set13"></td>
+											<td><input type="button" value="14" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set14" ID="Set14"></td>
+											<td><input type="button" value="15" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set15" ID="Set15"></td>
+											<td><input type="button" value="16" onclick="PRESET('SET', this.value)" style="width:22px" Name="Set16" ID="Set16"></td>
+										</tr>
+										<tr>
+											<td>Clear</td>
+											<td><input type="button" value="1" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear1" ID="Clear1"></td>
+											<td><input type="button" value="2" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear2" ID="Clear2"></td>
+											<td><input type="button" value="3" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear3" ID="Clear3"></td>
+											<td><input type="button" value="4" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear4" ID="Clear4"></td>
+											<td><input type="button" value="5" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear5" ID="Clear5"></td>
+											<td><input type="button" value="6" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear6" ID="Clear6"></td>
+											<td><input type="button" value="7" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear7" ID="Clear7"></td>
+											<td><input type="button" value="8" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear8" ID="Clear8"></td>
+											<td><input type="button" value="9" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear9" ID="Clear9"></td>
+											<td><input type="button" value="10" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear10" ID="Clear10"></td>
+											<td><input type="button" value="11" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear11" ID="Clear11"></td>
+											<td><input type="button" value="12" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear12" ID="Clear12"></td>
+											<td><input type="button" value="13" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear13" ID="Clear13"></td>
+											<td><input type="button" value="14" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear14" ID="Clear14"></td>
+											<td><input type="button" value="15" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear15" ID="Clear15"></td>
+											<td><input type="button" value="16" onclick="PRESET('CLEAR', this.value)" style="width:22px" Name="Clear16" ID="Clear16"></td>
+										</tr>
+										<tr>
+											<td>Goto</td>
+											<td><input type="button" value="1" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto1" ID="Goto1"></td>
+											<td><input type="button" value="2" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto2" ID="Goto2"></td>
+											<td><input type="button" value="3" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto3" ID="Goto3"></td>
+											<td><input type="button" value="4" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto4" ID="Goto4"></td>
+											<td><input type="button" value="5" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto5" ID="Goto5"></td>
+											<td><input type="button" value="6" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto6" ID="Goto6"></td>
+											<td><input type="button" value="7" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto7" ID="Goto7"></td>
+											<td><input type="button" value="8" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto8" ID="Goto8"></td>
+											<td><input type="button" value="9" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto9" ID="Goto9"></td>
+											<td><input type="button" value="10" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto10" ID="Goto10"></td>
+											<td><input type="button" value="11" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto11" ID="Goto11"></td>
+											<td><input type="button" value="12" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto12" ID="Goto12"></td>
+											<td><input type="button" value="13" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto13" ID="Goto13"></td>
+											<td><input type="button" value="14" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto14" ID="Goto14"></td>
+											<td><input type="button" value="15" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto15" ID="Goto15"></td>
+											<td><input type="button" value="16" onclick="PRESET('GOTO', this.value)" style="width:22px" Name="Goto16" ID="Goto16"></td>
+										</tr>
+									</table>
+								</fieldset>
+									<table>
+
+									</table>
+									<!--<input name="Set_SendCMD"><input type="button" value="SendCmd" onclick="oPreview0.SendCmd(Set_SendCMD.value);">-->
+							</td>
+						</tr>
+					</table>
+				</td>
+			</tr>
+		</table>
+	</body>
+</html>

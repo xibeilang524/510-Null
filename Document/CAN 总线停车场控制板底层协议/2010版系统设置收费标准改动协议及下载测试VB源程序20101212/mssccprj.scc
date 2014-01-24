@@ -1,0 +1,5 @@
+SCC = This is a Source Code Control file
+
+[CommTest.vbp]
+SCC_Aux_Path = "\\192.168.16.20\Vss DB"
+SCC_Project_Name = "$/003-软件系统/020-停车场系统/Documents/CAN 总线停车场控制板底层协议/2010版系统设置收费标准改动协议及下载测试VB源程序20101212", JSTFAAAA

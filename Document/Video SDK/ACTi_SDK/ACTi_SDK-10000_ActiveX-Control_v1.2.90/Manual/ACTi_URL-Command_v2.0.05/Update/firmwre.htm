@@ -1,0 +1,313 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>FIRMWARE</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">FIRMWARE</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Upload the device configuration file to the device's 
+	flash. Then, the device will be rebooted.</font></p>
+	<p><font face="Arial">There are two formats of HTTP form with this URL 
+	command. One is the <a href="#format1">general format</a> applied to most of 
+	devices. The <a href="#format2">other one</a> is only used in the 
+	Multi-Channel Encoders. These two formats are described below.</font></p>
+	<p><i><u><font face="Arial" size="4"><a name="format1"></a>1.General Format</font></u></i></p>
+	<p><font face="Arial">The format of this URL http://172.16.3.14/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;FIRMWARE is listed below.</font></p>
+	<p><b><font face="Arial">Stage 1: Send this URL to the device for 
+	configuration file 
+	upload</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">GET /cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Accept-Language: zh-tw <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.14 <br>
+		Connection: Keep-Alive</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_vs_get.bmp" width="531" height="285"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 2 : Device reply the URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/html <br>
+		<br>
+		&lt;html&gt;&lt;head&gt;&lt;title&gt;UPLOAD FILES&lt;/title&gt;&lt;/head&gt;<br>
+		&lt;meta http-equiv=&quot;PRAGMA&quot; content=&quot;NO-CACHE&quot;&gt;&lt;body&gt;<br>
+		&lt;form name=&quot;UPLOAD_FORM&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; 
+		action=&quot;update?FIRMWARE_SAVE&quot;&gt;<br>
+		FIRMWARE : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_IMAGE&quot; value=&quot;&quot; 
+		size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		MD5 : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_MD5&quot; value=&quot;&quot; size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;input type=&quot;submit&quot; value=&quot;Apply&quot; name=&quot;URL_FIRMWARE_SUBMIT&quot;&gt;<br>
+		&lt;input type=&quot;reset&quot; value=&quot;Reset&quot; name=&quot;URL_FIRMWARE_RESET&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;/form&gt;&lt;/body&gt;&lt;/html&gt;</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_vs_get_reply.bmp" width="532" height="395"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 3: Upload the image file to device and get 
+	the return code</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">POST /cgi-bin/update?FIRMWARE_SAVE 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Referer: http://172.16.3.14/cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE
+		<br>
+		Accept-Language: zh-tw <br>
+		Content-Type: multipart/form-data; 
+		boundary=---------------------------7d834b76e0708 <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.14 <br>
+		Content-Length: 2503864 <br>
+		Connection: Keep-Alive <br>
+		Cache-Control: no-cache <br>
+		<br>
+		-----------------------------7d834b76e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_IMAGE&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\AEC1100\release\220-V3.09.01\A1D-220-V3.09.01-AC.upg&quot;
+		<br>
+		Content-Type: application/x-gzip-compressed</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		......................................</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		-----------------------------7d834b76e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_MD5&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\AEC1100\release\220-V3.09.01\A1D-220-V3.09.01-AC.md5&quot;
+		<br>
+		Content-Type: application/octet-stream <br>
+		<br>
+		IMG_MD5='15ff269d2b8735e31f62b4bdbea097ba'<br>
+		<br>
+		<br>
+		-----------------------------7d834b76e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_SUBMIT&quot; <br>
+		<br>
+		Apply <br>
+		-----------------------------7d834b76e0708--</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_vs_upload.bmp" width="532" height="990"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 4: device reply this URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/plain <br>
+		Content-Length: 3 <br>
+		<br>
+		OK</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p><img border="0" src="images/ok_reply.bmp" width="534" height="66"></p>
+	</blockquote>
+	<p><i><u><font face="Arial" size="4"><a name="format2"></a>2.Form Format 
+	used in the Multi-Channel Encoder</font></u></i></p>
+	<p align="left"><font face="Arial">If the CHANNEL=n was not set with this 
+	URL to the Multi-Channel device, the router firmware upgrade will be 
+	performed.&nbsp; 
+	Otherwise, the channel n video server's firmware upgrade will be performed. 
+	To upgrade all video servers' firmware, the <a href="firmware_all.htm">
+	FIRMWARE_ALL</a> URL is used,</font></p>
+	<p><font face="Arial">The format of this URL http://172.16.3.21/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;FIRMWARE is listed below.</font></p>
+	<p><b><font face="Arial">Stage 1: Send this URL to the device for image and 
+	MD5 file 
+	upload</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">GET /cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Accept-Language: zh-tw <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Connection: Keep-Alive </span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_router_get.bmp" width="533" height="285"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 2 : Device reply the URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/html <br>
+		<br>
+		&lt;html&gt;&lt;head&gt;&lt;title&gt;UPLOAD FILES&lt;/title&gt;&lt;/head&gt;<br>
+		&lt;meta http-equiv=&quot;PRAGMA&quot; content=&quot;NO-CACHE&quot;&gt;<br>
+		&lt;body&gt;<br>
+		&lt;form name=&quot;UPLOAD_FORM&quot; method=&quot;POST&quot; enctype=&quot;multipart/form-data&quot; 
+		action=&quot;update?FwSave00_1&quot;&gt;<br>
+		Firmware : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_IMAGE&quot; size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		MD5 : &lt;input type=&quot;FILE&quot; name=&quot;URL_FIRMWARE_MD5&quot; size=&quot;40&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;input type=&quot;submit&quot; value=&quot;Apply&quot; name=&quot;URL_FIRMWARE_SUBMIT&quot;&gt;<br>
+		&lt;input type=&quot;reset&quot; value=&quot;Reset&quot; name=&quot;URL_FIRMWARE_RESET&quot;&gt;<br>
+		&lt;br&gt;<br>
+		&lt;/form&gt;<br>
+		&lt;/body&gt;&lt;/html&gt;</span></font></p>
+		<p><font face="Arial"><span style="font-weight: 700">Note: </span>The 
+		action string update?FwSave00_1 indicates this is the FIRMWARE URL 
+		for router. The rule of this mapping 
+		is </font></p>
+		<p><font face="Arial">FwSavenn_m</font><br>
+		<font face="Arial">where</font><br>
+		<font face="Arial">nn : the indication of the router, a video server 
+		or all video servers. </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 00 : router, </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;= : Maximum Channel : the 
+		channel nn video server, </font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; =&nbsp;&nbsp; : Maximum Channel + 1 : 
+		All video servers.</font><br>
+		<font face="Arial">m : 1 : the firmware version and firmware type are 
+		checked before firmware upgrade.</font><br>
+		<font face="Arial">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 0 : not check is 
+		applied</font><br>
+		<font face="Arial">In this URL, m is fixed to 1</font><br>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_router_get_reply.bmp" width="533" height="383"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 3: Upload the image file to device and get 
+	the return code</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">POST /cgi-bin/update?FwSave00_1 
+		HTTP/1.1 <br>
+		Accept: image/gif, image/x-xbitmap, image/jpeg, image/pjpeg, 
+		application/x-shockwave-flash, application/vnd.ms-excel, application/vnd.ms-powerpoint, 
+		application/msword, */* <br>
+		Referer: http://172.16.3.21/cgi-bin/update?USER=admin&amp;PWD=123456&amp;FIRMWARE
+		<br>
+		Accept-Language: zh-tw <br>
+		Content-Type: multipart/form-data; 
+		boundary=---------------------------7d8da06e0708 <br>
+		Accept-Encoding: gzip, deflate <br>
+		User-Agent: Mozilla/4.0 (compatible; MSIE 6.0; Windows NT 5.1; SV1) <br>
+		Host: 172.16.3.21 <br>
+		Content-Length: 2126235 <br>
+		Connection: Keep-Alive <br>
+		Cache-Control: no-cache <br>
+		<br>
+		-----------------------------7d8da06e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_IMAGE&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\SED2600\A8D-R2N-V2.04.00\A8D-R2N-V2.04.00-AC.upg&quot;
+		<br>
+		Content-Type: application/x-gzip-compressed</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">......................................</span></font></p>
+		<p><font face="Arial" color="#FF0000">
+		<span style="background-color: #C0C0C0">
+		-----------------------------7d8da06e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_MD5&quot;; 
+		filename=&quot;C:\Documents and Settings\MingYoung.You\My Documents\LinuxShare\SED2600\A8D-R2N-V2.04.00\A8D-R2N-V2.04.00-AC.md5&quot;
+		<br>
+		Content-Type: application/octet-stream <br>
+		<br>
+		IMG_MD5='3fd5ef17e6233345d9b653665477efa7'<br>
+		<br>
+		<br>
+		-----------------------------7d8da06e0708 <br>
+		Content-Disposition: form-data; name=&quot;URL_FIRMWARE_SUBMIT&quot; <br>
+		<br>
+		Apply <br>
+		-----------------------------7d8da06e0708--</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p>
+		<img border="0" src="images/firmware_router_upload.bmp" width="533" height="987"></p>
+	</blockquote>
+	<p><b><font face="Arial">Stage 4: device reply this URL</font></b></p>
+	<blockquote>
+		<p><u><i><font face="Arial">ASCII FORMAT</font></i></u></p>
+		<p><font face="Arial" color="#0000FF">
+		<span style="background-color: #C0C0C0">HTTP/1.0 200 OK <br>
+		Content-type: text/plain <br>
+		Content-Length: 3 <br>
+		<br>
+		OK</span></font></p>
+		<p><u><i><font face="Arial">Hex Dump Format</font></i></u></p>
+		<p><img border="0" src="images/ok_reply.bmp" width="534" height="66"></p>
+	</blockquote>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<p><font face="Arial">None</font></p>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Write Only</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<font face="Arial">Write</font><font face="Arial" size="3"> Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">OK (always)</font></blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">WPL Platform : All Encoder Devices</font></li>
+	<li><font face="Arial">EPL Platform : All Encoder Devices</font></li>
+	<li><font face="Arial">PlatfotmT : All Encoder Devices</font></li>
+	<li><font face="Arial">Multi-Channel Encoder : Router Only</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="ConfigGet.htm">CONFIG_GET</a>, 
+	<a href="ConfigSet.htm">CONFIG_SET</a>, <a href="firmware_all.htm">FIRMWARE_ALL</a>, 
+	<a href="profile.htm">PROFILE</a>, <a href="ProfilePack.htm">PROFILE_PACK</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">http://ip:port/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;FIRMWARE</font><br>
+	<font face="Arial">or</font><br>
+	<font face="Arial">http://ip:port/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;CHANNEL=n&amp;FIRMWARE 
+	(for CHANNEL=n video server in the Multi-Channel Encoder)</font>
+</blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>,
+	<a href="update.htm">UPDATE CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

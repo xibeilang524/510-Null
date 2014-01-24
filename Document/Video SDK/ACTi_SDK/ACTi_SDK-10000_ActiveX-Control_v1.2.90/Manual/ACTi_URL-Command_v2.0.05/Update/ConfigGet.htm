@@ -1,0 +1,97 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type" content="text/html;">
+<title>CONFIG_GET</title>
+</head>
+
+<body>
+
+<p><font face="Arial" size="5">CONFIG_GET</font></p>
+<p><font face="Arial" size="4">Description</font></p>
+<blockquote>
+	<p><font face="Arial">Get the device's configuration.</font></p>
+	<p><font face="Arial">The device will reply its configurations as the return 
+	message of this URL. Note that some configurations are not the run-time 
+	configuration like WAN port configurations.</font></p>
+	<p><font face="Arial">If the CHANNEL=n was not set with this URL to the 
+	Multi-Channel device, the router's configuration will be returned.&nbsp; 
+	Otherwise, the channel n video server's configuration will be returned.</font></p>
+</blockquote>
+
+<p><font size="4" face="Arial">Input Argument</font></p>
+<blockquote>
+	<p><font face="Arial">None</font></p>
+</blockquote>
+<p><font face="Arial" size="4">Attribute</font></p>
+<ul>
+	<li><font face="Arial">Read Only</font></li>
+</ul>
+<p><font face="Arial" size="4">Return of Message</font></p>
+<ul>
+	<li>
+	<font face="Arial" size="3">Read Operation (example)</font></li>
+</ul>
+<blockquote>
+	<font face="Arial">WAN_TYPE='1'<br>
+	WAN_IP='192.168.0.100'<br>
+	WAN_NETMASK='255.255.255.0'<br>
+	WAN_GATEWAY='192.168.0.254'<br>
+	WAN_PPPOE_USERNAME=''<br>
+	WAN_PPPOE_PASSWORD=''<br>
+	SPEED_WAN='0'<br>
+	LANGUAGE='0'<br>
+	PORT_HTTP='80'<br>
+	PORT_SEARCH_1='6005'<br>
+	PORT_SEARCH_2='6006'<br>
+	LAN_HOSTNAME='ACTi'<br>
+	DNS_PRIMARY=''<br>
+	DNS_SECONDARY=''<br>
+	DDNS_TYPE='1'<br>
+	DDNS_HOSTNAME=''<br>
+	DDNS_SERVICE='dyndns'<br>
+	DDNS_USERNAME=''<br>
+	DDNS_PASSWORD=''<br>
+	DATE_TYPE='2'<br>
+	........</font><p><font face="Arial">LAYOUT_FOOTER_COPYRIGHT='Copyright@2003-2008 
+	ACTi Corporation All Right Reserved'<br>
+	COMPANY_NAME='ACTi Corporation'<br>
+	COMPANY_URL='www.acti.com'<br>
+	ACTIVEX_URL=''</font><br>
+	</p>
+</blockquote>
+<p><font size="4" face="Arial">Applicability</font></p>
+<ul>
+	<li><font face="Arial">WPL Platform : All Encoder Devices</font></li>
+	<li><font face="Arial">EPL Platform : All Encoder Devices</font></li>
+	<li><font face="Arial">PlatfotmT : All Encoder Devices</font></li>
+	<li><font face="Arial">Multi-Channel Encoder : Router Only</font></li>
+</ul>
+<p><font face="Arial"><font size="4">Status</font></font></p>
+<blockquote>
+	<p><font face="Arial">Valid</font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">See Also</font></font></p>
+<blockquote>
+	<p><font face="Arial"><a href="ConfigSet.htm">CONFIG_SET</a>,
+	<a href="firmwre.htm">FIRMWARE</a>, <a href="firmware_all.htm">FIRMWARE_ALL</a>,
+	<a href="profile.htm">PROFILE</a>, <a href="ProfilePack.htm">PROFILE_PACK</a></font></p>
+</blockquote>
+<p><font face="Arial"><font size="4">Example</font></font></p>
+<ul>
+	<li><font face="Arial">Write Operation</font></li>
+</ul>
+<blockquote>
+	<p>
+	<font face="Arial">http://ip:port/cgi-bin/update?USER=Admin&amp;PWD=123456&amp;CONFIG_GET</font></p>
+</blockquote>
+
+<p><font face="Arial" size="4">Back to</font></p>
+<blockquote>
+	<p><font face="Arial"><a href="../index.htm">HOME</a>,
+	<a href="update.htm">UPDATE CGI</a></font></p>
+</blockquote>
+
+</body>
+
+</html>

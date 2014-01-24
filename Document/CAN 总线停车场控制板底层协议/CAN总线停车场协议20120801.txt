@@ -1,0 +1,452 @@
+新一代CAN(Controller Area Network)现场控制总线停车场管理系统PC通讯协议20120516版本
+
+  通讯格式        :RS232:9600,N,8,1
+1 发送指令结构    :Sys1+Sys2+Sys3+接收地址+指令对象+指令+参数长度+参数+CRC 
+2 接收指令结构    :Sys1+Sys2+Sys3+发送地址+指令来源+指令+参数长度+参数+CRC 
+
+  说明
+1 通讯开始同步符  :Sys1+Sys2+Sys3=0xFE+0xFD+0xFE;
+2 通讯结束校验字节:CRC=所有字节异或(但不含同步符Sys1,Sys2,Sys3)
+3 接收地址        :0x00-0x01为停车场管理控制器地址(仅脱机事件报告时使用0x01地址)，双号为入，单号为出口通道控制器地址，
+  广播地址        :0xF0为所有设备广播地址    ,0x3F为通道控制器广播地址
+4 发送地址        :0x00-0x01为停车场管理控制器地址(仅脱机事件报告时使用0x01地址)，双号为入，单号为出口通道控制器地址
+5 指令对象        :0x00接收设备本身;              
+6 指令来源        :0x00发送设备本身;其他为控制器外接模块地址,仅停车场管理控制器外挂读头需识别以便判断台式读写器.              
+
+  电脑发送的指令
+#define COMT_OnLineStatus          0x01                          //上线报告,参数为0掉电离线/1上电上线/2手动复位/3看门狗复位/4软件复位/5在线应答
+
+        #define STA_PowerOff            0                             //掉电离线
+        #define STA_PowerOn             1                             //上电上线
+        #define STA_ManualReset         2                             //手动复位上线
+        #define STA_WatchdogReset       3                             //看门狗复位上线
+        #define STA_SoftwareReset       4                             //软件复位上线
+        #define STA_OnlineOk            5                             //在线应答
+        #define STA_Hiding              6                             //隐身状态
+
+        #define STA_SoftwareAuthOk      0x10                          //软件授权毕(下载授权时)成功
+        #define STA_SoftwareAuthFail    0x11                          //软件授权败(下载授权时)失败
+        #define STA_SoftwareAuthPass    0x12                          //软件授权对(核对授权时)
+        #define STA_SoftwareAuthNon     0x13                          //软件授权无(核对授权时)
+        #define STA_SoftwareAuthError   0x14                          //软件授权错(核对授权时)
+
+        #define STA_SystemAuthOk        0x15                          //系统授权毕(下载授权时)成功
+        #define STA_SystemAuthFail      0x16                          //系统授权败(下载授权时)失败
+        #define STA_SystemAuthPass      0x17                          //系统授权对(核对授权时)
+        #define STA_SystemAuthNon       0x18                          //系统授权无(核对授权时)
+        #define STA_SystemAuthError     0x19                          //系统授权错(核对授权时)
+
+        #define STA_SetEnableFetchCards    0x1A                       //设置可提取卡片
+        #define STA_SetDisableFetchCards   0x1B                       //设置禁提取卡片
+        #define STA_SetFetchCardsFail      0x1C                       //设置设提卡失败
+
+        #define STA_SetCardMaxFail      0x1D                          //设置卡片总数失败
+        #define STA_SetCardMaxOk        0x1E                          //设置卡片总数成功
+
+        #define STA_DeviceAuthOk        0x1F                          //以后备用  设备授权毕(下载授权时)按算法校对相符再一次性写入叫做成功
+        #define STA_DeviceAuthFail      0x20                          //设备授权败(下载授权时)按算法校对不符不可写入叫做失败
+        #define STA_DeviceAuthPass      0x21                          //设备授权对(授权存在时)按算法校对相符
+        #define STA_DeviceAuthNon       0x22                          //设备授权无(授权为空时)
+        #define STA_DeviceAuthError     0x23                          //设备授权错(授权无效时)
+#define COMR_SoftReset             0x02                          //工作方式+1字节参数,参数=1=软件复位/5=在线查询
+#define COMR_SetDateTime           0x03                          //时钟设置参数顺序为second,minute,hour,day,month,year,week,DispMode 3/4/5 显示模式1=中文滚动时间，2=只显时间，3=英文日期时间，4=中文日期时间，5=中英文日期时间            
+#define COMR_Beep                  0x07                          //蜂鸣器响+1字节参数,参数为响声次数
+
+#define COMT_StatusReport          0x0E                          //状态报告
+        #define CAN2_ShortToGND         0x15                          //故障1：总线对地持续短路或端口故障
+        #define CAN2_ShortTo5V          0x16                          //故障2：总线对对5V电源持续短路或端口故障
+
+        #define CAN_ShortToGND          0x05                          //故障1：总线对地持续短路或端口故障
+        #define CAN_ShortTo5V           0x06                          //故障2：总线对对5V电源持续短路或端口故障
+#define COMT_CommandEcho           0x0D                          //命令回声 暂时只有刷卡抬闸的升闸动作指令返回 
+
+
+#define LEDR_Display               0x10  		         // disp immediately current input                             
+#define LEDR_Append                0x11				 // disp immediately current input                             
+#define LEDR_LoopStart             0x12                          // set loop disp start point or End loop disp                    
+#define LEDR_StoreSentence         0x13                          // 0-255  sentence addr   
+#define LEDR_StoreLoopSentence     0x14                          // 0-255  sentence addr   
+#define LEDR_SelectSentence        0x15                          // 0-255  sentence addr   
+#define LEDR_DispMode              0x16                          // disp mode 00-99                             
+#define LEDR_SetStayTime           0x17                          // 0-255  Sec           
+//---------------------------------内部显示控制符，使用同步符指令格式后极端情况下可扩展至0-1F--------------------------------------------------------------------------------
+
+#define LEDD_LF                    0x13                          // shift_up a new line       
+#define LEDD_CR                    0x14                          // restart a new line        
+#define LEDD_LoopEnd               0x17                          // set loop disp end point                      
+#define LEDD_FlashStart            0x15                          // flash the follow char    
+#define LEDD_FlashEnd              0x16                          // End flash mode    
+#define LEDD_InvertStart           0x18                          // invert the follow char
+#define LEDD_InvertEnd             0x19                          // End invert mode 
+
+
+//以上为可广播的指令
+#define SMMR_LinkMode              0x20                          //工作模式,参00数为
+     #define MOD_Auto                   0                        //自动模式,适用于无人值守图像要求不严的车场:数据脱机运行，等待图像捕捉或对比确认首次超过设定时间秒数,发送问询指令,得不到应答,自动放弃图像捕捉与对比确认,其后每次照常发送卡号同时发送问询指令,得不到应答,保持脱机,得到应答
+                                        3			 //实时模式,一切交由PC机控制，适用于港口海关等需要与其他条件联合放行的场合，由专用软件控制
+     #define MOD_Register               4                        //发行器模式,管理机进入注册登记模式，不做出口机使用，作发行器，；此模式可用总监卡或管理卡进入，可脱机发行
+
+#define SMMR_LoadCardsPrefix       0x21                          //装载及追加卡片档案通知,后随2字节起始序号(0-65534)，再加2字节卡片档案总数(1-65535),建议将所购卡片一次排序全部装入,不用的卡片先加锁.
+#define SMMR_LoadOneCard           0x22                          //装载卡片档案一条,后随2字节序号(0-65534)，装载卡片期间系统停止工作.
+//struct{unsigned long CardID;char RegisterStatus;char Type;struct STDate St_EndDate;char EnEntrance[4];unsigned int Num;char Chr[10];signed long Balance;char ParkingStatus;struct STDateTime EnterDateTime;char Position[4];}   //36字节，EndDate+Remain为月卡储值卡双重功能;Position[6]可变通为图像文件名
+//struct共40字节 {卡内码[4]+注册状态[1](BIT7/6/5=注销/挂失/锁定标志)+收费车型及卡类[1]+止效日期日月年[3]+进场权限[4]+卡编号[2]+车牌问候等字符[10]+储值余额[4]+停车状态[1](BIT7=进场标志)+动作日期时间秒分时日月年[6]+上次地址[1]+门限组号[1]+车位组号[1]+车位信息[1];};
+#define SMMR_ModifyOneCard         0x23                          //修改卡片档案一条,后随2字节起始序号(0-65534)，用于卡片挂失/加锁/延期等,修改卡片期间系统继续工作.
+#define SMMR_TestOneCard           0x24                          //PC下送卡片内码，通道机查询计费。参数7字节：通道号+读头号+卡种类+4字节ID
+
+#define SMMR_FetchCardsRequest     0x25                          //提取卡片档案申请,改为后随2字节起始序号(0-65534)，再加2字节结束序号+1(1-65535)
+#define SMMR_ReceiveCardsResult    0x26                          //PC收卡片档案应答
+#define SMMR_PlaySentence          0x28                          //播放语句+1字节参数（0-6）
+#define SMMR_FetchVacant           0x29                          //读取车位数
+#define SMMR_SetVacant             0x2A                          //设置车位数:参数长度(2*n)+1号车场现有空车位数[2字节]+2号车场现有空车位数[2]+...+n号车场现有空车位数[2],注:车位数为有符号2字节整数
+
+#define SMMR_WriteParameterTable   0x2B                          //写入各种参数表 1字节表序号+表参数。
+#define SMMR_Volume                0x2D                          //音量+1字节参数;0=静音;1=原始保真音量;2=X2加大一倍。
+
+                            
+#define SMMR_EventWait             0x30                          //现场事件收悉等待（PC机必须在3秒内响应，据此判断是否联机）参数长度为3=口地址+车型(0-15)+下面1个字节
+     #define PCWAT_Capture              0                          //图像捕捉中 pic capturing
+     #define PCWAT_Compare              1                          //图像对比中 pic verifing
+     #define PCWAT_Progress             2                          //收费进行中 progress
+
+#define SMMR_EventValid            0x31                          //现场事件确认有效（人工抬闸事件记录有效，入口图像捕捉，出口对比与收费有效）参数长度为3=口地址+操作员编号++下面1个字节
+     #define PCVID_Capture              0                          //图像已捕捉 captured
+     #define PCVID_CompareToll          1                          //收费已完成 accepted
+     #define PCVID_FreeConfirm          2                          //免费已完成 Freeaccepted
+     #define PCVID_ChangeOperater       3                          //操作员换班 rotated
+     #define PCVID_EventRecord          4                          //事件已记录 recorded
+
+
+#define SMMR_EventInvalid          0x32                          //现场事件确认无效（出口图像对比不符无效）参数长度为3=口地址+操作员编号+下面1个字节
+     #define PCINV_Compare              0                          //未获准通行 no pass
+
+#define SMMR_FetchEventRequest     0x33                          //+起始序号[4]+提取数量[4]
+
+
+#define SMMR_EventPointerRequest   0x35                          //查询事件记录指针(下一条记录的序号)
+#define SMMR_SetEventPointer       0x36                          //+设置指针[4],设置事件记录指针(下一条记录的序号),事件记录指针改变后,再提取重设指针之前的历史事件,提取结果将会有误!!
+#define SMMR_Operator              0x37                          //设置指定通道机值班员编号，参数为：通道机号[1]+卡类[1]+值班员(卡)编号[1]
+#define SMMR_FetchCardMaxLimit     0x3A                          //提取卡片总数上限。
+
+
+//40-5F
+#define SMMT_ReceiveCardsResult    0x40                          //接收卡片档案应答，+0=ok/1=Err,+2字节装载卡片档案序号（0-65535），未收到或收到出错应答分批重发。
+#define SMMT_DownCardsPrefix       0x41                          //卸载一批卡片档案信息，改为后随2字节起始序号(0-65534)，再加2字节结束序号+1(1-65535)
+#define SMMT_DownOneCard           0x42                          //卸载卡片档案一条,期间系统继续工作.但可按256字节分批卸载
+
+#define SMMT_ReportVacant          0x46                          //上报车位数:参数长度(2*n)+1号车场现有空车位数[2]+2号车场现有空车位数[2]+...+n号车场现有空车位数[2] ,注:车位数为有符号2字节整数
+
+#define SMMT_ReportEvent           0x50                          //报告正在发生的事件一条
+口地址[1]+发生对象[1]+事件状态[1]+停车状态[1]+事件参数[1]+发生卡内码[4]+上次动作日期时间秒分时日月年[6]+发生日期时间秒分时日月年[6]+操作员编号[1]+小数点位数[1]+交易金额[2]+储值卡余额[4]
+
+#define SMMT_DownOneEvent          0x51                          //报告已经发生的事件记录一条.
+#define SMMT_DownPastEventPrefix   0x52                          //卸载事件记录通知+起始序号[4]+提取数量[4] 
+#define SMMT_DownOnePastEvent      0x53                          //卸载历史事件记录一条,期间系统继续工作.
+//struct{unsigned long EventIndex;char Tran;char Source;char EventStatus;char ParkingStatus;char ActionParameter;unsigned long CardID;struct STDateTime St_ActDateTime;char Operator;unsigned int Charge;signed long Remain;}//20bytes*61=1220bytes
+//struct共26字节{事件序列号[4]+口地址[1]+上次地址[1]+事件状态[1]+停车状态[1]+事件参数[1]+发生卡内码[4]+发生日期时间秒分时日月年[6]+操作员编号[1]+交易金额[2]+储值卡余额[4]}
+                              //EventStatus定义
+                              #define   BIT_EventWait       BIT7 //0/1=空闲状态/等待
+                              #define   BIT_Offline         BIT6 //0/1=联机/脱机，各路分别标示是否脱机BIT7= BIT6=0/1=联机等待/PC确认标志
+                              #define   BIT_PCReply         BIT5 //0/1=标示PC无/有应答
+                              #define   BIT_PCConfirm       BIT4 //0/1=PC应答确认的无效/有效标志
+                                                                 //BIT0-3=ActionType16种操作类型
+                                                                 //临时卡16种车型的0-15种收费操
+                              #define   BIT_OperateCardConfirm   BIT3 //0/1=无需/必须读操作卡明确责任，操作员人工确认放行，，如临时卡收费收卡，过期欠费卡临时收费，重复入场再出场，重复出场等操作,现通过操作员号是否为零来判断
+                              #define   BIT_CardOperation   BIT2 //0/1=非类卡操作/类卡操作,也可通过有无卡ID号来判断
+                              #define   BIT_Toll            BIT1 //0/1=非收费卡操作/收费卡操作
+                              #define   BIT_Free            BIT0 //0/1=无/有出口免费操作，免费可作为一种车型（军警车等免费车）
+                              //ParkingStatus定义同St_CardTable.ParkingStatus
+                              //ParkingStatus定义
+                              #define   BIT_In              BIT7 //0/1=已出场/入场       0/1=事件出场/入场
+                              #define   BIT_RepeatIn        BIT6 //0/1=无/重复入场       1=入场或出场事件中标定入场时为重复入场
+                              #define   BIT_RepeatOut       BIT5 //无用标志              1=出场事件中标定为重复出场
+                              #define   BIT_AsTempCard      BIT4 //固定/月租/储值等过期欠费卡用作临时卡  1=入场或出场事件中标定为用作临时卡
+                              #define   BIT_Indoor          BIT3 //停室内停车场          1=入场或出场事件中标定已停过室内停车场
+                              #define   BIT_IndoorIn        BIT2 //室内0/1=已出场/入场   0/1=事件出场/入场
+                              #define   BIT_PaidBill        BIT1 //中央收费已交费
+                              #define   BIT_Consume         BIT0 //区内消费优惠
+                              //ActionParameter定义
+                              //卡操作收费时  (BIT7-4=16种车型收费，月卡=0000/0001/0010=全天月卡/日租月卡/夜租月卡)
+)
+                              //卡操作非收费时(BIT0-3=0-0x0F=CardType=16种卡类)
+                              //非卡类操作时
+                              #define   EVENT_BarrUp        0x00 //事件 人工抬闸 也要捕捉图像
+                              #define   EVENT_BarrDown      0x01 //事件 人工落闸
+                              #define   EVENT_BarrStop      0x02 //事件 人工停闸
+                              #define   EVENT_DownEvent     0x03 //事件 卸载事件....
+
+
+#define SMMT_ReportEventPointer    0x54                          //报告事件记录指针
+#define SMMT_ReportCardMaxLimit    0x56                          //报告卡片上限
+
+#define PCMR_CardWait              0x60                          //卡号收妥等待指令+n字节参数+等待过长时间也要重发卡号
+#define PCMR_CardWaitValid         0x61                          //卡等待有效放行指令 +0字节参数 
+#define PCMR_CardWaitInvalid       0x62                          //卡等待无效不放行指令+0字节参数  
+#define PCMR_CardValid             0x63                          //卡有效+n字节参数
+#define PCMR_CardInvalid           0x64                          //卡无效指令+参数长度(1)+1字节语音显示参数
+
+读卡后应答指令结构
+                              //卡等待/有效/无效指令+参数长度(采用可变长度)+1字节语音显示参数+1字节内屏显示模式参数(总为0)+1字节卡类型+2字节卡编号
+回答月卡时参数为：            //卡等待/有效/无效指令+参数长度(采用可变长度)+1字节语音显示参数+1字节内屏显示模式参数(总为0)+1字节卡类型+2字节卡编号+3字节月卡有效期日月年
+回答临时卡入场时参数为：      //卡等待/有效/无效指令+参数长度(采用可变长度)+1字节语音显示参数+1字节内屏显示模式参数(总为0)+1字节卡类型+2字节卡编号+3字节临时卡入场秒分时
+回答临时卡出场时参数原来为：  //卡等待/有效/无效指令+参数长度(采用可变长度)+1字节语音显示参数+1字节内屏显示模式参数(总为0)+1字节卡类型+2字节卡编号+6字节临时卡入场秒分时日月年+6字节临时卡出场秒分时日月年+1字节费额小数点位数+2字节收费金额
+
+
+回答临时卡出场参数改为：      //卡等待/有效/无效指令+参数长度(采用可变长度)+char Voice;char OpenMode;char Type;unsigned int Num;struct STDateTime St_EnterDateTime;struct STDateTime St_ExitDateTime;char DecimalDigits;unsigned int Charge;char DispIndex;char SenIndex;};      //5+6+6+1+2+1+1=22字节 
+回答临时卡出场参数解释为：    //卡等待/有效/无效指令+参数长度(采用可变长度)+1字节语音参数+1字节开闸模式(总为0)+1字节卡类型+2字节卡编号+6字节临时卡入场秒分时日月年+6字节临时卡出场秒分时日月年+1字节费额小数点位数+2字节收费金额+1字节显示车型+1字节语音车型
+
+回答储值卡入场时参数为：      //卡等待/有效/无效指令+参数长度(采用可变长度)+char Voice;char OpenMode;char Type;unsigned int Num;struct STTime St_EnterTime;char DecimalDigits;signed long Balance;char Ar_Chr[10];};       //5+3+1+4+10=23字节
+回答储值卡余额不足出场参数为：//卡等待/有效/无效指令+参数长度(采用可变长度)+char Voice;char OpenMode;char Type;unsigned int Num;struct STDateTime St_EnterDateTime;struct STDateTime St_ExitDateTime;char DecimalDigits;unsigned int Charge;char DispIndex;char SenIndex;signed long Balance（余额）;};      //5+6+6+1+2+1+1+4=26字节
+回答储值卡出场参数为：        //卡等待/有效/无效指令+参数长度(采用可变长度)+char Voice;char OpenMode;char Type;unsigned int Num;struct STDateTime St_EnterDateTime;struct STDateTime St_ExitDateTime;char DecimalDigits;unsigned int Charge;char DispIndex;char SenIndex;signed long Balance（余额）;};      //5+6+6+1+2+1+1+4=26字节
+
+//卡有效或等待时语音代码
+     #define PARK_NormalIn              0                        //语音:入场,　使用此参数为了与无效指令前段格式保持一致
+     #define PARK_NormalOut             1                        //语音:出场
+     #define PARK_IndoorIn              2                        //语音:欢迎入内场
+     #define PARK_IndoorOut             3                        //语音:欢迎出内场
+     #define PARK_RepeatIn              4                        //语音:重复入场！，须验证出场，时确认放行，不可自动放行
+     #define PARK_OverDateAsTempIn      5                        //语音:过期卡入场，按时计费！
+     #define PARK_ArrearAsTempIn        6                        //语音:欠费卡入场，按时计费！
+     //以下出场时需使用等待指令确认放行，不可自动放行
+     #define PARK_RepeatInOut           7                        //语音:重入卡出场，请出示证件，出场时确认放行，不可自动放行
+     #define PARK_RepeatOut             8                        //语音:重复出场！，请出示证件，出场时确认放行，不可自动放行
+     #define PARK_OverDateOut           9                        //语音:过期卡出场，请及时延期，人工确认放行,并提醒
+     #define PARK_ArrearOut             10                       //语音:欠费卡出场，请及时充值，扣为负值，人工确认放行,并提醒
+     #define PARK_OverDateAsTempOut     11                       //语音:过期变通卡，临时卡计费，人工确认放行,并提醒，按登记车型预显计费，但可使用PARK_TypeToll指令更改
+     #define PARK_PrepayAsTempOut       12                       //语音:储值卡余额不足出场，按临时卡计费，人工确认放行,并提醒，按登记车型预显计费，但可使用PARK_TypeToll指令更改
+     #define PARK_PrepayOut             13                       //语音:储值卡收费，
+     #define PARK_TempOut               14                       //语音:临时卡收费，变通临时卡，临时卡计费，人工确认放行,并提醒，按登记车型预显计费，但可使用PARK_TypeToll指令更改计费前缀，进出场时间等，显示按车型计费的结果，人工确认放行,并提醒
+     #define PARK_OnDuty                15                       //语音:操作员上班。
+     #define PARK_DoorIn                16                       //语音:门禁进门！。
+     #define PARK_DoorOut               17                       //语音:门禁出门！。
+//卡无效时语音代码
+     #define INV_NotRegister            0                        //显示0-4:此卡未登记
+     #define INV_ReadCard               1                        //显示0-4:请继续读卡，用于作读写器使用
+     #define INV_ReadOperateCard        2                        //显示0-4:请读操作卡，用于作收费等操作
+     #define INV_ReadManageCard         3                        //显示0-4:请读管理卡，用于作设置等操作
+     #define INV_PictureDiff            4                        //显示0-4:图像有差异(等待指令已显示卡号等)
+                                      //卡无效指令+参数长度(1)+1字节语音显示参数+1字节内屏显示模式参数+卡类型+卡编号   ,既然无效再加问候语车牌等不合适
+     #define INV_Delete                 5                        //显示0:此卡已注销; 显示1-4:贵宾卡1888^此卡已注销
+     #define INV_Loss                   6                        //显示0:此卡已挂失; 显示1-4:贵宾卡1888^此卡已挂失
+     #define INV_Lock                   7                        //显示0:此卡已锁定; 显示1-4:贵宾卡1888^此卡已锁定
+     #define INV_Type                   8                        //显示0:非停车卡类; 显示1-4:其他卡1234^非停车卡类
+     #define INV_Refuse                 9                        //显示0:未准入本场; 显示1-4:贵宾卡1888^未准入本场
+     #define INV_HaveIn                 10                       //显示0:此卡已在场; 显示1-4:贵宾卡1888^此卡已在场
+     #define INV_StillOut               11                       //显示0:此卡未进场; 显示1-4:贵宾卡1888^此卡未进场
+     #define INV_OwnerFull              12                       //显示0:固定车位满; 显示1-4:固定卡1888^固定车位满
+     #define INV_ParkFull               13                       //显示0:车位已满！; 显示1-4:储值卡1234^车位已满！
+     #define INV_NotPaid                14                       //显示0:此卡未交费; 显示1-4:临时卡1888^此卡未交费
+     #define INV_OverTime               15                       //显示0:超时补交费; 显示1-4:临时卡1888^超时补交费
+     
+                                      //卡无效指令+参数长度(8)+1字节语音显示参数+1字节内屏显示模式参数+卡类型+卡编号+年月日
+     #define INV_OverDate               16                       //显示0   :xx月xx止效^此卡已过期;
+                                                                 //显示1-4 :月租卡888^xx月xx止效^此卡已过期
+                                      //卡无效指令+参数长度(8)+1字节语音显示参数+1字节内屏显示模式参数+卡类型+卡编号+时分秒
+     #define INV_OverHour               17                       //显示0   :xx点xx止效^此卡已过点;
+                                                                 //显示1-4 :日租卡1234^xx点xx止效^此卡已过点
+                                      //卡无效指令+参数长度(9)+1字节语音显示参数+1字节内屏显示模式参数+卡类型+卡编号+有符号长整数余额
+     #define INV_Balance                18                       //显示0   :剩-XX.XX元/剩余X.XX元^卡余额不足
+
+#define PCMR_ParkFull              0x69                          //满位+1字节参数0=未满/1=满位
+//=================================车辆检测器指令集-收发是本机对上位机而言==============================================================================
+#define ADDR_VD108B                ADDR_VD+0x1F
+//90-97
+#define VDMR_DetectClear           0x91
+//98-9F
+#define VDMT_VDCar                 0x98                          //车辆检测器指令+1字节参数,参数=0/1=车走/车到    vehicle metal detector
+
+//---------------------------------道闸接收指令集----------------//加入复杂参数提高抗干扰性能------------------------------------------
+#define ABMR_Operation             0xC0                          //+2字节参数'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"=Up&Hold/UpCountDown/UpBufferdown/Up&Hold30second/UpAutodown/down/stop
+#define ABMT_OperationReport       0xC8                          //指令抬降停：'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"，人工抬降停'um'/'dm'/'sm'，地感抬降停'uv'/'dv'/'sv'，   人工抬降停；指令抬降停；地感抬降停；  用于上报
+#define ABMT_AllStatusRep          0xC9                          //车到/车走='v'+'c'/'v'+'g'闸杆状态=Barr:'b'+'m'/'b'+'h'/'b'+'v' 错误状态Error:'e'+'u'/'e'+'d'/'e'+'s'    =90Vertical/0Horizontal/45Middle//Motor=Up/Down/Stop//VD=Come/Go//IR=Come/Go//RED=On/Off/Flash//Green=On/Off/Flash
+//=================================InputOutputModule输入输出指令集=收发是本机对管理主机而言============================================================
+//D0-D7
+#define IOMR_SingleOutput          0xD0                          //单通道输出        :+1字节通道号(继电器号)(0-255)+1字节归位时间参数+1字节归位操作方式+1字节动作数据.0x00=ON吸合,0x01=OFF释放;0x02/03=TOGGLE翻转;+1字节归位时间参数:0=保持不归位,1-255=0.1-25.5sec;+1字节归位操作方式0x00=ON=吸合,0x01=OFF=释放,0x02=TOGGLE翻转保持, 0x03=循环翻转
+#define IOMR_BatchOutput           0xD1                          //批量通道输出      :+1字节起始通道号(0-255)+1字节输出通道数量(1-255)+n字节动作数据.      每BIT对应一个通道,BIT0代表小号通道,对应BIT=0=ON吸合,1=OFF释放;1字节归位时间参数:0=保持不归位,1-255=0.1-25.5sec;1字节归位操作方式0x00=OFF=释放,0x01=ON=吸合,0x02=TOGGLE翻转保持, 0x03=循环翻转
+#define IOMR_SingleInput           0xD2                          //查询单通道输入    :+1字节通道号0-255.
+#define IOMR_BatchInput            0xD3                          //查询批量输入      :+1字节起始通道号(0-255)+1字节查询通道数量(1-255)
+#define IOMR_SingleADC             0xD4                          //+通道号0-255，查询单通道模数转换结果
+#define IOMR_BatchADC              0xD5                          //+通道号0-255，查询所有通道模数转换结果
+#define IOMR_SingleDAC             0xD6                          //+通道号0-255，输出单通道数模转换电压
+#define IOMR_BatchDAC              0xD7                          //+通道号0-255，输出所有通道数模转换电压
+//D8-DF
+#define IOMT_SingleInput           0xD8                          //单通道输入报告    :+1字节通道号(0-255)++1字节输入数据.              报告单通道输入电平0x00=0=ON吸合=低电平,0x01=1=OFF释放=高电平;
+#define IOMT_BatchInput            0xD9                          //批量输入报告      :+1字节起始通道号(0-255)+1字节报告通道数量(1-255)+n字节输入数据.      每BIT对应一个通道输入电平,BIT0代表小号通道,BIT=0=ON吸合,1=OFF释放;
+#define IOMT_ADC                   0xDA                          //+通道号0-255，报告电压/温度/光强
+//=================================ParkingGuideModule停车引导器-收发是本机对上位机而言===考虑到可互连收发指令集不应重叠=================================================================================
+//E0-E7
+#define CPMR_Lock                  0xA0                          //出卡机开锁锁定+1字节参数，数，参数=0/1=开锁/锁定不出卡
+#define CPMR_Cardout               0xA1                          //出卡机出卡指令
+#define CPMR_CardCap               0xA3                          //收卡机收卡指令+1字节参数，参数=0/1=取消等待收卡状态/等待或立即收卡一张
+
+#define CPMT_CardButt2             0xA6                          //按取卡按钮2,可用于紧急开闸
+#define CCMT_Cap                   0xA7                          //收卡机收卡一张
+#define CPMT_CardButt              0xA8                          //按取卡按钮
+#define CPMT_CardOut               0xA9                          //出卡机出卡一张
+#define CPMT_CardIn                0xAA                          //出卡机收卡一张
+#define CPMT_CardNone              0xAB                          //出卡机无卡
+#define CPMT_CardFew               0xAC                          //出卡机缺卡
+#define CPMT_CardLoad              0xAD                          //出卡机装卡
+#define CPMT_CardAdd               0xAE                          //出卡机添卡
+#define CPMT_CardJam               0xAF                          //出卡机塞卡
+
+#define RWMT_CardID                0xB8                          //上传卡号+CardKind+4bytesID; +0-nbytesData改变参数长度方式可增加数据。
+     //设CardKind避免重号00-0F为本场卡，10-1F为流通卡便于计费扣费
+//---------------------------------卡类型定义CardType（低4位bit3-bit0）
+
+     #define CARDTYPE_Majordomo         0                        //0总监卡 编号1-F 
+     #define CARDTYPE_Manager           1                        //1管理卡 编号0x10-0x2F 
+     #define CARDTYPE_Operator          2                        //2操作卡 编号0x30-0xFF
+     #define CARDTYPE_Test              3                        //3调试卡/不占纪录
+     #define CARDTYPE_Owner             4                        //4固定卡/车位业主卡，无有效期，可注销
+     #define CARDTYPE_VIP               5                        //5贵宾卡/有效期限制，可换车，可注销 
+     #define CARDTYPE_MonthRent         6                        //6月租卡/有效期限制
+     #define CARDTYPE_DayRent           7                        //7日租卡/有效期限制
+     #define CARDTYPE_Prepay            8                        //8储值卡/余额限制
+     #define CARDTYPE_Temporary         9                        //9临时卡/无限制
+     #define CARDTYPE_Gate              10                       //10门禁卡/非停车卡
+     #define CARDTYPE_Universal         11                       //11一卡通
+     #define CARDTYPE_Shenzhen          12                       //12深圳通
+     #define CARDTYPE_Yangcheng         13                       //13羊城通
+     #define CARDTYPE_Credit            14                       //14信用卡
+     #define CARDTYPE_Other             15                       //15其它卡
+
+//CardType（高4位bit7-bit4）
+//---------------------------------指令来源代码
+#define ADDR_Wg1                   0xB1              //wg1ID         
+#define ADDR_Wg2                   0xB2              //wg2ID            
+#define ADDR_Wg3                   0xB3              //wg3ID            
+#define ADDR_Legic                 0xB3              //232LEGIC/485羊城通/TiRFM007B/TiRFM001              
+#define ADDR_TiRFM007B             0xB3              //232LEGIC/485羊城通/TiRFM007B/TiRFM001              
+#define ADDR_TiRFM001              0xB3              //232LEGIC/485羊城通/TiRFM007B/TiRFM001              
+#define ADDR_TCT                   0xB3              //232LEGIC/485羊城通/TiRFM007B/TiRFM001              
+#define ADDR_Mifare                0xB4              //Mifare读头
+//---------------------------------设卡类参数CardKind避免重号00-0F为本场卡，10-1F为流通卡便于计费扣费，现冒险不在本场卡数据库中标定卡类，以后长距离卡用短距离卡转发，便于数据库统一为一种本场卡
+#define CARDKIND_Local                 0x00                          //本场卡             
+#define CARDKIND_Mifare                0x01                          //Mifare              
+#define CARDKIND_Legic                 0x02                          //LEGIC              
+#define CARDKIND_Ti                    0x03                          //Ti              
+#define CARDKIND_EM                    0x04                          //EM              
+#define CARDKIND_Motorola              0x05                          //Motorola              
+#define CARDKIND_HID                   0x06                          //HID              
+#define CARDKIND_Wg26                  0x07                          //无法确定的WG26卡(EM卡/微波卡              
+#define CARDKIND_Wg34                  0x08                          //无法确定的WG34卡(EM卡/微波卡              
+
+#define CARDKIND_Wg1                   0x04                          //根据需要更改此处无法确定的WG卡              
+#define CARDKIND_Wg2                   0x04                          //无法确定的WG34卡(EM卡/微波卡              
+#define CARDKIND_Wg3                   0x04                          //无法确定的WG34卡(EM卡/微波卡              
+
+#define CARDKIND_Public                0x10                          //流通卡              
+#define CARDKIND_SZT                   0x11                          //深圳通              
+#define CARDKIND_YCT                   0x12                          //羊城通              
+
+/*====================================================================================================================================================
+
+#define SMMR_WriteParameterTable 0x2B                            //写参数表指令，+1字节表编号+表参数。
+//长度+表编号(页号)+参数
+
+//车位总数设置：
+//车位总数设置(车位上下限表): 参数长度(7+4*n)+表编号(9)+分车场总数(n=1-12)+备用字节(0)+总车场车位数上限[2字节]+总车场车位数下限[2]+1号车场车位数上限[2字节]+1号车场车位数下限[2]+2号车场车位数上限[2]+2号车场车位数下限[2]+...+n号车场车位数上限[2]+n号车场车位数下限[2]
+//例:0xFE,0xFD,0xFE(同步符),0x00(接收地址),0x00(指令对象),0x2B(指令),19(参数长度),9(表编号),3(n=分车场数),0(备用字节),900(总车场2字节上限),-10(总车场2字节下限),400(1号车场2字节上限),-5(1号车场2字节下限),300(2号车场2字节上限),-5(2号车场2字节下限),200(3号车场2字节上限),-5(3号车场2字节下限),CRC
+
+/
+/*==20080408新的变动==================================================================================================================================================
+
+//CardType变为收费车型及卡类[1]（高4位bit7-bit4为收费车型，低4位bit3-bit0为卡类）
+
+#define SMMR_Operator              0x37                        	//设置指定通道机值班员编号，参数为：通道机号[1]+卡类[1]+值班员(卡)编号[1]
+#define PCMR_CardOperator          0x65                         //操作员卡有效指令参数char Voice;char OpenMode;char Type;unsigned int Num;                             
+
+完善了储值卡功能     //事件记录中ParkingStatus定义启用以下标志位
+                              #define   BIT_RepeatOut       BIT5 //1=出场事件中标定为月卡等重复出场，临时卡和储值卡无入场记录时出场按次收费
+                              #define   BIT_AsTempCard      BIT4 //储值卡出场余额不足时变为按临时卡收费
+
+
+20080628新增
+#define SMMR_Volume                0x2D                          //音量+1字节参数;0=静音;1=原始保真音量;2=X2加大一倍。
+#define CPMR_Lock                  0xA0                          //出卡机开锁锁定+1字节参数，参数=0/1=开锁/锁定不出卡
+#define CPMR_Cardout               0xA1                          //出卡机出卡指令
+
+20090302改动
+#define SMMR_TestOneCard           0x24                          //PC下送卡片内码，通道机查询计费。参数7字节：通道号+读头号+卡种类+4字节ID
+#define SMMR_FetchCardsRequest     0x25                          //提取卡片档案申请,改为后随2字节起始序号(0-65534)，再加2字节结束序号+1(1-65535)
+#define SMMT_DownCardsPrefix       0x41                          //卸载一批卡片档案信息，改为后随2字节起始序号(0-65534)，再加2字节结束序号+1(1-65535)
+#define PCMR_CardInvalid           0x64                          //卡无效指令+1字节语音参数+4字节ID内码（仅当此卡未登记时）
+#define SMMR_EventInvalid          0x32                          //事件无效指令可清除等待事件
+#define PCMR_CardOperator          0x65                          //操作员卡有效指令+5字节参数：语音参数【1】+开闸模式【1】+卡类【1】+卡编号【2】（操作员编号<255）
+    语音   #define OPERATOR_StartWork         0                        //操作员上班。
+           #define OPERATOR_OnDuty            1                        //操作员值班。
+
+
+//2010版停车场系统  用户设置参数表,收费标准全面不兼容更新，请参照VB源码及参数表的解释
+
+/通常收费标准简单设置：
+  1 写入收费选项表:长度(161)+表编号(12Hex)+char Free是否不收费(1=不收费；0=收费);char DecimalDigits收费金额小数位数(0-2最多两位小数);char CategoryAmount临时卡可切换的基本收费车型数量(1-16，不含储值卡);备用[157个字节]=0;
+  2 写入各车型收费表：长度(240)+表编号(13Hex至13Hex+16，十六个表)+算法编号[1字节]=0;显示字符代码[1字节]=0-15;语音语句代码[1字节]=0-15;开闸模式[1字节]=0;备用[18字节]=0;unsigned int FreeMinutes免费分钟;unsigned int Oddment免费零头分钟;unsigned int AfterTollFreeMinutes中央收费允许超时分钟;unsigned int CycleMaxTollMinutes限额时间;unsigned int CycleMaxTollToll限额金额;char NormalMode普通收费模式（0=不使用此模式，1=按次收费收取入场收费；2=按天或按循环周期限额计费；3=仅一次入场收费；4=每天均有入场收费）;char NextListAmount=0;char CycleListAmount列表收费时列表数量;char Back1=0;unsigned int FirstMinutes入场收费计费时间(分钟);unsigned int FirstToll入场收费收费金额;unsigned int EveryUnitMinutes按单位时间收费的计费时间(分钟);unsigned int EveryUnitToll按单位时间收费的收费金额;备用[123个字节]=0;struct ArSt_TollList[18]=18个列表【每个表为4字节=列表收费累计计费时刻(分钟)2字节+列表收费1累计收费金额(元)2字节】。
+
+
+说明：实时模式收卡流程：出口刷不收费的临时卡后，PC回答PCMR_CardWait收费0元，收卡机收卡成功后板子返回PC收卡一张信号CPMT_CardIn，PC回答PCMR_CardWaitValid即可抬闸。
+
+
+/*==20110101新的变动==================================================================================================================================================
+
+#define MFRWR_ReadWrite            0x84                          //PC至Mf读写器的读写指令+指令参数1字节+需要的参数
+    //指令参数1字节定义===========================
+    #define MFRW_Halt                  0x00 				//读写器停止读卡
+    #define MFRW_ReadID                0x01                         	//读取Mifare卡的ID号
+    #define MFRW_ReadIDPrivilege       0x06                         	//读取Mifare卡的ID号
+    #define MFRW_PrivilegeSave         0x0D                             //写入优惠储值卡参数：Mifare卡的ID号[4]+车型卡类[1]+停车及优惠储值状态[1]+优惠模式[1]+指定Pos机地址[1]+优惠储值[4]（实际控制<65536）。优惠模式：1-5=优惠时间；6-10=优惠金额；14=切换车型 ；15=全免；优惠储值为零作为POS机清零卡使用
+                                                                        //写入临时卡参数    ：Mifare卡的ID号[4]+车型卡类[1]+停车及优惠储值状态[1]+优惠模式[1]+优惠地址[1]+优惠储值[4]（实际=0x00 00 00 00）。
+    #define MFRW_FormatCard            0x0E                             //格式化清除卡片所有数据，并生成卡类 追加参数：4字节ID号+1字节卡类（0x09=临时卡、0x11=优惠储值专用卡）
+
+
+#define MFRWT_MfIDPrivilegeData        0x8A                       	//Mf读写器返回给PC的指令返回的数据+指令参数1字节+返回的数据
+    //指令参数1字节定义===========================
+    #define MFRW_ReadID                0x01                         	//返回Mifare卡的ID号，返回的数据：4字节ID号
+    #define MFRW_ReadIDPrivilege       0x06                         	//返回Mifare优惠储值专用卡的数据，返回的数据：Mifare卡的ID号[4]+车型卡类[1]+停车及优惠储值状态[1]+优惠模式[1]+优惠地址[1]+优惠储值[4]
+
+流程示例：PC发出读ID码的指令： 0xFE+0xFD+0xFE+00x00+0x00+MFRWR_ReadWrite(指令)+1(参数长度) +MFRW_ReadID(1字节参数)+CRC，
+          读写器读到卡后返回： 0xFE+0xFD+0xFE+00x00+0x00+MFRWT_MfIDData(指令) +5(参数长度) +MFRW_ReadID(1字节参数)+4字节ID号+CRC
+          PC要格式化指定ID号的卡为“临时卡”或“优惠储值专用卡”
+          PC对已格式化的“优惠储值专用卡”才可以充值，要求ID号及卡片类型都相符才可写入（卡片类型由PC机校准，充值时不会改变）
+
+给Pos优惠机分配机号指令
+#define COMR_AssignAddr            0x09                          //分配地址+1字节地址
+
+
+
+20110409新的增加=================================================================================================================================================
+//---------------------------------道闸接收指令集----------------//加入复杂参数提高抗干扰性能------------------------------------------
+#define ABMR_Operation             0xC0                          //+2字节参数'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"或ua,ub,uc,uh,u3=UpAutodown/UpBufferdown/UpCountDown/Up&Hold/Up&Hold30second
+#define ABMT_OperationReport       0xC8                          //状态上报，指令抬降停：'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"，人工抬降停'um'/'dm'/'sm'，地感抬降停'uv'/'dv'/'sv'，   人工抬降停；指令抬降停；地感抬降停；
+#define ABMT_AllStatusRep          0xC9                          //车到/车走='v'+'c'/'v'+'g'闸杆状态=Barr:'b'+'m'/'b'+'h'/'b'+'v' 错误状态Error:'e'+'u'/'e'+'d'/'e'+'s'    
+
+20110508新的增加=================================================================================================================================================
+#define CPMR_CardCap               0xA3                          //收卡机收卡指令+1字节参数，参数=0/1=取消等待收卡状态/等待或立即收卡一张
+
+20110518规范道闸指令为：
+#define ABMR_Operation             0xC0                          //+2字节参数'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"=Up&Hold/UpCountDown/UpBufferdown/Up&Hold30second/UpAutodown/down/stop
+#define ABMT_OperationReport       0xC8                          //用于上报指令抬降停：'u'0/'u'1/'u'2/'u'3/'u'4/"dw"/"st"，人工抬降停'um'/'dm'/'sm'，地感抬降停'uv'/'dv'/'sv'，   人工抬降停；指令抬降停；地感抬降停；  
+
+
+//20101217改事件中临时卡的long Balance为unsigned int PrivilegeCharge（优惠金额）;char PrivilegeType（优惠类型）;char PrivilegeAddr（优惠的POS地址编号）满足中全天安工业区IC卡Pos要求,
+
+
+//20120515增加
+#define SMMR_FetchCardMaxLimit     0x3A                          //提取卡片总数上限。
+#define SMMT_ReportCardMaxLimit    0x56                          //报告卡片总数上限
+
+//20120516提示 可以通过软件修改卡片档案中优惠编码和优惠机号脱机使用优惠功能
+          卡片档案共40字节： {卡内码[4]+注册状态[1](BIT7/6/5=注销/挂失/锁定标志)+卡类[1]+止效日期日月年[3]+优惠编码[1]+优惠机号[1]+备用[2]+卡编号[2]+车牌问候等字符[10]+储值余额[4]+停车状态[1](BIT7=进场标志)+进场日期时间秒分时日月年[6]+车位信息[4];};
+
+                              //对应收费标准中：优惠编码=0=无优惠；优惠编码=1-6=优惠分钟；优惠编码=7-12=优惠金额 模式14=切换车型，模式15=全免  其他值=无优惠
+                              //优惠机号=0-255，方便做报表
+
+//20120801完善了关于事件的三个指令(详细请查阅上面文档)，便于车牌识别系统
+#define SMMR_EventWait             0x30                          //现场事件收悉等待（PC机必须在3秒内响应，据此判断是否联机）参数长度为3=口地址+车型(0-15)+下面1个字节
+#define SMMR_EventValid            0x31                          //现场事件确认有效（人工抬闸事件记录有效，入口图像捕捉，出口对比与收费有效）参数长度为3=口地址+操作员编号++下面1个字节
+#define SMMR_EventInvalid          0x32                          //现场事件确认无效（出口图像对比不符无效）参数长度为3=口地址+操作员编号+下面1个字节
+抬闸增加了返回汇报指令
+#define COMT_CommandEcho           0x0D                          //命令回声 暂时只有刷卡抬闸的升闸动作指令返回，便于实时模式刷卡抬闸确认（电脑手工抬闸不返回），便于更可靠的确认已进场和出场，再回写数据库。 
+                                                                 //例如2号机抬闸返回：FE FD FE 02 00 0D 02 C0(ABMR_Operation) 75('u') B8
+
+
