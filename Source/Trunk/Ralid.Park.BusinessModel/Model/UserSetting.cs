@@ -86,11 +86,6 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public bool InputHandInCashWhenSettle { get; set; }
         /// <summary>
-        /// 获取或设置是否启用澳大户外屏
-        /// </summary>
-        [DataMember]
-        public bool EnableOutdoorLed { get; set; }
-        /// <summary>
         /// 获取或设置最低临时卡报警的临时卡临界数量(小于零时不报警)
         /// </summary>
         [DataMember]

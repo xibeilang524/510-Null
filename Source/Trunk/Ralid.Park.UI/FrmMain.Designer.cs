@@ -126,7 +126,6 @@
             this.btn_CardeventReport = new System.Windows.Forms.ToolStripButton();
             this.btn_CardPaymentReport = new System.Windows.Forms.ToolStripButton();
             this.parkContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.mnu_OutdoorLedVacant = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_SearchDevice = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_AddEntrance1 = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_AddDivision = new System.Windows.Forms.ToolStripMenuItem();
@@ -865,7 +864,6 @@
             // parkContextMenu
             // 
             this.parkContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_OutdoorLedVacant,
             this.mnu_SearchDevice,
             this.mnu_AddEntrance1,
             this.mnu_AddDivision,
@@ -874,12 +872,6 @@
             this.mnu_ParkProperty});
             this.parkContextMenu.Name = "parkContextMenu";
             resources.ApplyResources(this.parkContextMenu, "parkContextMenu");
-            // 
-            // mnu_OutdoorLedVacant
-            // 
-            this.mnu_OutdoorLedVacant.Name = "mnu_OutdoorLedVacant";
-            resources.ApplyResources(this.mnu_OutdoorLedVacant, "mnu_OutdoorLedVacant");
-            this.mnu_OutdoorLedVacant.Click += new System.EventHandler(this.mnu_OutdoorLedVacant_Click);
             // 
             // mnu_SearchDevice
             // 
@@ -1189,7 +1181,6 @@
         private System.Windows.Forms.ToolStripMenuItem mnu_CardDeleteReport;
         private System.Windows.Forms.ToolStripMenuItem mnu_AddDivision;
         private System.Windows.Forms.ToolStripMenuItem mnu_ZSTSetting;
-        private System.Windows.Forms.ToolStripMenuItem mnu_OutdoorLedVacant;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripMenuItem mnu_CarplateReg;
         private System.Windows.Forms.ToolStripMenuItem mnu_CarPlateTestForFile;

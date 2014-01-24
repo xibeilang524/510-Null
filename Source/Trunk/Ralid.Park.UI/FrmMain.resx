@@ -121,37 +121,6 @@
     <value>28, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mainMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mainMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 25</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mainMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="mainMenu.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Name" xml:space="preserve">
-    <value>mainMenu</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_SysManager.Text" xml:space="preserve">
-    <value>系统</value>
-  </data>
   <data name="mnu_OperatorShift.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
@@ -170,11 +139,11 @@
   <data name="mnu_LogOut.Text" xml:space="preserve">
     <value>注销</value>
   </data>
-  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
   </data>
-  <data name="mnu_DBManager.Text" xml:space="preserve">
-    <value>数据</value>
+  <data name="mnu_SysManager.Text" xml:space="preserve">
+    <value>系统</value>
   </data>
   <data name="mnu_Cards.Size" type="System.Drawing.Size, System.Drawing">
     <value>196, 22</value>
@@ -215,6 +184,7 @@
   <data name="mnu_ExportParameter.Text" xml:space="preserve">
     <value>导出系统参数设置</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mnu_SyncDataToStandby.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -226,12 +196,6 @@
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
     <value>193, 6</value>
-  </data>
-  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="mnu_ImportRecord.Text" xml:space="preserve">
-    <value>导入记录</value>
   </data>
   <data name="mnu_ImportCardPayments.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
@@ -245,11 +209,17 @@
   <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
     <value>导入充值记录</value>
   </data>
-  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="mnu_ImportRecord.Text" xml:space="preserve">
+    <value>导入记录</value>
+  </data>
+  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
   </data>
-  <data name="mnu_Security.Text" xml:space="preserve">
-    <value>安全</value>
+  <data name="mnu_DBManager.Text" xml:space="preserve">
+    <value>数据</value>
   </data>
   <data name="mnu_Operator.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 22</value>
@@ -269,11 +239,11 @@
   <data name="mnu_Roles.Text" xml:space="preserve">
     <value>角色管理</value>
   </data>
-  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
+  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
   </data>
-  <data name="Mnu_Reports.Text" xml:space="preserve">
-    <value>查询与报表</value>
+  <data name="mnu_Security.Text" xml:space="preserve">
+    <value>安全</value>
   </data>
   <data name="mnu_CardReleaseReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
@@ -407,11 +377,11 @@
   <data name="mnu_YCTLog.Text" xml:space="preserve">
     <value>羊城通扣费记录查询</value>
   </data>
-  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
+  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 21</value>
   </data>
-  <data name="mnu_View.Text" xml:space="preserve">
-    <value>视图</value>
+  <data name="Mnu_Reports.Text" xml:space="preserve">
+    <value>查询与报表</value>
   </data>
   <data name="mnu_Monitor.Size" type="System.Drawing.Size, System.Drawing">
     <value>172, 22</value>
@@ -470,35 +440,35 @@
   <data name="mnu_CarPlateTestForVideo.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
   </data>
-  <data name="mnu_Language.Text" xml:space="preserve">
-    <value>语言</value>
+  <data name="mnu_View.Text" xml:space="preserve">
+    <value>视图</value>
   </data>
   <data name="mnu_SimpleChinese.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>124, 22</value>
   </data>
   <data name="mnu_SimpleChinese.Text" xml:space="preserve">
     <value>简体中文</value>
   </data>
   <data name="mnu_TraditionalChinese.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>124, 22</value>
   </data>
   <data name="mnu_TraditionalChinese.Text" xml:space="preserve">
     <value>繁体中文</value>
   </data>
   <data name="mnu_English.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>124, 22</value>
   </data>
   <data name="mnu_English.Text" xml:space="preserve">
     <value>英语</value>
   </data>
-  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
   </data>
-  <data name="mnu_Help.Text" xml:space="preserve">
-    <value>帮助</value>
+  <data name="mnu_Language.Text" xml:space="preserve">
+    <value>语言</value>
   </data>
   <data name="mnu_Manual.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
@@ -511,6 +481,36 @@
   </data>
   <data name="mnu_Aboat.Text" xml:space="preserve">
     <value>关于...</value>
+  </data>
+  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="mnu_Help.Text" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="mainMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mainMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 25</value>
+  </data>
+  <data name="mainMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="mainMenu.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Name" xml:space="preserve">
+    <value>mainMenu</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 18</value>
@@ -596,15 +596,6 @@
   <metadata name="videoContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>694, 22</value>
   </metadata>
-  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 114</value>
-  </data>
-  <data name="&gt;&gt;videoContextMenu.Name" xml:space="preserve">
-    <value>videoContextMenu</value>
-  </data>
-  <data name="&gt;&gt;videoContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="mnu_VideoSyncTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>124, 22</value>
   </data>
@@ -635,58 +626,16 @@
   <data name="mnu_VideoProperty.Text" xml:space="preserve">
     <value>属性</value>
   </data>
-  <data name="&gt;&gt;entranceTree.Name" xml:space="preserve">
-    <value>entranceTree</value>
+  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 114</value>
   </data>
-  <data name="&gt;&gt;entranceTree.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.HardwareTree, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;videoContextMenu.Name" xml:space="preserve">
+    <value>videoContextMenu</value>
   </data>
-  <data name="&gt;&gt;entranceTree.Parent" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;entranceTree.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;videoContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="panelLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="panelLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 85</value>
-  </data>
-  <data name="panelLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 0, 6</value>
-  </data>
-  <data name="panelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 387</value>
-  </data>
-  <data name="panelLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Name" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
   <data name="entranceTree.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -710,54 +659,6 @@
   </data>
   <data name="&gt;&gt;entranceTree.ZOrder" xml:space="preserve">
     <value>0</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Name" xml:space="preserve">
-    <value>btnCloseLeft</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 25</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -825,6 +726,57 @@
   <data name="&gt;&gt;btnCloseLeft.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 25</value>
+  </data>
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>panelLeft</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="panelLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="panelLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 85</value>
+  </data>
+  <data name="panelLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 6, 0, 6</value>
+  </data>
+  <data name="panelLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 387</value>
+  </data>
+  <data name="panelLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.Name" xml:space="preserve">
+    <value>panelLeft</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
     <value>6, 60</value>
   </data>
@@ -837,30 +789,6 @@
   <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>257, 19</value>
   </metadata>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 60</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
   <data name="btn_HardWare.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -972,11 +900,71 @@
   <data name="btn_CardPaymentReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
   </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 60</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
   <metadata name="parkContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>370, 19</value>
   </metadata>
+  <data name="mnu_SearchDevice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_SearchDevice.Text" xml:space="preserve">
+    <value>搜索控制器</value>
+  </data>
+  <data name="mnu_AddEntrance1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_AddEntrance1.Text" xml:space="preserve">
+    <value>增加控制器</value>
+  </data>
+  <data name="mnu_AddDivision.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_AddDivision.Text" xml:space="preserve">
+    <value>增加停车区域</value>
+  </data>
+  <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_DeletePark.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="mnu_ParkRename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_ParkRename.Text" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="mnu_ParkProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_ParkProperty.Text" xml:space="preserve">
+    <value>属性</value>
+  </data>
   <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 158</value>
+    <value>153, 158</value>
   </data>
   <data name="&gt;&gt;parkContextMenu.Name" xml:space="preserve">
     <value>parkContextMenu</value>
@@ -984,60 +972,9 @@
   <data name="&gt;&gt;parkContextMenu.Type" xml:space="preserve">
     <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_OutdoorLedVacant.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_OutdoorLedVacant.Text" xml:space="preserve">
-    <value>户外屏车位设置</value>
-  </data>
-  <data name="mnu_SearchDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_SearchDevice.Text" xml:space="preserve">
-    <value>搜索控制器</value>
-  </data>
-  <data name="mnu_AddEntrance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_AddEntrance1.Text" xml:space="preserve">
-    <value>增加控制器</value>
-  </data>
-  <data name="mnu_AddDivision.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_AddDivision.Text" xml:space="preserve">
-    <value>增加停车区域</value>
-  </data>
-  <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_DeletePark.Text" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="mnu_ParkRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_ParkRename.Text" xml:space="preserve">
-    <value>重命名</value>
-  </data>
-  <data name="mnu_ParkProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_ParkProperty.Text" xml:space="preserve">
-    <value>属性</value>
-  </data>
   <metadata name="entranceContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>524, 22</value>
   </metadata>
-  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 214</value>
-  </data>
-  <data name="&gt;&gt;entranceContextMenu.Name" xml:space="preserve">
-    <value>entranceContextMenu</value>
-  </data>
-  <data name="&gt;&gt;entranceContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="mnu_AddVideo.Size" type="System.Drawing.Size, System.Drawing">
     <value>160, 22</value>
   </data>
@@ -1098,18 +1035,18 @@
   <data name="btn_EntranceProperty.Text" xml:space="preserve">
     <value>属性</value>
   </data>
+  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 214</value>
+  </data>
+  <data name="&gt;&gt;entranceContextMenu.Name" xml:space="preserve">
+    <value>entranceContextMenu</value>
+  </data>
+  <data name="&gt;&gt;entranceContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <metadata name="treeContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>843, 20</value>
   </metadata>
-  <data name="treeContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 48</value>
-  </data>
-  <data name="&gt;&gt;treeContextMenu.Name" xml:space="preserve">
-    <value>treeContextMenu</value>
-  </data>
-  <data name="&gt;&gt;treeContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="mnu_Fresh.Size" type="System.Drawing.Size, System.Drawing">
     <value>148, 22</value>
   </data>
@@ -1121,6 +1058,15 @@
   </data>
   <data name="mnu_AddPark.Text" xml:space="preserve">
     <value>增加停车场</value>
+  </data>
+  <data name="treeContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>149, 48</value>
+  </data>
+  <data name="&gt;&gt;treeContextMenu.Name" xml:space="preserve">
+    <value>treeContextMenu</value>
+  </data>
+  <data name="&gt;&gt;treeContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="splitter1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -1174,7 +1120,7 @@
     <value>formPanel1</value>
   </data>
   <data name="&gt;&gt;formPanel1.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.FormPanel, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.FormPanel, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;formPanel1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -2571,12 +2517,6 @@
   </data>
   <data name="&gt;&gt;btn_CardPaymentReport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_OutdoorLedVacant.Name" xml:space="preserve">
-    <value>mnu_OutdoorLedVacant</value>
-  </data>
-  <data name="&gt;&gt;mnu_OutdoorLedVacant.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_SearchDevice.Name" xml:space="preserve">
     <value>mnu_SearchDevice</value>

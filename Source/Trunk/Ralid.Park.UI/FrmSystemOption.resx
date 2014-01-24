@@ -250,7 +250,7 @@
     <value>txtMaxCarPlateErrorChar</value>
   </data>
   <data name="&gt;&gt;txtMaxCarPlateErrorChar.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtMaxCarPlateErrorChar.Parent" xml:space="preserve">
     <value>groupBox6</value>
@@ -697,7 +697,7 @@
     <value>txtMonth</value>
   </data>
   <data name="&gt;&gt;txtMonth.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtMonth.Parent" xml:space="preserve">
     <value>groupBox5</value>
@@ -840,36 +840,6 @@
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="chkEnableOutdoorLed.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkEnableOutdoorLed.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkEnableOutdoorLed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 127</value>
-  </data>
-  <data name="chkEnableOutdoorLed.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
-  <data name="chkEnableOutdoorLed.TabIndex" type="System.Int32, mscorlib">
-    <value>182</value>
-  </data>
-  <data name="chkEnableOutdoorLed.Text" xml:space="preserve">
-    <value>启用户外屏</value>
-  </data>
-  <data name="&gt;&gt;chkEnableOutdoorLed.Name" xml:space="preserve">
-    <value>chkEnableOutdoorLed</value>
-  </data>
-  <data name="&gt;&gt;chkEnableOutdoorLed.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkEnableOutdoorLed.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;chkEnableOutdoorLed.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="chkOperatorCardCashWhenSettle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -898,7 +868,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkOperatorCardCashWhenSettle.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="chkInputHandInCashWhenSettle.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -928,7 +898,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkInputHandInCashWhenSettle.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="chkSnapshotWhenCarArrive.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -958,7 +928,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkSnapshotWhenCarArrive.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="txtMinTempCard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
@@ -979,13 +949,13 @@
     <value>txtMinTempCard</value>
   </data>
   <data name="&gt;&gt;txtMinTempCard.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtMinTempCard.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;txtMinTempCard.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>6</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1015,7 +985,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>7</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1045,7 +1015,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>8</value>
   </data>
   <data name="chkOneKeyOpenDoor.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1075,7 +1045,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkOneKeyOpenDoor.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>9</value>
   </data>
   <data name="dtForceShiftingTime.CustomFormat" xml:space="preserve">
     <value>HH:mm</value>
@@ -1099,7 +1069,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;dtForceShiftingTime.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>10</value>
   </data>
   <data name="chkEnableForceShifting.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1129,7 +1099,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkEnableForceShifting.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>11</value>
   </data>
   <data name="chkWegen34Enable.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1162,7 +1132,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;chkWegen34Enable.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>12</value>
   </data>
   <data name="txtFreeTimeAfterPay.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
@@ -1183,13 +1153,13 @@
     <value>txtFreeTimeAfterPay</value>
   </data>
   <data name="&gt;&gt;txtFreeTimeAfterPay.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtFreeTimeAfterPay.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;txtFreeTimeAfterPay.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>13</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1219,7 +1189,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>14</value>
   </data>
   <data name="label24.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1249,7 +1219,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>15</value>
   </data>
   <data name="rdJiao.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1279,7 +1249,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;rdJiao.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>16</value>
   </data>
   <data name="rdYuan.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1309,7 +1279,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;rdYuan.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>17</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1339,7 +1309,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>18</value>
   </data>
   <data name="txtCompanyName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
@@ -1360,13 +1330,13 @@
     <value>txtCompanyName</value>
   </data>
   <data name="&gt;&gt;txtCompanyName.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCompanyName.Parent" xml:space="preserve">
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;txtCompanyName.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>19</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1396,7 +1366,7 @@
     <value>groupBox4</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>20</value>
   </data>
   <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 6</value>
@@ -1573,7 +1543,7 @@
     <value>txtZSTReaderIP</value>
   </data>
   <data name="&gt;&gt;txtZSTReaderIP.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtZSTReaderIP.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2008,7 +1978,7 @@
     <value>comParkFullLed</value>
   </data>
   <data name="&gt;&gt;comParkFullLed.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;comParkFullLed.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2059,7 +2029,7 @@
     <value>comYCT</value>
   </data>
   <data name="&gt;&gt;comYCT.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;comYCT.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2110,7 +2080,7 @@
     <value>comBillPrinter</value>
   </data>
   <data name="&gt;&gt;comBillPrinter.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;comBillPrinter.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2161,7 +2131,7 @@
     <value>comFeeLed</value>
   </data>
   <data name="&gt;&gt;comFeeLed.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;comFeeLed.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2212,7 +2182,7 @@
     <value>comTicketReader</value>
   </data>
   <data name="&gt;&gt;comTicketReader.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;comTicketReader.Parent" xml:space="preserve">
     <value>tabGeneral</value>
@@ -2353,7 +2323,7 @@
     <value>txtCardSection</value>
   </data>
   <data name="&gt;&gt;txtCardSection.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCardSection.Parent" xml:space="preserve">
     <value>tabKey</value>
@@ -2410,7 +2380,7 @@
     <value>txtOldKey</value>
   </data>
   <data name="&gt;&gt;txtOldKey.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtOldKey.Parent" xml:space="preserve">
     <value>pnlOldKey</value>
@@ -2635,7 +2605,7 @@
     <value>txtNewKey</value>
   </data>
   <data name="&gt;&gt;txtNewKey.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtNewKey.Parent" xml:space="preserve">
     <value>pnlNewKey</value>
@@ -2662,7 +2632,7 @@
     <value>txtConfirmKey</value>
   </data>
   <data name="&gt;&gt;txtConfirmKey.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.HexTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtConfirmKey.Parent" xml:space="preserve">
     <value>pnlNewKey</value>

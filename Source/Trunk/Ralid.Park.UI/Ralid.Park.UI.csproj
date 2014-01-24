@@ -439,18 +439,6 @@
     <Compile Include="EventArgument\GetAccessesHandler.cs" />
     <Compile Include="EventArgument\EntranceEventArgs.cs" />
     <Compile Include="OnlineParkEventHandler.cs" />
-    <Compile Include="OutdoorLed\FrmAreaDetail.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutdoorLed\FrmAreaDetail.designer.cs">
-      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
-    </Compile>
-    <Compile Include="OutdoorLed\FrmOutdoorLedSetting.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="OutdoorLed\FrmOutdoorLedSetting.designer.cs">
-      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
-    </Compile>
     <Compile Include="ParkVacantLedRender.cs" />
     <Compile Include="ReportAndStatistics\DirectPrint.cs" />
     <Compile Include="ReportAndStatistics\FrmCardDeferStatistics.cs">
@@ -1289,24 +1277,6 @@
     <EmbeddedResource Include="FrmYCTPayment.zh-Hant.resx">
       <DependentUpon>FrmYCTPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.en.resx">
-      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.resx">
-      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.zh-Hant.resx">
-      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.en.resx">
-      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.resx">
-      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.zh-Hant.resx">
-      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmAlarmReport.en.resx">
       <DependentUpon>FrmAlarmReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -1767,10 +1737,6 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OutdoorLEDSetting\OutdoorLEDSetting.csproj">
-      <Project>{B9E1E175-6D99-4734-829F-31F0CFEFF9C1}</Project>
-      <Name>OutdoorLEDSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
       <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
       <Name>Ralid.Park.BLL</Name>

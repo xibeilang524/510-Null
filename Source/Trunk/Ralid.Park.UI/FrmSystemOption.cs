@@ -722,7 +722,6 @@ namespace Ralid.Park.UI
             this.chkWegen34Enable.Checked = us.WegenType == Ralid.GeneralLibrary.CardReader.WegenType.Wengen34;
             this.chkSnapshotWhenCarArrive.Checked = us.SnapshotWhenCarArrive;
             this.chkInputHandInCashWhenSettle.Checked = us.InputHandInCashWhenSettle;
-            this.chkEnableOutdoorLed.Checked = us.EnableOutdoorLed;
             this.gridPaymentComments.Rows.Clear();  //收费说明
             if (us.PaymentComments != null && us.PaymentComments.Count > 0)
             {
@@ -759,7 +758,6 @@ namespace Ralid.Park.UI
             info.WegenType = (chkWegen34Enable.Checked ? Ralid.GeneralLibrary.CardReader.WegenType.Wengen34 : Ralid.GeneralLibrary.CardReader.WegenType.Wengen26);
             info.SnapshotWhenCarArrive = chkSnapshotWhenCarArrive.Checked;
             info.InputHandInCashWhenSettle = chkInputHandInCashWhenSettle.Checked;
-            info.EnableOutdoorLed = chkEnableOutdoorLed.Checked;
             if (this.gridPaymentComments.Rows.Count > 0)
             {
                 info.PaymentComments = new List<string>();

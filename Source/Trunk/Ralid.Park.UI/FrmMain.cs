@@ -19,7 +19,6 @@ using Ralid.Park.ThirdCommunication;
 using Ralid.Park.UI.Resources;
 using Ralid.GeneralLibrary;
 using Ralid.Park.PlateRecognition;
-using Ralid.Park.UI.OutdoorLed;
 using Ralid.GeneralLibrary.CardReader;
 using Ralid.Park.LocalDataBase.BLL;
 using Ralid.Park.LocalDataBase.Model;
@@ -715,18 +714,6 @@ namespace Ralid.Park.UI
             frm.ShowDialog();
         }
 
-        private void mnu_OutdoorLedVacant_Click(object sender, EventArgs e)
-        {
-            ParkInfo park = this.entranceTree.SelectedNode.Tag as ParkInfo;
-            if (park != null)
-            {
-                FrmOutdoorLedSetting frm = new FrmOutdoorLedSetting();
-                frm.ItemUpdated += HardwareUpdated_Handler;
-                frm.Park = park;
-                frm.ShowDialog();
-            }
-        }
-
         private void mnu_AddEntrance_Click(object sender, EventArgs e)
         {
             ParkInfo park = this.entranceTree.SelectedNode.Tag as ParkInfo;
@@ -1223,7 +1210,6 @@ namespace Ralid.Park.UI
                 {
                     entranceTree.ContextMenuStrip = parkContextMenu;
                     this.mnu_AddDivision.Enabled = (node.Tag as ParkInfo).IsRootPark;
-                    this.mnu_OutdoorLedVacant.Visible = UserSetting.Current.EnableOutdoorLed;
                     this.mnu_SearchDevice.Visible = (node.Tag as ParkInfo).DeviceType == EntranceDeviceType.NETEntrance;
                 }
                 else if (node != null && entranceTree.IsEntranceNode(node))

@@ -15,7 +15,6 @@ using Ralid.Park.BusinessModel.Configuration;
 using Ralid.GeneralLibrary.ExceptionHandling;
 using Ralid.GeneralLibrary.LOG;
 using Ralid.Park.PlateRecognition;
-using Ralid.Park.OutdoorLEDSetting;
 using Ralid.Park.BusinessModel.Factory;
 
 namespace Ralid.Park.ParkService
@@ -321,15 +320,6 @@ namespace Ralid.Park.ParkService
                     ParkVacantReport pReport = new ParkVacantReport(entrance.ParkID, entrance.EntranceID, DateTime.Now, entrance.EntranceName, _Park.Vacant);
                     OnParkVacantReporting(pReport);
                 }
-
-                if (UserSetting.Current.EnableOutdoorLed && entrance.ProcessingCard.WithCount) //如果启用了澳大户外屏
-                {
-                    ParkOutDoorLedManager pdm = ParkOutDoorLedSettingsStorage.Get(report.ParkID);
-                    if (pdm != null && pdm.ProcessCardEvent(report))
-                    {
-                        ParkOutDoorLedSettingsStorage.Save(pdm);
-                    }
-                }
                 entrance.ProcessingEvent = null;
             }
         }
@@ -611,25 +601,7 @@ namespace Ralid.Park.ParkService
             }
             if (!entrance.EntranceInfo.IsExitDevice && !card.CanEnterWhenFull && entrance.EntranceInfo.ForbidWhenFull) //如果是入场并且卡片不能在满位时入场,则判断车位数
             {
-                if (UserSetting.Current.EnableOutdoorLed)
-                {
-                    ParkOutDoorLedManager pm = ParkOutDoorLedSettingsStorage.Get(_Park.ParkID);
-                    if (pm != null)
-                    {
-                        int? vacant = pm.GetVacant(card.CardType, entrance.EntranceID);
-                        if (vacant != null && vacant.Value == 0)
-                        {
-                            DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
-                            return false;
-                        }
-                    }
-                    else if (Park.Vacant <= Park.MinPosition) //车位已满位入场
-                    {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
-                        return false;
-                    }
-                }
-                else if (Park.Vacant <= Park.MinPosition) //车位已满位入场
+                if (Park.Vacant <= Park.MinPosition) //车位已满位入场
                 {
                     DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
                     return false;

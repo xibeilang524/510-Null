@@ -51,6 +51,7 @@
             this.label10 = new System.Windows.Forms.Label();
             this.chkEnableCarPlateRecognize = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnClearExpiredSnapShot = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtMonth = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.chkEnableDeleteOverTimeImages = new System.Windows.Forms.CheckBox();
@@ -58,7 +59,6 @@
             this.comVideoType = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
-            this.chkEnableOutdoorLed = new System.Windows.Forms.CheckBox();
             this.chkOperatorCardCashWhenSettle = new System.Windows.Forms.CheckBox();
             this.chkInputHandInCashWhenSettle = new System.Windows.Forms.CheckBox();
             this.chkSnapshotWhenCarArrive = new System.Windows.Forms.CheckBox();
@@ -176,7 +176,6 @@
             this.butOK = new System.Windows.Forms.Button();
             this.butCancel = new System.Windows.Forms.Button();
             this.btnDownLoad = new System.Windows.Forms.Button();
-            this.btnClearExpiredSnapShot = new System.Windows.Forms.Button();
             this.tab1.SuspendLayout();
             this.tabUserSetting.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -375,6 +374,13 @@
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
+            // btnClearExpiredSnapShot
+            // 
+            resources.ApplyResources(this.btnClearExpiredSnapShot, "btnClearExpiredSnapShot");
+            this.btnClearExpiredSnapShot.Name = "btnClearExpiredSnapShot";
+            this.btnClearExpiredSnapShot.UseVisualStyleBackColor = true;
+            this.btnClearExpiredSnapShot.Click += new System.EventHandler(this.btnClearExpiredSnapShot_Click);
+            // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
@@ -398,7 +404,6 @@
             this.groupBox4.Controls.Add(this.comVideoType);
             this.groupBox4.Controls.Add(this.label28);
             this.groupBox4.Controls.Add(this.label17);
-            this.groupBox4.Controls.Add(this.chkEnableOutdoorLed);
             this.groupBox4.Controls.Add(this.chkOperatorCardCashWhenSettle);
             this.groupBox4.Controls.Add(this.chkInputHandInCashWhenSettle);
             this.groupBox4.Controls.Add(this.chkSnapshotWhenCarArrive);
@@ -438,12 +443,6 @@
             // 
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
-            // 
-            // chkEnableOutdoorLed
-            // 
-            resources.ApplyResources(this.chkEnableOutdoorLed, "chkEnableOutdoorLed");
-            this.chkEnableOutdoorLed.Name = "chkEnableOutdoorLed";
-            this.chkEnableOutdoorLed.UseVisualStyleBackColor = true;
             // 
             // chkOperatorCardCashWhenSettle
             // 
@@ -1294,13 +1293,6 @@
             this.btnDownLoad.UseVisualStyleBackColor = true;
             this.btnDownLoad.Click += new System.EventHandler(this.btnDownLoad_Click);
             // 
-            // btnClearExpiredSnapShot
-            // 
-            resources.ApplyResources(this.btnClearExpiredSnapShot, "btnClearExpiredSnapShot");
-            this.btnClearExpiredSnapShot.Name = "btnClearExpiredSnapShot";
-            this.btnClearExpiredSnapShot.UseVisualStyleBackColor = true;
-            this.btnClearExpiredSnapShot.Click += new System.EventHandler(this.btnClearExpiredSnapShot_Click);
-            // 
             // FrmSystemOption
             // 
             this.AcceptButton = this.butOK;
@@ -1474,7 +1466,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoliday;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInnerRoom;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHolidayAndInnerRoom;
-        private System.Windows.Forms.CheckBox chkEnableOutdoorLed;
         private System.Windows.Forms.CheckBox chkEnableWriteCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewComboBoxColumn colBaseCardType;

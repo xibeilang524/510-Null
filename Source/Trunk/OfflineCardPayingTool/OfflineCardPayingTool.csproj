@@ -170,10 +170,6 @@
     <None Include="Resources\Cards.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OutdoorLEDSetting\OutdoorLEDSetting.csproj">
-      <Project>{B9E1E175-6D99-4734-829F-31F0CFEFF9C1}</Project>
-      <Name>OutdoorLEDSetting</Name>
-    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
       <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
       <Name>Ralid.Park.BLL</Name>
