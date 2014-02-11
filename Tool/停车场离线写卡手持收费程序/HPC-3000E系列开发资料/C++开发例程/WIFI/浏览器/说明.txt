@@ -1,0 +1,1 @@
+将UCWEB拷贝到手持机上的FlashDisk目录下，连接上wifi后，运行即可上网。

@@ -1,0 +1,232 @@
+// Microsoft Visual C++ generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// 中文(中华人民共和国) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+#ifdef _WIN32
+LANGUAGE LANG_CHINESE, SUBLANG_CHINESE_SIMPLIFIED
+#pragma code_page(936)
+#endif //_WIN32
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE 
+BEGIN
+    "#define _AFX_NO_SPLITTER_RESOURCES\r\n"
+    "#define _AFX_NO_OLE_RESOURCES\r\n"
+    "#define _AFX_NO_TRACKER_RESOURCES\r\n"
+    "#define _AFX_NO_PROPERTY_RESOURCES\r\n"
+    "\r\n"
+    "#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)\r\n"
+    "LANGUAGE 4, 2\r\n"
+    "#pragma code_page(936)\r\n"
+    "#include ""res\\BlueToothS10Test.rc2""  // 非 Microsoft Visual C++ 编辑的资源\r\n"
+    "#include ""l.CHS\\afxres.rc""      // 标准组件\r\n"
+    "#endif\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDR_MAINFRAME           ICON                    "res\\BlueToothS10Test.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_BLUETOOTHS10TEST_DIALOG DIALOG  0, 0, 148, 181
+STYLE DS_SETFONT | DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU
+EXSTYLE WS_EX_APPWINDOW | 0x80000000L
+CAPTION "BlueToothS10Test"
+FONT 9, "MS Sans Serif"
+BEGIN
+    CONTROL         "",IDC_TABFUNC,"SysTabControl32",0x0,0,0,147,180
+END
+
+IDD_DLG_MODULE DIALOG  0, 0, 145, 164
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    COMBOBOX        IDC_CB_COMS,13,16,48,56,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "set mode",IDC_BN_OPERMODE,77,44,50,14
+    COMBOBOX        IDC_CB_OPERMODES,13,44,48,55,CBS_DROPDOWNLIST | CBS_SORT | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "Open",IDC_BN_INIT,66,16,31,14
+    PUSHBUTTON      "reboot device",IDC_BN_REBOOT,23,74,96,14
+    PUSHBUTTON      "software version",IDC_BN_VERSION,23,101,96,14
+    PUSHBUTTON      "restore setting",IDC_BN_ORGL,23,128,96,14
+    PUSHBUTTON      "Close",IDC_BN_CLOSE,105,16,31,14
+END
+
+IDD_DLG_SETTING DIALOG  0, 0, 140, 169
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_TXT_ADDR,10,14,76,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "GetAddr",IDC_BN_ADDR,94,14,38,14
+    EDITTEXT        IDC_TXT_NAME,9,35,119,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "SetName",IDC_BN_SETNAME,19,53,38,14
+    PUSHBUTTON      "GetName",IDC_BN_GETNAME,84,53,38,14
+    COMBOBOX        IDC_CB_ROLES,9,72,48,66,CBS_DROPDOWNLIST | WS_VSCROLL | WS_TABSTOP
+    PUSHBUTTON      "SetRole",IDC_BN_SETROLE,70,72,30,14
+    EDITTEXT        IDC_TXT_DC,9,91,48,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "SetClass",IDC_BN_SETDC,70,91,30,14
+    EDITTEXT        IDC_TXT_AC,9,110,48,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "SetIAC",IDC_BN_SETAC,70,109,30,14
+    EDITTEXT        IDC_TXT_MC,9,129,48,14,ES_AUTOHSCROLL
+    PUSHBUTTON      "SetPSW",IDC_BN_SETMC,70,129,30,14
+    PUSHBUTTON      "GetRole",IDC_BN_GETROLE,102,72,30,14
+    PUSHBUTTON      "GetClass",IDC_BN_GETDC,102,91,30,14
+    PUSHBUTTON      "GetIAC",IDC_BN_GETAC,102,109,30,14
+    PUSHBUTTON      "GetPSW",IDC_BN_GETMC,102,129,30,14
+    LTEXT           "h",IDC_STATIC,59,95,10,8
+    LTEXT           "h",IDC_STATIC,60,113,10,8
+END
+
+IDD_DLG_SEARCH DIALOG  0, 0, 151, 177
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    PUSHBUTTON      "start search",IDC_BN_INQ,16,10,50,14
+    PUSHBUTTON      "stop search",IDC_BN_INQC,81,10,50,14
+    CONTROL         "",IDC_LIST_DEVICES,"SysListView32",LVS_REPORT | LVS_ALIGNLEFT | WS_BORDER | WS_TABSTOP,9,30,130,70
+    PUSHBUTTON      "connect",IDC_BN_LINK,16,124,50,14
+    PUSHBUTTON      "disconnect",IDC_BN_DISC,81,124,50,14
+    PUSHBUTTON      "bind",IDC_BN_BIND,16,105,50,14
+    PUSHBUTTON      "match",IDC_BN_PAIR,81,105,50,14
+END
+
+IDD_DLG_TRANSPORT DIALOG  0, 0, 150, 174
+STYLE DS_SETFONT | DS_FIXEDSYS | WS_CHILD | WS_SYSMENU
+FONT 8, "MS Shell Dlg"
+BEGIN
+    EDITTEXT        IDC_TXT_IN,8,6,133,61,ES_MULTILINE | ES_AUTOVSCROLL | ES_READONLY
+    CONTROL         "hex",IDC_CK_INHEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,70,28,10
+    PUSHBUTTON      "send",IDC_BN_SEND,106,131,31,14
+    EDITTEXT        IDC_TXT_OUT,8,82,133,49,ES_MULTILINE | ES_AUTOVSCROLL | ES_WANTRETURN | WS_VSCROLL
+    CONTROL         "hex",IDC_CK_OUTHEX,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,13,134,28,10
+    PUSHBUTTON      "clear",IDC_BN_INCLEAR,62,67,31,14
+    PUSHBUTTON      "clear",IDC_BN_OUTCLEAR,62,131,31,14
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Version
+//
+
+VS_VERSION_INFO VERSIONINFO
+ FILEVERSION 1,0,0,1
+ PRODUCTVERSION 1,0,0,1
+ FILEFLAGSMASK 0x3fL
+#ifdef _DEBUG
+ FILEFLAGS 0x1L
+#else
+ FILEFLAGS 0x0L
+#endif
+ FILEOS 0x4L
+ FILETYPE 0x1L
+ FILESUBTYPE 0x0L
+BEGIN
+    BLOCK "StringFileInfo"
+    BEGIN
+        BLOCK "080403a8"
+        BEGIN
+            VALUE "CompanyName", "TODO: <公司名>"
+            VALUE "FileDescription", "TODO: <文件说明>"
+            VALUE "FileVersion", "1.0.0.1"
+            VALUE "InternalName", "BlueToothS10Test.exe"
+            VALUE "LegalCopyright", "TODO: (C) <公司名>。保留所有权利。"
+            VALUE "OriginalFilename", "BlueToothS10Test.exe"
+            VALUE "ProductName", "TODO: <产品名>"
+            VALUE "ProductVersion", "1.0.0.1"
+        END
+    END
+    BLOCK "VarFileInfo"
+    BEGIN
+        VALUE "Translation", 0x804, 936
+    END
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO 
+BEGIN
+    IDD_BLUETOOTHS10TEST_DIALOG, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 180
+    END
+
+    IDD_DLG_SETTING, DIALOG
+    BEGIN
+        BOTTOMMARGIN, 166
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+#endif    // 中文(中华人民共和国) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+#define _AFX_NO_SPLITTER_RESOURCES
+#define _AFX_NO_OLE_RESOURCES
+#define _AFX_NO_TRACKER_RESOURCES
+#define _AFX_NO_PROPERTY_RESOURCES
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_CHS)
+LANGUAGE 4, 2
+#pragma code_page(936)
+#include "res\BlueToothS10Test.rc2"  // 非 Microsoft Visual C++ 编辑的资源
+#include "l.CHS\afxres.rc"      // 标准组件
+#endif
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

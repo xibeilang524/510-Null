@@ -1,0 +1,30 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 9.00
+# Visual Studio 2005
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ReadBarcode", "ReadBarcode.vcproj", "{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|epcARM270LP (ARMV4I) = Debug|epcARM270LP (ARMV4I)
+		Debug|HPC-3000 (ARMV4I) = Debug|HPC-3000 (ARMV4I)
+		Release|epcARM270LP (ARMV4I) = Release|epcARM270LP (ARMV4I)
+		Release|HPC-3000 (ARMV4I) = Release|HPC-3000 (ARMV4I)
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|epcARM270LP (ARMV4I).ActiveCfg = Debug|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|epcARM270LP (ARMV4I).Build.0 = Debug|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|epcARM270LP (ARMV4I).Deploy.0 = Debug|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|HPC-3000 (ARMV4I).ActiveCfg = Debug|HPC-3000 (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|HPC-3000 (ARMV4I).Build.0 = Debug|HPC-3000 (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Debug|HPC-3000 (ARMV4I).Deploy.0 = Debug|HPC-3000 (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|epcARM270LP (ARMV4I).ActiveCfg = Release|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|epcARM270LP (ARMV4I).Build.0 = Release|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|epcARM270LP (ARMV4I).Deploy.0 = Release|epcARM270LP (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|HPC-3000 (ARMV4I).ActiveCfg = Release|HPC-3000 (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|HPC-3000 (ARMV4I).Build.0 = Release|HPC-3000 (ARMV4I)
+		{2FA10EBB-5AEC-4DFC-BA41-8386AC77CD3B}.Release|HPC-3000 (ARMV4I).Deploy.0 = Release|HPC-3000 (ARMV4I)
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

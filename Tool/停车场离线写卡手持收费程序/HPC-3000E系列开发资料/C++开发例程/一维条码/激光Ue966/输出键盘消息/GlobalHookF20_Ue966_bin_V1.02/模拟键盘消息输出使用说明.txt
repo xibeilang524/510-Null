@@ -1,0 +1,11 @@
+一、 使能模拟按键输出
+1. 请将GlobalHookF20_Ue966_bin_V1.02整个文件夹拷贝到手持机FlashDisk目录下；
+2. 将Shortcut to GlobalHookF20快捷方式拷贝到\FlashDisk\StartUp目录下；
+3. 重启手持机，这时即使能了模拟按键消息输出，扫到的条码将在任意光标处显示出来；
+
+二、使能串口操作
+1. 请将\FlashDisk\StartUp目录下的Shortcut to GlobalHookF20快捷方式删除，然后
+重启手持机即可。
+
+由于以前的手持机没有考虑该功能，以后我们在新的内核系统中的控制面板中
+将加入使能模拟按键输出和使能串口操作选择，用户可以任意使用两种功能。

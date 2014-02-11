@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<MySetting xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <WegenType>Wengen34</WegenType>
+  <ParkingKey>8f/////x</ParkingKey>
+  <ParkingSection>2</ParkingSection>
+  <FreeTimeAfterPay>15</FreeTimeAfterPay>
+  <Operators>
+    <OperatorInfo>
+      <OperatorID>admin</OperatorID>
+      <OperatorName>admin</OperatorName>
+      <Password>vMPZ@@+JBsfrRhx+ghO7PsNCB+Pwe#C9IBMoz_huV</Password>
+      <OperatorNum>1</OperatorNum>
+    </OperatorInfo>
+  </Operators>
+</MySetting>

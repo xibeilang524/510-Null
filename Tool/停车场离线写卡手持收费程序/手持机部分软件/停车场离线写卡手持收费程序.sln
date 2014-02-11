@@ -1,0 +1,72 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Parking.POS.UI", "Ralid.Parking.POS.UI\Ralid.Parking.POS.UI.csproj", "{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Parking.POS.Model", "Ralid.Parking.POS.Model\Ralid.Parking.POS.Model.csproj", "{58562084-F367-46F0-9605-5F55AFACC074}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Parking.POS.Device", "Ralid.Parking.POS.Device\Ralid.Parking.POS.Device.csproj", "{E81ED1BC-907D-48E8-85FE-62EFEF275247}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Parking.POS.DAL", "Ralid.Parking.POS.DAL\Ralid.Parking.POS.DAL.csproj", "{FA52590E-3102-4739-8285-FDBABA43A471}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Parking.POS.Tool", "Ralid.Parking.POS.Tool\Ralid.Parking.POS.Tool.csproj", "{00CF26F8-5353-4F74-8D0D-268A187DF670}"
+EndProject
+Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "SmartDeviceCab1", "SmartDeviceCab1\SmartDeviceCab1.vddproj", "{CB7CD919-A2BA-4D00-A6F2-7CE69E15F1C1}"
+EndProject
+Global
+	GlobalSection(SourceCodeControl) = preSolution
+		SccNumberOfProjects = 7
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Ralid.Parking.POS.DAL\\Ralid.Parking.POS.DAL.csproj
+		SccLocalPath1 = .
+		SccProjectFilePathRelativizedFromConnection1 = Ralid.Parking.POS.DAL\\
+		SccProjectUniqueName2 = Ralid.Parking.POS.Device\\Ralid.Parking.POS.Device.csproj
+		SccLocalPath2 = .
+		SccProjectFilePathRelativizedFromConnection2 = Ralid.Parking.POS.Device\\
+		SccProjectUniqueName3 = Ralid.Parking.POS.Model\\Ralid.Parking.POS.Model.csproj
+		SccLocalPath3 = .
+		SccProjectFilePathRelativizedFromConnection3 = Ralid.Parking.POS.Model\\
+		SccProjectUniqueName4 = Ralid.Parking.POS.Tool\\Ralid.Parking.POS.Tool.csproj
+		SccLocalPath4 = .
+		SccProjectFilePathRelativizedFromConnection4 = Ralid.Parking.POS.Tool\\
+		SccProjectUniqueName5 = Ralid.Parking.POS.UI\\Ralid.Parking.POS.UI.csproj
+		SccLocalPath5 = .
+		SccProjectFilePathRelativizedFromConnection5 = Ralid.Parking.POS.UI\\
+		SccProjectUniqueName6 = SmartDeviceCab1\\SmartDeviceCab1.vddproj
+		SccLocalPath6 = .
+		SccProjectFilePathRelativizedFromConnection6 = SmartDeviceCab1\\
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{73F3177E-66C7-4CF1-9FCA-5609DEF82F9F}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{58562084-F367-46F0-9605-5F55AFACC074}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58562084-F367-46F0-9605-5F55AFACC074}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58562084-F367-46F0-9605-5F55AFACC074}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58562084-F367-46F0-9605-5F55AFACC074}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E81ED1BC-907D-48E8-85FE-62EFEF275247}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E81ED1BC-907D-48E8-85FE-62EFEF275247}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E81ED1BC-907D-48E8-85FE-62EFEF275247}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E81ED1BC-907D-48E8-85FE-62EFEF275247}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA52590E-3102-4739-8285-FDBABA43A471}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA52590E-3102-4739-8285-FDBABA43A471}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA52590E-3102-4739-8285-FDBABA43A471}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA52590E-3102-4739-8285-FDBABA43A471}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00CF26F8-5353-4F74-8D0D-268A187DF670}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00CF26F8-5353-4F74-8D0D-268A187DF670}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00CF26F8-5353-4F74-8D0D-268A187DF670}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00CF26F8-5353-4F74-8D0D-268A187DF670}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CB7CD919-A2BA-4D00-A6F2-7CE69E15F1C1}.Debug|Any CPU.ActiveCfg = Debug
+		{CB7CD919-A2BA-4D00-A6F2-7CE69E15F1C1}.Release|Any CPU.ActiveCfg = Release
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
