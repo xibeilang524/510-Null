@@ -160,11 +160,16 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Hardware", Description = "编辑摄像机信息")]
         EditVideo = 24,
+        /// <summary>
+        /// 通道路口切换
+        /// </summary>
+        [OperatorRight(Catalog = "Hardware", Description = "通道路口切换")]
+        SwitchRoadWay = 84,
         #endregion
 
         #region 系统数据
         /// <summary>
-        /// 卡片进出收费
+        /// 操作员结算
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "操作员结算")]
         OperatorSettle = 58,
@@ -267,7 +272,32 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "导入记录")]
         ImportRecord = 79,
-
+        
+        /// <summary>
+        /// 查看通道路口信息
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "查看通道路口信息")]
+        ReadRoadWay = 80,
+        /// <summary>
+        /// 编辑通道路口信息
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "编辑通道路口信息")]
+        EditRoadWay = 81,
+        /// <summary>
+        /// 免费停车优惠授权
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "免费停车优惠授权")]
+        FreeAuthorization = 82,
+        /// <summary>
+        /// 编辑免费停车优惠的免费天数
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "编辑免费停车优惠的免费天数")]
+        EditFreeDays = 83,
+        /// <summary>
+        /// 手持机同步工具
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "手持机同步工具")]
+        POSSyncTool = 85,
         #endregion
 
         #region 报表

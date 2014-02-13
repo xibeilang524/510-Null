@@ -27,13 +27,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RalidParking", "RalidNetPar
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTestProject", "UnitTestProject\UnitTestProject.csproj", "{D95AD241-89EC-46BF-8C9B-4BABCAA81E41}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "RalidParkSetup_En", "RalidParkSetup_En\RalidParkSetup_En.vdproj", "{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ParkingDebugTool", "ParkingDebugTool\ParkingDebugTool.csproj", "{5D4ACF75-D695-4F36-9193-B90767E57B7A}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OfflineCardPayingTool", "OfflineCardPayingTool\OfflineCardPayingTool.csproj", "{B43E128F-F432-42B8-A7B7-B53444263655}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Park.LocalDataBase", "Ralid.Park.LocalDataBase\Ralid.Park.LocalDataBase.csproj", "{79B96C62-2AD0-4DF2-B85C-FB99FF864FC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.Park.POS", "Ralid.Park.POS\Ralid.Park.POS.csproj", "{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -185,14 +185,6 @@ Global
 		{D95AD241-89EC-46BF-8C9B-4BABCAA81E41}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{D95AD241-89EC-46BF-8C9B-4BABCAA81E41}.Release|x86.ActiveCfg = Release|x86
 		{D95AD241-89EC-46BF-8C9B-4BABCAA81E41}.Release|x86.Build.0 = Release|x86
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Debug|Any CPU.ActiveCfg = Debug
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Debug|Any CPU.Build.0 = Debug
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Debug|Mixed Platforms.ActiveCfg = Debug
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Debug|x86.ActiveCfg = Debug
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Debug|x86.Build.0 = Debug
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Release|Any CPU.ActiveCfg = Release
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Release|Mixed Platforms.ActiveCfg = Release
-		{063643FA-3E8D-4E5B-AA93-2F72FDDCC078}.Release|x86.ActiveCfg = Release
 		{5D4ACF75-D695-4F36-9193-B90767E57B7A}.Debug|Any CPU.ActiveCfg = Debug|x86
 		{5D4ACF75-D695-4F36-9193-B90767E57B7A}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
 		{5D4ACF75-D695-4F36-9193-B90767E57B7A}.Debug|Mixed Platforms.Build.0 = Debug|x86
@@ -226,6 +218,16 @@ Global
 		{79B96C62-2AD0-4DF2-B85C-FB99FF864FC3}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{79B96C62-2AD0-4DF2-B85C-FB99FF864FC3}.Release|x86.ActiveCfg = Release|x86
 		{79B96C62-2AD0-4DF2-B85C-FB99FF864FC3}.Release|x86.Build.0 = Release|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Debug|x86.ActiveCfg = Debug|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Debug|x86.Build.0 = Debug|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Release|Any CPU.ActiveCfg = Release|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Release|Mixed Platforms.Build.0 = Release|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Release|x86.ActiveCfg = Release|x86
+		{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

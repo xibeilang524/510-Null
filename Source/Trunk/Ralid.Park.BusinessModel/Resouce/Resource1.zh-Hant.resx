@@ -399,12 +399,6 @@
   <data name="ParkingStatus_PaidBill" xml:space="preserve">
     <value>已交費</value>
   </data>
-  <data name="ParkingStatus_RepeatIn" xml:space="preserve">
-    <value>重複入場</value>
-  </data>
-  <data name="ParkingStatus_RepeatOut" xml:space="preserve">
-    <value>重複出場</value>
-  </data>
   <data name="PaymentMode_Cash" xml:space="preserve">
     <value>現金</value>
   </data>
@@ -863,5 +857,92 @@
   </data>
   <data name="Second" xml:space="preserve">
     <value>秒</value>
+  </data>
+  <data name="AlarmType_GateAlarm" xml:space="preserve">
+    <value>道閘報警</value>
+  </data>
+  <data name="RoadMode_Entrance" xml:space="preserve">
+    <value>入口</value>
+  </data>
+  <data name="RoadMode_Exit" xml:space="preserve">
+    <value>出口</value>
+  </data>
+  <data name="RoadMode_None" xml:space="preserve">
+    <value>未設置</value>
+  </data>
+  <data name="Permission_EditRoadWay" xml:space="preserve">
+    <value>編輯通道路口信息</value>
+  </data>
+  <data name="Permission_ReadRoadWay" xml:space="preserve">
+    <value>查看通道路口信息</value>
+  </data>
+  <data name="ParkingStatus_NotCheckOut" xml:space="preserve">
+    <value>酒店未退房</value>
+  </data>
+  <data name="ParkingStatus_HotelApp" xml:space="preserve">
+    <value>酒店應用</value>
+  </data>
+  <data name="Tariff_TurningLimited" xml:space="preserve">
+    <value>限時過點收費</value>
+  </data>
+  <data name="Permissions_FreeAuthorization" xml:space="preserve">
+    <value>免費停車優惠授權</value>
+  </data>
+  <data name="CardOperationManager_InitFail" xml:space="preserve">
+    <value>初始化讀卡器失敗</value>
+  </data>
+  <data name="CardOperationManager_OpenFail" xml:space="preserve">
+    <value>打開讀卡器失敗</value>
+  </data>
+  <data name="Permission_EditFreeDays" xml:space="preserve">
+    <value>編輯免費停車優惠的免費天數</value>
+  </data>
+  <data name="CardPaymentInfoFactory_Free" xml:space="preserve">
+    <value>免費到</value>
+  </data>
+  <data name="Permission_SwitchRoadWay" xml:space="preserve">
+    <value>通道路口切換</value>
+  </data>
+  <data name="Permission_POSSyncTool" xml:space="preserve">
+    <value>手持機同步工具</value>
+  </data>
+  <data name="WaitingCommandStatus_Fail" xml:space="preserve">
+    <value>失敗</value>
+  </data>
+  <data name="WaitingCommandStatus_Success" xml:space="preserve">
+    <value>成功</value>
+  </data>
+  <data name="WaitingCommandStatus_Wait" xml:space="preserve">
+    <value>等待</value>
+  </data>
+  <data name="CommandType_AddCard" xml:space="preserve">
+    <value>新增卡片</value>
+  </data>
+  <data name="CommandType_ClearCard" xml:space="preserve">
+    <value>清空卡片</value>
+  </data>
+  <data name="CommandType_DeleteCard" xml:space="preserve">
+    <value>刪除卡片</value>
+  </data>
+  <data name="CommandType_DownloadAccesses" xml:space="preserve">
+    <value>下發權限</value>
+  </data>
+  <data name="CommandType_DownloadHolidays" xml:space="preserve">
+    <value>下發節假日</value>
+  </data>
+  <data name="CommandType_DownloadKeySetting" xml:space="preserve">
+    <value>下發密鈅</value>
+  </data>
+  <data name="CommandType_DownloadTariffs" xml:space="preserve">
+    <value>下發費率</value>
+  </data>
+  <data name="CommandType_UpdateCard" xml:space="preserve">
+    <value>修改卡片</value>
+  </data>
+  <data name="AlarmType_OperatorLogOut" xml:space="preserve">
+    <value>操作員退出</value>
+  </data>
+  <data name="AlarmType_CardOutAnomaly" xml:space="preserve">
+    <value>卡片直接出場</value>
   </data>
 </root>

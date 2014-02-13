@@ -1,0 +1,146 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Ralid.Park.POS</RootNamespace>
+    <AssemblyName>Ralid.Park.POS</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>..\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="OpenNETCF.Desktop.Communication">
+      <HintPath>..\ReferenceDll\OpenNETCF.Desktop.Communication.dll</HintPath>
+    </Reference>
+    <Reference Include="Ralid.GeneralLibrary">
+      <HintPath>..\Reference\Ralid.GeneralLibrary.dll</HintPath>
+    </Reference>
+    <Reference Include="Ralid.Park.BLL">
+      <HintPath>..\Reference\Ralid.Park.BLL.dll</HintPath>
+    </Reference>
+    <Reference Include="Ralid.Park.BusinessModel">
+      <HintPath>..\Reference\Ralid.Park.BusinessModel.dll</HintPath>
+    </Reference>
+    <Reference Include="Ralid.Park.DAL">
+      <HintPath>..\Reference\Ralid.Park.DAL.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="FrmMain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmMain.designer.cs">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmProcessing.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmProcessing.designer.cs">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Model\AlarmInfo.cs" />
+    <Compile Include="Model\AlarmType.cs" />
+    <Compile Include="Model\CardChargeRecord.cs" />
+    <Compile Include="Model\CardPaymentInfo.cs" />
+    <Compile Include="Model\CardPaymentInfoSerializer.cs" />
+    <Compile Include="Model\CardStatus.cs" />
+    <Compile Include="Model\CardType.cs" />
+    <Compile Include="Model\DatetimeInterval.cs" />
+    <Compile Include="Model\HolidayInfo.cs" />
+    <Compile Include="Model\MySetting.cs" />
+    <Compile Include="Model\OperatorInfo.cs" />
+    <Compile Include="Model\ParkingStatus.cs" />
+    <Compile Include="Model\PaymentCode.cs" />
+    <Compile Include="Model\PaymentMode.cs" />
+    <Compile Include="Model\TariffType.cs" />
+    <Compile Include="Model\WegenType.cs" />
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="FrmMain.resx">
+      <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmProcessing.resx">
+      <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ralid.Park.UserControls\Ralid.Park.UserControls.csproj">
+      <Project>{2018980E-02D9-4AAA-BABF-5F41E997B0BB}</Project>
+      <Name>Ralid.Park.UserControls</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

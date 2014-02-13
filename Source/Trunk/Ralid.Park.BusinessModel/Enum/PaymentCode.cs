@@ -28,6 +28,11 @@ namespace Ralid.Park.BusinessModel.Enum
         /// <summary>
         /// 功能卡收费
         /// </summary>
-        FunctionCard = 0xB2
+        FunctionCard = 0xB2,
+
+        /// <summary>
+        /// 手持机收费
+        /// </summary>
+        POS = 0xB3,
     }
 }

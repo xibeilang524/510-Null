@@ -44,14 +44,6 @@ namespace Ralid.Park.BusinessModel.Resouce
             {
                 return Resource1.ParkingStatus_PaidBill;
             }
-            if ((parkingFlag & ParkingStatus.RepeatIn) == ParkingStatus.RepeatIn)
-            {
-                return Resource1.ParkingStatus_RepeatIn;
-            }
-            if ((parkingFlag & ParkingStatus.RepeatOut) == ParkingStatus.RepeatOut)
-            {
-                return Resource1.ParkingStatus_RepeatOut;
-            }
             return string.Empty;
         }
     }

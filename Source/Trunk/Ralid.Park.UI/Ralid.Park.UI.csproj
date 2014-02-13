@@ -1761,6 +1761,10 @@
       <Project>{46A3B25B-E823-4884-B4E3-123DEDEBC407}</Project>
       <Name>Ralid.Park.PlateRecognition</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.POS\Ralid.Park.POS.csproj">
+      <Project>{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}</Project>
+      <Name>Ralid.Park.POS</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.ThirdCommunication\Ralid.Park.ThirdCommunication.csproj">
       <Project>{B47CFB4B-268C-4A2A-939D-776AD788C5FA}</Project>
       <Name>Ralid.Park.ThirdCommunication</Name>

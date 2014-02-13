@@ -202,6 +202,12 @@
   <data name="mnu_APM.Text" xml:space="preserve">
     <value>APM Manage</value>
   </data>
+  <data name="mnu_RoadWays.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="mnu_RoadWays.Text" xml:space="preserve">
+    <value>RoadWay</value>
+  </data>
   <data name="mnu_ZSTSetting.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
@@ -244,6 +250,15 @@
   <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
     <value>Card Charge Record</value>
   </data>
+  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 6</value>
+  </data>
+  <data name="mnu_PosSyncTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="mnu_PosSyncTool.Text" xml:space="preserve">
+    <value>POS Sync Tool</value>
+  </data>
   <data name="mnu_Operator.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
   </data>
@@ -285,6 +300,9 @@
   </data>
   <data name="mnu_HasPaidCardReport.Text" xml:space="preserve">
     <value>Paid Premium Card Statistics</value>
+  </data>
+  <data name="mnu_CardReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
   </data>
   <data name="mnu_CardChargeReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -402,6 +420,12 @@
   </data>
   <data name="mnu_CardPaying.Text" xml:space="preserve">
     <value>CardPaying</value>
+  </data>
+  <data name="mnu_HotelAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="mnu_HotelAuthorization.Text" xml:space="preserve">
+    <value>Free Authorization</value>
   </data>
   <data name="mnu_SnapShoter.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -553,6 +577,18 @@
   <data name="btn_CardPaymentReport.Text" xml:space="preserve">
     <value>PaymentReport</value>
   </data>
+  <data name="btn_SwitchEntranceMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 57</value>
+  </data>
+  <data name="btn_SwitchEntranceMode.Text" xml:space="preserve">
+    <value>RoadWaySwitch</value>
+  </data>
+  <data name="btn_FreeAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>40, 57</value>
+  </data>
+  <data name="btn_FreeAuthorization.Text" xml:space="preserve">
+    <value>Free</value>
+  </data>
   <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>238, 158</value>
   </data>
@@ -661,20 +697,14 @@
   <data name="btn_EntranceProperty.Text" xml:space="preserve">
     <value>Property</value>
   </data>
-  <data name="treeContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>131, 48</value>
-  </data>
-  <data name="mnu_Fresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
-  </data>
   <data name="mnu_Fresh.Text" xml:space="preserve">
     <value>Refresh</value>
   </data>
-  <data name="mnu_AddPark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>130, 22</value>
-  </data>
   <data name="mnu_AddPark.Text" xml:space="preserve">
     <value>Add Park</value>
+  </data>
+  <data name="mnu_SwitchEntranceMode.Text" xml:space="preserve">
+    <value>RoadWay Switch</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>

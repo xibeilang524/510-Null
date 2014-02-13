@@ -1026,4 +1026,25 @@
   <data name="FrmDownLoadAllCards_Fail" xml:space="preserve">
     <value>Fail</value>
   </data>
+  <data name="FrmRoadWayDetail_InvalidName" xml:space="preserve">
+    <value>Invalid RoadWay Name!</value>
+  </data>
+  <data name="LEDType_HSD" xml:space="preserve">
+    <value>Table LED  ( H )</value>
+  </data>
+  <data name="FrmRoadWayDetail_InvalidEntranceIDs" xml:space="preserve">
+    <value>Please select the controllers</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCardsNote" xml:space="preserve">
+    <value>Note：Offline mode online processing card will not be sent to the controller</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDeleteCards" xml:space="preserve">
+    <value>Not Delete Cards</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDownloadCards" xml:space="preserve">
+    <value>Not Download Cards</value>
+  </data>
+  <data name="OperatorLogOutAlarm" xml:space="preserve">
+    <value>Sation:[{0}]  LogIn:[{1}]  Host:[{2}]  IP:[{3}]  MAC:[{4}]</value>
+  </data>
 </root>

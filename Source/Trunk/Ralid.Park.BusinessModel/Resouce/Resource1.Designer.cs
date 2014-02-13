@@ -133,6 +133,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 卡片直接出场 的本地化字符串。
+        /// </summary>
+        internal static string AlarmType_CardOutAnomaly {
+            get {
+                return ResourceManager.GetString("AlarmType_CardOutAnomaly", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 车辆离开 的本地化字符串。
         /// </summary>
         internal static string AlarmType_CarLeave {
@@ -147,6 +156,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string AlarmType_Closedoor {
             get {
                 return ResourceManager.GetString("AlarmType_Closedoor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 道闸报警 的本地化字符串。
+        /// </summary>
+        internal static string AlarmType_GateAlarm {
+            get {
+                return ResourceManager.GetString("AlarmType_GateAlarm", resourceCulture);
             }
         }
         
@@ -183,6 +201,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string AlarmType_OperatorLogIn {
             get {
                 return ResourceManager.GetString("AlarmType_OperatorLogIn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 操作员退出 的本地化字符串。
+        /// </summary>
+        internal static string AlarmType_OperatorLogOut {
+            get {
+                return ResourceManager.GetString("AlarmType_OperatorLogOut", resourceCulture);
             }
         }
         
@@ -358,6 +385,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 初始化读卡器失败 的本地化字符串。
+        /// </summary>
+        internal static string CardOperationManager_InitFail {
+            get {
+                return ResourceManager.GetString("CardOperationManager_InitFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 初始化卡片密钥失败! 的本地化字符串。
         /// </summary>
         internal static string CardOperationManager_InitKeyFail {
@@ -390,6 +426,24 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string CardOperationManager_NoCurrentCard {
             get {
                 return ResourceManager.GetString("CardOperationManager_NoCurrentCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 打开读卡器失败 的本地化字符串。
+        /// </summary>
+        internal static string CardOperationManager_OpenFail {
+            get {
+                return ResourceManager.GetString("CardOperationManager_OpenFail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 免费到 的本地化字符串。
+        /// </summary>
+        internal static string CardPaymentInfoFactory_Free {
+            get {
+                return ResourceManager.GetString("CardPaymentInfoFactory_Free", resourceCulture);
             }
         }
         
@@ -660,6 +714,78 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string CarType_Truck {
             get {
                 return ResourceManager.GetString("CarType_Truck", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 新增卡片 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_AddCard {
+            get {
+                return ResourceManager.GetString("CommandType_AddCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 清空卡片 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_ClearCard {
+            get {
+                return ResourceManager.GetString("CommandType_ClearCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 删除卡片 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_DeleteCard {
+            get {
+                return ResourceManager.GetString("CommandType_DeleteCard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下发权限 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_DownloadAccesses {
+            get {
+                return ResourceManager.GetString("CommandType_DownloadAccesses", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下发节假日 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_DownloadHolidays {
+            get {
+                return ResourceManager.GetString("CommandType_DownloadHolidays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下发密钥 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_DownloadKeySetting {
+            get {
+                return ResourceManager.GetString("CommandType_DownloadKeySetting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 下发费率 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_DownloadTariffs {
+            get {
+                return ResourceManager.GetString("CommandType_DownloadTariffs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 修改卡片 的本地化字符串。
+        /// </summary>
+        internal static string CommandType_UpdateCard {
+            get {
+                return ResourceManager.GetString("CommandType_UpdateCard", resourceCulture);
             }
         }
         
@@ -1132,6 +1258,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 酒店应用 的本地化字符串。
+        /// </summary>
+        internal static string ParkingStatus_HotelApp {
+            get {
+                return ResourceManager.GetString("ParkingStatus_HotelApp", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 已入场 的本地化字符串。
         /// </summary>
         internal static string ParkingStatus_In {
@@ -1159,6 +1294,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 酒店未退房 的本地化字符串。
+        /// </summary>
+        internal static string ParkingStatus_NotCheckOut {
+            get {
+                return ResourceManager.GetString("ParkingStatus_NotCheckOut", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 已出场 的本地化字符串。
         /// </summary>
         internal static string ParkingStatus_Out {
@@ -1173,24 +1317,6 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string ParkingStatus_PaidBill {
             get {
                 return ResourceManager.GetString("ParkingStatus_PaidBill", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 重复入场 的本地化字符串。
-        /// </summary>
-        internal static string ParkingStatus_RepeatIn {
-            get {
-                return ResourceManager.GetString("ParkingStatus_RepeatIn", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   查找类似 重复出场 的本地化字符串。
-        /// </summary>
-        internal static string ParkingStatus_RepeatOut {
-            get {
-                return ResourceManager.GetString("ParkingStatus_RepeatOut", resourceCulture);
             }
         }
         
@@ -1573,6 +1699,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 编辑免费停车优惠的免费天数 的本地化字符串。
+        /// </summary>
+        internal static string Permission_EditFreeDays {
+            get {
+                return ResourceManager.GetString("Permission_EditFreeDays", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 编辑操作员信息 的本地化字符串。
         /// </summary>
         internal static string Permission_EditOperator {
@@ -1587,6 +1722,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string Permission_EditPark {
             get {
                 return ResourceManager.GetString("Permission_EditPark", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 编辑通道路口信息 的本地化字符串。
+        /// </summary>
+        internal static string Permission_EditRoadWay {
+            get {
+                return ResourceManager.GetString("Permission_EditRoadWay", resourceCulture);
             }
         }
         
@@ -1753,6 +1897,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 手持机同步工具 的本地化字符串。
+        /// </summary>
+        internal static string Permission_POSSyncTool {
+            get {
+                return ResourceManager.GetString("Permission_POSSyncTool", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 打印停车收费报表 的本地化字符串。
         /// </summary>
         internal static string Permission_PrintCardPayment {
@@ -1803,6 +1956,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string Permission_ReadOperator {
             get {
                 return ResourceManager.GetString("Permission_ReadOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 查看通道路口信息 的本地化字符串。
+        /// </summary>
+        internal static string Permission_ReadRoadWay {
+            get {
+                return ResourceManager.GetString("Permission_ReadRoadWay", resourceCulture);
             }
         }
         
@@ -1888,6 +2050,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 通道路口切换 的本地化字符串。
+        /// </summary>
+        internal static string Permission_SwitchRoadWay {
+            get {
+                return ResourceManager.GetString("Permission_SwitchRoadWay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 同步数据到备用数据库 的本地化字符串。
         /// </summary>
         internal static string Permission_SyncDataToStandby {
@@ -1938,6 +2109,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string Permission_ZSTSeting {
             get {
                 return ResourceManager.GetString("Permission_ZSTSeting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 免费停车优惠授权 的本地化字符串。
+        /// </summary>
+        internal static string Permissions_FreeAuthorization {
+            get {
+                return ResourceManager.GetString("Permissions_FreeAuthorization", resourceCulture);
             }
         }
         
@@ -2194,6 +2374,33 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 入口 的本地化字符串。
+        /// </summary>
+        internal static string RoadMode_Entrance {
+            get {
+                return ResourceManager.GetString("RoadMode_Entrance", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 出口 的本地化字符串。
+        /// </summary>
+        internal static string RoadMode_Exit {
+            get {
+                return ResourceManager.GetString("RoadMode_Exit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 未设置 的本地化字符串。
+        /// </summary>
+        internal static string RoadMode_None {
+            get {
+                return ResourceManager.GetString("RoadMode_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 秒 的本地化字符串。
         /// </summary>
         internal static string Second {
@@ -2266,6 +2473,15 @@ namespace Ralid.Park.BusinessModel.Resouce {
         }
         
         /// <summary>
+        ///   查找类似 限时过点收费 的本地化字符串。
+        /// </summary>
+        internal static string Tariff_TurningLimited {
+            get {
+                return ResourceManager.GetString("Tariff_TurningLimited", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 节假日收费 的本地化字符串。
         /// </summary>
         internal static string TariffType_Holiday {
@@ -2298,6 +2514,33 @@ namespace Ralid.Park.BusinessModel.Resouce {
         internal static string TariffType_Normal {
             get {
                 return ResourceManager.GetString("TariffType_Normal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 失败 的本地化字符串。
+        /// </summary>
+        internal static string WaitingCommandStatus_Fail {
+            get {
+                return ResourceManager.GetString("WaitingCommandStatus_Fail", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 成功 的本地化字符串。
+        /// </summary>
+        internal static string WaitingCommandStatus_Success {
+            get {
+                return ResourceManager.GetString("WaitingCommandStatus_Success", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 等待 的本地化字符串。
+        /// </summary>
+        internal static string WaitingCommandStatus_Wait {
+            get {
+                return ResourceManager.GetString("WaitingCommandStatus_Wait", resourceCulture);
             }
         }
     }

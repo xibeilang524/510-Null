@@ -26,6 +26,8 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return "电脑收费";
                 case PaymentCode.FunctionCard:
                     return "功能卡收费";
+                case PaymentCode .POS :
+                    return "手持机";
                 default:
                     return string.Empty;
             }

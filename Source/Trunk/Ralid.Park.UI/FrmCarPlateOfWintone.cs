@@ -121,7 +121,7 @@ namespace Ralid.Park.UI
         static extern int TH_SetImageFormat(byte cImageFormat, bool bVertFlip,
             bool bDwordAligned, ref TH_PlateIDCfg pPlateIDConfig);
 
-        [DllImport("TH_PLATEID.dll")]   ///     识别车牌号码
+        [DllImport("TH_PLATEID.dll")]  
         static extern int TH_SetRecogThreshold(byte nLocaticon_th, byte nPlate_th, ref TH_PlateIDCfg pPlateConfig);
 
         [DllImport("TH_PLATEID.dll")]
@@ -172,61 +172,18 @@ namespace Ralid.Park.UI
 
         #region 私有方法
         //转换车牌号码
-        private string PlateLicense(short sh0, char sh1, char sh2, char sh3)
+        private string PlateLicense(short sh0, short sh1, short sh2, short sh3, short sh4)
         {
-            StringBuilder sbo = new StringBuilder();
-            ///　转换数字及字母 1-2
-            byte[] bytearrayNum = new byte[2];
-            string constructed = "";
-            ASCIIEncoding assencoding = new ASCIIEncoding();
-            ///　转换汉字
-            for (int i = 0; i < bytearrayNum.Length; i++)
-            {
-                bytearrayNum[i] = (byte)(sh0 >> 8 * (i) & 0xFF);
-            }
-            Encoding encod = Encoding.GetEncoding(936);
-            byte[] buf2 = Encoding.Convert(encod, Encoding.Unicode, bytearrayNum);
-            constructed = Encoding.Unicode.GetString(buf2, 0, buf2.Length);
-            if (!constructed.Equals(""))
-            {
-                sbo.Append(constructed);
-                constructed = "";
-            }
-            ///　转换数字及字母 1-2 
-            for (int i = 0; i < bytearrayNum.Length; i++)
-            {
-                bytearrayNum[i] = (byte)(sh1 >> 8 * (i) & 0xFF);
-            }
-            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
-            if (!constructed.Equals(""))
-            {
-                sbo.Append(constructed);
-                constructed = "";
-            }
-            ///　转换数字及字母 3-4 
-            for (int i = 0; i < bytearrayNum.Length; i++)
-            {
-                bytearrayNum[i] = (byte)(sh2 >> 8 * (i) & 0xFF);
-            }
-            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
-            if (!constructed.Equals(""))
-            {
-                sbo.Append(constructed);
-                constructed = "";
-            }
-            ///　转换数字及字母 5-6
-            for (int i = 0; i < bytearrayNum.Length; i++)
-            {
-                bytearrayNum[i] = (byte)(sh3 >> 8 * (i) & 0xFF);
-            }
-            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
-            if (!constructed.Equals(""))
-            {
-                sbo.Append(constructed);
-                constructed = "";
-            }
-            if (sbo.Length > 0) return sbo.ToString().Trim('\0');
-            return string.Empty;
+            List<byte> bytes = new List<byte>();
+            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh0));
+            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh1));
+            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh2));
+            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh3));
+            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh4));
+
+            string ret = Encoding.GetEncoding("GB2312").GetString(bytes.ToArray()).Trim();
+            ret = ret.Trim('\0');
+            return ret;
         }
 
         //读取BMP图片到内存
@@ -375,7 +332,7 @@ namespace Ralid.Park.UI
                     }
                     if (nResult == 0)
                     {
-                        result.CarPlate = PlateLicense(pRes[0].lic0, pRes[0].lic1, pRes[0].lic2, pRes[0].lic3);//调用车牌号码转换函数
+                        result.CarPlate = PlateLicense(pRes[0].lic0, (short)pRes[0].lic1, (short)pRes[0].lic2, (short)pRes[0].lic3, (short)pRes[0].lic4);//调用车牌号码转换函数
                     }
                 }
             }
@@ -404,8 +361,9 @@ namespace Ralid.Park.UI
                 {
                     c_defConfig = new TH_PlateIDCfg();
                 }
-                
+                _Inited = true;
                 if (_CarplateSetting == null) _CarplateSetting = WintoneCarplateSetting.DefaultSetting();
+
                 c_defConfig.nFastMemorySize = _CarplateSetting.FastMemorySize;
                 if (c_defConfig.nFastMemorySize > 0) c_defConfig.pFastMemory = Marshal.AllocHGlobal(c_defConfig.nFastMemorySize);   // stackalloc char[];// mChar;
                 c_defConfig.nMemorySize = _CarplateSetting.MemorySize;
@@ -425,7 +383,6 @@ namespace Ralid.Park.UI
                 ret = TH_InitPlateIDSDK(ref c_defConfig);
                 if (ret != 0)
                 {
-                    _Inited = false;
                     MessageBox.Show(Resources.Resource1.CarPlate_Fail);
                     return;
                 }
@@ -440,11 +397,9 @@ namespace Ralid.Park.UI
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.Embassy_On ? 12 : 13, ref c_defConfig);
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.Only_Location_On ? 14 : 15, ref c_defConfig);
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.TwoRowArmPolice_On ? 16 : 17, ref c_defConfig);
-                _Inited = true;
             }
             catch (Exception ex)
             {
-                _Inited = false;
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }

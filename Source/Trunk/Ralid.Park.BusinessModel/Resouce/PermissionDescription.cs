@@ -94,7 +94,7 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.Permission_OperatorShiftStatistics;
                 case Permission.PayOperationLogReport:
                     return Resource1.Permission_PayOperationLogReport;
-                case  Permission.CardInparkReport :
+                case Permission.CardInparkReport:
                     return Resource1.Permission_CardInParkReport;
                 case Permission.ReadAPM:
                     return Resource1.Permission_ReadAPM;
@@ -124,33 +124,33 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.Permission_TempCardSetting;
                 case Permission.VideoMonitor:
                     return Resource1.Permission_VideoMonitor;
-                case Permission .OperatorSettle :
+                case Permission.OperatorSettle:
                     return Resource1.Permission_OperatorSettle;
-                case Permission.OtherOperatorSettle :
+                case Permission.OtherOperatorSettle:
                     return Resource1.Permission_OtherOperatorSettle;
-                case Permission .CardDeferStatistics :
+                case Permission.CardDeferStatistics:
                     return Resource1.Permission_CardDeferStatistic;
-                case  Permission.CardPayingStatistics :
+                case Permission.CardPayingStatistics:
                     return Resource1.Permission_CardPayingStatistic;
-                case Permission.RealEvent :
+                case Permission.RealEvent:
                     return Resource1.Permission_RealEvent;
-                case Permission .PrintOperatorSettleLog :
+                case Permission.PrintOperatorSettleLog:
                     return Resource1.Permission_PrintOperatorSettleLog;
-                case Permission .CardDeleteReport :
+                case Permission.CardDeleteReport:
                     return Resource1.Permission_CardDeleteReport;
-                case Permission .PrintCardPayment :
+                case Permission.PrintCardPayment:
                     return Resource1.Permission_PrintCardPayment;
-                case  Permission.PrintMonthCardPaymentReport :
+                case Permission.PrintMonthCardPaymentReport:
                     return Resource1.Permission_PrintMonthCardPaymentReport;
-                case Permission .CardIDConvert :
+                case Permission.CardIDConvert:
                     return Resource1.Permission_CardIDConvert;
-                case Permission .CardBulkChange :
+                case Permission.CardBulkChange:
                     return Resource1.Permission_BulkChangeCards;
-                case  Permission.ExportCards :
+                case Permission.ExportCards:
                     return Resource1.Permission_ExportCards;
-                case Permission .ZSTSetting :
+                case Permission.ZSTSetting:
                     return Resource1.Permission_ZSTSeting;
-                case Permission .YangChenTongLogReport :
+                case Permission.YangChenTongLogReport:
                     return Resource1.Permission_YangChenTongLogReport;
                 case Permission.SyncDataToStandby:
                     return Resource1.Permission_SyncDataToStandby;
@@ -168,6 +168,18 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.Permission_HasPaidCardReport;
                 case Permission.CardReport:
                     return Resource1.Permission_CardReport;
+                case Permission.ReadRoadWay:
+                    return Resource1.Permission_ReadRoadWay;
+                case Permission.EditRoadWay:
+                    return Resource1.Permission_EditRoadWay;
+                case Permission.FreeAuthorization:
+                    return Resource1.Permissions_FreeAuthorization;
+                case Permission.EditFreeDays:
+                    return Resource1.Permission_EditFreeDays;
+                case Permission.SwitchRoadWay:
+                    return Resource1.Permission_SwitchRoadWay;
+                case Permission.POSSyncTool:
+                    return Resource1.Permission_POSSyncTool;
                 default:
                     return string.Empty;
             }

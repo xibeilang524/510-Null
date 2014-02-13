@@ -1123,6 +1123,15 @@ namespace Ralid.Park.UI.Resources {
         }
         
         /// <summary>
+        ///   查找类似 注意：脱机模式时在线处理的卡片不会下发到控制器 的本地化字符串。
+        /// </summary>
+        internal static string FrmDownLoadAllCards_DownloadCardsNote {
+            get {
+                return ResourceManager.GetString("FrmDownLoadAllCards_DownloadCardsNote", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 控制器 的本地化字符串。
         /// </summary>
         internal static string FrmDownLoadAllCards_Entrance {
@@ -1159,11 +1168,29 @@ namespace Ralid.Park.UI.Resources {
         }
         
         /// <summary>
+        ///   查找类似 没有需要删除的卡片 的本地化字符串。
+        /// </summary>
+        internal static string FrmDownLoadAllCards_NotDeleteCards {
+            get {
+                return ResourceManager.GetString("FrmDownLoadAllCards_NotDeleteCards", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 卡片未能下载到所有控制器！ 的本地化字符串。
         /// </summary>
         internal static string FrmDownLoadAllCards_NotDownloadAll {
             get {
                 return ResourceManager.GetString("FrmDownLoadAllCards_NotDownloadAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 没有需要下发的卡片 的本地化字符串。
+        /// </summary>
+        internal static string FrmDownLoadAllCards_NotDownloadCards {
+            get {
+                return ResourceManager.GetString("FrmDownLoadAllCards_NotDownloadCards", resourceCulture);
             }
         }
         
@@ -1951,6 +1978,24 @@ namespace Ralid.Park.UI.Resources {
         }
         
         /// <summary>
+        ///   查找类似 请选择通道下的控制器 的本地化字符串。
+        /// </summary>
+        internal static string FrmRoadWayDetail_InvalidEntranceIDs {
+            get {
+                return ResourceManager.GetString("FrmRoadWayDetail_InvalidEntranceIDs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 通道名不能为空！ 的本地化字符串。
+        /// </summary>
+        internal static string FrmRoadWayDetail_InvalidName {
+            get {
+                return ResourceManager.GetString("FrmRoadWayDetail_InvalidName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 角色ID不能为空! 的本地化字符串。
         /// </summary>
         internal static string FrmRoleDetail_InvalidRoleID {
@@ -2698,6 +2743,15 @@ namespace Ralid.Park.UI.Resources {
         }
         
         /// <summary>
+        ///   查找类似 LED桌面屏 ( H ) 的本地化字符串。
+        /// </summary>
+        internal static string LEDType_HSD {
+            get {
+                return ResourceManager.GetString("LEDType_HSD", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   查找类似 LED桌面屏（A） 的本地化字符串。
         /// </summary>
         internal static string LEDType_YanSe {
@@ -2739,6 +2793,15 @@ namespace Ralid.Park.UI.Resources {
         internal static string OperatorLogInAlarm {
             get {
                 return ResourceManager.GetString("OperatorLogInAlarm", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   查找类似 退出工作站:[{0}]  登录时间:[{1}]  主机名:[{2}]  主机IP:[{3}]  MAC:[{4}] 的本地化字符串。
+        /// </summary>
+        internal static string OperatorLogOutAlarm {
+            get {
+                return ResourceManager.GetString("OperatorLogOutAlarm", resourceCulture);
             }
         }
         

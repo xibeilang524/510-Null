@@ -1038,4 +1038,25 @@
   <data name="FrmDownLoadAllCards_Fail" xml:space="preserve">
     <value>下發失敗</value>
   </data>
+  <data name="FrmRoadWayDetail_InvalidName" xml:space="preserve">
+    <value>通道名不能為空！</value>
+  </data>
+  <data name="LEDType_HSD" xml:space="preserve">
+    <value>LED桌面屏 ( H )</value>
+  </data>
+  <data name="FrmRoadWayDetail_InvalidEntranceIDs" xml:space="preserve">
+    <value>請選擇通道下的控制器</value>
+  </data>
+  <data name="FrmDownLoadAllCards_DownloadCardsNote" xml:space="preserve">
+    <value>注意：脫機模式時在線處理的卡片不會下發到控制器</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDeleteCards" xml:space="preserve">
+    <value>沒有需要刪除的卡片</value>
+  </data>
+  <data name="FrmDownLoadAllCards_NotDownloadCards" xml:space="preserve">
+    <value>沒有需要下發的卡片</value>
+  </data>
+  <data name="OperatorLogOutAlarm" xml:space="preserve">
+    <value>退出工作站:[{0}]  登錄時間:[{1}]  主機名稱:[{2}]  主機IP:[{3}]  MAC:[{4}]</value>
+  </data>
 </root>

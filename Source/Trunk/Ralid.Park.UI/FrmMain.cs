@@ -35,7 +35,6 @@ namespace Ralid.Park.UI
         }
         #endregion
 
-
         #region 私有变量
         private List<Form> _openedForms = new List<Form>();
         private List<IReportHandler> _eventHandlers = new List<IReportHandler>();
@@ -49,6 +48,7 @@ namespace Ralid.Park.UI
         private StandbyToMasterSyncService _StandbyToMasterSyncService;
         private LDB_UpdateLoaclDataService _LDB_UpdateLoaclDataService;
         private bool _InitParkingCommunication = false;//是否初始化了通信
+        private DateTime? _OperatorLoginTime;//操作员登录时间
         #endregion
 
         #region 私有方法
@@ -78,6 +78,7 @@ namespace Ralid.Park.UI
                 {
                     WorkStationInfo ws = GetWorkstationID();
                     WorkStationInfo.CurrentStation = ws;
+                    _OperatorLoginTime = DateTime.Now;
                     break;
                 }
                 else if (result == DialogResult.Cancel)
@@ -375,17 +376,10 @@ namespace Ralid.Park.UI
             this.mnu_YCTLog.Enabled = role.Permit(Permission.YangChenTongLogReport);
             this.mnu_CardInPark.Enabled = role.Permit(Permission.CardInparkReport);
             this.mnu_OperatorShift.Enabled = role.Permit(Permission.OperatorSettle);
+            this.btn_Shift.Enabled = role.Permit(Permission.OperatorSettle);
 
             this.mnu_ZSTSetting.Visible = AppSettings.CurrentSetting.EnableZST;
             this.mnu_ZSTSetting.Enabled = role.Permit(Permission.ZSTSetting);
-
-            this.mnu_SyncDataToStandby.Visible = !string.IsNullOrEmpty(AppSettings.CurrentSetting.StandbyParkConnect);
-            this.mnu_SyncDataToStandby.Enabled = role.Permit(Permission.SyncDataToStandby)
-                && DataBaseConnectionsManager.Current.MasterConnected
-                && DataBaseConnectionsManager.Current.StandbyConnected;
-
-            this.mnu_ExportParameter.Enabled = role.Permit(Permission.ExportParameter);
-            this.mnu_ImportRecord.Enabled = role.Permit(Permission.ImportRecord);
             this.mnu_HasPaidCardReport.Enabled = role.Permit(Permission.HasPaidCardReport);
             this.mnu_CardReport.Enabled = role.Permit(Permission.CardReport);
 
@@ -395,6 +389,7 @@ namespace Ralid.Park.UI
             this.mnu_VideoSyncTime.Enabled = role.Permit(Permission.EditVideo);
             this.btn_VideoReboot.Enabled = role.Permit(Permission.EditVideo);
             this.mnu_VideoProperty.Enabled = role.Permit(Permission.EditVideo);
+            this.mnu_PosSyncTool.Enabled = role.Permit(Permission.POSSyncTool);
         }
 
         private void ProcessReport(object sender, ReportBase report)
@@ -492,7 +487,7 @@ namespace Ralid.Park.UI
         {
             AlarmInfo alarm = new AlarmInfo()
             {
-                AlarmDateTime = DateTime.Now,
+                AlarmDateTime = _OperatorLoginTime.HasValue ? _OperatorLoginTime.Value : DateTime.Now,
                 AlarmSource = string.Empty,
                 AlarmType = AlarmType.OperatorLogIn,
                 OperatorID = OperatorInfo.CurrentOperator.OperatorName,
@@ -519,7 +514,7 @@ namespace Ralid.Park.UI
                 }
             }
         }
-        
+
 
         /// <summary>
         /// 从文件中获取记录
@@ -655,7 +650,7 @@ namespace Ralid.Park.UI
             }
             return false;
         }
-        
+
         #endregion
 
         #region 硬件树右键菜单的处理
@@ -894,7 +889,7 @@ namespace Ralid.Park.UI
                             return;
                         }
                     }
-                    
+
 
 
                     Action action = delegate()
@@ -1247,6 +1242,8 @@ namespace Ralid.Park.UI
             //清空强制交班的参数
             tmrForceShifting.Enabled = false;
             _ForceShiftingAlarmCount = 0;
+            //清空操作员登录时间
+            _OperatorLoginTime = null;
 
             Authenticate(false);
             InitSystemParameters();
@@ -1292,28 +1289,28 @@ namespace Ralid.Park.UI
 
         private void mnu_ExportParameter_Click(object sender, EventArgs e)
         {
-                SaveFileDialog saveFileDialog1 = new SaveFileDialog();
-                saveFileDialog1.FileName = "ParkingParameter.xml";
-                saveFileDialog1.Filter = Resource1.Form_XMLFilter;
+            SaveFileDialog saveFileDialog1 = new SaveFileDialog();
+            saveFileDialog1.FileName = "ParkingParameter.xml";
+            saveFileDialog1.Filter = Resource1.Form_XMLFilter;
 
-                if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                ParkingParameterDataBufferBll bll = new ParkingParameterDataBufferBll(AppSettings.CurrentSetting.CurrentMasterConnect);
+                CommandResult result = bll.ExportParameter(saveFileDialog1.FileName);
+                if (result.Result == ResultCode.Successful)
                 {
-                    ParkingParameterDataBufferBll bll = new ParkingParameterDataBufferBll(AppSettings.CurrentSetting.CurrentMasterConnect);
-                    CommandResult result = bll.ExportParameter(saveFileDialog1.FileName);
-                    if (result.Result == ResultCode.Successful)
-                    {
-                        MessageBox.Show(Resource1.Form_ExportSuccess);
-                    }
-                    else
-                    {
-                        MessageBox.Show(result.Message);
-                    }
+                    MessageBox.Show(Resource1.Form_ExportSuccess);
                 }
+                else
+                {
+                    MessageBox.Show(result.Message);
+                }
+            }
         }
 
         private void mnu_SyncDataToStandby_Click(object sender, EventArgs e)
         {
-            if(_StandbyToMasterSyncService!=null) _StandbyToMasterSyncService.Pause();
+            if (_StandbyToMasterSyncService != null) _StandbyToMasterSyncService.Pause();
             FrmSyncDataToStandby frm = new FrmSyncDataToStandby();
             frm.ShowDialog();
             if (_StandbyToMasterSyncService != null) _StandbyToMasterSyncService.Recover();
@@ -1502,7 +1499,7 @@ namespace Ralid.Park.UI
             {
                 System.Diagnostics.Process.Start(System.IO.Path.Combine(Application.StartupPath, Resource1.FrmMain_ManualFile));
             }
-            catch(Exception ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -1607,8 +1604,8 @@ namespace Ralid.Park.UI
             }
 
             //用于所有工作站软件都要加密狗的情形
-            ReadSoftDog();
-            this.tmrCheckDog.Enabled = true;
+            //ReadSoftDog();
+            //this.tmrCheckDog.Enabled = true;
 
             ShowLanguage();
             Authenticate(true);
@@ -1632,9 +1629,9 @@ namespace Ralid.Park.UI
             {
                 if (WorkStationInfo.CurrentStation.StationID == park.HostWorkstation)  //如果本工作站是停车场的通讯工作站
                 {
-                    ////只有服务器用到加密狗的情形
-                    //ReadSoftDog();
-                    //this.tmrCheckDog.Enabled = true;
+                    //只有服务器用到加密狗的情形
+                    ReadSoftDog();
+                    this.tmrCheckDog.Enabled = true;
 
                     WorkStationInfo.CurrentStation.IsHostWorkstation = true;
 
@@ -1643,7 +1640,7 @@ namespace Ralid.Park.UI
                         UserSetting.Current.VideoType == 1 && //用的摄像机是信路通
                         AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization") == "XinLuTong")
                     {
-                        
+
                     }
                     else
                     {
@@ -1700,7 +1697,7 @@ namespace Ralid.Park.UI
 
             //记录启动时间
             Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "软件启动");
-           
+
             if (AppSettings.CurrentSetting.EnableZST)
             {
                 FrmZSTSetting frm = FrmZSTSetting.GetInstance();
@@ -1952,11 +1949,6 @@ namespace Ralid.Park.UI
                 {
                     this.lblStandbyStatus.Text = string.Empty;
                 }
-
-                this.mnu_SyncDataToStandby.Enabled = OperatorInfo.CurrentOperator != null
-                && OperatorInfo.CurrentOperator.Role.Permit(Permission.SyncDataToStandby)
-                && DataBaseConnectionsManager.Current.MasterConnected
-                && DataBaseConnectionsManager.Current.StandbyConnected;
             };
             if (this.InvokeRequired)
             {
@@ -1988,6 +1980,11 @@ namespace Ralid.Park.UI
         private void mnu_CardReport_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmCardReport));
+        }
+
+        private void mnu_PosSyncTool_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(Ralid.Park.POS.FrmMain));
         }
     }
 }

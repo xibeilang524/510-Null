@@ -38,16 +38,10 @@
             this.mnu_DBManager = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Cards = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Workstations = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_SystemOption = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_APM = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZSTSetting = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnu_ExportParameter = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_SyncDataToStandby = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
-            this.mnu_ImportRecord = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_ImportCardPayments = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_ImportChargeRecords = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_PosSyncTool = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SystemOption = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Security = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Operator = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ChangePwd = new System.Windows.Forms.ToolStripMenuItem();
@@ -147,6 +141,7 @@
             this.treeContextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Fresh = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_AddPark = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SwitchEntranceMode = new System.Windows.Forms.ToolStripMenuItem();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.tmrDeleteSnapShot = new System.Windows.Forms.Timer(this.components);
             this.tmrForceShifting = new System.Windows.Forms.Timer(this.components);
@@ -209,14 +204,10 @@
             this.mnu_DBManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_Cards,
             this.mnu_Workstations,
-            this.mnu_SystemOption,
             this.mnu_APM,
             this.mnu_ZSTSetting,
-            this.toolStripSeparator11,
-            this.mnu_ExportParameter,
-            this.mnu_SyncDataToStandby,
-            this.toolStripSeparator12,
-            this.mnu_ImportRecord});
+            this.mnu_PosSyncTool,
+            this.mnu_SystemOption});
             this.mnu_DBManager.Name = "mnu_DBManager";
             resources.ApplyResources(this.mnu_DBManager, "mnu_DBManager");
             // 
@@ -232,12 +223,6 @@
             resources.ApplyResources(this.mnu_Workstations, "mnu_Workstations");
             this.mnu_Workstations.Click += new System.EventHandler(this.mnu_Workstations_Click);
             // 
-            // mnu_SystemOption
-            // 
-            this.mnu_SystemOption.Name = "mnu_SystemOption";
-            resources.ApplyResources(this.mnu_SystemOption, "mnu_SystemOption");
-            this.mnu_SystemOption.Click += new System.EventHandler(this.mnu_SystemOption_Click);
-            // 
             // mnu_APM
             // 
             this.mnu_APM.Name = "mnu_APM";
@@ -250,47 +235,17 @@
             resources.ApplyResources(this.mnu_ZSTSetting, "mnu_ZSTSetting");
             this.mnu_ZSTSetting.Click += new System.EventHandler(this.mnu_ZSTSetting_Click);
             // 
-            // toolStripSeparator11
+            // mnu_PosSyncTool
             // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            resources.ApplyResources(this.toolStripSeparator11, "toolStripSeparator11");
+            this.mnu_PosSyncTool.Name = "mnu_PosSyncTool";
+            resources.ApplyResources(this.mnu_PosSyncTool, "mnu_PosSyncTool");
+            this.mnu_PosSyncTool.Click += new System.EventHandler(this.mnu_PosSyncTool_Click);
             // 
-            // mnu_ExportParameter
+            // mnu_SystemOption
             // 
-            this.mnu_ExportParameter.Name = "mnu_ExportParameter";
-            resources.ApplyResources(this.mnu_ExportParameter, "mnu_ExportParameter");
-            this.mnu_ExportParameter.Click += new System.EventHandler(this.mnu_ExportParameter_Click);
-            // 
-            // mnu_SyncDataToStandby
-            // 
-            resources.ApplyResources(this.mnu_SyncDataToStandby, "mnu_SyncDataToStandby");
-            this.mnu_SyncDataToStandby.Name = "mnu_SyncDataToStandby";
-            this.mnu_SyncDataToStandby.Click += new System.EventHandler(this.mnu_SyncDataToStandby_Click);
-            // 
-            // toolStripSeparator12
-            // 
-            this.toolStripSeparator12.Name = "toolStripSeparator12";
-            resources.ApplyResources(this.toolStripSeparator12, "toolStripSeparator12");
-            // 
-            // mnu_ImportRecord
-            // 
-            this.mnu_ImportRecord.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.mnu_ImportCardPayments,
-            this.mnu_ImportChargeRecords});
-            this.mnu_ImportRecord.Name = "mnu_ImportRecord";
-            resources.ApplyResources(this.mnu_ImportRecord, "mnu_ImportRecord");
-            // 
-            // mnu_ImportCardPayments
-            // 
-            this.mnu_ImportCardPayments.Name = "mnu_ImportCardPayments";
-            resources.ApplyResources(this.mnu_ImportCardPayments, "mnu_ImportCardPayments");
-            this.mnu_ImportCardPayments.Click += new System.EventHandler(this.mnu_ImportCardPayments_Click);
-            // 
-            // mnu_ImportChargeRecords
-            // 
-            this.mnu_ImportChargeRecords.Name = "mnu_ImportChargeRecords";
-            resources.ApplyResources(this.mnu_ImportChargeRecords, "mnu_ImportChargeRecords");
-            this.mnu_ImportChargeRecords.Click += new System.EventHandler(this.mnu_ImportChargeRecords_Click);
+            this.mnu_SystemOption.Name = "mnu_SystemOption";
+            resources.ApplyResources(this.mnu_SystemOption, "mnu_SystemOption");
+            this.mnu_SystemOption.Click += new System.EventHandler(this.mnu_SystemOption_Click);
             // 
             // mnu_Security
             // 
@@ -994,7 +949,8 @@
             // 
             this.treeContextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_Fresh,
-            this.mnu_AddPark});
+            this.mnu_AddPark,
+            this.mnu_SwitchEntranceMode});
             this.treeContextMenu.Name = "treeContextMenu";
             resources.ApplyResources(this.treeContextMenu, "treeContextMenu");
             // 
@@ -1009,6 +965,11 @@
             this.mnu_AddPark.Name = "mnu_AddPark";
             resources.ApplyResources(this.mnu_AddPark, "mnu_AddPark");
             this.mnu_AddPark.Click += new System.EventHandler(this.mnu_AddPark_Click);
+            // 
+            // mnu_SwitchEntranceMode
+            // 
+            this.mnu_SwitchEntranceMode.Name = "mnu_SwitchEntranceMode";
+            resources.ApplyResources(this.mnu_SwitchEntranceMode, "mnu_SwitchEntranceMode");
             // 
             // splitter1
             // 
@@ -1188,16 +1149,11 @@
         private System.Windows.Forms.ToolStripMenuItem mnu_YCTLog;
         private System.Windows.Forms.ToolStripStatusLabel lblMasterStatus;
         private System.Windows.Forms.ToolStripStatusLabel lblStandbyStatus;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
-        private System.Windows.Forms.ToolStripMenuItem mnu_SyncDataToStandby;
         private System.Windows.Forms.ToolStripMenuItem mnu_HasPaidCardReport;
-        private System.Windows.Forms.ToolStripMenuItem mnu_ExportParameter;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
-        private System.Windows.Forms.ToolStripMenuItem mnu_ImportRecord;
-        private System.Windows.Forms.ToolStripMenuItem mnu_ImportCardPayments;
-        private System.Windows.Forms.ToolStripMenuItem mnu_ImportChargeRecords;
         private System.Windows.Forms.ToolStripMenuItem mnu_CardReport;
         private System.Windows.Forms.ToolStripStatusLabel lblCommuicationStatus;
+        private System.Windows.Forms.ToolStripMenuItem mnu_SwitchEntranceMode;
+        private System.Windows.Forms.ToolStripMenuItem mnu_PosSyncTool;
 
     }
 }

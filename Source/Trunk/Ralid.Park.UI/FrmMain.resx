@@ -146,74 +146,40 @@
     <value>系统</value>
   </data>
   <data name="mnu_Cards.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="mnu_Cards.Text" xml:space="preserve">
     <value>卡片管理</value>
   </data>
   <data name="mnu_Workstations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="mnu_Workstations.Text" xml:space="preserve">
     <value>工作站管理</value>
   </data>
-  <data name="mnu_SystemOption.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="mnu_SystemOption.Text" xml:space="preserve">
-    <value>系统选项</value>
-  </data>
   <data name="mnu_APM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="mnu_APM.Text" xml:space="preserve">
     <value>自助缴费机管理</value>
   </data>
   <data name="mnu_ZSTSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+    <value>160, 22</value>
   </data>
   <data name="mnu_ZSTSetting.Text" xml:space="preserve">
     <value>中山通设置</value>
   </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
+  <data name="mnu_PosSyncTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
   </data>
-  <data name="mnu_ExportParameter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
+  <data name="mnu_PosSyncTool.Text" xml:space="preserve">
+    <value>手持机同步工具</value>
   </data>
-  <data name="mnu_ExportParameter.Text" xml:space="preserve">
-    <value>导出系统参数设置</value>
+  <data name="mnu_SystemOption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
   </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mnu_SyncDataToStandby.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_SyncDataToStandby.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="mnu_SyncDataToStandby.Text" xml:space="preserve">
-    <value>同步数据到备用数据库</value>
-  </data>
-  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>193, 6</value>
-  </data>
-  <data name="mnu_ImportCardPayments.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_ImportCardPayments.Text" xml:space="preserve">
-    <value>导入收费记录</value>
-  </data>
-  <data name="mnu_ImportChargeRecords.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
-    <value>导入充值记录</value>
-  </data>
-  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>196, 22</value>
-  </data>
-  <data name="mnu_ImportRecord.Text" xml:space="preserve">
-    <value>导入记录</value>
+  <data name="mnu_SystemOption.Text" xml:space="preserve">
+    <value>系统选项</value>
   </data>
   <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
     <value>44, 21</value>
@@ -350,6 +316,7 @@
   <data name="mnu_ReportDetail.Text" xml:space="preserve">
     <value>车类型汇总查询</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="mnu_ReportDetail.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -928,43 +895,43 @@
     <value>370, 19</value>
   </metadata>
   <data name="mnu_SearchDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_SearchDevice.Text" xml:space="preserve">
     <value>搜索控制器</value>
   </data>
   <data name="mnu_AddEntrance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_AddEntrance1.Text" xml:space="preserve">
     <value>增加控制器</value>
   </data>
   <data name="mnu_AddDivision.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_AddDivision.Text" xml:space="preserve">
     <value>增加停车区域</value>
   </data>
   <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_DeletePark.Text" xml:space="preserve">
     <value>删除</value>
   </data>
   <data name="mnu_ParkRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_ParkRename.Text" xml:space="preserve">
     <value>重命名</value>
   </data>
   <data name="mnu_ParkProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>152, 22</value>
+    <value>148, 22</value>
   </data>
   <data name="mnu_ParkProperty.Text" xml:space="preserve">
     <value>属性</value>
   </data>
   <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>153, 158</value>
+    <value>149, 136</value>
   </data>
   <data name="&gt;&gt;parkContextMenu.Name" xml:space="preserve">
     <value>parkContextMenu</value>
@@ -1048,19 +1015,25 @@
     <value>843, 20</value>
   </metadata>
   <data name="mnu_Fresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="mnu_Fresh.Text" xml:space="preserve">
     <value>刷新硬件列表</value>
   </data>
   <data name="mnu_AddPark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
+    <value>172, 22</value>
   </data>
   <data name="mnu_AddPark.Text" xml:space="preserve">
     <value>增加停车场</value>
   </data>
+  <data name="mnu_SwitchEntranceMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_SwitchEntranceMode.Text" xml:space="preserve">
+    <value>通道路口模式切换</value>
+  </data>
   <data name="treeContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 48</value>
+    <value>173, 70</value>
   </data>
   <data name="&gt;&gt;treeContextMenu.Name" xml:space="preserve">
     <value>treeContextMenu</value>
@@ -2044,12 +2017,6 @@
   <data name="&gt;&gt;mnu_Workstations.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_SystemOption.Name" xml:space="preserve">
-    <value>mnu_SystemOption</value>
-  </data>
-  <data name="&gt;&gt;mnu_SystemOption.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;mnu_APM.Name" xml:space="preserve">
     <value>mnu_APM</value>
   </data>
@@ -2062,46 +2029,16 @@
   <data name="&gt;&gt;mnu_ZSTSetting.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
-    <value>toolStripSeparator11</value>
+  <data name="&gt;&gt;mnu_PosSyncTool.Name" xml:space="preserve">
+    <value>mnu_PosSyncTool</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ExportParameter.Name" xml:space="preserve">
-    <value>mnu_ExportParameter</value>
-  </data>
-  <data name="&gt;&gt;mnu_ExportParameter.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_PosSyncTool.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_SyncDataToStandby.Name" xml:space="preserve">
-    <value>mnu_SyncDataToStandby</value>
+  <data name="&gt;&gt;mnu_SystemOption.Name" xml:space="preserve">
+    <value>mnu_SystemOption</value>
   </data>
-  <data name="&gt;&gt;mnu_SyncDataToStandby.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator12.Name" xml:space="preserve">
-    <value>toolStripSeparator12</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportRecord.Name" xml:space="preserve">
-    <value>mnu_ImportRecord</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportRecord.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportCardPayments.Name" xml:space="preserve">
-    <value>mnu_ImportCardPayments</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportCardPayments.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportChargeRecords.Name" xml:space="preserve">
-    <value>mnu_ImportChargeRecords</value>
-  </data>
-  <data name="&gt;&gt;mnu_ImportChargeRecords.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_SystemOption.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_Security.Name" xml:space="preserve">
@@ -2630,6 +2567,12 @@
     <value>mnu_AddPark</value>
   </data>
   <data name="&gt;&gt;mnu_AddPark.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_SwitchEntranceMode.Name" xml:space="preserve">
+    <value>mnu_SwitchEntranceMode</value>
+  </data>
+  <data name="&gt;&gt;mnu_SwitchEntranceMode.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;tmrDeleteSnapShot.Name" xml:space="preserve">

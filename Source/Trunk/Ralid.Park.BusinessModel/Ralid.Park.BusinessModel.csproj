@@ -202,6 +202,7 @@
     <Compile Include="Model\TariffOfTurning.cs" />
     <Compile Include="Model\TariffOfGuanZhou.cs" />
     <Compile Include="Model\TariffOfLimitation.cs" />
+    <Compile Include="Model\TariffOfTurningLimited.cs" />
     <Compile Include="Model\TariffPerDay.cs" />
     <Compile Include="Model\TariffPerTime.cs" />
     <Compile Include="Model\TariffSpecialTimezone.cs" />

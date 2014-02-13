@@ -117,6 +117,9 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="&gt;&gt;txtPlateLocate_Th.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;chkOnly_Location_On.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
@@ -128,26 +131,27 @@
     <value>77, 12</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkTwoRowArmy_On.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
-  <data name="chkMovingImage.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="chkTwoRowYellow_On.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;txtMaxImageWidth.Name" xml:space="preserve">
-    <value>txtMaxImageWidth</value>
-  </data>
-  <data name="chkVertCompress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>216, 20</value>
-  </data>
-  <data name="&gt;&gt;chkIndividual_On.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>TopRight</value>
   </data>
   <data name="chkIndividual_On.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 16</value>
@@ -158,20 +162,17 @@
   <data name="label4.TabIndex" type="System.Int32, mscorlib">
     <value>29</value>
   </data>
-  <data name="&gt;&gt;chkTwoRowArmPolice_On.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;chkTractor_On.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="chkTwoRowYellow_On.Text" xml:space="preserve">
+    <value>识别双层黄色车牌</value>
   </data>
   <data name="chkEmbassy_On.Text" xml:space="preserve">
     <value>识别使馆车牌</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>选项</value>
-  </data>
-  <data name="chkIsFieldImage.Location" type="System.Drawing.Point, System.Drawing">
-    <value>412, 20</value>
   </data>
   <data name="chkOnly_TwoRowYellow_On.Location" type="System.Drawing.Point, System.Drawing">
     <value>411, 50</value>
@@ -182,14 +183,17 @@
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>30</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>车牌类型</value>
+  <data name="&gt;&gt;txtMinPlateWidth.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>车牌最大宽度</value>
+  <data name="&gt;&gt;chkOnly_Location_On.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;chkArmPolice_On.Parent" xml:space="preserve">
     <value>groupBox1</value>
+  </data>
+  <data name="txtMaxImageWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
   <data name="&gt;&gt;chkOnly_Location_On.Name" xml:space="preserve">
     <value>chkOnly_Location_On</value>
@@ -212,6 +216,9 @@
   <data name="&gt;&gt;chkEmbassy_On.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="chkTwoRowYellow_On.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
   <data name="chkEmbassy_On.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 72</value>
   </data>
@@ -221,8 +228,8 @@
   <data name="&gt;&gt;chkEmbassy_On.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="chkTwoRowArmy_On.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 28</value>
+  <data name="chkOnly_Location_On.Location" type="System.Drawing.Point, System.Drawing">
+    <value>411, 72</value>
   </data>
   <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
     <value>1</value>
@@ -232,9 +239,6 @@
   </data>
   <data name="&gt;&gt;txtMaxPlateWidth.Name" xml:space="preserve">
     <value>txtMaxPlateWidth</value>
-  </data>
-  <data name="&gt;&gt;txtOCR_Th.Parent" xml:space="preserve">
-    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;chkIndividual_On.Name" xml:space="preserve">
     <value>chkIndividual_On</value>
@@ -254,23 +258,20 @@
   <data name="&gt;&gt;chkTwoRowArmPolice_On.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="chkEmbassy_On.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;txtMaxImageHeight.Name" xml:space="preserve">
+    <value>txtMaxImageHeight</value>
+  </data>
+  <data name="&gt;&gt;chkVertCompress.Name" xml:space="preserve">
+    <value>chkVertCompress</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>车牌识别</value>
-  </data>
-  <data name="chkIsFieldImage.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
   </data>
   <data name="&gt;&gt;chkOnly_TwoRowYellow_On.Name" xml:space="preserve">
     <value>chkOnly_TwoRowYellow_On</value>
   </data>
   <data name="&gt;&gt;chkTwoRowYellow_On.Parent" xml:space="preserve">
     <value>groupBox1</value>
-  </data>
-  <data name="chkEmbassy_On.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 16</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
     <value>10</value>
@@ -290,17 +291,17 @@
   <data name="chkTwoRowArmPolice_On.TabIndex" type="System.Int32, mscorlib">
     <value>13</value>
   </data>
+  <data name="txtPlateLocate_Th.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="chkIndividual_On.Location" type="System.Drawing.Point, System.Drawing">
-    <value>218, 50</value>
+  <data name="txtPlateLocate_Th.Location" type="System.Drawing.Point, System.Drawing">
+    <value>413, 55</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
-  </data>
-  <data name="&gt;&gt;chkOnly_Location_On.Parent" xml:space="preserve">
-    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;chkIsNight.ZOrder" xml:space="preserve">
     <value>2</value>
@@ -308,11 +309,8 @@
   <data name="&gt;&gt;chkMovingImage.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnInit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtMaxImageHeight.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="chkMovingImage.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
@@ -323,8 +321,8 @@
   <data name="txtPlateLocate_Th.Text" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="&gt;&gt;chkTractor_On.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;btnInit.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -347,20 +345,20 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chkTwoRowArmy_On.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;chkOnly_Location_On.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="chkOnly_Location_On.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
   <data name="chkTractor_On.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>11</value>
   </data>
   <data name="chkVertCompress.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -380,21 +378,26 @@
   <data name="txtMinPlateWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>99, 21</value>
   </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
   <data name="txtMaxImageWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>99, 55</value>
   </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>12</value>
+  <data name="chkTractor_On.Text" xml:space="preserve">
+    <value>识别农用车车牌</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="txtPlateLocate_Th.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="txtProvince.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>图片定位阀值</value>
   </data>
   <data name="&gt;&gt;chkArmPolice_On.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="btnInit.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
   <data name="&gt;&gt;chkTwoRowArmy_On.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -404,6 +407,9 @@
   </data>
   <data name="chkOnly_TwoRowYellow_On.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 16</value>
+  </data>
+  <data name="txtOCR_Th.Text" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;txtOCR_Th.Name" xml:space="preserve">
     <value>txtOCR_Th</value>
@@ -416,6 +422,9 @@
   </data>
   <data name="txtMaxPlateWidth.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 21</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkIsFieldImage.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -441,8 +450,8 @@
   <data name="txtPlateLocate_Th.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 21</value>
   </data>
-  <data name="chkTwoRowArmy_On.Text" xml:space="preserve">
-    <value>识别双层军队车牌</value>
+  <data name="chkArmPolice_On.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmCarPlateOfWintone</value>
@@ -453,14 +462,14 @@
   <data name="&gt;&gt;chkTwoRowYellow_On.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>585, 100</value>
-  </data>
   <data name="&gt;&gt;chkIsFieldImage.Name" xml:space="preserve">
     <value>chkIsFieldImage</value>
   </data>
   <data name="&gt;&gt;chkOnly_TwoRowYellow_On.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkTwoRowArmy_On.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="txtMaxImageWidth.Text" xml:space="preserve">
     <value>720</value>
@@ -476,6 +485,9 @@
   </data>
   <data name="btnInit.Text" xml:space="preserve">
     <value>设置参数</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
     <value>4</value>
@@ -498,17 +510,11 @@
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label4.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>TopRight</value>
-  </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="chkArmPolice_On.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtMaxImageWidth.TabIndex" type="System.Int32, mscorlib">
-    <value>26</value>
+  <data name="btnInit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>454, 285</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
@@ -516,14 +522,11 @@
   <data name="&gt;&gt;btnInit.Name" xml:space="preserve">
     <value>btnInit</value>
   </data>
-  <data name="chkIndividual_On.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;txtOCR_Th.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>585, 83</value>
+  <data name="&gt;&gt;txtMinPlateWidth.Name" xml:space="preserve">
+    <value>txtMinPlateWidth</value>
   </data>
   <data name="&gt;&gt;chkMovingImage.Name" xml:space="preserve">
     <value>chkMovingImage</value>
@@ -546,9 +549,6 @@
   <data name="chkTwoRowArmPolice_On.Location" type="System.Drawing.Point, System.Drawing">
     <value>218, 28</value>
   </data>
-  <data name="&gt;&gt;txtMaxPlateWidth.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
   <data name="txtMaxImageHeight.Location" type="System.Drawing.Point, System.Drawing">
     <value>258, 55</value>
   </data>
@@ -558,17 +558,17 @@
   <data name="chkEmbassy_On.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
-  <data name="txtMaxImageWidth.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="txtOCR_Th.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 21</value>
   </data>
-  <data name="txtMinPlateWidth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 21</value>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 59</value>
   </data>
   <data name="chkLeanCorrection.Text" xml:space="preserve">
     <value>启用倾斜校正</value>
   </data>
-  <data name="txtMaxImageHeight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>330, 25</value>
   </data>
   <data name="chkIndividual_On.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
@@ -577,7 +577,7 @@
     <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtPlateLocate_Th.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 179</value>
@@ -585,11 +585,14 @@
   <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
     <value>6, 12</value>
   </data>
-  <data name="chkIsNight.Text" xml:space="preserve">
-    <value>启用夜间模式</value>
+  <data name="chkEmbassy_On.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="txtOCR_Th.Text" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;txtOCR_Th.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;chkVertCompress.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;chkTwoRowArmPolice_On.Parent" xml:space="preserve">
     <value>groupBox1</value>
@@ -603,41 +606,41 @@
   <data name="chkMovingImage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>179, 25</value>
-  </data>
   <data name="&gt;&gt;txtProvince.Name" xml:space="preserve">
     <value>txtProvince</value>
   </data>
   <data name="chkTwoRowArmPolice_On.Text" xml:space="preserve">
     <value>识别双层武警车牌</value>
   </data>
-  <data name="&gt;&gt;txtOCR_Th.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="chkTwoRowArmy_On.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
   </data>
-  <data name="txtMaxImageWidth.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
+  <data name="&gt;&gt;txtMaxImageWidth.Name" xml:space="preserve">
+    <value>txtMaxImageWidth</value>
   </data>
   <data name="chkIndividual_On.Text" xml:space="preserve">
     <value>识别个性化车牌</value>
   </data>
-  <data name="chkTwoRowYellow_On.Text" xml:space="preserve">
-    <value>识别双层黄色车牌</value>
+  <data name="chkIndividual_On.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;chkIndividual_On.ZOrder" xml:space="preserve">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;txtOCR_Th.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+  <data name="chkIsNight.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
   </data>
-  <data name="chkTwoRowYellow_On.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
+  <data name="&gt;&gt;txtOCR_Th.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
-  <data name="txtPlateLocate_Th.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 55</value>
+  <data name="chkIndividual_On.Location" type="System.Drawing.Point, System.Drawing">
+    <value>218, 50</value>
   </data>
   <data name="&gt;&gt;txtMaxPlateWidth.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -646,19 +649,16 @@
     <value>On</value>
   </data>
   <data name="&gt;&gt;txtMaxImageWidth.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 59</value>
+  <data name="chkMovingImage.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
   </data>
-  <data name="&gt;&gt;chkEmbassy_On.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
+  <data name="label6.Text" xml:space="preserve">
+    <value>车牌最大宽度</value>
   </data>
   <data name="&gt;&gt;chkVertCompress.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -666,23 +666,23 @@
   <data name="chkTractor_On.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 16</value>
   </data>
-  <data name="&gt;&gt;chkTwoRowYellow_On.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
   <data name="txtProvince.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="chkVertCompress.Text" xml:space="preserve">
-    <value>启用隔行抽点</value>
+  <data name="&gt;&gt;chkTwoRowYellow_On.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="chkTwoRowArmy_On.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
+  <data name="chkTwoRowYellow_On.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 52</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="chkMovingImage.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 20</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="chkTwoRowArmy_On.Text" xml:space="preserve">
+    <value>识别双层军队车牌</value>
   </data>
   <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -693,11 +693,11 @@
   <data name="chkOnly_Location_On.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 16</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="chkIsNight.Text" xml:space="preserve">
+    <value>启用夜间模式</value>
   </data>
   <data name="&gt;&gt;txtProvince.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -711,8 +711,8 @@
   <data name="&gt;&gt;chkIsNight.Name" xml:space="preserve">
     <value>chkIsNight</value>
   </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="txtMinPlateWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 21</value>
   </data>
   <data name="txtProvince.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 21</value>
@@ -729,8 +729,8 @@
   <data name="&gt;&gt;txtMaxImageWidth.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtMaxImageHeight.ZOrder" xml:space="preserve">
+    <value>8</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -741,11 +741,11 @@
   <data name="chkIsNight.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btnInit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>454, 285</value>
-  </data>
   <data name="chkLeanCorrection.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
+  </data>
+  <data name="chkVertCompress.Text" xml:space="preserve">
+    <value>启用隔行抽点</value>
   </data>
   <data name="chkArmPolice_On.Text" xml:space="preserve">
     <value>识别单层武警车牌</value>
@@ -759,11 +759,14 @@
   <data name="&gt;&gt;txtMaxImageWidth.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="&gt;&gt;txtMinPlateWidth.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;chkVertCompress.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;txtMaxImageHeight.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+  <data name="txtMaxImageWidth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 21</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>最大图像高度</value>
   </data>
   <data name="txtMinPlateWidth.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
@@ -771,8 +774,8 @@
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>25</value>
+  <data name="&gt;&gt;chkEmbassy_On.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
@@ -780,11 +783,8 @@
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 9</value>
   </data>
-  <data name="&gt;&gt;chkOnly_TwoRowYellow_On.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="chkMovingImage.Text" xml:space="preserve">
-    <value>识别运动图像</value>
+  <data name="&gt;&gt;chkIndividual_On.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="chkLeanCorrection.Location" type="System.Drawing.Point, System.Drawing">
     <value>17, 45</value>
@@ -799,28 +799,37 @@
     <value>576</value>
   </data>
   <data name="&gt;&gt;txtMaxPlateWidth.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>最大图像高度</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>车牌最小宽度</value>
   </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="&gt;&gt;chkLeanCorrection.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="txtProvince.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
   </data>
   <data name="&gt;&gt;txtPlateLocate_Th.Parent" xml:space="preserve">
     <value>groupBox2</value>
   </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
   <data name="chkLeanCorrection.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>596, 335</value>
   </data>
   <data name="&gt;&gt;btnInit.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;chkTwoRowArmy_On.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="chkIsFieldImage.Location" type="System.Drawing.Point, System.Drawing">
+    <value>412, 20</value>
   </data>
   <data name="&gt;&gt;label3.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -837,9 +846,6 @@
   <data name="&gt;&gt;chkArmPolice_On.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="chkVertCompress.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
   </data>
@@ -852,11 +858,11 @@
   <data name="chkIsFieldImage.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;chkOnly_TwoRowYellow_On.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="chkVertCompress.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="txtMaxImageHeight.TabIndex" type="System.Int32, mscorlib">
     <value>25</value>
@@ -864,11 +870,11 @@
   <data name="chkArmPolice_On.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 16</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>596, 335</value>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>车牌类型</value>
   </data>
-  <data name="chkTwoRowYellow_On.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;chkTractor_On.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;txtMinPlateWidth.ZOrder" xml:space="preserve">
     <value>9</value>
@@ -876,8 +882,8 @@
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
     <value>5, 103</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
+  <data name="chkOnly_Location_On.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;txtMinPlateWidth.Parent" xml:space="preserve">
     <value>groupBox2</value>
@@ -885,26 +891,23 @@
   <data name="txtMaxPlateWidth.Location" type="System.Drawing.Point, System.Drawing">
     <value>258, 21</value>
   </data>
-  <data name="&gt;&gt;chkVertCompress.Name" xml:space="preserve">
-    <value>chkVertCompress</value>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>585, 100</value>
   </data>
-  <data name="chkTwoRowYellow_On.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 52</value>
+  <data name="chkIsFieldImage.TabIndex" type="System.Int32, mscorlib">
+    <value>25</value>
   </data>
-  <data name="txtPlateLocate_Th.TabIndex" type="System.Int32, mscorlib">
-    <value>31</value>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>12</value>
   </data>
   <data name="btnInit.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 43</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
+  <data name="chkMovingImage.Text" xml:space="preserve">
+    <value>识别运动图像</value>
   </data>
-  <data name="&gt;&gt;chkVertCompress.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkTractor_On.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="chkTwoRowArmy_On.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
     <value>groupBox3</value>
@@ -912,8 +915,8 @@
   <data name="&gt;&gt;btnInit.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>11</value>
+  <data name="&gt;&gt;chkOnly_TwoRowYellow_On.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -921,14 +924,11 @@
   <data name="&gt;&gt;chkEmbassy_On.Name" xml:space="preserve">
     <value>chkEmbassy_On</value>
   </data>
-  <data name="&gt;&gt;chkLeanCorrection.Name" xml:space="preserve">
-    <value>chkLeanCorrection</value>
-  </data>
   <data name="txtOCR_Th.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="chkTractor_On.Text" xml:space="preserve">
-    <value>识别农用车车牌</value>
+  <data name="&gt;&gt;chkOnly_TwoRowYellow_On.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
@@ -936,14 +936,14 @@
   <data name="groupBox2.Text" xml:space="preserve">
     <value>基本设置</value>
   </data>
-  <data name="chkOnly_Location_On.Location" type="System.Drawing.Point, System.Drawing">
-    <value>411, 72</value>
+  <data name="txtMaxImageWidth.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
   </data>
-  <data name="&gt;&gt;chkIndividual_On.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;chkIsNight.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;chkVertCompress.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="chkTwoRowArmy_On.Location" type="System.Drawing.Point, System.Drawing">
+    <value>411, 28</value>
   </data>
   <data name="chkTractor_On.Location" type="System.Drawing.Point, System.Drawing">
     <value>218, 74</value>
@@ -951,58 +951,55 @@
   <data name="label5.Text" xml:space="preserve">
     <value>默认省份</value>
   </data>
-  <data name="&gt;&gt;txtPlateLocate_Th.ZOrder" xml:space="preserve">
-    <value>1</value>
+  <data name="&gt;&gt;chkTwoRowArmPolice_On.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox2</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
   </data>
-  <data name="&gt;&gt;chkIsNight.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>585, 83</value>
   </data>
   <data name="chkOnly_TwoRowYellow_On.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="&gt;&gt;txtMaxImageHeight.Name" xml:space="preserve">
-    <value>txtMaxImageHeight</value>
+  <data name="chkTwoRowArmy_On.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
   </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+  <data name="chkEmbassy_On.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 16</value>
+  </data>
+  <data name="&gt;&gt;txtMaxPlateWidth.Parent" xml:space="preserve">
     <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;txtMinPlateWidth.Name" xml:space="preserve">
-    <value>txtMinPlateWidth</value>
   </data>
   <data name="txtProvince.Text" xml:space="preserve">
     <value>粤</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>330, 25</value>
+  <data name="&gt;&gt;txtMaxImageHeight.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="chkIsNight.TabIndex" type="System.Int32, mscorlib">
-    <value>27</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>179, 25</value>
   </data>
   <data name="txtProvince.Location" type="System.Drawing.Point, System.Drawing">
     <value>541, 21</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="chkVertCompress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>216, 20</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>图片定位阀值</value>
+  <data name="&gt;&gt;chkIndividual_On.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;chkLeanCorrection.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="txtMaxImageHeight.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
-  <data name="txtOCR_Th.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 21</value>
+  <data name="&gt;&gt;chkTractor_On.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
+  <data name="&gt;&gt;chkLeanCorrection.Name" xml:space="preserve">
+    <value>chkLeanCorrection</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
-  </metadata>
-  <metadata name="$this.Language" type="System.Globalization.CultureInfo, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>en</value>
   </metadata>
 </root>

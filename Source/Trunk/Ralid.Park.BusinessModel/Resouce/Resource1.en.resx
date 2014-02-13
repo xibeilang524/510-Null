@@ -298,7 +298,7 @@
     <value>Net Entrance</value>
   </data>
   <data name="Hour" xml:space="preserve">
-    <value>Hour</value>
+    <value> Hour </value>
   </data>
   <data name="InvalidHour" xml:space="preserve">
     <value>Invalid Hour</value>
@@ -377,7 +377,7 @@
     <value>Not Paid</value>
   </data>
   <data name="Minute" xml:space="preserve">
-    <value>Minutes</value>
+    <value> Minutes </value>
   </data>
   <data name="ParkingStatus_AsTempCard" xml:space="preserve">
     <value>charge as temporary card</value>
@@ -399,12 +399,6 @@
   </data>
   <data name="ParkingStatus_PaidBill" xml:space="preserve">
     <value>paid</value>
-  </data>
-  <data name="ParkingStatus_RepeatIn" xml:space="preserve">
-    <value>RepeatIn</value>
-  </data>
-  <data name="ParkingStatus_RepeatOut" xml:space="preserve">
-    <value>RepeatOut</value>
   </data>
   <data name="PaymentMode_Cash" xml:space="preserve">
     <value>Cash</value>
@@ -863,6 +857,93 @@
     <value>Cannot connect server</value>
   </data>
   <data name="Second" xml:space="preserve">
-    <value>Second</value>
+    <value> Second </value>
+  </data>
+  <data name="AlarmType_GateAlarm" xml:space="preserve">
+    <value>Gate Alarm</value>
+  </data>
+  <data name="RoadMode_Entrance" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="RoadMode_Exit" xml:space="preserve">
+    <value>Exit</value>
+  </data>
+  <data name="RoadMode_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="Permission_EditRoadWay" xml:space="preserve">
+    <value>Edit RoadWay</value>
+  </data>
+  <data name="Permission_ReadRoadWay" xml:space="preserve">
+    <value>Read RoadWay</value>
+  </data>
+  <data name="ParkingStatus_NotCheckOut" xml:space="preserve">
+    <value>Not Check Out Hotel</value>
+  </data>
+  <data name="ParkingStatus_HotelApp" xml:space="preserve">
+    <value>Hotel Application</value>
+  </data>
+  <data name="Tariff_TurningLimited" xml:space="preserve">
+    <value>Tariff_TurningLimited</value>
+  </data>
+  <data name="Permissions_FreeAuthorization" xml:space="preserve">
+    <value>Free Authorization</value>
+  </data>
+  <data name="CardOperationManager_InitFail" xml:space="preserve">
+    <value>Init Reader Fail</value>
+  </data>
+  <data name="CardOperationManager_OpenFail" xml:space="preserve">
+    <value>Open Reader Fail</value>
+  </data>
+  <data name="Permission_EditFreeDays" xml:space="preserve">
+    <value>Edit Free Days</value>
+  </data>
+  <data name="CardPaymentInfoFactory_Free" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="Permission_SwitchRoadWay" xml:space="preserve">
+    <value>Switch RoadWay</value>
+  </data>
+  <data name="Permission_POSSyncTool" xml:space="preserve">
+    <value>POS Sync Tool</value>
+  </data>
+  <data name="WaitingCommandStatus_Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="WaitingCommandStatus_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="WaitingCommandStatus_Wait" xml:space="preserve">
+    <value>Wait</value>
+  </data>
+  <data name="CommandType_AddCard" xml:space="preserve">
+    <value>Add Card</value>
+  </data>
+  <data name="CommandType_ClearCard" xml:space="preserve">
+    <value>Clear Card</value>
+  </data>
+  <data name="CommandType_DeleteCard" xml:space="preserve">
+    <value>Delete Card</value>
+  </data>
+  <data name="CommandType_DownloadAccesses" xml:space="preserve">
+    <value> Download Access</value>
+  </data>
+  <data name="CommandType_DownloadHolidays" xml:space="preserve">
+    <value>Download Holiday</value>
+  </data>
+  <data name="CommandType_DownloadKeySetting" xml:space="preserve">
+    <value>Download Key</value>
+  </data>
+  <data name="CommandType_DownloadTariffs" xml:space="preserve">
+    <value>Download Tariffs</value>
+  </data>
+  <data name="CommandType_UpdateCard" xml:space="preserve">
+    <value>Update Card</value>
+  </data>
+  <data name="AlarmType_OperatorLogOut" xml:space="preserve">
+    <value>Operator Logout</value>
+  </data>
+  <data name="AlarmType_CardOutAnomaly" xml:space="preserve">
+    <value>Card Out Anomaly</value>
   </data>
 </root>
