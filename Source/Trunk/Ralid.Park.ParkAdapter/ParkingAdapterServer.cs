@@ -530,6 +530,15 @@ namespace Ralid.Park.ParkAdapter
 
         public string Echo(string echo)
         {
+            lock (_IReportSinkerListLock)
+            {
+                IReportSinker reportSinker = OperationContext.Current.GetCallbackChannel<IReportSinker>();
+                if (_reportSinkers.Contains(reportSinker) == false)
+                {
+                    _reportSinkers.Add(reportSinker);
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("建立一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                }
+            }
             return echo;
         }
 
