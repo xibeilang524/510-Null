@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ralid.Park.DAL</name>
+    </assembly>
+    <members>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.GetByID(`1)">
+            <summary>
+            通过ID获取对像
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.GetAll">
+            <summary>
+            获取所有对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.GetItems(Ralid.Park.BusinessModel.SearchCondition.SearchCondition)">
+            <summary>
+            通过查询条件获取对象
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Insert(`0)">
+            <summary>
+            插入对象
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Update(`0,`0)">
+            <summary>
+            更新对象
+            </summary>
+            <param name="newVal"></param>
+            <param name="originalVal"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Delete(`0)">
+            <summary>
+            删除对象
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Insert(`0,Ralid.Park.DAL.IDAL.IUnitWork)">
+            <summary>
+            插入对象,这个操作属于一个单元操作的一部分
+            </summary>
+            <param name="t"></param>
+            <param name="unitWork"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Update(`0,`0,Ralid.Park.DAL.IDAL.IUnitWork)">
+            <summary>
+            更新对象,这个操作属于一个单元操作的一部分
+            </summary>
+            <param name="t"></param>
+            <param name="unitWork"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IProvider`2.Delete(`0,Ralid.Park.DAL.IDAL.IUnitWork)">
+            <summary>
+            删除对象,这个操作属于一个单元操作的一部分
+            </summary>
+            <param name="t"></param>
+            <param name="unitWork"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IEntranceProvider.DeleteAllItems">
+            <summary>
+            删除所有对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IEntranceProvider.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.EntranceInfo)">
+            <summary>
+            插入记录，包括主键值
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IParkProvider.DeleteAllItems">
+            <summary>
+            删除所有对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IParkProvider.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.ParkInfo)">
+            <summary>
+            插入记录，包括主键值
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.DAL.IDAL.ITransactionsWork">
+            <summary>
+            表示多个事务组成的操作
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.DAL.IDAL.IUnitWork">
+            <summary>
+            表示一个单元操作,用于把多个操作组成一个事务操作.
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IUnitWork.Commit">
+            <summary>
+            提交操作
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.DAL.LinqDataProvider.ServerDateTimeProvider">
+            <summary>
+            获取服务器时间的提供者类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.DAL.LinqDataProvider.ServerDateTimeProvider.GetServerDateTime(System.Nullable{System.DateTime}@)">
+            <summary>
+            获取服务器时间，如果执行失败，serverDT 返回null 
+            </summary>
+            <param name="serverDT"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.DAL.LinqDataProvider.TransactionsWork">
+            <summary>
+            多个事务操作
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IVideoSourceProvider.DeleteAllItems">
+            <summary>
+            删除所有对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.IVideoSourceProvider.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.VideoSourceInfo)">
+            <summary>
+            插入记录，包括主键值
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.DAL.IDAL.ICardPaymentRecordProvider.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.CardPaymentInfo)">
+            <summary>
+            插入记录，包括主键值
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.DAL.LinqDataProvider.UnitWork">
+            <summary>
+            单元操作
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.DAL.LinqDataProvider.ResultCodeResolver">
+            <summary>
+            表示返回结果的解析类,
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.DAL.LinqDataProvider.ResultCodeResolver.GetFromSqlExceptionNumber(System.Int32)">
+            <summary>
+            从数据库异常的编号中解析执行结果
+            </summary>
+            <param name="number"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

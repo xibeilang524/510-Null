@@ -1,0 +1,1556 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Ralid.Park.BLL</name>
+    </assembly>
+    <members>
+        <member name="T:Ralid.Park.BLL.SpeedingRecordBll">
+            <summary>
+            未处理超速记录逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.GetByID(System.Guid)">
+            <summary>
+            根据主键ID获取未处理超速记录
+            </summary>
+            <param name="optID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.GetAllRecords">
+            <summary>
+            获取所有未处理超速记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.GetRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            根据查询条件获取未处理超速记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.GetRecordsByCarPlate(System.String)">
+            <summary>
+            根据车牌号码获取未处理超速记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.Insert(Ralid.Park.BusinessModel.Model.SpeedingRecord)">
+            <summary>
+            增加未处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.Update(Ralid.Park.BusinessModel.Model.SpeedingRecord)">
+            <summary>
+            修改未处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.Delete(Ralid.Park.BusinessModel.Model.SpeedingRecord)">
+            <summary>
+            删除未处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+            <exception cref="!: "></exception>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingRecordBll.SpeedingProcessing(Ralid.Park.BusinessModel.Model.SpeedingRecord,Ralid.Park.BusinessModel.Model.OperatorInfo,System.DateTime,System.String)">
+            <summary>
+            处理超速记录
+            </summary>
+            <param name="info">未处理的超速记录</param>
+            <param name="operatorInfo">处理人员</param>
+            <param name="dateTime">处理时间</param>
+            <param name="memo">处理备注信息</param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREOperatorBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.Authentication(System.String,System.String)">
+            <summary>
+            登录验证
+            </summary>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREOperatorBll.GetByID(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.GetAllOperators">
+            <summary>
+            获取所有操作员
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREOperatorBll.GetOperators(Ralid.Park.BusinessModel.SearchCondition.OperatorSearchCondition)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.GetOperatorByOperatorNum(System.Byte)">
+            <summary>
+            通过操作员编号获取操作员
+            </summary>
+            <param name="optNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.Insert(Ralid.Park.BusinessModel.Model.PREOperatorInfo)">
+            <summary>
+            增加操作员,如果操作员编号已被使用,抛出InvalidOperationException
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.Update(Ralid.Park.BusinessModel.Model.PREOperatorInfo)">
+            <summary>
+            修改操作员,如果操作员编号已被使用,抛出InvalidOperationException
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREOperatorBll.Delete(Ralid.Park.BusinessModel.Model.PREOperatorInfo)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREOperatorBll.DeleteAllOperators">
+            <summary>
+            删除所有操作员
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREOperatorBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.PREOperatorInfo)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.VideoSourceBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.VideoSourceBll.DeleteAllVideos">
+            <summary>
+            删除所有视频
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.VideoSourceBll.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.VideoSourceInfo)">
+            <summary>
+            插入包括主键值的视频记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.VideoSourceBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.VideoSourceInfo,System.Boolean)">
+            <summary>
+            更新控制板，如没有视频，则新插入视频记录
+            </summary>
+            <param name="info"></param>
+            <param name="withPrimaryKey">是否插入主键值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.BLL.DataBaseConnectionChecker">
+            <summary>
+            用于检查数据库连接的类
+            </summary>
+        </member>
+        <member name="F:Ralid.Park.BLL.DataBaseConnectionChecker.DataBaseStatusChangedEvent">
+            <summary>
+            数据库连接状态改变产生的事件
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.DataBaseConnectionChecker.CheckConnectionAvailableBySql(System.String)">
+            <summary>
+            使用连接数据库方法检查数据库连接状态
+            </summary>
+            <param name="repoUri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.DataBaseConnectionChecker.Start">
+            <summary>
+            开始检查连接
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.DataBaseConnectionChecker.Stop">
+            <summary>
+            结束检查连接
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.DataBaseConnectionChecker.SyncInterval">
+            <summary>
+            获取或设置检查连接的时间间隔（秒)，默认为5秒，要在调用Start方法之前设置此参数
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.DataBaseConnectionChecker.CurrentUICulture">
+            <summary>
+            获取或设置服务的当前区域资源
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.GetByID(Ralid.Park.BusinessModel.Report.RecordID)">
+            <summary>
+            通过ＩＤ号获取卡片事件
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.Insert(Ralid.Park.BusinessModel.Model.CardEventRecord)">
+            <summary>
+            插入卡片事件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.Update(Ralid.Park.BusinessModel.Model.CardEventRecord)">
+            <summary>
+            更新卡片事件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.Delete(Ralid.Park.BusinessModel.Model.CardEventRecord)">
+            <summary>
+            删除卡片事件
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.GetCardEvents(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取卡片事件
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.GetFirstCardEvent(System.String,System.DateTime)">
+            <summary>
+            获取卡片在某个时间的第一个卡片事件
+            </summary>
+            <param name="cardID"></param>
+            <param name="cardEventDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.CarFlowStaticstics(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition,Ralid.Park.BusinessModel.Model.CarFlowStatisticsType)">
+            <summary>
+            车流量统计
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.InsertRecordWithCheck(Ralid.Park.BusinessModel.Model.CardEventRecord)">
+            <summary>
+            检查有无该记录，无则插入
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardEventBll.DeleteAllCardEventBefore(System.DateTime)">
+            <summary>
+            删除所有在eventDatetime之前的进出记录
+            </summary>
+            <param name="datetime"></param>
+        </member>
+        <member name="T:Ralid.Park.BLL.RoadWayBll">
+            <summary>
+            通道路口逻辑处理类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.RoadWayBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.RoleBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREPreferentialLogBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREPreferentialLogBll.GetByID(System.String)">
+            <summary>
+            根据主键ID获取优惠信息
+            </summary>
+            <param name="optID"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREPreferentialLogBll.GetAllPreferentials”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREPreferentialLogBll.GetPreferentials(Ralid.Park.BusinessModel.SearchCondition.PreferentialReportSearchCondition)">
+            <summary>
+            根据查询条件获取优惠信息
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREPreferentialLogBll.Insert(Ralid.Park.BusinessModel.Model.PREPreferentialLog)">
+            <summary>
+            增加优惠信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREPreferentialBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREPreferentialBll.GetByID(System.String)">
+            <summary>
+            根据主键ID获取优惠信息
+            </summary>
+            <param name="optID"></param>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREPreferentialBll.GetAllPreferentials”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.PREPreferentialBll.GetPreferentials(Ralid.Park.BusinessModel.SearchCondition.CardSearchCondition)">
+            <summary>
+            根据查询条件获取优惠信息
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREPreferentialBll.Insert(Ralid.Park.BusinessModel.Model.PREPreferentialInfo)">
+            <summary>
+            增加优惠信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREPreferentialBll.Update(Ralid.Park.BusinessModel.Model.PREPreferentialInfo)">
+            <summary>
+            修改优惠信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.PREPreferentialBll.Delete(Ralid.Park.BusinessModel.Model.PREPreferentialInfo)">
+            <summary>
+            删除优惠信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+            <exception cref="!: "></exception>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.DeptBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="T:Ralid.Park.BLL.APMBll">
+            <summary>
+            表示操作APM自助缴费机的业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.Insert(Ralid.Park.BusinessModel.Model.APM)">
+            <summary>
+            增加自助缴机
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.Update(Ralid.Park.BusinessModel.Model.APM)">
+            <summary>
+            修改自助缴机
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.Delete(Ralid.Park.BusinessModel.Model.APM)">
+            <summary>
+            删除自助缴机
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.GetAllItems">
+            <summary>
+            获取系统中所有的自助缴机
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.GetByID(System.Int32)">
+            <summary>
+            通过ID获取自助缴机信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMBll.UpdateActiveDateTime(Ralid.Park.BusinessModel.Model.APM,System.DateTime)">
+            <summary>
+            更新APM当前活动时间
+            </summary>
+            <param name="info"></param>
+            <param name="activeDt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SystemParameterBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.EntranceBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.EntranceBll.DeleteAllEntrances">
+            <summary>
+            删除所有控制板
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.EntranceBll.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.EntranceInfo)">
+            <summary>
+            插入包括主键值的控制板记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.EntranceBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.EntranceInfo,System.Boolean)">
+            <summary>
+            更新控制板，如没有控制板，则新插入控制板记录
+            </summary>
+            <param name="info"></param>
+            <param name="withPrimaryKey">是否插入主键值</param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.BLL.DatabaseUpgrader">
+            <summary>
+            用于数据库升级的类
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.AlarmBll">
+            <summary>
+            报警信息的应用层类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.AlarmBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="T:Ralid.Park.BLL.SysParaSettingsBll">
+             <summary>
+            用于从SysParameter表中保存或获取一些系统设置,这些设置的实例被序列化为XML字串保存在ParameterValue字段中
+             </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.SaveSetting``1(``0)">
+             <summary>
+            保存到数据库
+             </summary>
+             <param name="info"></param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.GetSetting``1">
+            <summary>
+            从数据库中获取对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.GetOrCreateSetting``1">
+            <summary>
+            从持久层获取设置，如果不存在就创建一个
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.GetOrCreateSetting``1(System.String)">
+            <summary>
+            为停车场支持单独费率新增的函数
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="parkID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.SaveSetting``1(``0,System.String)">
+             <summary>
+            保存到数据库
+             </summary>
+             <param name="info"></param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SysParaSettingsBll.GetSetting``1(System.String)">
+            <summary>
+            从数据库中获取对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.BLL.ServerSwitchRecordBll">
+            <summary>
+            服务器切换记录的应用层类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.ServerSwitchRecordBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.DatetimeSyncService.GetServerDateTime(System.Nullable{System.DateTime}@)">
+            <summary>
+            获取服务器当前时间,如果方法执行时间超过3S，则失败，返回的时间不可用
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.DatetimeSyncService.Start">
+            <summary>
+            开始时间同步
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.DatetimeSyncService.Stop">
+            <summary>
+            结束时间同步
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.DatetimeSyncService.SyncInterval">
+            <summary>
+            获取或设置自动同步时同步的时间间隔（分钟)，默认为5分钟，要在调用Start方法之前设置此参数
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.SystemTime">
+            <summary>
+            系统时间结构
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.StandbyToMasterSyncService">
+            <summary>
+            表示备用数据库同步到主数据库的服务类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.StandbyToMasterSyncService.Start">
+            <summary>
+            开始数据同步
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.StandbyToMasterSyncService.Stop">
+            <summary>
+            结束数据同步
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.StandbyToMasterSyncService.Pause">
+            <summary>
+            暂停数据同步
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.StandbyToMasterSyncService.Recover">
+            <summary>
+            恢复数据同步
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.StandbyToMasterSyncService.SyncDataBase">
+            <summary>
+            立刻同步一次数据库，暂停数据同步不会同步
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.StandbyToMasterSyncService.SyncInterval">
+            <summary>
+            获取或设置自动同步时同步的时间间隔（分钟)，默认为5分钟，要在调用Start方法之前设置此参数
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.FreeAuthorizationLogBll">
+            <summary>
+            免费优惠记录的业务逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.FreeAuthorizationLogBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="T:Ralid.Park.BLL.APMRefundRecordBll">
+            <summary>
+            退款记录操作逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.APMRefundRecordBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="T:Ralid.Park.BLL.SpeedingLogBll">
+            <summary>
+            已处理超速记录逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.GetByID(System.Guid)">
+            <summary>
+            根据主键ID获取已处理超速记录
+            </summary>
+            <param name="optID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.GetAllRecords">
+            <summary>
+            获取所有已处理超速记录
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.GetRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            根据查询条件获取已处理超速记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.Insert(Ralid.Park.BusinessModel.Model.SpeedingLog)">
+            <summary>
+            增加已处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.Update(Ralid.Park.BusinessModel.Model.SpeedingLog)">
+            <summary>
+            修改未处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.SpeedingLogBll.Delete(Ralid.Park.BusinessModel.Model.SpeedingLog)">
+            <summary>
+            删除未处理超速记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+            <exception cref="!: "></exception>
+        </member>
+        <member name="M:Ralid.Park.BLL.SnapShotBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SnapShotBll.Insert(Ralid.Park.BusinessModel.Model.SnapShot)">
+            <summary>
+            保存抓拍图片到数据库
+            </summary>
+            <param name="shotDateTime"></param>
+            <param name="photo"></param>
+        </member>
+        <member name="M:Ralid.Park.BLL.SnapShotBll.DeleteAllSnapShotBefore(System.DateTime)">
+            <summary>
+            删除所有在shotDateTime之前抓拍的图片
+            </summary>
+            <param name="datetime"></param>
+        </member>
+        <member name="T:Ralid.Park.BLL.Resource1">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.APMBll_NumbeUsed">
+            <summary>
+              Looks up a localized string similar to 缴费机编号 &quot;{0}&quot; 已经被使用.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CancelPaymentDescr">
+            <summary>
+              Looks up a localized string similar to 卡号:{0} 收费:{1} 入场:{2} 费用:{3} 实收:{4} 说明:{5}.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CannotDelelt">
+            <summary>
+              Looks up a localized string similar to 已发行的,非临时的卡片不能删除!.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CannotDelete">
+            <summary>
+              Looks up a localized string similar to 已发行的,非临时的卡片不能删除.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CardIDbeUsed">
+            <summary>
+              Looks up a localized string similar to 已存在卡号为 &quot;{0}&quot;  的名单！.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CardLost">
+            <summary>
+              Looks up a localized string similar to 卡片挂失.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardBll_CreateListCardIDFail">
+            <summary>
+              Looks up a localized string similar to 自动生成卡号失败，请重新发行！.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.CardPaymentRecordBll_notSingle">
+            <summary>
+              Looks up a localized string similar to 卡片收费记录不唯一.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.DatetimeSyncService_Invalidtime">
+            <summary>
+              Looks up a localized string similar to 同步时间间隔设置不正确，要设置成大于零的值.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.Mandate_Delete">
+            <summary>
+              Looks up a localized string similar to 强制删除.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorBll_CannotDelete">
+            <summary>
+              Looks up a localized string similar to 操作员 &quot;{0}&quot; 是系统默认的操作员,不能被删除.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorBll_IDbeUsed">
+            <summary>
+              Looks up a localized string similar to 操作员ID &quot;{0}&quot; 已经被使用.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorBll_NamebeUsed">
+            <summary>
+              Looks up a localized string similar to 操作员真实姓名 &quot;{0}&quot; 已经被使用.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorBll_NotExistsOperator">
+            <summary>
+              Looks up a localized string similar to 数据库中不存在操作员 &quot;{0}&quot; ,可能被其它人员删除.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorBll_NumbeUsed">
+            <summary>
+              Looks up a localized string similar to 操作员编号 &quot;{0}&quot; 已经被使用.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.OperatorSettleBLL_noOperator">
+            <summary>
+              Looks up a localized string similar to 生成汇总结果时没有指定操作员.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.RoleBll_CannotDelete">
+            <summary>
+              Looks up a localized string similar to 角色 &quot;{0}&quot;  是系统默认角色,不能删除.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.RoleBll_RoleBeUsed">
+            <summary>
+              Looks up a localized string similar to 有操作员归属到角色 &quot;{0}&quot; ,请先把角色为 &quot;{1}&quot; 的操作员删除或改成别的角色,再来删除此角色!.
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.Resource1.WorkstationBll_CannotDelete">
+            <summary>
+              Looks up a localized string similar to 工作站 &quot;{0} &quot;是系统默认工作站,不能删除.
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.ParkingParameterDataBufferBll">
+            <summary>
+            表示停车场参数设置缓存逻辑处理类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkingParameterDataBufferBll.ExportParameter(System.String)">
+            <summary>
+            导出停车场参数设置为xml文件
+            </summary>
+            <param name="path">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkingParameterDataBufferBll.ImportParameter(System.String)">
+            <summary>
+            从xml文件中导入停车场参数设置
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardPaymentRecordBll.#ctor(System.String)">
+            <summary>
+            /// <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardPaymentRecordBll.GetLatestRecord(System.String,System.DateTime,Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            获取卡号为cardID,进场时间为enterDateTime的最近的一条收费记录
+            </summary>
+            <param name="cardID"></param>
+            <param name="enterDateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.WorkstationBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="T:Ralid.Park.BLL.ParkBuffer">
+            <summary>
+            表示一个停车场硬件信息的数据缓存
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.#ctor(System.String)">
+            <summary>
+            停车场缓存构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.InValid">
+            <summary>
+            缓存的数据已无效,从数据库中获取最新数据,使用构造函数时的数据库连接字符串
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.InValid(System.String)">
+            <summary>
+            缓存的数据已无效,从数据库中获取最新数据
+            </summary>
+            <param name="repoUri">数据库连接字符串</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.GetPark(System.Int32)">
+            <summary>
+            获取停车场信息
+            </summary>
+            <param name="parkID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.GetEntrance(System.Int32)">
+            <summary>
+            获取通道控制器信息
+            </summary>
+            <param name="entranceID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.GetEntrance(System.Int32,System.Int32)">
+            <summary>
+            获取通道控制器信息
+            </summary>
+            <param name="parkID">停车场ID</param>
+            <param name="entranceID">控制器ID</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.GetEntrances">
+            <summary>
+            获取所有通道控制器信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.GetEntrancesName(System.Collections.Generic.List{System.Int32})">
+            <summary>
+            已通道ID获取通道名称，已逗号分开
+            </summary>
+            <param name="entranceIDs"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBuffer.IsInSameParkList(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{System.Int32})">
+            <summary>
+            查看控制器中是否与有工作站要侦听的控制器在同一个停车场
+            </summary>
+            <param name="park"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Ralid.Park.BLL.ParkBuffer.Current">
+            <summary>
+            获取或设置应用程序当前的停车场缓存
+            </summary>
+        </member>
+        <member name="P:Ralid.Park.BLL.ParkBuffer.Parks">
+            <summary>
+            获取所有的停车场
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.CardChargeRecordBll">
+            <summary>
+            充值记录逻辑处理类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardChargeRecordBll.#ctor(System.String)">
+            <summary>
+            /// <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+            </summary>
+        </member>
+        <member name="T:Ralid.Park.BLL.APMChectOutRecordBll">
+            <summary>
+            自助缴费机结账记录逻辑类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.Settle(Ralid.Park.BusinessModel.Model.OperatorSettleLog)">
+            <summary>
+            操作员结算
+            </summary>
+            <param name="opt"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.CreateOperatorLog(Ralid.Park.BusinessModel.Model.OperatorInfo,Ralid.Park.BusinessModel.Model.WorkStationInfo)">
+            <summary>
+            生成操作员结算汇总,如果不指定工作站，则表示汇总结果中包括操作员在所有工作站上的收费情况
+            </summary>
+            <param name="opt"></param>
+            <param name="station"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.GetLastSettleDateTime(System.String)">
+            <summary>
+            获取操作员最近一次的结算时间
+            </summary>
+            <param name="operatorID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.GetRecentSettleDateTime(Ralid.Park.BusinessModel.Model.OperatorInfo,System.DateTime)">
+            <summary>
+            获取大于datetime的最近一次结算时间
+            </summary>
+            <param name="operatorInfo">操作员</param>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.GetRecentSettleDateTime(System.String,System.DateTime)">
+            <summary>
+            获取大于datetime的最近一次结算时间
+            </summary>
+            <param name="operatorID">操作员ID</param>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorSettleBLL.GetPreSettleDateTime(System.String,System.DateTime)">
+            <summary>
+            获取 datetime的前一次结算时间
+            </summary>
+            <param name="operatorID"></param>
+            <param name="datetime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.Authentication(System.String,System.String)">
+            <summary>
+            登录验证
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.GetByID(System.String)">
+            <summary>
+            根据操作员ID获取操作员
+            </summary>
+            <param name="optID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.GetAllOperators">
+            <summary>
+            获取所有操作员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.GetOperators(Ralid.Park.BusinessModel.SearchCondition.OperatorSearchCondition)">
+            <summary>
+            根据查询条件获取操作员
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.GetOperatorByOperatorNum(System.Byte)">
+            <summary>
+            通过操作员编号获取操作员
+            </summary>
+            <param name="optNum"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.Insert(Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            增加操作员,如果操作员编号已被使用,抛出InvalidOperationException
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.Update(Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            修改操作员,如果操作员编号已被使用,抛出InvalidOperationException
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.Delete(Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            删除操作员
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+            <exception cref="!: "></exception>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.DeleteAllOperators">
+            <summary>
+            删除所有操作员
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.OperatorBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            更新操作员，如没有，插入新的操作员记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="T:Ralid.Park.BLL.HostStandbySettingBll">
+            <summary>
+            双机热备热备设置数据库操作类
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.HostStandbySettingBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.HostStandbySettingBll.Get(System.Int32)">
+            <summary>
+            根据parkID获取双机热备设置
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.HostStandbySettingBll.Save(Ralid.Park.BusinessModel.Model.HostStandbySetting)">
+            <summary>
+            保存双机热备设置
+            </summary>
+            <param name="setting"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateCard(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.DAL.IDAL.IUnitWork)">
+            <summary>
+            修改数据库中的卡片,不会修改卡片的运行状态
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateCardAll(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.DAL.IDAL.IUnitWork)">
+            <summary>
+            修改数据库中的卡片,会修改卡片的运行状态
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardByID(System.String)">
+            <summary>
+            通过卡号获取卡片信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardDetail(System.String)">
+            <summary>
+            通过卡号获取卡片的信息（信息中包括最近一条收费记录)
+            </summary>
+            <param name="cardID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardDetail(System.String,System.String)">
+            <summary>
+            通过卡号获取卡片的信息，当主数据库连接断开后，会从备用数据库中获取
+            </summary>
+            <param name="cardID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCards(Ralid.Park.BusinessModel.SearchCondition.CardSearchCondition)">
+            <summary>
+            通过查询条件获取卡片
+            </summary>
+            <param name="con"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetAllCards">
+            <summary>
+            获取所有卡片(包括车牌名单)
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardsByAccessID(System.Int32)">
+            <summary>
+            获取所有权限组为指定权限组的卡片
+            </summary>
+            <param name="accessID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.AddCard(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            在数据库中增加一张卡片
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateCardPaymentInfo(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            修改卡片信息，此方法只会修改卡片收费相关的信息，如入场状态，入场时间，余额等
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateCard(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            修改卡片信息，此方法不会修改卡片的运行状态(如入场时间，卡片出入场状态等)也不能修改卡片的有效期，余额等
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateCardAll(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            修改卡片信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.APMCardRefund(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.APMRefundRecord)">
+            <summary>
+            卡片缴费机收费退款
+            </summary>
+            <param name="info"></param>
+            <param name="refund">退还金额</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardFreeAuthorization(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            更新卡片免费优惠授权信息
+            </summary>
+            <param name="info">新卡片信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardFreeAuthorizationWithStandby(Ralid.Park.BusinessModel.Model.CardInfo,System.Boolean,System.String)">
+            <summary>
+            更新卡片免费优惠授权信息
+            </summary>
+            <param name="info">新卡片信息</param>
+            <param name="both">是否需同时授权到备用数据库</param>
+            <param name="strandby">备用数据库连接</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.SaveCardAndEvent(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Report.CardEventReport)">
+            <summary>
+            保存卡片与卡片事件信息（用于停车场产生事件时更新卡片状态并保存事件)
+            </summary>
+            <param name="card"></param>
+            <param name="report"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.SaveCardAndNestedEvent(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Report.CardEventReport)">
+            <summary>
+            保存卡片以及嵌套车场进出事件
+            </summary>
+            <param name="card"></param>
+            <param name="report"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeleteCard(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            删除卡片
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeleteCardAtAll(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            强制删除卡片
+            </summary>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.NoCardLoss(System.String,System.String,System.String,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode)">
+            <summary>
+            无卡挂失
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="lostCardCost"></param>
+            <param name="paymode"></param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardLoss(Ralid.Park.BusinessModel.Model.CardInfo,System.String,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode)">
+            <summary>
+            卡片挂失
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="lostCardCost"></param>
+            <param name="paymode"></param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardLoss(Ralid.Park.BusinessModel.Model.CardInfo,System.String,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode,Ralid.Park.BusinessModel.Model.CardPaymentInfo)">
+            <summary>
+            卡片挂失,除了收取了卡片工本费还收取了卡片在场内的停车费用,并把卡片置为出场
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="lostCardCost"></param>
+            <param name="paymode"></param>
+            <param name="parkFee"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardRestore(Ralid.Park.BusinessModel.Model.CardInfo,System.String,System.Boolean)">
+            <summary>
+            卡片恢复
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="keepParkingStatus">是否保持数据库中的卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardCharge(Ralid.Park.BusinessModel.Model.CardInfo,System.Decimal,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode,System.DateTime,System.String,System.Boolean)">
+            <summary>
+            卡片充值
+            </summary>
+            <param name="info">卡片信息</param>
+            <param name="chargeAmount">充值金额</param>
+            <param name="payment">实收金额</param>
+            <param name="paymentMode">收费方式</param>
+            <param name="validDate">有效期</param>
+            <param name="memo">备注</param>
+            <param name="keepParkingStatus">是否保持数据库中的卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardCharge(Ralid.Park.BusinessModel.Model.CardInfo,System.DateTime,System.Decimal,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode,System.DateTime,System.String,System.Boolean)">
+            <summary>
+            卡片充值
+            </summary>
+            <param name="info">卡片信息</param>
+            <param name="chargeDateTime">充值时间</param>
+            <param name="chargeAmount">充值金额</param>
+            <param name="payment">实收金额</param>
+            <param name="paymentMode">收费方式</param>
+            <param name="validDate">有效期</param>
+            <param name="memo">备注</param>
+            <param name="keepParkingStatus">是否保持数据库中的卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardDefer(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.SearchCondition.DateTimeRange,Ralid.Park.BusinessModel.Enum.PaymentMode,System.Decimal,System.String,System.Boolean)">
+            <summary>
+            卡片延期
+            </summary>
+            <param name="info"></param>
+            <param name="newValidDate"></param>
+            <param name="paymentMode"></param>
+            <param name="money"></param>
+            <param name="memo"></param>
+            <param name="keepParkingStatus">是否保持卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardDisable(Ralid.Park.BusinessModel.Model.CardInfo,System.String,System.Boolean)">
+            <summary>
+            卡片禁用
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="keepParkingStatus">是否保持卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardEnable(Ralid.Park.BusinessModel.Model.CardInfo,System.String,System.Boolean)">
+            <summary>
+            卡片解禁
+            </summary>
+            <param name="info"></param>
+            <param name="reason"></param>
+            <param name="keepParkingStatus">是否保持卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardRecycle(Ralid.Park.BusinessModel.Model.CardInfo,System.Decimal,System.String,System.Boolean)">
+            <summary>
+            卡片回收
+            </summary>
+            <param name="info"></param>
+            <param name="recycleMoney"></param>
+            <param name="memo"></param>
+            <param name="keepParkingStatus">是否保持卡片运行状态</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CardRelease(Ralid.Park.BusinessModel.Model.CardInfo,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode,System.String)">
+            <summary>
+            卡片发行
+            </summary>
+            <param name="info"></param>
+            <param name="releaseMoney"></param>
+            <param name="paymentMode"></param>
+            <param name="memo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.CarPlateRelease(Ralid.Park.BusinessModel.Model.CardInfo,System.Decimal,Ralid.Park.BusinessModel.Enum.PaymentMode,System.String,System.Int32)">
+            <summary>
+            车牌名单发行
+            </summary>
+            <param name="info">名单信息</param>
+            <param name="releaseMoney">收费金额</param>
+            <param name="paymentMode">收费类型</param>
+            <param name="memo">备注</param>
+            <param name="tryCount">卡号生成重试次数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.PayParkFee(Ralid.Park.BusinessModel.Model.CardPaymentInfo)">
+            <summary>
+            收取卡片的停车费
+            </summary>
+            <param name="payment"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.PayParkFee(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.CardPaymentInfo)">
+            <summary>
+            收取卡片的停车费
+            </summary>
+            <param name="info">缴费卡片，为空值时从数据库中获取,主要用于写卡模式时读取到卡片的数据</param>
+            <param name="payment">缴费记录</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.PayParkFeeWithStandby(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.CardPaymentInfo,System.String)">
+            <summary>
+            收取卡片的停车费,并且保存到备份数据库,备份数据库保存成功即可
+            </summary>
+            <param name="info">缴费卡片，为空值时从数据库中获取,主要用于写卡模式时读取到卡片的数据</param>
+            <param name="payment">缴费记录</param>
+            <param name="standby">备用数据库</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.PayParkFeeWithStandbyBoth(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.CardPaymentInfo,System.String)">
+            <summary>
+            收取卡片的停车费
+            </summary>
+            <param name="info">缴费卡片，为空值时从数据库中获取,主要用于写卡模式时读取到卡片的数据</param>
+            <param name="payment">缴费记录</param>
+            <param name="standby">备用数据库</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.PayParkFee(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.CardPaymentInfo,System.String,System.Boolean,System.Boolean)">
+            <summary>
+            收取卡片的停车费
+            </summary>
+            <param name="info">缴费卡片，为空值时从数据库中获取,主要用于写卡模式时读取到卡片的数据</param>
+            <param name="payment">缴费记录</param>
+            <param name="standby">备用数据库</param>
+            <param name="both">是否同时保存到数据库</param>
+            <param name="offlineHandleCard">是否按脱机模式脱机处理卡片</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.Insert(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            插入卡片
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeteleAllCards">
+            <summary>
+            删除所有卡片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.CardInfo)">
+            <summary>
+            更新卡片，如没有该卡片，则插入卡片
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.SyncCardToDatabaseWithoutPaymentInfo(Ralid.Park.BusinessModel.Model.CardInfo,System.String)">
+            <summary>
+            同步卡片到数据库，不会同步缴费的相关信息
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.RollbackPayment(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.CardPaymentInfo)">
+            <summary>
+            回滚收费信息
+            </summary>
+            <param name="beforePay">卡片收取前信息</param>
+            <param name="record">收费记录</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.RollbackPayment(Ralid.Park.BusinessModel.Model.CardInfo,System.DateTime)">
+            <summary>
+            回滚收费信息
+            </summary>
+            <param name="beforePay">卡片收取前信息</param>
+            <param name="chargeDateTime">收费时间</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardChargeRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片充值记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardDeferRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片延期记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardLostRestoreRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片挂失恢复记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardDisableEnableRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片禁用启用记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardRecycleRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片回收记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardReleaseRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片发行记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCardDeleteRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的卡片删除记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetAPMRefundRecords(Ralid.Park.BusinessModel.SearchCondition.RecordSearchCondition)">
+            <summary>
+            通过查询条件获取相应的缴费机退款记录
+            </summary>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeleteLastPayment(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.OperatorInfo)">
+            <summary>
+            删除卡片最近一条由某操作员收费的缴费记录
+            </summary>
+            <param name="info">缴费记录</param>
+            <param name="operatorInfo">缴费的操作员</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeleteLastPaymentBoth(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.OperatorInfo,System.String)">
+            <summary>
+            删除卡片最近一条由某操作员收费的缴费记录,需要同时删除两个数据库的记录
+            </summary>
+            <param name="info">缴费记录</param>
+            <param name="operatorInfo">缴费的操作员</param>
+            <param name="standby">备用数据库连接字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.DeleteLastPayment(Ralid.Park.BusinessModel.Model.CardInfo,Ralid.Park.BusinessModel.Model.OperatorInfo,System.String,System.Boolean)">
+            <summary>
+            删除卡片最近一条由某操作员收费的缴费记录
+            </summary>
+            <param name="info">缴费记录</param>
+            <param name="operatorInfo">缴费的操作员</param>
+            <param name="standby">备用数据库连接字符串</param>
+            <param name="both">是否同时更新到两个数据库</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCarPlateLists(System.String)">
+            <summary>
+            通过车牌号码获取所有车牌名单
+            </summary>
+            <param name="carPlate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetFirstCarPlateList(System.String)">
+            <summary>
+            通过车牌号码获取第一个车牌名单
+            </summary>
+            <param name="carPlate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetCarPlateListDetail(System.String)">
+            <summary>
+            通过车牌号码获取第一个车牌名单（信息中包括最近一条收费记录)
+            </summary>
+            <param name="carPlate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.CardBll.GetAllCarPlateLists">
+            <summary>
+            获取所有车牌名单
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PRERoleBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+        <member name="M:Ralid.Park.BLL.ParkBll.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.UpdateParkAdapterUri(System.Int32,System.String)">
+            <summary>
+            更新停车场命令服务器地址
+            </summary>
+            <param name="parkID"></param>
+            <param name="parkAdapterUri"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.UpdateVacant(System.Int32,System.Int16)">
+            <summary>
+            更新停车场的车位数
+            </summary>
+            <param name="parkID">停车场ID</param>
+            <param name="vacant">车位数</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.UpdateOrInsert(Ralid.Park.BusinessModel.Model.ParkInfo,System.Boolean)">
+            <summary>
+            更新停车场，如没有该停车场，插入一个停车场
+            </summary>
+            <param name="info"></param>
+            <param name="withPrimaryKey">是否插入主键值</param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.InsertWithPrimaryKey(Ralid.Park.BusinessModel.Model.ParkInfo)">
+            <summary>
+            插入包括主键值的停车场记录
+            </summary>
+            <param name="info"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.DeleteAllParks">
+            <summary>
+            删除所有停车场
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.ParkBll.GetParkInfoCarPlate(System.String)">
+            <summary>
+            获取车牌号码所在停车场
+            </summary>
+            <param name="carPlate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.WaitingCommandBLL.#ctor(System.String)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
+        </member>
+        <member name="M:Ralid.Park.BLL.WaitingCommandBLL.GetCommands(System.Int32)">
+            <summary>
+            获取控制器ID为entranceID的所有等待下发命令
+            </summary>
+            <param name="entranceID"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Ralid.Park.BLL.WaitingCommandBLL.GetWaitingCommands">
+            <summary>
+            获取等待下发的命令
+            </summary>
+            <returns></returns>
+        </member>
+        <!-- 对于成员“M:Ralid.Park.BLL.PREBusinessesBll.#ctor(System.String)”忽略有格式错误的 XML 注释 -->
+    </members>
+</doc>
