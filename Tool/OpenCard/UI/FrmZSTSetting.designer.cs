@@ -158,7 +158,6 @@
             this.Name = "FrmZSTSetting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "中山通读卡器";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmZSTSetting_FormClosing);
             this.Load += new System.EventHandler(this.FrmZSTSetting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

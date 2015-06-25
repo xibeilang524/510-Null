@@ -44,18 +44,18 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(12, 16);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.Size = new System.Drawing.Size(41, 12);
             this.label1.TabIndex = 0;
-            this.label1.Text = "中山通:";
+            this.label1.Text = "中山通";
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Location = new System.Drawing.Point(12, 71);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(71, 12);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 1;
-            this.label2.Text = "停车场通道:";
+            this.label2.Text = "停车场通道";
             // 
             // txtReaderIP
             // 
@@ -98,9 +98,9 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(12, 122);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
+            this.label3.Size = new System.Drawing.Size(29, 12);
             this.label3.TabIndex = 6;
-            this.label3.Text = "停车场通道:";
+            this.label3.Text = "备注";
             // 
             // txtMemo
             // 

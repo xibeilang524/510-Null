@@ -30,8 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.gpDB = new System.Windows.Forms.GroupBox();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnParkApply = new System.Windows.Forms.Button();
             this.txtParkPasswd = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtParkDB = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtParkUserID = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
@@ -42,13 +40,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.rdParkUser = new System.Windows.Forms.RadioButton();
             this.rdParkSystem = new System.Windows.Forms.RadioButton();
+            this.btnClose = new System.Windows.Forms.Button();
+            this.btnParkApply = new System.Windows.Forms.Button();
             this.gpDB.SuspendLayout();
             this.SuspendLayout();
             // 
             // gpDB
             // 
-            this.gpDB.Controls.Add(this.btnClose);
-            this.gpDB.Controls.Add(this.btnParkApply);
             this.gpDB.Controls.Add(this.txtParkPasswd);
             this.gpDB.Controls.Add(this.txtParkDB);
             this.gpDB.Controls.Add(this.txtParkUserID);
@@ -61,30 +59,9 @@
             this.gpDB.Controls.Add(this.rdParkSystem);
             this.gpDB.Location = new System.Drawing.Point(3, 6);
             this.gpDB.Name = "gpDB";
-            this.gpDB.Size = new System.Drawing.Size(436, 130);
+            this.gpDB.Size = new System.Drawing.Size(436, 101);
             this.gpDB.TabIndex = 8;
             this.gpDB.TabStop = false;
-            // 
-            // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(304, 101);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(107, 23);
-            this.btnClose.TabIndex = 10;
-            this.btnClose.Text = "取消(&C)";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnParkApply
-            // 
-            this.btnParkApply.Location = new System.Drawing.Point(175, 101);
-            this.btnParkApply.Name = "btnParkApply";
-            this.btnParkApply.Size = new System.Drawing.Size(107, 23);
-            this.btnParkApply.TabIndex = 9;
-            this.btnParkApply.Text = "确定(&O)";
-            this.btnParkApply.UseVisualStyleBackColor = true;
-            this.btnParkApply.Click += new System.EventHandler(this.btnParkApply_Click);
             // 
             // txtParkPasswd
             // 
@@ -185,18 +162,42 @@
             this.rdParkSystem.UseVisualStyleBackColor = true;
             this.rdParkSystem.CheckedChanged += new System.EventHandler(this.rdParkSystem_CheckedChanged);
             // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(327, 122);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(107, 42);
+            this.btnClose.TabIndex = 10;
+            this.btnClose.Text = "取消(&C)";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
+            // 
+            // btnParkApply
+            // 
+            this.btnParkApply.Location = new System.Drawing.Point(198, 122);
+            this.btnParkApply.Name = "btnParkApply";
+            this.btnParkApply.Size = new System.Drawing.Size(107, 42);
+            this.btnParkApply.TabIndex = 9;
+            this.btnParkApply.Text = "确定(&O)";
+            this.btnParkApply.UseVisualStyleBackColor = true;
+            this.btnParkApply.Click += new System.EventHandler(this.btnParkApply_Click);
+            // 
             // FrmConnect
             // 
             this.AcceptButton = this.btnParkApply;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
-            this.ClientSize = new System.Drawing.Size(445, 144);
+            this.ClientSize = new System.Drawing.Size(445, 173);
+            this.Controls.Add(this.btnClose);
             this.Controls.Add(this.gpDB);
+            this.Controls.Add(this.btnParkApply);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmConnect";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "数据库连接设置";
             this.Load += new System.EventHandler(this.FrmConnect_Load);
             this.gpDB.ResumeLayout(false);
