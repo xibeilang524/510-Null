@@ -132,6 +132,7 @@ namespace Ralid.OpenCard.OpenCardService
         #region 公共方法
         public void Init()
         {
+            
             foreach (IOpenCardService s in _ZST)
             {
                 s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
