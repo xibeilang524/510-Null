@@ -38,6 +38,7 @@
             this.系统ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -97,6 +98,7 @@
             // 参数设置ToolStripMenuItem
             // 
             this.参数设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_YiTing,
             this.mnu_ZST});
             this.参数设置ToolStripMenuItem.Name = "参数设置ToolStripMenuItem";
             this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
@@ -106,8 +108,15 @@
             // 
             this.mnu_ZST.Name = "mnu_ZST";
             this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
-            this.mnu_ZST.Text = "中山通设置";
+            this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
+            // 
+            // mnu_YiTing
+            // 
+            this.mnu_YiTing.Name = "mnu_YiTing";
+            this.mnu_YiTing.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YiTing.Text = "驿停闪付";
+            this.mnu_YiTing.Click += new System.EventHandler(this.mnu_YiTing_Click);
             // 
             // FrmMain
             // 
@@ -141,6 +150,7 @@
         private System.Windows.Forms.ToolStripMenuItem 系统ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_ZST;
+        private System.Windows.Forms.ToolStripMenuItem mnu_YiTing;
     }
 }
 

@@ -9,9 +9,10 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Ralid.OpenCard.UI</RootNamespace>
-    <AssemblyName>Ralid.OpenCard.UI</AssemblyName>
+    <AssemblyName>Ralid.OpenCard</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
-    <TargetFrameworkProfile>Client</TargetFrameworkProfile>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
@@ -85,6 +86,12 @@
     <Compile Include="FrmWorkstationSelection.designer.cs">
       <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmYiTingDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYiTingDetail.designer.cs">
+      <DependentUpon>FrmYiTingDetail.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmZSTDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -96,6 +103,12 @@
     </Compile>
     <Compile Include="FrmZSTParameter.designer.cs">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmYiTingSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYiTingSetting.designer.cs">
+      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmZSTSetting.cs">
       <SubType>Form</SubType>
@@ -111,20 +124,20 @@
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmWorkstationSelection.en.resx">
-      <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkstationSelection.resx">
       <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmWorkstationSelection.zh-Hant.resx">
-      <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>
+    <EmbeddedResource Include="FrmYiTingDetail.resx">
+      <DependentUpon>FrmYiTingDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTDetail.resx">
       <DependentUpon>FrmZSTDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTParameter.resx">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmYiTingSetting.resx">
+      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTSetting.resx">
       <DependentUpon>FrmZSTSetting.cs</DependentUpon>
@@ -151,9 +164,9 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\OpenCardService\OpenCardService.csproj">
+    <ProjectReference Include="..\Ralid.OpenCard.OpenCardService\Ralid.OpenCard.OpenCardService.csproj">
       <Project>{395FC1D8-17EA-4CBC-9A6D-B81E91D56BFF}</Project>
-      <Name>OpenCardService</Name>
+      <Name>Ralid.OpenCard.OpenCardService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

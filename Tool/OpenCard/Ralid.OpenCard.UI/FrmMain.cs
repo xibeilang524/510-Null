@@ -159,7 +159,6 @@ namespace Ralid.OpenCard.UI
             System.Threading.Thread t = new Thread(InitParkingCommunication);
             t.Start();
         }
-        #endregion
 
         private void mnu_ZST_Click(object sender, EventArgs e)
         {
@@ -167,5 +166,13 @@ namespace Ralid.OpenCard.UI
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
         }
+
+        private void mnu_YiTing_Click(object sender, EventArgs e)
+        {
+            FrmYiTingSetting frm = new FrmYiTingSetting();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+        }
+        #endregion
     }
 }
