@@ -50,13 +50,19 @@ namespace Ralid.OpenCard.UI
         {
             dataGridView1.Rows.Clear();
             YiTingShanFuSetting yt = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<YiTingShanFuSetting>();
-            if (yt != null && yt.Items != null && yt.Items.Count > 0)
+            if (yt != null )
             {
-                foreach (YiTingPOS item in yt.Items)
+                txtIP.IP = yt.IP;
+                txtPort.IntergerValue = yt.Port;
+                dataGridView1.Rows.Clear();
+                if (yt.Items != null && yt.Items.Count > 0)
                 {
-                    EntranceInfo entrance = item.EntranceID != null ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
-                    int row = dataGridView1.Rows.Add();
-                    ShowItemOnRow(dataGridView1.Rows[row], item.ID, entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
+                    foreach (YiTingPOS item in yt.Items)
+                    {
+                        EntranceInfo entrance = item.EntranceID != null ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
+                        int row = dataGridView1.Rows.Add();
+                        ShowItemOnRow(dataGridView1.Rows[row], item.ID, entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
+                    }
                 }
             }
         }
@@ -114,6 +120,8 @@ namespace Ralid.OpenCard.UI
         private void btnSave_Click(object sender, EventArgs e)
         {
             YiTingShanFuSetting yt = new YiTingShanFuSetting();
+            yt.IP = txtIP.IP;
+            yt.Port = txtPort.IntergerValue;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))

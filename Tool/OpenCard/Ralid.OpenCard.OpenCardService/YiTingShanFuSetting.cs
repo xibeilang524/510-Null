@@ -23,10 +23,12 @@ namespace Ralid.OpenCard.OpenCardService
         /// <summary>
         /// 获取或设置驿停服务器IP
         /// </summary>
+        [DataMember]
         public string IP { get; set; }
         /// <summary>
         /// 获取或设置驿停服务器端口
         /// </summary>
+        [DataMember]
         public int Port { get; set; }
         /// <summary>
         /// 获取或设置服务器管理的所有POS机
