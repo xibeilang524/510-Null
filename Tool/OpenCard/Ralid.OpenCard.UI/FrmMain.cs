@@ -77,7 +77,6 @@ namespace Ralid.OpenCard.UI
             string optID = AppSettings.CurrentSetting.GetConfigContent("OperatorID");
             if (!string.IsNullOrEmpty(optID)) OperatorInfo.CurrentOperator = new OperatorBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(optID).QueryObject;
             if (OperatorInfo.CurrentOperator == null) mnu_SelOperator.PerformClick();
-            AppSettings.CurrentSetting.SaveConfig("OperatorID", OperatorInfo.CurrentOperator.OperatorID);
             this.lblOperator.Text = string.Format("操作员：{0}", OperatorInfo.CurrentOperator.OperatorName);
         }
 
@@ -87,7 +86,6 @@ namespace Ralid.OpenCard.UI
             WorkstationBll wbll = new WorkstationBll(AppSettings.CurrentSetting.MasterParkConnect);
             if (!string.IsNullOrEmpty(workstationID)) WorkStationInfo.CurrentStation = wbll.GetWorkStationByID(workstationID);
             if (WorkStationInfo.CurrentStation == null) mnu_SelStation.PerformClick();
-            AppSettings.CurrentSetting.WorkstationID = WorkStationInfo.CurrentStation.StationID;
             this.lblStation.Text = string.Format("工作站：{0}", WorkStationInfo.CurrentStation.StationName);
         }
 
@@ -152,7 +150,12 @@ namespace Ralid.OpenCard.UI
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.ShowDialog();
                 OperatorInfo.CurrentOperator = frm.SelectedOperator;
-                if (OperatorInfo.CurrentOperator != null) break;
+                if (OperatorInfo.CurrentOperator != null)
+                {
+                    AppSettings.CurrentSetting.SaveConfig("OperatorID", OperatorInfo.CurrentOperator.OperatorID);
+                    this.lblOperator.Text = string.Format("操作员：{0}", OperatorInfo.CurrentOperator.OperatorName);
+                    break;
+                }
             }
         }
 
@@ -164,7 +167,12 @@ namespace Ralid.OpenCard.UI
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.ShowDialog();
                 WorkStationInfo.CurrentStation = new WorkstationBll(AppSettings.CurrentSetting.ParkConnect).GetWorkStationByID(frm.SelectedWorkstation);
-                if (WorkStationInfo.CurrentStation != null) break;
+                if (WorkStationInfo.CurrentStation != null)
+                {
+                    AppSettings.CurrentSetting.WorkstationID = WorkStationInfo.CurrentStation.StationID;
+                    this.lblStation.Text = string.Format("工作站：{0}", WorkStationInfo.CurrentStation.StationName);
+                    break;
+                }
             }
         }
 
