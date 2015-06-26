@@ -37,8 +37,10 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.系统ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SelOperator = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SelStation = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -91,6 +93,9 @@
             // 
             // 系统ToolStripMenuItem
             // 
+            this.系统ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_SelOperator,
+            this.mnu_SelStation});
             this.系统ToolStripMenuItem.Name = "系统ToolStripMenuItem";
             this.系统ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.系统ToolStripMenuItem.Text = "系统";
@@ -104,19 +109,33 @@
             this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.参数设置ToolStripMenuItem.Text = "参数设置";
             // 
-            // mnu_ZST
-            // 
-            this.mnu_ZST.Name = "mnu_ZST";
-            this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
-            this.mnu_ZST.Text = "中山通";
-            this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
-            // 
             // mnu_YiTing
             // 
             this.mnu_YiTing.Name = "mnu_YiTing";
-            this.mnu_YiTing.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YiTing.Size = new System.Drawing.Size(124, 22);
             this.mnu_YiTing.Text = "驿停闪付";
             this.mnu_YiTing.Click += new System.EventHandler(this.mnu_YiTing_Click);
+            // 
+            // mnu_ZST
+            // 
+            this.mnu_ZST.Name = "mnu_ZST";
+            this.mnu_ZST.Size = new System.Drawing.Size(124, 22);
+            this.mnu_ZST.Text = "中山通";
+            this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
+            // 
+            // mnu_SelOperator
+            // 
+            this.mnu_SelOperator.Name = "mnu_SelOperator";
+            this.mnu_SelOperator.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelOperator.Text = "选择当前操作员";
+            this.mnu_SelOperator.Click += new System.EventHandler(this.mnu_SelOperator_Click);
+            // 
+            // mnu_SelStation
+            // 
+            this.mnu_SelStation.Name = "mnu_SelStation";
+            this.mnu_SelStation.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelStation.Text = "选择当前工作站";
+            this.mnu_SelStation.Click += new System.EventHandler(this.mnu_SelStation_Click);
             // 
             // FrmMain
             // 
@@ -151,6 +170,8 @@
         private System.Windows.Forms.ToolStripMenuItem 参数设置ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem mnu_ZST;
         private System.Windows.Forms.ToolStripMenuItem mnu_YiTing;
+        private System.Windows.Forms.ToolStripMenuItem mnu_SelOperator;
+        private System.Windows.Forms.ToolStripMenuItem mnu_SelStation;
     }
 }
 

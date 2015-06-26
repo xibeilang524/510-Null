@@ -87,6 +87,12 @@
     <Compile Include="FrmMain.Designer.cs">
       <DependentUpon>FrmMain.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmOperatorSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOperatorSelection.Designer.cs">
+      <DependentUpon>FrmOperatorSelection.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmWorkstationSelection.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +139,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmMain.resx">
       <DependentUpon>FrmMain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOperatorSelection.resx">
+      <DependentUpon>FrmOperatorSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmWorkstationSelection.resx">
       <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>

@@ -1,6 +1,6 @@
 ﻿namespace Ralid.OpenCard.UI
 {
-    partial class FrmWorkstationSelection
+    partial class FrmOperatorSelection
     {
         /// <summary>
         /// Required designer variable.
@@ -29,52 +29,53 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.label1 = new System.Windows.Forms.Label();
+            this.comOperator = new Ralid.Park.UserControls.OperatorComboBox(this.components);
             this.btnOk = new System.Windows.Forms.Button();
-            this.workStationCombobox1 = new Ralid.Park.UserControls.StationIDCombobox(this.components);
+            this.label1 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // label1
+            // comOperator
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(71, 12);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "所有工作站:";
+            this.comOperator.FormattingEnabled = true;
+            this.comOperator.Location = new System.Drawing.Point(81, 33);
+            this.comOperator.Name = "comOperator";
+            this.comOperator.Size = new System.Drawing.Size(195, 20);
+            this.comOperator.TabIndex = 11;
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(159, 43);
+            this.btnOk.Location = new System.Drawing.Point(157, 77);
             this.btnOk.Name = "btnOk";
-            this.btnOk.Size = new System.Drawing.Size(121, 38);
-            this.btnOk.TabIndex = 2;
+            this.btnOk.Size = new System.Drawing.Size(119, 32);
+            this.btnOk.TabIndex = 12;
             this.btnOk.Text = "确定(&O)";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
             // 
-            // workStationCombobox1
+            // label1
             // 
-            this.workStationCombobox1.FormattingEnabled = true;
-            this.workStationCombobox1.Location = new System.Drawing.Point(90, 12);
-            this.workStationCombobox1.Name = "workStationCombobox1";
-            this.workStationCombobox1.Size = new System.Drawing.Size(190, 20);
-            this.workStationCombobox1.TabIndex = 0;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(34, 36);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(41, 12);
+            this.label1.TabIndex = 13;
+            this.label1.Text = "操作员";
             // 
-            // FrmWorkstationSelection
+            // FrmOperatorSelection
             // 
             this.AcceptButton = this.btnOk;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(292, 93);
-            this.Controls.Add(this.btnOk);
+            this.ClientSize = new System.Drawing.Size(314, 131);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.workStationCombobox1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
-            this.Name = "FrmWorkstationSelection";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "工作站选择";
-            this.Load += new System.EventHandler(this.FrmWorkstationSelection_Load);
+            this.Controls.Add(this.btnOk);
+            this.Controls.Add(this.comOperator);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmOperatorSelection";
+            this.Text = "操作员选择";
+            this.Load += new System.EventHandler(this.FrmOperatorSelection_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -82,8 +83,8 @@
 
         #endregion
 
-        private Ralid.Park.UserControls.StationIDCombobox workStationCombobox1;
-        private System.Windows.Forms.Label label1;
+        private Park.UserControls.OperatorComboBox comOperator;
         private System.Windows.Forms.Button btnOk;
+        private System.Windows.Forms.Label label1;
     }
 }

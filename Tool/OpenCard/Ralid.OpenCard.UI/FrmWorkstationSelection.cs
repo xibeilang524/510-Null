@@ -19,21 +19,21 @@ namespace Ralid.OpenCard.UI
 
         public string SelectedWorkstation { get; set; }
 
-        private void btnOk_Click(object sender, EventArgs e)
-        {
-            if (!string.IsNullOrEmpty (workStationCombobox1.StationID))
-            {
-                SelectedWorkstation = workStationCombobox1.StationID;
-                this.DialogResult = DialogResult.OK;
-            }
-        }
-
         private void FrmWorkstationSelection_Load(object sender, EventArgs e)
         {
             this.workStationCombobox1.Init();
             if (WorkStationInfo.CurrentStation != null)
             {
                 this.workStationCombobox1.StationID = WorkStationInfo.CurrentStation.StationID;
+            }
+        }
+
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(workStationCombobox1.StationID))
+            {
+                SelectedWorkstation = workStationCombobox1.StationID;
+                this.DialogResult = DialogResult.OK;
             }
         }
     }

@@ -69,43 +69,26 @@ namespace Ralid.OpenCard.UI
             BaseCardTypeSetting.Current = ssb.GetOrCreateSetting<BaseCardTypeSetting>();
             if (GlobalSettings.Current == null) GlobalSettings.Current = new GlobalSettings();
             GlobalSettings.Current.Set<ZSTSetting>(ssb.GetSetting<ZSTSetting>());
+            GlobalSettings.Current.Set<YiTingShanFuSetting>(ssb.GetSetting<YiTingShanFuSetting>());
         }
 
-        private bool Authenticate()
+        private void SetCurrentOperator()
         {
-            return false;
+            string optID = AppSettings.CurrentSetting.GetConfigContent("OperatorID");
+            if (!string.IsNullOrEmpty(optID)) OperatorInfo.CurrentOperator = new OperatorBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(optID).QueryObject;
+            if (OperatorInfo.CurrentOperator == null) mnu_SelOperator.PerformClick();
+            AppSettings.CurrentSetting.SaveConfig("OperatorID", OperatorInfo.CurrentOperator.OperatorID);
+            this.lblOperator.Text = string.Format("操作员：{0}", OperatorInfo.CurrentOperator.OperatorName);
         }
 
-        private void InitWorkStation()
-        {
-            this.lblOperator.Text = string.Format("操作员{0}", OperatorInfo.CurrentOperator.OperatorName);
-            this.lblStation.Text = string.Format("工作站:{0}", WorkStationInfo.CurrentStation.StationName);
-        }
-
-        private WorkStationInfo GetWorkstationID()
+        private void SetCurrentStation()
         {
             string workstationID = AppSettings.CurrentSetting.WorkstationID;
-            WorkstationBll wbll = new WorkstationBll(AppSettings.CurrentSetting.AvailableParkConnect);
-            WorkStationInfo w = null;
-            if (!string.IsNullOrEmpty(workstationID))
-            {
-                w = wbll.GetWorkStationByID(workstationID);
-            }
-
-            while (w == null)
-            {
-                FrmWorkstationSelection frm = new FrmWorkstationSelection();
-                if (frm.ShowDialog() == DialogResult.OK)
-                {
-                    w = wbll.GetWorkStationByID(frm.SelectedWorkstation);
-                    AppSettings.CurrentSetting.WorkstationID = w.StationID;
-                }
-                else
-                {
-                    System.Environment.Exit(0);
-                }
-            }
-            return w;
+            WorkstationBll wbll = new WorkstationBll(AppSettings.CurrentSetting.MasterParkConnect);
+            if (!string.IsNullOrEmpty(workstationID)) WorkStationInfo.CurrentStation = wbll.GetWorkStationByID(workstationID);
+            if (WorkStationInfo.CurrentStation == null) mnu_SelStation.PerformClick();
+            AppSettings.CurrentSetting.WorkstationID = WorkStationInfo.CurrentStation.StationID;
+            this.lblStation.Text = string.Format("工作站：{0}", WorkStationInfo.CurrentStation.StationName);
         }
 
         private void InitParkingCommunication()
@@ -135,8 +118,8 @@ namespace Ralid.OpenCard.UI
         private void FrmMain_Load(object sender, EventArgs e)
         {
             //用于所有工作站软件都要加密狗的情形
-            ReadSoftDog();
-            this.tmrCheckDog.Enabled = true;
+            //ReadSoftDog();
+            //this.tmrCheckDog.Enabled = true;
 
             if (string.IsNullOrEmpty(AppSettings.CurrentSetting.MasterParkConnect) || !CheckConnect(AppSettings.CurrentSetting.MasterParkConnect))
             {
@@ -149,15 +132,40 @@ namespace Ralid.OpenCard.UI
             }
             ParkBuffer.Current = new ParkBuffer(AppSettings.CurrentSetting.MasterParkConnect);
             ParkBuffer.Current.InValid(AppSettings.CurrentSetting.MasterParkConnect);  //获取所有硬件信息
+            SetCurrentOperator(); //设置当前操作员
+            SetCurrentStation(); //设置当前工作站
             InitSystemParameters(); //初始化系统参数
             //启动同步时间服务
             _DatetimeSyncService = new DatetimeSyncService(AppSettings.CurrentSetting.ParkConnect);
             _DatetimeSyncService.Start();
             this.lblStartFrom.Text = string.Format("启动时间:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
-
             //初始化停车场通讯
             System.Threading.Thread t = new Thread(InitParkingCommunication);
             t.Start();
+        }
+
+        private void mnu_SelOperator_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                FrmOperatorSelection frm = new FrmOperatorSelection();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.ShowDialog();
+                OperatorInfo.CurrentOperator = frm.SelectedOperator;
+                if (OperatorInfo.CurrentOperator != null) break;
+            }
+        }
+
+        private void mnu_SelStation_Click(object sender, EventArgs e)
+        {
+            while (true)
+            {
+                FrmWorkstationSelection frm = new FrmWorkstationSelection();
+                frm.StartPosition = FormStartPosition.CenterParent;
+                frm.ShowDialog();
+                WorkStationInfo.CurrentStation = new WorkstationBll(AppSettings.CurrentSetting.ParkConnect).GetWorkStationByID(frm.SelectedWorkstation);
+                if (WorkStationInfo.CurrentStation != null) break;
+            }
         }
 
         private void mnu_ZST_Click(object sender, EventArgs e)
