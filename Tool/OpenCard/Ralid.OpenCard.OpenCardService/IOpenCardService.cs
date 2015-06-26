@@ -9,12 +9,6 @@ namespace Ralid.OpenCard.OpenCardService
 {
     public interface IOpenCardService
     {
-        string CardType { get; }
-
-        PaymentCode PaymentCode { get; }
-
-        PaymentMode PaymentMode { get;}
-
         event EventHandler<OpenCardEventArgs> OnReadCard;
 
         event EventHandler<OpenCardEventArgs> OnPaying;
@@ -39,9 +33,13 @@ namespace Ralid.OpenCard.OpenCardService
 
         public int? EntranceID { get; set; }
 
-        public decimal? Balance { get; set; }
+        public string CardType { get; set; }
 
         public CardPaymentInfo Payment { get; set; }
+
+        public PaymentCode PaymentCode { get; set; }
+
+        public PaymentMode PaymentMode { get; set; }
         #endregion
     }
 }

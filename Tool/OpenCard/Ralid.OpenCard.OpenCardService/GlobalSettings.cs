@@ -8,7 +8,20 @@ namespace Ralid.OpenCard.OpenCardService
     public class GlobalSettings
     {
         #region 静态变量
-        public static GlobalSettings Current { get; set; }
+        private static GlobalSettings _Instance;
+
+        public static GlobalSettings Current
+        {
+            get
+            {
+                if (_Instance == null) _Instance = new GlobalSettings();
+                return _Instance;
+            }
+            set
+            {
+                _Instance = value;
+            }
+        }
         #endregion
 
         #region 构造函数

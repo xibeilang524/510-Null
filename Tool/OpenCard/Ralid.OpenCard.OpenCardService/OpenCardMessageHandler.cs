@@ -22,10 +22,12 @@ namespace Ralid.OpenCard.OpenCardService
 
         #region 私有变量
         private List<IOpenCardService> _ZST = new List<IOpenCardService>();
+        private Dictionary<string, EntranceInfo> _WaitingExitCards = new Dictionary<string, EntranceInfo>(); //等待出场的卡片
+        private Dictionary<string, CardPaymentInfo> _WaitingPayingCards = new Dictionary<string, CardPaymentInfo>(); //等待交费的卡片
         #endregion
 
         #region 私有方法
-        private bool SaveZSTCard(string cardID, CardType cardType)
+        private bool SaveOpenCard(string cardID, CardType cardType)
         {
             CardInfo card = new CardInfo()
             {
@@ -48,8 +50,9 @@ namespace Ralid.OpenCard.OpenCardService
 
         private void s_OnReadCard(object sender, OpenCardEventArgs e)
         {
-            IOpenCardService service = sender as IOpenCardService;
-            if (service == null) return;
+            if (string.IsNullOrEmpty(e.CardID)) return;
+            _WaitingExitCards.Remove(e.CardID); //
+            _WaitingPayingCards.Remove(e.CardID);
             if (e.EntranceID == null) return;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
             if (entrance == null) return;
@@ -59,9 +62,9 @@ namespace Ralid.OpenCard.OpenCardService
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
                 if (card == null) //保存卡片信息
                 {
-                    CardType ct = CustomCardTypeSetting.Current.GetCardType(service.CardType);
+                    CardType ct = CustomCardTypeSetting.Current.GetCardType(e.CardType);
                     if (ct == null) return; //系统不支持的卡片类型
-                    if (!SaveZSTCard(e.CardID, ct)) return;
+                    if (!SaveOpenCard(e.CardID, ct)) return;
                 }
                 //通过远程读卡方式
                 IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
@@ -74,65 +77,68 @@ namespace Ralid.OpenCard.OpenCardService
 
         private void s_OnPaying(object sender, OpenCardEventArgs e)
         {
-            IOpenCardService service = sender as IOpenCardService;
-            if (service == null) return;
+            if (string.IsNullOrEmpty(e.CardID)) return;
+            _WaitingExitCards.Remove(e.CardID); //
+            _WaitingPayingCards.Remove(e.CardID);
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
 
             CardPaymentInfo payment = CardPaymentInfoFactory.CreateCardPaymentRecord(card, TariffSetting.Current, card.CarType, DateTime.Now);
             e.Payment = payment;
+            _WaitingPayingCards[e.CardID] = payment;
+            if (e.EntranceID != null)
+            {
+                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
+                if (entrance != null) _WaitingExitCards[e.CardID] = entrance;
+            }
         }
 
         private void s_OnPaidOk(object sender, OpenCardEventArgs e)
         {
-            IOpenCardService service = sender as IOpenCardService;
-            if (service == null) return;
-            CardPaymentInfo pay = e.Payment;
-            if (pay != null && pay.Accounts > 0) //只有要收费的记录才保存
+            if (string.IsNullOrEmpty(e.CardID)) return;
+            if (!_WaitingPayingCards.ContainsKey(e.CardID)) return;
+
+            if (_WaitingPayingCards.ContainsKey(e.CardID))
             {
-                pay.PaymentMode = service.PaymentMode;
-                pay.PaymentCode = service.PaymentCode;
-                pay.IsCenterCharge = e.EntranceID == null;
-                pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
-                pay.StationID = WorkStationInfo.CurrentStation.StationName;
-                CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
+                CardPaymentInfo pay = _WaitingPayingCards[e.CardID];
+                if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
+                {
+                    pay.PaymentMode = e.PaymentMode;
+                    pay.PaymentCode = e.PaymentCode;
+                    pay.IsCenterCharge = true;
+                    pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
+                    pay.StationID = WorkStationInfo.CurrentStation.StationName;
+                    CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
+                }
+                _WaitingPayingCards.Remove(e.CardID);
             }
 
-            if (e.EntranceID == null) return;
-            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
-            if (entrance != null)
+            if (_WaitingExitCards.ContainsKey(e.CardID)) //如果是出口，远程读卡
             {
-                IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
-                if (pad != null)
+                EntranceInfo entrance = _WaitingExitCards[e.CardID];
+                if (entrance != null)
                 {
-                    pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID));
+                    IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+                    if (pad != null)
+                    {
+                        pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID));
+                    }
                 }
+                _WaitingExitCards.Remove(e.CardID);
             }
         }
 
         private void s_OnPaidFail(object sender, OpenCardEventArgs e)
         {
-            IOpenCardService service = sender as IOpenCardService;
-            if (service == null) return;
-            if (e.EntranceID == null) return;
-            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
-            if (entrance == null) return;
-            //通过远程读卡方式
-            IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
-            if (pad != null)
-            {
-                pad.EventInvalid(new EventInvalidNotify()
-                {
-                    InvalidType = EventInvalidType.IVN_NotPaid,
-                });
-            }
+            if (string.IsNullOrEmpty(e.CardID)) return;
+            _WaitingPayingCards.Remove(e.CardID);
+            _WaitingExitCards.Remove(e.CardID);
         }
         #endregion
 
         #region 公共方法
         public void Init()
         {
-            
             foreach (IOpenCardService s in _ZST)
             {
                 s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);

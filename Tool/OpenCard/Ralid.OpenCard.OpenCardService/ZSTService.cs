@@ -20,7 +20,7 @@ namespace Ralid.OpenCard.OpenCardService
 
         #region 私有变量
         private ZSTReader _Reader = null;
-        private Dictionary<string, CardPaymentInfo> _Paying = new Dictionary<string, CardPaymentInfo>();
+        
         #endregion
 
         #region 私有方法
@@ -54,10 +54,10 @@ namespace Ralid.OpenCard.OpenCardService
                 _Reader.MessageConfirm(e.ReaderIP);
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
-                    EntranceID = entrance.EntranceID,
                     CardID = e.CardID,
+                    CardType = "中山通",
                     DeviceID = e.ReaderIP,
-                    Balance = e.Balance,
+                    EntranceID = entrance.EntranceID,
                 };
                 if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
@@ -76,47 +76,38 @@ namespace Ralid.OpenCard.OpenCardService
                     if (args.Payment.Accounts == 0)
                     {
                         if (this.OnPaidOk != null) this.OnPaidOk(this, args);
-                        return;
                     }
-                    _Paying[e.ReaderIP] = args.Payment;
-                    args.Payment.Paid = args.Payment.Accounts;
-                    _Reader.Consumption(e.ReaderIP, args.Payment.Accounts);  //直接扣款
+                    else
+                    {
+                        args.Payment.Paid = args.Payment.Accounts;
+                        _Reader.Consumption(e.ReaderIP, args.Payment.Accounts);  //直接扣款
+                    }
                 }
             }
-        }
-
-        private void reader_PaymentFail(object sender, ZSTReaderEventArgs e)
-        {
-            _Reader.MessageConfirm(e.ReaderIP);
-            ZSTSetting zst = GlobalSettings.Current.Get<ZSTSetting>();
-            if (zst == null) return;
-            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(zst.GetReader(e.ReaderIP).EntranceID);
-            OpenCardEventArgs args = new OpenCardEventArgs()
-            {
-                CardID = e.CardID,
-                DeviceID = e.ReaderIP,
-            };
-            if (entrance != null) args.EntranceID = entrance.EntranceID;
-            _Paying.Remove(e.ReaderIP); //移除当前收费记录
-            if (this.OnPaidFail != null) this.OnPaidFail(this, args);
         }
 
         private void reader_PaymentOk(object sender, ZSTReaderEventArgs e)
         {
             _Reader.MessageConfirm(e.ReaderIP);
-            ZSTSetting zst = GlobalSettings.Current.Get<ZSTSetting>();
-            if (zst == null) return;
-            if (!_Paying.ContainsKey(e.ReaderIP)) return; //如果没有等待的收费记录
-            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(zst.GetReader(e.ReaderIP).EntranceID);
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.CardID,
                 DeviceID = e.ReaderIP,
-                Payment = _Paying[e.ReaderIP],
+                PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer,
+                PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong,
             };
-            if (entrance != null) args.EntranceID = entrance.EntranceID;
-            _Paying.Remove(e.ReaderIP); //移除当前收费记录
             if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+        }
+
+        private void reader_PaymentFail(object sender, ZSTReaderEventArgs e)
+        {
+            _Reader.MessageConfirm(e.ReaderIP);
+            OpenCardEventArgs args = new OpenCardEventArgs()
+            {
+                CardID = e.CardID,
+                DeviceID = e.ReaderIP,
+            };
+            if (this.OnPaidFail != null) this.OnPaidFail(this, args);
         }
         #endregion
 
@@ -124,21 +115,6 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 实现IOpenCardService
-        public string CardType
-        {
-            get { return "中山通"; }
-        }
-
-        public Park.BusinessModel.Enum.PaymentCode PaymentCode
-        {
-            get { return Park.BusinessModel.Enum.PaymentCode.Computer; }
-        }
-
-        public Park.BusinessModel.Enum.PaymentMode PaymentMode
-        {
-            get { return Park.BusinessModel.Enum.PaymentMode.ZhongShanTong; }
-        }
-
         public event EventHandler<OpenCardEventArgs> OnReadCard;
 
         public event EventHandler<OpenCardEventArgs> OnPaying;
