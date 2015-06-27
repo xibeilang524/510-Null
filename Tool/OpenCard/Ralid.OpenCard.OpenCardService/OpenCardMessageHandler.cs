@@ -103,6 +103,7 @@ namespace Ralid.OpenCard.OpenCardService
                 CardPaymentInfo pay = _WaitingPayingCards[e.CardID];
                 if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
                 {
+                    pay.Paid = e.Paid;
                     pay.PaymentMode = e.PaymentMode;
                     pay.PaymentCode = e.PaymentCode;
                     pay.IsCenterCharge = true;

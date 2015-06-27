@@ -41,6 +41,8 @@ namespace Ralid.OpenCard.OpenCardService
 
         public CardPaymentInfo Payment { get; set; }
 
+        public decimal Paid { get; set; }
+
         public PaymentCode PaymentCode { get; set; }
 
         public PaymentMode PaymentMode { get; set; }

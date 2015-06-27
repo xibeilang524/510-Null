@@ -138,7 +138,7 @@ namespace Ralid.OpenCard.OpenCardService
             temp.AddRange(data);
             temp.AddRange(new byte[27]);
             temp.AddRange(new byte[2]);
-            temp.AddRange(GetDateBytes(DateTime.Now));
+            temp.AddRange(YiTingPacket.GetDateBytes(DateTime.Now));
             temp.Add(_OK);
             YiTingPacket response = packet.CreateResponse(temp.ToArray());
             byte[] r = response.ToBytes();
@@ -166,9 +166,9 @@ namespace Ralid.OpenCard.OpenCardService
                 List<byte> temp = new List<byte>();
                 temp.AddRange(data.Take(26)); //取包的前26字节
                 temp.AddRange(new byte[5]); //车位号
-                temp.AddRange(GetDateBytes(args.Payment.EnterDateTime.Value)); //入场时间
-                temp.AddRange(GetIntervalBytes(args.Payment.EnterDateTime.Value, args.Payment.ChargeDateTime));
-                temp.AddRange(ASCIIEncoding.ASCII.GetBytes(args.Payment.Accounts.ToString("F2").Replace(".", string.Empty).PadLeft(6, '0').Substring(0, 6))); //金额
+                temp.AddRange(YiTingPacket.GetDateBytes(args.Payment.EnterDateTime.Value)); //入场时间
+                temp.AddRange(YiTingPacket.GetIntervalBytes(args.Payment.EnterDateTime.Value, args.Payment.ChargeDateTime));
+                temp.AddRange(YiTingPacket.GetMoneyBytes(args.Payment.Accounts)); //金额
                 temp.Add(0x00);  //未出场
                 YiTingPacket response = packet.CreateResponse(temp.ToArray());
                 byte[] r = response.ToBytes();
@@ -185,6 +185,9 @@ namespace Ralid.OpenCard.OpenCardService
             args.CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray());
             if (data[41] == 0x01)
             {
+                byte[] paid = new byte[6];
+                Array.Copy(data, 34, paid, 0, paid.Length);
+                args.Paid = YiTingPacket.GetMoney(paid);
                 args.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer;
                 args.PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos;
                 if (this.OnPaidOk != null) this.OnPaidOk(this, args);
@@ -194,28 +197,14 @@ namespace Ralid.OpenCard.OpenCardService
                 if (this.OnPaidFail != null) this.OnPaidFail(this, args);
             }
 
-            if (args.Payment != null)
-            {
-                List<byte> temp = new List<byte>();
-                temp.AddRange(data.Take(19)); //取包的前19字节
-                temp.Add(_OK);
-                temp.Add(0x00);  //未出场
-                YiTingPacket response = packet.CreateResponse(temp.ToArray());
-                byte[] r = response.ToBytes();
-                _Socket.SendData(r);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
-            }
-        }
-
-        private byte[] GetDateBytes(DateTime dt)
-        {
-            return ASCIIEncoding.ASCII.GetBytes(dt.ToString("yyyyMMddHHmmss"));
-        }
-
-        private byte[] GetIntervalBytes(DateTime begin, DateTime end)
-        {
-            TimeSpan span = new TimeSpan(end.Ticks - begin.Ticks);
-            return ASCIIEncoding.ASCII.GetBytes(string.Format("{0:D2}{1:D2}{2:D2}{3:D2}{4:D2}{5:D2}", 0, 0, span.Days, span.Hours, span.Minutes, span.Seconds));
+            List<byte> temp = new List<byte>();
+            temp.AddRange(data.Take(19)); //取包的前19字节
+            temp.Add(_OK);
+            temp.Add(0x00);  //未出场
+            YiTingPacket response = packet.CreateResponse(temp.ToArray());
+            byte[] r = response.ToBytes();
+            _Socket.SendData(r);
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
         }
         #endregion
 

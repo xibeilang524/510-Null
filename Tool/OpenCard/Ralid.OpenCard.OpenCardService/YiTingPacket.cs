@@ -8,6 +8,53 @@ namespace Ralid.OpenCard.OpenCardService
 {
     public class YiTingPacket
     {
+        #region 静态方法
+        /// <summary>
+        /// 获取日期的编码
+        /// </summary>
+        /// <param name="dt"></param>
+        /// <returns></returns>
+        public static byte[] GetDateBytes(DateTime dt)
+        {
+            return ASCIIEncoding.ASCII.GetBytes(dt.ToString("yyyyMMddHHmmss"));
+        }
+        /// <summary>
+        /// 获取金额的编码
+        /// </summary>
+        /// <param name="money"></param>
+        /// <returns></returns>
+        public static byte[] GetMoneyBytes(decimal money)
+        {
+            return ASCIIEncoding.ASCII.GetBytes(money.ToString("F2").Replace(".", string.Empty).PadLeft(6, '0').Substring(0, 6));
+        }
+        /// <summary>
+        /// 获取时间间隔的编码
+        /// </summary>
+        /// <param name="begin"></param>
+        /// <param name="end"></param>
+        /// <returns></returns>
+        public static byte[] GetIntervalBytes(DateTime begin, DateTime end)
+        {
+            TimeSpan span = new TimeSpan(end.Ticks - begin.Ticks);
+            return ASCIIEncoding.ASCII.GetBytes(string.Format("{0:D2}{1:D2}{2:D2}{3:D2}{4:D2}{5:D2}", 0, 0, span.Days, span.Hours, span.Minutes, span.Seconds));
+        }
+        /// <summary>
+        /// 从编码中获取金额
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static decimal GetMoney(byte[] data)
+        {
+            decimal ret=0;
+            string temp = ASCIIEncoding.ASCII.GetString(data);
+            temp = temp.TrimStart('0');
+            if (!string.IsNullOrEmpty(temp) && decimal .TryParse (temp,out ret))
+            {
+                ret /= 100;
+            }
+            return ret;
+        }
+        #endregion
         //包的结构 头(2byte) + 命令(2byte) + 通讯方向(1byte) + 位置(1byte) + 校验和(1byte) + 数据长度(2byte) + 数据(nbyte) + 尾(2byte)
         #region 构造函数
         public YiTingPacket(byte[] packet)
@@ -40,10 +87,10 @@ namespace Ralid.OpenCard.OpenCardService
                 if (_Data == null || _Data.Length < 11) return false;
                 if (_Data[0] != 0x78 || _Data[1] != 0xB6) return false; //头
                 if (_Data[_Data.Length - 2] != 0x21 || _Data[_Data.Length - 1] != 0xD3) return false; //尾
-                byte[] temp = new byte[_Data.Length - 9];
-                Array.Copy(_Data, 7, temp, 0, temp.Length);
-                byte crc = CalCRC(temp);
-                if (crc != _Data[6]) return false;
+                //byte[] temp = new byte[_Data.Length - 9];
+                //Array.Copy(_Data, 7, temp, 0, temp.Length);
+                //byte crc = CalCRC(temp);
+                //if (crc != _Data[6]) return false;
                 return true;
             }
         }
