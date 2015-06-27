@@ -36,11 +36,11 @@
             this.tmrCheckDog = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.系统ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SelOperator = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_SelStation = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_SelOperator = new System.Windows.Forms.ToolStripMenuItem();
-            this.mnu_SelStation = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -100,6 +100,20 @@
             this.系统ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
             this.系统ToolStripMenuItem.Text = "系统";
             // 
+            // mnu_SelOperator
+            // 
+            this.mnu_SelOperator.Name = "mnu_SelOperator";
+            this.mnu_SelOperator.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelOperator.Text = "选择当前操作员";
+            this.mnu_SelOperator.Click += new System.EventHandler(this.mnu_SelOperator_Click);
+            // 
+            // mnu_SelStation
+            // 
+            this.mnu_SelStation.Name = "mnu_SelStation";
+            this.mnu_SelStation.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelStation.Text = "选择当前工作站";
+            this.mnu_SelStation.Click += new System.EventHandler(this.mnu_SelStation_Click);
+            // 
             // 参数设置ToolStripMenuItem
             // 
             this.参数设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -123,20 +137,6 @@
             this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
             // 
-            // mnu_SelOperator
-            // 
-            this.mnu_SelOperator.Name = "mnu_SelOperator";
-            this.mnu_SelOperator.Size = new System.Drawing.Size(160, 22);
-            this.mnu_SelOperator.Text = "选择当前操作员";
-            this.mnu_SelOperator.Click += new System.EventHandler(this.mnu_SelOperator_Click);
-            // 
-            // mnu_SelStation
-            // 
-            this.mnu_SelStation.Name = "mnu_SelStation";
-            this.mnu_SelStation.Size = new System.Drawing.Size(160, 22);
-            this.mnu_SelStation.Text = "选择当前工作站";
-            this.mnu_SelStation.Click += new System.EventHandler(this.mnu_SelStation_Click);
-            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -147,7 +147,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "Form1";
+            this.Text = "开放卡片停车支付";
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
             this.statusStrip1.PerformLayout();

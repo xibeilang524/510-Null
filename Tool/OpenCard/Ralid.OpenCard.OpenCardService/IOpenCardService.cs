@@ -16,6 +16,10 @@ namespace Ralid.OpenCard.OpenCardService
         event EventHandler<OpenCardEventArgs> OnPaidOk;
 
         event EventHandler<OpenCardEventArgs> OnPaidFail;
+
+        void Init();
+
+        void Dispose();
     }
 
     public class OpenCardEventArgs : EventArgs

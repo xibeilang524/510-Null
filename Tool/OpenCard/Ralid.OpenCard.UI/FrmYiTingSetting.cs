@@ -148,7 +148,11 @@ namespace Ralid.OpenCard.UI
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<YiTingShanFuSetting>(yt);
             if (ret.Result == ResultCode.Successful)
             {
-                Ralid.OpenCard.OpenCardService.GlobalSettings.Current.Set<YiTingShanFuSetting>(yt);
+                OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
+                if (handler != null)
+                {
+                    handler.Init(yt);
+                }
                 MessageBox.Show("保存成功");
             }
             else

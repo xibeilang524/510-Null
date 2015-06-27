@@ -34,9 +34,9 @@ namespace Ralid.OpenCard.OpenCardService
             byte[] buffer = new byte[1024];
             try
             {
-                while (true)
+                int count = _Client.Receive(buffer);
+                while (count > 0)
                 {
-                    int count = _Client.Receive(buffer);
                     if (count > 0)
                     {
                         byte[] data = new byte[count];
@@ -47,13 +47,17 @@ namespace Ralid.OpenCard.OpenCardService
                         }
                     }
                     Thread.Sleep(100);
+                    count = _Client.Receive(buffer);
                 }
+                _ReadDataTread = null;
+                Close();
             }
             catch (ThreadAbortException ex)
             {
             }
             catch (Exception ex)
             {
+                _ReadDataTread = null;
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
@@ -86,16 +90,9 @@ namespace Ralid.OpenCard.OpenCardService
         {
             try
             {
-                Close(); //打开之前先关闭之前的连接,如果有的话
                 if (!string.IsNullOrEmpty(IP) && Port > 0)
                 {
-                    string[] strs = IP.Split('.');
-                    byte[] ipBytes = new byte[4];
-                    for (int i = 0; i < strs.Length; i++)
-                    {
-                        ipBytes[i] = Convert.ToByte(strs[i]);
-                    }
-                    IPEndPoint iep = new IPEndPoint(new IPAddress(ipBytes), Port);
+                    IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IP), Port);
                     _Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     _Client.Connect(iep);
                     _ReadDataTread = new Thread(new ThreadStart(ReadDataTask));
@@ -120,8 +117,9 @@ namespace Ralid.OpenCard.OpenCardService
                     _Client.Send(data);
                 }
             }
-            catch (Exception ex)
+            catch (SocketException ex)
             {
+                Close();
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
@@ -133,11 +131,15 @@ namespace Ralid.OpenCard.OpenCardService
         {
             try
             {
-                if (IsConnected) _Client.Close();
                 if (_ReadDataTread != null)
                 {
                     _ReadDataTread.Abort();
                     _ReadDataTread = null;
+                }
+                if (IsConnected)
+                {
+                    _Client.Shutdown(SocketShutdown.Both);
+                    _Client.Close();
                 }
             }
             catch (Exception ex)

@@ -14,6 +14,11 @@ namespace Ralid.OpenCard.OpenCardService
         {
 
         }
+
+        public YiTingShanFuService(YiTingShanFuSetting setting)
+        {
+            Setting = setting;
+        }
         #endregion
 
         #region 私有变量
@@ -21,10 +26,33 @@ namespace Ralid.OpenCard.OpenCardService
         private YiTingBuffer _Buffer = new YiTingBuffer();
         private AutoResetEvent _DataReceivedNotify = new AutoResetEvent(false);
         private Thread _ExtraDataThread = null;
+        private Thread _ReconnectThread = null;
         private byte _OK = 0x59;
         #endregion
 
         #region 私有方法
+        private void ReconnectTask()
+        {
+            try
+            {
+                while (true)
+                {
+                    if (_Socket != null && !_Socket.IsConnected)
+                    {
+                        _Socket.Open();
+                    }
+                    Thread.Sleep(5000);
+                }
+            }
+            catch (ThreadAbortException ex)
+            {
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+        }
+
         private void _Socket_OnDataArrivedEvent(object sender, byte[] data)
         {
             _Buffer.Write(data);
@@ -60,7 +88,7 @@ namespace Ralid.OpenCard.OpenCardService
         private void HandlePacket(YiTingPacket packet)
         {
             if (!packet.IsValid) return;
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", Ralid.GeneralLibrary.HexStringConverter.HexToString(packet.ToBytes(), " "));
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "收到数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(packet.ToBytes(), " "));
             if (packet.IsHearbeat) //心跳包
             {
                 HandleHeartBeat(packet);
@@ -87,11 +115,12 @@ namespace Ralid.OpenCard.OpenCardService
             YiTingPacket response = packet.CreateResponse(d.ToArray());
             byte[] r = response.ToBytes();
             _Socket.SendData(r);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
         }
 
         private void HandleEnterRead(YiTingPacket packet)
         {
+            if (Setting == null) return;
             byte[] data = packet.Data;
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
@@ -100,9 +129,7 @@ namespace Ralid.OpenCard.OpenCardService
                 CardType = "闪付卡",
                 DeviceID = Ralid.GeneralLibrary.HexStringConverter.HexToString(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }, string.Empty),
             };
-            YiTingShanFuSetting yt = GlobalSettings.Current.Get<YiTingShanFuSetting>();
-            if (yt == null) return;
-            YiTingPOS pos = yt.GetReader(args.DeviceID);
+            YiTingPOS pos = Setting.GetReader(args.DeviceID);
             if (pos == null) return;
             args.EntranceID = pos.EntranceID;
             if (this.OnReadCard != null) this.OnReadCard(this, args);
@@ -116,11 +143,12 @@ namespace Ralid.OpenCard.OpenCardService
             YiTingPacket response = packet.CreateResponse(temp.ToArray());
             byte[] r = response.ToBytes();
             _Socket.SendData(r);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
         }
 
         private void HandlePayingRequst(YiTingPacket packet)
         {
+            if (Setting == null) return;
             byte[] data = packet.Data;
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
@@ -128,9 +156,7 @@ namespace Ralid.OpenCard.OpenCardService
                 CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray()),
                 DeviceID = Ralid.GeneralLibrary.HexStringConverter.HexToString(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }, string.Empty),
             };
-            YiTingShanFuSetting yt = GlobalSettings.Current.Get<YiTingShanFuSetting>();
-            if (yt == null) return;
-            YiTingPOS pos = yt.GetReader(args.DeviceID);
+            YiTingPOS pos = Setting.GetReader(args.DeviceID);
             if (pos == null) return;
             args.EntranceID = pos.EntranceID;
             if (this.OnPaying != null) this.OnPaying(this, args);
@@ -147,7 +173,7 @@ namespace Ralid.OpenCard.OpenCardService
                 YiTingPacket response = packet.CreateResponse(temp.ToArray());
                 byte[] r = response.ToBytes();
                 _Socket.SendData(r);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
             }
         }
 
@@ -159,8 +185,8 @@ namespace Ralid.OpenCard.OpenCardService
             args.CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray());
             if (data[41] == 0x01)
             {
-                args.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer; 
-                args.PaymentMode =Park.BusinessModel.Enum.PaymentMode.Pos;
+                args.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer;
+                args.PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos;
                 if (this.OnPaidOk != null) this.OnPaidOk(this, args);
             }
             else if (data[41] == 0x02)
@@ -177,7 +203,7 @@ namespace Ralid.OpenCard.OpenCardService
                 YiTingPacket response = packet.CreateResponse(temp.ToArray());
                 byte[] r = response.ToBytes();
                 _Socket.SendData(r);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
             }
         }
 
@@ -193,32 +219,76 @@ namespace Ralid.OpenCard.OpenCardService
         }
         #endregion
 
-        #region 实现接口 IOpenCardService
-        public event EventHandler<OpenCardEventArgs> OnReadCard;
-
-        public event EventHandler<OpenCardEventArgs> OnPaying;
-
-        public event EventHandler<OpenCardEventArgs> OnPaidOk;
-
-        public event EventHandler<OpenCardEventArgs> OnPaidFail;
+        #region 公共属性
+        /// <summary>
+        /// 获取或设置参数
+        /// </summary>
+        public YiTingShanFuSetting Setting { get; set; }
         #endregion
 
-        #region 公共方法
+        #region 实现接口 IOpenCardService
+        /// <summary>
+        /// 读卡时产生此事件
+        /// </summary>
+        public event EventHandler<OpenCardEventArgs> OnReadCard;
+        /// <summary>
+        /// 出口或中央收费处读卡时产生此事件
+        /// </summary>
+        public event EventHandler<OpenCardEventArgs> OnPaying;
+        /// <summary>
+        /// 收费成功时产生此事件
+        /// </summary>
+        public event EventHandler<OpenCardEventArgs> OnPaidOk;
+        /// <summary>
+        /// 收费失败时产生此事件
+        /// </summary>
+        public event EventHandler<OpenCardEventArgs> OnPaidFail;
+        /// <summary>
+        /// 初始化
+        /// </summary>
         public void Init()
         {
-            YiTingShanFuSetting yt = GlobalSettings.Current.Get<YiTingShanFuSetting>();
-            if (yt != null)
+            if (Setting != null)
             {
+                if (_Socket != null) _Socket.Close();
+                _Socket = new LJHSocket(Setting.IP, Setting.Port);
+                _Socket.OnDataArrivedEvent += new GeneralLibrary.DataArrivedDelegate(_Socket_OnDataArrivedEvent);
+                _Socket.Open();
+
                 if (_ExtraDataThread == null)
                 {
                     _ExtraDataThread = new Thread(new ThreadStart(DoExtraData));
                     _ExtraDataThread.IsBackground = true;
                     _ExtraDataThread.Start();
                 }
-                if (_Socket != null) _Socket.Close();
-                _Socket = new LJHSocket(yt.IP, yt.Port);
-                _Socket.OnDataArrivedEvent += new GeneralLibrary.DataArrivedDelegate(_Socket_OnDataArrivedEvent);
-                _Socket.Open();
+
+                if (_ReconnectThread == null)
+                {
+                    _ReconnectThread = new Thread(new ThreadStart(ReconnectTask));
+                    _ReconnectThread.IsBackground = true;
+                    _ReconnectThread.Start();
+                }
+            }
+        }
+        /// <summary>
+        /// 收回资源
+        /// </summary>
+        public void Dispose()
+        {
+            if (_Socket != null && _Socket.IsConnected)
+            {
+                _Socket.Close();
+                _Socket.OnDataArrivedEvent -= new GeneralLibrary.DataArrivedDelegate(_Socket_OnDataArrivedEvent);
+            }
+            if (_ExtraDataThread != null)
+            {
+                _ExtraDataThread.Abort();
+                _ExtraDataThread = null;
+            }
+            if (_ReconnectThread != null)
+            {
+                _ReconnectThread.Abort();
+                _ReconnectThread = null;
             }
         }
         #endregion

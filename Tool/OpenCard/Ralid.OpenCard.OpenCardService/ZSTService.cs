@@ -16,11 +16,16 @@ namespace Ralid.OpenCard.OpenCardService
         public ZSTService()
         {
         }
+
+        public ZSTService(ZSTSetting setting)
+        {
+            Setting = setting;
+        }
         #endregion
 
         #region 私有变量
         private ZSTReader _Reader = null;
-        
+
         #endregion
 
         #region 私有方法
@@ -42,13 +47,19 @@ namespace Ralid.OpenCard.OpenCardService
 
         private void reader_CardReadHandler(object sender, ZSTReaderEventArgs e)
         {
-            ZSTSetting zst = GlobalSettings.Current.Get<ZSTSetting>();
-            if (zst == null)
+            if (Setting == null)
             {
                 _Reader.MessageConfirm(e.ReaderIP);
                 return;
             }
-            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(zst.GetReader(e.ReaderIP).EntranceID);
+            ZSTItem item = Setting.GetReader(e.ReaderIP);
+            if (item == null)
+            {
+                _Reader.MessageConfirm(e.ReaderIP);
+                return;
+            }
+            EntranceInfo entrance = null;
+            entrance = ParkBuffer.Current.GetEntrance(item.EntranceID);
             if (entrance != null && !entrance.IsExitDevice)  //入场时产生读卡事件
             {
                 _Reader.MessageConfirm(e.ReaderIP);
@@ -112,19 +123,29 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共属性
+        /// <summary>
+        /// 获取或设置配置参数
+        /// </summary>
+        public ZSTSetting Setting { get; set; }
         #endregion
 
         #region 实现IOpenCardService
+        /// <summary>
+        /// 读卡时产生此事件
+        /// </summary>
         public event EventHandler<OpenCardEventArgs> OnReadCard;
-
+        /// <summary>
+        /// 出口或中央收费处读卡时产生此事件
+        /// </summary>
         public event EventHandler<OpenCardEventArgs> OnPaying;
-
+        /// <summary>
+        /// 收费成功时产生此事件
+        /// </summary>
         public event EventHandler<OpenCardEventArgs> OnPaidOk;
-
+        /// <summary>
+        /// 收费失败时产生此事件
+        /// </summary>
         public event EventHandler<OpenCardEventArgs> OnPaidFail;
-        #endregion
-
-        #region 公共方法
         /// <summary>
         /// 初始化
         /// </summary>
@@ -138,6 +159,18 @@ namespace Ralid.OpenCard.OpenCardService
                 GlobalSettings.Current.Set<ZSTReader>(_Reader);
             }
             _Reader.MessageRecieved += reader_MessageRecieved;
+        }
+        /// <summary>
+        /// 收回资源
+        /// </summary>
+        public void Dispose()
+        {
+            _Reader = GlobalSettings.Current.Get<ZSTReader>();
+            if (_Reader != null)
+            {
+                _Reader.Dispose();
+                _Reader.MessageRecieved -= reader_MessageRecieved;
+            }
         }
         #endregion
     }

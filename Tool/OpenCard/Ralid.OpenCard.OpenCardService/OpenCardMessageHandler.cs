@@ -21,7 +21,7 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 私有变量
-        private List<IOpenCardService> _ZST = new List<IOpenCardService>();
+        private Dictionary<Type, IOpenCardService> _Services = new Dictionary<Type, IOpenCardService>();
         private Dictionary<string, EntranceInfo> _WaitingExitCards = new Dictionary<string, EntranceInfo>(); //等待出场的卡片
         private Dictionary<string, CardPaymentInfo> _WaitingPayingCards = new Dictionary<string, CardPaymentInfo>(); //等待交费的卡片
         #endregion
@@ -137,14 +137,54 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共方法
-        public void Init()
+        public void Init(object  setting)
         {
-            foreach (IOpenCardService s in _ZST)
+            Type t = setting.GetType();
+            if (setting is ZSTSetting)
             {
-                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
-                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
-                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
-                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                if (!_Services.ContainsKey(t))
+                {
+                    ZSTService zst = new ZSTService(setting as ZSTSetting);
+                    zst.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                    zst.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                    zst.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                    zst.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                    zst.Init();
+                    _Services[t] = zst;
+                }
+                else
+                {
+                    ZSTService s = _Services[t] as ZSTService;
+                    s.Setting = setting as ZSTSetting;
+                }
+            }
+            else if (setting is YiTingShanFuSetting)
+            {
+                YiTingShanFuSetting yt = setting as YiTingShanFuSetting;
+                YiTingShanFuService yts = null;
+                if (_Services.ContainsKey(t))
+                {
+                    yts = _Services[t] as YiTingShanFuService;
+                    if (yts.Setting != null && yts.Setting.IP == yt.IP && yts.Setting.Port == yt.Port) //如果通讯参数不变,则不用重新初始化服务
+                    {
+                        yts.Setting = yt;
+                    }
+                    else
+                    {
+                        yts.Dispose();
+                        yts = null;
+                    }
+                }
+                if (yts == null)
+                {
+                    yts = new YiTingShanFuService(yt);
+                    yts.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                    yts.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                    yts.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                    yts.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                    _Services[t] = yts;
+                    yts.Init();
+                }
             }
         }
         #endregion

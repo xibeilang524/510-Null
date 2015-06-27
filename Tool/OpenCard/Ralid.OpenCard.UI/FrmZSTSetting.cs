@@ -1,21 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using Ralid.GeneralLibrary .CardReader ;
 using Ralid.Park.BusinessModel.Model;
-using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Result;
-using Ralid.Park.BusinessModel.Notify;
-using Ralid.Park .BusinessModel .Report ;
-using Ralid.Park .BusinessModel .Interface ;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BLL;
-using Ralid.Park.ParkAdapter;
+using Ralid.OpenCard.OpenCardService;
 
 namespace Ralid.OpenCard.UI
 {
@@ -183,7 +174,11 @@ namespace Ralid.OpenCard.UI
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<ZSTSetting>(zst);
             if (ret.Result == ResultCode.Successful)
             {
-                Ralid.OpenCard.OpenCardService.GlobalSettings.Current.Set<ZSTSetting>(zst);
+                OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
+                if (handler != null)
+                {
+                    handler.Init(zst);
+                }
                 MessageBox.Show("保存成功");
             }
             else

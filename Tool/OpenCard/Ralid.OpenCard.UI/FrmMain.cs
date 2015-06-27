@@ -67,9 +67,6 @@ namespace Ralid.OpenCard.UI
             CarTypeSetting.Current = ssb.GetOrCreateSetting<CarTypeSetting>();
             CustomCardTypeSetting.Current = ssb.GetOrCreateSetting<CustomCardTypeSetting>();
             BaseCardTypeSetting.Current = ssb.GetOrCreateSetting<BaseCardTypeSetting>();
-            if (GlobalSettings.Current == null) GlobalSettings.Current = new GlobalSettings();
-            GlobalSettings.Current.Set<ZSTSetting>(ssb.GetSetting<ZSTSetting>());
-            GlobalSettings.Current.Set<YiTingShanFuSetting>(ssb.GetSetting<YiTingShanFuSetting>());
         }
 
         private void SetCurrentOperator()
@@ -89,7 +86,7 @@ namespace Ralid.OpenCard.UI
             this.lblStation.Text = string.Format("工作站：{0}", WorkStationInfo.CurrentStation.StationName);
         }
 
-        private void InitParkingCommunication()
+        private void InitParkingCommunication(object obj)
         {
             foreach (ParkInfo park in ParkBuffer.Current.Parks)
             {
@@ -106,6 +103,24 @@ namespace Ralid.OpenCard.UI
             }
         }
 
+        private void InitOpenCardServices(object obj)
+        {
+            OpenCardMessageHandler handler = new OpenCardMessageHandler();
+            GlobalSettings.Current.Set<OpenCardMessageHandler>(handler);
+
+            SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
+            ZSTSetting zst = ssb.GetSetting<ZSTSetting>();
+            if (zst != null)
+            {
+                handler.Init(zst);
+            }
+            YiTingShanFuSetting yt = ssb.GetSetting<YiTingShanFuSetting>();
+            if (yt != null)
+            {
+                handler.Init(yt);
+            }
+        }
+
         private void ProcessReport(object sender, ReportBase report)
         {
 
@@ -115,6 +130,7 @@ namespace Ralid.OpenCard.UI
         #region 事件处理程序
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            this.Text += string.Format(" [{0}]", Application.ProductVersion);
             //用于所有工作站软件都要加密狗的情形
             //ReadSoftDog();
             //this.tmrCheckDog.Enabled = true;
@@ -138,8 +154,9 @@ namespace Ralid.OpenCard.UI
             _DatetimeSyncService.Start();
             this.lblStartFrom.Text = string.Format("启动时间:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             //初始化停车场通讯
-            System.Threading.Thread t = new Thread(InitParkingCommunication);
-            t.Start();
+            ThreadPool .QueueUserWorkItem((WaitCallback)InitParkingCommunication);
+            //初始化开放卡片服务
+            ThreadPool .QueueUserWorkItem((WaitCallback)InitOpenCardServices);
         }
 
         private void mnu_SelOperator_Click(object sender, EventArgs e)
