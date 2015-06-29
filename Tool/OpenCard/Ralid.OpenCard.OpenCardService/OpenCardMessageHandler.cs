@@ -22,7 +22,7 @@ namespace Ralid.OpenCard.OpenCardService
 
         #region 私有变量
         private Dictionary<Type, IOpenCardService> _Services = new Dictionary<Type, IOpenCardService>();
-        private Dictionary<string, EntranceInfo> _WaitingExitCards = new Dictionary<string, EntranceInfo>(); //等待出场的卡片
+        private Dictionary<string, EntranceInfo> _WaitingExitCards = new Dictionary<string, EntranceInfo>(); //卡片等待出场的通道
         private Dictionary<string, CardPaymentInfo> _WaitingPayingCards = new Dictionary<string, CardPaymentInfo>(); //等待交费的卡片
         #endregion
 
@@ -56,9 +56,9 @@ namespace Ralid.OpenCard.OpenCardService
             if (e.EntranceID == null) return;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
             if (entrance == null) return;
-
             if (!entrance.IsExitDevice) //入口
             {
+                e.EntranceName = entrance.EntranceName;
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
                 if (card == null) //保存卡片信息
                 {
@@ -73,6 +73,8 @@ namespace Ralid.OpenCard.OpenCardService
                     pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID));
                 }
             }
+
+            if (this.OnReadCard != null) this.OnReadCard(sender, e);
         }
 
         private void s_OnPaying(object sender, OpenCardEventArgs e)
@@ -86,11 +88,17 @@ namespace Ralid.OpenCard.OpenCardService
             CardPaymentInfo payment = CardPaymentInfoFactory.CreateCardPaymentRecord(card, TariffSetting.Current, card.CarType, DateTime.Now);
             e.Payment = payment;
             _WaitingPayingCards[e.CardID] = payment;
+
             if (e.EntranceID != null)
             {
                 EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
-                if (entrance != null) _WaitingExitCards[e.CardID] = entrance;
+                if (entrance != null)
+                {
+                    _WaitingExitCards[e.CardID] = entrance;
+                    e.EntranceName = entrance.EntranceName;
+                }
             }
+            if (this.OnPaying != null) this.OnPaying(sender, e);
         }
 
         private void s_OnPaidOk(object sender, OpenCardEventArgs e)
@@ -119,6 +127,7 @@ namespace Ralid.OpenCard.OpenCardService
                 EntranceInfo entrance = _WaitingExitCards[e.CardID];
                 if (entrance != null)
                 {
+                    e.EntranceName = entrance.EntranceName;
                     IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                     if (pad != null)
                     {
@@ -127,18 +136,38 @@ namespace Ralid.OpenCard.OpenCardService
                 }
                 _WaitingExitCards.Remove(e.CardID);
             }
+            if (this.OnPaidOk != null) this.OnPaidOk(sender, e);
         }
 
         private void s_OnPaidFail(object sender, OpenCardEventArgs e)
         {
             if (string.IsNullOrEmpty(e.CardID)) return;
+            if (_WaitingExitCards.ContainsKey(e.CardID)) //如果是出口，远程读卡
+            {
+                EntranceInfo entrance = _WaitingExitCards[e.CardID];
+                if (entrance != null)
+                {
+                    e.EntranceName = entrance.EntranceName;
+                }
+            }
             _WaitingPayingCards.Remove(e.CardID);
             _WaitingExitCards.Remove(e.CardID);
+            if (this.OnPaidFail != null) this.OnPaidFail(sender, e);
         }
         #endregion
 
+        #region 事件
+        public event EventHandler<OpenCardEventArgs> OnReadCard;
+
+        public event EventHandler<OpenCardEventArgs> OnPaying;
+
+        public event EventHandler<OpenCardEventArgs> OnPaidOk;
+
+        public event EventHandler<OpenCardEventArgs> OnPaidFail;
+        #endregion
+
         #region 公共方法
-        public void Init(object  setting)
+        public void Init(object setting)
         {
             Type t = setting.GetType();
             if (setting is ZSTSetting)

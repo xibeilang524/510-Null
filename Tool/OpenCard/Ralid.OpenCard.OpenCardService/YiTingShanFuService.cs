@@ -133,7 +133,6 @@ namespace Ralid.OpenCard.OpenCardService
             if (pos == null) return;
             args.EntranceID = pos.EntranceID;
             if (this.OnReadCard != null) this.OnReadCard(this, args);
-
             List<byte> temp = new List<byte>();
             temp.AddRange(data);
             temp.AddRange(new byte[27]);

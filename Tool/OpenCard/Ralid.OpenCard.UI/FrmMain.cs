@@ -95,7 +95,7 @@ namespace Ralid.OpenCard.UI
                     ParkingAdapter pad = new ParkingAdapter(park.ParkAdapterUri);
                     pad.ParkID = park.ParkID;
                     ParkingAdapterManager.Instance.Add(park.ParkID, pad);
-                    //pad.Reporting += ProcessReport;
+                    pad.Reporting += ProcessReport;
                     //pad.ParkAdapterConnectFail += new EventHandler(pad_ParkAdapterConnectFail);
                     //pad.ParkApaterReconnected += new EventHandler(pad_ParkApaterReconnected);
                     pad.ConnectServer();
@@ -107,6 +107,10 @@ namespace Ralid.OpenCard.UI
         {
             OpenCardMessageHandler handler = new OpenCardMessageHandler();
             GlobalSettings.Current.Set<OpenCardMessageHandler>(handler);
+            handler.OnReadCard += new EventHandler<OpenCardEventArgs>(handler_OnReadCard);
+            handler.OnPaying += new EventHandler<OpenCardEventArgs>(handler_OnPaying);
+            handler.OnPaidOk += new EventHandler<OpenCardEventArgs>(handler_OnPaidOk);
+            handler.OnPaidFail += new EventHandler<OpenCardEventArgs>(handler_OnPaidFail);
 
             SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
             ZSTSetting zst = ssb.GetSetting<ZSTSetting>();
@@ -121,9 +125,66 @@ namespace Ralid.OpenCard.UI
             }
         }
 
+        private void handler_OnPaidFail(object sender, OpenCardEventArgs e)
+        {
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2}",
+                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                  e.EntranceName,
+                                                  e.CardID), Color.Blue);
+        }
+
+        private void handler_OnPaidOk(object sender, OpenCardEventArgs e)
+        {
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2}",
+                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                  e.EntranceName,
+                                                  e.CardID), Color.Blue);
+        }
+
+        private void handler_OnPaying(object sender, OpenCardEventArgs e)
+        {
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 查询费用 卡号:{2} 应收:{3}元",
+                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                  e.EntranceName,
+                                                  e.CardID,
+                                                  e.Payment != null ? e.Payment.Accounts : 0), Color.Blue);
+        }
+
+        private void handler_OnReadCard(object sender, OpenCardEventArgs e)
+        {
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 入场读卡 卡号:{2}",
+                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                  e.EntranceName,
+                                                  e.CardID), Color.Blue);
+        }
+
+        private void InsertMessage(string msg, Color color)
+        {
+            Action action = delegate()
+            {
+                eventList.InsertMessage(msg, color);
+            };
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
+
         private void ProcessReport(object sender, ReportBase report)
         {
-
+            if (!chkCardEvent.Checked) return;
+            if (report is CardEventReport)
+            {
+                CardEventReport cr = report as CardEventReport;
+                if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡"))
+                {
+                    InsertMessage(cr.Description, Color.Black);
+                }
+            }
         }
         #endregion
 
@@ -154,9 +215,14 @@ namespace Ralid.OpenCard.UI
             _DatetimeSyncService.Start();
             this.lblStartFrom.Text = string.Format("启动时间:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             //初始化停车场通讯
-            ThreadPool .QueueUserWorkItem((WaitCallback)InitParkingCommunication);
+            ThreadPool.QueueUserWorkItem((WaitCallback)InitParkingCommunication);
             //初始化开放卡片服务
-            ThreadPool .QueueUserWorkItem((WaitCallback)InitOpenCardServices);
+            ThreadPool.QueueUserWorkItem((WaitCallback)InitOpenCardServices);
+        }
+
+        private void FrmMain_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Environment.Exit(0);
         }
 
         private void mnu_SelOperator_Click(object sender, EventArgs e)

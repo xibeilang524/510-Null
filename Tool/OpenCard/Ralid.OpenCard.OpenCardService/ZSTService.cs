@@ -25,7 +25,7 @@ namespace Ralid.OpenCard.OpenCardService
 
         #region 私有变量
         private ZSTReader _Reader = null;
-
+        private Dictionary<string, CardPaymentInfo> _WaitingPayingCards = new Dictionary<string, CardPaymentInfo>(); //等待交费的卡片
         #endregion
 
         #region 私有方法
@@ -69,6 +69,7 @@ namespace Ralid.OpenCard.OpenCardService
                     CardType = "中山通",
                     DeviceID = e.ReaderIP,
                     EntranceID = entrance.EntranceID,
+                    EntranceName =entrance.EntranceName ,
                 };
                 if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
@@ -79,18 +80,26 @@ namespace Ralid.OpenCard.OpenCardService
                     CardID = e.CardID,
                     DeviceID = e.ReaderIP,
                 };
-                if (entrance != null) args.EntranceID = entrance.EntranceID;
+                if (entrance != null)
+                {
+                    args.EntranceID = entrance.EntranceID;
+                    args.EntranceName = entrance.EntranceName;
+                }
+                else
+                {
+                    args.EntranceName = "中央收费";
+                }
                 if (this.OnPaying != null)
                 {
                     this.OnPaying(this, args); //产生收费事件
                     if (args.Payment == null) return;
-                    if (args.Payment.Accounts == 0)
+                    if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
                     {
                         if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                     }
                     else
                     {
-                        args.Payment.Paid = args.Payment.Accounts;
+                        _WaitingPayingCards[e.ReaderIP] = args.Payment; //保存某个读卡器目前正在处理的收费记录
                         _Reader.Consumption(e.ReaderIP, args.Payment.Accounts);  //直接扣款
                     }
                 }
@@ -100,18 +109,24 @@ namespace Ralid.OpenCard.OpenCardService
         private void reader_PaymentOk(object sender, ZSTReaderEventArgs e)
         {
             _Reader.MessageConfirm(e.ReaderIP);
-            OpenCardEventArgs args = new OpenCardEventArgs()
+            if (_WaitingPayingCards.ContainsKey(e.ReaderIP))
             {
-                CardID = e.CardID,
-                DeviceID = e.ReaderIP,
-                PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer,
-                PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong,
-            };
-            if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                OpenCardEventArgs args = new OpenCardEventArgs()
+                {
+                    CardID = e.CardID,
+                    DeviceID = e.ReaderIP,
+                    Paid = _WaitingPayingCards[e.ReaderIP].Accounts, //默认是直接扣除应收款所以如果扣款成功,已交费用等于应收费用
+                    PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer,
+                    PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong,
+                };
+                _WaitingPayingCards.Remove(e.ReaderIP);
+                if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+            }
         }
 
         private void reader_PaymentFail(object sender, ZSTReaderEventArgs e)
         {
+            _WaitingPayingCards.Remove(e.ReaderIP);
             _Reader.MessageConfirm(e.ReaderIP);
             OpenCardEventArgs args = new OpenCardEventArgs()
             {

@@ -37,6 +37,8 @@ namespace Ralid.OpenCard.OpenCardService
 
         public int? EntranceID { get; set; }
 
+        public string EntranceName { get; set; }
+
         public string CardType { get; set; }
 
         public CardPaymentInfo Payment { get; set; }
