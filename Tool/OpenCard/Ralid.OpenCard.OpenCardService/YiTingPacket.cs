@@ -16,7 +16,8 @@ namespace Ralid.OpenCard.OpenCardService
         /// <returns></returns>
         public static byte[] GetDateBytes(DateTime dt)
         {
-            return ASCIIEncoding.ASCII.GetBytes(dt.ToString("yyyyMMddHHmmss"));
+            byte[] ret= ASCIIEncoding.ASCII.GetBytes(dt.ToString("yyyyMMddHHmmss"));
+            return ConvertAscToNumber(ret);
         }
         /// <summary>
         /// 获取金额的编码
@@ -25,7 +26,8 @@ namespace Ralid.OpenCard.OpenCardService
         /// <returns></returns>
         public static byte[] GetMoneyBytes(decimal money)
         {
-            return ASCIIEncoding.ASCII.GetBytes(money.ToString("F2").Replace(".", string.Empty).PadLeft(6, '0').Substring(0, 6));
+            byte[] ret= ASCIIEncoding.ASCII.GetBytes(money.ToString("F2").Replace(".", string.Empty).PadLeft(6, '0').Substring(0, 6));
+            return ConvertAscToNumber(ret);
         }
         /// <summary>
         /// 获取时间间隔的编码
@@ -36,7 +38,8 @@ namespace Ralid.OpenCard.OpenCardService
         public static byte[] GetIntervalBytes(DateTime begin, DateTime end)
         {
             TimeSpan span = new TimeSpan(end.Ticks - begin.Ticks);
-            return ASCIIEncoding.ASCII.GetBytes(string.Format("{0:D2}{1:D2}{2:D2}{3:D2}{4:D2}{5:D2}", 0, 0, span.Days, span.Hours, span.Minutes, span.Seconds));
+            byte[] ret= ASCIIEncoding.ASCII.GetBytes(string.Format("{0:D2}{1:D2}{2:D2}{3:D2}{4:D2}{5:D2}", 0, 0, (span.Days % 100), span.Hours, span.Minutes, span.Seconds));
+            return ConvertAscToNumber(ret);
         }
         /// <summary>
         /// 从编码中获取金额
@@ -45,14 +48,42 @@ namespace Ralid.OpenCard.OpenCardService
         /// <returns></returns>
         public static decimal GetMoney(byte[] data)
         {
-            decimal ret=0;
-            string temp = ASCIIEncoding.ASCII.GetString(data);
+            decimal ret = 0;
+            string temp = ConvertToAsc(data);
             temp = temp.TrimStart('0');
-            if (!string.IsNullOrEmpty(temp) && decimal .TryParse (temp,out ret))
+            if (!string.IsNullOrEmpty(temp) && decimal.TryParse(temp, out ret))
             {
                 ret /= 100;
             }
             return ret;
+        }
+        /// <summary>
+        /// 将每一位由原生的数字转化成对应的ASC码
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static string  ConvertToAsc(byte[] data) 
+        {
+            byte[] temp = new byte[data.Length];
+            for (int i = 0; i < data.Length; i++)
+            {
+                temp[i] = (byte)(data[i] + 0x30);
+            }
+            return ASCIIEncoding.ASCII.GetString(temp);
+        }
+        /// <summary>
+        /// 将ASC码转化成原生的数字
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        public static byte[] ConvertAscToNumber(byte[] data)
+        {
+            byte[] temp = new byte[data.Length];
+            for (int i = 0; i < data.Length; i++)
+            {
+                temp[i] = (byte)(data[i] - 0x30);
+            }
+            return temp;
         }
         #endregion
         //包的结构 头(2byte) + 命令(2byte) + 通讯方向(1byte) + 位置(1byte) + 校验和(1byte) + 数据长度(2byte) + 数据(nbyte) + 尾(2byte)

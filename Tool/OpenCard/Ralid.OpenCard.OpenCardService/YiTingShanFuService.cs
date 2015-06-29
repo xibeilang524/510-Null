@@ -125,9 +125,9 @@ namespace Ralid.OpenCard.OpenCardService
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
-                CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray()),
+                CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray()),
                 CardType = "闪付卡",
-                DeviceID = Ralid.GeneralLibrary.HexStringConverter.HexToString(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }, string.Empty),
+                DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);
             if (pos == null) return;
@@ -153,8 +153,8 @@ namespace Ralid.OpenCard.OpenCardService
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
-                CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray()),
-                DeviceID = Ralid.GeneralLibrary.HexStringConverter.HexToString(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }, string.Empty),
+                CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray()),
+                DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);
             if (pos == null) return;
@@ -163,6 +163,17 @@ namespace Ralid.OpenCard.OpenCardService
 
             if (args.Payment != null)
             {
+                if (args.Payment.Accounts == 0)
+                {
+                    OpenCardEventArgs args1 = new OpenCardEventArgs()
+                    {
+                        CardID = args.CardID,
+                        Paid = 0,
+                        PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer,
+                        PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos,
+                    };
+                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                }
                 List<byte> temp = new List<byte>();
                 temp.AddRange(data.Take(26)); //取包的前26字节
                 temp.AddRange(new byte[5]); //车位号
@@ -182,7 +193,7 @@ namespace Ralid.OpenCard.OpenCardService
             byte[] data = packet.Data;
             if (data == null || data.Length < 42) return;
             OpenCardEventArgs args = new OpenCardEventArgs();
-            args.CardID = ASCIIEncoding.ASCII.GetString(data.Take(19).ToArray());
+            args.CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray());
             if (data[41] == 0x01)
             {
                 byte[] paid = new byte[6];

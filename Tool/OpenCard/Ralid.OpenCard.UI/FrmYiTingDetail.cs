@@ -31,6 +31,7 @@ namespace Ralid.OpenCard.UI
             set
             {
                 txtID .Text = value;
+                txtID.Enabled = false;
             }
         }
         /// <summary>

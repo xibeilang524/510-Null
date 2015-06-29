@@ -107,7 +107,7 @@ namespace Ralid.OpenCard.UI
 
         private void mnu_Delete_Click(object sender, EventArgs e)
         {
-            DialogResult result = MessageBox.Show("询问", "确定要删除吗?", MessageBoxButtons.YesNo);
+            DialogResult result = MessageBox.Show("确定要删除吗?", "询问", MessageBoxButtons.YesNo);
             if (result == DialogResult.Yes)
             {
                 foreach (DataGridViewRow row in dataGridView1.SelectedRows)

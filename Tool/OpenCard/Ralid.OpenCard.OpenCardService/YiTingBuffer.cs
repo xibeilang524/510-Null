@@ -38,11 +38,11 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 lock (_BufferLocker)
                 {
-                    int end = IndexOf(_Buffer, _Tail);
+                    int end = FirstOf(_Buffer, _Tail);
                     if (end < 0) return null;
                     List<byte> temp = _Buffer.Take(end + _Tail.Length).ToList();
                     _Buffer.RemoveRange(0, temp.Count);
-                    int begin = IndexOf(temp, _Header);
+                    int begin = LastOf(temp, _Header);
                     if (begin < 0) return null;
                     temp.RemoveRange(0, begin);
                     if (temp.Count < _PLengthBeforeData + _Tail.Length) return null;
@@ -56,7 +56,7 @@ namespace Ralid.OpenCard.OpenCardService
             return null;
         }
 
-        private int IndexOf(List<byte> source, byte[] data)
+        private int FirstOf(List<byte> source, byte[] data)
         {
             int ret = -1;
             for (int i = 0; i < source.Count - data.Length + 1; i++)
@@ -71,6 +71,25 @@ namespace Ralid.OpenCard.OpenCardService
                     }
                 }
                 if (ok) return i;
+            }
+            return ret;
+        }
+
+        private int LastOf(List<byte> source, byte[] data)
+        {
+            int ret = -1;
+            for (int i = 0; i < source.Count - data.Length + 1; i++)
+            {
+                bool ok = true;
+                for (int j = 0; j < data.Length; j++)
+                {
+                    if (source[i + j] != data[j])
+                    {
+                        ok = false;
+                        break;
+                    }
+                }
+                if (ok) ret = i;
             }
             return ret;
         }
