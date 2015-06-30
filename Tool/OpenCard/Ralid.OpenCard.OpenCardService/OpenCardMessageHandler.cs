@@ -70,7 +70,8 @@ namespace Ralid.OpenCard.OpenCardService
                 IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                 if (pad != null)
                 {
-                    pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID));
+                    pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
+                        OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
                 }
             }
 
@@ -131,7 +132,8 @@ namespace Ralid.OpenCard.OpenCardService
                     IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                     if (pad != null)
                     {
-                        pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID));
+                        pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty, 
+                            OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
                     }
                 }
                 _WaitingExitCards.Remove(e.CardID);
