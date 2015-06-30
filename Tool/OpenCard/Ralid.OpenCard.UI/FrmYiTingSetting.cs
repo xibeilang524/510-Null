@@ -50,7 +50,7 @@ namespace Ralid.OpenCard.UI
         {
             dataGridView1.Rows.Clear();
             YiTingShanFuSetting yt = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<YiTingShanFuSetting>();
-            if (yt != null )
+            if (yt != null)
             {
                 txtIP.IP = yt.IP;
                 txtPort.IntergerValue = yt.Port;
@@ -64,6 +64,12 @@ namespace Ralid.OpenCard.UI
                         ShowItemOnRow(dataGridView1.Rows[row], item.ID, entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
                     }
                 }
+            }
+            else
+            {
+                System.Net.IPAddress ip = Ralid.GeneralLibrary.NetTool.GetFirstIP();
+                if (ip != null) txtIP.IP = ip.ToString();
+                txtPort.IntergerValue = 16171;
             }
         }
 
@@ -153,7 +159,7 @@ namespace Ralid.OpenCard.UI
                 {
                     handler.Init(yt);
                 }
-                MessageBox.Show("保存成功");
+                this.DialogResult = DialogResult.OK;
             }
             else
             {

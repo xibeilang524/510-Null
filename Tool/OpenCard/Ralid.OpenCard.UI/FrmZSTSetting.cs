@@ -179,7 +179,7 @@ namespace Ralid.OpenCard.UI
                 {
                     handler.Init(zst);
                 }
-                MessageBox.Show("保存成功");
+                this.DialogResult = DialogResult.OK;
             }
             else
             {

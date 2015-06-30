@@ -12,14 +12,17 @@ namespace Ralid.OpenCard.OpenCardService
     public class LJHSocket
     {
         #region 构造函数
-        public LJHSocket()
-        {
-        }
-
         public LJHSocket(string ip, int port)
         {
             this.IP = ip;
             this.Port = port;
+        }
+
+        public LJHSocket(Socket s)
+        {
+            _Client = s;
+            _ReadDataTread = new Thread(new ThreadStart(ReadDataTask));
+            _ReadDataTread.Start();
         }
         #endregion
 
@@ -95,8 +98,11 @@ namespace Ralid.OpenCard.OpenCardService
                     IPEndPoint iep = new IPEndPoint(IPAddress.Parse(IP), Port);
                     _Client = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
                     _Client.Connect(iep);
-                    _ReadDataTread = new Thread(new ThreadStart(ReadDataTask));
-                    _ReadDataTread.Start();
+                    if (_ReadDataTread != null)
+                    {
+                        _ReadDataTread = new Thread(new ThreadStart(ReadDataTask));
+                        _ReadDataTread.Start();
+                    }
                 }
             }
             catch (Exception ex)
