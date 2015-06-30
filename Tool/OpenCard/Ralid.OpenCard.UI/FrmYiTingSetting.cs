@@ -52,6 +52,7 @@ namespace Ralid.OpenCard.UI
             YiTingShanFuSetting yt = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<YiTingShanFuSetting>();
             if (yt != null)
             {
+                AppSettings.CurrentSetting.GetYiTingConfig(yt);
                 txtIP.IP = yt.IP;
                 txtPort.IntergerValue = yt.Port;
                 dataGridView1.Rows.Clear();
@@ -128,6 +129,7 @@ namespace Ralid.OpenCard.UI
             YiTingShanFuSetting yt = new YiTingShanFuSetting();
             yt.IP = txtIP.IP;
             yt.Port = txtPort.IntergerValue;
+            AppSettings.CurrentSetting.SaveYiTingConfig(yt);
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))

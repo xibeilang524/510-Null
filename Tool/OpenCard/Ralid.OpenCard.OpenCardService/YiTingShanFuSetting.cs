@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
+using Ralid.Park.BusinessModel.Configuration;
 
 namespace Ralid.OpenCard.OpenCardService
 {
@@ -19,16 +20,18 @@ namespace Ralid.OpenCard.OpenCardService
         }
         #endregion
 
+        #region 私有变量
+
+        #endregion
+
         #region 公共属性
         /// <summary>
         /// 获取或设置驿停服务器IP
         /// </summary>
-        [DataMember]
-        public string IP { get; set; }
+        public string IP{get;set;}
         /// <summary>
         /// 获取或设置驿停服务器端口
         /// </summary>
-        [DataMember]
         public int Port { get; set; }
         /// <summary>
         /// 获取或设置服务器管理的所有POS机

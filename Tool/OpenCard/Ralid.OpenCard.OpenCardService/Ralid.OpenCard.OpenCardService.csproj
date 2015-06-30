@@ -57,6 +57,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AppSettingsExtension.cs" />
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="IOpenCardService.cs" />
     <Compile Include="OpenCardMessageHandler.cs" />

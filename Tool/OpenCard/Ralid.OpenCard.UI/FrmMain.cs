@@ -121,6 +121,7 @@ namespace Ralid.OpenCard.UI
             YiTingShanFuSetting yt = ssb.GetSetting<YiTingShanFuSetting>();
             if (yt != null)
             {
+                AppSettings.CurrentSetting.GetYiTingConfig(yt);
                 handler.Init(yt);
             }
         }
