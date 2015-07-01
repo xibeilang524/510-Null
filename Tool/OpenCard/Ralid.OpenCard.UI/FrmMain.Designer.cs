@@ -146,6 +146,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.eventList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.eventList.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.eventList.ItemHeight = 12;
             this.eventList.Location = new System.Drawing.Point(0, 61);
             this.eventList.Name = "eventList";
