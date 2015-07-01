@@ -139,10 +139,14 @@ namespace Ralid.OpenCard.OpenCardService
                 if (_Data == null || _Data.Length < 11) return false;
                 if (_Data[0] != 0x78 || _Data[1] != 0xB6) return false; //头
                 if (_Data[_Data.Length - 2] != 0x21 || _Data[_Data.Length - 1] != 0xD3) return false; //尾
-                //byte[] temp = new byte[_Data.Length - 9];
-                //Array.Copy(_Data, 7, temp, 0, temp.Length);
-                //byte crc = CalCRC(temp);
-                //if (crc != _Data[6]) return false;
+                //校验和
+                byte[] temp = new byte[_Data.Length - 9];
+                Array.Copy(_Data, 7, temp, 0, temp.Length);
+                byte crc = CalCRC(temp);
+                if (crc != _Data[6]) return false;
+                //检验包长度
+                int dlen = BEBinaryConverter.BytesToInt(new byte[] { _Data[7], _Data[8] });
+                if (dlen + 11 != _Data.Length) return false;
                 return true;
             }
         }
