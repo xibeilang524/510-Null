@@ -82,6 +82,8 @@ namespace Ralid.OpenCard.OpenCardService
         /// 数据到达事件
         /// </summary>
         public event DataArrivedDelegate OnDataArrivedEvent;
+
+        public event EventHandler OnClosed;
         #endregion
 
         #region 公开方法
@@ -146,6 +148,7 @@ namespace Ralid.OpenCard.OpenCardService
                 {
                     _Client.Shutdown(SocketShutdown.Both);
                     _Client.Close();
+                    if (this.OnClosed != null) this.OnClosed(this, EventArgs.Empty);
                 }
             }
             catch (Exception ex)

@@ -13,9 +13,16 @@ namespace Ralid.OpenCard.UI
         [STAThread]
         static void Main()
         {
-            Application.EnableVisualStyles();
-            Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmMain());
+            if (Ralid.GeneralLibrary.SingleInstance.OpenSingleProcess())
+            {
+                Application.EnableVisualStyles();
+                Application.SetCompatibleTextRenderingDefault(false);
+                Application.Run(new FrmMain());
+            }
+            else
+            {
+                Ralid.GeneralLibrary.SingleInstance.ShowSingleProcess();
+            }
         }
     }
 }

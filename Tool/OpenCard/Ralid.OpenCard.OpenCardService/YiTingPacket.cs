@@ -67,9 +67,9 @@ namespace Ralid.OpenCard.OpenCardService
             byte[] temp = new byte[data.Length];
             for (int i = 0; i < data.Length; i++)
             {
-                temp[i] = (byte)(data[i] + 0x30);
+                temp[i] = (byte)(data[i]);
             }
-            return ASCIIEncoding.ASCII.GetString(temp);
+            return ASCIIEncoding.ASCII.GetString(temp).Trim('\0').Trim();
         }
         /// <summary>
         /// 将ASC码转化成原生的数字
@@ -81,9 +81,30 @@ namespace Ralid.OpenCard.OpenCardService
             byte[] temp = new byte[data.Length];
             for (int i = 0; i < data.Length; i++)
             {
-                temp[i] = (byte)(data[i] - 0x30);
+                temp[i] = (byte)(data[i]);
             }
             return temp;
+        }
+
+        public static string GetCardID(byte[] data)
+        {
+            string ret = null;
+            try
+            {
+                ret = ConvertToAsc(data);
+                if (ret.Length <= 8)
+                {
+                    byte[] temp = HexStringConverter.StringToHex(ret);
+                    if (temp != null && temp.Length > 0)
+                    {
+                        ret = BEBinaryConverter.BytesToUint(temp).ToString();
+                    }
+                }
+            }
+            catch
+            {
+            }
+            return ret;
         }
         #endregion
         //包的结构 头(2byte) + 命令(2byte) + 通讯方向(1byte) + 位置(1byte) + 校验和(1byte) + 数据长度(2byte) + 数据(nbyte) + 尾(2byte)
@@ -144,20 +165,11 @@ namespace Ralid.OpenCard.OpenCardService
             }
         }
 
-        public bool IsExitRead
-        {
-            get
-            {
-                if (_Data != null && _Data.Length >= 4) return _Data[2] == 0x4C && _Data[3] == 0x8D;
-                return false;
-            }
-        }
-
         public bool IsPayingRequest
         {
             get
             {
-                if (_Data != null && _Data.Length >= 4) return _Data[2] == 0x4C && _Data[3] == 0x9E;
+                if (_Data != null && _Data.Length >= 4) return _Data[2] == 0x4C && _Data[3] == 0x7C;
                 return false;
             }
         }
@@ -166,7 +178,7 @@ namespace Ralid.OpenCard.OpenCardService
         {
             get
             {
-                if (_Data != null && _Data.Length >= 4) return _Data[2] == 0x4C && _Data[3] == 0xAF;
+                if (_Data != null && _Data.Length >= 4) return _Data[2] == 0x4C && _Data[3] == 0x8D;
                 return false;
             }
         }
@@ -189,7 +201,7 @@ namespace Ralid.OpenCard.OpenCardService
         {
             List<byte> temp = new List<byte>();
             if (data != null) temp.AddRange(data);
-            temp.InsertRange(0, SEBinaryConverter.ShortToBytes((short)(data == null ? 0 : data.Length)));
+            temp.InsertRange(0, BEBinaryConverter.ShortToBytes((short)(data == null ? 0 : data.Length)));
             temp.Insert(0, CalCRC(temp));
             temp.Insert(0, _Data[5]);
             temp.Insert(0, 0x02); //方向

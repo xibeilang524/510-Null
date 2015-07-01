@@ -26,6 +26,7 @@ namespace Ralid.OpenCard.OpenCardService
         #region 私有变量
         private TcpListener _Listener = null;
         private Dictionary<LJHSocket, YiTingBuffer> _Buffers = new Dictionary<LJHSocket, YiTingBuffer>();
+        private object _BuffersLocker = new object();
         private Thread _ListenThread = null;
         private byte _OK = 0x59;
         #endregion
@@ -36,13 +37,14 @@ namespace Ralid.OpenCard.OpenCardService
             try
             {
                 IPEndPoint iep = new IPEndPoint(IPAddress.Parse(Setting.IP), Setting.Port);
-                _Listener  = new TcpListener(iep);
+                _Listener = new TcpListener(iep);
                 _Listener.Start();
                 while (true)
                 {
                     Socket socket = _Listener.AcceptSocket();
                     LJHSocket s = new LJHSocket(socket);
                     s.OnDataArrivedEvent += socket_OnDataArrivedEvent;
+                    s.OnClosed += new EventHandler(s_OnClosed);
                 }
             }
             catch (ThreadAbortException)
@@ -54,9 +56,20 @@ namespace Ralid.OpenCard.OpenCardService
             }
         }
 
+        private void s_OnClosed(object sender, EventArgs e)
+        {
+            lock (_BuffersLocker)
+            {
+                _Buffers.Remove(sender as LJHSocket);
+            }
+        }
+
         private void socket_OnDataArrivedEvent(object sender, byte[] data)
         {
-            if (!_Buffers.ContainsKey(sender as LJHSocket)) _Buffers[sender as LJHSocket] = new YiTingBuffer();
+            lock (_BuffersLocker)
+            {
+                if (!_Buffers.ContainsKey(sender as LJHSocket)) _Buffers[sender as LJHSocket] = new YiTingBuffer();
+            }
             _Buffers[sender as LJHSocket].Write(data);
             ExtraData(sender as LJHSocket, _Buffers[sender as LJHSocket]);
         }
@@ -118,7 +131,7 @@ namespace Ralid.OpenCard.OpenCardService
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
-                CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray()),
+                CardID = YiTingPacket.GetCardID(data.Take(19).ToArray()),
                 CardType = "闪付卡",
                 DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
@@ -128,7 +141,10 @@ namespace Ralid.OpenCard.OpenCardService
             if (this.OnReadCard != null) this.OnReadCard(this, args);
             List<byte> temp = new List<byte>();
             temp.AddRange(data);
-            temp.AddRange(new byte[27]);
+            byte[] carPlate = UnicodeEncoding.Unicode.GetBytes("粤A24M55");
+            byte[] t = new byte[27];
+            Array.Copy(carPlate, t, carPlate.Length);
+            temp.AddRange(t);
             temp.AddRange(new byte[2]);
             temp.AddRange(YiTingPacket.GetDateBytes(DateTime.Now));
             temp.Add(_OK);
@@ -145,7 +161,7 @@ namespace Ralid.OpenCard.OpenCardService
             if (data == null || data.Length < 26) return;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
-                CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray()),
+                CardID = YiTingPacket.GetCardID(data.Take(19).ToArray()),
                 DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);
@@ -185,7 +201,7 @@ namespace Ralid.OpenCard.OpenCardService
             byte[] data = packet.Data;
             if (data == null || data.Length < 42) return;
             OpenCardEventArgs args = new OpenCardEventArgs();
-            args.CardID = YiTingPacket.ConvertToAsc(data.Take(19).ToArray());
+            args.CardID = YiTingPacket.GetCardID(data.Take(19).ToArray());
             if (data[41] == 0x01)
             {
                 byte[] paid = new byte[6];
