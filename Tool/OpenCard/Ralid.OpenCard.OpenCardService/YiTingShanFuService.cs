@@ -69,8 +69,8 @@ namespace Ralid.OpenCard.OpenCardService
             lock (_BuffersLocker)
             {
                 if (!_Buffers.ContainsKey(sender as LJHSocket)) _Buffers[sender as LJHSocket] = new YiTingBuffer();
+                _Buffers[sender as LJHSocket].Write(data);
             }
-            _Buffers[sender as LJHSocket].Write(data);
             ExtraData(sender as LJHSocket, _Buffers[sender as LJHSocket]);
         }
 
@@ -132,7 +132,7 @@ namespace Ralid.OpenCard.OpenCardService
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = YiTingPacket.GetCardID(data.Take(19).ToArray()),
-                CardType = "闪付卡",
+                CardType = data[19] == 0x01 ? "闪付卡" : "临时IC卡",
                 DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);

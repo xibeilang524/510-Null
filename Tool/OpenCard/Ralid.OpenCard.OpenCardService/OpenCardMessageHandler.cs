@@ -86,7 +86,7 @@ namespace Ralid.OpenCard.OpenCardService
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
 
-            CardPaymentInfo payment = CardPaymentInfoFactory.CreateCardPaymentRecord(card, TariffSetting.Current, card.CarType, DateTime.Now);
+            CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
             e.Payment = payment;
             _WaitingPayingCards[e.CardID] = payment;
 
@@ -100,6 +100,27 @@ namespace Ralid.OpenCard.OpenCardService
                 }
             }
             if (this.OnPaying != null) this.OnPaying(sender, e);
+        }
+
+        private CardPaymentInfo GetPaymentInfo(CardInfo card, OpenCardEventArgs e, DateTime dt)
+        {
+            CardPaymentInfo ret = null;
+            IParkingAdapter pad = null;
+            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
+            if (entrance != null) //入口
+            {
+                pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+            }
+            else
+            {
+                if (ParkingAdapterManager.Instance != null && ParkingAdapterManager.Instance.ParkAdapters != null)
+                    pad = ParkingAdapterManager.Instance.ParkAdapters[0];
+            }
+            if (pad != null)
+            {
+                ret = pad.CreateCardPaymentRecord(card, card.CarType, dt);
+            }
+            return ret;
         }
 
         private void s_OnPaidOk(object sender, OpenCardEventArgs e)

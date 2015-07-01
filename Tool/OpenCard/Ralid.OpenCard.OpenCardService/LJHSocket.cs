@@ -61,6 +61,7 @@ namespace Ralid.OpenCard.OpenCardService
             catch (Exception ex)
             {
                 _ReadDataTread = null;
+                Close();
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
@@ -148,8 +149,8 @@ namespace Ralid.OpenCard.OpenCardService
                 {
                     _Client.Shutdown(SocketShutdown.Both);
                     _Client.Close();
-                    if (this.OnClosed != null) this.OnClosed(this, EventArgs.Empty);
                 }
+                if (this.OnClosed != null) this.OnClosed(this, EventArgs.Empty);
             }
             catch (Exception ex)
             {
