@@ -136,8 +136,7 @@ namespace Ralid.OpenCard.OpenCardService
                 DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);
-            if (pos == null) return;
-            args.EntranceID = pos.EntranceID;
+            if (pos != null) args.EntranceID = pos.EntranceID;
             if (this.OnReadCard != null) this.OnReadCard(this, args);
             List<byte> temp = new List<byte>();
             temp.AddRange(data);
@@ -165,8 +164,7 @@ namespace Ralid.OpenCard.OpenCardService
                 DeviceID = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] }),
             };
             YiTingPOS pos = Setting.GetReader(args.DeviceID);
-            if (pos == null) return;
-            args.EntranceID = pos.EntranceID;
+            if (pos != null) args.EntranceID = pos.EntranceID;
             if (this.OnPaying != null) this.OnPaying(this, args);
 
             if (args.Payment != null)
