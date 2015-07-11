@@ -67,9 +67,9 @@ namespace WindowsFormsApplication1
             StringDE stringDE = new StringDE();
             Config cf = new Config();
             cf.ComputeName = new hardwareInfo().GetHostName();
-            cf.StartTime = new DateTime(2000, 1, 1).ToString("yyyy-MM-dd HH:mm:ss");
-            cf.ExpireTime = new DateTime(2099, 12, 31).ToString("yyyy-MM-dd HH:mm:ss");
-            cf.StdTime = stringDE.EncryptString(new DateTime(2000, 1, 1).ToString("yyyy-MM-dd HH:mm:ss"));
+            cf.StartTime = DateTime.Today.ToString("yyyy-MM-dd HH:mm:ss");
+            cf.ExpireTime = DateTime.Today.AddDays(180).ToString("yyyy-MM-dd HH:mm:ss"); //每次半年授权 // new DateTime(2099, 12, 31).ToString("yyyy-MM-dd HH:mm:ss");
+            cf.StdTime = stringDE.EncryptString(DateTime.Today.ToString("yyyy-MM-dd HH:mm:ss"));
             cf.Lic = stringDE.EncryptString(string.Format("{0}#{1}#{2}#{3}", lv.GetCpuID(), lv.GetHostName(), cf.StartTime, cf.ExpireTime));
             string path = Path.Combine(Application.StartupPath, cf.ComputeName + ".lic");
             try
