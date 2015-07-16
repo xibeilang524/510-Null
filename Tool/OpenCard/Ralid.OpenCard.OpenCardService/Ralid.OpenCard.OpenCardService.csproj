@@ -63,6 +63,10 @@
     <Compile Include="OpenCardMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LJHSocket.cs" />
+    <Compile Include="YCT\YCTBuffer.cs" />
+    <Compile Include="YCT\YCTCommandType.cs" />
+    <Compile Include="YCT\YCTPacket.cs" />
+    <Compile Include="YCT\YCTReader.cs" />
     <Compile Include="YiTingBuffer.cs" />
     <Compile Include="YiTingPacket.cs" />
     <Compile Include="YiTingShanFuService.cs" />

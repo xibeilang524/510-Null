@@ -32,6 +32,17 @@ namespace Ralid.OpenCard.OpenCardService
             }
         }
 
+        /// <summary>
+        /// 清空缓存
+        /// </summary>
+        public void Clear()
+        {
+            lock (_BufferLocker)
+            {
+                _Buffer.Clear();
+            }
+        }
+
         public YiTingPacket Read()
         {
             try
