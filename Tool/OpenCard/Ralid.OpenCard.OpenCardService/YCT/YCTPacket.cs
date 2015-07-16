@@ -32,6 +32,16 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
         /// <summary>
+        /// 获取命令是否执行成功, 为否的话可以查看Status
+        /// </summary>
+        public bool IsCommandExcuteOk
+        {
+            get
+            {
+                return Status == 0x00;
+            }
+        }
+        /// <summary>
         /// 获取命令执行的状态
         /// </summary>
         public byte Status

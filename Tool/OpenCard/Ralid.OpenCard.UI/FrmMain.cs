@@ -14,6 +14,7 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.OpenCard.OpenCardService;
+using Ralid.OpenCard.OpenCardService.YCT;
 
 namespace Ralid.OpenCard.UI
 {
@@ -118,6 +119,11 @@ namespace Ralid.OpenCard.UI
             {
                 AppSettings.CurrentSetting.GetYiTingConfig(yt);
                 handler.Init(yt);
+            }
+            YCTSetting yct = ssb.GetSetting<YCTSetting>();
+            if (yct != null)
+            {
+                handler.Init(yct);
             }
         }
 

@@ -34,19 +34,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private YCTPacket Send(byte cmd, byte[] data)
+        private byte[] CreateRequest(YCTCommandType cmd, byte[] data)
         {
-            _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
-            _buffer.Clear();
-            _Responsed.Reset();
-            _Response = null;
-            _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
-            _Port.SendData(data);
-            if (_Responsed.WaitOne(3000))
-            {
-                if (_Response != null && _Response.Command == cmd) return _Response;
-            }
-            return null;
+            ////包结构 头(1byte) + 包长(2byte) + Command(1byte) + data(nbyte) + checksum32(4byte)
+            List<byte> ret = new List<byte>();
+            ret.Add(0xFC); //头
+            byte[] temp = BEBinaryConverter.ShortToBytes((short)(5 + (data != null ? data.Length : 0))); //命令+数据+crc的长度
+            ret.AddRange(temp);
+            ret.Add((byte)cmd);
+            if (data != null) ret.AddRange(data);
+            ret.AddRange(CRC32Helper.CRC32(ret));
+            return ret.ToArray();
         }
         #endregion
 
@@ -72,7 +70,62 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 公共方法
-        
+        /// <summary>
+        /// 向读卡器请求命令，并取得返回包
+        /// </summary>
+        /// <param name="cmd">请求的命令</param>
+        /// <param name="data">请求中包含的数据</param>
+        /// <returns></returns>
+        public YCTPacket Request(YCTCommandType cmd, byte[] data)
+        {
+            byte[] request = CreateRequest(cmd, data);
+            _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
+            _buffer.Clear();
+            _Responsed.Reset();
+            _Response = null;
+            _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
+            _Port.SendData(request);
+            if (_Responsed.WaitOne(2000))
+            {
+                if (_Response != null && _Response.Command == (byte)cmd) return _Response;
+            }
+            return null;
+        }
+        /// <summary>
+        /// 设置商家编号
+        /// </summary>
+        /// <param name="code"></param>
+        /// <returns></returns>
+        public bool SetServiceCode(string code)
+        {
+            int temp = 0;
+            if (!int.TryParse(code, out temp) || temp < 1000 || temp > 9999) throw new InvalidCastException("商家编号不正确，应该为四位数字");
+            byte[] bcd = new byte[] { BCDConverter.IntToBCD(int.Parse(code.Substring(0, 2))), BCDConverter.IntToBCD(int.Parse(code.Substring(2, 2))) };
+            var response = Request(YCTCommandType.SetServiceCode, bcd);
+            return (response != null && response.IsCommandExcuteOk);
+        }
+        /// <summary>
+        /// 初始化消费模式
+        /// </summary>
+        /// <returns></returns>
+        public bool InitPaidMode()
+        {
+            var response = Request(YCTCommandType.InitPaidPara, new byte[] { 0x80 }); //0x80表示正常消费
+            return (response != null && response.IsCommandExcuteOk);
+        }
+        /// <summary>
+        /// 询卡
+        /// </summary>
+        /// <returns></returns>
+        public YCTWallet Poll()
+        {
+            var response = Request(YCTCommandType.Poll, null);
+            if (response != null && response.IsCommandExcuteOk)
+            {
+
+            }
+            return null;
+        }
         #endregion
     }
 }

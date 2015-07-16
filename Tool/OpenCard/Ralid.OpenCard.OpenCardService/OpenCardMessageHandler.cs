@@ -153,7 +153,7 @@ namespace Ralid.OpenCard.OpenCardService
                     IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                     if (pad != null)
                     {
-                        pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty, 
+                        pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
                             OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
                     }
                 }
@@ -190,55 +190,65 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共方法
-        public void Init(object setting)
+        public void Init(ZSTSetting setting)
         {
-            Type t = setting.GetType();
-            if (setting is ZSTSetting)
+            if (!_Services.ContainsKey(typeof(ZSTSetting)))
             {
-                if (!_Services.ContainsKey(t))
+                ZSTService s = new ZSTService(setting as ZSTSetting);
+                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.Init();
+                _Services[typeof(ZSTSetting)] = s;
+            }
+            else
+            {
+                ZSTService s = _Services[typeof(ZSTSetting)] as ZSTService;
+                s.Setting = setting as ZSTSetting;
+            }
+        }
+
+        public void Init(YiTingShanFuSetting yt)
+        {
+            YiTingShanFuService s = null;
+            if (_Services.ContainsKey(yt.GetType()))
+            {
+                s = _Services[yt.GetType()] as YiTingShanFuService;
+                if (s.Setting != null && s.Setting.IP == yt.IP && s.Setting.Port == yt.Port) //如果通讯参数不变,则不用重新初始化服务
                 {
-                    ZSTService zst = new ZSTService(setting as ZSTSetting);
-                    zst.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
-                    zst.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
-                    zst.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
-                    zst.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
-                    zst.Init();
-                    _Services[t] = zst;
+                    s.Setting = yt;
                 }
                 else
                 {
-                    ZSTService s = _Services[t] as ZSTService;
-                    s.Setting = setting as ZSTSetting;
+                    s.Dispose();
+                    s = null;
                 }
             }
-            else if (setting is YiTingShanFuSetting)
+            if (s == null)
             {
-                YiTingShanFuSetting yt = setting as YiTingShanFuSetting;
-                YiTingShanFuService yts = null;
-                if (_Services.ContainsKey(t))
-                {
-                    yts = _Services[t] as YiTingShanFuService;
-                    if (yts.Setting != null && yts.Setting.IP == yt.IP && yts.Setting.Port == yt.Port) //如果通讯参数不变,则不用重新初始化服务
-                    {
-                        yts.Setting = yt;
-                    }
-                    else
-                    {
-                        yts.Dispose();
-                        yts = null;
-                    }
-                }
-                if (yts == null)
-                {
-                    yts = new YiTingShanFuService(yt);
-                    yts.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
-                    yts.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
-                    yts.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
-                    yts.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
-                    _Services[t] = yts;
-                    yts.Init();
-                }
+                s = new YiTingShanFuService(yt);
+                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                _Services[yt.GetType()] = s;
+                s.Init();
             }
+        }
+
+        public void Init(YCT.YCTSetting yct)
+        {
+            if (!_Services.ContainsKey(yct.GetType()))
+            {
+                IOpenCardService s = new YCT.YCTService();
+                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                _Services[yct.GetType()] = s;
+            }
+            _Services[yct.GetType()].Init();
         }
         #endregion
     }
