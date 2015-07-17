@@ -46,6 +46,8 @@ namespace Ralid.OpenCard.OpenCardService
         public PaymentCode PaymentCode { get; set; }
 
         public PaymentMode PaymentMode { get; set; }
+
+        public string LastError { get; set; }
         #endregion
     }
 }

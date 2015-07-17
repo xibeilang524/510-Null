@@ -6,10 +6,13 @@ using Ralid.GeneralLibrary;
 
 namespace Ralid.OpenCard.OpenCardService.YCT
 {
-    public class YCTReader
+    /// <summary>
+    /// 表示羊城通POS机
+    /// </summary>
+    public class YCTPOS
     {
         #region 构造函数
-        public YCTReader(byte comport, int baud)
+        public YCTPOS(byte comport, int baud)
         {
             _Port = new CommPort(comport, baud);
         }

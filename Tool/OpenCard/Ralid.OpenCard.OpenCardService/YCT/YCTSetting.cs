@@ -45,7 +45,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <summary>
         /// 获取或设置读卡器
         /// </summary>
-        public YCTReader Reader { get; set; }
+        public YCTPOS Reader { get; set; }
         /// <summary>
         /// 获取或设置说明信息
         /// </summary>

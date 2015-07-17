@@ -129,10 +129,11 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnPaidFail(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2}",
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2} 原因:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.EntranceName,
-                                                  e.CardID), Color.Blue);
+                                                  e.CardID,
+                                                  e.LastError), Color.Blue);
         }
 
         private void handler_OnPaidOk(object sender, OpenCardEventArgs e)

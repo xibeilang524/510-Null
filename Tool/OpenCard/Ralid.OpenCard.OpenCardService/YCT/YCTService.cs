@@ -52,7 +52,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         }
                         else
                         {
-                            HandleWallet(w, entrance);
+                            HandleWallet(item,w, entrance);
                         }
                     }
                 }
@@ -62,12 +62,12 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private bool InBlackList(string physicalCardID,string logicCardID)
+        private bool InBlackList(string physicalCardID, string logicCardID)
         {
             return false;
         }
 
-        private void HandleWallet(YCTWallet w, EntranceInfo entrance)
+        private void HandleWallet(YCTItem item, YCTWallet w, EntranceInfo entrance)
         {
             if (entrance != null && !entrance.IsExitDevice) //入口
             {
@@ -103,10 +103,41 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     }
                     else //扣费
                     {
-
+                        if (Paid(item, args.Payment.Accounts))
+                        {
+                            args.Paid = args.Payment.Accounts;
+                            if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                        }
+                        else
+                        {
+                            args.LastError = item.Reader.LastError.ToString();
+                            if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                        }
                     }
                 }
             }
+        }
+
+        private bool Paid(YCTItem item, YCTWallet w, decimal paid)
+        {
+            YCTPaymentRecord record = item.Reader.Prepaid((int)(paid * 100));
+            if (record == null) return false;
+            string tac = item.Reader.CompletePaid();
+            if (string.IsNullOrEmpty(tac))
+            {
+                int err = item.Reader.LastError;
+                if (err == -1) return false;
+                //保存未完成记录
+                record.State = 0; //标记为未完成
+            }
+            if (w.WalletType == 0x02)
+            {
+                record.TAC = tac;
+            }
+            record.State = 1; //标记为完成
+            //这里应该保存记录到数据库中
+
+            return record.State == 1;
         }
         #endregion
 
@@ -122,7 +153,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public void Init()
         {
             if (Setting == null) throw new InvalidOperationException("没有提供羊城通参数");
-            Dictionary<YCTReader, YCTItem> temp = new Dictionary<YCTReader, YCTItem>();
+            Dictionary<YCTPOS, YCTItem> temp = new Dictionary<YCTPOS, YCTItem>();
             List<YCTItem> keys = _Readers.ToList();
             if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
             {
@@ -153,7 +184,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 {
                     if (_Readers == null || !_Readers.Exists(it => it.Comport == item.Comport))
                     {
-                        var reader = new YCTReader((byte)item.Comport, 57600);
+                        var reader = new YCTPOS((byte)item.Comport, 57600);
                         reader.Open();
                         if (reader.IsOpened) //需要正常初始化后才能加到列表中
                         {
