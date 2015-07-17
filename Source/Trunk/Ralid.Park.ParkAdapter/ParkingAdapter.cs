@@ -1241,28 +1241,28 @@ namespace Ralid.Park.ParkAdapter
         //    return null;
         //}
 
-        //public CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType, System.DateTime datetime)
-        //{
-        //    try
-        //    {
-        //        if (_Channel != null)
-        //        {
-        //            return _Channel.CreateCardPaymentRecord(card, carType, datetime);
-        //        }
-        //    }
-        //    catch (CommunicationException)
-        //    {
-        //        if (ParkAdapterConnectFail != null)
-        //        {
-        //            ParkAdapterConnectFail(this, EventArgs.Empty);
-        //        }
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
-        //    }
-        //    return null;
-        //}
+        public CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType, System.DateTime datetime)
+        {
+            try
+            {
+                if (_Channel != null)
+                {
+                    return _Channel.CreateCardPaymentRecord(card, carType, datetime);
+                }
+            }
+            catch (CommunicationException)
+            {
+                if (ParkAdapterConnectFail != null)
+                {
+                    ParkAdapterConnectFail(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return null;
+        }
         #endregion
 
         #region IDisposable 成员

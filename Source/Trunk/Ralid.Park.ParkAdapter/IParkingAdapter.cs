@@ -275,15 +275,15 @@ namespace Ralid.Park.ParkAdapter
         //[OperationContract]
         //CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType);
 
-        ///// <summary>
-        ///// 从服务器生成缴费记录
-        ///// </summary>
-        ///// <param name="card">卡片信息实体类</param>
-        ///// <param name="carType">车辆类型</param>
-        ///// <param name="datetime">缴费时间</param>
-        ///// <returns></returns>
-        //[OperationContract]
-        //CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType,System.DateTime datetime);
+        /// <summary>
+        /// 从服务器生成缴费记录
+        /// </summary>
+        /// <param name="card">卡片信息实体类</param>
+        /// <param name="carType">车辆类型</param>
+        /// <param name="datetime">缴费时间</param>
+        /// <returns></returns>
+        [OperationContract]
+        CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType, System.DateTime datetime);
 
         /// <summary>
         /// 下载通道权限到控制器

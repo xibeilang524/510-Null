@@ -2241,8 +2241,8 @@ namespace Ralid.Park.UI
             }
 
             //用于所有工作站软件都要加密狗的情形
-            ReadSoftDog();
-            this.tmrCheckDog.Enabled = true;
+            //ReadSoftDog();
+            //this.tmrCheckDog.Enabled = true;
 
             ShowLanguage();
             Authenticate(true);
