@@ -141,7 +141,7 @@ namespace Ralid.OpenCard.UI
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.EntranceName,
                                                   e.CardID,
-                                                  e.Paid ), Color.Blue);
+                                                  e.Paid), Color.Blue);
         }
 
         private void handler_OnPaying(object sender, OpenCardEventArgs e)
@@ -260,6 +260,13 @@ namespace Ralid.OpenCard.UI
                     break;
                 }
             }
+        }
+
+        private void mnu_YCT_Click(object sender, EventArgs e)
+        {
+            FrmYCTSetting frm = new FrmYCTSetting();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
         }
 
         private void mnu_ZST_Click(object sender, EventArgs e)

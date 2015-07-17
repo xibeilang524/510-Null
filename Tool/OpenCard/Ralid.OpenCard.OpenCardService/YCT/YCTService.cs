@@ -19,7 +19,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 私有变量
-        private Dictionary<YCTReader, YCTItem> _Readers = new Dictionary<YCTReader, YCTItem>();
+        private Dictionary<YCTItem, YCTReader> _Readers = new Dictionary<YCTItem, YCTReader>();
         #endregion
 
         #region 公共属性
@@ -40,11 +40,34 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             if (Setting == null) throw new InvalidOperationException("没有提供羊城通参数");
             if (string.IsNullOrEmpty(Setting.ServiceCode)) throw new InvalidOperationException("没有提供服务商编号");
             Dictionary<YCTReader, YCTItem> temp = new Dictionary<YCTReader, YCTItem>();
+            List<YCTItem> keys = _Readers.Keys.ToList();
+            if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
+            {
+                foreach (var key in keys)
+                {
+                    var item = Setting.Items != null ? Setting.Items.SingleOrDefault(it => it.Comport == key.Comport) : null;
+                    if (item == null)
+                    {
+                        var reader = _Readers[key];
+                        reader.Close();
+                        _Readers.Remove(key);
+                    }
+                    else
+                    {
+                        key.EntranceID = item.EntranceID;
+                    }
+                }
+            }
             if (Setting.Items != null)
             {
                 foreach (var item in Setting.Items)
                 {
-                    
+                    if (keys == null || !keys.Exists(it => it.Comport == item.Comport))
+                    {
+                        var reader = new YCTReader((byte)item.Comport, 57600);
+                        reader.Open();
+                        _Readers[item] = reader;
+                    }
                 }
             }
         }
@@ -53,7 +76,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             foreach (var item in _Readers)
             {
-                item.Key.Close();
+                item.Value.Close();
             }
             _Readers.Clear();
         }

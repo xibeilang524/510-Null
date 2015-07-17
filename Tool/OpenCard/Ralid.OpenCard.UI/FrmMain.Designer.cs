@@ -44,6 +44,7 @@
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.chkCardEvent = new System.Windows.Forms.CheckBox();
             this.chkOpenEvent = new System.Windows.Forms.CheckBox();
+            this.mnu_YCT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -120,6 +121,7 @@
             // 参数设置ToolStripMenuItem
             // 
             this.参数设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mnu_YCT,
             this.mnu_YiTing,
             this.mnu_ZST});
             this.参数设置ToolStripMenuItem.Name = "参数设置ToolStripMenuItem";
@@ -129,14 +131,14 @@
             // mnu_YiTing
             // 
             this.mnu_YiTing.Name = "mnu_YiTing";
-            this.mnu_YiTing.Size = new System.Drawing.Size(124, 22);
+            this.mnu_YiTing.Size = new System.Drawing.Size(152, 22);
             this.mnu_YiTing.Text = "驿停闪付";
             this.mnu_YiTing.Click += new System.EventHandler(this.mnu_YiTing_Click);
             // 
             // mnu_ZST
             // 
             this.mnu_ZST.Name = "mnu_ZST";
-            this.mnu_ZST.Size = new System.Drawing.Size(124, 22);
+            this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
             this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
             // 
@@ -176,6 +178,13 @@
             this.chkOpenEvent.TabIndex = 8;
             this.chkOpenEvent.Text = "开放卡片事件";
             this.chkOpenEvent.UseVisualStyleBackColor = true;
+            // 
+            // mnu_YCT
+            // 
+            this.mnu_YCT.Name = "mnu_YCT";
+            this.mnu_YCT.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YCT.Text = "羊城通";
+            this.mnu_YCT.Click += new System.EventHandler(this.mnu_YCT_Click);
             // 
             // FrmMain
             // 
@@ -220,6 +229,7 @@
         private Ralid.Park.UserControls.EventReportListBox eventList;
         private System.Windows.Forms.CheckBox chkCardEvent;
         private System.Windows.Forms.CheckBox chkOpenEvent;
+        private System.Windows.Forms.ToolStripMenuItem mnu_YCT;
     }
 }
 

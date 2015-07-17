@@ -99,6 +99,18 @@
     <Compile Include="FrmYiTingDetail.designer.cs">
       <DependentUpon>FrmYiTingDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmYCTDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYCTDetail.designer.cs">
+      <DependentUpon>FrmYCTDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmYiTingSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYiTingSetting.designer.cs">
+      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmZSTDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -111,11 +123,11 @@
     <Compile Include="FrmZSTParameter.designer.cs">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmYiTingSetting.cs">
+    <Compile Include="FrmYCTSetting.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmYiTingSetting.designer.cs">
-      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
+    <Compile Include="FrmYCTSetting.designer.cs">
+      <DependentUpon>FrmYCTSetting.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmZSTSetting.cs">
       <SubType>Form</SubType>
@@ -140,14 +152,20 @@
     <EmbeddedResource Include="FrmYiTingDetail.resx">
       <DependentUpon>FrmYiTingDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmYCTDetail.resx">
+      <DependentUpon>FrmYCTDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmYiTingSetting.resx">
+      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTDetail.resx">
       <DependentUpon>FrmZSTDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTParameter.resx">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmYiTingSetting.resx">
-      <DependentUpon>FrmYiTingSetting.cs</DependentUpon>
+    <EmbeddedResource Include="FrmYCTSetting.resx">
+      <DependentUpon>FrmYCTSetting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTSetting.resx">
       <DependentUpon>FrmZSTSetting.cs</DependentUpon>
