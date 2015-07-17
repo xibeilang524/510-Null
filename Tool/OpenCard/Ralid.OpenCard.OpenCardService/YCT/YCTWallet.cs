@@ -32,25 +32,25 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
-        /// 获取或设置余额
+        /// 获取或设置余额(以分为单位)
         /// </summary>
-        public decimal Balence { get; set; }
+        public int Balance { get; set; }
         /// <summary>
         /// 获取或设置卡计数
         /// </summary>
         public int Count { get; set; }
         /// <summary>
-        /// 获取或设置余额上限
+        /// 获取或设置余额上限(以分为单位)
         /// </summary>
-        public decimal MaxBalance { get; set; }
+        public int MaxBalance { get; set; }
         /// <summary>
-        /// 获取或设置余额下限
+        /// 获取或设置余额下限(以分为单位)
         /// </summary>
-        public decimal MinBalance { get; set; }
+        public int MinBalance { get; set; }
         /// <summary>
-        /// 获取或设置押金 
+        /// 获取或设置押金(以分为单位)
         /// </summary>
-        public decimal Deposit { get; set; }
+        public int Deposit { get; set; }
         #endregion
     }
 }

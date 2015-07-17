@@ -20,6 +20,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private YCTBuffer _buffer = new YCTBuffer();
         private System.Threading.AutoResetEvent _Responsed = new System.Threading.AutoResetEvent(false);
         private YCTPacket _Response = null;
+        private int _LastError = -1;
         #endregion
 
         #region 私有方法
@@ -71,6 +72,16 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         #region 公共方法
         /// <summary>
+        /// 获取最后一次操作的错误代码
+        /// </summary>
+        public int LastError
+        {
+            get
+            {
+                return _LastError;
+            }
+        }
+        /// <summary>
         /// 向读卡器请求命令，并取得返回包
         /// </summary>
         /// <param name="cmd">请求的命令</param>
@@ -87,8 +98,13 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             _Port.SendData(request);
             if (_Responsed.WaitOne(2000))
             {
-                if (_Response != null && _Response.Command == (byte)cmd) return _Response;
+                if (_Response != null && _Response.Command == (byte)cmd)
+                {
+                    _LastError = _Response.Status;
+                    return _Response;
+                }
             }
+            _LastError = -1;
             return null;
         }
         /// <summary>
@@ -124,6 +140,57 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
             }
             return null;
+        }
+        /// <summary>
+        /// 预消费
+        /// </summary>
+        /// <param name="paid">消费金额(分为单位)</param>
+        /// <param name="maxOfflineMonth">离线过期月数</param>
+        /// <returns></returns>
+        public YCTPaymentRecord Prepaid(int paid, int maxOfflineMonth = 12)
+        {
+            DateTime dt = DateTime.Now;
+            List<byte> data = new List<byte>();
+            data.AddRange(BEBinaryConverter.IntToBytes(paid));
+            data.AddRange(BEBinaryConverter.IntToBytes(paid));
+            data.Add(BCDConverter.IntToBCD(dt.Year / 100));
+            data.Add(BCDConverter.IntToBCD(dt.Year % 100));
+            data.Add(BCDConverter.IntToBCD(dt.Month));
+            data.Add(BCDConverter.IntToBCD(dt.Day));
+            data.Add(BCDConverter.IntToBCD(dt.Hour));
+            data.Add(BCDConverter.IntToBCD(dt.Minute));
+            data.Add(BCDConverter.IntToBCD(dt.Second));
+            data.Add((byte)(maxOfflineMonth > 0 ? 0x01 : 0x00));
+            data.Add(BCDConverter.IntToBCD(maxOfflineMonth));
+            var response = Request(YCTCommandType.Prepaid, data.ToArray());
+            return null;
+        }
+        /// <summary>
+        /// 完成消费,返回TAC,如果返回空通过 GetlastError获取错误代码
+        /// </summary>
+        /// <returns></returns>
+        public string CompletePaid()
+        {
+            var response = Request(YCTCommandType.CompletePaid, null);
+            if (response != null && response.IsCommandExcuteOk)
+            {
+                return HexStringConverter.HexToString(response.Data, string.Empty);
+            }
+            return null;
+        }
+
+        public bool RestorePaid()
+        {
+            return false;
+        }
+        /// <summary>
+        /// 捕捉黑名单
+        /// </summary>
+        /// <returns></returns>
+        public bool CatchBlackList()
+        {
+            var response = Request(YCTCommandType.CatchBlack, null);
+            return (response != null && response.IsCommandExcuteOk)
         }
         #endregion
     }

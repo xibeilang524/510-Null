@@ -45,13 +45,26 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     YCTWallet w = item.Reader.Poll();
                     if (w != null)
                     {
-                        HandleWallet(w, entrance);
+                        //此处应该先判断黑名单
+                        if (InBlackList(w.PhysicalCardID, w.LogicCardID))
+                        {
+                            item.Reader.CatchBlackList();
+                        }
+                        else
+                        {
+                            HandleWallet(w, entrance);
+                        }
                     }
                 }
             }
             catch (ThreadAbortException)
             {
             }
+        }
+
+        private bool InBlackList(string physicalCardID,string logicCardID)
+        {
+            return false;
         }
 
         private void HandleWallet(YCTWallet w, EntranceInfo entrance)

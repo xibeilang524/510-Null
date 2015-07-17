@@ -25,11 +25,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <summary>
         /// 消费
         /// </summary>
-        Paid=0xB6,
+        CompletePaid=0xB6,
         /// <summary>
-        /// 未完成交易处理
+        /// 恢复未完成交易处理
         /// </summary>
-        Repay=0xB7,
+        RestorePay=0xB7,
         /// <summary>
         /// 捕捉黑名单
         /// </summary>
