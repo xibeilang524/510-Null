@@ -6,10 +6,11 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-using Ralid.Park.BusinessModel .Model ;
+using Ralid.Park.BusinessModel.Model ;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.BLL;
 using Ralid.GeneralLibrary.CardReader;
 
@@ -32,6 +33,42 @@ namespace Ralid.Park.UI
         private bool readCard = false;//是否读到需操作的卡片，用于写卡模式
         #endregion
 
+        #region 私有事件
+        private void OptionChangedHandler(object sender, EventArgs e)
+        {
+            if (chkWriteCard.Visible)
+            {
+                if (this.chkWriteCard.Enabled)
+                {
+                    if (sender is CheckBox)
+                    {
+                        CheckBox chk = sender as CheckBox;
+                        if (chk.Name == "chkOnlineHandleWhenOfflineMode")
+                        {
+                            this.chkWriteCard.Checked = !chk.Checked;
+                        }
+                    }
+                }
+                if (sender is RadioButton)
+                {
+                    RadioButton rdb = sender as RadioButton;
+                    if (rdb.Name == "rdbCardList")
+                    {
+                        if (!rdb.Checked)
+                        {
+                            this.chkWriteCard.Checked = false;
+                        }
+                        else
+                        {
+                            this.chkWriteCard.Checked = AppSettings.CurrentSetting.EnableWriteCard;//写卡模式时默认选中
+                        }
+                        this.chkWriteCard.Enabled = rdb.Checked;
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region 私有方法
 
         private void InitControls()
@@ -39,8 +76,11 @@ namespace Ralid.Park.UI
             this.ucCard1.Init();
             this.ucCard1.UseToRelease();
             this.ucCard1.txtCardID.TextChanged += txtCardID_TextChanged;
+            this.ucCard1.txtCarPlate.TextChanged += this.txtCarPlate_TextChanged;
+            this.ucCard1.rdbCardList.CheckedChanged += this.rdbCardList_CheckedChanged;
             this.comPaymentMode.Init();
             this.comPaymentMode.SelectedPaymentMode = PaymentMode.Cash;
+            this.ucCard1.OptionChangedEvent += this.OptionChangedHandler;
         }
 
         /// <summary>
@@ -49,7 +89,6 @@ namespace Ralid.Park.UI
         /// <param name="e"></param>
         private void CardReadOffLineHandler(CardReadEventArgs e)
         {
-
             if (_releaseAgain && ReleasingCard != null)
             {
                 //检查是否重新发行的卡片
@@ -81,14 +120,12 @@ namespace Ralid.Park.UI
                     CardDateResolver.Instance.SetCardInfoFromData(ReleasingCard, e[GlobalVariables.ParkingSection], true);
                 }
 
-                this.ucCard1.Card = ReleasingCard;
+                if (ReleasingCard != null)
+                {
+                    this.ucCard1.Card = ReleasingCard;
+                }
 
                 readCard = true;
-            }
-
-            if (ReleasingCard == null)
-            {
-                this.ucCard1.txtCardID.Text = e.CardID;
             }
         }
 
@@ -147,84 +184,165 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            ReleasingCard = this.ucCard1.Card;
-            if (ReleasingCard != null)
+            //这里先停止读卡是为了防止有些读卡器会不停读卡，在卡片操作过程中，读卡器又读到卡片，影响操作
+            CardReaderManager.GetInstance(UserSetting.Current.WegenType).StopReadCard();
+            try
             {
-                if (CheckInput())
+                ReleasingCard = this.ucCard1.Card;
+                if (ReleasingCard != null)
                 {
-                    if (txtRecieveMoney.DecimalValue <= 0)
+                    if (CheckInput())
                     {
-                        if (MessageBox.Show(Resources.Resource1.FrmCardPaying_MoneyLittleQuery, Resources.Resource1.Form_Alert,
-                            MessageBoxButtons.YesNo) == DialogResult.No)
+                        if (txtRecieveMoney.DecimalValue <= 0)
                         {
-                            return;
-                        }
-                    }
-
-                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                    CommandResult result = bll.CardRelease(ReleasingCard, txtRecieveMoney.DecimalValue, comPaymentMode.SelectedPaymentMode, txtMemo.Text.Trim());
-                    if (result.Result == ResultCode.Successful)
-                    {
-                        //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
-                        if (this.chkWriteCard.Checked)
-                        {
-                            CardOperationManager.Instance.WriteCardLoop(ReleasingCard);
+                            if (MessageBox.Show(Resources.Resource1.FrmCardPaying_MoneyLittleQuery, Resources.Resource1.Form_Alert,
+                                MessageBoxButtons.YesNo) == DialogResult.No)
+                            {
+                                CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
+                                return;
+                            }
                         }
 
-                        if (!_isAdding)
+                        CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                        CommandResult result = null;
+                        if (ReleasingCard.ListType == CardListType.Card)
                         {
-                            if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(ReleasingCard));
+                            result = bll.CardRelease(ReleasingCard, txtRecieveMoney.DecimalValue, comPaymentMode.SelectedPaymentMode, txtMemo.Text.Trim());
                         }
                         else
                         {
-                            if (ItemAdded != null) ItemAdded(this, new ItemAddedEventArgs(ReleasingCard));
+                            //发行车牌名单，生成卡号最多重试10次
+                            result = bll.CarPlateRelease(ReleasingCard, txtRecieveMoney.DecimalValue, comPaymentMode.SelectedPaymentMode, txtMemo.Text.Trim(), 10);
                         }
-                        this.ucCard1.Clear();
-                        this.txtRecieveMoney.DecimalValue = 0;
-
-                        if (DataBaseConnectionsManager.Current.StandbyConnected)
+                        if (result.Result == ResultCode.Successful)
                         {
-                            //备用数据连上时，同步到备用数据库
-                            bll.SyncCardToDatabaseWithoutPaymentInfo(ReleasingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                            if (this.chkWriteCard.Checked)
+                            {
+                                CardOperationManager.Instance.WriteCardLoop(ReleasingCard);
+                            }
+
+                            if (!_isAdding)
+                            {
+                                if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(ReleasingCard));
+                            }
+                            else
+                            {
+                                if (ItemAdded != null) ItemAdded(this, new ItemAddedEventArgs(ReleasingCard));
+                            }
+                            this.ucCard1.Clear();
+                            this.txtRecieveMoney.DecimalValue = 0;
+
+                            if (DataBaseConnectionsManager.Current.StandbyConnected)
+                            {
+                                //备用数据连上时，同步到备用数据库
+                                bll.SyncCardToDatabaseWithoutPaymentInfo(ReleasingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            }
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.Message);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
+        }
+
+        private void txtCardID_TextChanged(object sender, EventArgs e)
+        {
+            //卡片名单时才检查
+            if (this.ucCard1.rdbCardList.Checked)
+            {
+                string cardID = this.ucCard1.txtCardID.Text.Trim(' ', '\n');
+                if (!string.IsNullOrEmpty(cardID))
+                {
+                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                    QueryResult<CardInfo> result = bll.GetCardByID(cardID);
+                    if (result.Result == ResultCode.Successful)
+                    {
+                        CardInfo info = result.QueryObject;
+                        if (!info.ReleasAble)
+                        {
+                            MessageBox.Show(string.Format(Resources.Resource1.UcCard_CannotRelease, cardID));
+                            this.ucCard1.txtCardID.Focus();
+                            btnOk.Enabled = false;
+                        }
+                        else
+                        {
+                            ReleasingCard = info;
+                            this.ucCard1.Card = ReleasingCard;
+                            this._isAdding = false;
+                            btnOk.Enabled = true;
                         }
                     }
                     else
                     {
-                        MessageBox.Show(result.Message);
+                        this._isAdding = true;
+                        btnOk.Enabled = true;
                     }
                 }
             }
         }
 
-        private void txtCardID_TextChanged(object sender, EventArgs e)
+        private void txtCarPlate_TextChanged(object sender, EventArgs e)
         {
-            string cardID = this.ucCard1.txtCardID.Text.Trim(' ', '\n');
-            if (!string.IsNullOrEmpty(cardID))
+            //车牌名单时才检查
+            if (this.ucCard1.rdbCarPlateList.Checked)
             {
-                CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                QueryResult<CardInfo> result = bll.GetCardByID(cardID);
-                if (result.Result == ResultCode.Successful)
+                string carPlate = this.ucCard1.txtCarPlate.Text.Trim(' ', '\n');
+                if (!string.IsNullOrEmpty(carPlate))
                 {
-                    CardInfo info = result.QueryObject;
-                    if (!info.ReleasAble)
+                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                    CardSearchCondition search = new CardSearchCondition();
+                    search.ListType = CardListType.CarPlate;
+                    search.ListCarPlate = carPlate;
+                    QueryResultList<CardInfo> result = bll.GetCards(search);
+                    if (result.Result == ResultCode.Successful
+                        && result.QueryObjects != null
+                        && result.QueryObjects.Count > 0)
                     {
-                        MessageBox.Show(string.Format(Resources.Resource1.UcCard_CannotRelease, cardID));
-                        this.ucCard1 .txtCardID.Focus();
-                        btnOk.Enabled = false;
+                        CardInfo info = result.QueryObjects[0];
+                        if (!info.ReleasAble)
+                        {
+                            MessageBox.Show(string.Format(Resources.Resource1.UcCard_CannotRelease, carPlate));
+                            this.ucCard1.txtCarPlate.Focus();
+                            btnOk.Enabled = false;
+                        }
+                        else
+                        {
+                            ReleasingCard = info;
+                            this.ucCard1.Card = ReleasingCard;
+                            this._isAdding = false;
+                            btnOk.Enabled = true;
+                        }
                     }
                     else
                     {
-                        ReleasingCard = info;
-                        this.ucCard1.Card = ReleasingCard;
-                        this._isAdding = false;
+                        this.ucCard1.txtCardID.Text = string.Empty;
+                        this._isAdding = true;
                         btnOk.Enabled = true;
                     }
                 }
-                else
-                {
-                    this._isAdding = true;
-                    btnOk.Enabled = true;
-                }
+            }
+        }
+
+        private void rdbCardList_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.ucCard1.rdbCardList.Checked)
+            {
+                this.ucCard1.txtCardID.Text = string.Empty;
+                this.ucCard1.txtCardID.Enabled = true;
+                txtCardID_TextChanged(sender, e);
+            }
+            else
+            {
+                this.ucCard1.txtCardID.Enabled = false;
+                txtCarPlate_TextChanged(sender, e);
             }
         }
 
@@ -237,13 +355,10 @@ namespace Ralid.Park.UI
         {
             Action action = delegate()
             {
+                this.ucCard1.txtCardID.Text = e.CardID;
                 if (AppSettings.CurrentSetting.EnableWriteCard)
                 {
                     CardReadOffLineHandler(e);
-                }
-                else
-                {
-                    this.ucCard1.txtCardID.Text = e.CardID;
                 }
             };
             if (this.InvokeRequired)

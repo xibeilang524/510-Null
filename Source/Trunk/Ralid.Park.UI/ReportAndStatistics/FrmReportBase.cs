@@ -29,7 +29,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
         #endregion
 
         #region 公共属性
-        public CustomDataGridView GridView
+        public virtual CustomDataGridView GridView
         {
             get
             {
@@ -41,6 +41,21 @@ namespace Ralid.Park.UI.ReportAndStatistics
                     }
                 }
                 return null;
+            }
+        }
+        public virtual List<CustomDataGridView> GridViews
+        {
+            get
+            {
+                List<CustomDataGridView> views = new List<CustomDataGridView>();
+                foreach (Control ctrl in this.Controls)
+                {
+                    if (ctrl is CustomDataGridView)
+                    {
+                        views.Add(ctrl as CustomDataGridView);
+                    }
+                }
+                return views;
             }
         }
         #endregion
@@ -55,15 +70,23 @@ namespace Ralid.Park.UI.ReportAndStatistics
         {
             try
             {
-                CustomDataGridView view = this.GridView;
-                if (view != null)
+                List<CustomDataGridView> views = this.GridViews;
+                if (views != null)
                 {
-                    saveFileDialog1.Filter = Resources.Resource1.Form_ExcelFilter;
-                    if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                    foreach (CustomDataGridView view in views)
                     {
-                        string path = saveFileDialog1.FileName;
-                        view.SaveToFile(path);
-                        MessageBox.Show(Resources.Resource1.FrmReportBase_SaveSuccess);
+                        saveFileDialog1.Title = view.AccessibleDescription;
+                        saveFileDialog1.Filter = Resources.Resource1.Form_ExcelFilter;
+                        if (saveFileDialog1.ShowDialog() == DialogResult.OK)
+                        {
+                            string path = saveFileDialog1.FileName;
+                            view.SaveToFile(path);
+                            MessageBox.Show(Resources.Resource1.FrmReportBase_SaveSuccess);
+                        }
+                        else
+                        {
+                            break;
+                        }
                     }
                 }
             }
@@ -81,9 +104,12 @@ namespace Ralid.Park.UI.ReportAndStatistics
 
         private void FrmReportBase_Load(object sender, EventArgs e)
         {
-            if (GridView != null)
+            if (GridViews != null)
             {
-                GridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                foreach (CustomDataGridView view in GridViews)
+                {
+                    view.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+                }
             }
         }
         #endregion

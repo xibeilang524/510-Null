@@ -12,6 +12,7 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 
 namespace Ralid.Park.UI
 {
@@ -26,6 +27,16 @@ namespace Ralid.Park.UI
         }
 
         #region 重写基类方法和处理事件
+        protected override void InitControls()
+        {
+            this.comRole.Init();
+            if (!this.chkRole.Checked)
+            {
+                this.comRole.Role = null;
+                this.comRole.Enabled = false;
+            }
+        }
+
         protected override FrmDetailBase GetDetailForm()
         {
             return new FrmOperatorDetail();
@@ -33,7 +44,15 @@ namespace Ralid.Park.UI
 
         protected override List<object> GetDataSource()
         {
-            operators = bll.GetAllOperators().QueryObjects.ToList();
+            OperatorSearchCondition search = new OperatorSearchCondition();
+            search.OperatorID = this.txtOperaterID.Text.Trim();
+            search.OperatorName = this.txtOperaterName.Text.Trim();
+            RoleInfo role = this.comRole.Role;
+            if (role != null)
+            {
+                search.RoleID = role.RoleID;
+            }
+            operators = bll.GetOperators(search).QueryObjects;
             List<object> source = new List<object>();
             foreach (object o in operators)
             {
@@ -49,6 +68,8 @@ namespace Ralid.Park.UI
             row.Cells["colOperatorID"].Value = info.OperatorID;
             row.Cells["colOperatorName"].Value = info.OperatorName;
             row.Cells["colRoleID"].Value = info.Role.Name;
+            if (info.Dept != null)
+                row.Cells["colDeptName"].Value = info.Dept.DeptName;
             row.Cells["colOperatorNum"].Value = info.OperatorNum;
         }
 
@@ -77,5 +98,24 @@ namespace Ralid.Park.UI
         }
 
         #endregion
+
+        #region 事件处理
+        private void chkRole_CheckedChanged(object sender, EventArgs e)
+        {
+            this.comRole.Enabled = this.chkRole.Checked;
+            if (!this.comRole.Enabled) this.comRole.Role = null;
+        }
+        private void btnClosePanel_Click(object sender, EventArgs e)
+        {
+            this.panelLeft.Visible = false;
+            this.splitter1.Visible = false;
+        }
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            BindDataToGridView();
+        }
+        #endregion
+
+
     }
 }

@@ -133,6 +133,23 @@ namespace Ralid.Park.BLL
         }
 
         /// <summary>
+        /// 获取通道控制器信息
+        /// </summary>
+        /// <param name="parkID">停车场ID</param>
+        /// <param name="entranceID">控制器ID</param>
+        /// <returns></returns>
+        public EntranceInfo GetEntrance(int parkID, int entranceID)
+        {
+            EntranceInfo entrance = null;
+            ParkInfo park = _Parks.SingleOrDefault(p => p.ParkID == parkID);
+            if (park != null)
+            {
+                entrance = park.Entrances.SingleOrDefault(en => en.EntranceID == entranceID);
+            }
+            return entrance;
+        }
+
+        /// <summary>
         /// 获取所有通道控制器信息
         /// </summary>
         /// <returns></returns>
@@ -144,6 +161,62 @@ namespace Ralid.Park.BLL
                 entrances.AddRange(park.Entrances);
             }
             return entrances; 
+        }
+
+        /// <summary>
+        /// 已通道ID获取通道名称，已逗号分开
+        /// </summary>
+        /// <param name="entranceIDs"></param>
+        /// <returns></returns>
+        public string GetEntrancesName(List<int> entranceIDs)
+        {
+            if (entranceIDs == null || entranceIDs.Count == 0) return string.Empty;
+
+            List<string> entrances = new List<string>();
+            foreach (ParkInfo park in _Parks)
+            {
+                foreach (EntranceInfo entrance in park.Entrances)
+                {
+                    if (entranceIDs.Any(en => en == entrance.EntranceID))
+                    {
+                        entrances.Add(entrance.EntranceName);
+                    }
+                }
+            }
+            return string.Join(",", entrances);
+        }
+
+        /// <summary>
+        /// 查看控制器中是否与有工作站要侦听的控制器在同一个停车场
+        /// </summary>
+        /// <param name="park"></param>
+        /// <returns></returns>
+        public bool IsInSameParkList(List<int> entranceIDs1, List<int> entranceIDs2)
+        {
+            if (entranceIDs1 != null && entranceIDs1.Count > 0
+                &&entranceIDs2 != null && entranceIDs2.Count > 0)
+            {
+                foreach (int id1 in entranceIDs1)
+                {
+                    if (entranceIDs2.Exists(e => e == id1))
+                    {
+                        return true;
+                    }
+                    EntranceInfo entrance1 = GetEntrance(id1);
+                    if (entrance1 != null)
+                    {
+                        foreach (int id2 in entranceIDs2)
+                        {
+                            EntranceInfo entrance2 = GetEntrance(id2);
+                            if (entrance2 != null && entrance1.ParkID == entrance2.ParkID)
+                            {
+                                return true;
+                            }
+                        }
+                    }
+                }
+            }
+            return false;
         }
         #endregion
     }

@@ -28,6 +28,18 @@ namespace Ralid.Park.UI
             }
         }
 
+        /// <summary>
+        /// 获取或设置POS机实收
+        /// </summary>
+        public decimal HandInPOS
+        {
+            get { return this.txtHandInPOS.DecimalValue; }
+            set
+            {
+                this.txtHandInPOS.DecimalValue = value;
+            }
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();

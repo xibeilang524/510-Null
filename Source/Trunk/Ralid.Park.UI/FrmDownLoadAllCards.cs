@@ -11,6 +11,7 @@ using Ralid.Park.BusinessModel .Model ;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.ParkAdapter;
 
 namespace Ralid.Park.UI
@@ -99,6 +100,7 @@ namespace Ralid.Park.UI
         private bool SyncCards(List<CardInfo> cards)
         {
             bool result = true;
+            int entranceCount = 0;
             foreach (EntranceInfo entrance in _Entrances)
             {
                 IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
@@ -122,6 +124,7 @@ namespace Ralid.Park.UI
                             int currentcount = 0;
                             int savecount = 16;
                             int failcount = 0;
+                            List<CardInfo> FailCards = new List<CardInfo>();
 
                             do
                             {
@@ -136,18 +139,33 @@ namespace Ralid.Park.UI
                                 {
                                     success = false;
                                     failcount += infos.Count;
+                                    FailCards.AddRange(infos);
                                 }
 
                                 string msg = _DownLoadCard ? Resources.Resource1.FrmDownloadAllCards_CardProcessing : Resources.Resource1.FrmDownLoadAllCards_Delete;
                                 msg = string.Format(msg, string.Format(" {0}/{1} {2}:{3}", currentcount, cards.Count, Resources.Resource1.FrmDownLoadAllCards_Fail, failcount));
                                 NotifyMessage(string.Format("{0} {1} {2}", Resources.Resource1.FrmDownLoadAllCards_Entrance, entrance.EntranceName, msg));
 
-                                NotifyProgress(currentcount);
+                                NotifyProgress(entranceCount * cards.Count + currentcount);
                                 TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - _Begin.Ticks);
-                                NotifyTime((int)ts.TotalSeconds);
+                                NotifyTime(ts);
 
+                                //Thread.Sleep(50);
                             }
                             while (currentcount < cards.Count);
+
+                            //if (FailCards.Count > 0)
+                            //{
+                            //    WaitingCommandBLL wcBll = new WaitingCommandBLL(AppSettings.CurrentSetting.CurrentMasterConnect);
+                            //    foreach (CardInfo fcard in FailCards)
+                            //    {
+                            //        WaitingCommandInfo wcInfo = new WaitingCommandInfo();
+                            //        wcInfo.EntranceID = entrance.EntranceID;
+                            //        wcInfo.Command = _DownLoadCard ? BusinessModel.Enum.CommandType.AddCard : BusinessModel.Enum.CommandType.DeleteCard;
+                            //        wcInfo.CardID = fcard.CardID;
+                            //        wcBll.DeleteAndInsert(wcInfo);
+                            //    }
+                            //}
                         }
                         result = success ? result : false;
                         NotifyHardwareTreeEntrance(entrance.EntranceID, success);
@@ -159,6 +177,7 @@ namespace Ralid.Park.UI
 
                     pad.WaitingCommandServiceEnable(true);
                 }
+                entranceCount++;
             }
             return result;
         }
@@ -179,19 +198,19 @@ namespace Ralid.Park.UI
             }
         }
 
-        private void NotifyTime(int seconds)
+        private void NotifyTime(TimeSpan ts)
         {
-            Action<int> action = delegate(int s)
+            Action<TimeSpan> action = delegate(TimeSpan s)
             {
-                this.label3.Text = string.Format(Resources.Resource1.FrmDownloadAllCards_Seconds, seconds);
+                this.label3.Text = string.Format(Resources.Resource1.FrmDownloadAllCards_Seconds, (int)s.TotalSeconds);
             };
             if (this.InvokeRequired)
             {
-                this.Invoke(action, seconds);
+                this.Invoke(action, ts);
             }
             else
             {
-                action(seconds);
+                action(ts);
             }
         }
 
@@ -278,6 +297,7 @@ namespace Ralid.Park.UI
             this.hardwareTree1.ShowEntrance = true;
             _DownLoadAll = Cards == null;
             this.hardwareTree1.Init();
+            this.hardwareTree1.ExpandRootOnly();
             Init();
         }
 
@@ -286,12 +306,27 @@ namespace Ralid.Park.UI
             if (_DownLoadAll)
             {
                 CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                Cards = bll.GetAllCards().QueryObjects;
+                //Cards = bll.GetAllCards().QueryObjects;
+
+                //获取所有脱机时脱机处理的卡片，在线处理的卡片不下发，过滤掉在线处理的卡片
+                CardSearchCondition search = new CardSearchCondition();
+                //search.Status = CardStatus.Enabled | CardStatus.Disabled | CardStatus.Loss | CardStatus.Recycled;
+                search.OnlineHandleWhenOfflineMode = false;
+                Cards = bll.GetCards(search).QueryObjects;
             }
+            //if (Cards != null && Cards.Count > 0 && DownLoadCard)
+            //{
+            //    //下发卡片时，在线处理的卡片不下发，过滤掉在线处理的卡片
+            //    Cards = Cards.Where(c => !c.OnlineHandleWhenOfflineMode).ToList();
+
+            //    //IEnumerable<CardInfo> cardsIEnum = Cards.Where(c => !c.OnlineHandleWhenOfflineMode);
+            //    ////临时性的车牌名单不下发
+            //    //cardsIEnum = cardsIEnum.Where(c => c.ListType == CardListType.Card || !c.CardType.IsTempCard);
+
+            //    //Cards = cardsIEnum.ToList();
+            //}
             if (Cards != null && Cards.Count > 0)
             {
-                //在线处理的卡片不下发，过滤掉在线处理的卡片
-                Cards = Cards.Where(c => !c.OnlineHandleWhenOfflineMode).ToList();
                 btnOk.Enabled = false;
                 btnCancel.Enabled = true;
                 this.btnCancel.Text = Resources.Resource1.Form_Stop;
@@ -304,6 +339,18 @@ namespace Ralid.Park.UI
                 SyncCards_Thread = new Thread(SyncAllCards);
                 SyncCards_Thread.Start();
             }
+            else
+            {
+                if (DownLoadCard)
+                {
+                    this.label2.Text = Resources.Resource1.FrmDownLoadAllCards_DownloadCardsNote;
+                    this.label3.Text = Resources.Resource1.FrmDownLoadAllCards_NotDownloadCards;
+                }
+                else
+                {
+                    this.label3.Text = Resources.Resource1.FrmDownLoadAllCards_NotDeleteCards;
+                }
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -313,7 +360,8 @@ namespace Ralid.Park.UI
                 this.Cursor = Cursors.WaitCursor;
                 NotifyMessage(Resources.Resource1.FrmDownLoadBase_StopDownload);
                 this.btnCancel.Enabled = false;
-                CancelWaitingEvent.WaitOne(15000);
+                //由于清空卡片命令的超时时间是80秒，所以这里就需要等待80秒了
+                CancelWaitingEvent.WaitOne(80000);
 
                 this.Cursor = Cursors.Arrow;
                 this.btnCancel.Enabled = true;

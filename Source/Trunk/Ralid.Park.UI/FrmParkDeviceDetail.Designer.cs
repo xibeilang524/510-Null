@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmParkDeviceDetail));
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbCarPlateAndCardMode = new System.Windows.Forms.RadioButton();
+            this.rdbCarPlateMode = new System.Windows.Forms.RadioButton();
+            this.rdbCardMode = new System.Windows.Forms.RadioButton();
+            this.label31 = new System.Windows.Forms.Label();
+            this.chkWeigand34 = new System.Windows.Forms.CheckBox();
+            this.chkOnlineHandleWhenNotOnList = new System.Windows.Forms.CheckBox();
             this.chkValid = new System.Windows.Forms.CheckBox();
             this.chkRoadGateModel = new System.Windows.Forms.CheckBox();
             this.chkNoParkingCount = new System.Windows.Forms.CheckBox();
@@ -97,6 +104,7 @@
             this.txtCarPlateNotifyControllerSecond2 = new Ralid.GeneralLibrary.WinformControl.UCIPTextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox4.SuspendLayout();
             this.groupBox5.SuspendLayout();
@@ -105,6 +113,11 @@
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Controls.Add(this.groupBox1);
+            this.groupBox3.Controls.Add(this.label31);
+            this.groupBox3.Controls.Add(this.chkWeigand34);
+            this.groupBox3.Controls.Add(this.chkOnlineHandleWhenNotOnList);
             this.groupBox3.Controls.Add(this.chkValid);
             this.groupBox3.Controls.Add(this.chkRoadGateModel);
             this.groupBox3.Controls.Add(this.chkNoParkingCount);
@@ -123,9 +136,58 @@
             this.groupBox3.Controls.Add(this.label34);
             this.groupBox3.Controls.Add(this.label33);
             this.groupBox3.Controls.Add(this.groupBox5);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
+            // 
+            // groupBox1
+            // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.rdbCarPlateAndCardMode);
+            this.groupBox1.Controls.Add(this.rdbCarPlateMode);
+            this.groupBox1.Controls.Add(this.rdbCardMode);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // rdbCarPlateAndCardMode
+            // 
+            resources.ApplyResources(this.rdbCarPlateAndCardMode, "rdbCarPlateAndCardMode");
+            this.rdbCarPlateAndCardMode.Name = "rdbCarPlateAndCardMode";
+            this.rdbCarPlateAndCardMode.UseVisualStyleBackColor = true;
+            // 
+            // rdbCarPlateMode
+            // 
+            resources.ApplyResources(this.rdbCarPlateMode, "rdbCarPlateMode");
+            this.rdbCarPlateMode.Name = "rdbCarPlateMode";
+            this.rdbCarPlateMode.UseVisualStyleBackColor = true;
+            // 
+            // rdbCardMode
+            // 
+            resources.ApplyResources(this.rdbCardMode, "rdbCardMode");
+            this.rdbCardMode.Checked = true;
+            this.rdbCardMode.Name = "rdbCardMode";
+            this.rdbCardMode.TabStop = true;
+            this.rdbCardMode.UseVisualStyleBackColor = true;
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
+            // 
+            // chkWeigand34
+            // 
+            resources.ApplyResources(this.chkWeigand34, "chkWeigand34");
+            this.chkWeigand34.Checked = true;
+            this.chkWeigand34.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWeigand34.Name = "chkWeigand34";
+            this.chkWeigand34.UseVisualStyleBackColor = true;
+            // 
+            // chkOnlineHandleWhenNotOnList
+            // 
+            resources.ApplyResources(this.chkOnlineHandleWhenNotOnList, "chkOnlineHandleWhenNotOnList");
+            this.chkOnlineHandleWhenNotOnList.Checked = true;
+            this.chkOnlineHandleWhenNotOnList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOnlineHandleWhenNotOnList.Name = "chkOnlineHandleWhenNotOnList";
+            this.chkOnlineHandleWhenNotOnList.UseVisualStyleBackColor = true;
             // 
             // chkValid
             // 
@@ -208,9 +270,9 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.rdOnline);
             this.groupBox2.Controls.Add(this.rdOffLine);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -230,9 +292,9 @@
             // 
             // groupBox4
             // 
+            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Controls.Add(this.rdHost);
             this.groupBox4.Controls.Add(this.rdNotHost);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
             // 
@@ -262,9 +324,9 @@
             // 
             // groupBox5
             // 
+            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Controls.Add(this.rdExit);
             this.groupBox5.Controls.Add(this.rdEnter);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
             // 
@@ -449,11 +511,11 @@
             // 
             // txtCarPlateNotifyControllerSecond1
             // 
+            resources.ApplyResources(this.txtCarPlateNotifyControllerSecond1, "txtCarPlateNotifyControllerSecond1");
             this.txtCarPlateNotifyControllerSecond1.Controls.Add(this.ip2);
             this.txtCarPlateNotifyControllerSecond1.Controls.Add(this.ip4);
             this.txtCarPlateNotifyControllerSecond1.Controls.Add(this.ip3);
             this.txtCarPlateNotifyControllerSecond1.Controls.Add(this.ip1);
-            resources.ApplyResources(this.txtCarPlateNotifyControllerSecond1, "txtCarPlateNotifyControllerSecond1");
             this.txtCarPlateNotifyControllerSecond1.Name = "txtCarPlateNotifyControllerSecond1";
             // 
             // ip2
@@ -548,6 +610,8 @@
             this.Load += new System.EventHandler(this.FrmEntranceDetail_Load);
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox4.ResumeLayout(false);
@@ -629,6 +693,13 @@
         private System.Windows.Forms.Label label12;
         private GeneralLibrary.WinformControl.UCIPTextBox txtCarPlateNotifyControllerSecond2;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.CheckBox chkOnlineHandleWhenNotOnList;
+        private System.Windows.Forms.CheckBox chkWeigand34;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.RadioButton rdbCarPlateAndCardMode;
+        private System.Windows.Forms.RadioButton rdbCarPlateMode;
+        private System.Windows.Forms.RadioButton rdbCardMode;
+        private System.Windows.Forms.Label label31;
 
     }
 }

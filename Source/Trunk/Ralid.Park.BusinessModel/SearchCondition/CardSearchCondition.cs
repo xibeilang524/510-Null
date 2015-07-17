@@ -33,6 +33,10 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// </summary>
         public string OwnerName { get; set; }
         /// <summary>
+        /// 部门
+        /// </summary>
+        public string Department { get; set; }
+        /// <summary>
         /// 车牌号
         /// </summary>
         public string CarPlate { get; set; }
@@ -56,5 +60,41 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 获取或设置查询条件中的是否已上传到主数据库标识
         /// </summary>
         public bool? UpdateFlag { get; set; }
+        /// <summary>
+        /// 获取或设置车卡是否在场
+        /// </summary>
+        public bool? IsIn { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的车牌号码或入场车牌号
+        /// </summary>
+        public string CarPlateOrLast { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的名单类型
+        /// </summary>
+        public CardListType? ListType { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的名单车牌，必须完全一致
+        /// </summary>
+        public string ListCarPlate { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的分页大小
+        /// </summary>
+        public int PageSize { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的分页页码
+        /// </summary>
+        public int PageIndex { get; set; }
+        /// <summary>
+        /// 符合条件的记录总数
+        /// </summary>
+        public int TotalCount { get; set; }
+        /// <summary>
+        /// 所有卡片记录总数
+        /// </summary>
+        public int TotalCountEx { get; set; }
+        /// <summary>
+        /// 脱机时在线处理的卡片
+        /// </summary>
+        public bool? OnlineHandleWhenOfflineMode { get; set; }
     }
 }

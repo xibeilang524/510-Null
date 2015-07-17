@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.GeneralLibrary.CardReader;
 
 namespace Ralid.Park.BusinessModel.Model
 {
@@ -39,6 +40,118 @@ namespace Ralid.Park.BusinessModel.Model
         public static readonly byte CurrentCardVersion = 0x01;
 
         /// <summary>
+        /// 系统使用的CPU卡应用目录
+        /// </summary>
+        public static readonly ApplicationType DefaultAppType = ApplicationType.ParkingApp;
+
+        /// <summary>
+        /// 系统使用过的CPU卡应用文件短文件标识
+        /// </summary>
+        public static readonly byte ParkingFile = 0x16;
+
+        /// <summary>
+        /// 获取停车场使用的CPU卡应用目录，读卡模式为IC卡时为0
+        /// </summary>
+        public static ApplicationType AppType
+        {
+            get
+            {
+                if (KeySetting.Current != null && KeySetting.Current.ReaderReadMode != ReaderReadMode.MifareIC)
+                {
+                    return DefaultAppType;
+                }
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取停车场使用的CPU卡加密算法
+        /// </summary>
+        public static AlgorithmType AlgorithmType
+        {
+            get
+            {
+                if (KeySetting.Current != null)
+                {
+                    return KeySetting.Current.AlgorithmType;
+                }
+                return AlgorithmType.DES3;
+            }
+        }
+
+        /// <summary>
+        /// 获取停车场是否使用MifareIC卡
+        /// </summary>
+        public static bool UseMifareIC
+        {
+            get
+            {
+                return AppType == 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取停车场使用的SAM卡卡座号，为0时表示使用固定密钥
+        /// </summary>
+        public static byte SamNO
+        {
+            get
+            {
+                if (KeySetting.Current != null && KeySetting.Current.ReaderReadMode == ReaderReadMode.SAM)
+                {
+                    return AppSettings.CurrentSetting.ParkingSamNO;
+                }
+                return 0;
+            }
+        }
+
+        /// <summary>
+        /// 获取停车场CPU卡密钥值
+        /// </summary>
+        public static byte[] ParkingCPUKey
+        {
+            get
+            {
+                if (KeySetting.Current != null)
+                {
+                    return KeySetting.Current.EncryptParkingCPUKey;
+                }
+                return null ;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置发卡机验证CPU卡使用的SAM卡号或固定密钥，长度为1时使为SAM卡号，长度为16时为密钥值
+        /// </summary>
+        public static byte[] CPUKey
+        {
+            get
+            {
+                if (KeySetting.Current != null)
+                {
+                    if (KeySetting.Current.ReaderReadMode == ReaderReadMode.FixedKey)
+                    {
+                        //使用固定密钥
+                        if (KeySetting.Current.ParkingCPUKeyIsValid)
+                        {
+                            return KeySetting.Current.EncryptParkingCPUKey;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+                    }
+                    else
+                    {
+                        //使用SAM卡号验证
+                        return new byte[] { AppSettings.CurrentSetting.ParkingSamNO };
+                    }
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
         /// 获取停车场扇区密钥
         /// </summary>
         public static byte[] ParkingKey
@@ -50,13 +163,24 @@ namespace Ralid.Park.BusinessModel.Model
         }
 
         /// <summary>
-        /// 获取停车场读写的扇区
+        /// 获取停车场读写的扇区或CPU文件号
         /// </summary>
         public static byte ParkingSection
         {
             get
             {
-                return KeySetting.Current != null ? KeySetting.Current.ParkingSection : (byte)2;//默认扇区2
+                if (KeySetting.Current != null)
+                {
+                    if (KeySetting.Current.ReaderReadMode == ReaderReadMode.MifareIC)
+                    {
+                        return KeySetting.Current.ParkingSection;
+                    }
+                    else
+                    {
+                        return ParkingFile;
+                    }
+                }
+                return (byte)2;//默认使用IC卡扇区2
             }
         }
 
@@ -110,6 +234,28 @@ namespace Ralid.Park.BusinessModel.Model
         
         #endregion
 
-        
+        #region 公共方法
+        /// <summary>
+        /// 设置读卡器读卡设置
+        /// </summary>
+        public static void SetCardReaderKeysetting()
+        {
+            //设置读卡模式及读卡应用目录
+            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AppType = GlobalVariables.AppType;
+            //设置CPU卡验证算法
+            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AlgorithmType = GlobalVariables.AlgorithmType;
+            //使用IC卡
+            if (GlobalVariables.UseMifareIC)
+            {
+                //添加读卡器读取停车场扇区和密钥
+                CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+            }
+            else
+            {
+                //设置CPU卡使用的SAM卡号或密钥
+                CardReaderManager.GetInstance(UserSetting.Current.WegenType).CPUKey = GlobalVariables.CPUKey;
+            }
+        }
+        #endregion
     }
 }

@@ -123,14 +123,17 @@
   <data name="btnRepay.Text" xml:space="preserve">
     <value>Repay</value>
   </data>
+  <data name="btnCoupon.Text" xml:space="preserve">
+    <value>Coupon[F8]</value>
+  </data>
+  <data name="btnPos.Text" xml:space="preserve">
+    <value>POS[F11]</value>
+  </data>
   <data name="btnCash.Text" xml:space="preserve">
     <value>Cash[F9]</value>
   </data>
   <data name="btnYCT.Text" xml:space="preserve">
     <value>YCT[F10]</value>
-  </data>
-  <data name="btnPos.Text" xml:space="preserve">
-    <value>POS[F11]</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Card</value>
@@ -159,9 +162,6 @@
   <data name="label13.Text" xml:space="preserve">
     <value>HavePaid</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>HaveDiscount</value>
-  </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Accounts</value>
   </data>
@@ -171,18 +171,30 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Paid</value>
   </data>
-  <data name="label17.Text" xml:space="preserve">
-    <value>Memo</value>
-  </data>
   <data name="label19.Text" xml:space="preserve">
     <value>LastStation</value>
   </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Memo</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Parking</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>DiscountHour</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>DiscountMemo</value>
+  </data>
+  <data name="btnCarPlateList.Text" xml:space="preserve">
+    <value>CarPlateList[F8]</value>
+  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>113, 12</value>
+    <value>41, 12</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
-    <value>CardPayment Detail</value>
+    <value>Detail</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>Card</value>

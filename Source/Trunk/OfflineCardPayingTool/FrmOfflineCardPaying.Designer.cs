@@ -49,6 +49,7 @@
             this.lblStation = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStartFrom = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblEventServiceStatus = new System.Windows.Forms.ToolStripStatusLabel();
+            this.mnu_LocalSettings = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStrip1.SuspendLayout();
             this.mainMenu.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -122,6 +123,7 @@
             // 
             this.mnu_SysManager.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_SystemOption,
+            this.mnu_LocalSettings,
             this.mnu_Exit});
             this.mnu_SysManager.Name = "mnu_SysManager";
             this.mnu_SysManager.Size = new System.Drawing.Size(44, 21);
@@ -130,14 +132,14 @@
             // mnu_SystemOption
             // 
             this.mnu_SystemOption.Name = "mnu_SystemOption";
-            this.mnu_SystemOption.Size = new System.Drawing.Size(100, 22);
-            this.mnu_SystemOption.Text = "设置";
+            this.mnu_SystemOption.Size = new System.Drawing.Size(152, 22);
+            this.mnu_SystemOption.Text = "参数设置";
             this.mnu_SystemOption.Click += new System.EventHandler(this.mnu_SystemOption_Click);
             // 
             // mnu_Exit
             // 
             this.mnu_Exit.Name = "mnu_Exit";
-            this.mnu_Exit.Size = new System.Drawing.Size(100, 22);
+            this.mnu_Exit.Size = new System.Drawing.Size(152, 22);
             this.mnu_Exit.Text = "退出";
             this.mnu_Exit.Click += new System.EventHandler(this.mnu_Exit_Click);
             // 
@@ -236,6 +238,13 @@
             this.lblEventServiceStatus.Spring = true;
             this.lblEventServiceStatus.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
+            // mnu_LocalSettings
+            // 
+            this.mnu_LocalSettings.Name = "mnu_LocalSettings";
+            this.mnu_LocalSettings.Size = new System.Drawing.Size(152, 22);
+            this.mnu_LocalSettings.Text = "本地设置";
+            this.mnu_LocalSettings.Click += new System.EventHandler(this.mnu_LocalSettings_Click);
+            // 
             // FrmOfflineCardPaying
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -286,6 +295,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblStation;
         private System.Windows.Forms.ToolStripStatusLabel lblStartFrom;
         private System.Windows.Forms.ToolStripStatusLabel lblEventServiceStatus;
+        private System.Windows.Forms.ToolStripMenuItem mnu_LocalSettings;
     }
 }
 

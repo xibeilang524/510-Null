@@ -50,7 +50,6 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.dtBegin);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.comPaymentMode);
@@ -61,6 +60,7 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -78,8 +78,8 @@
             // 
             // comPaymentMode
             // 
-            resources.ApplyResources(this.comPaymentMode, "comPaymentMode");
             this.comPaymentMode.FormattingEnabled = true;
+            resources.ApplyResources(this.comPaymentMode, "comPaymentMode");
             this.comPaymentMode.Name = "comPaymentMode";
             // 
             // label4
@@ -91,16 +91,17 @@
             // 
             resources.ApplyResources(this.txtRecieveMoney, "txtRecieveMoney");
             this.txtRecieveMoney.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtRecieveMoney.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtRecieveMoney.Name = "txtRecieveMoney";
+            this.txtRecieveMoney.NumberWithCommas = true;
             this.txtRecieveMoney.PointCount = 2;
             // 
             // dtEnd

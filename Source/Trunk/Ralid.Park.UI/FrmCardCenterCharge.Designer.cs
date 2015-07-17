@@ -32,10 +32,13 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCardCenterCharge));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.paymentPanel = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnRepay = new System.Windows.Forms.Button();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnCoupon = new System.Windows.Forms.Button();
+            this.btnPos = new System.Windows.Forms.Button();
             this.btnCash = new System.Windows.Forms.Button();
             this.btnYCT = new System.Windows.Forms.Button();
             this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
@@ -68,7 +71,14 @@
             this.lblLastWorkstation = new System.Windows.Forms.Label();
             this.txtPaid = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label17 = new System.Windows.Forms.Label();
+            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblCurrDiscountHour = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblDiscountMemo = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.btnCarPlateList = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -91,6 +101,7 @@
             this.picIn = new Ralid.Park.UserControls.UCPictureGrid();
             this.spliterLeft = new System.Windows.Forms.Splitter();
             this.paymentPanel.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -104,13 +115,19 @@
             // paymentPanel
             // 
             this.paymentPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.paymentPanel.Controls.Add(this.panel7);
-            this.paymentPanel.Controls.Add(this.panel6);
-            this.paymentPanel.Controls.Add(this.carTypePanel1);
+            this.paymentPanel.Controls.Add(this.panel1);
             this.paymentPanel.Controls.Add(this.tableLayoutPanel1);
             this.paymentPanel.Controls.Add(this.panel5);
             resources.ApplyResources(this.paymentPanel, "paymentPanel");
             this.paymentPanel.Name = "paymentPanel";
+            // 
+            // panel1
+            // 
+            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.panel7);
+            this.panel1.Controls.Add(this.panel6);
+            this.panel1.Controls.Add(this.carTypePanel1);
+            this.panel1.Name = "panel1";
             // 
             // panel7
             // 
@@ -140,11 +157,29 @@
             // 
             // panel6
             // 
+            this.panel6.Controls.Add(this.btnCoupon);
+            this.panel6.Controls.Add(this.btnPos);
             this.panel6.Controls.Add(this.btnCash);
             this.panel6.Controls.Add(this.btnYCT);
             resources.ApplyResources(this.panel6, "panel6");
             this.panel6.Name = "panel6";
             this.panel6.Resize += new System.EventHandler(this.panel6_Resize);
+            // 
+            // btnCoupon
+            // 
+            this.btnCoupon.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.btnCoupon, "btnCoupon");
+            this.btnCoupon.Name = "btnCoupon";
+            this.btnCoupon.UseVisualStyleBackColor = false;
+            this.btnCoupon.Click += new System.EventHandler(this.btnCoupon_Click);
+            // 
+            // btnPos
+            // 
+            this.btnPos.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.btnPos, "btnPos");
+            this.btnPos.Name = "btnPos";
+            this.btnPos.UseVisualStyleBackColor = false;
+            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
             // 
             // btnCash
             // 
@@ -152,6 +187,7 @@
             resources.ApplyResources(this.btnCash, "btnCash");
             this.btnCash.Name = "btnCash";
             this.btnCash.UseVisualStyleBackColor = false;
+            this.btnCash.EnabledChanged += new System.EventHandler(this.btnCash_EnabledChanged);
             this.btnCash.Click += new System.EventHandler(this.btnCash_Click);
             // 
             // btnYCT
@@ -196,11 +232,17 @@
             this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 11);
             this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 16);
             this.tableLayoutPanel1.Controls.Add(this.label19, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 16);
+            this.tableLayoutPanel1.Controls.Add(this.comPark, 1, 17);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 17);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lblCurrDiscountHour, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label18, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // label9
@@ -349,8 +391,8 @@
             resources.ApplyResources(this.txtPaid, "txtPaid");
             this.txtPaid.ForeColor = System.Drawing.Color.Blue;
             this.txtPaid.MaxValue = new decimal(new int[] {
-            16777215,
-            0,
+            1410065407,
+            2,
             0,
             131072});
             this.txtPaid.MinValue = new decimal(new int[] {
@@ -359,6 +401,7 @@
             0,
             0});
             this.txtPaid.Name = "txtPaid";
+            this.txtPaid.NumberWithCommas = true;
             this.txtPaid.PointCount = 2;
             this.txtPaid.TextChanged += new System.EventHandler(this.txtPaid_TextChanged);
             this.txtPaid.Enter += new System.EventHandler(this.txt_Enter);
@@ -369,12 +412,52 @@
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
+            // comPark
+            // 
+            resources.ApplyResources(this.comPark, "comPark");
+            this.comPark.FormattingEnabled = true;
+            this.comPark.Name = "comPark";
+            this.comPark.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // lblCurrDiscountHour
+            // 
+            resources.ApplyResources(this.lblCurrDiscountHour, "lblCurrDiscountHour");
+            this.lblCurrDiscountHour.Name = "lblCurrDiscountHour";
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // lblDiscountMemo
+            // 
+            resources.ApplyResources(this.lblDiscountMemo, "lblDiscountMemo");
+            this.lblDiscountMemo.Name = "lblDiscountMemo";
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.panel5.Controls.Add(this.btnCarPlateList);
             this.panel5.Controls.Add(this.label15);
             resources.ApplyResources(this.panel5, "panel5");
             this.panel5.Name = "panel5";
+            // 
+            // btnCarPlateList
+            // 
+            resources.ApplyResources(this.btnCarPlateList, "btnCarPlateList");
+            this.btnCarPlateList.Name = "btnCarPlateList";
+            this.btnCarPlateList.UseVisualStyleBackColor = true;
+            this.btnCarPlateList.Click += new System.EventHandler(this.btnCarPlateList_Click);
             // 
             // label15
             // 
@@ -563,6 +646,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCardCenterCharge_KeyDown);
             this.paymentPanel.ResumeLayout(false);
             this.paymentPanel.PerformLayout();
+            this.panel1.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -638,5 +722,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colLastCarPlate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCarPlate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperatorID;
+        private System.Windows.Forms.Panel panel1;
+        private UserControls.ParkCombobox comPark;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblCurrDiscountHour;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblDiscountMemo;
+        private System.Windows.Forms.Button btnCarPlateList;
+        private System.Windows.Forms.Button btnPos;
+        private System.Windows.Forms.Button btnCoupon;
     }
 }

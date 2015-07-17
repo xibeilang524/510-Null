@@ -1,0 +1,11 @@
+如旧版本 Type A 视频服务器出现打开视频慢的问题，可替换回旧版本SDK，替换步骤如下:
+
+1、关闭停车场系统
+
+2、将Old目录下的nvUnifiedControl.ocx和nvUnifiedControl Register OCX.bat拷贝到停车场安装目录下，替换原来的nvUnifiedControl.ocx
+
+3、双击停车场安装目录下的nvUnifiedControl Register OCX.bat注册控件
+
+4、替换完成，重启停车场系统
+
+5、如需替换回新版本SDK，可按步骤1~4用New目录下的文件进行替换

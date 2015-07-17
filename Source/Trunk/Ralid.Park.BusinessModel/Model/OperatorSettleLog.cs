@@ -19,6 +19,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置操作员ID
         /// </summary>
         public string OperatorID { get; set; }
+        public Guid? DeptID { get; set; }
         /// <summary>
         /// 获取或设置上班时间
         /// </summary>
@@ -36,9 +37,13 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         public decimal CashOperatorCard { get; set; }
         /// <summary>
-        ///获取或设置操作员当班期间，以现金收取的时租卡收入部分
+        ///获取或设置操作员当班期间，以现金收取的时租卡收入部分的折扣
         /// </summary>
         public decimal CashParkDiscount { get; set; }
+        /// <summary>
+        /// 获取或设置操作员在手持pos上的实收现金
+        /// </summary>
+        public decimal? CashOfPOS { get; set; }
         /// <summary>
         /// 获取或设置操作员当班期间,现金收取的卡片发行,充值,延期等的费用
         /// </summary>
@@ -48,17 +53,25 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         public decimal CashOfDeposit { get; set; }
         /// <summary>
-        /// 获取或设置操作员当班期间卡片回收返还的现金
-        /// </summary>
-        public decimal CashOfCardRecycle { get; set; }
-        /// <summary>
         /// 获取或设置操作员当班期间，现金收取的卡片挂失工本费
         /// </summary>
         public decimal CashOfCardLost { get; set; }
         /// <summary>
+        /// 获取或设置操作员当班期间卡片回收等返还的现金
+        /// </summary>
+        public decimal CashOfCardRecycle { get; set; }
+        /// <summary>
+        /// 获取或设置操作员当班期间缴费机退款返还的现金
+        /// </summary>
+        public decimal? CashOfRefund { get; set; }
+        /// <summary>
         /// 获取或设置操作员当班期间，实际上缴的现金
         /// </summary>
         public decimal? HandInCash { get; set; }
+        /// <summary>
+        /// 获取或设置操作员当班期间，实际上缴的POS收费金额
+        /// </summary>
+        public decimal? HandInPOS { get; set; }
         /// <summary>
         /// 获取或设置操作员当班期间,实际收取非现金的时租卡费用
         /// </summary>
@@ -87,6 +100,10 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置操作员当班期通过软件抬闸的次数
         /// </summary>
         public int OpenDoorCount { get; set; }
+        /// <summary>
+        /// 获取或设置记录所属部门
+        /// </summary>
+        public DeptInfo Dept { get; set; }
         #endregion
 
         #region 只读属性
@@ -97,7 +114,14 @@ namespace Ralid.Park.BusinessModel.Model
         {
             get
             {
-                return CashParkFact + CashOperatorCard + CashOfCard + CashOfDeposit + CashOfCardLost - CashOfCardRecycle;
+                return CashParkFact +
+                       CashOperatorCard +
+                       CashOfCard +
+                       CashOfDeposit +
+                       (CashOfPOS != null ? CashOfPOS.Value : 0) +
+                       CashOfCardLost -
+                       CashOfCardRecycle -
+                       (CashOfRefund.HasValue ? CashOfRefund.Value : 0);
             }
         }
         /// <summary>
@@ -195,6 +219,8 @@ namespace Ralid.Park.BusinessModel.Model
 
         public List<CardRecycleRecord> RecycleRecords { get; set; }
 
+        public List<APMRefundRecord> APMRefundRecords { get; set; }
+
         public List<CardLostRestoreRecord> CardLostRecords { get; set; }
 
         public List<CardDeferRecord> DeferRecords { get; set; }
@@ -202,6 +228,30 @@ namespace Ralid.Park.BusinessModel.Model
         public List<CardEventRecord> EventRecords { get; set; }
 
         public List<AlarmInfo> AlarmRecords { get; set; }
+
+        /// <summary>
+        /// 获取停车收费POS机收费总额
+        /// </summary>
+        public decimal PaymentPOS
+        {
+            get
+            {
+                if (PaymentRecords == null || PaymentRecords.Count == 0) return 0;
+
+                return PaymentRecords.Sum(p => p.PaymentMode == Enum.PaymentMode.Pos ? p.Paid : 0);
+            }
+        }
+        /// <summary>
+        /// 获取操作员上交POS金额与停车收费POS机收费总额的差额
+        /// </summary>
+        public decimal? PaymentPOSDiffrence
+        {
+            get
+            {
+                if (HandInPOS == null) return null;
+                return HandInPOS.Value - PaymentPOS;
+            }
+        }
         #endregion
     }
 }

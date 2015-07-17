@@ -107,7 +107,11 @@ namespace ParkingDebugTool
                 MessageBox.Show("请选择一种车型！");
                 return false;
             }
-
+            if (this.txtIndexNumber.IntergerValue <= 0)
+            {
+                MessageBox.Show("请输入自增序号！");
+                return false;
+            }
             DateTime dateTime = new DateTime(2011, 1, 1);
             if (dtActivationDate.Value < dateTime)
             {
@@ -135,9 +139,14 @@ namespace ParkingDebugTool
                 MessageBox.Show("入场时间不能早于2011年1月1日！");
                 return false;
             }
-            if (dtPaidTime.Value != dtPaidTime.MinDate && dtPaidTime.Value < dateTime)
+            if (this.chkPaidTime.Checked && dtPaidTime.Value < dateTime)
             {
                 MessageBox.Show("缴费时间不能早于2011年1月1日！");
+                return false;
+            }
+            if (this.chkFreeDateTime.Checked && dtFreeDateTime.Value < dateTime)
+            {
+                MessageBox.Show("免费期限不能早于2011年1月1日！");
                 return false;
             }
 
@@ -180,6 +189,7 @@ namespace ParkingDebugTool
             this.txtAccessLevel.IntergerValue = card.AccessID;
             this.txtCarPlate.Text = card.CarPlate;
             this.txtBalance.DecimalValue = card.Balance;
+            this.txtIndexNumber.IntergerValue = card.IndexNumber;
             this.dtActivationDate.Value = card.ActivationDate;
             this.dtValidDate.Value = card.ValidDate;
             this.chkOnlineHandleWhenOfflineMode.Checked = card.OnlineHandleWhenOfflineMode;
@@ -193,14 +203,20 @@ namespace ParkingDebugTool
             this.chkIn2.Checked = card.IsInNestedPark;
             this.chkPaid1.Checked = card.IsPaid;
             this.chkIn2Mark.Checked = card.IsMarkNestedPark;
+            this.chkEnableHotelApp.Checked = card.EnableHotelApp;
+            this.chkNotCheckOut.Checked = !card.HotelCheckOut;
             this.dtEnterTime.Value = card.LastDateTime;
+            this.chkPaidTime.Checked = card.PaidDateTime.HasValue;
             this.dtPaidTime.Value = card.PaidDateTime.HasValue ? card.PaidDateTime.Value : dtPaidTime.MinDate;
+            this.chkFreeDateTime.Checked = card.FreeDateTime.HasValue;
+            this.dtFreeDateTime.Value = card.FreeDateTime.HasValue ? card.FreeDateTime.Value : dtFreeDateTime.MinDate;
             this.txtFee.DecimalValue = card.ParkFee;
             this.txtPaidFee.DecimalValue = card.TotalPaidFee;
         }
 
         private CardInfo GetCardFromInput()
         {
+            if (_Card == null) _Card = new CardInfo(); 
             _Card.CardID = this.txtCardID.Text;
             _Card.CardVersion = (byte)this.txtCardVersion.IntergerValue;
             _Card.CardType = this.comCardType.SelectedCardType;
@@ -208,6 +224,7 @@ namespace ParkingDebugTool
             _Card.AccessID = (byte)this.txtAccessLevel.IntergerValue;
             _Card.CarPlate = this.txtCarPlate.Text;
             _Card.Balance = this.txtBalance.DecimalValue;
+            _Card.IndexNumber = this.txtIndexNumber.IntergerValue;
             _Card.ActivationDate = this.dtActivationDate.Value;
             _Card.ValidDate = this.dtValidDate.Value;
             _Card.OnlineHandleWhenOfflineMode = this.chkOnlineHandleWhenOfflineMode.Checked;
@@ -221,11 +238,17 @@ namespace ParkingDebugTool
             _Card.IsInNestedPark = this.chkIn2.Checked;
             _Card.IsPaid = this.chkPaid1.Checked;
             _Card.IsMarkNestedPark = this.chkIn2Mark.Checked;
+            _Card.EnableHotelApp = this.chkEnableHotelApp.Checked;
+            _Card.HotelCheckOut = !this.chkNotCheckOut.Checked;
             _Card.LastDateTime = this.dtEnterTime.Value;
-            if (this.dtPaidTime.Value != dtPaidTime.MinDate)
+            if (this.chkPaidTime.Checked)
                 _Card.PaidDateTime = this.dtPaidTime.Value;
             else
                 _Card.PaidDateTime = null;
+            if (this.chkFreeDateTime.Checked)
+                _Card.FreeDateTime = this.dtFreeDateTime.Value;
+            else
+                _Card.FreeDateTime = null;
             _Card.ParkFee = this.txtFee.DecimalValue;
             _Card.TotalPaidFee = this.txtPaidFee.DecimalValue;
 
@@ -277,7 +300,7 @@ namespace ParkingDebugTool
 
         private void btnWrite_Click(object sender, EventArgs e)
         {
-            if (_Card != null && CheckInput())
+            if (CheckInput())
             {
                 GetCardFromInput();
                 CardOperationManager.Instance.WriteCardLoop(_Card);

@@ -123,193 +123,67 @@
   <data name="btnInvalidEvent.Text" xml:space="preserve">
     <value>Deny</value>
   </data>
+  <data name="btnPos.Text" xml:space="preserve">
+    <value>POS[F11]</value>
+  </data>
+  <data name="btnCoupon.Text" xml:space="preserve">
+    <value>Coupon[F8]</value>
+  </data>
   <data name="btnCash.Text" xml:space="preserve">
     <value>Cash[F9]</value>
   </data>
   <data name="btnYCT.Text" xml:space="preserve">
     <value>YCT[F10]</value>
   </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label9.Text" xml:space="preserve">
     <value>Card</value>
-  </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Name</value>
   </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>CarPlate</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>EnterDT</value>
   </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label12.Text" xml:space="preserve">
     <value>ChargeDT</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 29</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>ParkInterval</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label8.Text" xml:space="preserve">
     <value>CardType</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>TariffType</value>
   </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label13.Text" xml:space="preserve">
     <value>HavePaid</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>HaveDiscount</value>
-  </data>
-  <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Accounts</value>
   </data>
-  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
-  </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Discount</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 50</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>Paid</value>
   </data>
-  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 26</value>
-  </data>
   <data name="label17.Text" xml:space="preserve">
     <value>Memo</value>
-  </data>
-  <data name="txtCardID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 4</value>
-  </data>
-  <data name="txtCardID.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 14</value>
-  </data>
-  <data name="lblOwnerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 22</value>
-  </data>
-  <data name="lblOwnerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblCarNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 43</value>
-  </data>
-  <data name="lblCarNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblEnterDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 64</value>
-  </data>
-  <data name="lblEnterDateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblExitDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 85</value>
-  </data>
-  <data name="lblExitDateTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblParkingTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 106</value>
-  </data>
-  <data name="lblParkingTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 29</value>
-  </data>
-  <data name="lblCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 136</value>
-  </data>
-  <data name="lblCardType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblTariffType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 157</value>
-  </data>
-  <data name="lblTariffType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblLastTotalPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 179</value>
-  </data>
-  <data name="lblLastTotalPaid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblLastTotalDiscount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 200</value>
-  </data>
-  <data name="lblLastTotalDiscount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblAccounts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 242</value>
-  </data>
-  <data name="lblAccounts.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="lblDiscount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 314</value>
-  </data>
-  <data name="lblDiscount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 338</value>
-  </data>
-  <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
-  </data>
-  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>79, 20</value>
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>LastStation</value>
   </data>
-  <data name="lblLastWorkstation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 221</value>
+  <data name="label1.Text" xml:space="preserve">
+    <value>DiscountHour</value>
   </data>
-  <data name="lblLastWorkstation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 20</value>
+  <data name="label4.Text" xml:space="preserve">
+    <value>DiscountMemo</value>
   </data>
-  <data name="txtPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 266</value>
-  </data>
-  <data name="txtPaid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 44</value>
-  </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>113, 12</value>
   </data>

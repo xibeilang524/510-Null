@@ -76,6 +76,13 @@ namespace Ralid.Park.BLL
                         }
 
                         if (changed && DataBaseStatusChangedEvent != null) this.DataBaseStatusChangedEvent(this, EventArgs.Empty);
+
+                        if (!string.IsNullOrEmpty(UserSetting.Current.ParkingImageConnStr))
+                        {
+                            string imageDBstr = UserSetting.Current.ParkingImageConnStr;
+                            connected = CheckConnectionAvailableBySql(imageDBstr);
+                            DataBaseConnectionsManager.Current.ImageDBStatus = connected ? DataBaseConnectionStatus.Connected : DataBaseConnectionStatus.Disconnect;
+                        }
                     }
                     catch (Exception ex)
                     {

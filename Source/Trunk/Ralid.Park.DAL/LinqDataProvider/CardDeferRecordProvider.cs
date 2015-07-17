@@ -43,6 +43,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
                     else result = result.Where(c => c.SettleDateTime != null);
                 }
                 if (con.SettleDateTime != null) result = result.Where(c => c.SettleDateTime == con.SettleDateTime.Value);
+                if (con.CardType != null) result = result.Where(c => c._CardType == con.CardType.ID);
                 return result.ToList();
             }
             return new List<CardDeferRecord>();

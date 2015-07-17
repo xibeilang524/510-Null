@@ -16,13 +16,19 @@ namespace Ralid.Park.UI
         public FrmVipCardReader()
         {
             InitializeComponent();
+
+            VipCardName = "会员卡";
         }
 
         #region 公共属性
         /// <summary>
-        /// 获取或设置从发卡机上读到的会员卡卡号
+        /// 获取或设置从发卡机上读到的卡号
         /// </summary>
         public string VipCardID { get; set; }
+        /// <summary>
+        /// 获取或设置需要读取的卡片类型名称
+        /// </summary>
+        public string VipCardName { get; set; }
         #endregion
 
         #region
@@ -39,6 +45,8 @@ namespace Ralid.Park.UI
 
         private void FrmVipCardReader_Load(object sender, EventArgs e)
         {
+            this.Text = "请刷" + VipCardName;
+            this.label1.Text = "请在发卡机上刷" + VipCardName;
             CardReaderManager.GetInstance(UserSetting .Current .WegenType).PushCardReadRequest(CardReadEventHandler);
         }
 

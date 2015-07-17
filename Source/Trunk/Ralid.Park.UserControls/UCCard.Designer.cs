@@ -31,13 +31,17 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCCard));
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.chkInPark = new System.Windows.Forms.CheckBox();
             this.txtCertificate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label8 = new System.Windows.Forms.Label();
+            this.txtDepartment = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtMemo = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.dtActivationDate = new System.Windows.Forms.DateTimePicker();
             this.txtCarPlate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label16 = new System.Windows.Forms.Label();
             this.txtOwnerName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label9 = new System.Windows.Forms.Label();
             this.txtDeposit = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label14 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -63,20 +67,29 @@
             this.chkWithCount = new System.Windows.Forms.CheckBox();
             this.chkRepeatOut = new System.Windows.Forms.CheckBox();
             this.chkHoliday = new System.Windows.Forms.CheckBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.rdbCarPlateList = new System.Windows.Forms.RadioButton();
+            this.rdbCardList = new System.Windows.Forms.RadioButton();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox2
             // 
             resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.label13);
+            this.groupBox2.Controls.Add(this.chkInPark);
             this.groupBox2.Controls.Add(this.txtCertificate);
             this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.txtDepartment);
             this.groupBox2.Controls.Add(this.txtMemo);
             this.groupBox2.Controls.Add(this.dtActivationDate);
             this.groupBox2.Controls.Add(this.txtCarPlate);
             this.groupBox2.Controls.Add(this.label16);
             this.groupBox2.Controls.Add(this.txtOwnerName);
+            this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.txtDeposit);
             this.groupBox2.Controls.Add(this.label14);
             this.groupBox2.Controls.Add(this.label3);
@@ -97,6 +110,17 @@
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
+            // label13
+            // 
+            resources.ApplyResources(this.label13, "label13");
+            this.label13.Name = "label13";
+            // 
+            // chkInPark
+            // 
+            resources.ApplyResources(this.chkInPark, "chkInPark");
+            this.chkInPark.Name = "chkInPark";
+            this.chkInPark.UseVisualStyleBackColor = true;
+            // 
             // txtCertificate
             // 
             resources.ApplyResources(this.txtCertificate, "txtCertificate");
@@ -106,6 +130,11 @@
             // 
             resources.ApplyResources(this.label8, "label8");
             this.label8.Name = "label8";
+            // 
+            // txtDepartment
+            // 
+            resources.ApplyResources(this.txtDepartment, "txtDepartment");
+            this.txtDepartment.Name = "txtDepartment";
             // 
             // txtMemo
             // 
@@ -134,20 +163,27 @@
             resources.ApplyResources(this.txtOwnerName, "txtOwnerName");
             this.txtOwnerName.Name = "txtOwnerName";
             // 
+            // label9
+            // 
+            resources.ApplyResources(this.label9, "label9");
+            this.label9.ImageKey = global::Ralid.Park.UserControls.Resources.Resource1.CardGridHeader_CanEnterWhenFull;
+            this.label9.Name = "label9";
+            // 
             // txtDeposit
             // 
             resources.ApplyResources(this.txtDeposit, "txtDeposit");
             this.txtDeposit.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtDeposit.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtDeposit.Name = "txtDeposit";
+            this.txtDeposit.NumberWithCommas = true;
             this.txtDeposit.PointCount = 2;
             // 
             // label14
@@ -184,16 +220,17 @@
             // 
             resources.ApplyResources(this.txtBalance, "txtBalance");
             this.txtBalance.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtBalance.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtBalance.Name = "txtBalance";
+            this.txtBalance.NumberWithCommas = true;
             this.txtBalance.PointCount = 2;
             // 
             // comAccessLevel
@@ -321,10 +358,40 @@
             this.chkHoliday.Name = "chkHoliday";
             this.chkHoliday.UseVisualStyleBackColor = true;
             // 
+            // groupBox1
+            // 
+            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.rdbCarPlateList);
+            this.groupBox1.Controls.Add(this.rdbCardList);
+            this.groupBox1.Controls.Add(this.label11);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.TabStop = false;
+            // 
+            // rdbCarPlateList
+            // 
+            resources.ApplyResources(this.rdbCarPlateList, "rdbCarPlateList");
+            this.rdbCarPlateList.Name = "rdbCarPlateList";
+            this.rdbCarPlateList.TabStop = true;
+            this.rdbCarPlateList.UseVisualStyleBackColor = true;
+            // 
+            // rdbCardList
+            // 
+            resources.ApplyResources(this.rdbCardList, "rdbCardList");
+            this.rdbCardList.Checked = true;
+            this.rdbCardList.Name = "rdbCardList";
+            this.rdbCardList.TabStop = true;
+            this.rdbCardList.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
             // UCCard
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.groupBox3);
             this.Controls.Add(this.groupBox2);
             this.Name = "UCCard";
@@ -332,6 +399,8 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            this.groupBox1.ResumeLayout(false);
+            this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -349,7 +418,6 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label7;
         private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtMemo;
-        private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtCarPlate;
         private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtOwnerName;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Label label12;
@@ -371,6 +439,15 @@
         private System.Windows.Forms.Label label8;
         public GeneralLibrary.WinformControl.DBCTextBox txtCardID;
         private System.Windows.Forms.CheckBox chkOnlineHandleWhenOfflineMode;
+        private System.Windows.Forms.CheckBox chkInPark;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDepartment;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label label11;
+        public GeneralLibrary.WinformControl.DBCTextBox txtCarPlate;
+        public System.Windows.Forms.RadioButton rdbCarPlateList;
+        public System.Windows.Forms.RadioButton rdbCardList;
 
     }
 }

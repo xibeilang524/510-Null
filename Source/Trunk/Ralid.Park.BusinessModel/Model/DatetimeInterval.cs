@@ -22,7 +22,6 @@ namespace Ralid.Park.BusinessModel.Model
         }
         #endregion
 
-
         #region 公共属性
         /// <summary>
         /// 或取或设置开始时间

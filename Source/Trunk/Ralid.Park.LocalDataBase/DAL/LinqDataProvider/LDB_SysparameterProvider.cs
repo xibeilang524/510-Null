@@ -26,9 +26,18 @@ namespace Ralid.Park.LocalDataBase.DAL.LinqDataProvider
 
         protected override void InsertingItem(LDB_SysparameterInfo info, LDB_DataContext parking)
         {
-            string cmd = @"delete from Sysparameter where Parameter=@p0 ; " +
-                       "insert into SysParameter (Parameter,ParameterValue,Description) values (@p1,@p2,@p3) ;";
-            parking.ExecuteCommand(cmd, info.Parameter, info.Parameter, info.ParameterValue, info.Description);
+            LDB_SysparameterInfo original = parking.Sysparameter.SingleOrDefault(s => s.Parameter == info.Parameter);
+            if (original != null)
+            {
+                //删除原来的
+                parking.Sysparameter.DeleteOnSubmit(original);
+            }
+            parking.Sysparameter.InsertOnSubmit(info);
+
+            //不适用以下代码是因为每次ExecuteCommand命令时都会访问数据库，sqlite访问数据库会比较耗时，到时数据库操作耗时过长
+            //string cmd = @"delete from Sysparameter where Parameter=@p0 ; " +
+            //           "insert into SysParameter (Parameter,ParameterValue,Description) values (@p1,@p2,@p3) ;";
+            //parking.ExecuteCommand(cmd, info.Parameter, info.Parameter, info.ParameterValue, info.Description);
         }
         #endregion
     }

@@ -117,8 +117,314 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>680, 18</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
+    <value>btnSearch</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="btnSaveAs.Location" type="System.Drawing.Point, System.Drawing">
+    <value>803, 18</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAs.Name" xml:space="preserve">
+    <value>btnSaveAs</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAs.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAs.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;btnSaveAs.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 25</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
   <data name="label1.Text" xml:space="preserve">
     <value>已经收取</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>206, 25</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>月保费用的</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="customDataGridView1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
+  <metadata name="colCardID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colCardID.HeaderText" xml:space="preserve">
+    <value>卡号</value>
+  </data>
+  <data name="colCardID.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <metadata name="colOwnerName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colOwnerName.HeaderText" xml:space="preserve">
+    <value>持卡人</value>
+  </data>
+  <data name="colOwnerName.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <metadata name="colCardCertificate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colCardCertificate.HeaderText" xml:space="preserve">
+    <value>卡片编号</value>
+  </data>
+  <data name="colCardCertificate.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <metadata name="colCardType.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colCardType.HeaderText" xml:space="preserve">
+    <value>卡片类型</value>
+  </data>
+  <metadata name="colCarPlate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colCarPlate.HeaderText" xml:space="preserve">
+    <value>车牌</value>
+  </data>
+  <metadata name="colPaid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colPaid.HeaderText" xml:space="preserve">
+    <value>所交费用</value>
+  </data>
+  <metadata name="colDeduction.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colDeduction.HeaderText" xml:space="preserve">
+    <value>已扣费用</value>
+  </data>
+  <metadata name="colAccount.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colAccount.HeaderText" xml:space="preserve">
+    <value>应收费用</value>
+  </data>
+  <metadata name="colBalance.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colBalance.HeaderText" xml:space="preserve">
+    <value>余额</value>
+  </data>
+  <metadata name="colBegin.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colBegin.HeaderText" xml:space="preserve">
+    <value>开始日期</value>
+  </data>
+  <metadata name="colEnd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="colEnd.HeaderText" xml:space="preserve">
+    <value>结束日期</value>
+  </data>
+  <data name="colEnd.Width" type="System.Int32, mscorlib">
+    <value>110</value>
+  </data>
+  <data name="customDataGridView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 57</value>
+  </data>
+  <data name="customDataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>920, 274</value>
+  </data>
+  <data name="customDataGridView1.TabIndex" type="System.Int32, mscorlib">
+    <value>13</value>
+  </data>
+  <data name="&gt;&gt;customDataGridView1.Name" xml:space="preserve">
+    <value>customDataGridView1</value>
+  </data>
+  <data name="&gt;&gt;customDataGridView1.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.CustomDataGridView, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;customDataGridView1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;customDataGridView1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>131, 25</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 12</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>16</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>年</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtYear.Items" xml:space="preserve">
+    <value>2010</value>
+  </data>
+  <data name="txtYear.Items1" xml:space="preserve">
+    <value>2011</value>
+  </data>
+  <data name="txtYear.Items2" xml:space="preserve">
+    <value>2012</value>
+  </data>
+  <data name="txtYear.Items3" xml:space="preserve">
+    <value>2013</value>
+  </data>
+  <data name="txtYear.Items4" xml:space="preserve">
+    <value>2014</value>
+  </data>
+  <data name="txtYear.Items5" xml:space="preserve">
+    <value>2015</value>
+  </data>
+  <data name="txtYear.Items6" xml:space="preserve">
+    <value>2016</value>
+  </data>
+  <data name="txtYear.Items7" xml:space="preserve">
+    <value>2017</value>
+  </data>
+  <data name="txtYear.Items8" xml:space="preserve">
+    <value>2018</value>
+  </data>
+  <data name="txtYear.Items9" xml:space="preserve">
+    <value>2019</value>
+  </data>
+  <data name="txtYear.Items10" xml:space="preserve">
+    <value>2020</value>
+  </data>
+  <data name="txtYear.Items11" xml:space="preserve">
+    <value>2021</value>
+  </data>
+  <data name="txtYear.Items12" xml:space="preserve">
+    <value>2022</value>
+  </data>
+  <data name="txtYear.Items13" xml:space="preserve">
+    <value>2023</value>
+  </data>
+  <data name="txtYear.Location" type="System.Drawing.Point, System.Drawing">
+    <value>63, 21</value>
+  </data>
+  <data name="txtYear.Size" type="System.Drawing.Size, System.Drawing">
+    <value>58, 20</value>
+  </data>
+  <data name="txtYear.TabIndex" type="System.Int32, mscorlib">
+    <value>17</value>
+  </data>
+  <data name="&gt;&gt;txtYear.Name" xml:space="preserve">
+    <value>txtYear</value>
+  </data>
+  <data name="&gt;&gt;txtYear.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtYear.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtYear.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtMonth.Items" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtMonth.Items1" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="txtMonth.Items2" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtMonth.Items3" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="txtMonth.Items4" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="txtMonth.Items5" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="txtMonth.Items6" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtMonth.Items7" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="txtMonth.Items8" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="txtMonth.Items9" xml:space="preserve">
     <value>10</value>
@@ -126,370 +432,220 @@
   <data name="txtMonth.Items10" xml:space="preserve">
     <value>11</value>
   </data>
-  <data name="&gt;&gt;colCardCertificate.Name" xml:space="preserve">
-    <value>colCardCertificate</value>
-  </data>
-  <data name="&gt;&gt;colPaid.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtYear.Items12" xml:space="preserve">
-    <value>2022</value>
-  </data>
   <data name="txtMonth.Items11" xml:space="preserve">
     <value>12</value>
-  </data>
-  <data name="&gt;&gt;colCarPlate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colCardID.Name" xml:space="preserve">
-    <value>colCardID</value>
-  </data>
-  <data name="txtMonth.Items3" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="customDataGridView1.TabIndex" type="System.Int32, mscorlib">
-    <value>13</value>
-  </data>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="txtYear.Location" type="System.Drawing.Point, System.Drawing">
-    <value>63, 21</value>
-  </data>
-  <data name="colEnd.Width" type="System.Int32, mscorlib">
-    <value>110</value>
-  </data>
-  <data name="txtMonth.Size" type="System.Drawing.Size, System.Drawing">
-    <value>49, 20</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FrmHasPaidCardReport</value>
-  </data>
-  <data name="colBegin.HeaderText" xml:space="preserve">
-    <value>开始日期</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>308, 20</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>17, 12</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="txtMonth.Items1" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
   </data>
   <data name="txtMonth.Location" type="System.Drawing.Point, System.Drawing">
     <value>151, 21</value>
   </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="colCardID.HeaderText" xml:space="preserve">
-    <value>卡号</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtMonth.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 274</value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="customDataGridView1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Top, Bottom, Left, Right</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>131, 25</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;txtYear.Name" xml:space="preserve">
-    <value>txtYear</value>
-  </data>
-  <data name="&gt;&gt;txtMonth.Name" xml:space="preserve">
-    <value>txtMonth</value>
-  </data>
-  <data name="txtYear.Items2" xml:space="preserve">
-    <value>2012</value>
-  </data>
-  <data name="colEnd.HeaderText" xml:space="preserve">
-    <value>结束日期</value>
-  </data>
-  <data name="&gt;&gt;colBegin.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="btnSaveAs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>431, 20</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="&gt;&gt;colCarPlate.Name" xml:space="preserve">
-    <value>colCarPlate</value>
-  </data>
-  <data name="txtYear.Items5" xml:space="preserve">
-    <value>2015</value>
-  </data>
-  <data name="&gt;&gt;btnSaveAs.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="txtMonth.Items4" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;customDataGridView1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;btnSaveAs.Name" xml:space="preserve">
-    <value>btnSaveAs</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="colPaid.HeaderText" xml:space="preserve">
-    <value>所交费用</value>
-  </data>
-  <data name="colOwnerName.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="colCarPlate.HeaderText" xml:space="preserve">
-    <value>车牌</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>89, 12</value>
-  </data>
-  <data name="colCardCertificate.HeaderText" xml:space="preserve">
-    <value>卡片编号</value>
-  </data>
-  <data name="txtMonth.Items8" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;colEnd.Name" xml:space="preserve">
-    <value>colEnd</value>
-  </data>
-  <data name="colCardID.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="&gt;&gt;txtYear.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="txtMonth.Items6" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;btnSaveAs.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtYear.Items" xml:space="preserve">
-    <value>2010</value>
-  </data>
-  <data name="&gt;&gt;txtMonth.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtMonth.Items2" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>年</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;colBegin.Name" xml:space="preserve">
-    <value>colBegin</value>
-  </data>
-  <data name="txtYear.Items13" xml:space="preserve">
-    <value>2023</value>
-  </data>
-  <data name="colCardCertificate.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="customDataGridView1.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="&gt;&gt;colEnd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtYear.Items9" xml:space="preserve">
-    <value>2019</value>
-  </data>
-  <data name="txtYear.Items6" xml:space="preserve">
-    <value>2016</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="txtYear.Items3" xml:space="preserve">
-    <value>2013</value>
+  <data name="txtMonth.Size" type="System.Drawing.Size, System.Drawing">
+    <value>49, 20</value>
   </data>
   <data name="txtMonth.TabIndex" type="System.Int32, mscorlib">
     <value>18</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;txtMonth.Name" xml:space="preserve">
+    <value>txtMonth</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>792, 356</value>
-  </data>
-  <data name="colOwnerName.HeaderText" xml:space="preserve">
-    <value>持卡人</value>
-  </data>
-  <data name="&gt;&gt;colCardID.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="txtYear.Items8" xml:space="preserve">
-    <value>2018</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;customDataGridView1.Name" xml:space="preserve">
-    <value>customDataGridView1</value>
-  </data>
-  <data name="&gt;&gt;txtYear.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="txtYear.Size" type="System.Drawing.Size, System.Drawing">
-    <value>58, 20</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 25</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>已交月保费卡统计</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>月保费用的卡片</value>
-  </data>
-  <data name="&gt;&gt;btnSaveAs.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;colPaid.Name" xml:space="preserve">
-    <value>colPaid</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>206, 25</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>16</value>
-  </data>
-  <data name="txtMonth.Items7" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="&gt;&gt;colCardCertificate.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;txtMonth.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtMonth.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="customDataGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 57</value>
+  <data name="&gt;&gt;txtMonth.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 25</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 12</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>卡片，每月应缴月保费</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="comCardType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>277, 21</value>
+  </data>
+  <data name="comCardType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 20</value>
+  </data>
+  <data name="comCardType.TabIndex" type="System.Int32, mscorlib">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;comCardType.Name" xml:space="preserve">
+    <value>comCardType</value>
+  </data>
+  <data name="&gt;&gt;comCardType.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.CardTypeComboBox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;comCardType.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;comCardType.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtMonthlyFee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtMonthlyFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>523, 21</value>
+  </data>
+  <data name="txtMonthlyFee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>100, 21</value>
+  </data>
+  <data name="txtMonthlyFee.TabIndex" type="System.Int32, mscorlib">
+    <value>27</value>
+  </data>
+  <data name="txtMonthlyFee.Text" xml:space="preserve">
+    <value>0.00</value>
+  </data>
+  <data name="&gt;&gt;txtMonthlyFee.Name" xml:space="preserve">
+    <value>txtMonthlyFee</value>
+  </data>
+  <data name="&gt;&gt;txtMonthlyFee.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtMonthlyFee.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtMonthlyFee.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 25</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>17, 12</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>元</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>920, 356</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>已交月保费卡统计</value>
+  </data>
+  <data name="&gt;&gt;colCardID.Name" xml:space="preserve">
+    <value>colCardID</value>
+  </data>
+  <data name="&gt;&gt;colCardID.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colOwnerName.Name" xml:space="preserve">
     <value>colOwnerName</value>
   </data>
-  <data name="txtYear.Items11" xml:space="preserve">
-    <value>2021</value>
-  </data>
-  <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
-    <value>btnSearch</value>
-  </data>
-  <data name="txtYear.TabIndex" type="System.Int32, mscorlib">
-    <value>17</value>
-  </data>
-  <data name="&gt;&gt;txtYear.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="txtYear.Items10" xml:space="preserve">
-    <value>2020</value>
-  </data>
-  <data name="txtMonth.Items5" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;customDataGridView1.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.CustomDataGridView, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;customDataGridView1.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtMonth.Items" xml:space="preserve">
-    <value>1</value>
-  </data>
   <data name="&gt;&gt;colOwnerName.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtYear.Items7" xml:space="preserve">
-    <value>2017</value>
+  <data name="&gt;&gt;colCardCertificate.Name" xml:space="preserve">
+    <value>colCardCertificate</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;colCardCertificate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;colCardType.Name" xml:space="preserve">
+    <value>colCardType</value>
   </data>
-  <data name="txtYear.Items1" xml:space="preserve">
-    <value>2011</value>
+  <data name="&gt;&gt;colCardType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="txtYear.Items4" xml:space="preserve">
-    <value>2014</value>
+  <data name="&gt;&gt;colCarPlate.Name" xml:space="preserve">
+    <value>colCarPlate</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;colCarPlate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colPaid.Name" xml:space="preserve">
+    <value>colPaid</value>
+  </data>
+  <data name="&gt;&gt;colPaid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colDeduction.Name" xml:space="preserve">
+    <value>colDeduction</value>
+  </data>
+  <data name="&gt;&gt;colDeduction.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colAccount.Name" xml:space="preserve">
+    <value>colAccount</value>
+  </data>
+  <data name="&gt;&gt;colAccount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colBalance.Name" xml:space="preserve">
+    <value>colBalance</value>
+  </data>
+  <data name="&gt;&gt;colBalance.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colBegin.Name" xml:space="preserve">
+    <value>colBegin</value>
+  </data>
+  <data name="&gt;&gt;colBegin.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;colEnd.Name" xml:space="preserve">
+    <value>colEnd</value>
+  </data>
+  <data name="&gt;&gt;colEnd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmHasPaidCardReport</value>
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>Ralid.Park.UI.ReportAndStatistics.FrmReportBase, Ralid.Park.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <metadata name="colPaid.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colBegin.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colCardCertificate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colCardID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colCarPlate.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colOwnerName.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="colEnd.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
 </root>

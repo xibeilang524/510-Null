@@ -78,6 +78,11 @@ namespace Ralid.Park.UI
             this.rdNotHost.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NoneMaster) == WorkmodeOptions.NoneMaster;
             this.rdEnter.Checked = (bs.WorkmodeOptions & WorkmodeOptions.IsEnterDevice) == WorkmodeOptions.IsEnterDevice;
             this.rdExit.Checked = (bs.WorkmodeOptions & WorkmodeOptions.IsEnterDevice) == 0;
+            this.rdbCardMode.Checked = (bs.WorkmodeOptions & WorkmodeOptions.CardMode) == WorkmodeOptions.CardMode;
+            //这里要使用CardMode（0x30000）来进行与操作，因为需要操作16,17bit
+            this.rdbCarPlateMode.Checked = (bs.WorkmodeOptions & WorkmodeOptions.CardMode) == WorkmodeOptions.CarPlateMode;
+            //这里要使用CardMode（0x30000）来进行与操作，因为需要操作16,17bit
+            this.rdbCarPlateAndCardMode.Checked = (bs.WorkmodeOptions & WorkmodeOptions.CardMode) == WorkmodeOptions.CarPlateAndCardMode;
             this.chkTakeCardNeedCarSense.Checked = (bs.WorkmodeOptions & WorkmodeOptions.TakeCardNeedCarSense) == WorkmodeOptions.TakeCardNeedCarSense;
             this.chkAllowEjectCardWhithoutRead.Checked = (bs.WorkmodeOptions & WorkmodeOptions.AllowEjectCardWhithoutRead) == WorkmodeOptions.AllowEjectCardWhithoutRead;
             this.chkLightEnable.Checked = (bs.WorkmodeOptions & WorkmodeOptions.LightEnable) == WorkmodeOptions.LightEnable;
@@ -85,7 +90,9 @@ namespace Ralid.Park.UI
             this.chkForbidWhenFull.Checked = (bs.WorkmodeOptions & WorkmodeOptions.ForbidEnterWhenFull) == WorkmodeOptions.ForbidEnterWhenFull;
             this.chkEnableTempCard.Checked = (bs.WorkmodeOptions & WorkmodeOptions.EnableTempCard) == WorkmodeOptions.EnableTempCard;
             this.chkExportCharge.Checked = (bs.WorkmodeOptions & WorkmodeOptions.ExportCharge) == WorkmodeOptions.ExportCharge;
+            this.chkOnlineHandleWhenNotOnList.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NotOnlineHandleWhenNotOnList) == 0;
             this.chkNoParkingCount.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NoParkingCount) == WorkmodeOptions.NoParkingCount;
+            this.chkWeigand34.Checked = (bs.WorkmodeOptions & WorkmodeOptions.Wiegand34) == WorkmodeOptions.Wiegand34;
             this.chkValid.Checked = (bs.WorkmodeOptions & WorkmodeOptions.Valid) == WorkmodeOptions.Valid;
             this.txtCardReadInterval.Text = bs.CardReadInterval.ToString();
             this.chkRoadGateModel.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NoneRoadGateModel) == 0;
@@ -97,13 +104,21 @@ namespace Ralid.Park.UI
             if (this.rdOffLine.Checked) bs.WorkmodeOptions |= WorkmodeOptions.IsOffline;
             if (this.rdNotHost.Checked) bs.WorkmodeOptions |= WorkmodeOptions.NoneMaster;
             if (this.rdEnter.Checked) bs.WorkmodeOptions |= WorkmodeOptions.IsEnterDevice;
+            if (this.rdbCardMode.Checked) bs.WorkmodeOptions |= WorkmodeOptions.CardMode;
+            if (this.rdbCarPlateMode.Checked) bs.WorkmodeOptions |= WorkmodeOptions.CarPlateMode;
+            if (this.rdbCarPlateAndCardMode.Checked) bs.WorkmodeOptions |= WorkmodeOptions.CarPlateAndCardMode;
+            if (!this.chkRoadGateModel.Checked) bs.WorkmodeOptions |= WorkmodeOptions.NoneRoadGateModel;
             if (this.chkTakeCardNeedCarSense.Checked) bs.WorkmodeOptions |= WorkmodeOptions.TakeCardNeedCarSense;
             if (this.chkAllowEjectCardWhithoutRead.Checked) bs.WorkmodeOptions |= WorkmodeOptions.AllowEjectCardWhithoutRead;
             if (this.chkLightEnable.Checked) bs.WorkmodeOptions |= WorkmodeOptions.LightEnable;
             if (this.chkForbidWhenCardExpired.Checked) bs.WorkmodeOptions |= WorkmodeOptions.ForbidExitWhenCardExpired;
+            if (this.chkExportCharge.Checked) bs.WorkmodeOptions |= WorkmodeOptions.ExportCharge;
+            if (!this.chkOnlineHandleWhenNotOnList.Checked) bs.WorkmodeOptions |= WorkmodeOptions.NotOnlineHandleWhenNotOnList;
             if (this.chkForbidWhenFull.Checked) bs.WorkmodeOptions |= WorkmodeOptions.ForbidEnterWhenFull;
             if (this.chkEnableTempCard.Checked) bs.WorkmodeOptions |= WorkmodeOptions.EnableTempCard;
-            if (!this.chkRoadGateModel.Checked) bs.WorkmodeOptions |= WorkmodeOptions.NoneRoadGateModel;
+            if (this.chkNoParkingCount.Checked) bs.WorkmodeOptions |= WorkmodeOptions.NoParkingCount;
+            if (this.chkWeigand34.Checked) bs.WorkmodeOptions |= WorkmodeOptions.Wiegand34;
+            if (this.chkValid.Checked) bs.WorkmodeOptions |= WorkmodeOptions.Valid;
             bs.CardReadInterval = int.Parse(this.txtCardReadInterval.Text);
             return bs;
         }
@@ -251,5 +266,6 @@ namespace Ralid.Park.UI
             }
         }
         #endregion
+
     }
 }

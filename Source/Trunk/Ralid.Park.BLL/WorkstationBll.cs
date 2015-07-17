@@ -7,6 +7,7 @@ using Ralid.Park.DAL.IDAL;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Resouce;
+using Ralid.Park.BusinessModel.SearchCondition;
 
 namespace Ralid.Park.BLL
 {
@@ -39,6 +40,11 @@ namespace Ralid.Park.BLL
             {
                 return null;
             }
+        }
+
+        public QueryResultList<WorkStationInfo> GetWorkstations(WorkstationSearchCondition search)
+        {
+            return provider.GetItems(search);
         }
 
         public QueryResultList<WorkStationInfo> GetAllWorkstations()

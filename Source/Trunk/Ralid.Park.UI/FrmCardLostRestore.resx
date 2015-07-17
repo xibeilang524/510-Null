@@ -117,383 +117,185 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="txtParkFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>358, 24</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
-  </data>
-  <data name="&gt;&gt;comPaymentMode.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="lblParkFee.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
-  <data name="txtCardCost.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
+    <value>304, 520</value>
   </data>
-  <data name="lblParkFee.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="&gt;&gt;ucCardInfo.Name" xml:space="preserve">
-    <value>ucCardInfo</value>
-  </data>
-  <data name="chkPayParkFee.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="comPaymentMode.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="ucCardInfo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>473, 314</value>
-  </data>
-  <data name="chkWriteCard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>21, 443</value>
-  </data>
-  <data name="&gt;&gt;chkWriteCard.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 4</value>
-  </data>
-  <data name="chkPayParkFee.Text" xml:space="preserve">
-    <value>收取卡片停车费用</value>
-  </data>
-  <data name="chkWriteCard.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="&gt;&gt;txtMemo.Name" xml:space="preserve">
-    <value>txtMemo</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>FrmCardLostRestore</value>
-  </data>
-  <data name="&gt;&gt;txtMemo.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkPayParkFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>240, 26</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;ucCardInfo.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.UCCard, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;chkPayParkFee.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
-  </data>
-  <data name="chkWriteCard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;txtCardCost.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="chkWriteCard.Text" xml:space="preserve">
-    <value>数据写入卡片</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>收费方式:</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="txtCardCost.Text" xml:space="preserve">
-    <value>0.00</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkPayParkFee.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
   </data>
   <data name="btnOk.Text" xml:space="preserve">
     <value>确定(&amp;O)</value>
   </data>
-  <data name="txtParkFee.Text" xml:space="preserve">
-    <value>0.00</value>
+  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
+    <value>btnOk</value>
   </data>
-  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtParkFee.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>3</value>
   </data>
-  <data name="txtCardCost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 24</value>
+  <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Right</value>
   </data>
-  <data name="&gt;&gt;chkWriteCard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 520</value>
   </data>
-  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>75, 23</value>
   </data>
-  <data name="&gt;&gt;chkWriteCard.Name" xml:space="preserve">
-    <value>chkWriteCard</value>
+  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
-  <data name="&gt;&gt;txtParkFee.Name" xml:space="preserve">
-    <value>txtParkFee</value>
-  </data>
-  <data name="&gt;&gt;chkPayParkFee.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;ucCardInfo.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>238, 52</value>
-  </data>
-  <data name="&gt;&gt;lblParkFee.Name" xml:space="preserve">
-    <value>lblParkFee</value>
+  <data name="btnCancel.Text" xml:space="preserve">
+    <value>关闭(&amp;C)</value>
   </data>
   <data name="&gt;&gt;btnCancel.Name" xml:space="preserve">
     <value>btnCancel</value>
   </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>49, 81</value>
+  <data name="&gt;&gt;btnCancel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FrmCardLostRestore</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtParkFee.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="ucCardInfo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 119</value>
-  </data>
-  <data name="&gt;&gt;lblParkFee.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="txtMemo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
-  </data>
-  <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>85, 77</value>
-  </data>
-  <data name="txtCardCost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 21</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>备注:</value>
-  </data>
-  <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>376, 21</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="chkWriteCard.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
-  </data>
-  <data name="txtMemo.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;btnCancel.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <data name="txtMemo.MaxLength" type="System.Int32, mscorlib">
-    <value>100</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
-    <value>btnOk</value>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>314, 52</value>
   </data>
-  <data name="&gt;&gt;comPaymentMode.Name" xml:space="preserve">
-    <value>comPaymentMode</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
   </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>groupBox1</value>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
-  <data name="&gt;&gt;ucCardInfo.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label5.Text" xml:space="preserve">
+    <value>停车场:</value>
   </data>
-  <data name="btnCancel.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="chkPayParkFee.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="&gt;&gt;txtCardCost.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;lblParkFee.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="comPaymentMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 49</value>
-  </data>
-  <data name="comPaymentMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 20</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="txtParkFee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 53</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
-  </data>
-  <data name="&gt;&gt;txtParkFee.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;chkWriteCard.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;comPaymentMode.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="chkPayParkFee.Enabled" type="System.Boolean, mscorlib">
+  <data name="label5.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="&gt;&gt;txtMemo.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
-  <data name="btnCancel.Text" xml:space="preserve">
-    <value>关闭(&amp;C)</value>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="btnOk.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
-  </data>
-  <data name="&gt;&gt;txtCardCost.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>groupBox1</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="txtCardCost.TabIndex" type="System.Int32, mscorlib">
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>遗失工本费:</value>
+  <data name="parkCombobox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 49</value>
   </data>
-  <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>75, 23</value>
+  <data name="parkCombobox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>90, 20</value>
   </data>
-  <data name="&gt;&gt;txtMemo.ZOrder" xml:space="preserve">
+  <data name="parkCombobox1.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
   </data>
-  <data name="ucCardInfo.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="parkCombobox1.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="chkWriteCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>96, 16</value>
+  <data name="&gt;&gt;parkCombobox1.Name" xml:space="preserve">
+    <value>parkCombobox1</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>35, 12</value>
+  <data name="&gt;&gt;parkCombobox1.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.ParkCombobox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;chkPayParkFee.Name" xml:space="preserve">
-    <value>chkPayParkFee</value>
+  <data name="&gt;&gt;parkCombobox1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="lblParkFee.Text" xml:space="preserve">
-    <value>0</value>
+  <data name="&gt;&gt;parkCombobox1.ZOrder" xml:space="preserve">
+    <value>1</value>
   </data>
-  <data name="&gt;&gt;chkPayParkFee.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="lblParkFee.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="lblParkFee.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9pt, style=Bold</value>
   </data>
-  <data name="txtParkFee.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="lblParkFee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblParkFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>296, 52</value>
   </data>
   <data name="lblParkFee.Size" type="System.Drawing.Size, System.Drawing">
     <value>12, 12</value>
   </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
+  <data name="lblParkFee.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterScreen</value>
+  <data name="lblParkFee.Text" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 28</value>
-  </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>482, 478</value>
+  <data name="&gt;&gt;lblParkFee.Name" xml:space="preserve">
+    <value>lblParkFee</value>
   </data>
   <data name="&gt;&gt;lblParkFee.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblParkFee.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;lblParkFee.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>238, 52</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>实收总额</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="txtParkFee.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="txtParkFee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtParkFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>358, 24</value>
   </data>
   <data name="txtParkFee.Size" type="System.Drawing.Size, System.Drawing">
     <value>90, 21</value>
@@ -501,52 +303,307 @@
   <data name="txtParkFee.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>472, 109</value>
+  <data name="txtParkFee.Text" xml:space="preserve">
+    <value>0.00</value>
   </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 12</value>
+  <data name="&gt;&gt;txtParkFee.Name" xml:space="preserve">
+    <value>txtParkFee</value>
   </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;txtParkFee.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtParkFee.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;txtParkFee.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="chkPayParkFee.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkPayParkFee.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="chkPayParkFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>240, 26</value>
+  </data>
+  <data name="chkPayParkFee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="chkPayParkFee.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="chkPayParkFee.Text" xml:space="preserve">
+    <value>收取卡片停车费用</value>
+  </data>
+  <data name="&gt;&gt;chkPayParkFee.Name" xml:space="preserve">
+    <value>chkPayParkFee</value>
+  </data>
+  <data name="&gt;&gt;chkPayParkFee.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkPayParkFee.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;chkPayParkFee.ZOrder" xml:space="preserve">
     <value>5</value>
+  </data>
+  <data name="comPaymentMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 49</value>
+  </data>
+  <data name="comPaymentMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 20</value>
+  </data>
+  <data name="comPaymentMode.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;comPaymentMode.Name" xml:space="preserve">
+    <value>comPaymentMode</value>
   </data>
   <data name="&gt;&gt;comPaymentMode.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.PaymentModeComboBox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 439</value>
+  <data name="&gt;&gt;comPaymentMode.Parent" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>304, 439</value>
+  <data name="&gt;&gt;comPaymentMode.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 53</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>收费方式:</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="txtCardCost.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtCardCost.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 24</value>
+  </data>
+  <data name="txtCardCost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 21</value>
+  </data>
+  <data name="txtCardCost.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtCardCost.Text" xml:space="preserve">
+    <value>0.00</value>
   </data>
   <data name="&gt;&gt;txtCardCost.Name" xml:space="preserve">
     <value>txtCardCost</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
+  <data name="&gt;&gt;txtCardCost.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="lblParkFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>296, 52</value>
-  </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>卡片挂失/恢复</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+  <data name="&gt;&gt;txtCardCost.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="lblParkFee.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="&gt;&gt;txtCardCost.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 28</value>
+  </data>
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>遗失工本费:</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="txtMemo.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>85, 77</value>
+  </data>
+  <data name="txtMemo.MaxLength" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>376, 21</value>
+  </data>
+  <data name="txtMemo.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;txtMemo.Name" xml:space="preserve">
+    <value>txtMemo</value>
+  </data>
+  <data name="&gt;&gt;txtMemo.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtMemo.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;txtMemo.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>实收总额</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 81</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>备注:</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 4</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>472, 109</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="groupBox1.Text" xml:space="preserve">
+    <value>卡片挂失/恢复</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
   </data>
   <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="ucCardInfo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 119</value>
+  </data>
+  <data name="ucCardInfo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>473, 395</value>
+  </data>
+  <data name="ucCardInfo.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;ucCardInfo.Name" xml:space="preserve">
+    <value>ucCardInfo</value>
+  </data>
+  <data name="&gt;&gt;ucCardInfo.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.UCCard, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;ucCardInfo.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;ucCardInfo.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="chkWriteCard.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
+  <data name="chkWriteCard.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkWriteCard.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkWriteCard.Location" type="System.Drawing.Point, System.Drawing">
+    <value>21, 524</value>
+  </data>
+  <data name="chkWriteCard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>96, 16</value>
+  </data>
+  <data name="chkWriteCard.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
+  </data>
+  <data name="chkWriteCard.Text" xml:space="preserve">
+    <value>数据写入卡片</value>
+  </data>
+  <data name="&gt;&gt;chkWriteCard.Name" xml:space="preserve">
+    <value>chkWriteCard</value>
+  </data>
+  <data name="&gt;&gt;chkWriteCard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkWriteCard.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;chkWriteCard.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>482, 559</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterScreen</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>FrmCardLostRestore</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmCardLostRestore</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
 </root>

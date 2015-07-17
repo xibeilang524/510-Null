@@ -28,7 +28,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
         {
             try
             {
-                SnapShotBll ssb = new SnapShotBll(Ralid.Park.BusinessModel.Configuration.AppSettings.CurrentSetting.ParkConnect);
+                SnapShotBll ssb = new SnapShotBll(Ralid.Park.BusinessModel.Configuration.AppSettings.CurrentSetting.ImageDBConnStr);
                 foreach (CardEventRecord record in CardEvents)
                 {
                     List<SnapShot> shots = ssb.GetSnapShots(record.EventDateTime, record.CardID);

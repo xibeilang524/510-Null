@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Resouce;
 
@@ -12,6 +13,7 @@ namespace Ralid.Park.BusinessModel.Result
     /// </summary>
     /// <typeparam name="T"></typeparam>
     [Serializable()]
+    [DataContract]
     public class QueryResultList<T>
     {
         public QueryResultList()
@@ -34,7 +36,9 @@ namespace Ralid.Park.BusinessModel.Result
 
         #region IQueryResultList<T> 成员
 
+        [DataMember]
         private ResultCode _result;
+        [DataMember]
         public ResultCode Result
         {
             get
@@ -46,8 +50,9 @@ namespace Ralid.Park.BusinessModel.Result
                 this._result = value;
             }
         }
-
+        [DataMember]
         private List<T> _queryList;
+        [DataMember]
         public List<T> QueryObjects
         {
             get
@@ -59,8 +64,9 @@ namespace Ralid.Park.BusinessModel.Result
                 this._queryList = value;
             }
         }
-
+        [DataMember]
         private string _msg;
+        [DataMember]
         public string Message
         {
             get { return _msg; }

@@ -237,6 +237,15 @@ namespace Ralid.Park.UserControls
         /// </summary>
         public void Init()
         {
+            Init(0);
+        }
+
+        /// <summary>
+        /// 初始化树
+        /// </summary>
+        /// <param name="parkID">停车场ID，为0时显示所有停车场</param>
+        public void Init(int parkID)
+        {
             this.Nodes.Clear();
             this.allParkNodes.Clear();
             this.allVideoNodes.Clear();
@@ -255,7 +264,10 @@ namespace Ralid.Park.UserControls
                 {
                     if (park.ParentID == null)
                     {
-                        AddParkNode(root, park);
+                        if (parkID == 0 || parkID == park.ParkID)
+                        {
+                            AddParkNode(root, park);
+                        }
                     }
                 }
             }
@@ -359,6 +371,9 @@ namespace Ralid.Park.UserControls
             switch (en.Status)
             {
                 case EntranceStatus.Ok:
+                case EntranceStatus.GateDown:
+                case EntranceStatus.GateUp:
+                case EntranceStatus.LessCard:
                     node.ForeColor = System.Drawing.Color.Black;
                     node.ImageIndex = en.IsMaster ? 6 : 2;
                     node.SelectedImageIndex = en.IsMaster ? 6 : 2;
@@ -381,6 +396,8 @@ namespace Ralid.Park.UserControls
                     break;
                 case EntranceStatus.NoCard:
                 case EntranceStatus.CardJam:
+                case EntranceStatus.StorageAlarm:
+                case EntranceStatus.StorageFull:
                     toolTip = EntranceStatusDescription.GetDescription(en.Status);
                     node.Text = string.Format("{0}[{1}][{2}]", en.EntranceName, toolTip);
                     node.ForeColor = System.Drawing.Color.Red;
@@ -569,8 +586,17 @@ namespace Ralid.Park.UserControls
             return parksAndentrances;
         }
 
-
-
+        /// <summary>
+        /// 只展开根节点
+        /// </summary>
+        public void ExpandRootOnly()
+        {
+            this.CollapseAll();
+            if (this.root != null)
+            {
+                this.root.Expand();
+            }
+        }
         #endregion
 
         #region IReportHandler 成员
@@ -595,7 +621,7 @@ namespace Ralid.Park.UserControls
 
             if (this.InvokeRequired)
             {
-                this.Invoke(action, report);
+                this.BeginInvoke(action, report);
             }
             else
             {

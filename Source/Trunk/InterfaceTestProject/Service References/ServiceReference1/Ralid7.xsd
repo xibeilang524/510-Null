@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:simpleType name="InterfaceReturnCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Success" />
+      <xs:enumeration value="ParameterError" />
+      <xs:enumeration value="DatabaseError" />
+      <xs:enumeration value="DatabaseNoRecord" />
+      <xs:enumeration value="DatabaseSaveDataError" />
+      <xs:enumeration value="CannotConnectDatabase" />
+      <xs:enumeration value="NoPlaceAccess" />
+      <xs:enumeration value="InterfaceException">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">255</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="InterfaceReturnCode" nillable="true" type="tns:InterfaceReturnCode" />
+  <xs:complexType name="WSCardPaymentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accounts" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChargeDateTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CurrDiscountHour" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Discount" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnterDateTime" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EntranceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastTotalFee" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paid" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Tariff" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="TimeInterval" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="WSCardPaymentInfo" nillable="true" type="tns:WSCardPaymentInfo" />
+</xs:schema>

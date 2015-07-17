@@ -64,7 +64,100 @@ namespace ExcelExport
             book.Close(false, Type.Missing, Type.Missing);
         }
 
+        /// <summary>
+        /// 导出优惠记录到Excel中，并直接打印出来
+        /// </summary>
+        /// <param name="preLog"></param>
+        public void PrintByExcel(PREPreferentialLog preLog)
+        {
+            PreferentialReportSearchCondition recordCon = new PreferentialReportSearchCondition();
+            recordCon.CardID = preLog.CardID;
+            Application app = new Application();
+            Workbook book = null;
+            book = app.Workbooks.Add(ReportModal);
+            Worksheet sheet = book.ActiveSheet as Worksheet;
+            FillPreferentialLog(sheet, preLog, 3);
+
+            PREPreferentialLogBll bll = new PREPreferentialLogBll(AppSettings.CurrentSetting.ParkConnect);
+            List<PREPreferentialLog> logs = bll.GetPreferentials(recordCon).QueryObjects;
+            FillDetail(sheet, logs, 6);
+            sheet.PrintOutEx(Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing, Type.Missing);
+            book.Close(false, Type.Missing, Type.Missing);
+        }
+
         #region 私有方法
+        private void FillPreferentialLog(Worksheet sheet, PREPreferentialLog preLog, int row)
+        {
+            Range r = sheet.get_Range("A" + row, Type.Missing);
+            r.Value2 = PREOperatorInfo.CurrentOperator.OperatorName;//打印操作员
+            r = sheet.get_Range("B" + row, Type.Missing);
+            r.Value2 = string.Empty;//优惠总时数
+            r = sheet.get_Range("C" + row, Type.Missing);
+            r.Value2 = PRESysOptionSetting.Current.PRESysOption.CurrentWorkstation;//打印工作站
+            r = sheet.get_Range("D" + row, Type.Missing);
+            r.Value2 = DateTime.Now;//打印时间
+        }
+
+        private void FillDetail(Worksheet sheet, List<PREPreferentialLog> items, int row)
+        {
+            Range r = null;
+            int firstRow = row;
+            foreach (PREPreferentialLog record in items)
+            {
+                try
+                {
+                    r = sheet.get_Range("A" + row, Type.Missing);
+                    r.Value2 = record.CardID;
+
+                    r = sheet.get_Range("B" + row, Type.Missing);
+                    r.Value2 = record.PreferentialHour;
+
+                    r = sheet.get_Range("C" + row, Type.Missing);
+                    r.Value2 = record.BusinessesName1;
+
+                    r = sheet.get_Range("D" + row, Type.Missing);
+                    r.Value2 = record.BusinessesMoney1;
+
+                    r = sheet.get_Range("E" + row, Type.Missing);
+                    r.Value2 = record.BusinessesName2;
+
+                    r = sheet.get_Range("F" + row, Type.Missing);
+                    r.Value2 = record.BusinessesMoney2;
+
+                    r = sheet.get_Range("G" + row, Type.Missing);
+                    r.Value2 = record.BusinessesName3;
+
+                    r = sheet.get_Range("H" + row, Type.Missing);
+                    r.Value2 = record.BusinessesMoney3;
+
+                    r = sheet.get_Range("I" + row, Type.Missing);
+                    r.Value2 = record.Notes;
+
+                    r = sheet.get_Range("J" + row, Type.Missing);
+                    r.Value2 = record.WorkstationName;
+
+                    r = sheet.get_Range("K" + row, Type.Missing);
+                    r.Value2 = record.Operator.OperatorName;
+
+                    r = sheet.get_Range("L" + row, Type.Missing);
+                    r.Value2 = record.OperatorTime;
+
+                    r = sheet.get_Range("M" + row, Type.Missing);
+                    r.Value2 = record.IsCancel == 1 ? "是" : "否";
+
+                    r = sheet.get_Range("N" + row, Type.Missing);
+                    r.Value2 = record.CancelReason;
+
+                    row++;
+                }
+                catch
+                {
+                }
+            }
+            r = sheet.get_Range("A" + firstRow, "J" + row);
+            AddBorder(r);
+        }
+
         private void FillOperatorLog(Worksheet sheet, OperatorSettleLog optLog, int row)
         {
             Range r = sheet.get_Range("A" + row, Type.Missing);
@@ -72,7 +165,7 @@ namespace ExcelExport
             r = sheet.get_Range("B" + row, Type.Missing);
             r.Value2 = optLog.SettleDateTime;
             r = sheet.get_Range("C" + row, Type.Missing);
-            r.Value2 = optLog.CashOfCard + optLog.CashOfCardLost + optLog.CashOfDeposit + optLog.CashOfCardRecycle;
+            r.Value2 = optLog.CashOfCard + optLog.CashOfCardLost + optLog.CashOfDeposit - optLog.CashOfCardRecycle;
             r = sheet.get_Range("D" + row, Type.Missing);
             r.Value2 = optLog.HandInCash;
             r = sheet.get_Range("E" + row, Type.Missing);

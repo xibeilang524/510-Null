@@ -118,838 +118,388 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkValid.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="chkValid.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="label35.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label13.TabIndex" type="System.Int32, mscorlib">
+    <value>223</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="chkValid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 162</value>
-  </data>
-  <data name="chkValid.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
-  <data name="chkValid.TabIndex" type="System.Int32, mscorlib">
-    <value>202</value>
-  </data>
-  <data name="chkValid.Text" xml:space="preserve">
-    <value>控制器有效</value>
-  </data>
-  <data name="&gt;&gt;chkValid.Name" xml:space="preserve">
-    <value>chkValid</value>
-  </data>
-  <data name="&gt;&gt;chkValid.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkValid.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkValid.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="chkRoadGateModel.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkRoadGateModel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkRoadGateModel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 93</value>
-  </data>
-  <data name="chkRoadGateModel.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="chkRoadGateModel.TabIndex" type="System.Int32, mscorlib">
-    <value>201</value>
-  </data>
-  <data name="chkRoadGateModel.Text" xml:space="preserve">
-    <value>路闸模式</value>
-  </data>
-  <data name="&gt;&gt;chkRoadGateModel.Name" xml:space="preserve">
-    <value>chkRoadGateModel</value>
-  </data>
-  <data name="&gt;&gt;chkRoadGateModel.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkRoadGateModel.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkRoadGateModel.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="chkNoParkingCount.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkNoParkingCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="chkNoParkingCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 137</value>
-  </data>
-  <data name="chkNoParkingCount.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
-  </data>
-  <data name="chkNoParkingCount.TabIndex" type="System.Int32, mscorlib">
-    <value>201</value>
-  </data>
-  <data name="chkNoParkingCount.Text" xml:space="preserve">
-    <value>不进行车位计数</value>
-  </data>
-  <data name="&gt;&gt;chkNoParkingCount.Name" xml:space="preserve">
-    <value>chkNoParkingCount</value>
-  </data>
-  <data name="&gt;&gt;chkNoParkingCount.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkNoParkingCount.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkNoParkingCount.ZOrder" xml:space="preserve">
-    <value>2</value>
-  </data>
-  <data name="chkExportCharge.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkExportCharge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="chkExportCharge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 115</value>
-  </data>
-  <data name="chkExportCharge.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
-  </data>
-  <data name="chkExportCharge.TabIndex" type="System.Int32, mscorlib">
-    <value>200</value>
-  </data>
-  <data name="chkExportCharge.Text" xml:space="preserve">
-    <value>出口收费</value>
-  </data>
-  <data name="&gt;&gt;chkExportCharge.Name" xml:space="preserve">
-    <value>chkExportCharge</value>
-  </data>
-  <data name="&gt;&gt;chkExportCharge.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkExportCharge.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkExportCharge.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="chkForbidWhenFull.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkForbidWhenFull.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 137</value>
-  </data>
-  <data name="chkForbidWhenFull.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 16</value>
-  </data>
-  <data name="chkForbidWhenFull.TabIndex" type="System.Int32, mscorlib">
-    <value>179</value>
-  </data>
-  <data name="chkForbidWhenFull.Text" xml:space="preserve">
-    <value>车场满位时禁止进场</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenFull.Name" xml:space="preserve">
-    <value>chkForbidWhenFull</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenFull.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenFull.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenFull.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="chkForbidWhenCardExpired.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkForbidWhenCardExpired.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 115</value>
-  </data>
-  <data name="chkForbidWhenCardExpired.Size" type="System.Drawing.Size, System.Drawing">
-    <value>132, 16</value>
-  </data>
-  <data name="chkForbidWhenCardExpired.TabIndex" type="System.Int32, mscorlib">
-    <value>178</value>
-  </data>
-  <data name="chkForbidWhenCardExpired.Text" xml:space="preserve">
-    <value>禁止过期卡片进出场</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenCardExpired.Name" xml:space="preserve">
-    <value>chkForbidWhenCardExpired</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenCardExpired.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenCardExpired.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkForbidWhenCardExpired.ZOrder" xml:space="preserve">
-    <value>5</value>
-  </data>
-  <data name="chkEnableTempCard.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+    <value>364, 155</value>
   </data>
   <data name="chkEnableTempCard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 137</value>
+    <value>205, 177</value>
   </data>
-  <data name="chkEnableTempCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
+  <data name="&gt;&gt;rdbCarPlateAndCardMode.Name" xml:space="preserve">
+    <value>rdbCarPlateAndCardMode</value>
   </data>
-  <data name="chkEnableTempCard.TabIndex" type="System.Int32, mscorlib">
-    <value>177</value>
-  </data>
-  <data name="chkEnableTempCard.Text" xml:space="preserve">
-    <value>允许临时卡进出场</value>
-  </data>
-  <data name="&gt;&gt;chkEnableTempCard.Name" xml:space="preserve">
-    <value>chkEnableTempCard</value>
-  </data>
-  <data name="&gt;&gt;chkEnableTempCard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkEnableTempCard.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkEnableTempCard.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="chkLightEnable.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkLightEnable.Location" type="System.Drawing.Point, System.Drawing">
-    <value>19, 115</value>
-  </data>
-  <data name="chkLightEnable.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
-  <data name="chkLightEnable.TabIndex" type="System.Int32, mscorlib">
-    <value>176</value>
-  </data>
-  <data name="chkLightEnable.Text" xml:space="preserve">
-    <value>使用补光灯</value>
-  </data>
-  <data name="&gt;&gt;chkLightEnable.Name" xml:space="preserve">
-    <value>chkLightEnable</value>
-  </data>
-  <data name="&gt;&gt;chkLightEnable.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 268</value>
   </data>
   <data name="&gt;&gt;chkLightEnable.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;chkLightEnable.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtCardReadInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 56</value>
-  </data>
-  <data name="txtCardReadInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>48, 21</value>
-  </data>
-  <data name="txtCardReadInterval.TabIndex" type="System.Int32, mscorlib">
-    <value>175</value>
-  </data>
-  <data name="txtCardReadInterval.Text" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;txtCardReadInterval.Name" xml:space="preserve">
-    <value>txtCardReadInterval</value>
-  </data>
-  <data name="&gt;&gt;txtCardReadInterval.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtCardReadInterval.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;txtCardReadInterval.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="label29.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>286, 60</value>
-  </data>
-  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 12</value>
-  </data>
-  <data name="label29.TabIndex" type="System.Int32, mscorlib">
-    <value>174</value>
-  </data>
-  <data name="label29.Text" xml:space="preserve">
-    <value>读卡间隔(s)</value>
-  </data>
-  <data name="&gt;&gt;label29.Name" xml:space="preserve">
-    <value>label29</value>
-  </data>
-  <data name="&gt;&gt;label29.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label29.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="label30.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 25</value>
-  </data>
-  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label30.TabIndex" type="System.Int32, mscorlib">
-    <value>166</value>
-  </data>
-  <data name="label30.Text" xml:space="preserve">
-    <value>工作模式</value>
-  </data>
-  <data name="&gt;&gt;label30.Name" xml:space="preserve">
-    <value>label30</value>
-  </data>
-  <data name="&gt;&gt;label30.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="chkAllowEjectCardWhithoutRead.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkAllowEjectCardWhithoutRead.Location" type="System.Drawing.Point, System.Drawing">
-    <value>364, 93</value>
-  </data>
-  <data name="chkAllowEjectCardWhithoutRead.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 16</value>
-  </data>
-  <data name="chkAllowEjectCardWhithoutRead.TabIndex" type="System.Int32, mscorlib">
-    <value>173</value>
-  </data>
-  <data name="chkAllowEjectCardWhithoutRead.Text" xml:space="preserve">
-    <value>允许取卡后再刷卡</value>
-  </data>
-  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Name" xml:space="preserve">
-    <value>chkAllowEjectCardWhithoutRead</value>
-  </data>
-  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="chkTakeCardNeedCarSense.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="chkTakeCardNeedCarSense.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 93</value>
-  </data>
-  <data name="chkTakeCardNeedCarSense.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 16</value>
-  </data>
-  <data name="chkTakeCardNeedCarSense.TabIndex" type="System.Int32, mscorlib">
-    <value>160</value>
-  </data>
-  <data name="chkTakeCardNeedCarSense.Text" xml:space="preserve">
-    <value>取卡要求压地感</value>
-  </data>
-  <data name="&gt;&gt;chkTakeCardNeedCarSense.Name" xml:space="preserve">
-    <value>chkTakeCardNeedCarSense</value>
-  </data>
-  <data name="&gt;&gt;chkTakeCardNeedCarSense.Type" xml:space="preserve">
-    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;chkTakeCardNeedCarSense.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;chkTakeCardNeedCarSense.ZOrder" xml:space="preserve">
-    <value>12</value>
-  </data>
-  <data name="rdOnline.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdOnline.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 10</value>
-  </data>
-  <data name="rdOnline.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
-  </data>
-  <data name="rdOnline.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rdOnline.Text" xml:space="preserve">
-    <value>在线</value>
-  </data>
-  <data name="&gt;&gt;rdOnline.Name" xml:space="preserve">
-    <value>rdOnline</value>
-  </data>
-  <data name="&gt;&gt;rdOnline.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdOnline.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;rdOnline.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rdOffLine.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdOffLine.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 10</value>
-  </data>
-  <data name="rdOffLine.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
-  </data>
-  <data name="rdOffLine.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rdOffLine.Text" xml:space="preserve">
-    <value>脱机</value>
-  </data>
-  <data name="&gt;&gt;rdOffLine.Name" xml:space="preserve">
-    <value>rdOffLine</value>
-  </data>
-  <data name="&gt;&gt;rdOffLine.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdOffLine.Parent" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;rdOffLine.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 13</value>
-  </data>
-  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 30</value>
-  </data>
-  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
-    <value>165</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
-    <value>groupBox2</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="rdHost.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdHost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 10</value>
-  </data>
-  <data name="rdHost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 16</value>
-  </data>
-  <data name="rdHost.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rdHost.Text" xml:space="preserve">
-    <value>主控制器</value>
-  </data>
   <data name="&gt;&gt;rdHost.Name" xml:space="preserve">
     <value>rdHost</value>
   </data>
-  <data name="&gt;&gt;rdHost.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
+    <value>32</value>
   </data>
-  <data name="&gt;&gt;rdHost.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;rdHost.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="rdNotHost.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="chkForbidWhenFull.Text" xml:space="preserve">
+    <value>车场满位时禁止进场</value>
   </data>
-  <data name="rdNotHost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 10</value>
+  <data name="label7.Text" xml:space="preserve">
+    <value>停车场编号</value>
   </data>
-  <data name="rdNotHost.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
+  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
+    <value>33</value>
   </data>
-  <data name="rdNotHost.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rdNotHost.Text" xml:space="preserve">
-    <value>非主控制器</value>
-  </data>
-  <data name="&gt;&gt;rdNotHost.Name" xml:space="preserve">
-    <value>rdNotHost</value>
-  </data>
-  <data name="&gt;&gt;rdNotHost.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdNotHost.Parent" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;rdNotHost.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>360, 13</value>
-  </data>
-  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>179, 30</value>
-  </data>
-  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
-    <value>167</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
-    <value>groupBox4</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
-  <data name="label34.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
-    <value>17, 60</value>
-  </data>
-  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label34.TabIndex" type="System.Int32, mscorlib">
-    <value>170</value>
-  </data>
-  <data name="label34.Text" xml:space="preserve">
-    <value>出入类型</value>
-  </data>
-  <data name="&gt;&gt;label34.Name" xml:space="preserve">
-    <value>label34</value>
-  </data>
-  <data name="&gt;&gt;label34.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label34.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="label33.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>291, 25</value>
-  </data>
-  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label33.TabIndex" type="System.Int32, mscorlib">
-    <value>168</value>
-  </data>
-  <data name="label33.Text" xml:space="preserve">
-    <value>控制器类型</value>
-  </data>
-  <data name="&gt;&gt;label33.Name" xml:space="preserve">
-    <value>label33</value>
-  </data>
-  <data name="&gt;&gt;label33.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="rdExit.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdExit.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 10</value>
-  </data>
-  <data name="rdExit.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rdExit.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="rdExit.Text" xml:space="preserve">
-    <value>出口控制器</value>
-  </data>
-  <data name="&gt;&gt;rdExit.Name" xml:space="preserve">
-    <value>rdExit</value>
-  </data>
-  <data name="&gt;&gt;rdExit.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdExit.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;rdExit.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="rdEnter.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="rdEnter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 10</value>
-  </data>
-  <data name="rdEnter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 16</value>
-  </data>
-  <data name="rdEnter.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="rdEnter.Text" xml:space="preserve">
-    <value>入口控制器</value>
-  </data>
-  <data name="&gt;&gt;rdEnter.Name" xml:space="preserve">
-    <value>rdEnter</value>
-  </data>
-  <data name="&gt;&gt;rdEnter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;rdEnter.Parent" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;rdEnter.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>86, 48</value>
-  </data>
-  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 30</value>
-  </data>
-  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
-    <value>169</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
-    <value>groupBox5</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 291</value>
-  </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>577, 184</value>
-  </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>217</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>选项</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="txtIPMask.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 42</value>
-  </data>
-  <data name="txtIPMask.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtIPMask.TabIndex" type="System.Int32, mscorlib">
-    <value>176</value>
-  </data>
-  <data name="&gt;&gt;txtIPMask.Name" xml:space="preserve">
-    <value>txtIPMask</value>
-  </data>
-  <data name="&gt;&gt;txtIPMask.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtIPMask.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtIPMask.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="txtGateWay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 74</value>
-  </data>
-  <data name="txtGateWay.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtGateWay.TabIndex" type="System.Int32, mscorlib">
-    <value>177</value>
-  </data>
-  <data name="&gt;&gt;txtGateWay.Name" xml:space="preserve">
-    <value>txtGateWay</value>
-  </data>
-  <data name="&gt;&gt;txtGateWay.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtGateWay.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtGateWay.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="txtMasterIP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 12</value>
-  </data>
-  <data name="txtMasterIP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtMasterIP.TabIndex" type="System.Int32, mscorlib">
-    <value>178</value>
-  </data>
-  <data name="&gt;&gt;txtMasterIP.Name" xml:space="preserve">
-    <value>txtMasterIP</value>
-  </data>
-  <data name="&gt;&gt;txtMasterIP.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtMasterIP.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtMasterIP.ZOrder" xml:space="preserve">
-    <value>10</value>
-  </data>
-  <data name="txtEventListenerIP.Location" type="System.Drawing.Point, System.Drawing">
-    <value>371, 42</value>
-  </data>
-  <data name="txtEventListenerIP.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtEventListenerIP.TabIndex" type="System.Int32, mscorlib">
-    <value>179</value>
-  </data>
-  <data name="&gt;&gt;txtEventListenerIP.Name" xml:space="preserve">
-    <value>txtEventListenerIP</value>
-  </data>
-  <data name="&gt;&gt;txtEventListenerIP.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtEventListenerIP.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtEventListenerIP.ZOrder" xml:space="preserve">
-    <value>11</value>
-  </data>
-  <data name="txtIPAddress.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 12</value>
-  </data>
-  <data name="txtIPAddress.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
+  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
   </data>
   <data name="txtIPAddress.TabIndex" type="System.Int32, mscorlib">
     <value>175</value>
   </data>
-  <data name="&gt;&gt;txtIPAddress.Name" xml:space="preserve">
-    <value>txtIPAddress</value>
+  <data name="&gt;&gt;groupBox2.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;txtIPAddress.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;hardwareV.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtIPAddress.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="&gt;&gt;rdExit.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label15.Name" xml:space="preserve">
+    <value>label15</value>
+  </data>
+  <data name="&gt;&gt;rdOffLine.Name" xml:space="preserve">
+    <value>rdOffLine</value>
+  </data>
+  <data name="&gt;&gt;ip1.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label7.TabIndex" type="System.Int32, mscorlib">
+    <value>186</value>
+  </data>
+  <data name="&gt;&gt;ip4.Name" xml:space="preserve">
+    <value>ip4</value>
+  </data>
+  <data name="&gt;&gt;softwareV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdNotHost.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenCardExpired.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateMode.Name" xml:space="preserve">
+    <value>rdbCarPlateMode</value>
+  </data>
+  <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
+    <value>236</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>189</value>
+  </data>
+  <data name="softwareV.TabIndex" type="System.Int32, mscorlib">
+    <value>204</value>
+  </data>
+  <data name="chkNoParkingCount.Text" xml:space="preserve">
+    <value>不进行车位计数</value>
+  </data>
+  <data name="&gt;&gt;hardwareV.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="rdNotHost.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;chkTakeCardNeedCarSense.Name" xml:space="preserve">
+    <value>chkTakeCardNeedCarSense</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtIPMask.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;txtCardReadInterval.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;rdOffLine.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdOnline.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="&gt;&gt;label9.Name" xml:space="preserve">
+    <value>label9</value>
+  </data>
+  <data name="rdEnter.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtmac.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 110</value>
+  </data>
+  <data name="chkNoParkingCount.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkExportCharge.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkEnableTempCard.Text" xml:space="preserve">
+    <value>允许临时卡进出场</value>
+  </data>
+  <data name="&gt;&gt;ip3.Name" xml:space="preserve">
+    <value>ip3</value>
+  </data>
+  <data name="&gt;&gt;rdExit.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 155</value>
+  </data>
+  <data name="&gt;&gt;rdNotHost.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>400, 113</value>
+  </data>
+  <data name="&gt;&gt;rdbCardMode.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="ip3.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ip2.TabIndex" type="System.Int32, mscorlib">
+    <value>147</value>
+  </data>
+  <data name="&gt;&gt;txtEventListenerIP.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chkEnableTempCard.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label34.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="label31.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Name" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>325, 30</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>38, 81</value>
+  </data>
+  <data name="&gt;&gt;label24.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;rdOnline.Parent" xml:space="preserve">
+    <value>groupBox2</value>
   </data>
   <data name="&gt;&gt;txtIPAddress.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtEventListenerIP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 42</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;softwareV.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 16</value>
+  </data>
+  <data name="rdOffLine.Text" xml:space="preserve">
+    <value>脱机</value>
+  </data>
+  <data name="rdbCardMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 9</value>
+  </data>
+  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkAllowEjectCardWhithoutRead.Text" xml:space="preserve">
+    <value>允许取卡后再刷卡</value>
+  </data>
+  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;commV.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtIPAddress.ZOrder" xml:space="preserve">
     <value>12</value>
   </data>
-  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>263, 107</value>
+  <data name="&gt;&gt;label13.Name" xml:space="preserve">
+    <value>label13</value>
   </data>
-  <data name="txtSerialNum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
+  <data name="txtmac.TabIndex" type="System.Int32, mscorlib">
+    <value>193</value>
   </data>
-  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
-    <value>216</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
-    <value>txtSerialNum</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
-    <value>13</value>
-  </data>
-  <data name="label35.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
-    <value>217, 110</value>
-  </data>
-  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>41, 12</value>
-  </data>
-  <data name="label35.TabIndex" type="System.Int32, mscorlib">
-    <value>215</value>
-  </data>
-  <data name="label35.Text" xml:space="preserve">
-    <value>序列号</value>
-  </data>
-  <data name="&gt;&gt;label35.Name" xml:space="preserve">
-    <value>label35</value>
-  </data>
-  <data name="&gt;&gt;label35.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label35.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;controlPort.Name" xml:space="preserve">
+    <value>controlPort</value>
   </data>
   <data name="&gt;&gt;label35.ZOrder" xml:space="preserve">
     <value>14</value>
   </data>
-  <data name="listenerPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 77</value>
+  <data name="&gt;&gt;chkNoParkingCount.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="listenerPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 30</value>
   </data>
-  <data name="listenerPort.TabIndex" type="System.Int32, mscorlib">
-    <value>194</value>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>217</value>
   </data>
-  <data name="listenerPort.Text" xml:space="preserve">
+  <data name="&gt;&gt;txtMasterIP.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="&gt;&gt;parknum.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtmac.ZOrder" xml:space="preserve">
+    <value>23</value>
+  </data>
+  <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
+    <value>291, 25</value>
+  </data>
+  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="rdExit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 10</value>
+  </data>
+  <data name="&gt;&gt;label34.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdbCarPlateAndCardMode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;listenerPort.Name" xml:space="preserve">
-    <value>listenerPort</value>
+  <data name="&gt;&gt;rdExit.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;commV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ip3.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rdEnter.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="groupBox2.TabIndex" type="System.Int32, mscorlib">
+    <value>165</value>
+  </data>
+  <data name="&gt;&gt;chkNoParkingCount.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;chkOnlineHandleWhenNotOnList.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdExit.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="chkValid.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="txtCarPlateNotifyControllerSecond1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>193, 143</value>
+  </data>
+  <data name="txtMasterIP.TabIndex" type="System.Int32, mscorlib">
+    <value>178</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;address.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ip4.TabIndex" type="System.Int32, mscorlib">
+    <value>149</value>
+  </data>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>577, 234</value>
+  </data>
+  <data name="&gt;&gt;txtIPAddress.Name" xml:space="preserve">
+    <value>txtIPAddress</value>
+  </data>
+  <data name="&gt;&gt;label29.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtCarPlateNotifyControllerSecond2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 261</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="rdHost.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkLightEnable.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 155</value>
+  </data>
+  <data name="&gt;&gt;label7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkNoParkingCount.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtIPMask.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkExportCharge.TabIndex" type="System.Int32, mscorlib">
+    <value>200</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;listenerPort.Type" xml:space="preserve">
     <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -957,868 +507,1504 @@
   <data name="&gt;&gt;listenerPort.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;listenerPort.ZOrder" xml:space="preserve">
-    <value>15</value>
-  </data>
-  <data name="label32.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>303, 81</value>
-  </data>
-  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label32.TabIndex" type="System.Int32, mscorlib">
-    <value>214</value>
-  </data>
-  <data name="label32.Text" xml:space="preserve">
-    <value>服务器端口</value>
-  </data>
-  <data name="&gt;&gt;label32.Name" xml:space="preserve">
-    <value>label32</value>
-  </data>
-  <data name="&gt;&gt;label32.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
-    <value>16</value>
-  </data>
-  <data name="label28.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>311, 49</value>
-  </data>
-  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label28.TabIndex" type="System.Int32, mscorlib">
-    <value>210</value>
-  </data>
-  <data name="label28.Text" xml:space="preserve">
-    <value>服务器IP</value>
-  </data>
-  <data name="&gt;&gt;label28.Name" xml:space="preserve">
-    <value>label28</value>
-  </data>
-  <data name="&gt;&gt;label28.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
-    <value>17</value>
-  </data>
-  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>300, 19</value>
-  </data>
-  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label24.TabIndex" type="System.Int32, mscorlib">
-    <value>206</value>
-  </data>
-  <data name="label24.Text" xml:space="preserve">
-    <value>主控制器IP</value>
-  </data>
-  <data name="&gt;&gt;label24.Name" xml:space="preserve">
-    <value>label24</value>
-  </data>
-  <data name="&gt;&gt;label24.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label24.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
-    <value>18</value>
-  </data>
-  <data name="commV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 169</value>
-  </data>
-  <data name="commV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
-  </data>
-  <data name="commV.TabIndex" type="System.Int32, mscorlib">
-    <value>205</value>
-  </data>
-  <data name="&gt;&gt;commV.Name" xml:space="preserve">
-    <value>commV</value>
-  </data>
-  <data name="&gt;&gt;commV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;commV.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;commV.ZOrder" xml:space="preserve">
-    <value>19</value>
-  </data>
-  <data name="softwareV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 169</value>
-  </data>
-  <data name="softwareV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>107, 21</value>
-  </data>
-  <data name="softwareV.TabIndex" type="System.Int32, mscorlib">
-    <value>204</value>
-  </data>
-  <data name="&gt;&gt;softwareV.Name" xml:space="preserve">
-    <value>softwareV</value>
-  </data>
-  <data name="&gt;&gt;softwareV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;softwareV.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;softwareV.ZOrder" xml:space="preserve">
-    <value>20</value>
-  </data>
-  <data name="hardwareV.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 172</value>
-  </data>
-  <data name="hardwareV.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
-  </data>
-  <data name="hardwareV.TabIndex" type="System.Int32, mscorlib">
-    <value>203</value>
-  </data>
-  <data name="&gt;&gt;hardwareV.Name" xml:space="preserve">
-    <value>hardwareV</value>
-  </data>
-  <data name="&gt;&gt;hardwareV.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;hardwareV.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;hardwareV.ZOrder" xml:space="preserve">
-    <value>21</value>
-  </data>
-  <data name="parknum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 109</value>
-  </data>
-  <data name="parknum.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
-  </data>
-  <data name="parknum.TabIndex" type="System.Int32, mscorlib">
-    <value>196</value>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>179, 30</value>
   </data>
   <data name="parknum.Text" xml:space="preserve">
     <value>000000</value>
   </data>
-  <data name="&gt;&gt;parknum.Name" xml:space="preserve">
-    <value>parknum</value>
+  <data name="&gt;&gt;groupBox5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;parknum.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label15.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;parknum.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;parknum.ZOrder" xml:space="preserve">
-    <value>22</value>
-  </data>
-  <data name="txtmac.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 110</value>
-  </data>
-  <data name="txtmac.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="parknum.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 21</value>
   </data>
-  <data name="txtmac.TabIndex" type="System.Int32, mscorlib">
-    <value>193</value>
+  <data name="groupBox5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 48</value>
   </data>
-  <data name="&gt;&gt;txtmac.Name" xml:space="preserve">
-    <value>txtmac</value>
-  </data>
-  <data name="&gt;&gt;txtmac.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;txtmac.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtmac.ZOrder" xml:space="preserve">
-    <value>23</value>
-  </data>
-  <data name="eventPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>264, 139</value>
-  </data>
-  <data name="eventPort.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="address.Size" type="System.Drawing.Size, System.Drawing">
     <value>108, 21</value>
   </data>
-  <data name="eventPort.TabIndex" type="System.Int32, mscorlib">
-    <value>192</value>
+  <data name="chkForbidWhenCardExpired.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 16</value>
   </data>
-  <data name="eventPort.Text" xml:space="preserve">
-    <value>5001</value>
+  <data name="&gt;&gt;rdHost.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="&gt;&gt;eventPort.Name" xml:space="preserve">
-    <value>eventPort</value>
+  <data name="&gt;&gt;ip1.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;eventPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label11.Text" xml:space="preserve">
+    <value>软件版本</value>
   </data>
-  <data name="&gt;&gt;eventPort.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
+    <value>36</value>
   </data>
-  <data name="&gt;&gt;eventPort.ZOrder" xml:space="preserve">
-    <value>24</value>
+  <data name="txtCarPlateNotifyControllerSecond1.TabIndex" type="System.Int32, mscorlib">
+    <value>220</value>
   </data>
-  <data name="controlPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>71, 139</value>
+  <data name="&gt;&gt;rdbCardMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="controlPort.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
+  <data name="address.TabIndex" type="System.Int32, mscorlib">
+    <value>195</value>
   </data>
-  <data name="controlPort.TabIndex" type="System.Int32, mscorlib">
-    <value>191</value>
+  <data name="label29.Text" xml:space="preserve">
+    <value>读卡间隔(s)</value>
   </data>
-  <data name="controlPort.Text" xml:space="preserve">
-    <value>4001</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
   </data>
-  <data name="&gt;&gt;controlPort.Name" xml:space="preserve">
-    <value>controlPort</value>
+  <data name="txtGateWay.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 74</value>
   </data>
-  <data name="&gt;&gt;controlPort.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="label13.Text" xml:space="preserve">
+    <value>第2路识别车牌需发送的控制器</value>
   </data>
-  <data name="&gt;&gt;controlPort.Parent" xml:space="preserve">
+  <data name="&gt;&gt;label30.ZOrder" xml:space="preserve">
+    <value>14</value>
+  </data>
+  <data name="label9.TabIndex" type="System.Int32, mscorlib">
+    <value>188</value>
+  </data>
+  <data name="chkRoadGateModel.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label32.TabIndex" type="System.Int32, mscorlib">
+    <value>214</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>第1路识别车牌需发送的控制器</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Name" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond2</value>
+  </data>
+  <data name="&gt;&gt;chkTakeCardNeedCarSense.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;txtMasterIP.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;label2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="parknum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>472, 109</value>
+  </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>190</value>
+  </data>
+  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;controlPort.ZOrder" xml:space="preserve">
     <value>25</value>
   </data>
-  <data name="address.Location" type="System.Drawing.Point, System.Drawing">
-    <value>472, 139</value>
-  </data>
-  <data name="address.Size" type="System.Drawing.Size, System.Drawing">
-    <value>108, 21</value>
-  </data>
-  <data name="address.TabIndex" type="System.Int32, mscorlib">
-    <value>195</value>
-  </data>
-  <data name="address.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;address.Name" xml:space="preserve">
-    <value>address</value>
-  </data>
-  <data name="&gt;&gt;address.Type" xml:space="preserve">
-    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;address.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;address.ZOrder" xml:space="preserve">
-    <value>26</value>
-  </data>
-  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 175</value>
-  </data>
-  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
   </data>
-  <data name="label11.TabIndex" type="System.Int32, mscorlib">
-    <value>190</value>
-  </data>
-  <data name="label11.Text" xml:space="preserve">
-    <value>软件版本</value>
-  </data>
-  <data name="&gt;&gt;label11.Name" xml:space="preserve">
-    <value>label11</value>
-  </data>
-  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 49</value>
   </data>
-  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>27</value>
+  <data name="&gt;&gt;chkExportCharge.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
-  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+  <data name="chkOnlineHandleWhenNotOnList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 199</value>
+  </data>
+  <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateAndCardMode.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="&gt;&gt;rdbCardMode.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="&gt;&gt;label31.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 175</value>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
+  <data name="rdHost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 16</value>
   </data>
-  <data name="label10.TabIndex" type="System.Int32, mscorlib">
-    <value>189</value>
+  <data name="&gt;&gt;rdNotHost.Name" xml:space="preserve">
+    <value>rdNotHost</value>
   </data>
-  <data name="label10.Text" xml:space="preserve">
-    <value>硬件版本</value>
+  <data name="&gt;&gt;txtIPAddress.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label10.Name" xml:space="preserve">
     <value>label10</value>
   </data>
-  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+  <data name="&gt;&gt;rdbCarPlateMode.Parent" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="listenerPort.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkTakeCardNeedCarSense.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label30.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>388, 172</value>
+  </data>
+  <data name="txtGateWay.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="&gt;&gt;rdEnter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdbCarPlateAndCardMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 16</value>
+  </data>
+  <data name="chkExportCharge.Text" xml:space="preserve">
+    <value>出口收费</value>
+  </data>
+  <data name="label29.TabIndex" type="System.Int32, mscorlib">
+    <value>174</value>
+  </data>
+  <data name="rdbCarPlateMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 10</value>
+  </data>
+  <data name="rdOffLine.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="chkForbidWhenFull.Size" type="System.Drawing.Size, System.Drawing">
+    <value>132, 16</value>
+  </data>
+  <data name="&gt;&gt;rdOffLine.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="rdEnter.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>事件端口号</value>
+  </data>
+  <data name="&gt;&gt;label31.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;softwareV.Name" xml:space="preserve">
+    <value>softwareV</value>
+  </data>
+  <data name="listenerPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="label32.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;commV.ZOrder" xml:space="preserve">
+    <value>19</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;listenerPort.Name" xml:space="preserve">
+    <value>listenerPort</value>
+  </data>
+  <data name="&gt;&gt;chkTakeCardNeedCarSense.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkValid.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtCarPlateNotifyControllerSecond1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 229</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label33.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="txtMasterIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="&gt;&gt;rdbCardMode.Name" xml:space="preserve">
+    <value>rdbCardMode</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkNoParkingCount.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateAndCardMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>182</value>
+  </data>
+  <data name="label31.TabIndex" type="System.Int32, mscorlib">
+    <value>235</value>
+  </data>
+  <data name="&gt;&gt;label24.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;hardwareV.Name" xml:space="preserve">
+    <value>hardwareV</value>
+  </data>
+  <data name="chkTakeCardNeedCarSense.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 133</value>
+  </data>
+  <data name="chkRoadGateModel.TabIndex" type="System.Int32, mscorlib">
+    <value>201</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>30</value>
+  </data>
+  <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
+    <value>311, 49</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmParkDeviceDetail</value>
+  </data>
+  <data name="chkAllowEjectCardWhithoutRead.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 133</value>
+  </data>
+  <data name="chkWeigand34.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;chkValid.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="ip3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>119, 3</value>
+  </data>
+  <data name="label32.Text" xml:space="preserve">
+    <value>服务器端口</value>
+  </data>
+  <data name="&gt;&gt;ip4.Parent" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond1</value>
+  </data>
+  <data name="&gt;&gt;rdOnline.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="chkEnableTempCard.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label32.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="ip2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>61, 3</value>
+  </data>
+  <data name="label28.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyController.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>221</value>
+  </data>
+  <data name="&gt;&gt;label34.Name" xml:space="preserve">
+    <value>label34</value>
+  </data>
+  <data name="&gt;&gt;ip2.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="softwareV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>107, 21</value>
+  </data>
+  <data name="chkEnableTempCard.TabIndex" type="System.Int32, mscorlib">
+    <value>177</value>
+  </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
+  <data name="rdOnline.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 10</value>
+  </data>
+  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label35.Location" type="System.Drawing.Point, System.Drawing">
+    <value>217, 110</value>
+  </data>
+  <data name="address.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="ip1.TabIndex" type="System.Int32, mscorlib">
+    <value>146</value>
+  </data>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>180</value>
+  </data>
+  <data name="label29.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ip3.TabIndex" type="System.Int32, mscorlib">
+    <value>148</value>
+  </data>
+  <data name="&gt;&gt;ip3.Parent" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond1</value>
+  </data>
+  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
+    <value>34</value>
+  </data>
+  <data name="&gt;&gt;txtCardReadInterval.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdbCarPlateMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label33.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>IP 地址</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label35.Name" xml:space="preserve">
+    <value>label35</value>
+  </data>
+  <data name="chkNoParkingCount.TabIndex" type="System.Int32, mscorlib">
+    <value>201</value>
+  </data>
+  <data name="&gt;&gt;softwareV.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyController.Name" xml:space="preserve">
+    <value>txtCarPlateNotifyController</value>
+  </data>
+  <data name="txtmac.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="&gt;&gt;parknum.Name" xml:space="preserve">
+    <value>parknum</value>
+  </data>
+  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtCardReadInterval.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtIPMask.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chkRoadGateModel.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;ip2.Parent" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond1</value>
+  </data>
+  <data name="&gt;&gt;eventPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkValid.Text" xml:space="preserve">
+    <value>控制器有效</value>
+  </data>
+  <data name="ip4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 21</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label34.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="&gt;&gt;ip2.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="&gt;&gt;controlPort.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label34.TabIndex" type="System.Int32, mscorlib">
+    <value>170</value>
+  </data>
+  <data name="&gt;&gt;label28.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="chkTakeCardNeedCarSense.TabIndex" type="System.Int32, mscorlib">
+    <value>160</value>
+  </data>
+  <data name="rdOnline.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;chkExportCharge.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label32.Name" xml:space="preserve">
+    <value>label32</value>
+  </data>
+  <data name="rdEnter.Text" xml:space="preserve">
+    <value>入口控制器</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>控制端口号</value>
+  </data>
+  <data name="txtIPMask.TabIndex" type="System.Int32, mscorlib">
+    <value>176</value>
+  </data>
+  <data name="&gt;&gt;chkWeigand34.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkRoadGateModel.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 95</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 13</value>
+  </data>
+  <data name="&gt;&gt;ip1.Parent" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond1</value>
+  </data>
+  <data name="rdNotHost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
+  </data>
+  <data name="rdbCarPlateAndCardMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Text" xml:space="preserve">
+    <value>禁止过期卡片进出场</value>
+  </data>
+  <data name="&gt;&gt;chkOnlineHandleWhenNotOnList.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="txtEventListenerIP.TabIndex" type="System.Int32, mscorlib">
+    <value>179</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>设备地址</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;label35.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label30.TabIndex" type="System.Int32, mscorlib">
+    <value>166</value>
+  </data>
+  <data name="txtGateWay.TabIndex" type="System.Int32, mscorlib">
+    <value>177</value>
+  </data>
+  <data name="controlPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
+  </data>
+  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
+    <value>CenterParent</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.Name" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="&gt;&gt;chkOnlineHandleWhenNotOnList.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>86, 83</value>
+  </data>
+  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>184</value>
+  </data>
+  <data name="&gt;&gt;label34.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;parknum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>2, 143</value>
+  </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>27</value>
+  </data>
+  <data name="chkRoadGateModel.Text" xml:space="preserve">
+    <value>路闸模式</value>
+  </data>
+  <data name="txtCardReadInterval.Text" xml:space="preserve">
+    <value>3</value>
+  </data>
+  <data name="label34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 60</value>
+  </data>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
+  </data>
+  <data name="chkTakeCardNeedCarSense.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="rdbCarPlateMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="&gt;&gt;label30.Name" xml:space="preserve">
+    <value>label30</value>
+  </data>
+  <data name="groupBox4.TabIndex" type="System.Int32, mscorlib">
+    <value>167</value>
+  </data>
+  <data name="txtCarPlateNotifyControllerSecond2.TabIndex" type="System.Int32, mscorlib">
+    <value>222</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>8, 291</value>
+  </data>
+  <data name="rdbCardMode.Text" xml:space="preserve">
+    <value>卡片</value>
+  </data>
+  <data name="&gt;&gt;rdNotHost.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;txtIPMask.Name" xml:space="preserve">
+    <value>txtIPMask</value>
+  </data>
+  <data name="&gt;&gt;rdHost.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label28.Name" xml:space="preserve">
+    <value>label28</value>
+  </data>
+  <data name="&gt;&gt;txtGateWay.Name" xml:space="preserve">
+    <value>txtGateWay</value>
+  </data>
+  <data name="txtCardReadInterval.TabIndex" type="System.Int32, mscorlib">
+    <value>175</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateMode.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="parknum.TabIndex" type="System.Int32, mscorlib">
+    <value>196</value>
+  </data>
+  <data name="txtEventListenerIP.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="&gt;&gt;rdNotHost.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="txtCarPlateNotifyController.Location" type="System.Drawing.Point, System.Drawing">
+    <value>181, 197</value>
+  </data>
+  <data name="groupBox5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 30</value>
+  </data>
+  <data name="rdNotHost.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 10</value>
+  </data>
+  <data name="&gt;&gt;label31.Name" xml:space="preserve">
+    <value>label31</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="&gt;&gt;listenerPort.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="&gt;&gt;label29.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="label33.Text" xml:space="preserve">
+    <value>控制器类型</value>
+  </data>
+  <data name="rdOffLine.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="rdbCarPlateAndCardMode.Text" xml:space="preserve">
+    <value>车牌 + 卡片</value>
+  </data>
+  <data name="commV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
+  </data>
+  <data name="&gt;&gt;label29.Name" xml:space="preserve">
+    <value>label29</value>
+  </data>
+  <data name="&gt;&gt;eventPort.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ip4.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 113</value>
+  </data>
+  <data name="&gt;&gt;label13.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label10.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>28</value>
-  </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>388, 172</value>
-  </data>
-  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
-  <data name="label9.TabIndex" type="System.Int32, mscorlib">
-    <value>188</value>
-  </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>通讯协议版本</value>
-  </data>
-  <data name="&gt;&gt;label9.Name" xml:space="preserve">
-    <value>label9</value>
-  </data>
-  <data name="&gt;&gt;label9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>29</value>
-  </data>
-  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>412, 143</value>
-  </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 236</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>187</value>
   </data>
-  <data name="label8.Text" xml:space="preserve">
-    <value>设备地址</value>
-  </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
-  </data>
-  <data name="&gt;&gt;label8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>30</value>
-  </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>400, 113</value>
-  </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label7.TabIndex" type="System.Int32, mscorlib">
-    <value>186</value>
-  </data>
-  <data name="label7.Text" xml:space="preserve">
-    <value>停车场编号</value>
-  </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
-  <data name="&gt;&gt;label7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label7.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>31</value>
-  </data>
-  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 113</value>
-  </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
-  </data>
-  <data name="label6.TabIndex" type="System.Int32, mscorlib">
-    <value>185</value>
-  </data>
-  <data name="label6.Text" xml:space="preserve">
-    <value>MAC地址</value>
-  </data>
-  <data name="&gt;&gt;label6.Name" xml:space="preserve">
-    <value>label6</value>
-  </data>
-  <data name="&gt;&gt;label6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label6.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>32</value>
-  </data>
-  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 143</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>184</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>控制端口号</value>
-  </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
-  </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label5.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>33</value>
-  </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>193, 143</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label4.TabIndex" type="System.Int32, mscorlib">
-    <value>183</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>事件端口号</value>
-  </data>
-  <data name="&gt;&gt;label4.Name" xml:space="preserve">
-    <value>label4</value>
-  </data>
-  <data name="&gt;&gt;label4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label4.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>34</value>
-  </data>
-  <data name="label3.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>38, 81</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>182</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>网关</value>
-  </data>
-  <data name="&gt;&gt;label3.Name" xml:space="preserve">
-    <value>label3</value>
-  </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label3.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>35</value>
-  </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 49</value>
-  </data>
-  <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label2.TabIndex" type="System.Int32, mscorlib">
-    <value>181</value>
-  </data>
-  <data name="label2.Text" xml:space="preserve">
-    <value>子网掩码</value>
-  </data>
-  <data name="&gt;&gt;label2.Name" xml:space="preserve">
-    <value>label2</value>
-  </data>
-  <data name="&gt;&gt;label2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>36</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>20, 19</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>180</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>IP 地址</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>37</value>
-  </data>
-  <data name="txtCarPlateNotifyController.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 197</value>
-  </data>
-  <data name="txtCarPlateNotifyController.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtCarPlateNotifyController.TabIndex" type="System.Int32, mscorlib">
-    <value>218</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyController.Name" xml:space="preserve">
-    <value>txtCarPlateNotifyController</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyController.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyController.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyController.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 204</value>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
   </data>
-  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 12</value>
+  <data name="chkValid.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
-  <data name="label15.TabIndex" type="System.Int32, mscorlib">
-    <value>219</value>
+  <data name="chkValid.TabIndex" type="System.Int32, mscorlib">
+    <value>202</value>
   </data>
-  <data name="label15.Text" xml:space="preserve">
-    <value>第1路识别车牌需发送的控制器</value>
+  <data name="hardwareV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
   </data>
-  <data name="&gt;&gt;label15.Name" xml:space="preserve">
-    <value>label15</value>
-  </data>
-  <data name="&gt;&gt;label15.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label15.Parent" xml:space="preserve">
+  <data name="&gt;&gt;controlPort.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>6</value>
+  <data name="txtIPAddress.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
   </data>
-  <data name="ucCardTypeProperty1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 481</value>
+  <data name="&gt;&gt;ip4.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="ucCardTypeProperty1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>367, 170</value>
+  <data name="chkForbidWhenFull.TabIndex" type="System.Int32, mscorlib">
+    <value>179</value>
+  </data>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkLightEnable.Text" xml:space="preserve">
+    <value>使用补光灯</value>
   </data>
   <data name="ucCardTypeProperty1.TabIndex" type="System.Int32, mscorlib">
     <value>203</value>
   </data>
-  <data name="&gt;&gt;ucCardTypeProperty1.Name" xml:space="preserve">
-    <value>ucCardTypeProperty1</value>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;ucCardTypeProperty1.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.UCCardTypeProperty, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;txtMasterIP.Name" xml:space="preserve">
+    <value>txtMasterIP</value>
   </data>
-  <data name="&gt;&gt;ucCardTypeProperty1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="controlPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 139</value>
   </data>
-  <data name="&gt;&gt;ucCardTypeProperty1.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="txtIPMask.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 42</value>
   </data>
-  <data name="ip2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
-  </data>
-  <data name="ip2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>61, 3</value>
-  </data>
-  <data name="ip2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
-  </data>
-  <data name="ip2.TabIndex" type="System.Int32, mscorlib">
-    <value>147</value>
-  </data>
-  <data name="ip2.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ip2.Name" xml:space="preserve">
-    <value>ip2</value>
-  </data>
-  <data name="&gt;&gt;ip2.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ip2.Parent" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond1</value>
-  </data>
-  <data name="&gt;&gt;ip2.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <data name="ip4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
-  </data>
-  <data name="ip4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>177, 3</value>
-  </data>
-  <data name="ip4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
-  </data>
-  <data name="ip4.TabIndex" type="System.Int32, mscorlib">
-    <value>149</value>
-  </data>
-  <data name="ip4.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ip4.Name" xml:space="preserve">
-    <value>ip4</value>
-  </data>
-  <data name="&gt;&gt;ip4.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ip4.Parent" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond1</value>
-  </data>
-  <data name="&gt;&gt;ip4.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <data name="ip3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
-  </data>
-  <data name="ip3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>119, 3</value>
-  </data>
-  <data name="ip3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
-  </data>
-  <data name="ip3.TabIndex" type="System.Int32, mscorlib">
-    <value>148</value>
-  </data>
-  <data name="ip3.Text" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;ip3.Name" xml:space="preserve">
-    <value>ip3</value>
-  </data>
-  <data name="&gt;&gt;ip3.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;ip3.Parent" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond1</value>
-  </data>
-  <data name="&gt;&gt;ip3.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <data name="ip1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
+  <data name="label34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
   </data>
   <data name="ip1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 3</value>
   </data>
-  <data name="ip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>39, 21</value>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ip1.TabIndex" type="System.Int32, mscorlib">
-    <value>146</value>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>20, 19</value>
   </data>
-  <data name="ip1.Text" xml:space="preserve">
+  <data name="chkAllowEjectCardWhithoutRead.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ucCardTypeProperty1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>367, 170</value>
+  </data>
+  <data name="controlPort.TabIndex" type="System.Int32, mscorlib">
+    <value>191</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 204</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>MAC地址</value>
+  </data>
+  <data name="&gt;&gt;txtGateWay.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;address.ZOrder" xml:space="preserve">
+    <value>26</value>
+  </data>
+  <data name="&gt;&gt;label6.Name" xml:space="preserve">
+    <value>label6</value>
+  </data>
+  <data name="label24.TabIndex" type="System.Int32, mscorlib">
+    <value>206</value>
+  </data>
+  <data name="chkLightEnable.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>28</value>
+  </data>
+  <data name="&gt;&gt;address.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="chkForbidWhenFull.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;rdHost.Parent" xml:space="preserve">
+    <value>groupBox4</value>
+  </data>
+  <data name="label35.Text" xml:space="preserve">
+    <value>序列号</value>
+  </data>
+  <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;rdOffLine.Parent" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="&gt;&gt;txtmac.Name" xml:space="preserve">
+    <value>txtmac</value>
+  </data>
+  <data name="chkExportCharge.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 16</value>
+  </data>
+  <data name="&gt;&gt;txtGateWay.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="&gt;&gt;rdEnter.Name" xml:space="preserve">
+    <value>rdEnter</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenFull.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;chkNoParkingCount.Name" xml:space="preserve">
+    <value>chkNoParkingCount</value>
+  </data>
+  <data name="txtCardReadInterval.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 21</value>
+  </data>
+  <data name="&gt;&gt;label30.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="rdbCarPlateMode.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
+  </data>
+  <data name="label15.TabIndex" type="System.Int32, mscorlib">
+    <value>219</value>
+  </data>
+  <data name="&gt;&gt;eventPort.Name" xml:space="preserve">
+    <value>eventPort</value>
   </data>
   <data name="&gt;&gt;ip1.Name" xml:space="preserve">
     <value>ip1</value>
   </data>
-  <data name="&gt;&gt;ip1.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+  <data name="label4.TabIndex" type="System.Int32, mscorlib">
+    <value>183</value>
   </data>
-  <data name="&gt;&gt;ip1.Parent" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond1</value>
+  <data name="label30.Text" xml:space="preserve">
+    <value>工作模式</value>
   </data>
-  <data name="&gt;&gt;ip1.ZOrder" xml:space="preserve">
-    <value>10</value>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
   </data>
-  <data name="txtCarPlateNotifyControllerSecond1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 229</value>
+  <data name="&gt;&gt;commV.Name" xml:space="preserve">
+    <value>commV</value>
   </data>
-  <data name="txtCarPlateNotifyControllerSecond1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtCarPlateNotifyControllerSecond1.TabIndex" type="System.Int32, mscorlib">
-    <value>220</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Name" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond1</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label12.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 236</value>
-  </data>
-  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 12</value>
-  </data>
-  <data name="label12.TabIndex" type="System.Int32, mscorlib">
-    <value>221</value>
-  </data>
-  <data name="label12.Text" xml:space="preserve">
-    <value>第2路识别车牌需发送的控制器</value>
-  </data>
-  <data name="&gt;&gt;label12.Name" xml:space="preserve">
-    <value>label12</value>
-  </data>
-  <data name="&gt;&gt;label12.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
-  <data name="txtCarPlateNotifyControllerSecond2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>181, 261</value>
-  </data>
-  <data name="txtCarPlateNotifyControllerSecond2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 26</value>
-  </data>
-  <data name="txtCarPlateNotifyControllerSecond2.TabIndex" type="System.Int32, mscorlib">
-    <value>222</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Name" xml:space="preserve">
-    <value>txtCarPlateNotifyControllerSecond2</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.ZOrder" xml:space="preserve">
-    <value>0</value>
+  <data name="hardwareV.TabIndex" type="System.Int32, mscorlib">
+    <value>203</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label13.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="ip2.Text" xml:space="preserve">
+    <value>0</value>
   </data>
-  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 268</value>
+  <data name="label5.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>167, 12</value>
+  <data name="&gt;&gt;label31.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="label13.TabIndex" type="System.Int32, mscorlib">
-    <value>223</value>
+  <data name="&gt;&gt;chkEnableTempCard.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label13.Text" xml:space="preserve">
-    <value>第2路识别车牌需发送的控制器</value>
+  <data name="&gt;&gt;chkRoadGateModel.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="&gt;&gt;label13.Name" xml:space="preserve">
-    <value>label13</value>
+  <data name="chkForbidWhenFull.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 177</value>
   </data>
-  <data name="&gt;&gt;label13.Type" xml:space="preserve">
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;chkValid.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>子网掩码</value>
+  </data>
+  <data name="rdbCarPlateAndCardMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>202, 10</value>
+  </data>
+  <data name="rdOffLine.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label24.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label13.Parent" xml:space="preserve">
+  <data name="&gt;&gt;parknum.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="label6.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label28.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="rdExit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
+  </data>
+  <data name="&gt;&gt;txtMasterIP.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ucCardTypeProperty1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>5, 531</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenCardExpired.Name" xml:space="preserve">
+    <value>chkForbidWhenCardExpired</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+  <data name="rdHost.Location" type="System.Drawing.Point, System.Drawing">
+    <value>96, 10</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyController.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;rdOnline.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;ucCardTypeProperty1.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;label9.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;groupBox4.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="&gt;&gt;chkAllowEjectCardWhithoutRead.Name" xml:space="preserve">
+    <value>chkAllowEjectCardWhithoutRead</value>
+  </data>
+  <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
+    <value>groupBox1</value>
+  </data>
+  <data name="softwareV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 169</value>
+  </data>
+  <data name="ip4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>177, 3</value>
+  </data>
+  <data name="rdExit.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>591, 654</value>
+  <data name="rdEnter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 16</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+  <data name="rdEnter.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 10</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkWeigand34.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="rdbCardMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
+  </data>
+  <data name="listenerPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>372, 77</value>
+  </data>
+  <data name="ip1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="chkNoParkingCount.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>31</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>选项</value>
+  </data>
+  <data name="chkNoParkingCount.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 177</value>
+  </data>
+  <data name="&gt;&gt;txtEventListenerIP.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="label35.TabIndex" type="System.Int32, mscorlib">
+    <value>215</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>第2路识别车牌需发送的控制器</value>
+  </data>
+  <data name="rdOnline.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label2.TabIndex" type="System.Int32, mscorlib">
+    <value>181</value>
+  </data>
+  <data name="&gt;&gt;chkRoadGateModel.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.Name" xml:space="preserve">
+    <value>groupBox2</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.TabIndex" type="System.Int32, mscorlib">
+    <value>178</value>
+  </data>
+  <data name="&gt;&gt;label33.Name" xml:space="preserve">
+    <value>label33</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenFull.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="label28.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;chkExportCharge.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkEnableTempCard.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;label32.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="txtCardReadInterval.Location" type="System.Drawing.Point, System.Drawing">
+    <value>363, 56</value>
+  </data>
+  <data name="eventPort.TabIndex" type="System.Int32, mscorlib">
+    <value>192</value>
+  </data>
+  <data name="&gt;&gt;hardwareV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdOnline.Text" xml:space="preserve">
+    <value>在线</value>
+  </data>
+  <data name="groupBox5.TabIndex" type="System.Int32, mscorlib">
+    <value>169</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>412, 143</value>
+  </data>
+  <data name="&gt;&gt;chkEnableTempCard.Name" xml:space="preserve">
+    <value>chkEnableTempCard</value>
+  </data>
+  <data name="&gt;&gt;label28.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="label30.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="ip3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 21</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenCardExpired.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="label24.Text" xml:space="preserve">
+    <value>主控制器IP</value>
+  </data>
+  <data name="&gt;&gt;chkWeigand34.Name" xml:space="preserve">
+    <value>chkWeigand34</value>
+  </data>
+  <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
+    <value>303, 81</value>
+  </data>
+  <data name="&gt;&gt;txtSerialNum.Name" xml:space="preserve">
+    <value>txtSerialNum</value>
+  </data>
+  <data name="chkRoadGateModel.Location" type="System.Drawing.Point, System.Drawing">
+    <value>19, 133</value>
+  </data>
+  <data name="rdbCarPlateMode.Text" xml:space="preserve">
+    <value>车牌</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>通讯协议版本</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkLightEnable.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkWeigand34.TabIndex" type="System.Int32, mscorlib">
+    <value>234</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>硬件版本</value>
+  </data>
+  <data name="chkWeigand34.Text" xml:space="preserve">
+    <value>使用韦根34协议</value>
+  </data>
+  <data name="chkAllowEjectCardWhithoutRead.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="&gt;&gt;label32.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;ucCardTypeProperty1.Name" xml:space="preserve">
+    <value>ucCardTypeProperty1</value>
+  </data>
+  <data name="&gt;&gt;label6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label34.Text" xml:space="preserve">
+    <value>出入类型</value>
+  </data>
+  <data name="&gt;&gt;label4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;rdbCarPlateAndCardMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="rdbCardMode.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="txtIPMask.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="&gt;&gt;label29.ZOrder" xml:space="preserve">
+    <value>13</value>
+  </data>
+  <data name="hardwareV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>71, 172</value>
+  </data>
+  <data name="rdHost.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>37</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Text" xml:space="preserve">
+    <value>卡片不在名单中转在线处理</value>
+  </data>
+  <data name="&gt;&gt;chkValid.Name" xml:space="preserve">
+    <value>chkValid</value>
+  </data>
+  <data name="&gt;&gt;chkLightEnable.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="eventPort.Location" type="System.Drawing.Point, System.Drawing">
+    <value>264, 139</value>
+  </data>
+  <data name="&gt;&gt;label2.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="listenerPort.TabIndex" type="System.Int32, mscorlib">
+    <value>194</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenFull.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label33.ZOrder" xml:space="preserve">
+    <value>20</value>
+  </data>
+  <data name="&gt;&gt;txtCarPlateNotifyControllerSecond1.Name" xml:space="preserve">
+    <value>txtCarPlateNotifyControllerSecond1</value>
+  </data>
+  <data name="&gt;&gt;ucCardTypeProperty1.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.UCCardTypeProperty, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="ip2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 21</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 175</value>
+  </data>
+  <data name="txtCarPlateNotifyController.TabIndex" type="System.Int32, mscorlib">
+    <value>218</value>
+  </data>
+  <data name="rdHost.Text" xml:space="preserve">
+    <value>主控制器</value>
+  </data>
+  <data name="&gt;&gt;ip2.Name" xml:space="preserve">
+    <value>ip2</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>网关</value>
+  </data>
+  <data name="&gt;&gt;groupBox5.ZOrder" xml:space="preserve">
+    <value>21</value>
+  </data>
+  <data name="&gt;&gt;chkValid.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ip1.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="txtCarPlateNotifyController.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="&gt;&gt;chkExportCharge.Name" xml:space="preserve">
+    <value>chkExportCharge</value>
+  </data>
+  <data name="&gt;&gt;ip4.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="chkWeigand34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 199</value>
+  </data>
+  <data name="txtCarPlateNotifyControllerSecond2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>219, 26</value>
+  </data>
+  <data name="label24.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
+    <value>286, 60</value>
+  </data>
+  <data name="chkTakeCardNeedCarSense.Text" xml:space="preserve">
+    <value>取卡要求压地感</value>
+  </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>205, 175</value>
+  </data>
+  <data name="chkWeigand34.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
+  </data>
+  <data name="&gt;&gt;ucCardTypeProperty1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkValid.Location" type="System.Drawing.Point, System.Drawing">
+    <value>364, 199</value>
+  </data>
+  <data name="label28.TabIndex" type="System.Int32, mscorlib">
+    <value>210</value>
+  </data>
+  <data name="groupBox4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>360, 13</value>
+  </data>
+  <data name="&gt;&gt;chkOnlineHandleWhenNotOnList.Name" xml:space="preserve">
+    <value>chkOnlineHandleWhenNotOnList</value>
+  </data>
+  <data name="chkExportCharge.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
+  </data>
+  <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="rdNotHost.Text" xml:space="preserve">
+    <value>非主控制器</value>
+  </data>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="ip3.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="eventPort.Text" xml:space="preserve">
+    <value>5001</value>
+  </data>
+  <data name="&gt;&gt;chkLightEnable.Name" xml:space="preserve">
+    <value>chkLightEnable</value>
+  </data>
+  <data name="&gt;&gt;label33.Parent" xml:space="preserve">
+    <value>groupBox3</value>
+  </data>
+  <data name="txtSerialNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>263, 107</value>
+  </data>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;txtGateWay.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.UCIPTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;chkLightEnable.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>服务器IP</value>
+  </data>
+  <data name="label33.TabIndex" type="System.Int32, mscorlib">
+    <value>168</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>29</value>
+  </data>
+  <data name="rdExit.Text" xml:space="preserve">
+    <value>出口控制器</value>
+  </data>
+  <data name="&gt;&gt;chkRoadGateModel.Name" xml:space="preserve">
+    <value>chkRoadGateModel</value>
+  </data>
+  <data name="chkLightEnable.TabIndex" type="System.Int32, mscorlib">
+    <value>176</value>
+  </data>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="rdOffLine.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 10</value>
+  </data>
+  <data name="&gt;&gt;label3.Name" xml:space="preserve">
+    <value>label3</value>
+  </data>
+  <data name="&gt;&gt;txtmac.Type" xml:space="preserve">
+    <value>System.Windows.Forms.TextBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="address.Location" type="System.Drawing.Point, System.Drawing">
+    <value>472, 139</value>
+  </data>
+  <data name="&gt;&gt;label4.Name" xml:space="preserve">
+    <value>label4</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenCardExpired.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="ip2.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtSerialNum.TabIndex" type="System.Int32, mscorlib">
+    <value>216</value>
+  </data>
+  <data name="&gt;&gt;label35.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label2.Name" xml:space="preserve">
+    <value>label2</value>
+  </data>
+  <data name="&gt;&gt;txtmac.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="ip4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
-  <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
-    <value>CenterParent</value>
+  <data name="&gt;&gt;txtCarPlateNotifyController.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="chkWeigand34.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;address.Name" xml:space="preserve">
+    <value>address</value>
+  </data>
+  <data name="commV.TabIndex" type="System.Int32, mscorlib">
+    <value>205</value>
+  </data>
+  <data name="&gt;&gt;groupBox2.ZOrder" xml:space="preserve">
+    <value>17</value>
+  </data>
+  <data name="controlPort.Text" xml:space="preserve">
+    <value>4001</value>
+  </data>
+  <data name="chkEnableTempCard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="&gt;&gt;chkForbidWhenFull.Name" xml:space="preserve">
+    <value>chkForbidWhenFull</value>
+  </data>
+  <data name="&gt;&gt;eventPort.ZOrder" xml:space="preserve">
+    <value>24</value>
+  </data>
+  <data name="rdbCardMode.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="&gt;&gt;chkTakeCardNeedCarSense.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;label24.Name" xml:space="preserve">
+    <value>label24</value>
+  </data>
+  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
+    <value>591, 713</value>
+  </data>
+  <data name="ip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>39, 21</value>
+  </data>
+  <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="&gt;&gt;ip3.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;rdEnter.Parent" xml:space="preserve">
+    <value>groupBox5</value>
+  </data>
+  <data name="chkRoadGateModel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;rdOnline.Name" xml:space="preserve">
+    <value>rdOnline</value>
+  </data>
+  <data name="&gt;&gt;txtCardReadInterval.Name" xml:space="preserve">
+    <value>txtCardReadInterval</value>
+  </data>
+  <data name="&gt;&gt;txtEventListenerIP.Name" xml:space="preserve">
+    <value>txtEventListenerIP</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="commV.Location" type="System.Drawing.Point, System.Drawing">
+    <value>472, 169</value>
+  </data>
+  <data name="txtMasterIP.Location" type="System.Drawing.Point, System.Drawing">
+    <value>371, 12</value>
+  </data>
+  <data name="chkAllowEjectCardWhithoutRead.TabIndex" type="System.Int32, mscorlib">
+    <value>173</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>详细信息</value>
   </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FrmParkDeviceDetail</value>
+  <data name="label6.TabIndex" type="System.Int32, mscorlib">
+    <value>185</value>
   </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;chkWeigand34.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>进出凭证</value>
+  </data>
+  <data name="&gt;&gt;rdExit.Name" xml:space="preserve">
+    <value>rdExit</value>
+  </data>
+  <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
+    <value>17, 25</value>
+  </data>
+  <data name="&gt;&gt;txtEventListenerIP.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>300, 19</value>
+  </data>
+  <data name="eventPort.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 21</value>
+  </data>
+  <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
+    <value>35</value>
+  </data>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
 </root>

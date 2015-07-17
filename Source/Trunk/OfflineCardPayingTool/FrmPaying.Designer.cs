@@ -68,6 +68,8 @@
             this.panel5 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.parkCombobox1 = new Ralid.Park.UserControls.ParkCombobox(this.components);
             this.paymentPanel.SuspendLayout();
             this.panel7.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -93,7 +95,7 @@
             // 
             this.panel7.Controls.Add(this.btnCancel);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 420);
+            this.panel7.Location = new System.Drawing.Point(0, 441);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(219, 43);
             this.panel7.TabIndex = 68;
@@ -117,7 +119,7 @@
             this.panel6.Controls.Add(this.btnCash);
             this.panel6.Controls.Add(this.btnYCT);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(0, 364);
+            this.panel6.Location = new System.Drawing.Point(0, 385);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(219, 56);
             this.panel6.TabIndex = 67;
@@ -152,7 +154,7 @@
             // 
             this.carTypePanel1.BackColor = System.Drawing.SystemColors.Control;
             this.carTypePanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.carTypePanel1.Location = new System.Drawing.Point(0, 361);
+            this.carTypePanel1.Location = new System.Drawing.Point(0, 382);
             this.carTypePanel1.Name = "carTypePanel1";
             this.carTypePanel1.Size = new System.Drawing.Size(219, 3);
             this.carTypePanel1.TabIndex = 66;
@@ -194,10 +196,12 @@
             this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 12);
             this.tableLayoutPanel1.Controls.Add(this.label17, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.parkCombobox1, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 15);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 25);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 15;
+            this.tableLayoutPanel1.RowCount = 16;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
@@ -214,7 +218,7 @@
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 24F));
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle());
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 20F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(219, 336);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(219, 357);
             this.tableLayoutPanel1.TabIndex = 65;
             // 
             // label9
@@ -589,6 +593,25 @@
             this.eventList.Size = new System.Drawing.Size(680, 573);
             this.eventList.TabIndex = 84;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(4, 336);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(47, 12);
+            this.label1.TabIndex = 89;
+            this.label1.Text = "停车场:";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
+            // parkCombobox1
+            // 
+            this.parkCombobox1.FormattingEnabled = true;
+            this.parkCombobox1.Location = new System.Drawing.Point(91, 339);
+            this.parkCombobox1.Name = "parkCombobox1";
+            this.parkCombobox1.Size = new System.Drawing.Size(124, 20);
+            this.parkCombobox1.TabIndex = 90;
+            this.parkCombobox1.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
+            // 
             // FrmPaying
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -655,6 +678,8 @@
         private System.Windows.Forms.Panel panel5;
         private System.Windows.Forms.Label label15;
         private Ralid.Park.UserControls.EventReportListBox eventList;
+        private System.Windows.Forms.Label label1;
+        private Ralid.Park.UserControls.ParkCombobox parkCombobox1;
 
     }
 }

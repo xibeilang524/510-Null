@@ -60,7 +60,13 @@ namespace Ralid.Park.UI
             }
         }
 
-        private void BindDataToGridView()
+        #endregion
+
+        #region 保护方法
+        /// <summary>
+        /// 绑定数据到表格
+        /// </summary>
+        protected void BindDataToGridView()
         {
             if (GridView != null)
             {
@@ -107,11 +113,15 @@ namespace Ralid.Park.UI
 
             return this.contextMenuStrip1;
         }
+        protected virtual void InitControls()
+        { 
+        }
         #endregion
 
         #region 事件处理
         private void FrmMasterBase_Load(object sender, EventArgs e)
         {
+            InitControls();
             if (GridView != null)
             {
                 GridView.BorderStyle = BorderStyle.FixedSingle;

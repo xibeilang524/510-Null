@@ -59,6 +59,19 @@ namespace Ralid.Park.BLL
             }
             return amount;
         }
+
+        private decimal CashPOSSum(List<CardPaymentInfo> events)
+        {
+            decimal amount = 0;
+            foreach (CardPaymentInfo e in events)
+            {
+                if (e.PaymentMode == PaymentMode.Cash && e.PaymentCode == PaymentCode.POS)
+                {
+                    amount += e.Paid;
+                }
+            }
+            return amount;
+        }
         //获取事件列表中使用操作员卡通过收现方式收取的金额
         private decimal CashOperatorCardSum(List<CardPaymentInfo> events)
         {
@@ -241,6 +254,16 @@ namespace Ralid.Park.BLL
             return amount;
         }
 
+        private decimal CashAPMRefundSum(List<APMRefundRecord> items)
+        {
+            decimal amount = 0;
+            foreach (APMRefundRecord record in items)
+            {
+                amount += record.RefundMoney;
+            }
+            return amount;
+        }
+
 
         private int TempCardRecycleSum(List<CardEventRecord> events)
         {
@@ -328,6 +351,16 @@ namespace Ralid.Park.BLL
                     provider.Update(record, original, unitWork);
                 }
             }
+            if (opt.APMRefundRecords != null && opt.APMRefundRecords.Count > 0)
+            {
+                IAPMRefundRecordProvider provider = ProviderFactory.Create<IAPMRefundRecordProvider>(_RepoUri);
+                foreach (APMRefundRecord record in opt.APMRefundRecords)
+                {
+                    APMRefundRecord original = record.Clone();
+                    record.SettleDateTime = opt.SettleDateTime;
+                    provider.Update(record, original, unitWork);
+                }
+            }
             if (opt.EventRecords != null && opt.EventRecords.Count > 0)
             {
                 ICardEventProvider provider = ProviderFactory.Create<ICardEventProvider>(_RepoUri);
@@ -368,6 +401,8 @@ namespace Ralid.Park.BLL
             {
                 OperatorSettleLog log = new OperatorSettleLog();
                 log.OperatorID = opt.OperatorName;
+                log.DeptID = opt.DeptID;
+                log.Dept = opt.Dept;
                 log.SettleDateTime = DateTime.Now;
                 if (station != null) log.StationID = station.StationName;
                 //查询条件
@@ -385,6 +420,7 @@ namespace Ralid.Park.BLL
                 log.CashParkDiscount = CashParkDiscountSum(paymentRecords);
                 log.NonCashParkFact = NoCashParkFactSum(paymentRecords);
                 log.NonCashParkDiscount = NoCashParkDiscountSum(paymentRecords);
+                log.CashOfPOS = CashPOSSum(paymentRecords);
                 //查询卡片发行记录
                 CardBll cbll = new CardBll(_RepoUri);
                 List<CardReleaseRecord> cardReleaseRecords = cbll.GetCardReleaseRecords(recordCon).QueryObjects;
@@ -412,6 +448,10 @@ namespace Ralid.Park.BLL
                 List<CardRecycleRecord> cardRecycleRecords = cbll.GetCardRecycleRecords(recordCon).QueryObjects;
                 log.RecycleRecords = cardRecycleRecords;
                 log.CashOfCardRecycle += CashCardRecycleSum(cardRecycleRecords);
+                //查询缴费机退款记录
+                List<APMRefundRecord> apmRefundRecords = cbll.GetAPMRefundRecords(recordCon).QueryObjects;
+                log.APMRefundRecords = apmRefundRecords;
+                log.CashOfRefund = CashAPMRefundSum(apmRefundRecords);
                 //查询报警记录
                 AlarmSearchCondition alarmCon = new AlarmSearchCondition();
                 alarmCon.RecordDateTimeRange = new DateTimeRange(log.SettleFrom == null ? new DateTime(1753, 1, 1, 12, 0, 0) : log.SettleFrom.Value, log.SettleDateTime);
@@ -441,6 +481,32 @@ namespace Ralid.Park.BLL
             {
                 throw new InvalidOperationException(Resource1.OperatorSettleBLL_noOperator);
             }
+        }
+
+        /// <summary>
+        /// 获取操作员最近一次的结算时间
+        /// </summary>
+        /// <param name="operatorID"></param>
+        /// <returns></returns>
+        public DateTime? GetLastSettleDateTime(string operatorID)
+        {
+            OperatorInfo operatorInfo = null;
+            if (!string.IsNullOrEmpty(operatorID))
+            {
+                operatorInfo = new OperatorInfo();
+                operatorInfo.OperatorID = operatorID;
+                operatorInfo.OperatorName = operatorID;
+            }
+
+            RecordSearchCondition search = new RecordSearchCondition();
+            search.Operator = operatorInfo;
+            List<OperatorSettleLog> logs = provider.GetItems(search).QueryObjects;
+            if (logs != null && logs.Count > 0)
+            {
+                DateTime lastSDatetime = logs.Max(p => p.SettleDateTime);
+                return lastSDatetime;
+            }
+            return null;
         }
 
         /// <summary>
@@ -480,6 +546,35 @@ namespace Ralid.Park.BLL
             }
             return GetRecentSettleDateTime(operatorInfo, datetime);
         }
+
+        /// <summary>
+        /// 获取 datetime的前一次结算时间
+        /// </summary>
+        /// <param name="operatorID"></param>
+        /// <param name="datetime"></param>
+        /// <returns></returns>
+        public DateTime? GetPreSettleDateTime(string operatorID, DateTime datetime)
+        {
+            OperatorInfo operatorInfo = null;
+            if (!string.IsNullOrEmpty(operatorID))
+            {
+                operatorInfo = new OperatorInfo();
+                operatorInfo.OperatorID = operatorID;
+                operatorInfo.OperatorName = operatorID;
+            }
+
+            RecordSearchCondition search = new RecordSearchCondition();
+            search.RecordDateTimeRange = new DateTimeRange(DateTime.MinValue.AddYears(1900), datetime.AddSeconds(-1));
+            search.Operator = operatorInfo;
+            List<OperatorSettleLog> logs = provider.GetItems(search).QueryObjects;
+            if (logs != null && logs.Count > 0)
+            {
+                DateTime log = logs.Max(l => l.SettleDateTime);
+                return log;
+            }
+            return null;
+        }
+
         #endregion
     }
 }

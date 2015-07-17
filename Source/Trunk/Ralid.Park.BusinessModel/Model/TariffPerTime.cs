@@ -37,28 +37,6 @@ namespace Ralid.Park.BusinessModel.Model
             return FeePerTime;
         }
 
-        public override decimal CalcalateCycleFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = calMins > 0 ? 0 : FeePerTime;
-            return fee;
-        }
-
-        public override decimal CalcalateIntradayFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = calMins > 0 ? 0 : FeePerTime;
-            return fee;
-        }
-
-        public override decimal GetChargeUnitFee(DateTime beginning)
-        {
-            decimal fee = FeePerTime;
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
-        }
-
         public override string ToString()
         {
             return Resouce.Resource1.Tariff_PerTime;

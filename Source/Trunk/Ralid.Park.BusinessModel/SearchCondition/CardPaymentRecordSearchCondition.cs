@@ -13,6 +13,10 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 获取或设置查询记录的入场时间
         /// </summary>
         public DateTime? EnterDateTime { get; set; }
+        /// <summary>
+        /// 获取或设置记录发生的时间范围
+        /// </summary>
+        public DateTimeRange EnterDateTimeRange { get; set; }
         // add by tom,2012-3-7
         public List<EntranceInfo> Source { get; set; }  //事件发生通道
         // end

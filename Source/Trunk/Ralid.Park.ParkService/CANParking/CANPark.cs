@@ -135,7 +135,7 @@ namespace Ralid.Park.ParkService.CANParking
             }
             else
             {
-                DenyCard(report.CardID, EventInvalidType.INV_UnRegister, entrance,null);
+                DenyCard(report.CardID, report.CarPlate, null, report.CardType, report.Reader, EventInvalidType.INV_UnRegister, entrance, null);
             }
         }
 

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCardDeleteReport));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtOwnerName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
@@ -57,6 +57,7 @@
             this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDataGridView1)).BeginInit();
@@ -72,6 +73,7 @@
             // 
             // groupBox2
             // 
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.txtOwnerName);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtCertificate);
@@ -86,7 +88,6 @@
             this.groupBox2.Controls.Add(this.operatorCombobox1);
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Controls.Add(this.label1);
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -112,8 +113,8 @@
             // 
             // comCardType
             // 
-            this.comCardType.FormattingEnabled = true;
             resources.ApplyResources(this.comCardType, "comCardType");
+            this.comCardType.FormattingEnabled = true;
             this.comCardType.Name = "comCardType";
             // 
             // txtCarPlate
@@ -143,14 +144,15 @@
             // 
             // workStationCombobox1
             // 
-            this.workStationCombobox1.FormattingEnabled = true;
             resources.ApplyResources(this.workStationCombobox1, "workStationCombobox1");
+            this.workStationCombobox1.FormattingEnabled = true;
             this.workStationCombobox1.Name = "workStationCombobox1";
+            this.workStationCombobox1.OnlyStation = false;
             // 
             // operatorCombobox1
             // 
-            this.operatorCombobox1.FormattingEnabled = true;
             resources.ApplyResources(this.operatorCombobox1, "operatorCombobox1");
+            this.operatorCombobox1.FormattingEnabled = true;
             this.operatorCombobox1.Name = "operatorCombobox1";
             // 
             // label2
@@ -165,25 +167,25 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.ucDateTimeInterval1);
             resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.ucDateTimeInterval1);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
             // ucDateTimeInterval1
             // 
-            this.ucDateTimeInterval1.EndDateTime = new System.DateTime(2010, 1, 6, 23, 59, 59, 0);
             resources.ApplyResources(this.ucDateTimeInterval1, "ucDateTimeInterval1");
+            this.ucDateTimeInterval1.EndDateTime = new System.DateTime(2010, 1, 6, 23, 59, 59, 0);
             this.ucDateTimeInterval1.Name = "ucDateTimeInterval1";
             this.ucDateTimeInterval1.ShowTime = false;
             this.ucDateTimeInterval1.StartDateTime = new System.DateTime(2010, 1, 5, 14, 47, 25, 796);
             // 
             // customDataGridView1
             // 
+            resources.ApplyResources(this.customDataGridView1, "customDataGridView1");
             this.customDataGridView1.AllowUserToAddRows = false;
             this.customDataGridView1.AllowUserToDeleteRows = false;
             this.customDataGridView1.AllowUserToResizeRows = false;
-            resources.ApplyResources(this.customDataGridView1, "customDataGridView1");
             this.customDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCardID,
@@ -193,7 +195,8 @@
             this.colRecycleDateTime,
             this.colCardType,
             this.colOperatorID,
-            this.colStation});
+            this.colStation,
+            this.colMemo});
             this.customDataGridView1.Name = "customDataGridView1";
             this.customDataGridView1.RowHeadersVisible = false;
             this.customDataGridView1.RowTemplate.Height = 23;
@@ -226,8 +229,8 @@
             // colRecycleDateTime
             // 
             this.colRecycleDateTime.DataPropertyName = "RecycleDateTime";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
-            this.colRecycleDateTime.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Format = "yyyy-MM-dd HH:mm:ss";
+            this.colRecycleDateTime.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.colRecycleDateTime, "colRecycleDateTime");
             this.colRecycleDateTime.Name = "colRecycleDateTime";
             this.colRecycleDateTime.ReadOnly = true;
@@ -251,6 +254,12 @@
             resources.ApplyResources(this.colStation, "colStation");
             this.colStation.Name = "colStation";
             this.colStation.ReadOnly = true;
+            // 
+            // colMemo
+            // 
+            this.colMemo.DataPropertyName = "Memo";
+            resources.ApplyResources(this.colMemo, "colMemo");
+            this.colMemo.Name = "colMemo";
             // 
             // FrmCardDeleteReport
             // 
@@ -302,5 +311,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperatorID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStation;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMemo;
     }
 }

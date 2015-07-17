@@ -122,13 +122,16 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 12</value>
+    <value>449, 12</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>（交班操作員當班期間，收取的現金總額。本項等於: 2 + 3 + 4 + 5 + 6 - 7 ）</value>
+    <value>（交班操作員當班期間，收取的現金總額。應等於: 2 + 3 + 4 + 5 + 6 - 7 - 8 ）</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>8、合計總額：</value>
+    <value>9、合計總額：</value>
   </data>
   <data name="label21.Text" xml:space="preserve">
     <value>（交班操作員當班期間，實際以現金收取的停車費用折扣總額。）</value>
@@ -148,14 +151,20 @@
   <data name="label32.Text" xml:space="preserve">
     <value>（交班操作員當班期間，上交的現金與應上繳的現金之間的差額。）</value>
   </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>（交班操作員當班期間，手持機上收取的停車費用。）</value>
+  </data>
   <data name="label33.Text" xml:space="preserve">
-    <value>10、現金差額：</value>
+    <value>11、現金差額：</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>7、手持機收費：</value>
   </data>
   <data name="label20.Text" xml:space="preserve">
     <value>（交班操作員當班期間，操作員實際上交的現金。）</value>
   </data>
   <data name="label29.Text" xml:space="preserve">
-    <value>9、實繳金額：</value>
+    <value>10、實繳金額：</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>（交班操作員當班期間，現金收取的卡片掛失工本費。）</value>
@@ -163,11 +172,17 @@
   <data name="label17.Text" xml:space="preserve">
     <value>6、卡片掛失：</value>
   </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>（交班操作員當班期間，繳費機退款返還的現金。）</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>8、收費退款：</value>
+  </data>
   <data name="label39.Text" xml:space="preserve">
     <value>（交班操作員當班期間，卡片回收返還的現金。）</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
-    <value>（交班操作員當班期間，現金收取的卡片押金。）</value>
+    <value>（交班操作員當班期間，現金收取的卡片工本費押金。）</value>
   </data>
   <data name="label1.Text" xml:space="preserve">
     <value>（交班操作員當班期間，卡片發行,充值,延期等收取的現金。）</value>
@@ -202,11 +217,17 @@
   <data name="label34.Text" xml:space="preserve">
     <value>5、卡片掛失：</value>
   </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>（交班操作員當班期間，操作員實際上交的POS機收費金額。）</value>
+  </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>431, 12</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>（交班操作員當班期間，總共收到的非現金總額。本項等於：2 + 3 + 4 + 5。）</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>7、POS機實繳：</value>
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>6、合計總額：</value>
@@ -227,7 +248,7 @@
     <value>（交班操作員當班期間，按非現金收取的實際停車費用折扣總額。）</value>
   </data>
   <data name="label27.Text" xml:space="preserve">
-    <value>（交班操作員當班期間，非現金收取的卡片押金。）</value>
+    <value>（交班操作員當班期間，非現金收取的卡片工本費押金。）</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
     <value>（交班操作員當班期間，按非現金收取的停車費用總額。）</value>

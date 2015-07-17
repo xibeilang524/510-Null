@@ -123,9 +123,6 @@
   <data name="label1.Text" xml:space="preserve">
     <value>紙票印表機串口:</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>條碼槍串口號:</value>
-  </data>
   <data name="label29.Text" xml:space="preserve">
     <value>讀卡間隔(s)</value>
   </data>
@@ -161,12 +158,27 @@
     <value>不進行車位元數目</value>
   </data>
   <data name="chkUseAsACS.Text" xml:space="preserve">
-    <value>卡片進出時不改變卡片狀態</value>
+    <value>路閘模式</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>視頻:</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>車牌識別一體機</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>條碼槍串口號:</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>條碼槍串口號2:</value>
+  </data>
+  <data name="chkForbidWhenFull.Text" xml:space="preserve">
+    <value>車場滿位時禁止進場</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Text" xml:space="preserve">
+    <value>禁止過期卡片進出場</value>
+  </data>
+  <data name="chkPrinterUseNotch.Text" xml:space="preserve">
+    <value>紙票印表機使用黑標打印</value>
   </data>
 </root>

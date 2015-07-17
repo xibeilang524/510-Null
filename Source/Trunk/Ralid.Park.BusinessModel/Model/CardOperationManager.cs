@@ -39,6 +39,82 @@ namespace Ralid.Park.BusinessModel.Model
         #endregion
 
         #region 私有方法
+        /// <summary>
+        /// 数据写入卡片
+        /// </summary>
+        /// <param name="cardID">卡号</param>
+        /// <param name="data">数据</param>
+        /// <param name="success">成功后是否有提示音</param>
+        /// <param name="fail">失败后是否有提示音</param>
+        /// <returns></returns>
+        private CardOperationResultCode _WriteCard(string cardID, byte[] data, bool success, bool fail)
+        {
+            return _WriteCard(cardID, data, success, fail, false, false);
+        }
+        /// <summary>
+        /// 数据写入卡片
+        /// </summary>
+        /// <param name="cardID">卡号</param>
+        /// <param name="data">数据</param>
+        /// <param name="success">成功后是否有提示音</param>
+        /// <param name="fail">失败后是否有提示音</param>
+        /// <param name="loop">是否循环写入</param>
+        /// <param name="init">是否初始化密钥</param>
+        /// <returns></returns>
+        private CardOperationResultCode _WriteCard(string cardID,byte[] data, bool success, bool fail, bool loop, bool init)
+        {
+            if (GlobalVariables.UseMifareIC)
+            {
+                return CardReaderManager.GetInstance(UserSetting.Current.WegenType).WriteSection(cardID, GlobalVariables.ParkingSection, 0, 3, data, GlobalVariables.ParkingKey, success, fail, loop, init);
+            }
+            else
+            {
+                return CardReaderManager.GetInstance(UserSetting.Current.WegenType).CPUWriteFile(cardID, GlobalVariables.SamNO, GlobalVariables.ParkingCPUKey, GlobalVariables.ParkingFile, data, GlobalVariables.AlgorithmType, success, fail, loop);
+            }
+        }
+        /// <summary>
+        /// 读卡片信息
+        /// </summary>
+        /// <param name="cardID">卡号（为空时不检查卡号是否一致）</param>
+        /// <param name="successBuz">成功时是否有蜂鸣提示</param>
+        /// <param name="failBuz">失败时是否有蜂鸣提示</param>
+        /// <returns></returns>
+        private ReadCardResult _ReadCard(string cardID, bool successBuz, bool failBuz)
+        {
+            return _ReadCard(cardID, successBuz, failBuz, false);
+        }
+        /// <summary>
+        /// 读卡片信息
+        /// </summary>
+        /// <param name="cardID">卡号（为空时不检查卡号是否一致）</param>
+        /// <param name="successBuz">成功时是否有蜂鸣提示</param>
+        /// <param name="failBuz">失败时是否有蜂鸣提示</param>
+        /// <param name="init">是否初始化密钥</param>
+        /// <returns></returns>
+        private ReadCardResult _ReadCard(string cardID, bool successBuz, bool failBuz, bool init)
+        {
+            ReadCardResult result = null;
+
+            if (GlobalVariables.UseMifareIC)
+            {
+                result = CardReaderManager.GetInstance(UserSetting.Current.WegenType).ReadSection(cardID, GlobalVariables.ParkingSection, 0, 3, GlobalVariables.ParkingKey, successBuz, failBuz, init);
+            }
+            else
+            {
+                result = CardReaderManager.GetInstance(UserSetting.Current.WegenType).CPUReadFile(cardID, GlobalVariables.SamNO, GlobalVariables.ParkingCPUKey, GlobalVariables.ParkingFile, GlobalVariables.AlgorithmType, successBuz, failBuz);
+                if (result.ResultCode == CardOperationResultCode.Success
+                    && result[GlobalVariables.ParkingFile] != null
+                    && result[GlobalVariables.ParkingFile].Length > 48)
+                {
+                    //只取前48字节
+                    byte[] data = new byte[48];
+                    Array.Copy(result[GlobalVariables.ParkingFile], data, 48);
+                    result[GlobalVariables.ParkingFile] = data;
+                }
+            }
+
+            return result;
+        }
         #endregion
 
         #region 公共方法
@@ -62,6 +138,12 @@ namespace Ralid.Park.BusinessModel.Model
                 case CardOperationResultCode.InitKeyFail:                    
                     MessageBox.Show(Resouce.Resource1.CardOperationManager_InitKeyFail);
                     return false;
+                case CardOperationResultCode.InitFail:
+                    MessageBox.Show(Resouce.Resource1.CardOperationManager_InitFail);
+                    return false;
+                case CardOperationResultCode.OpenFail:
+                    MessageBox.Show(Resouce.Resource1.CardOperationManager_OpenFail);
+                    return false;
                 default:
                     MessageBox.Show(Resouce.Resource1.CardOperationManager_CardInvalid);
                     return false;
@@ -76,9 +158,17 @@ namespace Ralid.Park.BusinessModel.Model
         {
             try
             {
-                //修改扇区2密钥
-                //return CardReaderManager.GetInstance(UserSetting.Current.WegenType).SetSectionKey(cardID, (int)ICCardSection.Parking, false, true);
-                return CardReaderManager.GetInstance(UserSetting.Current.WegenType).SetSectionKey(cardID, GlobalVariables.ParkingSection, GlobalVariables.DefaultKey, GlobalVariables.ParkingKey, false, true);
+                if (GlobalVariables.UseMifareIC)
+                {
+                    //修改扇区2密钥
+                    //return CardReaderManager.GetInstance(UserSetting.Current.WegenType).SetSectionKey(cardID, (int)ICCardSection.Parking, false, true);
+                    return CardReaderManager.GetInstance(UserSetting.Current.WegenType).SetSectionKey(cardID, GlobalVariables.ParkingSection, GlobalVariables.DefaultKey, GlobalVariables.ParkingKey, false, true);
+                }
+                else
+                {
+                    //CPU卡在停车场不能初始化密钥
+                    return CardOperationResultCode.Fail;
+                }
             }
             catch (Exception ex)
             {
@@ -110,7 +200,7 @@ namespace Ralid.Park.BusinessModel.Model
                     byte[] data = CardDateResolver.Instance.CreateDateBytes(card);
                     if (data != null)
                     {
-                        return CardReaderManager.GetInstance(UserSetting.Current.WegenType).WriteSection(card.CardID, GlobalVariables.ParkingSection, 0, 3, data, GlobalVariables.ParkingKey, true, true);
+                        return _WriteCard(card.CardID, data, true, true);
                     }
                 }
             }
@@ -137,7 +227,7 @@ namespace Ralid.Park.BusinessModel.Model
                     byte[] data = CardDateResolver.Instance.CreateDateBytesWithCharge(card, chargeAmount, validDate);
                     if (data != null)
                     {
-                        return CardReaderManager.GetInstance(UserSetting.Current.WegenType).WriteSection(card.CardID, GlobalVariables.ParkingSection, 0, 3, data, GlobalVariables.ParkingKey, true, true);
+                        return _WriteCard(card.CardID, data, true, true);
                     }
                 }
             }
@@ -172,7 +262,7 @@ namespace Ralid.Park.BusinessModel.Model
                     byte[] data = CardDateResolver.Instance.CreateDateBytes(card);
                     if (data != null)
                     {
-                        return CardReaderManager.GetInstance(UserSetting.Current.WegenType).WriteSection(card.CardID, GlobalVariables.ParkingSection, 0, 3, data, GlobalVariables.ParkingKey, true, true, true, initKey);
+                        return _WriteCard(card.CardID, data, true, true, true, initKey);
                     }
                 }
             }
@@ -195,7 +285,7 @@ namespace Ralid.Park.BusinessModel.Model
             {
                 if (data != null && data.Length == 48)
                 {
-                    return CardReaderManager.GetInstance(UserSetting.Current.WegenType).WriteSection(cardID, GlobalVariables.ParkingSection, 0, 3, data, GlobalVariables.ParkingKey, true, true);
+                    return _WriteCard(cardID, data, true, true);
                 }
             }
             catch (Exception ex)
@@ -225,7 +315,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// <returns></returns>
         public CardOperationResultCode CheckCard(string cardID, bool successBuz, bool failBuz)
         {
-            ReadCardResult result = CardReaderManager.GetInstance(UserSetting.Current.WegenType).ReadSection(cardID, GlobalVariables.ParkingSection, 0, 3, GlobalVariables.ParkingKey, successBuz, failBuz, false);
+            ReadCardResult result = _ReadCard(cardID, successBuz, failBuz);
 
             return result.ResultCode;
         }
@@ -300,7 +390,7 @@ namespace Ralid.Park.BusinessModel.Model
         public CardInfo ReadCardWithMessage(string cardID)
         {
             CardInfo card = null;
-            ReadCardResult result = CardReaderManager.GetInstance(UserSetting.Current.WegenType).ReadSection(cardID, GlobalVariables.ParkingSection, 0, 3, GlobalVariables.ParkingKey, true, true, false);
+            ReadCardResult result = _ReadCard(cardID, true, true);
 
             if (ShowResultMessage(result.ResultCode))
             {
@@ -319,8 +409,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// <param name="indoor">是否进内车场</param>
         public void Enter(bool indoor)
         {
-            CardReaderManager manager = CardReaderManager.GetInstance(UserSetting.Current.WegenType);
-            ReadCardResult result = manager.ReadSection(string.Empty, 2, 0, 3, GlobalVariables.ParkingKey, true, true, false);
+            ReadCardResult result = _ReadCard(string.Empty, true, true);
             if (result.ResultCode == CardOperationResultCode.Success)
             {
                 CardInfo card = CardDateResolver.Instance.GetCardInfoFromData(result.CardID, result.DataList[GlobalVariables.ParkingSection]);

@@ -16,10 +16,11 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Interface;
 using Ralid.Park.BusinessModel.Result;
+using Ralid.Park.SnapShotCapture;
 
 namespace Ralid.Park.UI
 {
-    public partial class FrmSnapShoter : Form, IReportHandler
+    public partial class FrmSnapShoter : Form, IReportHandler, ISnapShotCapture
     {
         #region 静态方法和变量
         private static FrmSnapShoter _Instance;
@@ -97,9 +98,10 @@ namespace Ralid.Park.UI
         /// 抓拍图片
         /// </summary>
         /// <param name="video">要抓拍的摄像机</param>
+        /// <param name="path">抓拍图片路径，如摄像机自动抓拍，返回抓拍到的图片路径</param>
         /// <param name="optimized">如果启用优化,则发现视频没有打开时不再尝试打开视频,而是直接返回</param>
         /// <returns></returns>
-        public bool SnapShotTo(VideoSourceInfo video, string path, bool optimized)
+        public bool SnapShotTo(VideoSourceInfo video, ref string path, bool optimized, bool force)
         {
             bool success = false;
             VideoPanel vp = videoGrid.VideoPanelCollection.SingleOrDefault(v => (v.VideoSource == video));
@@ -107,13 +109,13 @@ namespace Ralid.Park.UI
             {
                 //如果没有启用视频抓拍性能优化功能,则在抓拍时如果视频没有打开,会先尝试打开视频,启用优化后,视频由地感检测车到时打开,在抓拍时就不负责打开视频
                 //这样的话如果系统中存在有问题的视频,也不会影响软件的处理速度
-                if (vp.Status != VideoStatus.Playing && !optimized)
+                if (!vp.IsReadyForSnapshot && !optimized)
                 {
-                    vp.Play(false);
+                    vp.OpenForSnapshot(false);
                 }
-                if (vp.Status == VideoStatus.Playing)
+                if (vp.IsReadyForSnapshot)
                 {
-                    success = vp.SnapShotTo(path);
+                    success = vp.SnapShotTo(ref path, 1000, force);
                     if (optimized)
                     {
                         lock (_TagLocker)
@@ -124,6 +126,55 @@ namespace Ralid.Park.UI
                 }
             }
             return success;
+        }
+
+        /// <summary>
+        /// 清除最近保存的抓拍图片信息
+        /// </summary>
+        /// <param name="video">摄像机</param>
+        public void ClearSnapShot(VideoSourceInfo video)
+        {
+            VideoPanel vp = videoGrid.VideoPanelCollection.SingleOrDefault(v => (v.VideoSource == video));
+            if (vp != null)
+            {
+                vp.ClearSnapShot();
+            }
+        }
+        #endregion
+
+        #region ISnapShot接口实现
+        /// <summary>
+        /// 对通道进行图片抓拍,要求此通道有一个用于车牌识别的摄像机
+        /// </summary>
+        /// <param name="parkID"></param>
+        /// <param name="entranceID"></param>
+        /// <returns>抓拍图片的地址，返回空时表示抓拍失败</returns>
+        public string SnapShot(int parkID, int entranceID)
+        {
+            string dir = TempFolderManager.GetCurrentFolder();
+            try
+            {
+                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(entranceID);
+                if (entrance != null)
+                {
+                    foreach (VideoSourceInfo video in entrance.VideoSources)
+                    {
+                        if (video.IsForCarPlate)
+                        {
+                            string path = Path.Combine(dir, string.Format("{0}_{1}_{2}.jpg", "SnapShot", Guid.NewGuid().ToString(), video.VideoID));
+                            if (SnapShotTo(video, ref path, false, false))
+                            {
+                                return path;
+                            }
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return string.Empty;
         }
         #endregion
 
@@ -152,20 +203,28 @@ namespace Ralid.Park.UI
                                     {
                                         string path = Path.Combine(TempFolderManager.GetCurrentFolder(),
                                               string.Format("{0}_{1}_{2}.jpg", "CarArrive", Guid.NewGuid().ToString(), video.VideoID));
-                                        vp.Play(false);
-                                        if (vp.Status == VideoStatus.Playing && vp.SnapShotTo(path))
+                                        if (SnapShotTo(video, ref path, false, false))
                                         {
                                             SnapShot shot = new SnapShot(cp.EventDateTime, video.VideoID, string.Empty, path);
-                                            string master = AppSettings.CurrentSetting.CurrentMasterConnect;
+                                            string master = AppSettings.CurrentSetting.ImageDBConnStr;
                                             string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
                                             CommandResult result = (new SnapShotBll(master)).Insert(shot);
                                             if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
+
                                             //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
+                                        }
+                                        else
+                                        {
+                                            if (AppSettings.CurrentSetting.Debug)
+                                            {
+                                                string logmsg = string.Format("【{0}】车压地感时抓拍图片失败 ", vp.VideoSource.VideoName);
+                                                Ralid.GeneralLibrary.LOG.FileLog.Log("FrmSnapShoter", logmsg);
+                                            }
                                         }
                                     }
                                     else
                                     {
-                                        vp.Play(true);
+                                        vp.OpenForSnapshot(true);
                                     }
                                 }
                             }
@@ -198,45 +257,77 @@ namespace Ralid.Park.UI
                                         if (path != "fail")
                                         {
                                             SnapShot shot = new SnapShot(cardEvent.EventDateTime, video.VideoID, cardEvent.CardID, path);
-                                            string master = AppSettings.CurrentSetting.CurrentMasterConnect;
+                                            string master = AppSettings.CurrentSetting.ImageDBConnStr;
                                             string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
                                             CommandResult result = (new SnapShotBll(master)).Insert(shot);
                                             if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
+
                                             //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
+                                        }
+                                        else
+                                        {
+                                            if (AppSettings.CurrentSetting.Debug)
+                                            {
+                                                string logmsg = string.Format("【{0}】刷卡事件之前的视频抓拍失败，无图片 ", vp.VideoSource.VideoName);
+                                                Ralid.GeneralLibrary.LOG.FileLog.Log("FrmSnapShoter", logmsg);
+                                            }
                                         }
                                     }
                                     else
                                     {
                                         string path = Path.Combine(TempFolderManager.GetCurrentFolder(),
                                                       string.Format("{0}_{1}_{2}.jpg", "CardEvent", Guid.NewGuid().ToString(), video.VideoID));
-                                        if (SnapShotTo(video, path, false))
+                                        if (SnapShotTo(video, ref path, false, false))
                                         {
                                             SnapShot shot = new SnapShot(cardEvent.EventDateTime, video.VideoID, cardEvent.CardID, path);
-                                            string master = AppSettings.CurrentSetting.CurrentMasterConnect;
+                                            string master = AppSettings.CurrentSetting.ImageDBConnStr;
                                             string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
                                             CommandResult result = (new SnapShotBll(master)).Insert(shot);
                                             if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
+
                                             //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
                                         }
+                                        else
+                                        {
+                                            if (AppSettings.CurrentSetting.Debug)
+                                            {
+                                                string logmsg = string.Format("【{0}】刷卡事件抓拍图片失败 ", vp.VideoSource.VideoName);
+                                                Ralid.GeneralLibrary.LOG.FileLog.Log("FrmSnapShoter", logmsg);
+                                            }
+                                        }
                                     }
+
+                                    vp.ClearSnapShot();//清空抓拍图片信息
                                 }
                             }
                         }
                         else if (r is AlarmReport)
                         {
                             AlarmReport ar = r as AlarmReport;
-                            if (ar.AlarmType == Ralid.Park.BusinessModel.Enum.AlarmType.Opendoor)
+                            if (ar.AlarmType == Ralid.Park.BusinessModel.Enum.AlarmType.Opendoor
+                                || ar.AlarmType == Ralid.Park.BusinessModel.Enum.AlarmType.GateAlarm)
                             {
                                 string path = Path.Combine(TempFolderManager.GetCurrentFolder(),
                                               string.Format("{0}_{1}_{2}.jpg", "OpenDoor", Guid.NewGuid().ToString(), video.VideoID));
-                                if (SnapShotTo(video, path, false))
+                                if (SnapShotTo(video, ref path, false, true))
                                 {
+                                    //这里清除抓拍图片信息，是因为使用信路通或大华进行抓拍时，会保存抓拍图片和识别到的车牌，如果不清除，有可能会用到下一辆车上
+                                    ClearSnapShot(video);
                                     SnapShot shot = new SnapShot(ar.EventDateTime, video.VideoID, string.Empty, path);
-                                    string master = AppSettings.CurrentSetting.CurrentMasterConnect;
+                                    string master = AppSettings.CurrentSetting.ImageDBConnStr;
                                     string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
                                     CommandResult result = (new SnapShotBll(master)).Insert(shot);
                                     if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
-                                    //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
+
+                                    //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);                                    
+                                }
+                                else
+                                {
+                                    if (AppSettings.CurrentSetting.Debug)
+                                    {
+                                        string logmsg = string.Format("【{0}】报警抓拍图片失败 ", video.VideoName);
+                                        Ralid.GeneralLibrary.LOG.FileLog.Log("FrmSnapShoter", logmsg);
+                                    }
                                 }
                             }
                         }

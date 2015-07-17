@@ -117,8 +117,36 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember(Name = "ConnectTimeOut")]
         public int ConnectTimeOut { get; set; }
+
+        /// <summary>
+        /// 获取或设置视频服务类型
+        /// </summary>
+        [DataMember(Name = "VideoType")]
+        public int? VideoType { get; set; }
         #endregion
 
+        #region 只读属性
+        /// <summary>
+        /// 获取视频服务类型，有设置的，返回设置的，没有设置的，返回系统常规设置中的默认频服务类型，默认返回0
+        /// </summary>
+        public int VideoSourceType
+        {
+            get
+            {
+                if (VideoType.HasValue)
+                {
+                    return VideoType.Value;
+                }
+                else if (UserSetting.Current != null)
+                {
+                    return UserSetting.Current.VideoType;
+                }
+                return 0;
+            }
+        }
+        #endregion
+
+        #region 重写基类方法
         public override bool Equals(object obj)
         {
             if (obj != null)
@@ -136,7 +164,9 @@ namespace Ralid.Park.BusinessModel.Model
         {
             return base.GetHashCode();
         }
+        #endregion
 
+        #region 视频服务器操作
         /// <summary>
         /// 同步视频服务器时间
         /// </summary>
@@ -175,7 +205,7 @@ namespace Ralid.Park.BusinessModel.Model
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
-
+        #endregion
 
         #region SQL语句
 

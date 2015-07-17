@@ -121,7 +121,10 @@
     <value>已經收取</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>月保費用的卡片</value>
+    <value>月保費用的</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>卡片，每月應繳月保費</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>卡號</value>
@@ -129,11 +132,23 @@
   <data name="colCardCertificate.HeaderText" xml:space="preserve">
     <value>卡片編號</value>
   </data>
+  <data name="colCardType.HeaderText" xml:space="preserve">
+    <value>卡片類型</value>
+  </data>
   <data name="colCarPlate.HeaderText" xml:space="preserve">
     <value>車牌</value>
   </data>
   <data name="colPaid.HeaderText" xml:space="preserve">
     <value>所交費用</value>
+  </data>
+  <data name="colDeduction.HeaderText" xml:space="preserve">
+    <value>已扣費用</value>
+  </data>
+  <data name="colAccount.HeaderText" xml:space="preserve">
+    <value>應收費用</value>
+  </data>
+  <data name="colBalance.HeaderText" xml:space="preserve">
+    <value>餘額</value>
   </data>
   <data name="colBegin.HeaderText" xml:space="preserve">
     <value>開始日期</value>

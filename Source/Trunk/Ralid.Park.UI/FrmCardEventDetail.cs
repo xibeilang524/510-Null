@@ -128,7 +128,7 @@ namespace Ralid.Park.UI
             DateTime? shotDateTime = info.IsExitEvent ? info.LastDateTime : info.EventDateTime;//入口时间时，返回刷卡事件时抓拍的图片
             if (shotDateTime != null)
             {
-                List<SnapShot> imgs = (new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).GetSnapShots(shotDateTime.Value, info.CardID);
+                List<SnapShot> imgs  = (new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr)).GetSnapShots(shotDateTime.Value, info.CardID);
                 if (imgs != null && imgs.Count > 0)
                 {
                     this.picIn.ShowSnapShots(imgs);

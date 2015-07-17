@@ -11,6 +11,7 @@ using Ralid.Park.BusinessModel.Notify;
 using Ralid.Park.DAL.IDAL;
 using Ralid.GeneralLibrary.ExceptionHandling;
 using Ralid.Park.LocalDataBase.Model;
+using Ralid.Park.LocalDataBase.DAL.IDAL;
 
 namespace Ralid.Park.LocalDataBase.BLL
 {
@@ -32,6 +33,24 @@ namespace Ralid.Park.LocalDataBase.BLL
 
         #region 私有变量
         private string _RepoUri;
+        private IUnitWork _unitWork;
+        #endregion
+
+        #region 只读属性
+        /// <summary>
+        /// 获取事物操作
+        /// </summary>
+        private IUnitWork unitWork
+        {
+            get
+            {
+                if (_unitWork == null)
+                {
+                    _unitWork = LDB_ProviderFactory.Create<IUnitWork>(_RepoUri);
+                }
+                return _unitWork;
+            }
+        }
         #endregion
 
         #region 公共方法
@@ -71,6 +90,60 @@ namespace Ralid.Park.LocalDataBase.BLL
                 return new CommandResult(ResultCode.Fail, ex.Message);
             }
         }
+
+        /// <summary>
+        ///使用事物保存到数据库，使用事物是为了访问数据库的次数，多次访问数据会导致操作时间过长
+        /// </summary>
+        /// <param name="info"></param>
+        public void SaveSettingWithUnitWork<T>(T info) where T : class
+        {
+            try
+            {
+                Type t = typeof(T);
+                LDB_SysparameterInfo para;
+                if (info != null)
+                {
+                    DataContractSerializer ser = new DataContractSerializer(t);
+                    using (MemoryStream stream = new MemoryStream())
+                    {
+                        ser.WriteObject(stream, info);
+                        stream.Position = 0;
+                        byte[] data = new byte[stream.Length];
+                        stream.Read(data, 0, (int)stream.Length);
+                        string value = Encoding.UTF8.GetString(data);
+                        para = new LDB_SysparameterInfo(t.Name, value, string.Empty);
+                    }
+                }
+                else
+                {
+                    para = new LDB_SysparameterInfo(t.Name, string.Empty, string.Empty);
+                }
+                LDB_ISysParameterProvider provider = LDB_ProviderFactory.Create<LDB_ISysParameterProvider>(_RepoUri);
+                provider.Insert(para, unitWork);
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex);
+            }
+        }
+
+        /// <summary>
+        /// 执行事物操作
+        /// </summary>
+        /// <returns></returns>
+        public CommandResult UnitWorkCommit()
+        {
+            try
+            {
+                return unitWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                ExceptionPolicy.HandleException(ex);
+                return new CommandResult(ResultCode.Fail, ex.Message);
+            }
+        }
+
 
         /// <summary>
         /// 从数据库中获取对象

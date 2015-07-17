@@ -47,6 +47,13 @@ namespace Ralid.Park.UI
             }
             this.Text = caption;
             this.groupBox1.Text = caption;
+
+            if (!info.IsCardList)
+            {
+                //不是卡片名单时，不需要进行写卡
+                this.chkWriteCard.Checked = false;
+                this.chkWriteCard.Enabled = false;
+            }
         }
 
         private void CardReadHandler(object sender, CardReadEventArgs e)
@@ -135,41 +142,48 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (CheckInput())
+            try
             {
-                CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                CommandResult result;
-                if (this.DisableEnableCard.Status == CardStatus.Disabled)
+                if (CheckInput())
                 {
-                    result = bll.CardEnable(this.DisableEnableCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
-                }
-                else
-                {
-                    result = bll.CardDisable(this.DisableEnableCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
-                }
-                if (result.Result == ResultCode.Successful)
-                {
-
-                    //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
-                    if (this.chkWriteCard.Checked)
+                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                    CommandResult result;
+                    if (this.DisableEnableCard.Status == CardStatus.Disabled)
                     {
-                        CardOperationManager.Instance.WriteCardLoop(DisableEnableCard);                                                
+                        result = bll.CardEnable(this.DisableEnableCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
                     }
-
-                    if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(DisableEnableCard));
-
-                    if (DataBaseConnectionsManager.Current.StandbyConnected)
+                    else
                     {
-                        //备用数据连上时，同步到备用数据库
-                        bll.SyncCardToDatabaseWithoutPaymentInfo(DisableEnableCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                        result = bll.CardDisable(this.DisableEnableCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
                     }
+                    if (result.Result == ResultCode.Successful)
+                    {
 
-                    this.Close();
+                        //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                        if (this.chkWriteCard.Checked)
+                        {
+                            CardOperationManager.Instance.WriteCardLoop(DisableEnableCard);
+                        }
+
+                        if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(DisableEnableCard));
+
+                        if (DataBaseConnectionsManager.Current.StandbyConnected)
+                        {
+                            //备用数据连上时，同步到备用数据库
+                            bll.SyncCardToDatabaseWithoutPaymentInfo(DisableEnableCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                        }
+
+                        this.Close();
+                    }
+                    else
+                    {
+                        MessageBox.Show(result.Message);
+                    }
                 }
-                else
-                {
-                    MessageBox.Show(result.Message);
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

@@ -38,18 +38,6 @@
             // 
             resources.ApplyResources(this.label2, "label2");
             // 
-            // btnCancel
-            // 
-            resources.ApplyResources(this.btnCancel, "btnCancel");
-            // 
-            // btnOk
-            // 
-            resources.ApplyResources(this.btnOk, "btnOk");
-            // 
-            // progressBar1
-            // 
-            resources.ApplyResources(this.progressBar1, "progressBar1");
-            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");

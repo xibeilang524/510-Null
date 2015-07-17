@@ -51,7 +51,7 @@ namespace Ralid.Park.UI
             this.txtName.Text = info.Name;
             this.txtName.BackColor = Color.White;
             this.txtDescription.Text = info.Description;
-            this.Text = info.RoleID;
+            this.Text = info.Name;
             this.funcTree.SelectedRights = info.Permission;
             if (!info.CanEdit) //角色不可编辑,用于系统管理员,用户不可以更改
             {

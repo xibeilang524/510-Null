@@ -177,11 +177,99 @@ namespace Ralid.Park.DAL.LinqDataProvider
             }
         }
 
+        public System.Data.Linq.Table<PREOperatorInfo> PREOperator
+        {
+            get
+            {
+                return this.GetTable<PREOperatorInfo>();
+            }
+        }
+
         public System.Data.Linq.Table<RoleInfo> Role
         {
             get
             {
                 return this.GetTable<RoleInfo>();
+            }
+        }
+
+        public System.Data.Linq.Table<DeptInfo> Dept
+        {
+            get
+            {
+                return this.GetTable<DeptInfo>();
+            }
+        }
+
+        public System.Data.Linq.Table<PRERoleInfo> PRERole
+        {
+            get
+            {
+                return this.GetTable<PRERoleInfo>();
+            }
+        }
+
+        public System.Data.Linq.Table<PREBusinesses> PREBusinesses
+        {
+            get
+            {
+                return this.GetTable<PREBusinesses>();
+            }
+        }
+
+        public System.Data.Linq.Table<PREPreferentialInfo> PREPreferentialInfo
+        {
+            get
+            {
+                return this.GetTable<PREPreferentialInfo>();
+            }
+        }
+
+        public System.Data.Linq.Table<PREPreferentialLog> PREPreferentialLog
+        {
+            get
+            {
+                return this.GetTable<PREPreferentialLog>();
+            }
+        }
+
+        public System.Data.Linq.Table<RoadWayInfo> RoadWay
+        {
+            get
+            {
+                return this.GetTable<RoadWayInfo>();
+            }
+        }
+
+        public System.Data.Linq.Table<FreeAuthorizationLog> FreeAuthorizationLog
+        {
+            get
+            {
+                return this.GetTable<FreeAuthorizationLog>();
+            }
+        }
+
+        public System.Data.Linq.Table<APMCheckOutRecord> APMCheckOutRecord
+        {
+            get
+            {
+                return this.GetTable<APMCheckOutRecord>();
+            }
+        }
+
+        public System.Data.Linq.Table<APMRefundRecord> APMRefundRecord
+        {
+            get
+            {
+                return this.GetTable<APMRefundRecord>();
+            }
+        }
+
+        public System.Data.Linq.Table<ServerSwitchRecord> ServerSwitchRecord
+        {
+            get
+            {
+                return this.GetTable<ServerSwitchRecord>();
             }
         }
     }

@@ -143,6 +143,21 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public int Options { get; set; }
         /// <summary>
+        /// 获取或设置停车场的GPS坐标
+        /// </summary>
+        [DataMember]
+        public string GPS{ get; set; }
+        /// <summary>
+        /// 获取或设置停车场进出凭证名单模式
+        /// </summary>
+        [DataMember]
+        public ParkListMode ListMode { get; set; }
+        /// <summary>
+        /// 获取或设置停车场的备注信息
+        /// </summary>
+        [DataMember]
+        public string Memo { get; set; }
+        /// <summary>
         /// 获取停车场的所有子车场
         /// </summary>
         public List<ParkInfo> SubParks
@@ -286,9 +301,12 @@ namespace Ralid.Park.BusinessModel.Model
 ,[ParentID]
 ,[WorkMode]
 ,[DeviceType]
-,[Options])
+,[Options]
+,[Memo]
+,[GPS]
+,[ListMode])
 VALUES
-({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15});",
+({0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18});",
                    SQLStringHelper.FromInt(this.ParkID),
                    SQLStringHelper.FromString(this.ParkName),
                    SQLStringHelper.FromShort(this.TotalPosition),
@@ -304,7 +322,10 @@ VALUES
                    SQLStringHelper.FromInt(this.ParentID),
                    SQLStringHelper.FromInt((int)this.WorkMode),
                    SQLStringHelper.FromInt((int)this.DeviceType),
-                   SQLStringHelper.FromInt(this.Options));
+                   SQLStringHelper.FromInt(this.Options),
+                   SQLStringHelper.FromString(this.Memo),
+                   SQLStringHelper.FromString(this.GPS),
+                   SQLStringHelper.FromByte((byte)this.ListMode));
                 return cmd;
             }
         }

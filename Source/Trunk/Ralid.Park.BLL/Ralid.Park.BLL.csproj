@@ -132,6 +132,8 @@
   <ItemGroup>
     <Compile Include="AlarmBll.cs" />
     <Compile Include="APMBll.cs" />
+    <Compile Include="APMChectOutRecordBll.cs" />
+    <Compile Include="APMRefundRecordBll.cs" />
     <Compile Include="CardBll.cs" />
     <Compile Include="CardChargeRecordBll.cs" />
     <Compile Include="CardPaymentRecordBll.cs" />
@@ -139,21 +141,33 @@
     <Compile Include="DataBaseConnectionChecker.cs" />
     <Compile Include="DatabaseUpgrader.cs" />
     <Compile Include="DatetimeSyncService.cs" />
+    <Compile Include="DeptBll.cs" />
     <Compile Include="EntranceBll.cs" />
+    <Compile Include="FreeAuthorizationLogBll.cs" />
+    <Compile Include="HostStandbySettingBll.cs" />
     <Compile Include="OperatorBll.cs" />
     <Compile Include="OperatorSettleBLL.cs" />
     <Compile Include="ParkBll.cs" />
     <Compile Include="ParkBuffer.cs" />
     <Compile Include="APMLogBll.cs" />
     <Compile Include="ParkingParameterDataBufferBll.cs" />
+    <Compile Include="PREBusinessesBll.cs" />
+    <Compile Include="PREOperatorBll.cs" />
+    <Compile Include="PREPreferentialBll.cs" />
+    <Compile Include="PREPreferentialLogBll.cs" />
+    <Compile Include="PRERoleBll.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Resource1.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Resource1.resx</DependentUpon>
     </Compile>
+    <Compile Include="RoadWayBll.cs" />
     <Compile Include="RoleBll.cs" />
+    <Compile Include="ServerSwitchRecordBll.cs" />
     <Compile Include="SnapShotBll.cs" />
+    <Compile Include="SpeedingLogBll.cs" />
+    <Compile Include="SpeedingRecordBll.cs" />
     <Compile Include="StandbyToMasterSyncService.cs" />
     <Compile Include="SysParaSettingsBll.cs" />
     <Compile Include="SystemParameterBll.cs" />

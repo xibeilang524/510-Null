@@ -16,19 +16,19 @@ using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.UserControls.VideoPanels;
 namespace Ralid.Park.UI
 {
-    public partial class FrmMonitor : Form, IReportHandler
+    public partial class FrmMonitor : Form
     {
         public FrmMonitor()
         {
             InitializeComponent();
         }
 
-        #region ICardEventHandler 成员
-        public void ProcessReport(ReportBase report)
-        {
+        //#region ICardEventHandler 成员
+        //public void ProcessReport(ReportBase report)
+        //{
 
-        }
-        #endregion
+        //}
+        //#endregion
 
         #region 事件处理程序
         private void FrmMonitor_Load(object sender, EventArgs e)

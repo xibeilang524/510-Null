@@ -79,7 +79,7 @@ namespace Ralid.Park.LocalDataBase.BLL
         {
             if (info != null)
             {
-                LDB_CardPaymentInfo ldbRecord=LDB_InfoFactory.CreateLDBCardPaymentInfo(payment);
+                LDB_CardPaymentInfo ldbRecord = LDB_InfoFactory.CreateLDBCardPaymentInfo(payment);
                 CommandResult result = _Provider.Insert(ldbRecord);
                 if (result.Result == ResultCode.Successful)
                 {
@@ -102,6 +102,26 @@ namespace Ralid.Park.LocalDataBase.BLL
             }
 
             return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
+        }        
+
+        /// <summary>
+        /// 删除卡片某时间的缴费记录
+        /// </summary>
+        /// <param name="cardid"></param>
+        /// <param name="datetime"></param>
+        public void DeleteCardPayment(string cardid, DateTime datetime)
+        {
+            RecordSearchCondition search = new RecordSearchCondition();
+            search.CardID = cardid;
+            search.RecordDateTimeRange = new DateTimeRange(datetime, datetime);
+            QueryResultList<LDB_CardPaymentInfo> records = _Provider.GetItems(search);
+            if (records.Result == ResultCode.Successful)
+            {
+                foreach (LDB_CardPaymentInfo record in records.QueryObjects)
+                {
+                    _Provider.Delete(record);
+                }
+            }
         }
         #endregion
     }

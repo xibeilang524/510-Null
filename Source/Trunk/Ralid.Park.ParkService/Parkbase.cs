@@ -11,10 +11,12 @@ using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Notify;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Resouce;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.GeneralLibrary.ExceptionHandling;
 using Ralid.GeneralLibrary.LOG;
 using Ralid.Park.PlateRecognition;
+using Ralid.Park.OutdoorLEDSetting;
 using Ralid.Park.BusinessModel.Factory;
 
 namespace Ralid.Park.ParkService
@@ -37,6 +39,11 @@ namespace Ralid.Park.ParkService
         protected List<EntranceBase> _Entrances = new List<EntranceBase>();
         protected List<ParkBase> _SubParks = new List<ParkBase>();
         private object _ParkVacantLocker = new object(); //更新车位数时要加锁,因为停车场每个通道的事件都有一个处理线程,所以这些线程在更新车位数时要同步
+        /// <summary>
+        /// 当前轮换编号
+        /// </summary>
+        protected int _CurrentRotationNumber = 1;
+        private object _RotationNumberLock = new object();//轮换编号锁
         #endregion 成员变量
 
         #region 私有方法
@@ -217,7 +224,8 @@ namespace Ralid.Park.ParkService
                             }
                             else
                             {
-                                if (Park.Vacant > Park.MinPosition) Park.Vacant--;
+                                //modify by Jan 允许空车位数小于最小车位数，如果不允许，当车位满时允许入场后再出场，车位数就会不对
+                                Park.Vacant--;
                             }
                         }
                         if (Park.DeviceType == EntranceDeviceType.CANEntrance)
@@ -236,17 +244,23 @@ namespace Ralid.Park.ParkService
         /// <summary>
         /// 拒绝卡片出入场
         /// </summary>
-        /// <param name="cardID"></param>
-        /// <param name="invalidReason"></param>
-        /// <param name="entrance"></param>
-        protected void DenyCard(string cardID, EventInvalidType invalidReason, EntranceBase entrance, object param)
+        /// <param name="cardID">卡号</param>
+        /// <param name="carPlate">车牌号</param>
+        /// <param name="cardType">卡类型（为空时使用硬件卡类型）</param>
+        /// <param name="hcardType">硬件卡类型</param>
+        /// <param name="reader">读头</param>
+        /// <param name="invalidReason">拒绝原因</param>
+        /// <param name="entrance">控制版</param>
+        /// <param name="param">无效参数</param>
+        protected void DenyCard(string cardID, string carPlate, CardType cardType, byte hcardType, EntranceReader reader, EventInvalidType invalidReason, EntranceBase entrance, object param)
         {
-            entrance.CardInValid(invalidReason, param);
+            entrance.CardInValid(cardID, cardType, hcardType, reader, invalidReason, param);
             CardInvalidEventReport report = new CardInvalidEventReport();
             report.ParkID = _Park.ParkID;
             report.EntranceID = entrance.EntranceID;
             report.SourceName = entrance.EntranceName;
             report.CardID = cardID;
+            report.CarPlate = carPlate;
             report.InvalidType = invalidReason;
             report.EventDateTime = DateTime.Now;
             //更新通道状态参数
@@ -319,6 +333,15 @@ namespace Ralid.Park.ParkService
                     UpdateVacant(entrance);
                     ParkVacantReport pReport = new ParkVacantReport(entrance.ParkID, entrance.EntranceID, DateTime.Now, entrance.EntranceName, _Park.Vacant);
                     OnParkVacantReporting(pReport);
+                }
+
+                if (UserSetting.Current.EnableOutdoorLed && entrance.ProcessingCard.WithCount) //如果启用了澳大户外屏
+                {
+                    ParkOutDoorLedManager pdm = ParkOutDoorLedSettingsStorage.Get(report.ParkID);
+                    if (pdm != null && pdm.ProcessCardEvent(report))
+                    {
+                        ParkOutDoorLedSettingsStorage.Save(pdm);
+                    }
                 }
                 entrance.ProcessingEvent = null;
             }
@@ -452,21 +475,61 @@ namespace Ralid.Park.ParkService
 
             if (card != null)
             {
-                //写卡模式时，桌面读卡时需读取卡片中停车场扇区的数据，并且不是按在线模式处理
-                if (Park.IsWriteCardMode && report.Reader == EntranceReader.DeskTopReader && !card.OnlineHandleWhenOfflineMode)
+                //写卡模式时，并且不是按在线模式处理
+                if (Park.IsWriteCardMode && !card.OnlineHandleWhenOfflineMode)
                 {
-                    //卡片按序列号方式处理，卡片有效即可放行
-                    if (IsSerialNumberHandle(card, entrance, report)) return;
-
-                    if (info != null)//已读到卡片数据为准，否则返回
+                    //桌面读卡时需读取卡片中停车场扇区的数据
+                    if (report.Reader == EntranceReader.DeskTopReader)
                     {
-                        //复制缴费数据
-                        CardDateResolver.Instance.CopyPaidDataToCard(card, info);
+                        //卡片按序列号方式处理，卡片有效即可放行
+                        if (IsSerialNumberHandle(card, entrance, report)) return;
+
+                        //如果是卡片名单，需要判断是否读到时间
+                        if (card.IsCardList)
+                        {
+                            if (info != null)//已读到卡片数据为准，否则返回
+                            {
+                                //复制缴费数据
+                                CardDateResolver.Instance.CopyPaidDataToCard(card, info);
+                            }
+                            else
+                            {
+                                DenyCard(report.CardID, report.CarPlate, null, report.CardType, report.Reader, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_Invalid, entrance, null);
+                                return;
+                            }
+                        }
                     }
                     else
                     {
-                        DenyCard(report.CardID, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_Invalid, entrance, null);
-                        return;
+                        #region 票箱读到脱机处理的卡片的处理
+                        //如果是票箱读到的，先判断卡片是否可用
+                        //因为注销、禁用、挂失后，控制板会没有卡片的名单，控制板会将读到的卡片上传上位机处理
+                        //如果不判断卡片是否可用，不能使用的卡片刷卡后会一直提示请重新读卡
+                        if (card.Status == CardStatus.Recycled) //卡片已注销
+                        {
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, 0, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Recycled, entrance, null);
+                            return;
+                        }
+                        if (card.Status == CardStatus.Disabled)  //卡片已锁定
+                        {
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, 0, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Lock, entrance, null);
+                            return ;
+                        }
+                        if (card.Status == CardStatus.Loss)   //卡片已挂失
+                        {
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, 0, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Loss, entrance, null);
+                            return ;
+                        }
+
+                        //如果是卡片名单，卡片可用时，再提示重新读卡
+                        //由于车牌名单不能写卡，所以即使车牌名单是脱机处理的，车辆也运行向下处理
+                        if (card.IsCardList)
+                        {
+                            //卡片可用时，再提示重新读卡
+                            DenyCard(report.CardID, report.CarPlate, card.CardType, 0, report.Reader, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_ReadCard, entrance, null);
+                            return;
+                        }
+                        #endregion
                     }
                 }
                 card.RegCarPlate = report.CarPlate;//识别到的车牌
@@ -482,7 +545,14 @@ namespace Ralid.Park.ParkService
             }
             else
             {
-                DenyCard(report.CardID, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_UnRegister, entrance, null);
+                if (!report.IsCarPlateEventHandle)
+                {
+                    DenyCard(report.CardID, report.CarPlate, null, report.CardType, report.Reader, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_UnRegister, entrance, null);
+                }
+                else
+                {
+                    DenyCard(report.CardID, report.CarPlate, null, report.CardType, report.Reader, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_NotOnTheList, entrance, null);
+                }
             }
         }
         //服务器处理卡片
@@ -519,12 +589,12 @@ namespace Ralid.Park.ParkService
                 }
                 else
                 {
-                    NestedCardEventHandler(card, eventDateTime, entrance);
+                    NestedCardEventHandler(card, reader, eventDateTime, entrance);
                 }
             }
             else
             {
-                ACSCardEventHandler(card, eventDateTime, entrance);
+                ACSCardEventHandler(card, reader, eventDateTime, entrance);
             }
         }
         /// <summary>
@@ -541,15 +611,17 @@ namespace Ralid.Park.ParkService
                 if ((property & EntranceCardTypeProperty.EnabledWiegandReader) == EntranceCardTypeProperty.EnabledWiegandReader)
                 {
                     CardInfo serialCard = card.Clone();
-                    //由于在韦根读卡器刷卡，不判断进出场状态，相当于可以重复经出场，
-                    //所以这里使用卡片的复制体，并将重复进出场设为有效，进行有效验证
+                    //由于在韦根读卡器刷卡，不判断进出场状态，相当于可以重复经出场，并且不需要进行写卡了
+                    //所以这里使用卡片的复制体，并将重复进出场设为有效，进行有效验证，
                     serialCard.CanRepeatIn = true;
                     serialCard.CanRepeatOut = true;
                     if (ValidateCard(serialCard, entrance, report))
                     {
-                        if(entrance.IsExitDevice) CreateCardExitEvent(card, entrance, report.EventDateTime);
+                        if (entrance.IsExitDevice) CreateCardExitEvent(card, entrance, report.EventDateTime);
                         else CreateCardEnterEvent(card, entrance, report.EventDateTime);
                         entrance.ProcessingEvent.Reader = report.Reader;
+                        //由于不需要进行写卡了，所以将读卡事件设置为按脱机模式时按在线模式处理
+                        entrance.ProcessingEvent.OnlineHandleWhenOfflineMode = true;
                         if (entrance.EntranceInfo.MonthCardWaitWhenOut) //月卡出场需确认
                         {
                             entrance.CardWait();
@@ -564,7 +636,7 @@ namespace Ralid.Park.ParkService
                 }
                 else
                 {
-                    DenyCard(report.CardID, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
+                    DenyCard(report.CardID, report.CarPlate, card.CardType, report.CardType, report.Reader, Ralid.Park.BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
                 }
 
                 return true;
@@ -576,40 +648,58 @@ namespace Ralid.Park.ParkService
         {
             if (card.Status == CardStatus.Recycled) //卡片已注销
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_Recycled, entrance, null);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Recycled, entrance, null);
                 return false;
             }
             if (card.Status == CardStatus.Disabled)  //卡片已锁定
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_Lock, entrance, null);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Lock, entrance, null);
                 return false;
             }
             if (card.Status == CardStatus.Loss)   //卡片已挂失
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_Loss, entrance, null);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Loss, entrance, null);
                 return false;
             }
             if (card.ActivationDate > DateTime.Now) //卡片未到生效期
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_NotActive, entrance, null);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_NotActive, entrance, null);
                 return false;
             }
             if (card.ValidDate < DateTime.Today && card.CardType != Ralid.Park.BusinessModel.Enum.CardType.TempCard && !card.EnableWhenExpired && entrance.EntranceInfo.ForbidWhenCardExpired)//卡片已过期
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_OverDate, entrance, card.ValidDate);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_OverDate : BusinessModel.Enum.EventInvalidType.INV_Expired, entrance, card.ValidDate);
                 return false;
             }
             if (!entrance.EntranceInfo.IsExitDevice && !card.CanEnterWhenFull && entrance.EntranceInfo.ForbidWhenFull) //如果是入场并且卡片不能在满位时入场,则判断车位数
             {
-                if (Park.Vacant <= Park.MinPosition) //车位已满位入场
+                if (UserSetting.Current.EnableOutdoorLed)
                 {
-                    DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
+                    ParkOutDoorLedManager pm = ParkOutDoorLedSettingsStorage.Get(_Park.ParkID);
+                    if (pm != null)
+                    {
+                        int? vacant = pm.GetVacant(card.CardType, entrance.EntranceID);
+                        if (vacant != null && vacant.Value == 0)
+                        {
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
+                            return false;
+                        }
+                    }
+                    else if (Park.Vacant <= Park.MinPosition) //车位已满位入场
+                    {
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
+                        return false;
+                    }
+                }
+                else if (Park.Vacant <= Park.MinPosition) //车位已满位入场
+                {
+                    DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_ParkFull, entrance, null);
                     return false;
                 }
             }
             if (!card.HolidayEnabled && !entrance.IsExitDevice && HolidaySetting.Current.IsHoliday(DateTime.Now)) //节假日不允许进入
             {
-                DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_HolidayDisabled, entrance, null);
+                DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_HolidayDisabled, entrance, null);
                 return false;
             }
             if (!entrance.EntranceInfo.UseAsAcs)  //系统为澳大增加一种是否以门禁模式运行
@@ -618,19 +708,25 @@ namespace Ralid.Park.ParkService
                 {
                     if (!entrance.EntranceInfo.IsExitDevice && card.IsInPark && !card.CanRepeatIn) //重复入场
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_HaveIn, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_HaveIn : BusinessModel.Enum.EventInvalidType.INV_CarIsIn, entrance, null);
                         return false;
                     }
                     if (entrance.EntranceInfo.IsExitDevice && !card.IsInPark && !card.CanRepeatOut)//重复出场
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_StillOut, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_StillOut : BusinessModel.Enum.EventInvalidType.INV_CarIsOut, entrance, null);
                         return false;
                     }
-                    if (!card.CardType.IsTempCard && entrance.IsTempReader(report.Reader) && (this is NETParking.NETPark))  //网络型停车场临时卡读头上如果读到非临时卡，则表明卡片无效，直接收回
+                    if (!card.CardType.IsTempCard&& entrance.IsTempReader(report.Reader) && (this is NETParking.NETPark))  //网络型停车场临时卡读头上如果读到非临时卡，则表明卡片无效，直接收回
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
                         return false;
                     }
+                    //if (card.EnableHotelApp && !card.HotelCheckOut && card.IsInFreeTime(report.EventDateTime) && entrance.IsExitDevice && entrance.IsTempReader(report.Reader) && (this is NETParking.NETPark))
+                    //{
+                    //    //临时卡时，如果启用了酒店应用并且未退房的，并且处于免费时间内的，不允许在网络型停车场的出口控制板临时卡读头上读卡
+                    //    DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
+                    //    return false;
+                    //}
                 }
                 else
                 {
@@ -638,18 +734,18 @@ namespace Ralid.Park.ParkService
                     {
                         if (!entrance.EntranceInfo.IsExitDevice && card.IsInNestedPark && !card.CanRepeatIn) //重复入场
                         {
-                            DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_HaveIn, entrance, null);
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_HaveIn : BusinessModel.Enum.EventInvalidType.INV_CarIsIn, entrance, null);
                             return false;
                         }
                         if (entrance.EntranceInfo.IsExitDevice && !card.IsInNestedPark && !card.CanRepeatOut)//重复出场
                         {
-                            DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_StillOut, entrance, null);
+                            DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_StillOut : BusinessModel.Enum.EventInvalidType.INV_CarIsOut, entrance, null);
                             return false;
                         }
                     }
                     else
                     {
-                        DenyCard(card.CardID, EventInvalidType.INV_StillOut, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, EventInvalidType.INV_StillOut, entrance, null);
                         return false;
                     }
                 }
@@ -661,11 +757,24 @@ namespace Ralid.Park.ParkService
                     AccessInfo access = AccessSetting.Current.Accesses.FirstOrDefault(item => item.ID == card.AccessID);
                     if (access != null && !access.CanAccess(entrance.EntranceInfo.EntranceID, DateTime.Now))
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_NoAccessRight, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, card.IsCardList ? BusinessModel.Enum.EventInvalidType.INV_NoAccessRight : BusinessModel.Enum.EventInvalidType.INV_NoAccess, entrance, null);
                         return false;
                     }
                 }
             }
+            //判断是否有超速违章记录
+            if ((UserSetting.Current.ForbiddenEnterWhenSpeeding && !entrance.IsExitDevice)
+                || (UserSetting.Current.ForbiddenExitWhenSpeeding && entrance.IsExitDevice))
+            {
+                SpeedingRecordBll bll = new SpeedingRecordBll(AppSettings.CurrentSetting.ParkConnect);
+                List<SpeedingRecord> records = bll.GetRecordsByCarPlate(card.CarPlate).QueryObjects;
+                if (records != null && records.Count > 0)
+                {
+                    DenyCard(card.CardID, card.CarPlate, card.CardType, report.CardType, report.Reader, BusinessModel.Enum.EventInvalidType.INV_Speeding, entrance, null);
+                    return false;
+                }
+            }
+
             return true;
         }
         //处理月卡入场
@@ -681,7 +790,7 @@ namespace Ralid.Park.ParkService
             {
                 entrance.ProcessingEvent.CarPlate = card.CarPlate;
             }
-            if (entrance.ProcessingEvent.EventStatus == CardEventStatus.CarPlateFail)
+            if (entrance.ProcessingEvent.EventStatus == CardEventStatus.CarPlateFail && card.CardType != CardType.VipCard) //太古汇临时增加vip卡车牌对比失败时也放行的功能 2014-5-14
             {
                 entrance.CardWait();
                 RaiseCardEventReporting(entrance.ProcessingEvent);
@@ -717,6 +826,12 @@ namespace Ralid.Park.ParkService
         {
             CreateCardEnterEvent(card, entrance, eventDT);
             entrance.ProcessingEvent.Reader = reader;
+            if (entrance.IsTempReader(reader))
+            {
+                //如果是临时读头读到的，可认为临时卡是从发卡机发卡的，需要清空免费授权信息
+                entrance.ProcessingEvent.ClearFreeAuthorization();
+            }
+
             if (UserSetting.Current.EnableCarPlateRecognize) CarPlateHandler(entrance, entrance.ProcessingEvent, entrance.ProcessingCard);
             entrance.CardValid();
             if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty); //无需确认则写数据库
@@ -734,7 +849,7 @@ namespace Ralid.Park.ParkService
             {
                 entrance.ProcessingEvent.CarPlate = card.CarPlate;
             }
-            if ((entrance.ProcessingEvent.EventStatus == CardEventStatus.CarPlateFail)//车牌对比失败
+            if ((entrance.ProcessingEvent.EventStatus == CardEventStatus.CarPlateFail && card.CardType != CardType.VipCard) //太古汇临时增加vip卡车牌对比失败时也放行的功能 2014-5-14  //车牌对比失败
                 || (entrance.ProcessingEvent.CardPaymentInfo != null && entrance.ProcessingEvent.CardPaymentInfo.Accounts > 0) //月卡如果产生了费用
                 || (entrance.EntranceInfo.MonthCardWaitWhenOut) //月卡出场需确认
                 )
@@ -789,7 +904,7 @@ namespace Ralid.Park.ParkService
                 }
                 else
                 {
-                    DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_ReadCard, entrance, null);
+                    DenyCard(card.CardID, card.CarPlate, card.CardType, 0, reader, BusinessModel.Enum.EventInvalidType.INV_ReadCard, entrance, null);
                     return;
                 }
             }
@@ -805,16 +920,36 @@ namespace Ralid.Park.ParkService
             {
                 if (entrance.IsTempReader(reader))
                 {
+                    if (card.EnableHotelApp && !card.HotelCheckOut && card.IsInFreeTime(eventDateTime))
+                    {
+                        //临时卡时，如果启用了酒店应用并且未退房的，并且处于免费时间内的，不允许在网络型停车场的出口控制板临时卡读头上读卡
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, 0, reader, BusinessModel.Enum.EventInvalidType.INV_Type, entrance, null);
+                        return;
+                    }
+
                     //如果收卡机内没有读卡器要发出“请插卡回收"语音
                     if (entrance.EntranceInfo.NoReaderOnCardCaptuer) entrance.CardWait();
                     entrance.StartCapture();
                 }
                 else
                 {
-                    if (reader == EntranceReader.DeskTopReader && UserSetting.Current.EnableCarPlateRecognize && UserSetting.Current.SoftWareCarPlateRecognize) //桌面发卡机刷卡
+                    if (reader == EntranceReader.DeskTopReader && UserSetting.Current.EnableCarPlateRecognize) //桌面发卡机刷卡
                     {
                         CarPlateHandler(entrance, entrance.ProcessingEvent, entrance.ProcessingCard);
-                        //远程读卡时，车牌对比成功后直接放行
+                        //在线模式远程读卡时，如果启用了车牌对比功能，车牌对比成功后直接放行
+                        if (!Park.IsWriteCardMode && UserSetting .Current .TempCardExitWaitWhenCarPlateFail && entrance.ProcessingEvent.EventStatus != CardEventStatus.CarPlateFail)
+                        {
+                            entrance.CardValid();
+                            if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty);
+                            return;
+                        }
+                    }
+
+                    //在线模式在票箱上刷卡，临时卡时，如果启用了酒店应用并且未退房的，并且处于免费时间内的，车牌对比成功后直接放行
+                    if (!Park.IsWriteCardMode && reader != EntranceReader.DeskTopReader && card.EnableHotelApp && !card.HotelCheckOut && card.IsInFreeTime(eventDateTime))
+                    {
+                        if (UserSetting.Current.EnableCarPlateRecognize) CarPlateHandler(entrance, entrance.ProcessingEvent, entrance.ProcessingCard);
+                        //如果启用车牌识别,且出入口车牌对比成功
                         if (entrance.ProcessingEvent.EventStatus != CardEventStatus.CarPlateFail)
                         {
                             entrance.CardValid();
@@ -822,6 +957,7 @@ namespace Ralid.Park.ParkService
                             return;
                         }
                     }
+
                     entrance.CardWait();
                     RaiseCardEventReporting(entrance.ProcessingEvent);
                 }
@@ -832,12 +968,12 @@ namespace Ralid.Park.ParkService
                 {
                     if (entrance.ProcessingCard.PaidDateTime == null)
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.IVN_NotPaid, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, 0, reader, BusinessModel.Enum.EventInvalidType.IVN_NotPaid, entrance, null);
                         entrance.TakeOutACard();
                     }
                     else
                     {
-                        DenyCard(card.CardID, BusinessModel.Enum.EventInvalidType.INV_OverTime, entrance, null);
+                        DenyCard(card.CardID, card.CarPlate, card.CardType, 0, reader, BusinessModel.Enum.EventInvalidType.INV_OverTime, entrance, null);
                         entrance.TakeOutACard();
                     }
                 }
@@ -855,7 +991,7 @@ namespace Ralid.Park.ParkService
             }
         }
         //处理嵌套车场事件
-        private void NestedCardEventHandler(CardInfo card, DateTime eventDateTime, EntranceBase entrance)
+        private void NestedCardEventHandler(CardInfo card, EntranceReader reader, DateTime eventDateTime, EntranceBase entrance)
         {
             if (entrance.IsExitDevice)
             {
@@ -869,15 +1005,17 @@ namespace Ralid.Park.ParkService
                 entrance.ProcessingEvent = CardEventReport.CreateEnterEvent(card, entrance.ParkID, entrance.EntranceID, entrance.EntranceName, entrance.Park.WorkMode, eventDateTime);
                 entrance.ProcessingEvent.ParkingStatus = card.ParkingStatus | ParkingStatus.NestedParkMarked | ParkingStatus.IndoorIn | ParkingStatus.In;
             }
+            entrance.ProcessingEvent.Reader = reader;
             entrance.ProcessingCard = card;
             entrance.CardValid();
             if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty); //无需确认则写数据库
         }
         //处理门禁模式运行时的刷卡事件
-        private void ACSCardEventHandler(CardInfo card, DateTime eventDateTime, EntranceBase entrance)
+        private void ACSCardEventHandler(CardInfo card, EntranceReader reader, DateTime eventDateTime, EntranceBase entrance)
         {
             entrance.ProcessingEvent = CardEventReport.CreateEnterEvent(card, entrance.ParkID, entrance.EntranceID, entrance.EntranceName, entrance.Park.WorkMode, eventDateTime);
             entrance.ProcessingEvent.IsExitEvent = entrance.EntranceInfo.IsExitDevice;  //生成事件时只用简单的入场事件，不计算停车费用，所以这里要把出口事件改成出口
+            entrance.ProcessingEvent.Reader = reader;
             entrance.ProcessingCard = card;
             entrance.CardValid();
             if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty); //无需确认则写数据库
@@ -924,6 +1062,41 @@ namespace Ralid.Park.ParkService
                 else
                 {
                     return Parent.WorkMode;
+                }
+            }
+        }
+        /// <summary>
+        /// 获取停车场的进出凭证名单模式
+        /// </summary>
+        public ParkListMode ListMode
+        {
+            //递归获取最上层停车场的进出凭证名单模式
+            get
+            {
+                if (Parent == null)
+                {
+                    return Park.ListMode;
+                }
+                else
+                {
+                    return Parent.ListMode;
+                }
+            }
+        }
+        /// <summary>
+        /// 获取或设置停车场空车位数
+        /// </summary>
+        public short ParkVacant
+        {
+            get
+            {
+                return Park.Vacant;
+            }
+            set
+            {
+                lock (_ParkVacantLocker)
+                {
+                    Park.Vacant = value;
                 }
             }
         }
@@ -994,6 +1167,155 @@ namespace Ralid.Park.ParkService
         }
         #endregion
 
+        #region 公共方法
+        /// <summary>
+        /// 获取下一个轮换通道序号
+        /// </summary>
+        /// <param name="currentNumber">当前轮换通道序号</param>
+        /// <returns></returns>
+        private int GetNextRotationNumber(int currentNumber)
+        {
+            Dictionary<int, List<RotationInfo>> rotations = UserSetting.Current.Rotations;
+
+            if (rotations != null && rotations.Count > 0)
+            {
+                int nextNumber = rotations.Keys.FirstOrDefault(k => k > currentNumber);
+                if (nextNumber == 0)
+                {
+                    //没有的下一个的，获取第一个 
+                    nextNumber = rotations.Keys.FirstOrDefault(k => k > 0);
+                }
+                return nextNumber;
+            }
+            return 0;
+        }
+
+        /// <summary>
+        /// 该entranceID通道是否能取卡
+        /// </summary>
+        /// <returns></returns>
+        public bool CanTakeCard(int entranceID)
+        {
+            //没有启用轮换功能的，可以取卡
+            if (UserSetting.Current == null && !UserSetting.Current.EnableRotation)
+            {
+                return true;
+            }
+
+            //当启用轮换功能时，车位数大于等于进入轮换状态的数值的，允许取卡
+            if (this.ParkVacant >= UserSetting.Current.RotationVacant)
+            {
+                return true;
+            }
+
+            //小于时，进入轮换状态
+            if (UserSetting.Current.Rotations == null
+                || UserSetting.Current.Rotations.Count == 0)
+            {
+                //没有设置轮换通道，该通道不允许取卡
+                return false;
+            }
+
+            
+            lock (_RotationNumberLock)
+            {
+                //如果没有当前序号，查找下一个轮换序号
+                if (!UserSetting.Current.Rotations.ContainsKey(_CurrentRotationNumber))
+                {
+                    _CurrentRotationNumber = GetNextRotationNumber(_CurrentRotationNumber);
+                    if (_CurrentRotationNumber == 0)
+                    {
+                        //没找到
+                        return false;
+                    }
+                }
+
+                int currentNumber = _CurrentRotationNumber;//当前序号
+
+                do
+                {
+                    //entranceID通道是否当前轮换通道
+                    List<RotationInfo> rotations = UserSetting.Current.Rotations[currentNumber];
+                    if (rotations != null && rotations.Count > 0)
+                    {
+                        if (rotations.Any(r => r.EntranceID == entranceID))
+                        {
+                            //如果是当前通道，返回可以取卡
+                            if (currentNumber != _CurrentRotationNumber)
+                            {
+                                _CurrentRotationNumber = currentNumber;
+                            }
+                            return true;
+                        }
+
+                        //如果不是当前轮换通道，判断当前轮换车道上是否有车
+                        foreach (RotationInfo info in rotations)
+                        {
+                            EntranceBase entrance = GetEntrance(info.EntranceID);
+                            if (entrance != null
+                                && entrance.Status != EntranceStatus.OffLine)
+                            {
+                                //如果该控制板在线，判断是否有车
+                                if (entrance.OptStatus == EntranceOperationStatus.CarArrival
+                                || entrance.OptStatus == EntranceOperationStatus.CardTakeingOut
+                                || entrance.OptStatus == EntranceOperationStatus.FullAndWait)
+                                {
+                                    //该通道上有车，不允许取卡
+                                    return false;
+                                }
+                            }
+                        }
+                    }
+
+                    //如果当前轮换通道上没有车辆，查找下一个轮换序号
+                    currentNumber = GetNextRotationNumber(currentNumber);
+                    if (currentNumber == 0)
+                    {
+                        //没找到
+                        _CurrentRotationNumber = 0;
+                        return false;
+                    }
+                }
+                while (currentNumber != _CurrentRotationNumber);//当相等时，表示已经查找完一轮了
+            }
+
+
+            //已经查找完一轮了，该通道不在轮换列表的，不允许取卡
+            return false;
+        }
+
+        /// <summary>
+        /// 轮换到下一个序号取卡
+        /// </summary>
+        /// <param name="entranceID"></param>
+        public void NextRotation(int entranceID)
+        {
+            if (UserSetting.Current != null && UserSetting.Current.EnableRotation)
+            {
+                //当启用轮换功能时，车位数小于进入轮换状态的数值的，轮换到下一个序号
+                if (this.ParkVacant < UserSetting.Current.RotationVacant)
+                {
+                    if (UserSetting.Current.Rotations != null)
+                    {
+                        if (UserSetting.Current.Rotations.ContainsKey(_CurrentRotationNumber))
+                        {
+                            lock (_RotationNumberLock)
+                            {
+                                List<RotationInfo> rotations = UserSetting.Current.Rotations[_CurrentRotationNumber];
+                                //如果通道是当前轮换的通道
+                                if (rotations.Any(r => r.EntranceID == entranceID))
+                                {
+                                    //轮换到下一个通道序号
+                                    _CurrentRotationNumber = GetNextRotationNumber(_CurrentRotationNumber);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region 基类可重写的保护方法，产生相关事件时的处理函数
         protected virtual void OnEntranceStatusReporting(EntranceStatusReport report)
         {
@@ -1027,7 +1349,10 @@ namespace Ralid.Park.ParkService
 
         protected virtual void OnParkVacantReporting(ParkVacantReport report)
         {
-            _Park.Vacant = report.ParkVacant;
+            lock (_ParkVacantLocker)
+            {
+                _Park.Vacant = report.ParkVacant;
+            }
             (new ParkBll(AppSettings.CurrentSetting.ParkConnect)).UpdateVacant(_Park.ParkID, _Park.Vacant);
             RaiseParkVacantReporting(report);
         }
@@ -1050,7 +1375,10 @@ namespace Ralid.Park.ParkService
                 else
                 {
                     entrance.CardValid();
-                    if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty);
+                    //add by Jan 2014-06-22
+                    //由于临时卡已回收到票箱了，当抬闸失败时，也不能再次刷卡出场了，所以这里也不再需要等待返回抬闸事件确认了，直接标识卡片已出场
+                    //if (!entrance.EntranceInfo.CardValidNeedResponse) PermitCard(entrance, string.Empty, string.Empty);
+                    PermitCard(entrance, string.Empty, string.Empty);
                 }
             }
         }
@@ -1089,6 +1417,10 @@ namespace Ralid.Park.ParkService
         {
             EntranceBase entrance = GetEntrance(report.EntranceID);
             if (entrance == null) return;
+            ////Modify by Jan 2014-07-24 如果抬闸事件返回卡号，需判断与当前处理事件卡号相同才处理
+            //if (entrance.ProcessingEvent != null && (string.IsNullOrEmpty(report.CardID) || entrance.ProcessingEvent.CardID == report.CardID))
+            //Modify by Jan 2014-09-23 这里不判断与当前处理事件卡号是否相同，是为了兼容旧版本的硬件，因为旧版本的硬件程序抬闸事件上传的卡号有问题，
+            //（已发现太古汇现场硬件（软件程序版本1.47）有问题，如需要判断与当前处理事件卡号相同才处理，需确认现场硬件程序版本是否支持）
             if (entrance.ProcessingEvent != null)
             {
                 if (entrance.ProcessingEvent.ComparisonResult == CarPlateComparisonResult.Fail)
@@ -1104,6 +1436,49 @@ namespace Ralid.Park.ParkService
         public virtual bool DownloadVacantSetting(CarPortSetting vacantInfo)
         {
             throw new NotImplementedException("sub class not implement DownloadVacantSetting");
+        }
+
+        public virtual bool ModifiedVacant(short vacant)
+        {
+            lock (_ParkVacantLocker)
+            {
+                short newVacant = (short)(Park.Vacant + vacant);
+                if (newVacant < 0)
+                {
+                    Park.Vacant = 0;
+                }
+                else if (newVacant > Park.TotalPosition)
+                {
+                    Park.Vacant = Park.TotalPosition;
+                }
+                else
+                {
+                    Park.Vacant = newVacant;
+                }
+            }
+            if (Park.DeviceType == EntranceDeviceType.CANEntrance)
+            {
+                //网络型的车余数已通过心跳包发送到主控制板，主控制板会自动更新硬件的车余数，不需要发送显示车余数命令
+                foreach (EntranceBase en in _Entrances)
+                {
+                    if (!en.IsExitDevice && en.EntranceInfo.EnableParkvacantLed) en.ShowVacant();
+                }
+            }
+            else if (Park.WorkMode == ParkWorkMode.OffLine)
+            {
+                //网络型的脱机模式需要发送下载车位信息命令更新车位余数
+                CarPortSetting vacantInfo = new CarPortSetting(Park);
+
+                return DownloadVacantSetting(vacantInfo);
+            }
+
+            
+            ParkVacantReport pReport = new ParkVacantReport();
+            pReport.ParkID = Park.ParkID;
+            pReport.ParkVacant = Park.Vacant;
+            OnParkVacantReporting(pReport);
+
+            return true;
         }
 
         public virtual bool DownloadAccessSetting(AccessSetting ascLevel)
@@ -1261,15 +1636,15 @@ namespace Ralid.Park.ParkService
             {
                 if (notify.InvalidType == EventInvalidType.INV_Balance)
                 {
-                    DenyCard(notify.CardEvent.CardID, notify.InvalidType, entrance, notify.Balance);
+                    DenyCard(notify.CardEvent.CardID, notify.CardEvent.CarPlate, notify.CardEvent.CardType, 0, notify.CardEvent.Reader, notify.InvalidType, entrance, notify.Balance);
                 }
                 else if (notify.InvalidType == EventInvalidType.INV_OverDate)
                 {
-                    DenyCard(notify.CardEvent.CardID, notify.InvalidType, entrance, notify.ExpireDate);
+                    DenyCard(notify.CardEvent.CardID, notify.CardEvent.CarPlate, notify.CardEvent.CardType, 0, notify.CardEvent.Reader, notify.InvalidType, entrance, notify.ExpireDate);
                 }
                 else
                 {
-                    DenyCard(notify.CardEvent.CardID, notify.InvalidType, entrance, null);
+                    DenyCard(notify.CardEvent.CardID, notify.CardEvent.CarPlate, notify.CardEvent.CardType, 0, notify.CardEvent.Reader, notify.InvalidType, entrance, null);
                 }
             }
             return true;
@@ -1330,6 +1705,41 @@ namespace Ralid.Park.ParkService
             }
         }
 
+        /// <summary>
+        /// 更改通道
+        /// </summary>
+        /// <param name="carType"></param>
+        public virtual void SwitchEntrance(EntranceSwitchNotify notify)
+        {
+            EntranceBase currentEntrance = GetEntrance(notify.CurrentEntranceID);
+            EntranceBase newEntrance = GetEntrance(notify.NewEntranceID);
+            if (currentEntrance == null || newEntrance == null) return;
+            if (currentEntrance.ProcessingEvent != null && currentEntrance.ProcessingEvent.IsExitEvent)
+            {
+                CardInfo card = currentEntrance.ProcessingCard;
+                EntranceReader reader = currentEntrance.ProcessingEvent.Reader;
+                if (card != null)
+                {
+                    //新通道生成处理事件
+                    newEntrance.ProcessingEvent = CardEventReport.CreateExitEvent(card, newEntrance.ParkID, newEntrance.EntranceID, newEntrance.EntranceName, newEntrance.Park.WorkMode,
+                        currentEntrance.ProcessingEvent.CarType, TariffSetting.Current, currentEntrance.ProcessingEvent.EventDateTime);
+                    newEntrance.ProcessingEvent.Reader = reader;
+                    newEntrance.ProcessingCard = card;
+
+                    if (notify.CurrentEntranceID != notify.NewEntranceID)
+                    {
+                        //如不是同一个通道，将当前通道的参数清空
+                        currentEntrance.ProcessingEvent = null;
+                        currentEntrance.Operator = string.Empty;
+                        currentEntrance.Station = string.Empty;
+                    }
+
+                    newEntrance.CardWait();
+                    RaiseCardEventReporting(newEntrance.ProcessingEvent);
+                }
+            }
+        }
+
         public virtual bool SetEntranceRemainTempCard(EntranceRemainTempCardNotify notify)
         {
             EntranceBase entrance = GetEntrance(notify.EntranceID);
@@ -1347,6 +1757,7 @@ namespace Ralid.Park.ParkService
             {
                 CardReadReport report = new CardReadReport();
                 report.CardID = notify.CardID;
+                report.CarPlate = notify.CarPlate;
                 report.ParkingData = notify.ParkingData;
                 report.ParkID = notify.ParkID;
                 report.EntranceID = notify.EntranceID;
@@ -1354,6 +1765,10 @@ namespace Ralid.Park.ParkService
                 report.CannotIgnored = true;
                 report.Reader = Ralid.Park.BusinessModel.Enum.EntranceReader.DeskTopReader;
                 report.LastCarPlate = notify.LastCarPlate;
+                report.IsCarPlateEventHandle = string.IsNullOrEmpty(notify.CardID);
+                report.IsCarNotPlate = string.IsNullOrEmpty(notify.CarPlate);
+                entrance.Operator = notify.OperatorID;
+                entrance.Station = notify.Station;
                 entrance.AddToReportPool(report);
             }
             return true;
@@ -1469,12 +1884,12 @@ namespace Ralid.Park.ParkService
 
         public CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType)
         {
-            return CardPaymentInfoFactory.CreateCardPaymentRecord(card, TariffSetting.Current, carType, DateTime.Now);
+            return CardPaymentInfoFactory.CreateCardPaymentRecord(this.Park.ParkID, card, TariffSetting.Current, carType, DateTime.Now);
         }
 
         public CardPaymentInfo CreateCardPaymentRecord(CardInfo card, byte carType, DateTime datetime)
         {
-            return CardPaymentInfoFactory.CreateCardPaymentRecord(card, TariffSetting.Current, carType, datetime);
+            return CardPaymentInfoFactory.CreateCardPaymentRecord(this.Park.ParkID, card, TariffSetting.Current, carType, datetime);
         }
         #endregion
 

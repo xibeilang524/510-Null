@@ -64,6 +64,10 @@ namespace Ralid.Park.ParkAdapter
                 foreach (IReportSinker faultsinker in sinkers)
                 {
                     _reportSinkers.Remove(faultsinker);
+                    if (AppSettings.CurrentSetting.Debug)
+                    {
+                        Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("通道出错，断开一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    }
                 }
             }
         }
@@ -88,6 +92,10 @@ namespace Ralid.Park.ParkAdapter
                 foreach (IReportSinker faultsinker in faultSinkers)
                 {
                     _reportSinkers.Remove(faultsinker);
+                    if (AppSettings.CurrentSetting.Debug)
+                    {
+                        Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("通道出错，断开一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    }
                 }
             }
         }
@@ -139,6 +147,7 @@ namespace Ralid.Park.ParkAdapter
                 else if (report is EntranceStatusReport) ReportSink(report as EntranceStatusReport);
                 else if (report is EntranceRemainTempCardReport) ReportSink(report as EntranceRemainTempCardReport);
                 else if (report is AlarmReport) ReportSink(report as AlarmReport);
+                else if (report is UpdateSystemParamSettingReport) ReportSink(report as UpdateSystemParamSettingReport);
             }
             catch (Exception ex)
             {
@@ -338,6 +347,28 @@ namespace Ralid.Park.ParkAdapter
                 RemoveSinkers(faultSinkers);
             }
         }
+
+        private void ReportSink(UpdateSystemParamSettingReport report)
+        {
+            List<IReportSinker> faultSinkers = new List<IReportSinker>();
+            foreach (IReportSinker reportSinker in _reportSinkers)
+            {
+                try
+                {
+                    reportSinker.UpdateSystemParamSettingSink(report);
+                }
+
+                catch (Exception ex)
+                {
+                    faultSinkers.Add(reportSinker);
+                    ExceptionPolicy.HandleException(ex);
+                }
+            }
+            if (faultSinkers.Count > 0)
+            {
+                RemoveSinkers(faultSinkers);
+            }
+        }
         #endregion
 
         #region IParkingAdapter 成员
@@ -409,6 +440,11 @@ namespace Ralid.Park.ParkAdapter
         public bool DownloadVacantSetting(CarPortSetting vacantInfo)
         {
             return _Park.DownloadVacantSetting(vacantInfo);
+        }
+
+        public bool ModifiedVacant(short vacant)
+        {
+            return _Park.ModifiedVacant(vacant);
         }
 
         public bool DownloadAccessSetting(AccessSetting ascLevel)
@@ -494,6 +530,12 @@ namespace Ralid.Park.ParkAdapter
             return true;
         }
 
+        public bool SwitchEntrance(EntranceSwitchNotify notify)
+        {
+            _Park.SwitchEntrance(notify);
+            return true;
+        }
+
         public bool SetEntranceRemainTempCard(EntranceRemainTempCardNotify notify)
         {
             return _Park.SetEntranceRemainTempCard(notify);
@@ -504,6 +546,20 @@ namespace Ralid.Park.ParkAdapter
             return _Park.RemoteReadCard(notify);
         }
 
+        public bool UpdateSystemParamSetting(UpdateSystemParamSettingNotity notify)
+        {
+            UpdateSystemParamSettingReport report = new UpdateSystemParamSettingReport();
+            report.EventDateTime = DateTime.Now;
+            report.OperatorID = notify.Operator.OperatorName;
+            report.StationID = notify.StationID;
+            report.SourceName = notify.StationName;
+            report.ParamTypeName = notify.ParamTypeName;
+
+            ReportEnqueue(report);
+
+            return true;
+        }
+
         public bool Subscription()
         {
             lock (_IReportSinkerListLock)
@@ -512,7 +568,10 @@ namespace Ralid.Park.ParkAdapter
                 if (_reportSinkers.Contains(reportSinker) == false)
                 {
                     _reportSinkers.Add(reportSinker);
-                    Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("建立一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    if (AppSettings.CurrentSetting.Debug)
+                    {
+                        Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("建立一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    }
                 }
             }
             return true;
@@ -524,19 +583,28 @@ namespace Ralid.Park.ParkAdapter
             {
                 IReportSinker reportSinker = OperationContext.Current.GetCallbackChannel<IReportSinker>();
                 _reportSinkers.Remove(reportSinker);
+                if (AppSettings.CurrentSetting.Debug)
+                {
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("断开一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                }
             }
             return true;
         }
 
         public string Echo(string echo)
         {
+            //由于发心跳包的都应该是需要长连接的情景,客户端的IReportSinker有可能在服务器发送包时会失败,被从列表中移除,
+            //通过发心跳包重新加回列表中.
             lock (_IReportSinkerListLock)
             {
                 IReportSinker reportSinker = OperationContext.Current.GetCallbackChannel<IReportSinker>();
                 if (_reportSinkers.Contains(reportSinker) == false)
                 {
                     _reportSinkers.Add(reportSinker);
-                    Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("建立一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    if (AppSettings.CurrentSetting.Debug)
+                    {
+                        Ralid.GeneralLibrary.LOG.FileLog.Log("系统", string.Format("建立一个WCF连接，共有{0}个客户端连接", _reportSinkers.Count));
+                    }
                 }
             }
             return echo;

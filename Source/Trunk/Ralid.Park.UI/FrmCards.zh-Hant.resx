@@ -127,16 +127,22 @@
     <value>卡片啟用</value>
   </data>
   <data name="mnu_CardDownload.Text" xml:space="preserve">
-    <value>卡片下發</value>
+    <value>卡片下發到控制器</value>
   </data>
   <data name="mnu_CardClear.Text" xml:space="preserve">
-    <value>卡片名單刪除</value>
+    <value>控制器卡片名單刪除</value>
   </data>
   <data name="mnu_SyncCardToStandby.Text" xml:space="preserve">
     <value>同步卡片到備用資料庫</value>
   </data>
+  <data name="ToolStripMenuItem.Text" xml:space="preserve">
+    <value>強制刪除</value>
+  </data>
   <data name="mnu_Property.Text" xml:space="preserve">
     <value>屬性</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>名單類型:</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
@@ -153,6 +159,9 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>停車狀態:</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>部門:</value>
   </data>
   <data name="btnSearch.Text" xml:space="preserve">
     <value>查 詢(&amp;Q)</value>

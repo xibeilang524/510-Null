@@ -127,12 +127,6 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Event DateTime</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>573, 95</value>
-  </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Other</value>
-  </data>
   <data name="txtOwnerName.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 38</value>
   </data>
@@ -146,13 +140,13 @@
     <value>CardHolder</value>
   </data>
   <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 38</value>
+    <value>255, 13</value>
   </data>
   <data name="txtCertificate.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 21</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>183, 42</value>
+    <value>183, 17</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
@@ -161,19 +155,19 @@
     <value>Certificate</value>
   </data>
   <data name="ucEntrance1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>366, 9</value>
+    <value>362, 10</value>
   </data>
   <data name="ucEntrance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>201, 53</value>
+    <value>209, 53</value>
   </data>
   <data name="carTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 67</value>
+    <value>255, 63</value>
   </data>
   <data name="carTypeComboBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 20</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>207, 71</value>
+    <value>207, 67</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -182,22 +176,25 @@
     <value>CarType</value>
   </data>
   <data name="comCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>73, 67</value>
+    <value>255, 38</value>
+  </data>
+  <data name="comCardType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>105, 20</value>
   </data>
   <data name="comOperator.Location" type="System.Drawing.Point, System.Drawing">
-    <value>426, 67</value>
+    <value>421, 63</value>
   </data>
   <data name="txtCarPlate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 13</value>
+    <value>73, 63</value>
   </data>
-  <data name="txtCarPlate.Size" type="System.Drawing.Size, System.Drawing">
-    <value>105, 21</value>
+  <data name="txtDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 88</value>
   </data>
   <data name="txtCardID.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 13</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>201, 17</value>
+    <value>17, 67</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -206,7 +203,7 @@
     <value>CarPlate</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>372, 71</value>
+    <value>367, 67</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -214,8 +211,17 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Operator</value>
   </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 92</value>
+  </data>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 71</value>
+    <value>195, 42</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>Card Type</value>
@@ -229,14 +235,20 @@
   <data name="label1.Text" xml:space="preserve">
     <value>CardID</value>
   </data>
-  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1000, 345</value>
+  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>573, 115</value>
+  </data>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Other</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>CardID</value>
   </data>
   <data name="colOwnerName.HeaderText" xml:space="preserve">
     <value>Name</value>
+  </data>
+  <data name="colDepartment.HeaderText" xml:space="preserve">
+    <value>Department</value>
   </data>
   <data name="colCardCertificate.HeaderText" xml:space="preserve">
     <value>Certificate</value>
@@ -265,20 +277,14 @@
   <data name="colEventType.HeaderText" xml:space="preserve">
     <value>Memo</value>
   </data>
+  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1000, 345</value>
+  </data>
   <data name="btnExport.Location" type="System.Drawing.Point, System.Drawing">
     <value>890, 69</value>
   </data>
   <data name="btnExport.Text" xml:space="preserve">
     <value>Export Image</value>
-  </data>
-  <data name="gbDB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>812, 2</value>
-  </data>
-  <data name="gbDB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 95</value>
-  </data>
-  <data name="gbDB.Text" xml:space="preserve">
-    <value>DataBase</value>
   </data>
   <data name="rdbStandby.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 16</value>
@@ -291,6 +297,15 @@
   </data>
   <data name="rdbMaster.Text" xml:space="preserve">
     <value>Master</value>
+  </data>
+  <data name="gbDB.Location" type="System.Drawing.Point, System.Drawing">
+    <value>812, 2</value>
+  </data>
+  <data name="gbDB.Size" type="System.Drawing.Size, System.Drawing">
+    <value>72, 115</value>
+  </data>
+  <data name="gbDB.Text" xml:space="preserve">
+    <value>DataBase</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>1004, 473</value>

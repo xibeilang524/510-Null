@@ -118,11 +118,29 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
+    <value>239, 78</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>CardStatus:</value>
+  </data>
+  <data name="chkInPark.Location" type="System.Drawing.Point, System.Drawing">
+    <value>312, 77</value>
+  </data>
+  <data name="chkInPark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 16</value>
+  </data>
+  <data name="chkInPark.Text" xml:space="preserve">
+    <value>In Park</value>
+  </data>
   <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 17</value>
+    <value>312, 160</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>235, 21</value>
+    <value>233, 164</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 12</value>
@@ -130,14 +148,23 @@
   <data name="label8.Text" xml:space="preserve">
     <value>Certificate:</value>
   </data>
-  <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
+  <data name="txtDepartment.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 189</value>
+  </data>
+  <data name="txtDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 21</value>
+  </data>
+  <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
+    <value>73, 218</value>
+  </data>
+  <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>394, 21</value>
   </data>
   <data name="dtActivationDate.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 103</value>
   </data>
   <data name="txtCarPlate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 160</value>
+    <value>312, 17</value>
   </data>
   <data name="label16.Text" xml:space="preserve">
     <value>Activate:</value>
@@ -145,23 +172,29 @@
   <data name="txtOwnerName.Location" type="System.Drawing.Point, System.Drawing">
     <value>73, 160</value>
   </data>
+  <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 192</value>
+  </data>
+  <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label9.Text" xml:space="preserve">
+    <value>Department:</value>
+  </data>
   <data name="txtDeposit.Location" type="System.Drawing.Point, System.Drawing">
     <value>312, 131</value>
-  </data>
-  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>36, 192</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>Memo:</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 135</value>
+    <value>257, 135</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Deposit:</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 164</value>
+    <value>251, 21</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
     <value>CarPlate:</value>
@@ -194,7 +227,7 @@
     <value>73, 17</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>259, 107</value>
+    <value>257, 107</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -212,7 +245,7 @@
     <value>CardNum:</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>18, 52</value>
+    <value>12, 52</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -221,7 +254,7 @@
     <value>CardType:</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>253, 52</value>
+    <value>257, 52</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -291,5 +324,20 @@
   </data>
   <data name="chkHoliday.Text" xml:space="preserve">
     <value>Holiday</value>
+  </data>
+  <data name="rdbCarPlateList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>101, 16</value>
+  </data>
+  <data name="rdbCarPlateList.Text" xml:space="preserve">
+    <value>CarPlate List</value>
+  </data>
+  <data name="rdbCardList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 16</value>
+  </data>
+  <data name="rdbCardList.Text" xml:space="preserve">
+    <value>Card List</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>ListType:</value>
   </data>
 </root>

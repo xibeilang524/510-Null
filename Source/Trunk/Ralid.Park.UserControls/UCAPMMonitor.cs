@@ -30,7 +30,12 @@ namespace Ralid.Park.UserControls
         private void pic_MouseEnter(object sender, EventArgs e)
         {
             APM apm=(sender as Control ).Tag as APM ;
-            this.toolTip1.SetToolTip(sender as Control, apm.SerialNum  + " " + apm.Memo + "\n" + Ralid.Park.BusinessModel.Resouce.APMStatusDescription.GetDescription(apm.Status));
+            string tip = string.Format("{0} [{1}] {2} \n {3}", apm.SerialNum, apm.Coin,apm.Memo, Ralid.Park.BusinessModel.Resouce.APMStatusDescription.GetDescription(apm.Status));
+            if (apm.Coin < 200)
+            {
+                tip += string.Format("\n {0}", Resources.Resource1.UCAPMMonitor_NeedAddCoin);
+            }
+            this.toolTip1.SetToolTip(sender as Control, tip);
         }
 
         private void timer1_Tick(object sender, EventArgs e)
@@ -77,17 +82,17 @@ namespace Ralid.Park.UserControls
 
         private void ShowAPMPicture(PictureBox pic, APM apm)
         {
-            if (apm.Status == APMStatus.Normal)
+            if (apm.Status == APMStatus.Normal && apm.Coin >= 200)
             {
                 pic.Image = global::Ralid.Park.UserControls.Properties.Resources.atm;
             }
-            else if ((apm.Status & APMStatus.ParkingConnectFault ) == APMStatus.ParkingConnectFault  ||
-                    (apm.Status & APMStatus.LocalDBFault ) == APMStatus.LocalDBFault ||
-                    (apm.Status & APMStatus.BillValidatorFault ) == APMStatus.BillValidatorFault ||
-                    (apm.Status & APMStatus.CoinChangerFault )==APMStatus .CoinChangerFault ||
-                    (apm.Status & APMStatus.ReaderFault)==APMStatus .ReaderFault ||
-                    (apm.Status & APMStatus.CashBoxFull )==APMStatus .CashBoxFull ||
-                    (apm.Status & APMStatus.LoginParkingFault )==APMStatus .LoginParkingFault )
+            else if ((apm.Status & APMStatus.ParkingConnectFault) == APMStatus.ParkingConnectFault ||
+                    (apm.Status & APMStatus.LocalDBFault) == APMStatus.LocalDBFault ||
+                    (apm.Status & APMStatus.BillValidatorFault) == APMStatus.BillValidatorFault ||
+                    (apm.Status & APMStatus.CoinChangerFault) == APMStatus.CoinChangerFault ||
+                    (apm.Status & APMStatus.ReaderFault) == APMStatus.ReaderFault ||
+                    (apm.Status & APMStatus.CashBoxFull) == APMStatus.CashBoxFull ||
+                    (apm.Status & APMStatus.LoginParkingFault) == APMStatus.LoginParkingFault)
             {
                 pic.Image = global ::Ralid.Park.UserControls.Properties.Resources.atm_Disable;
             }

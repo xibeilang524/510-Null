@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UCEntrance));
             this.label1 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
-            this.comEntrance = new Ralid.Park.UserControls.EntranceComboBox(this.components);
+            this.comPark = new Ralid.Park.UserControls.ParkCombobox();
+            this.comEntrance = new Ralid.Park.UserControls.EntranceComboBox();
             this.SuspendLayout();
             // 
             // label1

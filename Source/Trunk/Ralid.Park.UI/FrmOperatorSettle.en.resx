@@ -125,22 +125,22 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 177</value>
+    <value>182, 215</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>437, 12</value>
+    <value>479, 12</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
-    <value>(During the shift , total cash received. It's : 2 + 3 + 4 + 5 + 6 - 7 ）</value>
+    <value>(During the shift , total cash received. It's : 2 + 3 + 4 + 5 + 6 + 7 - 8 - 9）</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>37, 177</value>
+    <value>31, 215</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>71, 12</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
-    <value>8、Total：</value>
+    <value>10、Total：</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 23</value>
@@ -175,14 +175,24 @@
   <data name="label26.Text" xml:space="preserve">
     <value>2、ParkFee：</value>
   </data>
+  <data name="groupBox4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>672, 285</value>
+  </data>
   <data name="groupBox4.Text" xml:space="preserve">
     <value>Cash</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtCashOfPOS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="txtCashOfPOS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 155</value>
+  </data>
   <data name="txtCashDiffrence.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 221</value>
+    <value>113, 259</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 221</value>
+    <value>182, 259</value>
   </data>
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
     <value>431, 12</value>
@@ -190,20 +200,44 @@
   <data name="label32.Text" xml:space="preserve">
     <value>(During the shift , the difference between HandInCash and TotalCash. ）</value>
   </data>
+  <data name="label42.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label42.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 155</value>
+  </data>
+  <data name="label42.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 12</value>
+  </data>
+  <data name="label42.Text" xml:space="preserve">
+    <value>(During the shift , total cash by POS）</value>
+  </data>
   <data name="label33.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 221</value>
+    <value>7, 259</value>
   </data>
   <data name="label33.Size" type="System.Drawing.Size, System.Drawing">
     <value>95, 12</value>
   </data>
   <data name="label33.Text" xml:space="preserve">
-    <value>10、Diffrence：</value>
+    <value>12、Diffrence：</value>
+  </data>
+  <data name="label43.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
+    <value>49, 155</value>
+  </data>
+  <data name="label43.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="label43.Text" xml:space="preserve">
+    <value>7、POS：</value>
   </data>
   <data name="txtHandInCash.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 199</value>
+    <value>113, 237</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 199</value>
+    <value>182, 237</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>377, 12</value>
@@ -212,13 +246,13 @@
     <value>(During the shift , operator actually surrendered the cash. ）</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 199</value>
+    <value>25, 237</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 12</value>
+    <value>77, 12</value>
   </data>
   <data name="label29.Text" xml:space="preserve">
-    <value>9、HandIn：</value>
+    <value>11、HandIn：</value>
   </data>
   <data name="txtCashOfCardLost.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 133</value>
@@ -238,11 +272,32 @@
   <data name="label17.Text" xml:space="preserve">
     <value>6、CardLoss：</value>
   </data>
+  <data name="txtCashOfRefund.Location" type="System.Drawing.Point, System.Drawing">
+    <value>113, 195</value>
+  </data>
   <data name="txtCashOfCardRecycle.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 155</value>
+    <value>113, 175</value>
+  </data>
+  <data name="label37.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 195</value>
+  </data>
+  <data name="label37.Size" type="System.Drawing.Size, System.Drawing">
+    <value>323, 12</value>
+  </data>
+  <data name="label37.Text" xml:space="preserve">
+    <value>(During the shift , APM refund and return of cash. ）</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>31, 195</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>9、Refund：</value>
   </data>
   <data name="label39.Location" type="System.Drawing.Point, System.Drawing">
-    <value>182, 155</value>
+    <value>182, 175</value>
   </data>
   <data name="label39.Size" type="System.Drawing.Size, System.Drawing">
     <value>341, 12</value>
@@ -251,13 +306,13 @@
     <value>(During the shift , card recovery and return of cash. ）</value>
   </data>
   <data name="label40.Location" type="System.Drawing.Point, System.Drawing">
-    <value>31, 155</value>
+    <value>31, 175</value>
   </data>
   <data name="label40.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
   </data>
   <data name="label40.Text" xml:space="preserve">
-    <value>7、Return：</value>
+    <value>8、Return：</value>
   </data>
   <data name="txtCashOfDeposit.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 111</value>
@@ -317,13 +372,16 @@
     <value>(During the shift , total parking fee charged by cash by operator card. ）</value>
   </data>
   <data name="txtCashTotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 177</value>
+    <value>113, 215</value>
   </data>
   <data name="txtCashOfOperatorCard.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 67</value>
   </data>
   <data name="txtCashOfPark.Location" type="System.Drawing.Point, System.Drawing">
     <value>113, 45</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 566</value>
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>Other</value>
@@ -358,11 +416,17 @@
   <data name="label38.Text" xml:space="preserve">
     <value>1、OpenDoor：</value>
   </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 360</value>
+  </data>
+  <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>672, 195</value>
+  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>Non-Cash</value>
   </data>
   <data name="txtNonCashOfCardLost.Location" type="System.Drawing.Point, System.Drawing">
-    <value>113, 112</value>
+    <value>114, 112</value>
   </data>
   <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 113</value>
@@ -379,6 +443,15 @@
   <data name="label34.Text" xml:space="preserve">
     <value>5、CardLoss：</value>
   </data>
+  <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
+    <value>182, 163</value>
+  </data>
+  <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
+    <value>395, 12</value>
+  </data>
+  <data name="label45.Text" xml:space="preserve">
+    <value>(During the shift , operator actually surrendered the POS fee. ）</value>
+  </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
     <value>182, 138</value>
   </data>
@@ -388,6 +461,12 @@
   <data name="label7.Text" xml:space="preserve">
     <value>(During the shift , total non-cash. It's be equal to:2 + 3 + 4 + 5. ）</value>
   </data>
+  <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 163</value>
+  </data>
+  <data name="label41.Text" xml:space="preserve">
+    <value>7、HandInPOS：</value>
+  </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>33, 138</value>
   </data>
@@ -396,6 +475,9 @@
   </data>
   <data name="label9.Text" xml:space="preserve">
     <value>6、Total：</value>
+  </data>
+  <data name="txtHandInPOS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>114, 163</value>
   </data>
   <data name="txtNonCashTotal.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 137</value>
@@ -478,6 +560,9 @@
   <data name="txtNonCashOfDeposit.Location" type="System.Drawing.Point, System.Drawing">
     <value>114, 88</value>
   </data>
+  <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>672, 53</value>
+  </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>Basic</value>
   </data>
@@ -516,6 +601,9 @@
   </data>
   <data name="btnPrint.Text" xml:space="preserve">
     <value>Print(&amp;P)</value>
+  </data>
+  <data name="chkAutoPrint.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 662</value>
   </data>
   <data name="chkAutoPrint.Size" type="System.Drawing.Size, System.Drawing">
     <value>210, 16</value>

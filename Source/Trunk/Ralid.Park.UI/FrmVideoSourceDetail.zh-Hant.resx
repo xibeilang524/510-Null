@@ -148,6 +148,9 @@
   <data name="label7.Text" xml:space="preserve">
     <value>連接逾時(秒):</value>
   </data>
+  <data name="label28.Text" xml:space="preserve">
+    <value>視頻服務類型:</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>視頻源資訊</value>
   </data>

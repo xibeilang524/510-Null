@@ -5,6 +5,8 @@ using System.Text;
 
 namespace Ralid.Park.BusinessModel.SearchCondition
 {
+
+    [Serializable]
     public class SearchCondition
     {
     }

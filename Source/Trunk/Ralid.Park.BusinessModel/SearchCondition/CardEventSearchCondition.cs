@@ -7,6 +7,10 @@ using Ralid.Park.BusinessModel.Enum;
 
 namespace Ralid.Park.BusinessModel.SearchCondition
 {
+    /// <summary>
+    /// 卡片事件查询条件
+    /// </summary>
+    [Serializable]
     public class CardEventSearchCondition : RecordSearchCondition
     {
         /// <summary>
@@ -21,5 +25,9 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 获取或设置查询条件中的是否只查询出场事件
         /// </summary>
         public bool OnlyExitEvent { get; set; } //
+        /// <summary>
+        /// 获取或设置查询条件中的是否只查询入场时间
+        /// </summary>
+        public bool OnlyEnterEvent { get; set; }
     }
 }

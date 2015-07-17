@@ -13,6 +13,7 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.ParkAdapter;
 using Ralid.Park.UI.Resources;
 
@@ -39,7 +40,11 @@ namespace Ralid.Park.UI
 
         #region 私有变量
         private CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-        List<CardInfo> _cards;
+        private List<CardInfo> _cards;
+        /// <summary>
+        /// 卡片查询条件
+        /// </summary>
+        private CardSearchCondition _search;
         #endregion
 
         #region 私有方法
@@ -89,10 +94,10 @@ namespace Ralid.Park.UI
                 standbybll.UpdateOrInsert(info);
             }
 
-            foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
-            {
-                pad.SaveCard(info, ActionType.Add);
-            }
+            //foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
+            //{
+            //    pad.SaveCard(info, ActionType.Add);
+            //}
         }
 
         private void ItemUpdated_Handler(object sender, ItemUpdatedEventArgs e)
@@ -104,12 +109,13 @@ namespace Ralid.Park.UI
                 CardBll standbybll = new CardBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
                 standbybll.UpdateOrInsert(info);
             }
-            foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
-            {
-                pad.SaveCard(info, ActionType.Upate);
-            }
+            //foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
+            //{
+            //    pad.SaveCard(info, ActionType.Upate);
+            //}
         }
 
+        //删除卡片
         private bool DeletingCard(CardInfo info)
         {
             try
@@ -122,10 +128,37 @@ namespace Ralid.Park.UI
                         CardBll standbybll = new CardBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
                         standbybll.DeleteCard(info);
                     }
-                    foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
+                    //foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
+                    //{
+                    //    pad.DeleteCard(info);
+                    //}
+                    return true;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+            return false;
+        }
+
+        //强制删除卡片
+        private bool DeletingCardAtAll(CardInfo info)
+        {
+            try
+            {
+                CommandResult ret = bll.DeleteCardAtAll(info);
+                if (ret.Result == ResultCode.Successful)
+                {
+                    if (DataBaseConnectionsManager.Current.StandbyConnected)
                     {
-                        pad.DeleteCard(info);
+                        CardBll standbybll = new CardBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
+                        standbybll.DeleteCardAtAll(info);
                     }
+                    //foreach (ParkingAdapter pad in ParkingAdapterManager.Instance.ParkAdapters)
+                    //{
+                    //    pad.DeleteCard(info);
+                    //}
                     return true;
                 }
             }
@@ -175,6 +208,7 @@ namespace Ralid.Park.UI
             this.btn_CardIDConvert.Enabled = role.Permit(Permission.CardIDConvert);
             this.btn_AddManageCard.Enabled = role.Permit(Permission.AddManageCard);
             this.btn_ChangeCardKey.Enabled = role.Permit(Permission.ChangeCardKey);
+            this.btn_ChangeCardKey.Visible = AppSettings.CurrentSetting.EnableWriteCard && GlobalVariables.UseMifareIC;
             this.btn_CardDataConvert.Enabled = role.Permit(Permission.CardDataConvert);
             this.btn_CardDataConvert.Visible = AppSettings.CurrentSetting.EnableWriteCard;
 
@@ -189,7 +223,7 @@ namespace Ralid.Park.UI
             this.mnu_CardDownload.Enabled = role.Permit(Permission.DownloadAllCards) && mnu_CardDownload.Enabled;
             this.mnu_CardClear.Enabled = role.Permit(Permission.DownloadAllCards) && mnu_CardClear.Enabled;
             this.mnu_Delete.Enabled = role.Permit(Permission.EditCard);
-
+            this.ToolStripMenuItem.Enabled = role.Permit(Permission.DeleteAtAll);
             this.mnu_SyncCardToStandby.Enabled = role.Permit(Permission.SyncDataToStandby)
                 && DataBaseConnectionsManager.Current.MasterConnected
                 && DataBaseConnectionsManager.Current.StandbyConnected;
@@ -365,6 +399,29 @@ namespace Ralid.Park.UI
             }
         }
 
+        //强制删除（忽略卡片在场、费用等问题）
+        private void 强制删除ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            List<CardInfo> deletingItems = this.cardView.GetSelectedCards();
+            if (deletingItems.Count > 0)
+            {
+                //提示，本次操作将会忽略卡片状态和卡片费用问题，确定要强制删除吗？
+                DialogResult result = MessageBox.Show(Resource1.UcCard_DeleteCardAtAll, Resource1.Form_Query, MessageBoxButtons.OKCancel, MessageBoxIcon.Warning);
+                if (result == DialogResult.OK)
+                {
+                    foreach (CardInfo card in deletingItems)
+                    {
+                        if (DeletingCardAtAll(card))
+                        {
+                            cardView.DeleteCardInfo(card);
+                            _cards.Remove(card);
+                        }
+                    }
+                    FreshStatusBar();
+                }
+            }
+        }
+
         private void mnu_Property_Click(object sender, EventArgs e)
         {
             CardInfo pre = GetSelectedItem();
@@ -389,9 +446,12 @@ namespace Ralid.Park.UI
 
         private void btn_Refresh_Click(object sender, EventArgs e)
         {
-            _cards = bll.GetAllCards().QueryObjects;
-            cardView.CardSource = _cards;
-            FreshStatusBar();
+            _search = new CardSearchCondition();
+            this.ucPaging1.Init(ucPaging1.DefaultPageSizeIndex);
+
+            //_cards = bll.GetAllCards().QueryObjects;
+            //cardView.CardSource = _cards;
+            //FreshStatusBar();
         }
 
         private void btnExportCards_Click(object sender, EventArgs e)
@@ -436,63 +496,118 @@ namespace Ralid.Park.UI
             this.comCardType.ShowManageCardType = true;
 
             this.comCardStatus.Init();
+            this.comListType.Init();
             this.comCardType.Init();
             this.comChargeType.Init();
             this.cardView.Init();
             this.accessComboBox1.Init();
-            _cards = bll.GetAllCards().QueryObjects;
+            //_cards = bll.GetAllCards().QueryObjects;
+            _search = new CardSearchCondition();
+            _search.PageSize = 100;
+            _search.PageIndex = 1;
+            ucPaging1.GetPageData -= new UCPaging.HandleEventGetPageData(ucPaging1_GetPageData);
+            ucPaging1.GetPageData += new UCPaging.HandleEventGetPageData(ucPaging1_GetPageData);
+            this.ucPaging1.Init(3);
+        }
+
+        void ucPaging1_GetPageData(int index, int pagesize)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            if (_search == null)
+            {
+                _search = new CardSearchCondition();
+            }
+            _search.PageSize = pagesize;
+            _search.PageIndex = index;
+            _cards = bll.GetCards(_search).QueryObjects;
+
+            ucPaging1.TotalCount = _search.TotalCountEx;
+            ucPaging1.TotalPages = (int)Math.Ceiling(_search.TotalCountEx * 1.0M / ucPaging1.PageSize );
+            
             cardView.CardSource = _cards;
+
             FreshStatusBar();
+
+            this.Cursor = Cursors.Default;
+            cardView.Focus();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<CardInfo> selections = _cards;
+            CardSearchCondition search = new CardSearchCondition();
+
+            //List<CardInfo> selections = _cards;
             string cardID = txtCardID.Text.Trim();
             if (!string.IsNullOrEmpty(cardID))
             {
-                selections = selections.Where(card => card.CardID.Contains(cardID)).ToList();
+                search.CardID = cardID;
+                //selections = selections.Where(card => card.CardID.Contains(cardID)).ToList();
             }
             string name = txtOwnerName.Text.Trim();
             if (!string.IsNullOrEmpty(name))
             {
-                selections = selections.Where(card => card.OwnerName == name).ToList();
+                search.OwnerName = name;
+                //selections = selections.Where(card => card.OwnerName == name).ToList();
+            }
+            string department = txtDepartment.Text.Trim();
+            if (!string.IsNullOrEmpty(department))
+            {
+                search.Department = department;
+                //selections = selections.Where(card => card.Department == department).ToList();
+            }
+            if (comListType.SelectedIndex > 0)
+            {
+                search.ListType = comListType.ListType;
+                //selections = selections.Where(card => card.ListType == comListType.ListType).ToList();
             }
             if (comCardStatus.SelectedIndex > 0)
             {
-                selections = selections.Where(card => card.Status == comCardStatus.CardStatus).ToList();
+                search.Status = comCardStatus.CardStatus;
+                //selections = selections.Where(card => card.Status == comCardStatus.CardStatus).ToList();
             }
             if (comCardType.SelectedIndex > 0)
             {
-                selections = selections.Where(card => card.CardType == comCardType.SelectedCardType).ToList();
+                search.CardType = comCardType.SelectedCardType;
+                //selections = selections.Where(card => card.CardType == comCardType.SelectedCardType).ToList();
             }
             if (comChargeType.SelectedIndex > 0)
             {
-                selections = selections.Where(card => card.CarType == comChargeType.SelectedCarType).ToList();
+                search.CarType = comChargeType.SelectedCarType;
+                //selections = selections.Where(card => card.CarType == comChargeType.SelectedCarType).ToList();
             }
             if (cmbCarStatus.SelectedIndex == 1)
             {
-                selections = selections.Where(card => card.IsInPark == true).ToList();
+                search.IsIn = true;
+                //selections = selections.Where(card => card.IsInPark == true).ToList();
             }
             else if (cmbCarStatus.SelectedIndex == 2)
             {
-                selections = selections.Where(card => card.IsInPark == false).ToList();
+                search.IsIn = false;
+                //selections = selections.Where(card => card.IsInPark == false).ToList();
             }
             if (!string.IsNullOrEmpty(txtCarPlate.Text.Trim()))
             {
-                selections = selections.Where(card => !string.IsNullOrEmpty(card.CarPlate) && card.CarPlate.Contains(txtCarPlate.Text.Trim())).ToList();
+                search.CarPlate = txtCarPlate.Text.Trim();
+                //selections = selections.Where(card => !string.IsNullOrEmpty(card.CarPlate) && card.CarPlate.Contains(txtCarPlate.Text.Trim())).ToList();
             }
             if (!string.IsNullOrEmpty(txtCardCertificate.Text.Trim()))
             {
-                selections = selections.Where(card => !string.IsNullOrEmpty(card.CardCertificate) && card.CardCertificate.Contains(txtCardCertificate.Text.Trim())).ToList();
+                search.CardCertificate = txtCardCertificate.Text.Trim();
+                //selections = selections.Where(card => !string.IsNullOrEmpty(card.CardCertificate) && card.CardCertificate.Contains(txtCardCertificate.Text.Trim())).ToList();
             }
             if (accessComboBox1.AccesslevelID > 0)
             {
-                byte accessID = accessComboBox1.AccesslevelID;
-                selections = selections.Where(card => card.AccessID == accessID).ToList();
+                search.AccessID = accessComboBox1.AccesslevelID;
+                //byte accessID = accessComboBox1.AccesslevelID;
+                //selections = selections.Where(card => card.AccessID == accessID).ToList();
             }
-            this.cardView.CardSource = selections;
-            FreshStatusBar();
+            //this.cardView.CardSource = selections;
+            //FreshStatusBar();
+
+            _search = search;
+
+            this.ucPaging1.Init(ucPaging1.DefaultPageSizeIndex);
+
         }
 
         private void GridView_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
@@ -637,6 +752,8 @@ namespace Ralid.Park.UI
             frm.ItemUpdated += ItemUpdated_Handler;
             frm.ShowDialog();
         }
+
+      
 
     }
 }

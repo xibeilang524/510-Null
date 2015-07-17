@@ -8,6 +8,7 @@ using Ralid.Park.DAL.IDAL;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Result;
+using Ralid.Park.BusinessModel.SearchCondition;
 
 namespace Ralid.Park.DAL.LinqDataProvider
 {
@@ -19,6 +20,39 @@ namespace Ralid.Park.DAL.LinqDataProvider
 
         public WorkstationProvider(string connStr):base(connStr)
         {
+        }
+
+        protected override void InsertingItem(WorkStationInfo info, ParkDataContext parking)
+        {
+            if (info.Dept != null) parking.GetTable<DeptInfo>().Attach(info.Dept);//不需要在插入工作站时同时插入工作站的部门
+            base.InsertingItem(info, parking);
+        }
+
+        protected override List<WorkStationInfo> GetingAllItems(ParkDataContext parking)
+        {
+            DataLoadOptions opt = new DataLoadOptions();
+            opt.LoadWith<WorkStationInfo>(o => o.Dept);
+            parking.LoadOptions = opt;
+            return parking.WorkStation.ToList();
+        }
+
+        protected override List<WorkStationInfo> GetingItems(ParkDataContext parking, SearchCondition search)
+        {
+            if (search is WorkstationSearchCondition)
+            {
+                WorkstationSearchCondition con = search as WorkstationSearchCondition;
+                IQueryable<WorkStationInfo> result = parking.WorkStation.AsQueryable();
+                if (con.DeptID != null)
+                {
+                    result = result.Where(w => w.DeptID == con.DeptID);
+                }
+                result = result.OrderBy(w => w.StationID);
+                return result.ToList();
+            }
+            else
+            {
+                return new List<WorkStationInfo>();
+            }
         }
 
         protected override WorkStationInfo GetingItemByID(string id, ParkDataContext parking)

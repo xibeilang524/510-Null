@@ -32,11 +32,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAlarmReport));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customDataGridview1 = new Ralid.Park.UserControls.CustomDataGridView(this.components);
-            this.colAlarmDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAlarmSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAlarmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colAlarmDescr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ucDateTimeInterval1 = new Ralid.Park.UserControls.UCDateTimeInterval();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -46,6 +41,11 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.colAlarmDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAlarmSource = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAlarmType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colAlarmDescr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.customDataGridview1)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -76,44 +76,6 @@
             this.customDataGridview1.RowHeadersVisible = false;
             this.customDataGridview1.RowTemplate.Height = 23;
             this.customDataGridview1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customDataGridview1_CellDoubleClick);
-            // 
-            // colAlarmDateTime
-            // 
-            this.colAlarmDateTime.DataPropertyName = "AlarmDateTime";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
-            this.colAlarmDateTime.DefaultCellStyle = dataGridViewCellStyle1;
-            resources.ApplyResources(this.colAlarmDateTime, "colAlarmDateTime");
-            this.colAlarmDateTime.Name = "colAlarmDateTime";
-            this.colAlarmDateTime.ReadOnly = true;
-            // 
-            // colAlarmSource
-            // 
-            this.colAlarmSource.DataPropertyName = "AlarmSource";
-            resources.ApplyResources(this.colAlarmSource, "colAlarmSource");
-            this.colAlarmSource.Name = "colAlarmSource";
-            this.colAlarmSource.ReadOnly = true;
-            // 
-            // colAlarmType
-            // 
-            this.colAlarmType.DataPropertyName = "AlarmType";
-            resources.ApplyResources(this.colAlarmType, "colAlarmType");
-            this.colAlarmType.Name = "colAlarmType";
-            this.colAlarmType.ReadOnly = true;
-            // 
-            // colAlarmDescr
-            // 
-            this.colAlarmDescr.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colAlarmDescr.DataPropertyName = "AlarmDescr";
-            resources.ApplyResources(this.colAlarmDescr, "colAlarmDescr");
-            this.colAlarmDescr.Name = "colAlarmDescr";
-            this.colAlarmDescr.ReadOnly = true;
-            // 
-            // colOperatorID
-            // 
-            this.colOperatorID.DataPropertyName = "OperatorID";
-            resources.ApplyResources(this.colOperatorID, "colOperatorID");
-            this.colOperatorID.Name = "colOperatorID";
-            this.colOperatorID.ReadOnly = true;
             // 
             // groupBox1
             // 
@@ -174,6 +136,44 @@
             // 
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
+            // 
+            // colAlarmDateTime
+            // 
+            this.colAlarmDateTime.DataPropertyName = "AlarmDateTime";
+            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
+            this.colAlarmDateTime.DefaultCellStyle = dataGridViewCellStyle1;
+            resources.ApplyResources(this.colAlarmDateTime, "colAlarmDateTime");
+            this.colAlarmDateTime.Name = "colAlarmDateTime";
+            this.colAlarmDateTime.ReadOnly = true;
+            // 
+            // colAlarmSource
+            // 
+            this.colAlarmSource.DataPropertyName = "AlarmSource";
+            resources.ApplyResources(this.colAlarmSource, "colAlarmSource");
+            this.colAlarmSource.Name = "colAlarmSource";
+            this.colAlarmSource.ReadOnly = true;
+            // 
+            // colAlarmType
+            // 
+            this.colAlarmType.DataPropertyName = "AlarmType";
+            resources.ApplyResources(this.colAlarmType, "colAlarmType");
+            this.colAlarmType.Name = "colAlarmType";
+            this.colAlarmType.ReadOnly = true;
+            // 
+            // colAlarmDescr
+            // 
+            this.colAlarmDescr.DataPropertyName = "AlarmDescr";
+            resources.ApplyResources(this.colAlarmDescr, "colAlarmDescr");
+            this.colAlarmDescr.Name = "colAlarmDescr";
+            this.colAlarmDescr.ReadOnly = true;
+            // 
+            // colOperatorID
+            // 
+            this.colOperatorID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colOperatorID.DataPropertyName = "OperatorID";
+            resources.ApplyResources(this.colOperatorID, "colOperatorID");
+            this.colOperatorID.Name = "colOperatorID";
+            this.colOperatorID.ReadOnly = true;
             // 
             // FrmAlarmReport
             // 

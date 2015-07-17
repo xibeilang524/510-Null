@@ -25,7 +25,7 @@ namespace Ralid.Park.BusinessModel.Enum
         OfflineHandleWhenOfflineMode = 1,
 
         [EnumMember]
-        Reserved=2,
+        Reserved = 2,
         /// <summary>
         /// 禁止重复入场
         /// </summary>
@@ -61,5 +61,10 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [EnumMember]
         HolidayEnable = 256,
+        /// <summary>
+        /// 预留选项1
+        /// </summary>
+        [EnumMember]
+        Reserve1 = 512
     }
 }

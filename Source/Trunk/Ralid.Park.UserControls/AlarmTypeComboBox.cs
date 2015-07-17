@@ -42,6 +42,13 @@ namespace Ralid.Park.UserControls
             this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.APMSystem));
             this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.OperatorLogIn));
             this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.CarArrive));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.CarLeave));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.GateAlarm));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.OperatorLogOut));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.CardOutAnomaly));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.BarcodeGunStatus));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.ServerSwitching));
+            this.Items.Add(AlarmTypeDescription.GetDescription(AlarmType.OperatorCardWork));
             this.SelectedIndex = 0;
             this.DropDownStyle = ComboBoxStyle.DropDownList;
         }

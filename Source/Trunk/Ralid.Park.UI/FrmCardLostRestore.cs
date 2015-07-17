@@ -51,6 +51,30 @@ namespace Ralid.Park.UI
                 }
                 this.Text = caption;
                 this.groupBox1.Text = caption;
+                
+                if (LossRestoreCard.Status != CardStatus.Loss && LossRestoreCard.IsInPark)
+                {
+                    //EntranceBll eBll = new EntranceBll(AppSettings.CurrentSetting.ParkConnect);
+                    //EntranceInfo eInfo = eBll.GetEntranceInfo(LossRestoreCard.LastEntrance).QueryObject;
+                    //int parkID = 0;
+                    //if (eInfo != null)
+                    //    parkID = eInfo.ParkID;
+                    //this.parkCombobox1.SelectedParkID = parkID;
+
+                    //_ParkPayment = CardPaymentInfoFactory.CreateCardPaymentRecord(LossRestoreCard, TariffSetting.Current, LossRestoreCard.CarType, DateTime.Now);
+                    //_ParkPayment = CardPaymentInfoFactory.CreateCardPaymentRecord(this.parkCombobox1.SelectedParkID,LossRestoreCard, TariffSetting.Current, LossRestoreCard.CarType, DateTime.Now);
+                    _ParkPayment = CardPaymentInfoFactory.CreateCardPaymentRecord(null, LossRestoreCard, TariffSetting.Current, LossRestoreCard.CarType, DateTime.Now);
+                    txtParkFee.DecimalValue = _ParkPayment.Accounts;
+                    chkPayParkFee.Enabled = true;
+                    chkPayParkFee.Checked = true;
+                }
+
+                if (!info.IsCardList)
+                {
+                    //不是卡片名单时，不需要进行写卡
+                    this.chkWriteCard.Checked = false;
+                    this.chkWriteCard.Enabled = false;
+                }
             }
         }
 
@@ -122,14 +146,8 @@ namespace Ralid.Park.UI
             this.comPaymentMode.SelectedPaymentMode = PaymentMode.Cash;
             this.ucCardInfo.Init();
             this.ucCardInfo.UseToShow();
+            //this.parkCombobox1.Init();
             ShowCardInfo(LossRestoreCard);
-            if (LossRestoreCard.Status != CardStatus.Loss && LossRestoreCard.IsInPark)
-            {
-                _ParkPayment = CardPaymentInfoFactory.CreateCardPaymentRecord(LossRestoreCard, TariffSetting.Current, LossRestoreCard.CarType, DateTime.Now);
-                txtParkFee.DecimalValue = _ParkPayment.Accounts;
-                chkPayParkFee.Enabled = true;
-                chkPayParkFee.Checked = true;
-            }
 
             if (AppSettings.CurrentSetting.EnableWriteCard)
             {
@@ -139,53 +157,61 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (!CheckInput()) return;
+            try
+            {
+                if (!CheckInput()) return;
 
-            CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-            CommandResult result;
-            if (LossRestoreCard.Status == CardStatus.Loss)
-            {
-                result = bll.CardRestore(LossRestoreCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
-            }
-            else
-            {
-                if (chkPayParkFee.Checked && _ParkPayment != null)
+                CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                CommandResult result;
+                if (LossRestoreCard.Status == CardStatus.Loss)
                 {
-                    _ParkPayment.Paid = txtParkFee.DecimalValue;
-                    _ParkPayment.Discount = _ParkPayment.Accounts - _ParkPayment.Paid;
-                    result = bll.CardLoss(LossRestoreCard, this.txtMemo.Text, txtCardCost.DecimalValue, comPaymentMode.SelectedPaymentMode, _ParkPayment);
+                    result = bll.CardRestore(LossRestoreCard, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
                 }
                 else
                 {
-                    result = bll.CardLoss(LossRestoreCard, this.txtMemo.Text, txtCardCost.DecimalValue, comPaymentMode.SelectedPaymentMode);
-                }
-            }
-            if (result.Result == ResultCode.Successful)
-            {
-
-                //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
-                if (this.chkWriteCard.Checked)
-                {
-                    //恢复时才将卡片信息写入，挂失时不写入
-                    if (LossRestoreCard.Status == CardStatus.Enabled)
+                    if (chkPayParkFee.Checked && _ParkPayment != null)
                     {
-                        CardOperationManager.Instance.WriteCardLoop(LossRestoreCard);
-                    }                    
+                        _ParkPayment.Paid = txtParkFee.DecimalValue;
+                        _ParkPayment.Discount = _ParkPayment.Accounts - _ParkPayment.Paid;
+                        result = bll.CardLoss(LossRestoreCard, this.txtMemo.Text, txtCardCost.DecimalValue, comPaymentMode.SelectedPaymentMode, _ParkPayment);
+                    }
+                    else
+                    {
+                        result = bll.CardLoss(LossRestoreCard, this.txtMemo.Text, txtCardCost.DecimalValue, comPaymentMode.SelectedPaymentMode);
+                    }
                 }
-
-                if(this.ItemUpdated != null) this.ItemUpdated(this, new ItemUpdatedEventArgs(LossRestoreCard));
-
-                if (DataBaseConnectionsManager.Current.StandbyConnected)
+                if (result.Result == ResultCode.Successful)
                 {
-                    //备用数据连上时，同步到备用数据库
-                    bll.SyncCardToDatabaseWithoutPaymentInfo(LossRestoreCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+
+                    //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                    if (this.chkWriteCard.Checked)
+                    {
+                        //恢复时才将卡片信息写入，挂失时不写入
+                        if (LossRestoreCard.Status == CardStatus.Enabled)
+                        {
+                            CardOperationManager.Instance.WriteCardLoop(LossRestoreCard);
+                        }
+                    }
+
+                    if (this.ItemUpdated != null) this.ItemUpdated(this, new ItemUpdatedEventArgs(LossRestoreCard));
+
+                    if (DataBaseConnectionsManager.Current.StandbyConnected)
+                    {
+                        //备用数据连上时，同步到备用数据库
+                        bll.SyncCardToDatabaseWithoutPaymentInfo(LossRestoreCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                    }
+
+                    this.Close();
+                }
+                else
+                {
+                    MessageBox.Show(result.Message);
                 }
 
-                this.Close();
             }
-            else
+            catch (Exception ex)
             {
-                MessageBox.Show(result.Message);
+                MessageBox.Show(ex.Message);
             }
         }
 
@@ -197,17 +223,17 @@ namespace Ralid.Park.UI
         private void chkPayParkFee_CheckedChanged(object sender, EventArgs e)
         {
             this.txtParkFee.Enabled = chkPayParkFee.Checked;
-            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString();
+            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString("N2");
         }
 
         private void txtCardCost_TextChanged(object sender, EventArgs e)
         {
-            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString();
+            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString("N2");
         }
 
         private void txtParkFee_TextChanged(object sender, EventArgs e)
         {
-            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString();
+            this.lblParkFee.Text = (txtCardCost.DecimalValue + (txtParkFee.Enabled ? txtParkFee.DecimalValue : 0)).ToString("N2");
         }
 
         private void FrmCardLostRestore_FormClosing(object sender, FormClosingEventArgs e)
@@ -215,6 +241,15 @@ namespace Ralid.Park.UI
             if (AppSettings.CurrentSetting.EnableWriteCard)
             {
                 CardReaderManager.GetInstance(UserSetting.Current.WegenType).PopCardReadRequest(CardReadHandler);
+            }
+        }
+
+        private void parkCombobox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (LossRestoreCard != null)
+            {
+                _ParkPayment = CardPaymentInfoFactory.CreateCardPaymentRecord(this.parkCombobox1.SelectedParkID, LossRestoreCard, TariffSetting.Current, LossRestoreCard.CarType, DateTime.Now);
+                txtParkFee.DecimalValue = _ParkPayment.Accounts;
             }
         }
     }

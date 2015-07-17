@@ -31,12 +31,16 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCardPaying));
             this.paymentPanel = new System.Windows.Forms.Panel();
+            this.buttonPnl = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
             this.btnCardOk = new System.Windows.Forms.Button();
             this.btnInvalidEvent = new System.Windows.Forms.Button();
             this.pnlCash = new System.Windows.Forms.Panel();
+            this.btnPos = new System.Windows.Forms.Button();
+            this.btnCoupon = new System.Windows.Forms.Button();
             this.btnCash = new System.Windows.Forms.Button();
             this.btnYCT = new System.Windows.Forms.Button();
+            this.entrancePanel1 = new Ralid.Park.UserControls.EntrancePanel();
             this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
@@ -67,6 +71,10 @@
             this.label19 = new System.Windows.Forms.Label();
             this.lblLastWorkstation = new System.Windows.Forms.Label();
             this.txtPaid = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblDiscountHour = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.lblDiscountMemo = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -82,6 +90,7 @@
             this.ucVideoes = new Ralid.Park.UserControls.VideoPanels.UCVideoListView();
             this.spliterLeft = new System.Windows.Forms.Splitter();
             this.paymentPanel.SuspendLayout();
+            this.buttonPnl.SuspendLayout();
             this.panel6.SuspendLayout();
             this.pnlCash.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
@@ -95,13 +104,20 @@
             // paymentPanel
             // 
             this.paymentPanel.BackColor = System.Drawing.SystemColors.ButtonFace;
-            this.paymentPanel.Controls.Add(this.panel6);
-            this.paymentPanel.Controls.Add(this.pnlCash);
-            this.paymentPanel.Controls.Add(this.carTypePanel1);
+            this.paymentPanel.Controls.Add(this.buttonPnl);
             this.paymentPanel.Controls.Add(this.tableLayoutPanel1);
             this.paymentPanel.Controls.Add(this.panel5);
             resources.ApplyResources(this.paymentPanel, "paymentPanel");
             this.paymentPanel.Name = "paymentPanel";
+            // 
+            // buttonPnl
+            // 
+            resources.ApplyResources(this.buttonPnl, "buttonPnl");
+            this.buttonPnl.Controls.Add(this.panel6);
+            this.buttonPnl.Controls.Add(this.pnlCash);
+            this.buttonPnl.Controls.Add(this.entrancePanel1);
+            this.buttonPnl.Controls.Add(this.carTypePanel1);
+            this.buttonPnl.Name = "buttonPnl";
             // 
             // panel6
             // 
@@ -130,11 +146,29 @@
             // 
             // pnlCash
             // 
+            this.pnlCash.Controls.Add(this.btnPos);
+            this.pnlCash.Controls.Add(this.btnCoupon);
             this.pnlCash.Controls.Add(this.btnCash);
             this.pnlCash.Controls.Add(this.btnYCT);
             resources.ApplyResources(this.pnlCash, "pnlCash");
             this.pnlCash.Name = "pnlCash";
             this.pnlCash.Resize += new System.EventHandler(this.pnlCash_Resize);
+            // 
+            // btnPos
+            // 
+            this.btnPos.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.btnPos, "btnPos");
+            this.btnPos.Name = "btnPos";
+            this.btnPos.UseVisualStyleBackColor = false;
+            this.btnPos.Click += new System.EventHandler(this.btnPos_Click);
+            // 
+            // btnCoupon
+            // 
+            this.btnCoupon.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.btnCoupon, "btnCoupon");
+            this.btnCoupon.Name = "btnCoupon";
+            this.btnCoupon.UseVisualStyleBackColor = false;
+            this.btnCoupon.Click += new System.EventHandler(this.btnCoupon_Click);
             // 
             // btnCash
             // 
@@ -142,6 +176,7 @@
             resources.ApplyResources(this.btnCash, "btnCash");
             this.btnCash.Name = "btnCash";
             this.btnCash.UseVisualStyleBackColor = false;
+            this.btnCash.EnabledChanged += new System.EventHandler(this.btnCash_EnabledChanged);
             this.btnCash.Click += new System.EventHandler(this.btnCash_Click);
             // 
             // btnYCT
@@ -151,6 +186,12 @@
             this.btnYCT.Name = "btnYCT";
             this.btnYCT.UseVisualStyleBackColor = false;
             this.btnYCT.Click += new System.EventHandler(this.btnYCT_Click);
+            // 
+            // entrancePanel1
+            // 
+            resources.ApplyResources(this.entrancePanel1, "entrancePanel1");
+            this.entrancePanel1.Name = "entrancePanel1";
+            this.entrancePanel1.EntranceSelectedChanged += new System.EventHandler(this.entrancePanel1_EntranceSelectedChanged);
             // 
             // carTypePanel1
             // 
@@ -175,7 +216,7 @@
             this.tableLayoutPanel1.Controls.Add(this.label14, 0, 11);
             this.tableLayoutPanel1.Controls.Add(this.label16, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.label7, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 16);
             this.tableLayoutPanel1.Controls.Add(this.txtCardID, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.lblOwnerName, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.lblCarNum, 1, 2);
@@ -187,10 +228,14 @@
             this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 9);
             this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 11);
             this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 16);
             this.tableLayoutPanel1.Controls.Add(this.label19, 0, 10);
             this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 10);
             this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountHour, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 15);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // label9
@@ -342,20 +387,41 @@
             resources.ApplyResources(this.txtPaid, "txtPaid");
             this.txtPaid.ForeColor = System.Drawing.Color.Blue;
             this.txtPaid.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
+            1410065407,
+            2,
+            0,
+            131072});
             this.txtPaid.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
+            1410065407,
+            2,
+            0,
+            -2147352576});
             this.txtPaid.Name = "txtPaid";
+            this.txtPaid.NumberWithCommas = true;
             this.txtPaid.PointCount = 2;
             this.txtPaid.TextChanged += new System.EventHandler(this.txtPaid_TextChanged);
             this.txtPaid.Enter += new System.EventHandler(this.txt_Enter);
             this.txtPaid.Leave += new System.EventHandler(this.txt_Leave);
+            // 
+            // label1
+            // 
+            resources.ApplyResources(this.label1, "label1");
+            this.label1.Name = "label1";
+            // 
+            // lblDiscountHour
+            // 
+            resources.ApplyResources(this.lblDiscountHour, "lblDiscountHour");
+            this.lblDiscountHour.Name = "lblDiscountHour";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // lblDiscountMemo
+            // 
+            resources.ApplyResources(this.lblDiscountMemo, "lblDiscountMemo");
+            this.lblDiscountMemo.Name = "lblDiscountMemo";
             // 
             // panel5
             // 
@@ -471,6 +537,7 @@
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FrmCardPaying_KeyDown);
             this.paymentPanel.ResumeLayout(false);
             this.paymentPanel.PerformLayout();
+            this.buttonPnl.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
             this.pnlCash.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
@@ -538,6 +605,14 @@
         private GeneralLibrary.WinformControl.DecimalTextBox txtPaid;
         private System.Windows.Forms.Splitter splitter2;
         private UserControls.UCAPMMonitor ucapmMonitor1;
+        private UserControls.EntrancePanel entrancePanel1;
+        private System.Windows.Forms.Panel buttonPnl;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblDiscountHour;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label lblDiscountMemo;
+        private System.Windows.Forms.Button btnPos;
+        private System.Windows.Forms.Button btnCoupon;
 
     }
 }

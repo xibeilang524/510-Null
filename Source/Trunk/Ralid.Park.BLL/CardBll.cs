@@ -82,16 +82,20 @@ namespace Ralid.Park.BLL
             return _Provider.GetByID(id);
         }
         /// <summary>
-        /// 通过卡号获取卡片的信息
+        /// 通过卡号获取卡片的信息（信息中包括最近一条收费记录)
         /// </summary>
         /// <param name="cardID"></param>
         /// <returns></returns>
         public CardInfo GetCardDetail(string cardID)
         {
             CardInfo card = _Provider.GetByID(cardID).QueryObject;
+            if (card != null)  //已经收费)
+            {
+                card.LastPayment = (new CardPaymentRecordBll(_RepoUri)).GetLatestRecord(card.CardID, card.LastDateTime, null);
+            }
             return card;
         }
-
+        
         /// <summary>
         /// 通过卡号获取卡片的信息，当主数据库连接断开后，会从备用数据库中获取
         /// </summary>
@@ -108,7 +112,7 @@ namespace Ralid.Park.BLL
             CardInfo card = result.QueryObject;
             return card;
         }
-                
+        
         /// <summary>
         /// 通过查询条件获取卡片
         /// </summary>
@@ -119,13 +123,13 @@ namespace Ralid.Park.BLL
             return _Provider.GetItems(con);
         }
         /// <summary>
-        /// 获取所有卡片
+        /// 获取所有卡片(包括车牌名单)
         /// </summary>
         /// <returns></returns>
         public QueryResultList<CardInfo> GetAllCards()
         {
             CardSearchCondition con = new CardSearchCondition();
-            con.Status = CardStatus.Enabled | CardStatus.Disabled | CardStatus.Loss | CardStatus.Recycled;
+            //con.Status = CardStatus.Enabled | CardStatus.Disabled | CardStatus.Loss | CardStatus.Recycled;
             return _Provider.GetItems(con);
         }
         /// <summary>
@@ -165,6 +169,7 @@ namespace Ralid.Park.BLL
                 card.TotalPaidFee = info.TotalPaidFee;
                 card.LastCarPlate = info.LastCarPlate;
                 card.UpdateFlag = info.UpdateFlag;
+                card.FreeDateTime = info.FreeDateTime;
 
                 if (original.IsTempCard)
                 {
@@ -217,6 +222,110 @@ namespace Ralid.Park.BLL
             }
             return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
         }
+
+        /// <summary>
+        /// 卡片缴费机收费退款
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="refund">退还金额</param>
+        /// <returns></returns>
+        public CommandResult APMCardRefund(CardInfo info,APMRefundRecord record)
+        {
+            CardInfo original = _Provider.GetByID(info.CardID).QueryObject;
+
+            if (original != null)
+            {
+                CardInfo newinfo = original.Clone();
+                //只会更新以下信息
+                newinfo.TotalPaidFee = 0;
+
+                IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoUri);
+                _Provider.Update(newinfo, original, unitWork);
+                
+                IAPMRefundRecordProvider recordProvider = ProviderFactory.Create<IAPMRefundRecordProvider>(_RepoUri);
+                recordProvider.Insert(record, unitWork);
+
+                CommandResult result = unitWork.Commit();
+                if (result.Result == ResultCode.Successful)
+                {
+                    info.TotalPaidFee = newinfo.TotalPaidFee;
+                }
+
+                return result;
+            }
+            return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
+        }
+
+
+        /// <summary>
+        /// 更新卡片免费优惠授权信息
+        /// </summary>
+        /// <param name="info">新卡片信息</param>
+        /// <returns></returns>
+        public CommandResult CardFreeAuthorization(CardInfo info)
+        {
+            CardInfo original = _Provider.GetByID(info.CardID).QueryObject;
+
+            if (original != null)
+            {
+                CardInfo newinfo = original.Clone();
+                //只会更新以下信息
+                newinfo.EnableHotelApp = info.EnableHotelApp;
+                newinfo.HotelCheckOut = info.HotelCheckOut;
+                newinfo.FreeDateTime = info.FreeDateTime;
+
+                CommandResult result = _Provider.Update(newinfo, original);
+                return result;
+            }
+            return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
+        }
+
+        /// <summary>
+        /// 更新卡片免费优惠授权信息
+        /// </summary>
+        /// <param name="info">新卡片信息</param>
+        /// <param name="both">是否需同时授权到备用数据库</param>
+        /// <param name="strandby">备用数据库连接</param>
+        /// <returns></returns>
+        public CommandResult CardFreeAuthorizationWithStandby(CardInfo info, bool both, string standby)
+        {
+            //同时更新时需有备用数据库连接
+            if (both && string.IsNullOrEmpty(standby))
+                return new CommandResult(ResultCode.CannotConnectServer);
+
+            CardInfo original = _Provider.GetByID(info.CardID).QueryObject;
+            ICardProvider standbyProvider = ProviderFactory.Create<ICardProvider>(standby);
+            CardInfo standbyoriginal = standbyProvider.GetByID(info.CardID).QueryObject;
+
+            if (original != null && (!both || standbyoriginal != null))
+            {
+                CardInfo newinfo = original.Clone();
+                //只会更新以下信息
+                newinfo.EnableHotelApp = info.EnableHotelApp;
+                newinfo.HotelCheckOut = info.HotelCheckOut;
+                newinfo.FreeDateTime = info.FreeDateTime;
+
+                CommandResult result = _Provider.Update(newinfo, original);
+                if (both && result.Result == ResultCode.Successful)
+                {
+                    CardInfo newstandby = standbyoriginal.Clone();
+                    //只会更新以下信息
+                    newstandby.EnableHotelApp = info.EnableHotelApp;
+                    newstandby.HotelCheckOut = info.HotelCheckOut;
+                    newstandby.FreeDateTime = info.FreeDateTime;
+                    //需要同时更新到备用数据库
+                    result = standbyProvider.Update(newstandby, standbyoriginal);
+                    if (result.Result != ResultCode.Successful)
+                    {
+                        //备用数据库更新不成功，将主数据库信息还原
+                        _Provider.Update(original, newinfo);
+                    }
+                }
+                return result;
+            }
+            return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
+        }
+
         /// <summary>
         /// 保存卡片与卡片事件信息（用于停车场产生事件时更新卡片状态并保存事件)
         /// </summary>
@@ -243,6 +352,9 @@ namespace Ralid.Park.BLL
                     info.LastEntrance = report.EntranceID;
                     info.LastCarPlate = report.CarPlate;
                     info.UpdateFlag = report.UpdateFlag;
+                    //如果启用了酒店应用，保留免费时间点，否则清空免费时间点
+                    info.FreeDateTime = report.EnableHotelApp ? report.FreeDateTime : null;
+                    info.ClearDiscount();//清除优惠录入信息
                     if (info.CardType.IsPrepayCard)
                     {
                         info.Balance = report.Balance;//数据库使用事件的余额
@@ -266,6 +378,9 @@ namespace Ralid.Park.BLL
                     card.LastEntrance = report.EntranceID;
                     card.LastCarPlate = report.CarPlate;
                     card.UpdateFlag = report.UpdateFlag;
+                    //如果启用了酒店应用，保留免费时间点，否则清空免费时间点
+                    card.FreeDateTime = report.EnableHotelApp ? report.FreeDateTime : null;
+                    card.ClearDiscount();//清除优惠录入信息
                     if (card.CardType.IsPrepayCard)
                     {
                         card.Balance = report.Balance;//数据库使用事件的余额
@@ -346,12 +461,73 @@ namespace Ralid.Park.BLL
                     Deposit = info.Deposit,
                     OperatorID = op,
                     StationID = station
+                    
                 };
                 ICardDeleteRecordProvider icdp = ProviderFactory.Create<ICardDeleteRecordProvider>(_RepoUri);
                 icdp.Insert(record, unitWork);
                 _Provider.Delete(info, unitWork);
                 return unitWork.Commit();
             }
+        }
+
+        /// <summary>
+        /// 强制删除卡片
+        /// </summary>
+        public CommandResult DeleteCardAtAll(CardInfo info)
+        {
+            string op = OperatorInfo.CurrentOperator.OperatorName;
+            string station = WorkStationInfo.CurrentStation.StationName;
+            IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoUri);
+            CardDeleteRecord record = new CardDeleteRecord
+            {
+                CardID = info.CardID,
+                OwnerName = info.OwnerName,
+                CardCertificate = info.CardCertificate,
+                CarPlate = info.CarPlate,
+                DeleteDateTime = DateTime.Now,
+                CardType = info.CardType,
+                Balance = info.Balance,
+                ValidDate = info.ValidDate,
+                Deposit = info.Deposit,
+                OperatorID = op,
+                StationID = station,
+                Memo =Resource1.Mandate_Delete
+
+            };
+            ICardDeleteRecordProvider icdp = ProviderFactory.Create<ICardDeleteRecordProvider>(_RepoUri);
+            icdp.Insert(record, unitWork);
+            _Provider.Delete(info, unitWork);
+            return unitWork.Commit();
+
+        }
+
+        /// <summary>
+        /// 无卡挂失
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="reason"></param>
+        /// <param name="lostCardCost"></param>
+        /// <param name="paymode"></param>
+        public CommandResult NoCardLoss(string carPlate, string ownerName, string reason, decimal lostCardCost, PaymentMode paymode)
+        {
+            string op = OperatorInfo.CurrentOperator.OperatorName;
+            string station = WorkStationInfo.CurrentStation.StationName;
+            CardLostRestoreRecord record = new CardLostRestoreRecord
+            {
+                CardID = "00000000",//卡号固定8个0
+                OwnerName = ownerName,
+                CardCertificate = string.Empty,
+                CarPlate = carPlate,
+                CardStatus = 1, //卡状态固定为1
+                LostDateTime = DateTime.Now,
+                LostOperator = op,
+                LostStation = station,
+                LostMemo = reason,
+                LostCardCost = lostCardCost,
+                PaymentMode = paymode
+            };
+            ICardLostRestoreRecordProvider lostProvider = ProviderFactory.Create<ICardLostRestoreRecordProvider>(_RepoUri);
+            return lostProvider.Insert(record);
         }
         /// <summary>
         /// 卡片挂失
@@ -551,6 +727,7 @@ namespace Ralid.Park.BLL
             {
                 CardID = info.CardID,
                 OwnerName = info.OwnerName,
+                CardType = info.CardType,
                 CardCertificate = info.CardCertificate,
                 CarPlate = info.CarPlate,
                 OriginalDate = deferDate.Begin,
@@ -699,7 +876,6 @@ namespace Ralid.Park.BLL
         {
             string op = OperatorInfo.CurrentOperator.OperatorName;
             string station = WorkStationInfo.CurrentStation.StationName;
-            info.IsInPark = false;//发行前先将该卡片标记为已出场
             IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoUri); //工作单元
             CardReleaseRecord record = new CardReleaseRecord
                 {
@@ -733,6 +909,95 @@ namespace Ralid.Park.BLL
                 UpdateCardAll(info, unitWork);
             }
             return unitWork.Commit();
+        }
+        /// <summary>
+        /// 车牌名单发行
+        /// </summary>
+        /// <param name="info">名单信息</param>
+        /// <param name="releaseMoney">收费金额</param>
+        /// <param name="paymentMode">收费类型</param>
+        /// <param name="memo">备注</param>
+        /// <param name="tryCount">卡号生成重试次数</param>
+        /// <returns></returns>
+        public CommandResult CarPlateRelease(CardInfo info, decimal releaseMoney, PaymentMode paymentMode, string memo, int tryCount)
+        {
+            CommandResult result = new CommandResult(ResultCode.Fail);
+            string cardID = info.CardID;//发行时的卡号
+            string op = OperatorInfo.CurrentOperator.OperatorName;
+            string station = WorkStationInfo.CurrentStation.StationName;
+            ICardProvider icp = ProviderFactory.Create<ICardProvider>(_RepoUri);
+
+            //如果没有卡号，自动生成卡号
+            if (string.IsNullOrEmpty(info.CardID))
+            {
+                for (int i = 0; i < tryCount; i++)
+                {
+                    string listID = ListCardIDCreater.CreateListCardID();
+                    CardInfo idInfo = icp.GetByID(listID).QueryObject;
+                    if (idInfo == null)
+                    {
+                        info.CardID = listID;
+                        break;
+                    }
+                }
+            }
+
+            //生成卡号失败，发行失败
+            if (string.IsNullOrEmpty(info.CardID))
+            {
+                result.Message = Resource1.CardBll_CreateListCardIDFail;
+                return result;
+            }
+
+            IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoUri); //工作单元
+            CardReleaseRecord record = new CardReleaseRecord
+            {
+                CardID = info.CardID,
+                OwnerName = info.OwnerName,
+                CardCertificate = info.CardCertificate,
+                CarPlate = info.CarPlate,
+                ReleaseDateTime = DateTime.Now,
+                CardType = info.CardType,
+                ReleaseMoney = releaseMoney,
+                PaymentMode = paymentMode,
+                Balance = info.Balance,
+                ActivationDate = info.ActivationDate,
+                ValidDate = info.ValidDate,
+                HolidayEnabled = info.HolidayEnabled,
+                Deposit = info.Deposit,
+                OperatorID = op,
+                StationID = station,
+                Memo = memo
+            };
+            ProviderFactory.Create<ICardReleaseRecordProvider>(_RepoUri).Insert(record, unitWork);
+            info.Release();
+            if (string.IsNullOrEmpty(cardID))
+            {
+                //如果发行时没有设置卡号的，不同查找了，直接插入新记录
+                icp.Insert(info, unitWork);
+            }
+            else
+            {
+                CardInfo origial = icp.GetByID(info.CardID).QueryObject;
+                if (origial == null)
+                {
+                    icp.Insert(info, unitWork);
+                }
+                else if (origial.IsCardList
+                    || (!string.IsNullOrEmpty(origial.CarPlate) && origial.CarPlate != info.CarPlate))
+                {
+                    //如果已存在该卡号，并且不是当前车牌名单的，返回失败
+                    result.Message = string.Format(Resource1.CardBll_CardIDbeUsed, info.CardID);
+                    return result;
+                }
+                else
+                {
+                    UpdateCardAll(info, unitWork);
+                }
+            }
+            result = unitWork.Commit();
+
+            return result;
         }
         /// <summary>
         /// 收取卡片的停车费
@@ -1086,6 +1351,7 @@ namespace Ralid.Park.BLL
                 card.TotalPaidFee = original.TotalPaidFee;
                 card.LastCarPlate = original.LastCarPlate;
                 card.UpdateFlag = original.UpdateFlag;
+                card.FreeDateTime = original.FreeDateTime;
 
                 if (original.IsTempCard)
                 {
@@ -1097,6 +1363,40 @@ namespace Ralid.Park.BLL
             else
             {
                 return _databaseProvider.Insert(info);
+            }
+        }
+
+        /// <summary>
+        /// 回滚收费信息
+        /// </summary>
+        /// <param name="beforePay">卡片收取前信息</param>
+        /// <param name="record">收费记录</param>
+        public void RollbackPayment(CardInfo info, CardPaymentInfo record)
+        {
+            UpdateCardPaymentInfo(info);
+            ICardPaymentRecordProvider payPorvider = ProviderFactory.Create<ICardPaymentRecordProvider>(this._RepoUri);
+            payPorvider.Delete(record);
+        }
+
+        /// <summary>
+        /// 回滚收费信息
+        /// </summary>
+        /// <param name="beforePay">卡片收取前信息</param>
+        /// <param name="chargeDateTime">收费时间</param>
+        public void RollbackPayment(CardInfo info, DateTime chargeDateTime)
+        {
+            UpdateCardPaymentInfo(info);
+            ICardPaymentRecordProvider payPorvider = ProviderFactory.Create<ICardPaymentRecordProvider>(this._RepoUri);
+            RecordSearchCondition search = new RecordSearchCondition();
+            search.CardID = info.CardID;
+            search.RecordDateTimeRange = new DateTimeRange(chargeDateTime, chargeDateTime);
+            QueryResultList<CardPaymentInfo> records = payPorvider.GetItems(search);
+            if (records.Result == ResultCode.Successful)
+            {
+                foreach (CardPaymentInfo record in records.QueryObjects)
+                {
+                    payPorvider.Delete(record);
+                }
             }
         }
         #endregion
@@ -1170,6 +1470,16 @@ namespace Ralid.Park.BLL
         public QueryResultList<CardDeleteRecord> GetCardDeleteRecords(RecordSearchCondition search)
         {
             ICardDeleteRecordProvider provider = ProviderFactory.Create<ICardDeleteRecordProvider>(_RepoUri);
+            return provider.GetItems(search);
+        }
+        /// <summary>
+        /// 通过查询条件获取相应的缴费机退款记录
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public QueryResultList<APMRefundRecord> GetAPMRefundRecords(RecordSearchCondition search)
+        {
+            IAPMRefundRecordProvider provider = ProviderFactory.Create<IAPMRefundRecordProvider>(_RepoUri);
             return provider.GetItems(search);
         }
         #endregion
@@ -1254,6 +1564,8 @@ namespace Ralid.Park.BLL
                     //已缴费用减去记录收取的费用和折扣费用
                     card.TotalPaidFee -= paymentInfo.Paid + paymentInfo.Discount;
                     if (card.TotalPaidFee < 0) card.TotalPaidFee = 0;
+                    //如果已缴费用为0，说明用户未缴费，将卡片标记为未缴费，这是因为当停车费用为零时，标记为已收费时，卡片将不能重新收费
+                    if (card.TotalPaidFee == 0) card.IsPaid = false;
 
                     _Provider.Update(card, info, unitWork);
 
@@ -1263,9 +1575,9 @@ namespace Ralid.Park.BLL
                     alarm.AlarmDateTime = DateTime.Now;
                     alarm.AlarmType = AlarmType.CancelCardPayment;
                     alarm.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
-                    alarm.AlarmDescr = string.Format("重新缴费", paymentInfo.CardID,
+                    alarm.AlarmDescr = string.Format(Resource1.CardBll_CancelPaymentDescr, paymentInfo.CardID, paymentInfo.CardID,
                         paymentInfo.ChargeDateTime.ToString("yyyy-MM-dd HH:mm:ss"), paymentInfo.EnterDateTime.Value.ToString("yyyy-MM-dd HH;mm:ss"),
-                        paymentInfo.Accounts);
+                        paymentInfo.Accounts, paymentInfo.Paid, paymentInfo.Memo);
                     ProviderFactory.Create<IAlarmProvider>(_RepoUri).Insert(alarm, unitWork);
 
                     CommandResult result = unitWork.Commit();
@@ -1274,6 +1586,7 @@ namespace Ralid.Park.BLL
                     {
                         //删除成功，更新卡片信息
                         info.TotalPaidFee = card.TotalPaidFee;
+                        info.IsPaid = card.IsPaid;
                     }
                     return result;
                 }
@@ -1307,6 +1620,8 @@ namespace Ralid.Park.BLL
                     //已缴费用减去记录收取的费用和折扣费用
                     card.TotalPaidFee -= paymentInfo.Paid + paymentInfo.Discount;
                     if (card.TotalPaidFee < 0) card.TotalPaidFee = 0;
+                    //如果已缴费用为0，说明用户未缴费，将卡片标记为未缴费，这是因为当停车费用为零时，标记为已收费时，卡片将不能重新收费
+                    if (card.TotalPaidFee == 0) card.IsPaid = false;
 
                     _Provider.Update(card, info, unitWork);
 
@@ -1316,9 +1631,9 @@ namespace Ralid.Park.BLL
                     alarm.AlarmDateTime = DateTime.Now;
                     alarm.AlarmType = AlarmType.CancelCardPayment;
                     alarm.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
-                    alarm.AlarmDescr = string.Format("重新缴费", paymentInfo.CardID,
+                    alarm.AlarmDescr = string.Format(Resource1.CardBll_CancelPaymentDescr, paymentInfo.CardID, paymentInfo.CardID,
                         paymentInfo.ChargeDateTime.ToString("yyyy-MM-dd HH:mm:ss"), paymentInfo.EnterDateTime.Value.ToString("yyyy-MM-dd HH;mm:ss"),
-                        paymentInfo.Accounts);
+                        paymentInfo.Accounts, paymentInfo.Paid, paymentInfo.Memo);
                     IAlarmProvider _alarmProvider = ProviderFactory.Create<IAlarmProvider>(_RepoUri);
                     _alarmProvider.Insert(alarm, unitWork);
 
@@ -1381,6 +1696,7 @@ namespace Ralid.Park.BLL
                     {
                         //删除成功，更新卡片信息
                         info.TotalPaidFee = card.TotalPaidFee;
+                        info.IsPaid = card.IsPaid;
                     }
                     return result;
                 }
@@ -1412,6 +1728,76 @@ namespace Ralid.Park.BLL
             }
         }
         #endregion
+        #endregion
+
+        #region 车牌名单相关
+        /// <summary>
+        /// 通过车牌号码获取所有车牌名单
+        /// </summary>
+        /// <param name="carPlate"></param>
+        /// <returns></returns>
+        public List<CardInfo> GetCarPlateLists(string carPlate)
+        {
+            CardSearchCondition search = new CardSearchCondition();
+            search.ListType = CardListType.CarPlate;
+            search.ListCarPlate = carPlate;
+            return _Provider.GetItems(search).QueryObjects;
+        }
+        /// <summary>
+        /// 通过车牌号码获取第一个车牌名单
+        /// </summary>
+        /// <param name="carPlate"></param>
+        /// <returns></returns>
+        public CardInfo GetFirstCarPlateList(string carPlate)
+        {
+            CardSearchCondition search = new CardSearchCondition();
+            search.ListType = CardListType.CarPlate;
+            search.ListCarPlate = carPlate;
+            QueryResultList<CardInfo> result = _Provider.GetItems(search);
+            if (result.Result == ResultCode.Successful
+                && result.QueryObjects != null
+                && result.QueryObjects.Count > 0)
+            {
+                return result.QueryObjects[0];
+            }
+
+            return null;
+        }
+        /// <summary>
+        /// 通过车牌号码获取第一个车牌名单（信息中包括最近一条收费记录)
+        /// </summary>
+        /// <param name="carPlate"></param>
+        /// <returns></returns>
+        public CardInfo GetCarPlateListDetail(string carPlate)
+        {
+            CardInfo card = null;
+            CardSearchCondition search = new CardSearchCondition();
+            search.ListType = CardListType.CarPlate;
+            search.ListCarPlate = carPlate;
+            QueryResultList<CardInfo> result = _Provider.GetItems(search);
+            if (result.Result == ResultCode.Successful
+                && result.QueryObjects != null
+                && result.QueryObjects.Count > 0)
+            {
+                card = result.QueryObjects[0];
+            }
+            if (card != null)  //已经收费)
+            {
+                card.LastPayment = (new CardPaymentRecordBll(_RepoUri)).GetLatestRecord(card.CardID, card.LastDateTime, null);
+            }
+            return card;
+        }
+        /// <summary>
+        /// 获取所有车牌名单
+        /// </summary>
+        /// <returns></returns>
+        public QueryResultList<CardInfo> GetAllCarPlateLists()
+        {
+            CardSearchCondition con = new CardSearchCondition();
+            //con.Status = CardStatus.Enabled | CardStatus.Disabled | CardStatus.Loss | CardStatus.Recycled;
+            con.ListType = CardListType.CarPlate;
+            return _Provider.GetItems(con);
+        }
         #endregion
     }
 }

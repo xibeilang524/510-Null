@@ -110,7 +110,7 @@ namespace Ralid.Park.BLL
             {
                 throw new InvalidOperationException(string.Format(Resource1.OperatorBll_NamebeUsed, info.OperatorName));
             }
-            if (allOpt.Exists(opt => opt.OperatorNum == info.OperatorNum))
+            if (info.OperatorNum > 0 && allOpt.Exists(opt => opt.OperatorNum == info.OperatorNum))
             {
                 throw new InvalidOperationException(string.Format(Resource1.OperatorBll_NumbeUsed, info.OperatorNum));
             }
@@ -129,7 +129,7 @@ namespace Ralid.Park.BLL
             {
                 throw new InvalidOperationException(string.Format(Resource1.OperatorBll_NamebeUsed, info.OperatorName));
             }
-            if (allOpt.Exists(opt => opt.OperatorID != info.OperatorID && opt.OperatorNum == info.OperatorNum))
+            if (info.OperatorNum > 0 && allOpt.Exists(opt => opt.OperatorID != info.OperatorID && opt.OperatorNum == info.OperatorNum))
             {
                 throw new InvalidOperationException(string.Format(Resource1.OperatorBll_NumbeUsed, info.OperatorNum));
             }

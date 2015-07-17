@@ -62,25 +62,27 @@
             this.txtCashInherit.BackColor = System.Drawing.SystemColors.HighlightText;
             resources.ApplyResources(this.txtCashInherit, "txtCashInherit");
             this.txtCashInherit.MaxValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            0});
+            1410065407,
+            2,
+            0,
+            131072});
             this.txtCashInherit.MinValue = new decimal(new int[] {
-            -1,
-            -1,
-            -1,
-            -2147483648});
+            1410065407,
+            2,
+            0,
+            -2147352576});
             this.txtCashInherit.Name = "txtCashInherit";
+            this.txtCashInherit.NumberWithCommas = true;
             this.txtCashInherit.PointCount = 2;
             // 
             // txtTempCardInherit
             // 
             this.txtTempCardInherit.BackColor = System.Drawing.SystemColors.HighlightText;
             resources.ApplyResources(this.txtTempCardInherit, "txtTempCardInherit");
-            this.txtTempCardInherit.MaxValue = 2147483647;
-            this.txtTempCardInherit.MinValue = -2147483648;
+            this.txtTempCardInherit.MaxValue = 99999999;
+            this.txtTempCardInherit.MinValue = -99999999;
             this.txtTempCardInherit.Name = "txtTempCardInherit";
+            this.txtTempCardInherit.NumberWithCommas = true;
             // 
             // FrmOperatorShiftConfirm
             // 

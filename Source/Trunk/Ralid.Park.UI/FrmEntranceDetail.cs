@@ -31,6 +31,7 @@ namespace Ralid.Park.UI
             this.comAddress.Init();
             this.cmbTicketPrinter.Init();
             this.cmbTicketReader.Init();
+            this.cmbTicketReader2.Init();
 
             if (IsAdding)
             {
@@ -48,6 +49,7 @@ namespace Ralid.Park.UI
             this.comAddress.EntranceAddress = info.Address;
             this.cmbTicketPrinter.ComPort = info.TicketPrinterCOMPort;
             this.cmbTicketReader.ComPort = info.TicketReaderCOMPort;
+            if (info.TicketReaderCOMPort2 != null) this.cmbTicketReader2.ComPort = info.TicketReaderCOMPort2.Value;
             this.chkReadCardNeedCarSense.Checked = info.ReadAndTakeCardNeedCarSense;
             this.chkLightOnWhenCarArrive.Checked = info.LightEnable;
             this.txtCardReadInterval.IntergerValue = info.ReadCardInterval;
@@ -59,6 +61,8 @@ namespace Ralid.Park.UI
             this.chkOnlyTempReaderAfterButtonClick.Checked = info.OnlyTempReaderAfterButtonClick;
             this.chkNoParkingCount.Checked = info.NoParkingCount;
             this.chkUseAsACS.Checked = info.UseAsAcs;
+            this.chkForbidWhenCardExpired.Checked = info.ForbidWhenCardExpired;
+            this.chkForbidWhenFull.Checked = info.ForbidWhenFull;
             this.txtCarPlateIP.IP = info.CarPlateIP;
             this.txtVideoID.IntergerValue = info.VideoID == null ? 0 : info.VideoID.Value;
         }
@@ -89,6 +93,7 @@ namespace Ralid.Park.UI
             info.Address = this.comAddress.EntranceAddress;
             info.TicketPrinterCOMPort = this.cmbTicketPrinter.ComPort;
             info.TicketReaderCOMPort = this.cmbTicketReader.ComPort;
+            info.TicketReaderCOMPort2 = this.cmbTicketReader2.ComPort;
             info.ReadAndTakeCardNeedCarSense = this.chkReadCardNeedCarSense.Checked;
             info.LightEnable = this.chkLightOnWhenCarArrive.Checked;
             info.ReadCardInterval = this.txtCardReadInterval.IntergerValue;
@@ -100,6 +105,8 @@ namespace Ralid.Park.UI
             info.OnlyTempReaderAfterButtonClick = this.chkOnlyTempReaderAfterButtonClick.Checked;
             info.NoParkingCount = this.chkNoParkingCount.Checked;
             info.UseAsAcs = this.chkUseAsACS.Checked;
+            info.ForbidWhenCardExpired = this.chkForbidWhenCardExpired.Checked;
+            info.ForbidWhenFull = this.chkForbidWhenFull.Checked;
             info.CarPlateIP = txtCarPlateIP.IP;
             info.VideoID = txtVideoID.IntergerValue;
             if (Park != null)
@@ -125,6 +132,7 @@ namespace Ralid.Park.UI
         private void comAddress_SelectedIndexChanged(object sender, EventArgs e)
         {
             cmbTicketReader.Enabled = (comAddress.EntranceAddress % 2 == 1);
+            cmbTicketReader2.Enabled = (comAddress.EntranceAddress % 2 == 1);
             cmbTicketPrinter.Enabled = (comAddress.EntranceAddress % 2 == 0);
             chkMonthCardWaitWhenOut.Enabled = (comAddress.EntranceAddress % 2 == 1);
             chkPrepayCardWaitWhenOut.Enabled = (comAddress.EntranceAddress % 2 == 1);
@@ -141,6 +149,5 @@ namespace Ralid.Park.UI
             if (!chkOnlyTempReaderAfterButtonClick.Enabled) chkOnlyTempReaderAfterButtonClick.Checked = false;
         }
         #endregion
-
     }
 }

@@ -15,7 +15,7 @@ namespace Ralid.Park.LocalDataBase.Model
     public class LDB_CardPaymentInfo
     {
         #region 私有变量
-        [Column(Name = "CardType")]
+        [Column(Name = "CardType", UpdateCheck = UpdateCheck.Never)]
         private byte _CardType;
         #endregion
 
@@ -28,7 +28,7 @@ namespace Ralid.Park.LocalDataBase.Model
         /// <summary>
         /// 获取或设置卡号
         /// </summary>
-        [Column(Name = "CardID",UpdateCheck=UpdateCheck.Never)]
+        [Column(Name = "CardID", UpdateCheck = UpdateCheck.Never)]
         public string CardID { get; set; }
         /// <summary>
         /// 获取或设置卡片的编号

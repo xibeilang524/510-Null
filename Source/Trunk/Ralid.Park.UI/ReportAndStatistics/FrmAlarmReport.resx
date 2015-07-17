@@ -186,11 +186,17 @@
   <data name="colAlarmDescr.HeaderText" xml:space="preserve">
     <value>说明</value>
   </data>
+  <data name="colAlarmDescr.Width" type="System.Int32, mscorlib">
+    <value>750</value>
+  </data>
   <metadata name="colOperatorID.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
   <data name="colOperatorID.HeaderText" xml:space="preserve">
     <value>操作员</value>
+  </data>
+  <data name="colOperatorID.MinimumWidth" type="System.Int32, mscorlib">
+    <value>100</value>
   </data>
   <data name="customDataGridview1.Location" type="System.Drawing.Point, System.Drawing">
     <value>2, 98</value>

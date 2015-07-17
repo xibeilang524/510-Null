@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
+using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BLL;
 
@@ -62,26 +63,33 @@ namespace Ralid.Park.UserControls.VideoPanels
         {
             while (true)
             {
-                if (_AllDevices != null && _AllDevices.Count > 0)
+                try
                 {
-                    foreach (AxHVActiveX2Lib.AxHVActiveX2 axHV in _AllDevices.Values)
+                    if (_AllDevices != null && _AllDevices.Count > 0)
                     {
-                        if (axHV.Tag is DateTime)
+                        foreach (AxHVActiveX2Lib.AxHVActiveX2 axHV in _AllDevices.Values)
                         {
-                            DateTime dt = (DateTime)(axHV.Tag);
-                            TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
-                            if (ts.TotalMinutes >= 2)
+                            if (axHV.Tag is DateTime)
                             {
-                                if (axHV.GetStatus() == 0)
+                                DateTime dt = (DateTime)(axHV.Tag);
+                                TimeSpan ts = new TimeSpan(DateTime.Now.Ticks - dt.Ticks);
+                                if (ts.TotalMinutes >= 2)
                                 {
-                                    axHV.RecvVideoFlag = 0;
-                                    axHV.Disconnect();
+                                    if (axHV.GetStatus() == 0)
+                                    {
+                                        axHV.RecvVideoFlag = 0;
+                                        axHV.Disconnect();
+                                    }
                                 }
                             }
                         }
                     }
                 }
-                Thread.Sleep(30);
+                catch
+                { 
+                }
+                Thread.Sleep(1000);
+                //Thread.Sleep(30);
             }
         }
         #endregion
@@ -98,20 +106,23 @@ namespace Ralid.Park.UserControls.VideoPanels
                     {
                         foreach (VideoSourceInfo video in entrance.VideoSources)
                         {
-                            if (!_AllDevices.Keys.Contains(video.MediaSource))
+                            if (video.VideoSourceType == (int)VideoServerType.XinLuTong)
                             {
-                                AxHVActiveX2Lib.AxHVActiveX2 axHV = new AxHVActiveX2Lib.AxHVActiveX2();
-                                ((System.ComponentModel.ISupportInitialize)(axHV)).BeginInit();
-                                this.Controls.Add(axHV);
-                                axHV.Visible = false;
-                                ((System.ComponentModel.ISupportInitialize)(axHV)).EndInit();
-                                axHV.RecvSnapImageFlag = 0;
-                                axHV.RecvPlateImageFlag = 0;
-                                axHV.RecvPlateBinImageFlag = 0;
-                                axHV.AutoSaveFlag = false;
-                                axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo);
-                                axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo1);
-                                _AllDevices.Add(video.MediaSource , axHV);
+                                if (!_AllDevices.Keys.Contains(video.MediaSource))
+                                {
+                                    AxHVActiveX2Lib.AxHVActiveX2 axHV = new AxHVActiveX2Lib.AxHVActiveX2();
+                                    ((System.ComponentModel.ISupportInitialize)(axHV)).BeginInit();
+                                    this.Controls.Add(axHV);
+                                    axHV.Visible = false;
+                                    ((System.ComponentModel.ISupportInitialize)(axHV)).EndInit();
+                                    axHV.RecvSnapImageFlag = 0;
+                                    axHV.RecvPlateImageFlag = 0;
+                                    axHV.RecvPlateBinImageFlag = 0;
+                                    axHV.AutoSaveFlag = false;
+                                    axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo);
+                                    axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo1);
+                                    _AllDevices.Add(video.MediaSource, axHV);
+                                }
                             }
                         }
                     }
@@ -132,7 +143,9 @@ namespace Ralid.Park.UserControls.VideoPanels
                 {
                     axHV.ConnectTo(ip);
                     axHV.RecvVideoFlag = 1;
+                    //int status = axHV.GetStatus();
                 }
+
                 List<VideoRecievedEventHandler> handlers = axHV.Tag as List<VideoRecievedEventHandler>;
                 if (handlers == null) handlers = new List<VideoRecievedEventHandler>();
                 if (!handlers.Any(c => c == callback)) handlers.Add(callback);
@@ -161,62 +174,85 @@ namespace Ralid.Park.UserControls.VideoPanels
         #region 事件处理方法
         private void axHV_OnReceiveVideo(object sender, EventArgs e)
         {
-            AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
-            IntPtr irMapFile = IntPtr.Zero;
-            IntPtr itData = IntPtr.Zero;
-            string strName = "";
-            int iSize = 1024 * 1024;
+            //AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+            //IntPtr irMapFile = IntPtr.Zero;
+            //IntPtr itData = IntPtr.Zero;
+            //string strName = "";
+            //int iSize =0;
             try
             {
+                AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+
+                string strName = "";
+                int iSize = 0;
                 strName = axHV.GetVideoFrameSM(0, ref iSize);
+                if (iSize == 0) return;
+
+                IntPtr irMapFile = IntPtr.Zero;
                 irMapFile = OpenFileMapping(FILE_MAP_READ, false, strName);
                 if (irMapFile == IntPtr.Zero) return;
 
+                IntPtr itData = IntPtr.Zero;
                 itData = MapViewOfFile(irMapFile, FILE_MAP_READ, 0, 0, 0);
                 if (itData == IntPtr.Zero)
                 {
                     CloseHandle(irMapFile);
+
                     return;
                 }
                 byte[] bData = new byte[iSize];
                 Marshal.Copy(itData, bData, 0, iSize);
+                
+                ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+                UnmapViewOfFile(itData);
+                CloseHandle(irMapFile);
 
                 List<VideoRecievedEventHandler> handlers = axHV.Tag as List<VideoRecievedEventHandler>;
                 if (handlers != null && handlers.Count > 0)
                 {
                     foreach (VideoRecievedEventHandler handler in handlers)
                     {
-                        byte[] data = new byte[iSize];
-                        Array.Copy(bData, data, bData.Length);
-                        handler(sender, 0, data);
+                        handler(sender, 0, bData);
+                        //byte[] data = new byte[iSize];
+                        //Array.Copy(bData, data, bData.Length);
+                        //handler(sender, 0, data);
                     }
                 }
+
             }
-            catch (Exception ex)
+            catch
             {
 
             }
-            finally
-            {
-                ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
-                UnmapViewOfFile(itData);
-                CloseHandle(irMapFile);
-            }
+            //finally
+            //{
+            //    ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+            //    UnmapViewOfFile(itData);
+            //    CloseHandle(irMapFile);
+            //}
         }
 
         private void axHV_OnReceiveVideo1(object sender, EventArgs e)
         {
-            AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
-            IntPtr irMapFile = IntPtr.Zero;
-            IntPtr itData = IntPtr.Zero;
-            string strName = "";
-            int iSize = 1024 * 1024;
+            //AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+            //IntPtr irMapFile = IntPtr.Zero;
+            //IntPtr itData = IntPtr.Zero;
+            //string strName = "";
+            //int iSize =0;
             try
             {
+                AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+
+                string strName = "";
+                int iSize = 0;
                 strName = axHV.GetVideoFrameSM(1, ref iSize);
+                if (iSize == 0) return;
+
+                IntPtr irMapFile = IntPtr.Zero;
                 irMapFile = OpenFileMapping(FILE_MAP_READ, false, strName);
                 if (irMapFile == IntPtr.Zero) return;
 
+                IntPtr itData = IntPtr.Zero;
                 itData = MapViewOfFile(irMapFile, FILE_MAP_READ, 0, 0, 0);
                 if (itData == IntPtr.Zero)
                 {
@@ -225,28 +261,34 @@ namespace Ralid.Park.UserControls.VideoPanels
                 }
                 byte[] bData = new byte[iSize];
                 Marshal.Copy(itData, bData, 0, iSize);
+                
+                ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+                UnmapViewOfFile(itData);
+                CloseHandle(irMapFile);
 
                 List<VideoRecievedEventHandler> handlers = axHV.Tag as List<VideoRecievedEventHandler>;
                 if (handlers != null && handlers.Count > 0)
                 {
                     foreach (VideoRecievedEventHandler handler in handlers)
                     {
-                        byte[] data = new byte[iSize];
-                        Array.Copy(bData, data, bData.Length);
-                        handler(sender, 1, data);
+                        handler(sender, 1, bData);
+                        //byte[] data = new byte[iSize];
+                        //Array.Copy(bData, data, bData.Length);
+                        //handler(sender, 1, data);
                     }
                 }
+
             }
-            catch (Exception ex)
+            catch
             {
 
             }
-            finally
-            {
-                ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
-                UnmapViewOfFile(itData);
-                CloseHandle(irMapFile);
-            }
+            //finally
+            //{
+            //    ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+            //    UnmapViewOfFile(itData);
+            //    CloseHandle(irMapFile);
+            //}
         }
         #endregion
     }

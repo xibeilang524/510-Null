@@ -21,12 +21,14 @@ namespace Ralid.Park.DAL.LinqDataProvider
 
         }
 
-        protected override void InsertingItem(WaitingCommandInfo info, ParkDataContext parking)
+        protected override WaitingCommandInfo GetingItemByID(WaitingCommandID id, ParkDataContext parking)
         {
-            if (parking.WaitingCommand.Count(w => w.CardID == info.CardID && w.EntranceID == info.EntranceID) == 0)
-            {
-                base.InsertingItem(info, parking);
-            }
+            return parking.GetTable<WaitingCommandInfo>().SingleOrDefault(w => w.EntranceID == id.EntranceID && w.Command == id.Command && w.CardID == id.CardID);
+        }
+
+        protected override List<WaitingCommandInfo> GetingAllItems(ParkDataContext parking)
+        {
+            return parking.GetTable<WaitingCommandInfo>().Select(t => t).OrderBy(t => t.EntranceID).ToList();
         }
 
         protected override List<WaitingCommandInfo> GetingItems(ParkDataContext parking,SearchCondition search)
@@ -34,7 +36,25 @@ namespace Ralid.Park.DAL.LinqDataProvider
             if (search is WaitingCommandSearchCondition)
             {
                 WaitingCommandSearchCondition con = search as WaitingCommandSearchCondition;
-                return parking.WaitingCommand.Where(w => w.EntranceID == con.EntranceID).ToList();
+                IQueryable<WaitingCommandInfo> result = parking.WaitingCommand.AsQueryable();
+                if (con.EntranceID > 0)
+                {
+                    result = result.Where(w => w.EntranceID == con.EntranceID);
+                }
+                if (con.CommandType != null)
+                {
+                    result = result.Where(w => w.Command == con.CommandType.Value);
+                }
+                if (!string.IsNullOrEmpty(con.CardID))
+                {
+                    result = result.Where(w => w.CardID == con.CardID);
+                }
+                if (con.Status != null)
+                {
+                    result = result.Where(w => w.Status == con.Status);
+                }
+                result = result.OrderBy(w => w.EntranceID);
+                return result.ToList();
             }
             else
             {

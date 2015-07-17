@@ -41,20 +41,22 @@
             this.mnu_CardDisable = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_CardEnable = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_CardRecycle = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator19 = new System.Windows.Forms.ToolStripSeparator();
             this.mnu_CardDownload = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_CardClear = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_SyncCardToStandby = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator15 = new System.Windows.Forms.ToolStripSeparator();
             this.mnu_Delete = new System.Windows.Forms.ToolStripMenuItem();
+            this.ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Property = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.cardView = new Ralid.Park.UserControls.CardGridView(this.components);
+            this.splitContainer1 = new System.Windows.Forms.SplitContainer();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panelLeft = new System.Windows.Forms.Panel();
-            this.accessComboBox1 = new Ralid.Park.UserControls.AccessComboBox(this.components);
+            this.label11 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.txtCardCertificate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label8 = new System.Windows.Forms.Label();
@@ -63,17 +65,16 @@
             this.label3 = new System.Windows.Forms.Label();
             this.cmbCarStatus = new System.Windows.Forms.ComboBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.txtDepartment = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             this.txtOwnerName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnClosePanel = new System.Windows.Forms.Button();
             this.btnSearch = new System.Windows.Forms.Button();
-            this.comCardStatus = new Ralid.Park.UserControls.CardStatusComboBox(this.components);
             this.label2 = new System.Windows.Forms.Label();
-            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox(this.components);
             this.label6 = new System.Windows.Forms.Label();
             this.txtCardID = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
@@ -108,14 +109,25 @@
             this.toolStripSeparator18 = new System.Windows.Forms.ToolStripSeparator();
             this.btn_CardDataConvert = new System.Windows.Forms.ToolStripButton();
             this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
+            this.cardView = new Ralid.Park.UserControls.CardGridView(this.components);
+            this.ucPaging1 = new Ralid.Park.UserControls.UCPaging();
+            this.comListType = new Ralid.Park.UserControls.CardListTypeComboBox(this.components);
+            this.accessComboBox1 = new Ralid.Park.UserControls.AccessComboBox(this.components);
+            this.comCardStatus = new Ralid.Park.UserControls.CardStatusComboBox(this.components);
+            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox(this.components);
+            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
             this.CardOperatorMenuStrip.SuspendLayout();
             this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.cardView)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
+            this.splitContainer1.Panel1.SuspendLayout();
+            this.splitContainer1.Panel2.SuspendLayout();
+            this.splitContainer1.SuspendLayout();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
             this.statusStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView)).BeginInit();
             this.SuspendLayout();
             // 
             // checkBox1
@@ -136,11 +148,13 @@
             this.mnu_CardDisable,
             this.mnu_CardEnable,
             this.mnu_CardRecycle,
+            this.toolStripSeparator19,
             this.mnu_CardDownload,
             this.mnu_CardClear,
             this.mnu_SyncCardToStandby,
             this.toolStripSeparator15,
             this.mnu_Delete,
+            this.ToolStripMenuItem,
             this.mnu_Property});
             this.CardOperatorMenuStrip.Name = "contextMenuStrip1";
             resources.ApplyResources(this.CardOperatorMenuStrip, "CardOperatorMenuStrip");
@@ -198,6 +212,11 @@
             resources.ApplyResources(this.mnu_CardRecycle, "mnu_CardRecycle");
             this.mnu_CardRecycle.Click += new System.EventHandler(this.mnu_CardRecycle_Click);
             // 
+            // toolStripSeparator19
+            // 
+            this.toolStripSeparator19.Name = "toolStripSeparator19";
+            resources.ApplyResources(this.toolStripSeparator19, "toolStripSeparator19");
+            // 
             // mnu_CardDownload
             // 
             this.mnu_CardDownload.Name = "mnu_CardDownload";
@@ -227,6 +246,12 @@
             resources.ApplyResources(this.mnu_Delete, "mnu_Delete");
             this.mnu_Delete.Click += new System.EventHandler(this.mnu_Delete_Click);
             // 
+            // ToolStripMenuItem
+            // 
+            this.ToolStripMenuItem.Name = "ToolStripMenuItem";
+            resources.ApplyResources(this.ToolStripMenuItem, "ToolStripMenuItem");
+            this.ToolStripMenuItem.Click += new System.EventHandler(this.强制删除ToolStripMenuItem_Click);
+            // 
             // mnu_Property
             // 
             this.mnu_Property.Name = "mnu_Property";
@@ -251,20 +276,24 @@
             // panel1
             // 
             resources.ApplyResources(this.panel1, "panel1");
-            this.panel1.Controls.Add(this.cardView);
+            this.panel1.Controls.Add(this.splitContainer1);
             this.panel1.Controls.Add(this.splitter1);
             this.panel1.Controls.Add(this.panelLeft);
             this.panel1.Name = "panel1";
             // 
-            // cardView
+            // splitContainer1
             // 
-            this.cardView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.cardView.ContextMenuStrip = this.CardOperatorMenuStrip;
-            resources.ApplyResources(this.cardView, "cardView");
-            this.cardView.Name = "cardView";
-            this.cardView.RowTemplate.Height = 23;
-            this.cardView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseDoubleClick);
-            this.cardView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseDown);
+            resources.ApplyResources(this.splitContainer1, "splitContainer1");
+            this.splitContainer1.FixedPanel = System.Windows.Forms.FixedPanel.Panel2;
+            this.splitContainer1.Name = "splitContainer1";
+            // 
+            // splitContainer1.Panel1
+            // 
+            this.splitContainer1.Panel1.Controls.Add(this.cardView);
+            // 
+            // splitContainer1.Panel2
+            // 
+            this.splitContainer1.Panel2.Controls.Add(this.ucPaging1);
             // 
             // splitter1
             // 
@@ -275,7 +304,10 @@
             // 
             // panelLeft
             // 
+            resources.ApplyResources(this.panelLeft, "panelLeft");
             this.panelLeft.BackColor = System.Drawing.Color.White;
+            this.panelLeft.Controls.Add(this.comListType);
+            this.panelLeft.Controls.Add(this.label11);
             this.panelLeft.Controls.Add(this.accessComboBox1);
             this.panelLeft.Controls.Add(this.label9);
             this.panelLeft.Controls.Add(this.txtCardCertificate);
@@ -285,6 +317,8 @@
             this.panelLeft.Controls.Add(this.label3);
             this.panelLeft.Controls.Add(this.cmbCarStatus);
             this.panelLeft.Controls.Add(this.pictureBox1);
+            this.panelLeft.Controls.Add(this.txtDepartment);
+            this.panelLeft.Controls.Add(this.label10);
             this.panelLeft.Controls.Add(this.txtOwnerName);
             this.panelLeft.Controls.Add(this.label1);
             this.panelLeft.Controls.Add(this.panel3);
@@ -297,14 +331,12 @@
             this.panelLeft.Controls.Add(this.comCardType);
             this.panelLeft.Controls.Add(this.label7);
             this.panelLeft.Controls.Add(this.label5);
-            resources.ApplyResources(this.panelLeft, "panelLeft");
             this.panelLeft.Name = "panelLeft";
             // 
-            // accessComboBox1
+            // label11
             // 
-            this.accessComboBox1.FormattingEnabled = true;
-            resources.ApplyResources(this.accessComboBox1, "accessComboBox1");
-            this.accessComboBox1.Name = "accessComboBox1";
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
             // 
             // label9
             // 
@@ -354,6 +386,16 @@
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.TabStop = false;
             // 
+            // txtDepartment
+            // 
+            resources.ApplyResources(this.txtDepartment, "txtDepartment");
+            this.txtDepartment.Name = "txtDepartment";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
+            // 
             // txtOwnerName
             // 
             resources.ApplyResources(this.txtOwnerName, "txtOwnerName");
@@ -389,24 +431,10 @@
             this.btnSearch.UseVisualStyleBackColor = false;
             this.btnSearch.Click += new System.EventHandler(this.btnSearch_Click);
             // 
-            // comCardStatus
-            // 
-            this.comCardStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comCardStatus.FormattingEnabled = true;
-            resources.ApplyResources(this.comCardStatus, "comCardStatus");
-            this.comCardStatus.Name = "comCardStatus";
-            // 
             // label2
             // 
             resources.ApplyResources(this.label2, "label2");
             this.label2.Name = "label2";
-            // 
-            // comChargeType
-            // 
-            this.comChargeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comChargeType.FormattingEnabled = true;
-            resources.ApplyResources(this.comChargeType, "comChargeType");
-            this.comChargeType.Name = "comChargeType";
             // 
             // label6
             // 
@@ -418,13 +446,6 @@
             resources.ApplyResources(this.txtCardID, "txtCardID");
             this.txtCardID.Name = "txtCardID";
             this.txtCardID.TextChanged += new System.EventHandler(this.txtCardID_TextChanged);
-            // 
-            // comCardType
-            // 
-            this.comCardType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comCardType.FormattingEnabled = true;
-            resources.ApplyResources(this.comCardType, "comCardType");
-            this.comCardType.Name = "comCardType";
             // 
             // label7
             // 
@@ -658,6 +679,60 @@
             this.saveFileDialog1.FileName = "Record.xls";
             this.saveFileDialog1.RestoreDirectory = true;
             // 
+            // cardView
+            // 
+            this.cardView.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.cardView.ContextMenuStrip = this.CardOperatorMenuStrip;
+            resources.ApplyResources(this.cardView, "cardView");
+            this.cardView.Name = "cardView";
+            this.cardView.RowTemplate.Height = 23;
+            this.cardView.CellMouseDoubleClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseDoubleClick);
+            this.cardView.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.GridView_CellMouseDown);
+            // 
+            // ucPaging1
+            // 
+            this.ucPaging1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.ucPaging1, "ucPaging1");
+            this.ucPaging1.Name = "ucPaging1";
+            this.ucPaging1.PageIndex = 1;
+            this.ucPaging1.PageSize = 0;
+            this.ucPaging1.TotalCount = 99999999;
+            this.ucPaging1.TotalPages = 9999999;
+            // 
+            // comListType
+            // 
+            this.comListType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comListType.FormattingEnabled = true;
+            resources.ApplyResources(this.comListType, "comListType");
+            this.comListType.Name = "comListType";
+            // 
+            // accessComboBox1
+            // 
+            this.accessComboBox1.FormattingEnabled = true;
+            resources.ApplyResources(this.accessComboBox1, "accessComboBox1");
+            this.accessComboBox1.Name = "accessComboBox1";
+            // 
+            // comCardStatus
+            // 
+            this.comCardStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comCardStatus.FormattingEnabled = true;
+            resources.ApplyResources(this.comCardStatus, "comCardStatus");
+            this.comCardStatus.Name = "comCardStatus";
+            // 
+            // comChargeType
+            // 
+            this.comChargeType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comChargeType.FormattingEnabled = true;
+            resources.ApplyResources(this.comChargeType, "comChargeType");
+            this.comChargeType.Name = "comChargeType";
+            // 
+            // comCardType
+            // 
+            this.comCardType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comCardType.FormattingEnabled = true;
+            resources.ApplyResources(this.comCardType, "comCardType");
+            this.comCardType.Name = "comCardType";
+            // 
             // FrmCards
             // 
             resources.ApplyResources(this, "$this");
@@ -673,7 +748,10 @@
             this.Load += new System.EventHandler(this.FrmCards_Load);
             this.CardOperatorMenuStrip.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.cardView)).EndInit();
+            this.splitContainer1.Panel1.ResumeLayout(false);
+            this.splitContainer1.Panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
+            this.splitContainer1.ResumeLayout(false);
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
@@ -682,6 +760,7 @@
             this.statusStrip1.PerformLayout();
             this.toolStrip1.ResumeLayout(false);
             this.toolStrip1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.cardView)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -767,5 +846,13 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator17;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator18;
         private System.Windows.Forms.ToolStripButton btn_CardDataConvert;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator19;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDepartment;
+        private System.Windows.Forms.Label label10;
+        private UserControls.CardListTypeComboBox comListType;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ToolStripMenuItem ToolStripMenuItem;
+        private UserControls.UCPaging ucPaging1;
+        private System.Windows.Forms.SplitContainer splitContainer1;
     }
 }

@@ -140,7 +140,7 @@ namespace Ralid.Park.UI
                     if (cer.EventStatus == CardEventStatus.Pending)
                     {
                         ZSTHandlerInfo zst = GetZSTHandlerInstance(cer.EntranceID);
-                        if (zst != null && zst.CardID ==cer.CardID)
+                        if (zst != null && !string.IsNullOrEmpty(zst.CardID) && zst.CardID == cer.CardID)
                         {
                             if (zst.Balance >= cer.CardPaymentInfo.Accounts)
                             {
@@ -175,7 +175,7 @@ namespace Ralid.Park.UI
                     else
                     {
                         ZSTHandlerInfo zst = GetZSTHandlerInstance(cer.EntranceID);
-                        if (zst != null)
+                        if (zst != null && !string.IsNullOrEmpty(zst.CardID) && zst.CardID == cer.CardID)
                         {
                             _Reader.MessageConfirm(zst.ReaderIP); //发送中山通读卡确认消息
                             zst.ClearCardInfo();  //清空读卡器内的卡片信息
@@ -186,7 +186,7 @@ namespace Ralid.Park.UI
                 {
                     CardInvalidEventReport cier = report as CardInvalidEventReport;
                     ZSTHandlerInfo zst = GetZSTHandlerInstance(report.EntranceID);
-                    if (zst != null)
+                    if (zst != null && !string.IsNullOrEmpty(zst.CardID) && zst.CardID == cier.CardID)
                     {
                         _Reader.MessageConfirm(zst.ReaderIP); //发送中山通读卡确认消息
                         zst.ClearCardInfo();  //清空读卡器内的卡片信息

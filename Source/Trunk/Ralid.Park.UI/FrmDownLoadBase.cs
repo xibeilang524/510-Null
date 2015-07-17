@@ -32,6 +32,14 @@ namespace Ralid.Park.UI
         protected AutoResetEvent CancelWaitingEvent = new AutoResetEvent(false);//等待已执行的命令完成的通知事件
         #endregion
 
+        
+        #region 公共属性
+        /// <summary>
+        /// 需下发的停车场ID，为0时可下发所有停车场
+        /// </summary>
+        public int ParkID { get; set; }
+        #endregion
+
         #region 模板方法
         /// <summary>
         /// 初始化控件

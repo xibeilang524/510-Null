@@ -1,0 +1,11 @@
+
+异常类型:UnauthorizedAccessException
+发生时间:2014-04-28 16:11:39
+异常描述:对路径“E:\TFS\020-停车场系统\Source\Trunk\ReferenceDll\ChanglongCardSync.exe.config”的访问被拒绝。
+异常堆栈：
+   在 System.IO.__Error.WinIOError(Int32 errorCode, String maybeFullPath)
+   在 System.IO.FileStream.Init(String path, FileMode mode, FileAccess access, Int32 rights, Boolean useRights, FileShare share, Int32 bufferSize, FileOptions options, SECURITY_ATTRIBUTES secAttrs, String msgPath, Boolean bFromProxy, Boolean useLongPath, Boolean checkHost)
+   在 System.IO.FileStream..ctor(String path, FileMode mode, FileAccess access, FileShare share)
+   在 System.Xml.XmlDocument.Save(String filename)
+   在 ChanglongCardSync.AppSettings.SaveConfig(String configName, String configContent)
+--------------------------------------------------------------------------------------------------------------------------------------------------

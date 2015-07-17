@@ -47,6 +47,8 @@
             this.txtControlPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtStreamPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtConnectTimeOut = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.comVideoType = new Ralid.Park.UserControls.VideoTypeComboBox();
+            this.label28 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnOk
@@ -138,6 +140,7 @@
             this.txtChannel.MaxValue = 100;
             this.txtChannel.MinValue = 0;
             this.txtChannel.Name = "txtChannel";
+            this.txtChannel.NumberWithCommas = false;
             // 
             // txtControlPort
             // 
@@ -145,6 +148,7 @@
             this.txtControlPort.MaxValue = 65535;
             this.txtControlPort.MinValue = 0;
             this.txtControlPort.Name = "txtControlPort";
+            this.txtControlPort.NumberWithCommas = false;
             // 
             // txtStreamPort
             // 
@@ -152,6 +156,7 @@
             this.txtStreamPort.MaxValue = 65535;
             this.txtStreamPort.MinValue = 0;
             this.txtStreamPort.Name = "txtStreamPort";
+            this.txtStreamPort.NumberWithCommas = false;
             // 
             // txtConnectTimeOut
             // 
@@ -159,11 +164,26 @@
             this.txtConnectTimeOut.MaxValue = 100;
             this.txtConnectTimeOut.MinValue = 0;
             this.txtConnectTimeOut.Name = "txtConnectTimeOut";
+            this.txtConnectTimeOut.NumberWithCommas = false;
+            // 
+            // comVideoType
+            // 
+            resources.ApplyResources(this.comVideoType, "comVideoType");
+            this.comVideoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comVideoType.FormattingEnabled = true;
+            this.comVideoType.Name = "comVideoType";
+            // 
+            // label28
+            // 
+            resources.ApplyResources(this.label28, "label28");
+            this.label28.Name = "label28";
             // 
             // FrmVideoSourceDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comVideoType);
+            this.Controls.Add(this.label28);
             this.Controls.Add(this.txtConnectTimeOut);
             this.Controls.Add(this.txtStreamPort);
             this.Controls.Add(this.txtControlPort);
@@ -204,6 +224,8 @@
             this.Controls.SetChildIndex(this.txtControlPort, 0);
             this.Controls.SetChildIndex(this.txtStreamPort, 0);
             this.Controls.SetChildIndex(this.txtConnectTimeOut, 0);
+            this.Controls.SetChildIndex(this.label28, 0);
+            this.Controls.SetChildIndex(this.comVideoType, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -228,5 +250,7 @@
         private GeneralLibrary.WinformControl.IntergerTextBox txtControlPort;
         private GeneralLibrary.WinformControl.IntergerTextBox txtStreamPort;
         private GeneralLibrary.WinformControl.IntergerTextBox txtConnectTimeOut;
+        private Ralid.Park.UserControls.VideoTypeComboBox comVideoType;
+        private System.Windows.Forms.Label label28;
     }
 }

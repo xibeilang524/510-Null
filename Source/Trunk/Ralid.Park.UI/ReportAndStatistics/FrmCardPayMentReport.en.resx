@@ -118,35 +118,38 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>825, 12</value>
-  </data>
-  <data name="btnSaveAs.Location" type="System.Drawing.Point, System.Drawing">
-    <value>825, 40</value>
-  </data>
-  <data name="ucDateTimeInterval1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 16</value>
-  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>5, 12</value>
+    <value>5, 25</value>
   </data>
-  <data name="groupBox1.Text" xml:space="preserve">
-    <value>Payment DateTime</value>
+  <data name="groupBox3.Text" xml:space="preserve">
+    <value>Query Criteria</value>
+  </data>
+  <data name="txtWorkStations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>67, 92</value>
+  </data>
+  <data name="lklWorkStations.Location" type="System.Drawing.Point, System.Drawing">
+    <value>9, 96</value>
+  </data>
+  <data name="lklWorkStations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
+  <data name="lklWorkStations.Text" xml:space="preserve">
+    <value>Stations</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 121</value>
+    <value>175, 71</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>83, 12</value>
+    <value>77, 12</value>
   </data>
   <data name="label12.Text" xml:space="preserve">
-    <value>Operator Card</value>
+    <value>OperatorCard</value>
   </data>
   <data name="comPaymentCode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 93</value>
+    <value>420, 40</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 98</value>
+    <value>371, 45</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -154,17 +157,17 @@
   <data name="label11.Text" xml:space="preserve">
     <value>PayCode</value>
   </data>
+  <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>254, 40</value>
+  </data>
   <data name="chkCenterCharge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 94</value>
+    <value>541, 95</value>
   </data>
   <data name="chkCenterCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>126, 16</value>
   </data>
   <data name="chkCenterCharge.Text" xml:space="preserve">
     <value>Only CenterCharge</value>
-  </data>
-  <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 40</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
     <value>181, 44</value>
@@ -176,7 +179,10 @@
     <value>Certificate</value>
   </data>
   <data name="carTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>66, 92</value>
+    <value>420, 14</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>541, 39</value>
   </data>
   <data name="rdSettled.Location" type="System.Drawing.Point, System.Drawing">
     <value>134, 3</value>
@@ -202,17 +208,17 @@
   <data name="rdUnsettled.Text" xml:space="preserve">
     <value>Unsettled</value>
   </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 38</value>
-  </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>15, 97</value>
+    <value>369, 19</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>CarType</value>
+  </data>
+  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>541, 13</value>
   </data>
   <data name="rdPaid.Location" type="System.Drawing.Point, System.Drawing">
     <value>54, 3</value>
@@ -235,11 +241,8 @@
   <data name="rdFree.Text" xml:space="preserve">
     <value>Free</value>
   </data>
-  <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>374, 12</value>
-  </data>
   <data name="chkPaymentMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>375, 70</value>
+    <value>542, 71</value>
   </data>
   <data name="chkPaymentMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
@@ -248,13 +251,13 @@
     <value>Paymode</value>
   </data>
   <data name="comPaymentMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>445, 68</value>
+    <value>612, 69</value>
   </data>
   <data name="workStationCombobox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>254, 67</value>
+    <value>420, 66</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>205, 72</value>
+    <value>371, 71</value>
   </data>
   <data name="label8.Text" xml:space="preserve">
     <value>Station</value>
@@ -278,7 +281,7 @@
     <value>66, 66</value>
   </data>
   <data name="txtOperatorCardID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>92, 118</value>
+    <value>254, 66</value>
   </data>
   <data name="txtCardID.Location" type="System.Drawing.Point, System.Drawing">
     <value>66, 13</value>
@@ -307,11 +310,17 @@
   <data name="label1.Text" xml:space="preserve">
     <value>CardID</value>
   </data>
-  <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>584, 146</value>
+  <data name="chkEnterDateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>108, 16</value>
   </data>
-  <data name="groupBox3.Text" xml:space="preserve">
-    <value>Query Criteria</value>
+  <data name="chkEnterDateTime.Text" xml:space="preserve">
+    <value>Enter DateTime</value>
+  </data>
+  <data name="chkChargeDateTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="chkChargeDateTime.Text" xml:space="preserve">
+    <value>Payment DateTime</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>CardID</value>
@@ -346,6 +355,9 @@
   <data name="colDiscount.HeaderText" xml:space="preserve">
     <value>Discount</value>
   </data>
+  <data name="colCurDiscountHour.HeaderText" xml:space="preserve">
+    <value>Discount Hour</value>
+  </data>
   <data name="colTariffType.HeaderText" xml:space="preserve">
     <value>Tariff Type</value>
   </data>
@@ -364,6 +376,9 @@
   <data name="colTotalDiscount.HeaderText" xml:space="preserve">
     <value>Total Discount</value>
   </data>
+  <data name="colDiscountHour.HeaderText" xml:space="preserve">
+    <value>Total Hour</value>
+  </data>
   <data name="colMemo.HeaderText" xml:space="preserve">
     <value>Memo</value>
   </data>
@@ -380,13 +395,13 @@
     <value>Station</value>
   </data>
   <data name="txtPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>888, 101</value>
+    <value>62, 46</value>
   </data>
   <data name="txtAccounts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>888, 123</value>
+    <value>62, 70</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>853, 104</value>
+    <value>30, 49</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -394,8 +409,12 @@
   <data name="label6.Text" xml:space="preserve">
     <value>Paid</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>829, 124</value>
+    <value>6, 73</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -404,13 +423,70 @@
     <value>Discount</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>847, 81</value>
+    <value>24, 25</value>
   </data>
   <data name="label10.Text" xml:space="preserve">
     <value>Total</value>
   </data>
   <data name="txtTotal.Location" type="System.Drawing.Point, System.Drawing">
-    <value>888, 80</value>
+    <value>62, 22</value>
+  </data>
+  <data name="groupBox4.Text" xml:space="preserve">
+    <value>Time Conditions</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Fee Statistical</value>
+  </data>
+  <data name="txtPOS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 46</value>
+  </data>
+  <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
+    <value>18, 49</value>
+  </data>
+  <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 12</value>
+  </data>
+  <data name="label15.Text" xml:space="preserve">
+    <value>POS</value>
+  </data>
+  <data name="groupBox6.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 49</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>StationDept</value>
+  </data>
+  <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 12</value>
+  </data>
+  <data name="label13.Text" xml:space="preserve">
+    <value>OperatorDept</value>
+  </data>
+  <data name="groupBox7.Text" xml:space="preserve">
+    <value>Paid Statistical</value>
+  </data>
+  <data name="txtCash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 22</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>Other</value>
+  </data>
+  <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
+    <value>12, 25</value>
+  </data>
+  <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label16.Text" xml:space="preserve">
+    <value>Cash</value>
+  </data>
+  <data name="txtOther.Location" type="System.Drawing.Point, System.Drawing">
+    <value>45, 69</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Card Payment Query</value>

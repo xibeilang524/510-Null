@@ -69,11 +69,16 @@ namespace Ralid.Park.UI.ReportAndStatistics
 
         private void ShowGroupOnGridviewRow(DataGridViewRow row, IGrouping<string, CardPaymentInfo> group)
         {
+            decimal discount = group.Sum(item => item.Discount);
+            decimal paid = group.Sum(item => item.Paid);
+
             row.Cells["colChargeDateTime"].Value = group.Key;
             row.Cells["colCount"].Value = group.Count();
-            row.Cells["colAccounts"].Value = group.Sum(item => item.Accounts);
-            row.Cells["colDiscount"].Value = group.Sum(item => item.Discount);
-            row.Cells["colPaid"].Value = group.Sum(item => item.Paid);
+            //这里不使用group.Sum(item => item.Accounts)进行应收款统计，是因为缴费机的缴费记录可能分多条记录缴费，如果使用Accounts统计，会多统计应收款
+            //row.Cells["colAccounts"].Value = group.Sum(item => item.Accounts);
+            row.Cells["colAccounts"].Value = paid + discount;
+            row.Cells["colDiscount"].Value = discount;
+            row.Cells["colPaid"].Value = paid;
         }
         #endregion
 

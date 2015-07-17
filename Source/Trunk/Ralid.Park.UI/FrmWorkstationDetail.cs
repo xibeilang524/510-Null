@@ -26,6 +26,7 @@ namespace Ralid.Park.UI
         #region 处理基类事件
         protected override void InitControls()
         {
+            comDeptList.Init();
             this.EntranceTree.Init();
             if (IsAdding)
             {
@@ -44,6 +45,8 @@ namespace Ralid.Park.UI
             this.chkCenterCharge.Checked = info.IsCenterCharge;
             this.EntranceTree.SelectedEntranceIDs = info.EntranceList;
             this.Text = info.StationName;
+            if (info.DeptID != null)
+                this.comDeptList.SelectedDeptID = info.DeptID;
         }
 
         protected override object GetItemFromInput()
@@ -61,6 +64,16 @@ namespace Ralid.Park.UI
             info.StationName = this.txtName.Text.Trim();
             info.IsCenterCharge = chkCenterCharge.Checked;
             info.EntranceList = this.EntranceTree.SelectedEntranceIDs;
+            if (comDeptList.Dept != null)
+            {
+                info.Dept = comDeptList.Dept;
+                info.DeptID = comDeptList.SelectedDeptID;
+            }
+            else
+            {
+                info.Dept = null;
+                info.DeptID = null;
+            }
             return info;
         }
 

@@ -229,6 +229,9 @@
   <data name="colStation.HeaderText" xml:space="preserve">
     <value>Station</value>
   </data>
+  <data name="colMemo.HeaderText" xml:space="preserve">
+    <value>Remark</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Card Delete Report</value>
   </data>

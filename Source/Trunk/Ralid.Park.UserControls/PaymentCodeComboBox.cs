@@ -32,7 +32,9 @@ namespace Ralid.Park.UserControls
                 new TextValueItem<PaymentCode?>(null,string.Empty),
                 new TextValueItem<PaymentCode?>(PaymentCode.Computer,PaymentCodeDescription.GetDescription(PaymentCode.Computer)),
                 new TextValueItem<PaymentCode?>(PaymentCode.APM,PaymentCodeDescription.GetDescription(PaymentCode.APM)),
-                new TextValueItem<PaymentCode?>(PaymentCode.FunctionCard,PaymentCodeDescription.GetDescription(PaymentCode.FunctionCard))
+                new TextValueItem<PaymentCode?>(PaymentCode.FunctionCard,PaymentCodeDescription.GetDescription(PaymentCode.FunctionCard)),
+                new TextValueItem<PaymentCode?>(PaymentCode.POS,PaymentCodeDescription .GetDescription (PaymentCode.POS)),
+                new TextValueItem<PaymentCode?>(PaymentCode.Internet,PaymentCodeDescription .GetDescription (PaymentCode.Internet)),
             };
             this.DataSource = items;
             this.DisplayMember = "Text";
@@ -50,7 +52,7 @@ namespace Ralid.Park.UserControls
             get
             {
                 TextValueItem<PaymentCode?> item = this.SelectedItem as TextValueItem<PaymentCode?>;
-                return item.Value;
+                return item == null ? null : item.Value;
             }
             set
             {

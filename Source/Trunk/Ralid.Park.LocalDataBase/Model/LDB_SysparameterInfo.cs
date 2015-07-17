@@ -15,9 +15,9 @@ namespace Ralid.Park.LocalDataBase.Model
         #region 公共属性
         [Column(IsPrimaryKey = true, Name = "Parameter")]
         public string Parameter { get; set; }
-        [Column(Name = "ParameterValue")]
+        [Column(Name = "ParameterValue", UpdateCheck = UpdateCheck.Never)]
         public string ParameterValue { get; set; }
-        [Column(Name = "Description")]
+        [Column(Name = "Description", UpdateCheck = UpdateCheck.Never)]
         public string Description { get; set; }
         #endregion
 
@@ -30,6 +30,16 @@ namespace Ralid.Park.LocalDataBase.Model
 
         public LDB_SysparameterInfo()
         {
+        }
+
+        /// <summary>
+        /// 获取自身的一个克隆复本
+        /// </summary>
+        /// <returns></returns>
+        public LDB_SysparameterInfo Clone()
+        {
+            LDB_SysparameterInfo param = (LDB_SysparameterInfo)base.MemberwiseClone();
+            return param;
         }
     }
 }

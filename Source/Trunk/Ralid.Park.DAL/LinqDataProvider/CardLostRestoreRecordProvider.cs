@@ -54,19 +54,30 @@ namespace Ralid.Park.DAL.LinqDataProvider
         {
             if (info.RestoreDateTime == null) //挂失
             {
-                if (parking.CardLostRestore.Count(c => c.CardID == info.CardID && c.RestoreDateTime == null) == 0)
+                //Modify by Jan 2014-09-18 允许多条卡号为00000000的挂失记录，当卡号为00000000时，代表无卡挂失
+                if (info.CardID == "00000000"
+                    || (parking.CardLostRestore.Count(c => c.CardID == info.CardID && c.RestoreDateTime == null) == 0))
                 {
                     parking.CardLostRestore.InsertOnSubmit(info);
                 }
             }
             else
             {
-                CardLostRestoreRecord record = parking.CardLostRestore.Single(
+                //--2014-4-2 注销 Jan
+                //CardLostRestoreRecord record = parking.CardLostRestore.Single(
+                //    c => c.CardID == info.CardID && c.RestoreDateTime == null);
+                //End
+
+                //这里注销了以上代码并使用FirstOrDefault，是因为当没有挂失记录时，使用Single会报错 --2014-4-2 Jan
+                CardLostRestoreRecord record = parking.CardLostRestore.FirstOrDefault(
                     c => c.CardID == info.CardID && c.RestoreDateTime == null);
-                record.RestoreDateTime = info.RestoreDateTime;
-                record.RestoreOperator = info.RestoreOperator;
-                record.RestoreStation = info.RestoreStation;
-                record.RestoreMemo = info.RestoreMemo;
+                if (record != null)
+                {
+                    record.RestoreDateTime = info.RestoreDateTime;
+                    record.RestoreOperator = info.RestoreOperator;
+                    record.RestoreStation = info.RestoreStation;
+                    record.RestoreMemo = info.RestoreMemo;
+                }
             }
         }
         #endregion

@@ -27,9 +27,19 @@ namespace Ralid.Park.UI
         #region 重写基类方法
         protected override void InitControls()
         {
+            this.comVideoType.Init(true);
+
             if (IsAdding)
             {
                 this.Text = Resources.Resource1.Form_Add;
+                if (UserSetting.Current.VideoType == 3)
+                { 
+                    //以下为大华摄像机的默认参数
+                    this.txtChannel.IntergerValue = 0;
+                    this.txtUserName.Text = "admin";
+                    this.txtPassword.Text = "admin";
+                    this.txtStreamPort.IntergerValue = 37777;
+                }
             }
             RoleInfo role = OperatorInfo.CurrentOperator.Role;
             this.btnOk.Enabled = role.Permit(Permission.EditVideo);
@@ -47,6 +57,8 @@ namespace Ralid.Park.UI
             this.txtStreamPort.Text = info.StreamPort.ToString();
             this.txtConnectTimeOut.Text = info.ConnectTimeOut.ToString();
             this.chkForCarPlate.Checked = info.IsForCarPlate;
+            this.comVideoType.VideoType = info.VideoType;
+            
             this.Text = info.VideoName;
         }
 
@@ -74,6 +86,7 @@ namespace Ralid.Park.UI
             {
                 info.EntranceID = Entrance.EntranceID;
             }
+            info.VideoType = this.comVideoType.VideoType;
             return info;
         }
 
@@ -140,5 +153,6 @@ namespace Ralid.Park.UI
             return true;
         }
         #endregion
+
     }
 }

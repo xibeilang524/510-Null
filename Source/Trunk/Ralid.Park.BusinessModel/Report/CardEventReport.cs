@@ -27,10 +27,12 @@ namespace Ralid.Park.BusinessModel.Report
             report.EntranceID = entranceID;
             report.IsExitEvent = false;
             report.SourceName = entranceName;
+            report.ListType = card.ListType;
             report.CardType = card.CardType;
             report.CarType = card.CarType;
             report.CardID = card.CardID;
             report.OwnerName = card.OwnerName;
+            report.Department = card.Department;
             report.CardCarPlate = card.CarPlate;
             report.CarPlate = card.RegCarPlate;
             report.CardCertificate = card.CardCertificate;
@@ -39,10 +41,14 @@ namespace Ralid.Park.BusinessModel.Report
             report.LastDateTime = card.LastDateTime;
             report.ValidDate = card.ValidDate;
             report.Balance = card.Balance;
-            report.OnlineHandleWhenOfflineMode = card.OnlineHandleWhenOfflineMode;
+            report.OnlineHandleWhenOfflineMode = (card.OnlineHandleWhenOfflineMode || card.IsCarPlateList);//车牌名单时固定按在线处理
             report.ParkingStatus = ParkingStatus.In;
             report.UpdateFlag = true;
             report.WorkMode = workMode;
+            report.FreeDateTime = card.FreeDateTime;
+            report.EnableHotelApp = card.EnableHotelApp;
+            report.HotelCheckOut = card.HotelCheckOut;
+            report.CardOptions = card.Options;
             return report;
         }
 
@@ -57,21 +63,33 @@ namespace Ralid.Park.BusinessModel.Report
             report.IsExitEvent = true;
             report.CardID = card.CardID;
             report.OwnerName = card.OwnerName;
+            report.Department = card.Department;
             report.CardCarPlate = card.CarPlate;
             report.CarPlate = card.RegCarPlate;
             report.CardCertificate = card.CardCertificate;
+            report.ListType = card.ListType;
             report.CardType = card.CardType;
             report.CarType = carType;
             report.EventStatus = CardEventStatus.Pending;
             report.LastDateTime = card.LastDateTime;
             report.LastCarPlate = card.LastCarPlate;
-            report.CardPaymentInfo = CardPaymentInfoFactory.CreateCardPaymentRecord(card, ts, carType, eventDateTime);
+            report.LastEntrance = card.LastEntrance;
+            //report.CardPaymentInfo = CardPaymentInfoFactory.CreateCardPaymentRecord(card, ts, carType, eventDateTime);
+            report.CardPaymentInfo = CardPaymentInfoFactory.CreateCardPaymentRecord(report.ParkID, card, ts, carType, eventDateTime);
             report.Balance = card.Balance;
             report.ValidDate = card.ValidDate;
-            report.OnlineHandleWhenOfflineMode = card.OnlineHandleWhenOfflineMode;
+            report.OnlineHandleWhenOfflineMode = (card.OnlineHandleWhenOfflineMode || card.IsCarPlateList);//车牌名单时固定按在线处理
             report.ParkingStatus = ParkingStatus.Out;
             report.UpdateFlag = true;
             report.WorkMode = workMode;
+            report.FreeDateTime = card.FreeDateTime;
+            if (card.EnableHotelApp && !card.HotelCheckOut && card.IsInFreeTime(eventDateTime))
+            {
+                //如果启用了酒店应用，并且未退房，并且未过免费时间的，需要保留以下状态
+                report.EnableHotelApp = card.EnableHotelApp;
+                report.HotelCheckOut = card.HotelCheckOut;
+            }
+            report.CardOptions = card.Options;
             return report;
         }
         #endregion
@@ -102,10 +120,22 @@ namespace Ralid.Park.BusinessModel.Report
         public string OwnerName { get; set; }
 
         /// <summary>
+        /// 获取或设置事件卡片的部门
+        /// </summary>
+        [DataMember]
+        public string Department { get; set; }
+
+        /// <summary>
         /// 获取或设置名单中卡片的车牌
         /// </summary>
         [DataMember]
         public string CardCarPlate { get; set; }
+
+        /// <summary>
+        /// 获取或设置名单类型
+        /// </summary>
+        [DataMember]
+        public CardListType ListType { get; set; }
 
         /// <summary>
         /// 获取或设置卡片编号
@@ -230,6 +260,58 @@ namespace Ralid.Park.BusinessModel.Report
         /// </summary>
         [DataMember]
         public ParkWorkMode WorkMode { get; set; }
+
+        /// <summary>
+        /// 获取或设置事件的免费时间点
+        /// </summary>
+        [DataMember]
+        public DateTime? FreeDateTime { get; set; }
+
+        /// <summary>
+        /// 获取或设置事件卡片的属性
+        /// </summary>
+        [DataMember]
+        public CardOptions CardOptions { get; set; }
+
+        /// <summary>
+        /// 获取或设置入场通道，入场事件时为0
+        /// </summary>
+        [DataMember]
+        public int LastEntrance { get; set; }
+        #endregion
+
+        #region 属性
+        /// <summary>
+        /// 获取或设置是否启用酒店应用
+        /// </summary>
+        public bool EnableHotelApp
+        {
+            get
+            {
+                return (ParkingStatus & ParkingStatus.HotelApp) == ParkingStatus.HotelApp;
+            }
+            set
+            {
+                ParkingStatus |= ParkingStatus.HotelApp;
+                if (!value) ParkingStatus ^= ParkingStatus.HotelApp;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置是否已退房
+        /// </summary>
+        public bool HotelCheckOut
+        {
+            get
+            {
+                return (ParkingStatus & ParkingStatus.NotCheckOut) != ParkingStatus.NotCheckOut;
+            }
+            set
+            {
+                ParkingStatus |= ParkingStatus.NotCheckOut;
+                if (value) ParkingStatus ^= ParkingStatus.NotCheckOut;
+            }
+        }
         #endregion
 
         #region 只读属性
@@ -301,7 +383,7 @@ namespace Ralid.Park.BusinessModel.Report
                 {
                     if (!IsExitEvent)
                     {
-                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7}",
+                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7} {8}",
                         EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                         SourceName,
                         CardType.ToString(),
@@ -309,12 +391,13 @@ namespace Ralid.Park.BusinessModel.Report
                         Resouce.Resource1.Report_EnterRequest,
                         CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
                         Resouce.Resource1.Report_CarPlate + ":" + CarPlate,
-                        CardType.IsTempCard ? string.Empty : Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate
+                        Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate,
+                        CardType.IsMonthCard && (ValidDate < DateTime.Now) ? Resouce.Resource1.Report_ExpiredCard : string.Empty
                         );
                     }
                     else
                     {
-                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7} {8}",
+                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7} {8} {9}",
                         EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                         SourceName,
                         CardType.ToString(),
@@ -323,44 +406,52 @@ namespace Ralid.Park.BusinessModel.Report
                         CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
                         Resouce.Resource1.Report_CarPlate + ":" + CarPlate,
                         Resouce.Resource1.Report_LastCarPlate + ":" + LastCarPlate,
-                        CardType.IsTempCard ? string.Empty : Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate
+                        Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate,
+                        CardType.IsMonthCard && (ValidDate < DateTime.Now) ? Resouce.Resource1.Report_ExpiredCard : string.Empty
                         );
                     }
                 }
                 else if (EventStatus == CardEventStatus.Pending)
                 {
-                    return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5}",
+                    return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7} {8}",
                     EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                     SourceName,
                     CardType.ToString(),
                     CardID,
                     IsExitEvent ? Resouce.Resource1.Report_ExitRequest : Resouce.Resource1.Report_EnterRequest,
-                    CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty
+                    Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate,
+                    Resouce.Resource1.Report_CarPlate + ":" + CarPlate,
+                    CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
+                    CardType.IsMonthCard && (ValidDate < DateTime.Now) ? Resouce.Resource1.Report_ExpiredCard : string.Empty
                     );
                 }
                 else
                 {
                     if (UserSetting.Current.EnableCarPlateRecognize)
                     {
-                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6}",
+                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7} {8}",
                             EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                             SourceName,
                             CardType.ToString(),
                             CardID,
                             IsExitEvent ? Resouce.Resource1.Report_Exit : Resouce.Resource1.Report_Enter,
-                           CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
-                           Resouce.Resource1.Report_CarPlate + ":" + CarPlate
+                            Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate,
+                            CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
+                            Resouce.Resource1.Report_CarPlate + ":" + CarPlate,
+                            CardType.IsMonthCard && (ValidDate < DateTime.Now) ? Resouce.Resource1.Report_ExpiredCard : string.Empty
                         );
                     }
                     else
                     {
-                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5}",
+                        return string.Format("【{0} ＠ {1}】:{2}{3} {4} {5} {6} {7}",
                             EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                             SourceName,
                             CardType.ToString(),
                             CardID,
                             IsExitEvent ? Resouce.Resource1.Report_Exit : Resouce.Resource1.Report_Enter,
-                            CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty
+                            Resouce.Resource1.Report_CardCarPlate + "：" + CardCarPlate,
+                            CardType.IsPrepayCard && (WorkMode == ParkWorkMode.Fool || OnlineHandleWhenOfflineMode) ? Resouce.Resource1.Report_Balance + "[" + Balance.ToString() + "]" : string.Empty,
+                            CardType.IsMonthCard && (ValidDate < DateTime.Now) ? Resouce.Resource1.Report_ExpiredCard : string.Empty
                             );
                     }
                 }
@@ -377,6 +468,16 @@ namespace Ralid.Park.BusinessModel.Report
                 report.CardPaymentInfo = this.CardPaymentInfo.Clone();
             }
             return report;
+        }
+
+        /// <summary>
+        /// 清除事件的免费优惠授权信息
+        /// </summary>
+        public void ClearFreeAuthorization()
+        {
+            EnableHotelApp = false;
+            HotelCheckOut = true;
+            FreeDateTime = null;
         }
         #endregion
     }

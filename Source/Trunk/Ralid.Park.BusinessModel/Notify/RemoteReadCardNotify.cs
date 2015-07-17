@@ -40,6 +40,16 @@ namespace Ralid.Park.BusinessModel.Notify
             LastCarPlate = lastCarPlate;
         }
 
+        public RemoteReadCardNotify(int parkID, int entranceID, string cardID, string carPlate, string operatorID, string station)
+        {
+            ParkID = parkID;
+            EntranceID = entranceID;
+            CardID = cardID;
+            CarPlate = carPlate;
+            OperatorID = operatorID;
+            Station = station;
+        }
+
         /// <summary>
         /// 获取或设置停车场ID
         /// </summary>
@@ -53,10 +63,16 @@ namespace Ralid.Park.BusinessModel.Notify
         public int EntranceID { get; set; }
 
         /// <summary>
-        /// 获取或设置卡号
+        /// 获取或设置卡号（车牌事件时为空）
         /// </summary>
         [DataMember]
         public string CardID { get; set; }
+
+        /// <summary>
+        /// 获取或设置车牌号码（车牌无车牌时填入为空）
+        /// </summary>
+        [DataMember]
+        public string CarPlate { get; set; }
 
         /// <summary>
         /// 获取或设置卡片的停车场数据
@@ -69,5 +85,17 @@ namespace Ralid.Park.BusinessModel.Notify
         /// </summary>
         [DataMember]
         public string LastCarPlate { get; set; }
+
+
+        /// <summary>
+        /// 获取或设置远程读卡的操作员ID
+        /// </summary>
+        [DataMember]
+        public string OperatorID { get; set; }
+
+        /// <summary>
+        /// 获取或设置远程读卡的工作站
+        /// </summary>
+        public string Station { get; set; }
     }
 }

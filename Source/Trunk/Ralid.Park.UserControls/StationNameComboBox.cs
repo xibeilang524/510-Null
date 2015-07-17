@@ -27,6 +27,13 @@ namespace Ralid.Park.UserControls
         }
         #endregion
 
+        #region 公共属性
+        /// <summary>
+        /// 获取或设置是否只显示工作站，不显示缴费机，该属性需要在初始化Init前调用才生效
+        /// </summary>
+        public bool OnlyStation { get; set; }
+        #endregion
+
         #region 公共方法
         public void Init()
         {
@@ -41,12 +48,15 @@ namespace Ralid.Park.UserControls
                     this.Items.Add(station.StationName);
                 }
             }
-            List<APM> apms = (new APMBll(AppSettings.CurrentSetting.ParkConnect)).GetAllItems().QueryObjects;
-            if (apms != null && apms.Count > 0)
+            if (!OnlyStation)
             {
-                foreach (APM apm in apms)
+                List<APM> apms = (new APMBll(AppSettings.CurrentSetting.ParkConnect)).GetAllItems().QueryObjects;
+                if (apms != null && apms.Count > 0)
                 {
-                    this.Items.Add(apm.SerialNum);
+                    foreach (APM apm in apms)
+                    {
+                        this.Items.Add(apm.SerialNum);
+                    }
                 }
             }
         }

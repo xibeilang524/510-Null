@@ -166,14 +166,21 @@ namespace Ralid.Park.BusinessModel.Model
             else
             {
                 info.ValidDate = new DateTime(2000 + BCDConverter.BCDtoInt(data[block0 + 7]), BCDConverter.BCDtoInt(data[block0 + 8]), BCDConverter.BCDtoInt(data[block0 + 9]));
-            }            
+            }
 
+            tempbytes[0] = data[block0 + 10];
+            tempbytes[1] = data[block0 + 11];
+            tempbytes[2] = data[block0 + 12];
+            tempbytes[3] = 0x00;
+            info.IndexNumber = SEBinaryConverter.BytesToInt(tempbytes);
             #endregion
 
             #region 块1
             info.ParkingStatus = (data[block1 + 0] & 0x01) != 0x01 ? ParkingStatus.In : 0;
             info.ParkingStatus |= (data[block1 + 0] & 0x02) != 0x02 ? ParkingStatus.IndoorIn : 0;
             info.ParkingStatus |= (data[block1 + 0] & 0x08) != 0x08 ? ParkingStatus.PaidBill : 0;
+            info.ParkingStatus |= (data[block1 + 0] & 0x10) != 0x10 ? ParkingStatus.HotelApp : 0;
+            info.ParkingStatus |= (data[block1 + 0] & 0x20) != 0x20 ? ParkingStatus.NotCheckOut : 0;
             info.ParkingStatus |= (data[block1 + 0] & 0x40) != 0x40 ? ParkingStatus.NestedParkMarked : 0;
 
             if (data[block1 + 1] == 0x00 && data[block1 + 2] == 0x00 && data[block1 + 3] == 0x00 && data[block1 + 4] == 0x00)
@@ -213,7 +220,6 @@ namespace Ralid.Park.BusinessModel.Model
             tempbytes[2] = data[block1 + 14];
             tempbytes[3] = 0x00;
             info.TotalPaidFee = SEBinaryConverter.BytesToInt(tempbytes) / 100.00M;
-            //info.TotalFee = SEBinaryConverter.BytesToInt(tempbytes) / 100.00M;
 
             
             #endregion
@@ -224,6 +230,19 @@ namespace Ralid.Park.BusinessModel.Model
             tempbytes[2] = data[block2 + 2];
             tempbytes[3] = 0x00;
             info.Balance = SEBinaryConverter.BytesToInt(tempbytes) / 100.00M;
+
+            if (data[block2 + 3] == 0x00 && data[block2 + 4] == 0x00 && data[block2 + 5] == 0x00)
+            {
+                //免费时间点无效
+            }
+            else
+            {
+                tempbytes[0] = data[block2 + 3];
+                tempbytes[1] = data[block2 + 4];
+                tempbytes[2] = data[block2 + 5];
+                tempbytes[3] = 0;
+                info.FreeDateTime = FromDate.AddMinutes(SEBinaryConverter.BytesToInt(tempbytes));
+            }
             
             Array.Resize(ref tempbytes, 9);
             Array.Copy(data, block2 + 6, tempbytes, 0, 9);
@@ -233,7 +252,8 @@ namespace Ralid.Park.BusinessModel.Model
             }
             else
             {
-                info.CarPlate = Encoding.GetEncoding("gb2312").GetString(tempbytes);
+                string carplate = Encoding.GetEncoding("gb2312").GetString(tempbytes);
+                info.CarPlate = carplate.Trim('\0');//车牌需要将结尾符'\0'去掉
                 info.LastCarPlate = info.CarPlate;////脱机模式时，卡片的最后一次识别车牌保存在卡片里的车牌号码中
             }
             #endregion
@@ -398,11 +418,11 @@ namespace Ralid.Park.BusinessModel.Model
                     }
                 }
 
-                data[block0 + 10] = 0xFF;//预留（留作卡号等使用），默认0xFF
 
-                data[block0 + 11] = 0xFF;//预留（留作卡号等使用），默认0xFF
-
-                data[block0 + 12] = 0xFF;//预留（留作卡号等使用），默认0xFF
+                tempbytes = SEBinaryConverter.IntToBytes(info.IndexNumber);
+                data[block0 + 10] = tempbytes[0];
+                data[block0 + 11] = tempbytes[1];
+                data[block0 + 12] = tempbytes[2];
 
                 data[block0 + 13] = 0xFF;//预留（留作卡号等使用），默认0xFF
 
@@ -414,9 +434,12 @@ namespace Ralid.Park.BusinessModel.Model
                 #region 块1
                 data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.In) == ParkingStatus.In ? 0x00 : 0x01);
                 data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.IndoorIn) == ParkingStatus.IndoorIn ? 0x00 : 0x02);
+                data[block1 + 0] |= 0x04;//其余置1
                 data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.PaidBill) == ParkingStatus.PaidBill ? 0x00 : 0x08);
+                data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.HotelApp) == ParkingStatus.HotelApp ? 0x00 : 0x10);
+                data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.NotCheckOut) == ParkingStatus.NotCheckOut ? 0x00 : 0x20);
                 data[block1 + 0] |= (byte)((info.ParkingStatus & ParkingStatus.NestedParkMarked) == ParkingStatus.NestedParkMarked ? 0x00 : 0x40);
-                data[block1 + 0] |= 0xB4;//其余置1
+                data[block1 + 0] |= 0x80;//其余置1
 
                 if (info.LastDateTime < FromDate) return null;//如果刷卡时间小于起始时间，返回空值
                 tempbytes = SEBinaryConverter.UintToBytes((uint)(info.LastDateTime - FromDate).TotalSeconds);
@@ -460,11 +483,25 @@ namespace Ralid.Park.BusinessModel.Model
                 data[block2 + 1] = tempbytes[1];
                 data[block2 + 2] = tempbytes[2];
 
-                data[block2 + 3] = 0xFF;//预留，默认0xFF
-
-                data[block2 + 4] = 0xFF;//预留，默认0xFF
-
-                data[block2 + 5] = 0xFF;//预留，默认0xFF
+                if (info.FreeDateTime.HasValue)
+                {
+                    if (info.FreeDateTime.Value < FromDate) return null;//如果免费时间点小于起始时间，返回空值
+                    TimeSpan ts = info.FreeDateTime.Value - FromDate;
+                    if (ts.TotalMinutes < 0xFFFFFF)
+                    {
+                        tempbytes = SEBinaryConverter.IntToBytes((int)ts.TotalMinutes);
+                        data[block2 + 3] = tempbytes[0];
+                        data[block2 + 4] = tempbytes[1];
+                        data[block2 + 5] = tempbytes[2];
+                    }
+                    else
+                    {
+                        //超过最大值时设为最大值
+                        data[block2 + 3] = 0xFF;
+                        data[block2 + 4] = 0xFF;
+                        data[block2 + 5] = 0xFF;
+                    }
+                }
 
                 if (!string.IsNullOrEmpty(info.CarPlate))
                 {
@@ -528,6 +565,7 @@ namespace Ralid.Park.BusinessModel.Model
             card1.AccessID = card2.AccessID;
             card1.ActivationDate = card2.ActivationDate;
             card1.ValidDate = card2.ValidDate;
+            card1.IndexNumber = card2.IndexNumber;
             #endregion
 
             #region 复制块1数据
@@ -567,6 +605,8 @@ namespace Ralid.Park.BusinessModel.Model
             card1.ParkFee = card2.ParkFee;
             //card1.TotalFee = card2.TotalFee;
             card1.TotalPaidFee = card2.TotalPaidFee;
+            card1.FreeDateTime = card2.FreeDateTime;
+            card1.IndexNumber = card2.IndexNumber;
 
             return true;
         }

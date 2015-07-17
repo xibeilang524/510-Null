@@ -22,13 +22,25 @@ namespace Ralid.Park.UserControls
             InitializeComponent();
         }
 
+        /// <summary>
+        /// 获取或设置是否只显示出口通道，需在Init前调用
+        /// </summary>
+        public bool OnlyExit { get; set; }
+
         public void Init()
         {
             ParkBll parkbll = new ParkBll(AppSettings.CurrentSetting.ParkConnect);
             parkList = parkbll.GetAllParks().QueryObjects;
             EntranceBll entranceBll = new EntranceBll(AppSettings.CurrentSetting.ParkConnect);
             entrances = entranceBll.GetAllEntraces().QueryObjects;
+            if (OnlyExit)
+            {
+                entrances = (from e in entrances
+                             where e.IsExitDevice
+                             select e).ToList();
+            }
             this.comPark.Init();
+            this.comEntrance.DropDownStyle = ComboBoxStyle.DropDownList;
         }
 
         private void comPark_SelectedIndexChanged(object sender, EventArgs e)
@@ -50,6 +62,9 @@ namespace Ralid.Park.UserControls
             }
         }
         
+        /// <summary>
+        /// 获取所有选择的控制器
+        /// </summary>
         [Browsable(false)]
         [Localizable(false)]
         [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
@@ -74,6 +89,80 @@ namespace Ralid.Park.UserControls
                     }
                 }
                 return items;
+            }
+        }
+
+        /// <summary>
+        /// 获取选择的停车场
+        /// </summary>
+        [Browsable(false)]
+        [Localizable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public ParkInfo SelectedPark
+        {
+            get
+            {
+                if (this.comPark.SelectedIndex > 0)
+                {
+                    var item = this.comPark.Items[this.comPark.SelectedIndex] as ParkInfo;
+                    return item;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取选择的控制器
+        /// </summary>
+        [Browsable(false)]
+        [Localizable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public EntranceInfo SelectedEntrance
+        {
+            get
+            {
+                if (this.comEntrance.SelectedIndex > 0)
+                {
+                    var item = this.comEntrance.Items[this.comEntrance.SelectedIndex] as EntranceInfo;
+                    return item;
+                }
+                return null;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置选择的停车场ID
+        /// </summary>
+        [Browsable(false)]
+        [Localizable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectedParkID
+        {
+            get
+            {
+                return this.comPark.SelectedParkID;
+            }
+            set
+            {
+                this.comPark.SelectedParkID = value;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置选择的控制器ID
+        /// </summary>
+        [Browsable(false)]
+        [Localizable(false)]
+        [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+        public int SelectedEntranceID
+        {
+            get
+            {
+                return this.comEntrance.SelectedEntranceID;
+            }
+            set
+            {
+                this.comEntrance.SelectedEntranceID = value;
             }
         }
     }

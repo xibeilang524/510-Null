@@ -27,6 +27,7 @@ namespace Ralid.Park.BusinessModel.Model
             this.ParkID = cardReport.ParkID;
             this.OwnerName = cardReport.OwnerName;
             this.CardCertificate = cardReport.CardCertificate;
+            this.Department = cardReport.Department;
             this.CardType = cardReport.CardType;
             this.CarType = cardReport.CarType;
             this.CarPlate = cardReport.CarPlate;
@@ -37,6 +38,7 @@ namespace Ralid.Park.BusinessModel.Model
             this.ParkingStatus = cardReport.ParkingStatus;
             this.OperatorID = cardReport.OperatorID;
             this.StationID = cardReport.StationID;
+            this.UpdateFlag = cardReport.UpdateFlag;
         }
         #endregion
 
@@ -64,6 +66,12 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置卡片编号
         /// </summary>
         public string CardCertificate { get; set; }
+
+
+        /// <summary>
+        /// 获取或设置部门
+        /// </summary>
+        public string Department { get; set; }
 
         /// <summary>
         /// 获取或设置发生事件的停车场ID
@@ -144,6 +152,11 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置结算时间,没有进行结算时为空
         /// </summary>
         public DateTime? SettleDateTime { get; set; }
+        /// <summary>
+        /// 获取或设置是否已上传到主数据库标识
+        /// </summary>
+        [DataMember]
+        public bool? UpdateFlag { get; set; }
         #endregion
 
         #region 只读属性

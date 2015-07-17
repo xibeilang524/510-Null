@@ -29,6 +29,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmAddCards));
             this.dtValidDate = new System.Windows.Forms.DateTimePicker();
             this.label6 = new System.Windows.Forms.Label();
@@ -37,23 +38,38 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
-            this.txtBalance = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox();
-            this.comAccessLevel = new Ralid.Park.UserControls.AccessComboBox();
-            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox();
+            this.txtBalance = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.comAccessLevel = new Ralid.Park.UserControls.AccessComboBox(this.components);
+            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox(this.components);
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage3 = new System.Windows.Forms.TabPage();
             this.label8 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label21 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.chkInPark = new System.Windows.Forms.CheckBox();
             this.chkWriteCard = new System.Windows.Forms.CheckBox();
+            this.label20 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
+            this.label19 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.txtSuffix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox();
-            this.txtAutoIncrement = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox();
+            this.txtNumSuffix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtSuffix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtNumDigit = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.txtDigit = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.txtAutoNum = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.txtAutoIncrement = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.chkAutoNum = new System.Windows.Forms.CheckBox();
+            this.label18 = new System.Windows.Forms.Label();
             this.chkAutoIncrement = new System.Windows.Forms.CheckBox();
+            this.txtNumPrefix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label22 = new System.Windows.Forms.Label();
             this.label16 = new System.Windows.Forms.Label();
-            this.txtPrefix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox();
+            this.txtDepartment = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtPrefix = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.chkOnlineHandleWhenOfflineMode = new System.Windows.Forms.CheckBox();
             this.chkEnableWhenExpired = new System.Windows.Forms.CheckBox();
@@ -62,13 +78,13 @@
             this.chkWithCount = new System.Windows.Forms.CheckBox();
             this.chkRepeatOut = new System.Windows.Forms.CheckBox();
             this.chkHoliday = new System.Windows.Forms.CheckBox();
-            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox();
+            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
             this.lblAlarm = new System.Windows.Forms.Label();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.label13 = new System.Windows.Forms.Label();
-            this.cardView = new Ralid.Park.UserControls.CardGridView();
+            this.cardView = new Ralid.Park.UserControls.CardGridView(this.components);
             this.tabPage4 = new System.Windows.Forms.TabPage();
             this.lblDownloadStatus = new System.Windows.Forms.Label();
             this.lblStatus = new System.Windows.Forms.Label();
@@ -136,16 +152,17 @@
             // 
             resources.ApplyResources(this.txtBalance, "txtBalance");
             this.txtBalance.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtBalance.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtBalance.Name = "txtBalance";
+            this.txtBalance.NumberWithCommas = true;
             this.txtBalance.PointCount = 2;
             // 
             // comAccessLevel
@@ -202,13 +219,28 @@
             // tabPage1
             // 
             this.tabPage1.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.tabPage1.Controls.Add(this.label17);
+            this.tabPage1.Controls.Add(this.label21);
+            this.tabPage1.Controls.Add(this.label12);
+            this.tabPage1.Controls.Add(this.chkInPark);
             this.tabPage1.Controls.Add(this.chkWriteCard);
+            this.tabPage1.Controls.Add(this.label20);
             this.tabPage1.Controls.Add(this.label10);
+            this.tabPage1.Controls.Add(this.label19);
             this.tabPage1.Controls.Add(this.label15);
+            this.tabPage1.Controls.Add(this.txtNumSuffix);
             this.tabPage1.Controls.Add(this.txtSuffix);
+            this.tabPage1.Controls.Add(this.txtNumDigit);
+            this.tabPage1.Controls.Add(this.txtDigit);
+            this.tabPage1.Controls.Add(this.txtAutoNum);
             this.tabPage1.Controls.Add(this.txtAutoIncrement);
+            this.tabPage1.Controls.Add(this.chkAutoNum);
+            this.tabPage1.Controls.Add(this.label18);
             this.tabPage1.Controls.Add(this.chkAutoIncrement);
+            this.tabPage1.Controls.Add(this.txtNumPrefix);
+            this.tabPage1.Controls.Add(this.label22);
             this.tabPage1.Controls.Add(this.label16);
+            this.tabPage1.Controls.Add(this.txtDepartment);
             this.tabPage1.Controls.Add(this.txtPrefix);
             this.tabPage1.Controls.Add(this.groupBox3);
             this.tabPage1.Controls.Add(this.comCardType);
@@ -227,11 +259,38 @@
             this.tabPage1.Name = "tabPage1";
             this.tabPage1.ToolTipText = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             // 
+            // label17
+            // 
+            resources.ApplyResources(this.label17, "label17");
+            this.label17.Name = "label17";
+            // 
+            // label21
+            // 
+            resources.ApplyResources(this.label21, "label21");
+            this.label21.Name = "label21";
+            // 
+            // label12
+            // 
+            resources.ApplyResources(this.label12, "label12");
+            this.label12.Name = "label12";
+            // 
+            // chkInPark
+            // 
+            resources.ApplyResources(this.chkInPark, "chkInPark");
+            this.chkInPark.Name = "chkInPark";
+            this.chkInPark.UseVisualStyleBackColor = true;
+            // 
             // chkWriteCard
             // 
             resources.ApplyResources(this.chkWriteCard, "chkWriteCard");
             this.chkWriteCard.Name = "chkWriteCard";
             this.chkWriteCard.UseVisualStyleBackColor = true;
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label20.Name = "label20";
             // 
             // label10
             // 
@@ -239,16 +298,51 @@
             this.label10.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label10.Name = "label10";
             // 
+            // label19
+            // 
+            resources.ApplyResources(this.label19, "label19");
+            this.label19.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label19.Name = "label19";
+            // 
             // label15
             // 
             resources.ApplyResources(this.label15, "label15");
             this.label15.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label15.Name = "label15";
             // 
+            // txtNumSuffix
+            // 
+            resources.ApplyResources(this.txtNumSuffix, "txtNumSuffix");
+            this.txtNumSuffix.Name = "txtNumSuffix";
+            // 
             // txtSuffix
             // 
             resources.ApplyResources(this.txtSuffix, "txtSuffix");
             this.txtSuffix.Name = "txtSuffix";
+            // 
+            // txtNumDigit
+            // 
+            resources.ApplyResources(this.txtNumDigit, "txtNumDigit");
+            this.txtNumDigit.MaxValue = 9;
+            this.txtNumDigit.MinValue = 0;
+            this.txtNumDigit.Name = "txtNumDigit";
+            this.txtNumDigit.NumberWithCommas = false;
+            // 
+            // txtDigit
+            // 
+            resources.ApplyResources(this.txtDigit, "txtDigit");
+            this.txtDigit.MaxValue = 9;
+            this.txtDigit.MinValue = 0;
+            this.txtDigit.Name = "txtDigit";
+            this.txtDigit.NumberWithCommas = false;
+            // 
+            // txtAutoNum
+            // 
+            resources.ApplyResources(this.txtAutoNum, "txtAutoNum");
+            this.txtAutoNum.MaxValue = 100000000;
+            this.txtAutoNum.MinValue = 0;
+            this.txtAutoNum.Name = "txtAutoNum";
+            this.txtAutoNum.NumberWithCommas = false;
             // 
             // txtAutoIncrement
             // 
@@ -256,6 +350,20 @@
             this.txtAutoIncrement.MaxValue = 100000000;
             this.txtAutoIncrement.MinValue = 0;
             this.txtAutoIncrement.Name = "txtAutoIncrement";
+            this.txtAutoIncrement.NumberWithCommas = false;
+            // 
+            // chkAutoNum
+            // 
+            resources.ApplyResources(this.chkAutoNum, "chkAutoNum");
+            this.chkAutoNum.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.chkAutoNum.Name = "chkAutoNum";
+            this.chkAutoNum.UseVisualStyleBackColor = true;
+            // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label18.Name = "label18";
             // 
             // chkAutoIncrement
             // 
@@ -264,11 +372,27 @@
             this.chkAutoIncrement.Name = "chkAutoIncrement";
             this.chkAutoIncrement.UseVisualStyleBackColor = true;
             // 
+            // txtNumPrefix
+            // 
+            resources.ApplyResources(this.txtNumPrefix, "txtNumPrefix");
+            this.txtNumPrefix.Name = "txtNumPrefix";
+            // 
+            // label22
+            // 
+            resources.ApplyResources(this.label22, "label22");
+            this.label22.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label22.Name = "label22";
+            // 
             // label16
             // 
             resources.ApplyResources(this.label16, "label16");
             this.label16.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label16.Name = "label16";
+            // 
+            // txtDepartment
+            // 
+            resources.ApplyResources(this.txtDepartment, "txtDepartment");
+            this.txtDepartment.Name = "txtDepartment";
             // 
             // txtPrefix
             // 
@@ -293,6 +417,7 @@
             resources.ApplyResources(this.chkOnlineHandleWhenOfflineMode, "chkOnlineHandleWhenOfflineMode");
             this.chkOnlineHandleWhenOfflineMode.Name = "chkOnlineHandleWhenOfflineMode";
             this.chkOnlineHandleWhenOfflineMode.UseVisualStyleBackColor = true;
+            this.chkOnlineHandleWhenOfflineMode.CheckedChanged += new System.EventHandler(this.chkOnlineHandleWhenOfflineMode_CheckedChanged);
             // 
             // chkEnableWhenExpired
             // 
@@ -540,5 +665,20 @@
         private System.Windows.Forms.Label lblDownloadStatus;
         private System.Windows.Forms.CheckBox chkWriteCard;
         private System.Windows.Forms.CheckBox chkOnlineHandleWhenOfflineMode;
+        private System.Windows.Forms.CheckBox chkInPark;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.Label label12;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtDigit;
+        private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label20;
+        private System.Windows.Forms.Label label19;
+        private GeneralLibrary.WinformControl.DBCTextBox txtNumSuffix;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtNumDigit;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtAutoNum;
+        private System.Windows.Forms.CheckBox chkAutoNum;
+        private System.Windows.Forms.Label label18;
+        private GeneralLibrary.WinformControl.DBCTextBox txtNumPrefix;
+        private System.Windows.Forms.Label label22;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDepartment;
     }
 }

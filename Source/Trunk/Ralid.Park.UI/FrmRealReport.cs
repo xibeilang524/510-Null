@@ -33,7 +33,7 @@ namespace Ralid.Park.UI
             };
             if (this.InvokeRequired)
             {
-                this.Invoke(action, report);
+                this.BeginInvoke(action, report);
             }
             else
             {

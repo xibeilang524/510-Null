@@ -139,6 +139,12 @@ namespace Ralid.Park.BusinessModel.Model
         public byte TicketReaderCOMPort { get; set; }
 
         /// <summary>
+        /// 获取或设置条码枪的串口号
+        /// </summary>
+        [DataMember(Name = "TicketReaderCOMPort2")]
+        public byte? TicketReaderCOMPort2 { get; set; }
+
+        /// <summary>
         /// 获取或设置控制器的状态
         /// </summary>
         [DataMember(Name = "Status")]
@@ -384,6 +390,18 @@ namespace Ralid.Park.BusinessModel.Model
             }
         }
         /// <summary>
+        /// 卡不在名单中转在线处理
+        /// </summary>
+        public bool OnlineHandleWhenNotOnList
+        {
+            get { return (WorkMode & EntranceWorkmodeOption.OPT_NotOnlineHandleWhenNotOnList) != EntranceWorkmodeOption.OPT_NotOnlineHandleWhenNotOnList; }
+            set
+            {
+                WorkMode |= EntranceWorkmodeOption.OPT_NotOnlineHandleWhenNotOnList;
+                if (value) WorkMode -= EntranceWorkmodeOption.OPT_NotOnlineHandleWhenNotOnList;
+            }
+        }
+        /// <summary>
         /// 不进行车位计数
         /// </summary>
         public bool NoParkingCount
@@ -393,6 +411,18 @@ namespace Ralid.Park.BusinessModel.Model
             {
                 WorkMode |= EntranceWorkmodeOption.OPT_NoParkingCount;
                 if (!value) WorkMode -= EntranceWorkmodeOption.OPT_NoParkingCount;
+            }
+        }
+        /// <summary>
+        /// 使用韦根34协议
+        /// </summary>
+        public bool Wiegand34
+        {
+            get { return (WorkMode & EntranceWorkmodeOption.OPT_Wiegand34) == EntranceWorkmodeOption.OPT_Wiegand34; }
+            set
+            {
+                WorkMode |= EntranceWorkmodeOption.OPT_Wiegand34;
+                if (!value) WorkMode -= EntranceWorkmodeOption.OPT_Wiegand34;
             }
         }
         /// <summary>

@@ -49,6 +49,11 @@ namespace Ralid.Park.POS.Model
         /// 获取或设置收费后最多可以在停车场内呆多少分钟而不用收费
         /// </summary>
         public int FreeTimeAfterPay { get; set; }
+
+        /// <summary>
+        /// 获取或设置手持机的编号
+        /// </summary>
+        public string StationID { get; set; }
         #endregion
 
         #region 费率设置

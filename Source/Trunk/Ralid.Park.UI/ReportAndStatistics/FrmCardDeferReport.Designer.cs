@@ -42,6 +42,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
+            this.label10 = new System.Windows.Forms.Label();
             this.txtOwnerName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.txtCertificate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
@@ -56,6 +58,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardCertificate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colDeferDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -106,6 +109,7 @@
             this.customDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCardID,
             this.colOwnerName,
+            this.colCardType,
             this.colCardCertificate,
             this.colCarPlate,
             this.colDeferDateTime,
@@ -156,6 +160,8 @@
             // groupBox2
             // 
             resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.comCardType);
+            this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtOwnerName);
             this.groupBox2.Controls.Add(this.label7);
             this.groupBox2.Controls.Add(this.txtCertificate);
@@ -170,6 +176,17 @@
             this.groupBox2.Controls.Add(this.label2);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
+            // 
+            // comCardType
+            // 
+            resources.ApplyResources(this.comCardType, "comCardType");
+            this.comCardType.FormattingEnabled = true;
+            this.comCardType.Name = "comCardType";
+            // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.Name = "label10";
             // 
             // txtOwnerName
             // 
@@ -221,6 +238,7 @@
             resources.ApplyResources(this.workStationCombobox1, "workStationCombobox1");
             this.workStationCombobox1.FormattingEnabled = true;
             this.workStationCombobox1.Name = "workStationCombobox1";
+            this.workStationCombobox1.OnlyStation = false;
             // 
             // operatorCombobox1
             // 
@@ -245,6 +263,12 @@
             resources.ApplyResources(this.colOwnerName, "colOwnerName");
             this.colOwnerName.Name = "colOwnerName";
             this.colOwnerName.ReadOnly = true;
+            // 
+            // colCardType
+            // 
+            resources.ApplyResources(this.colCardType, "colCardType");
+            this.colCardType.Name = "colCardType";
+            this.colCardType.ReadOnly = true;
             // 
             // colCardCertificate
             // 
@@ -377,8 +401,11 @@
         private UserControls.OperatorComboBox operatorCombobox1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label8;
+        private UserControls.CardTypeComboBox comCardType;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOwnerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCardType;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardCertificate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCarPlate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colDeferDateTime;

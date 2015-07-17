@@ -152,6 +152,12 @@
     <Compile Include="CardGridView.Designer.cs">
       <DependentUpon>CardGridView.cs</DependentUpon>
     </Compile>
+    <Compile Include="CardListTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CardListTypeComboBox.Designer.cs">
+      <DependentUpon>CardListTypeComboBox.cs</DependentUpon>
+    </Compile>
     <Compile Include="CardTypeComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -163,6 +169,24 @@
     </Compile>
     <Compile Include="CarTypePanel.Designer.cs">
       <DependentUpon>CarTypePanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="CommandTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CommandTypeComboBox.Designer.cs">
+      <DependentUpon>CommandTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DeptComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DeptComboBox.designer.cs">
+      <DependentUpon>DeptComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="EntrancePanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="EntrancePanel.Designer.cs">
+      <DependentUpon>EntrancePanel.cs</DependentUpon>
     </Compile>
     <Compile Include="EventReportListBox.cs">
       <SubType>Component</SubType>
@@ -187,6 +211,24 @@
     </Compile>
     <Compile Include="PaymentModeComboBox.Designer.cs">
       <DependentUpon>PaymentModeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PREBusinessesComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PREBusinessesComboBox.Designer.cs">
+      <DependentUpon>PREBusinessesComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PREFunctionTree.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PREFunctionTree.Designer.cs">
+      <DependentUpon>PREFunctionTree.cs</DependentUpon>
+    </Compile>
+    <Compile Include="PRERoleComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PRERoleComboBox.Designer.cs">
+      <DependentUpon>PRERoleComboBox.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -222,6 +264,12 @@
     </Compile>
     <Compile Include="UCDateTimeInterval.designer.cs">
       <DependentUpon>UCDateTimeInterval.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UCPaging.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="UCPaging.Designer.cs">
+      <DependentUpon>UCPaging.cs</DependentUpon>
     </Compile>
     <Compile Include="UCPictureGrid.cs">
       <SubType>UserControl</SubType>
@@ -314,6 +362,12 @@
     <Compile Include="UCEntrance.Designer.cs">
       <DependentUpon>UCEntrance.cs</DependentUpon>
     </Compile>
+    <Compile Include="VehicleLEDMessageTypeCombobox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VehicleLEDMessageTypeCombobox.Designer.cs">
+      <DependentUpon>VehicleLEDMessageTypeCombobox.cs</DependentUpon>
+    </Compile>
     <Compile Include="VideoPanels\ACTIVideoControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -326,11 +380,32 @@
     <Compile Include="VideoPanels\ACTIVideoPanel.Designer.cs">
       <DependentUpon>ACTIVideoPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VideoPanels\DaHuaVideoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\DaHuaVideoPanel.Designer.cs">
+      <DependentUpon>DaHuaVideoPanel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\DaHua\DaHuaSDK.cs" />
+    <Compile Include="VideoPanels\DaHua\DaHuaSDKManager.cs" />
+    <Compile Include="VideoPanels\DaHua\DaHuaSDKStruct.cs" />
+    <Compile Include="VideoPanels\FrmDaHuaContainer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\FrmDaHuaContainer.Designer.cs">
+      <DependentUpon>FrmDaHuaContainer.cs</DependentUpon>
+    </Compile>
     <Compile Include="VideoPanels\FrmXinlutongContainer.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="VideoPanels\FrmXinlutongContainer.Designer.cs">
       <DependentUpon>FrmXinlutongContainer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="VideoPanels\JingYangVideoPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="VideoPanels\JingYangVideoPanel.Designer.cs">
+      <DependentUpon>JingYangVideoPanel.cs</DependentUpon>
     </Compile>
     <Compile Include="VideoPanels\UCVideoListView.cs">
       <SubType>UserControl</SubType>
@@ -364,6 +439,18 @@
     <Compile Include="VideoPanels\XingLuTongVideoPanel.Designer.cs">
       <DependentUpon>XingLuTongVideoPanel.cs</DependentUpon>
     </Compile>
+    <Compile Include="VideoTypeComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="VideoTypeComboBox.Designer.cs">
+      <DependentUpon>VideoTypeComboBox.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WaitingCommandStatusComboBox.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="WaitingCommandStatusComboBox.Designer.cs">
+      <DependentUpon>WaitingCommandStatusComboBox.cs</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
@@ -374,14 +461,24 @@
       <Project>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</Project>
       <Name>Ralid.Park.BusinessModel</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.VideoCapture\Ralid.Park.VideoCapture.csproj">
+      <Project>{3EB7005F-0918-4296-AB44-748B2220E54F}</Project>
+      <Name>Ralid.Park.VideoCapture</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="CarTypePanel.resx">
       <DependentUpon>CarTypePanel.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="EntrancePanel.resx">
+      <DependentUpon>EntrancePanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EventReportListBox.resx">
       <DependentUpon>EventReportListBox.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PREFunctionTree.resx">
+      <DependentUpon>PREFunctionTree.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -453,6 +550,15 @@
     <EmbeddedResource Include="UCEntrance.zh-Hant.resx">
       <DependentUpon>UCEntrance.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="UCPaging.en.resx">
+      <DependentUpon>UCPaging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPaging.resx">
+      <DependentUpon>UCPaging.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UCPaging.zh-Hant.resx">
+      <DependentUpon>UCPaging.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="UCPictureGrid.resx">
       <DependentUpon>UCPictureGrid.cs</DependentUpon>
       <SubType>Designer</SubType>
@@ -467,6 +573,12 @@
     <EmbeddedResource Include="VideoPanels\ACTIVideoPanel.resx">
       <DependentUpon>ACTIVideoPanel.cs</DependentUpon>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\DaHuaVideoPanel.resx">
+      <DependentUpon>DaHuaVideoPanel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="VideoPanels\JingYangVideoPanel.resx">
+      <DependentUpon>JingYangVideoPanel.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="VideoPanels\UCVideoListView.resx">
       <DependentUpon>UCVideoListView.cs</DependentUpon>
@@ -537,6 +649,7 @@
   <ItemGroup>
     <None Include="Resources\atm_Alarm.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

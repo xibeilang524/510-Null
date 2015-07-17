@@ -150,6 +150,9 @@
   <data name="colOperatorID.HeaderText" xml:space="preserve">
     <value>操作員</value>
   </data>
+  <data name="colMemo.HeaderText" xml:space="preserve">
+    <value>備註</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>卡片刪除報表</value>
   </data>

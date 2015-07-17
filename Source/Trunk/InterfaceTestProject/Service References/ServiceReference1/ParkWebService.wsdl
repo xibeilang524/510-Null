@@ -1,0 +1,405 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="ParkWebService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" />
+      <xsd:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IParkWebService_GetCardByID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardByID" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardByID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardByIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SaveCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCard" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SaveCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SaveCard2_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCard2" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SaveCard2_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveCard2Response" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_DeleteCard_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCard" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_DeleteCard_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCardResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetVacant_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetVacant" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetVacant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetVacantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SetVacant_InputMessage">
+    <wsdl:part name="parameters" element="tns:SetVacant" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_SetVacant_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SetVacantResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardLastPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardLastPayment" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardLastPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardLastPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardChargeRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardChargeRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardChargeRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardChargeRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDeferRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDeferRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDeferRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDeferRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardLostRestoreRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardLostRestoreRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardLostRestoreRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardLostRestoreRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDisableEnableRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDisableEnableRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDisableEnableRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDisableEnableRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardRecycleRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardRecycleRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardRecycleRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardRecycleRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardReleaseRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardReleaseRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardReleaseRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardReleaseRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDeleteRecords_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDeleteRecords" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardDeleteRecords_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardDeleteRecordsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetAllEntraces_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEntraces" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetAllEntraces_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllEntracesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardStatusByCardID_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardStatusByCardID" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardStatusByCardID_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardStatusByCardIDResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_QueryParkByCarPlate_InputMessage">
+    <wsdl:part name="parameters" element="tns:QueryParkByCarPlate" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_QueryParkByCarPlate_OutputMessage">
+    <wsdl:part name="parameters" element="tns:QueryParkByCarPlateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetAllPark_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPark" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetAllPark_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllParkResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardPayment_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardPayment" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_GetCardPayment_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCardPaymentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_CardFeePay_InputMessage">
+    <wsdl:part name="parameters" element="tns:CardFeePay" />
+  </wsdl:message>
+  <wsdl:message name="IParkWebService_CardFeePay_OutputMessage">
+    <wsdl:part name="parameters" element="tns:CardFeePayResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IParkWebService">
+    <wsdl:operation name="GetCardByID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardByID" message="tns:IParkWebService_GetCardByID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardByIDResponse" message="tns:IParkWebService_GetCardByID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/SaveCard" message="tns:IParkWebService_SaveCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/SaveCardResponse" message="tns:IParkWebService_SaveCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SaveCard2">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/SaveCard2" message="tns:IParkWebService_SaveCard2_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/SaveCard2Response" message="tns:IParkWebService_SaveCard2_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCard">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/DeleteCard" message="tns:IParkWebService_DeleteCard_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/DeleteCardResponse" message="tns:IParkWebService_DeleteCard_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetVacant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetVacant" message="tns:IParkWebService_GetVacant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetVacantResponse" message="tns:IParkWebService_GetVacant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="SetVacant">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/SetVacant" message="tns:IParkWebService_SetVacant_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/SetVacantResponse" message="tns:IParkWebService_SetVacant_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardLastPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardLastPayment" message="tns:IParkWebService_GetCardLastPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardLastPaymentResponse" message="tns:IParkWebService_GetCardLastPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardChargeRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardChargeRecords" message="tns:IParkWebService_GetCardChargeRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardChargeRecordsResponse" message="tns:IParkWebService_GetCardChargeRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDeferRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardDeferRecords" message="tns:IParkWebService_GetCardDeferRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardDeferRecordsResponse" message="tns:IParkWebService_GetCardDeferRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardLostRestoreRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardLostRestoreRecords" message="tns:IParkWebService_GetCardLostRestoreRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardLostRestoreRecordsResponse" message="tns:IParkWebService_GetCardLostRestoreRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDisableEnableRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardDisableEnableRecords" message="tns:IParkWebService_GetCardDisableEnableRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardDisableEnableRecordsResponse" message="tns:IParkWebService_GetCardDisableEnableRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardRecycleRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardRecycleRecords" message="tns:IParkWebService_GetCardRecycleRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardRecycleRecordsResponse" message="tns:IParkWebService_GetCardRecycleRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardReleaseRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardReleaseRecords" message="tns:IParkWebService_GetCardReleaseRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardReleaseRecordsResponse" message="tns:IParkWebService_GetCardReleaseRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDeleteRecords">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardDeleteRecords" message="tns:IParkWebService_GetCardDeleteRecords_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardDeleteRecordsResponse" message="tns:IParkWebService_GetCardDeleteRecords_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEntraces">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetAllEntraces" message="tns:IParkWebService_GetAllEntraces_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetAllEntracesResponse" message="tns:IParkWebService_GetAllEntraces_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardStatusByCardID">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardStatusByCardID" message="tns:IParkWebService_GetCardStatusByCardID_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardStatusByCardIDResponse" message="tns:IParkWebService_GetCardStatusByCardID_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="QueryParkByCarPlate">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/QueryParkByCarPlate" message="tns:IParkWebService_QueryParkByCarPlate_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/QueryParkByCarPlateResponse" message="tns:IParkWebService_QueryParkByCarPlate_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPark">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetAllPark" message="tns:IParkWebService_GetAllPark_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetAllParkResponse" message="tns:IParkWebService_GetAllPark_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCardPayment">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/GetCardPayment" message="tns:IParkWebService_GetCardPayment_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/GetCardPaymentResponse" message="tns:IParkWebService_GetCardPayment_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="CardFeePay">
+      <wsdl:input wsaw:Action="http://tempuri.org/IParkWebService/CardFeePay" message="tns:IParkWebService_CardFeePay_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IParkWebService/CardFeePayResponse" message="tns:IParkWebService_CardFeePay_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IParkWebService" type="tns:IParkWebService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetCardByID">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardByID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCard">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/SaveCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SaveCard2">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/SaveCard2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCard">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/DeleteCard" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetVacant">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetVacant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SetVacant">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/SetVacant" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardLastPayment">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardLastPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardChargeRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardChargeRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDeferRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardDeferRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardLostRestoreRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardLostRestoreRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDisableEnableRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardDisableEnableRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardRecycleRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardRecycleRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardReleaseRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardReleaseRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardDeleteRecords">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardDeleteRecords" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllEntraces">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetAllEntraces" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardStatusByCardID">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardStatusByCardID" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="QueryParkByCarPlate">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/QueryParkByCarPlate" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPark">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetAllPark" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCardPayment">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/GetCardPayment" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CardFeePay">
+      <soap:operation soapAction="http://tempuri.org/IParkWebService/CardFeePay" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ParkWebService">
+    <wsdl:port name="BasicHttpBinding_IParkWebService" binding="tns:BasicHttpBinding_IParkWebService">
+      <soap:address location="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

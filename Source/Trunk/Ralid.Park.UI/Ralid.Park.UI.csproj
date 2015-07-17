@@ -106,10 +106,20 @@
       <EmbedInteropTypes>True</EmbedInteropTypes>
       <HintPath>..\ReferenceDll\信路通车牌识别库\Interop.HVActiveX2Lib.dll</HintPath>
     </Reference>
+    <Reference Include="Interop.NetFwTypeLib, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\ReferenceDll\Interop.NetFwTypeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Interop.TableReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+      <HintPath>..\ReferenceDll\Interop.TableReader.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.ReportViewer.Common, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WebForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
     <Reference Include="Microsoft.ReportViewer.WinForms, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL" />
-    <Reference Include="Ralid.GeneralLibrary, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\ReferenceDll\Ralid.GeneralLibrary.dll</HintPath>
     </Reference>
@@ -144,6 +154,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="EventArgument\GetAccessTimeZonesHandler.cs" />
+    <Compile Include="EventArgument\SwitchRoadModeArgs.cs" />
+    <Compile Include="FrmAPMRefund.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAPMRefund.Designer.cs">
+      <DependentUpon>FrmAPMRefund.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCardChangeKey.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -162,6 +179,12 @@
     <Compile Include="FrmCardIDConvert.designer.cs">
       <DependentUpon>FrmCardIDConvert.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCardOut.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCardOut.Designer.cs">
+      <DependentUpon>FrmCardOut.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCardsDownloadTest.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -174,6 +197,24 @@
     <Compile Include="FrmCarPlateFailDetail.Designer.cs">
       <DependentUpon>FrmCarPlateFailDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmCarPlateManualEnter.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCarPlateManualEnter.Designer.cs">
+      <DependentUpon>FrmCarPlateManualEnter.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCarPlateManualExit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCarPlateManualExit.Designer.cs">
+      <DependentUpon>FrmCarPlateManualExit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCarPlateOfDaHua.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCarPlateOfDaHua.Designer.cs">
+      <DependentUpon>FrmCarPlateOfDaHua.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCarplateTestForFile.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -185,6 +226,18 @@
     </Compile>
     <Compile Include="FrmCarplateTestForVideo.designer.cs">
       <DependentUpon>FrmCarplateTestForVideo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDeptDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDeptDetail.designer.cs">
+      <DependentUpon>FrmDeptDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmDepts.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmDepts.designer.cs">
+      <DependentUpon>FrmDepts.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmDownLoadAccessSetting.cs">
       <SubType>Form</SubType>
@@ -222,6 +275,24 @@
     <Compile Include="FrmEntranceDetail.designer.cs">
       <DependentUpon>FrmEntranceDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmHostStandbySetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHostStandbySetting.Designer.cs">
+      <DependentUpon>FrmHostStandbySetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmHotelAuthorization.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmHotelAuthorization.Designer.cs">
+      <DependentUpon>FrmHotelAuthorization.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmLocalSettings.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmLocalSettings.designer.cs">
+      <DependentUpon>FrmLocalSettings.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmManageCardDetail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -234,11 +305,23 @@
     <Compile Include="FrmNetEntranceDetail.designer.cs">
       <DependentUpon>FrmNetEntranceDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmNoCardLost.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmNoCardLost.designer.cs">
+      <DependentUpon>FrmNoCardLost.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmOperatorCardCashComfirm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmOperatorCardCashComfirm.Designer.cs">
       <DependentUpon>FrmOperatorCardCashComfirm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmOperatorCardReader.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmOperatorCardReader.designer.cs">
+      <DependentUpon>FrmOperatorCardReader.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmParkDetail.cs">
       <SubType>Form</SubType>
@@ -252,11 +335,35 @@
     <Compile Include="FrmParkDeviceDetail.designer.cs">
       <DependentUpon>FrmParkDeviceDetail.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmParkingCouponInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParkingCouponInput.Designer.cs">
+      <DependentUpon>FrmParkingCouponInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmParkTarrif.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmParkTarrif.Designer.cs">
+      <DependentUpon>FrmParkTarrif.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmProcessing.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmProcessing.Designer.cs">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRoadWay.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRoadWay.Designer.cs">
+      <DependentUpon>FrmRoadWay.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmRoadWayDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmRoadWayDetail.Designer.cs">
+      <DependentUpon>FrmRoadWayDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmSnapShoter.cs">
       <SubType>Form</SubType>
@@ -282,11 +389,41 @@
     <Compile Include="FrmCarPlateOfXinLuTong.Designer.cs">
       <DependentUpon>FrmCarPlateOfXinLuTong.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmSpeedingDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpeedingDetail.designer.cs">
+      <DependentUpon>FrmSpeedingDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmSpeedingProcess.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmSpeedingProcess.designer.cs">
+      <DependentUpon>FrmSpeedingProcess.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmSyncDataToStandby.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmSyncDataToStandby.Designer.cs">
       <DependentUpon>FrmSyncDataToStandby.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVehicleLedDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVehicleLedDetail.Designer.cs">
+      <DependentUpon>FrmVehicleLedDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmVehicleLedSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVehicleLedSetting.Designer.cs">
+      <DependentUpon>FrmVehicleLedSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmWorkstationsSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmWorkstationsSelection.designer.cs">
+      <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmZSTParameter.cs">
       <SubType>Form</SubType>
@@ -439,8 +576,32 @@
     <Compile Include="EventArgument\GetAccessesHandler.cs" />
     <Compile Include="EventArgument\EntranceEventArgs.cs" />
     <Compile Include="OnlineParkEventHandler.cs" />
+    <Compile Include="OutdoorLed\FrmAreaDetail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutdoorLed\FrmAreaDetail.designer.cs">
+      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OutdoorLed\FrmOutdoorLedSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OutdoorLed\FrmOutdoorLedSetting.designer.cs">
+      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
+    </Compile>
     <Compile Include="ParkVacantLedRender.cs" />
     <Compile Include="ReportAndStatistics\DirectPrint.cs" />
+    <Compile Include="ReportAndStatistics\FrmAPMCheckOutReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmAPMCheckOutReport.Designer.cs">
+      <DependentUpon>FrmAPMCheckOutReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmAPMRefundReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmAPMRefundReport.Designer.cs">
+      <DependentUpon>FrmAPMRefundReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportAndStatistics\FrmCardDeferStatistics.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -501,11 +662,29 @@
     <Compile Include="ReportAndStatistics\FrmAPMLogReport.Designer.cs">
       <DependentUpon>FrmAPMLogReport.cs</DependentUpon>
     </Compile>
+    <Compile Include="ReportAndStatistics\FrmFreeAuthorizationLogReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmFreeAuthorizationLogReport.Designer.cs">
+      <DependentUpon>FrmFreeAuthorizationLogReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportAndStatistics\FrmHasPaidCardReport.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="ReportAndStatistics\FrmHasPaidCardReport.Designer.cs">
       <DependentUpon>FrmHasPaidCardReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmPhotoViewer.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmPhotoViewer.designer.cs">
+      <DependentUpon>FrmPhotoViewer.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmServerSwitchReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmServerSwitchReport.Designer.cs">
+      <DependentUpon>FrmServerSwitchReport.cs</DependentUpon>
     </Compile>
     <Compile Include="ReportAndStatistics\FrmSnapshotExporter.cs">
       <SubType>Form</SubType>
@@ -705,6 +884,18 @@
       <DependentUpon>FrmOperatorDetail.cs</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportAndStatistics\FrmSpeedingReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmSpeedingReport.designer.cs">
+      <DependentUpon>FrmSpeedingReport.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmWaitingCommandReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ReportAndStatistics\FrmWaitingCommandReport.Designer.cs">
+      <DependentUpon>FrmWaitingCommandReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="ReportAndStatistics\FrmYangChenTongLogReport.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -713,6 +904,16 @@
     </Compile>
     <Compile Include="ResourceUtil.cs" />
     <Compile Include="ParkingSoftDogVerify.cs" />
+    <Compile Include="VehicleLedRender.cs" />
+    <EmbeddedResource Include="FrmAPMRefund.en.resx">
+      <DependentUpon>FrmAPMRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAPMRefund.resx">
+      <DependentUpon>FrmAPMRefund.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmAPMRefund.zh-Hant.resx">
+      <DependentUpon>FrmAPMRefund.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCardChangeKey.en.resx">
       <DependentUpon>FrmCardChangeKey.cs</DependentUpon>
     </EmbeddedResource>
@@ -743,6 +944,15 @@
     <EmbeddedResource Include="FrmCardIDConvert.zh-Hant.resx">
       <DependentUpon>FrmCardIDConvert.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCardOut.en.resx">
+      <DependentUpon>FrmCardOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCardOut.resx">
+      <DependentUpon>FrmCardOut.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCardOut.zh-Hant.resx">
+      <DependentUpon>FrmCardOut.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCardsDownloadTest.resx">
       <DependentUpon>FrmCardsDownloadTest.cs</DependentUpon>
     </EmbeddedResource>
@@ -755,7 +965,28 @@
     <EmbeddedResource Include="FrmCarPlateFailDetail.zh-Hant.resx">
       <DependentUpon>FrmCarPlateFailDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateManualEnter.resx">
+      <DependentUpon>FrmCarPlateManualEnter.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateManualExit.resx">
+      <DependentUpon>FrmCarPlateManualExit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateOfDaHua.en.resx">
+      <DependentUpon>FrmCarPlateOfDaHua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateOfDaHua.resx">
+      <DependentUpon>FrmCarPlateOfDaHua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateOfDaHua.zh-Hant.resx">
+      <DependentUpon>FrmCarPlateOfDaHua.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateOfXinLuTong.en.resx">
+      <DependentUpon>FrmCarPlateOfXinLuTong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCarPlateOfXinLuTong.resx">
+      <DependentUpon>FrmCarPlateOfXinLuTong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCarPlateOfXinLuTong.zh-Hant.resx">
       <DependentUpon>FrmCarPlateOfXinLuTong.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCarplateTestForFile.en.resx">
@@ -775,6 +1006,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmCarplateTestForVideo.zh-Hant.resx">
       <DependentUpon>FrmCarplateTestForVideo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDeptDetail.en.resx">
+      <DependentUpon>FrmDeptDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDeptDetail.resx">
+      <DependentUpon>FrmDeptDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDeptDetail.zh-Hant.resx">
+      <DependentUpon>FrmDeptDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDepts.en.resx">
+      <DependentUpon>FrmDepts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDepts.resx">
+      <DependentUpon>FrmDepts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmDepts.zh-Hant.resx">
+      <DependentUpon>FrmDepts.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmDownLoadAccessSetting.en.resx">
       <DependentUpon>FrmDownLoadAccessSetting.cs</DependentUpon>
@@ -831,6 +1080,33 @@
     <EmbeddedResource Include="FrmEntranceDetail.zh-Hant.resx">
       <DependentUpon>FrmEntranceDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmHostStandbySetting.en.resx">
+      <DependentUpon>FrmHostStandbySetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHostStandbySetting.resx">
+      <DependentUpon>FrmHostStandbySetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHostStandbySetting.zh-Hant.resx">
+      <DependentUpon>FrmHostStandbySetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHotelAuthorization.en.resx">
+      <DependentUpon>FrmHotelAuthorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHotelAuthorization.resx">
+      <DependentUpon>FrmHotelAuthorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmHotelAuthorization.zh-Hant.resx">
+      <DependentUpon>FrmHotelAuthorization.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLocalSettings.en.resx">
+      <DependentUpon>FrmLocalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLocalSettings.resx">
+      <DependentUpon>FrmLocalSettings.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmLocalSettings.zh-Hant.resx">
+      <DependentUpon>FrmLocalSettings.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmManageCardDetail.en.resx">
       <DependentUpon>FrmManageCardDetail.cs</DependentUpon>
     </EmbeddedResource>
@@ -850,6 +1126,15 @@
     <EmbeddedResource Include="FrmNetEntranceDetail.zh-Hant.resx">
       <DependentUpon>FrmNetEntranceDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmNoCardLost.en.resx">
+      <DependentUpon>FrmNoCardLost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNoCardLost.resx">
+      <DependentUpon>FrmNoCardLost.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmNoCardLost.zh-Hant.resx">
+      <DependentUpon>FrmNoCardLost.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmOperatorCardCashComfirm.en.resx">
       <DependentUpon>FrmOperatorCardCashComfirm.cs</DependentUpon>
     </EmbeddedResource>
@@ -858,6 +1143,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmOperatorCardCashComfirm.zh-Hant.resx">
       <DependentUpon>FrmOperatorCardCashComfirm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmOperatorCardReader.resx">
+      <DependentUpon>FrmOperatorCardReader.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmParkDetail.en.resx">
       <DependentUpon>FrmParkDetail.cs</DependentUpon>
@@ -877,6 +1165,18 @@
     <EmbeddedResource Include="FrmParkDeviceDetail.zh-Hant.resx">
       <DependentUpon>FrmParkDeviceDetail.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmParkingCouponInput.en.resx">
+      <DependentUpon>FrmParkingCouponInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParkingCouponInput.resx">
+      <DependentUpon>FrmParkingCouponInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParkingCouponInput.zh-Hant.resx">
+      <DependentUpon>FrmParkingCouponInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmParkTarrif.resx">
+      <DependentUpon>FrmParkTarrif.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmProcessing.en.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
     </EmbeddedResource>
@@ -885,6 +1185,24 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmProcessing.zh-Hant.resx">
       <DependentUpon>FrmProcessing.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWay.en.resx">
+      <DependentUpon>FrmRoadWay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWay.resx">
+      <DependentUpon>FrmRoadWay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWay.zh-Hant.resx">
+      <DependentUpon>FrmRoadWay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWayDetail.en.resx">
+      <DependentUpon>FrmRoadWayDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWayDetail.resx">
+      <DependentUpon>FrmRoadWayDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmRoadWayDetail.zh-Hant.resx">
+      <DependentUpon>FrmRoadWayDetail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSnapShoter.resx">
       <DependentUpon>FrmSnapShoter.cs</DependentUpon>
@@ -907,6 +1225,24 @@
     <EmbeddedResource Include="FrmCarPlateOfWintone.zh-Hant.resx">
       <DependentUpon>FrmCarPlateOfWintone.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingDetail.en.resx">
+      <DependentUpon>FrmSpeedingDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingDetail.resx">
+      <DependentUpon>FrmSpeedingDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingDetail.zh-Hant.resx">
+      <DependentUpon>FrmSpeedingDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingProcess.en.resx">
+      <DependentUpon>FrmSpeedingProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingProcess.resx">
+      <DependentUpon>FrmSpeedingProcess.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmSpeedingProcess.zh-Hant.resx">
+      <DependentUpon>FrmSpeedingProcess.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmSyncDataToStandby.en.resx">
       <DependentUpon>FrmSyncDataToStandby.cs</DependentUpon>
     </EmbeddedResource>
@@ -915,6 +1251,33 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmSyncDataToStandby.zh-Hant.resx">
       <DependentUpon>FrmSyncDataToStandby.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedDetail.en.resx">
+      <DependentUpon>FrmVehicleLedDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedDetail.resx">
+      <DependentUpon>FrmVehicleLedDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedDetail.zh-Hant.resx">
+      <DependentUpon>FrmVehicleLedDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedSetting.en.resx">
+      <DependentUpon>FrmVehicleLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedSetting.resx">
+      <DependentUpon>FrmVehicleLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVehicleLedSetting.zh-Hant.resx">
+      <DependentUpon>FrmVehicleLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkstationsSelection.en.resx">
+      <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkstationsSelection.resx">
+      <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmWorkstationsSelection.zh-Hant.resx">
+      <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTParameter.resx">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
@@ -1277,14 +1640,50 @@
     <EmbeddedResource Include="FrmYCTPayment.zh-Hant.resx">
       <DependentUpon>FrmYCTPayment.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.en.resx">
+      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.resx">
+      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.zh-Hant.resx">
+      <DependentUpon>FrmAreaDetail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.en.resx">
+      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.resx">
+      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OutdoorLed\FrmOutdoorLedSetting.zh-Hant.resx">
+      <DependentUpon>FrmOutdoorLedSetting.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmAlarmReport.en.resx">
       <DependentUpon>FrmAlarmReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmAlarmReport.zh-Hant.resx">
       <DependentUpon>FrmAlarmReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMCheckOutReport.en.resx">
+      <DependentUpon>FrmAPMCheckOutReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMCheckOutReport.resx">
+      <DependentUpon>FrmAPMCheckOutReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMCheckOutReport.zh-Hant.resx">
+      <DependentUpon>FrmAPMCheckOutReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmAPMLogReport.en.resx">
       <DependentUpon>FrmAPMLogReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMRefundReport.en.resx">
+      <DependentUpon>FrmAPMRefundReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMRefundReport.resx">
+      <DependentUpon>FrmAPMRefundReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmAPMRefundReport.zh-Hant.resx">
+      <DependentUpon>FrmAPMRefundReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmCardChargeReport.en.resx">
       <DependentUpon>FrmCardChargeReport.cs</DependentUpon>
@@ -1380,7 +1779,13 @@
     <EmbeddedResource Include="ReportAndStatistics\FrmCardReleaseReport.zh-Hant.resx">
       <DependentUpon>FrmCardReleaseReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmCardReport.en.resx">
+      <DependentUpon>FrmCardReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmCardReport.resx">
+      <DependentUpon>FrmCardReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmCardReport.zh-Hant.resx">
       <DependentUpon>FrmCardReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmCarFlowStatistics.en.resx">
@@ -1403,6 +1808,15 @@
     <EmbeddedResource Include="ReportAndStatistics\FrmCarTypeReportView.resx">
       <DependentUpon>FrmCarTypeReportView.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmFreeAuthorizationLogReport.en.resx">
+      <DependentUpon>FrmFreeAuthorizationLogReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmFreeAuthorizationLogReport.resx">
+      <DependentUpon>FrmFreeAuthorizationLogReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmFreeAuthorizationLogReport.zh-Hant.resx">
+      <DependentUpon>FrmFreeAuthorizationLogReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmHasPaidCardReport.en.resx">
       <DependentUpon>FrmHasPaidCardReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -1424,11 +1838,29 @@
     <EmbeddedResource Include="ReportAndStatistics\FrmAPMLogReport.zh-Hant.resx">
       <DependentUpon>FrmAPMLogReport.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmPhotoViewer.en.resx">
+      <DependentUpon>FrmPhotoViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmPhotoViewer.resx">
+      <DependentUpon>FrmPhotoViewer.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmPhotoViewer.zh-Hant.resx">
+      <DependentUpon>FrmPhotoViewer.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmReportBase.en.resx">
       <DependentUpon>FrmReportBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmReportBase.zh-Hant.resx">
       <DependentUpon>FrmReportBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmServerSwitchReport.en.resx">
+      <DependentUpon>FrmServerSwitchReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmServerSwitchReport.resx">
+      <DependentUpon>FrmServerSwitchReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmServerSwitchReport.zh-Hant.resx">
+      <DependentUpon>FrmServerSwitchReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmSnapshotExporter.en.resx">
       <DependentUpon>FrmSnapshotExporter.cs</DependentUpon>
@@ -1618,6 +2050,24 @@
     <EmbeddedResource Include="ReportAndStatistics\FrmSnapShotViewer.zh-Hant.resx">
       <DependentUpon>FrmSnapShotViewer.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmSpeedingReport.en.resx">
+      <DependentUpon>FrmSpeedingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmSpeedingReport.resx">
+      <DependentUpon>FrmSpeedingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmSpeedingReport.zh-Hant.resx">
+      <DependentUpon>FrmSpeedingReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmWaitingCommandReport.en.resx">
+      <DependentUpon>FrmWaitingCommandReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmWaitingCommandReport.resx">
+      <DependentUpon>FrmWaitingCommandReport.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ReportAndStatistics\FrmWaitingCommandReport.zh-Hant.resx">
+      <DependentUpon>FrmWaitingCommandReport.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ReportAndStatistics\FrmYangChenTongLogReport.en.resx">
       <DependentUpon>FrmYangChenTongLogReport.cs</DependentUpon>
     </EmbeddedResource>
@@ -1737,6 +2187,10 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OutdoorLEDSetting\OutdoorLEDSetting.csproj">
+      <Project>{B9E1E175-6D99-4734-829F-31F0CFEFF9C1}</Project>
+      <Name>OutdoorLEDSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
       <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
       <Name>Ralid.Park.BLL</Name>
@@ -1765,6 +2219,10 @@
       <Project>{BFBA441F-D090-4ED0-AC69-3A5FE5E51AF9}</Project>
       <Name>Ralid.Park.POS</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.SnapShot\Ralid.Park.SnapShotCapture.csproj">
+      <Project>{7E5DB09F-1011-4E8C-97EA-AF3867344532}</Project>
+      <Name>Ralid.Park.SnapShotCapture</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.ThirdCommunication\Ralid.Park.ThirdCommunication.csproj">
       <Project>{B47CFB4B-268C-4A2A-939D-776AD788C5FA}</Project>
       <Name>Ralid.Park.ThirdCommunication</Name>
@@ -1772,6 +2230,10 @@
     <ProjectReference Include="..\Ralid.Park.UserControls\Ralid.Park.UserControls.csproj">
       <Project>{2018980E-02D9-4AAA-BABF-5F41E997B0BB}</Project>
       <Name>Ralid.Park.UserControls</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.VideoCapture\Ralid.Park.VideoCapture.csproj">
+      <Project>{3EB7005F-0918-4296-AB44-748B2220E54F}</Project>
+      <Name>Ralid.Park.VideoCapture</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -1789,6 +2251,8 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Park.ico" />
+    <None Include="Resources\Sign_free.png" />
+    <None Include="Resources\Switch_off.png" />
     <None Include="Resources\Switch_User.png" />
     <None Include="Resources\ChangeKey.png" />
     <None Include="Resources\Transfer1.png" />

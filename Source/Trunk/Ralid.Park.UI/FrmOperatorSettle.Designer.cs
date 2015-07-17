@@ -38,9 +38,12 @@
             this.label25 = new System.Windows.Forms.Label();
             this.label26 = new System.Windows.Forms.Label();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.txtCashOfPOS = new System.Windows.Forms.Label();
             this.txtCashDiffrence = new System.Windows.Forms.Label();
             this.label32 = new System.Windows.Forms.Label();
+            this.label42 = new System.Windows.Forms.Label();
             this.label33 = new System.Windows.Forms.Label();
+            this.label43 = new System.Windows.Forms.Label();
             this.txtHandInCash = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
             this.label29 = new System.Windows.Forms.Label();
@@ -48,7 +51,10 @@
             this.label16 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
             this.txtCashDiscount = new System.Windows.Forms.Label();
+            this.txtCashOfRefund = new System.Windows.Forms.Label();
             this.txtCashOfCardRecycle = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
             this.label39 = new System.Windows.Forms.Label();
             this.label40 = new System.Windows.Forms.Label();
             this.txtCashOfDeposit = new System.Windows.Forms.Label();
@@ -74,8 +80,11 @@
             this.label30 = new System.Windows.Forms.Label();
             this.label34 = new System.Windows.Forms.Label();
             this.txtNonCashDiscount = new System.Windows.Forms.Label();
+            this.label45 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
+            this.label41 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
+            this.txtHandInPOS = new System.Windows.Forms.Label();
             this.txtNonCashTotal = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
@@ -160,9 +169,12 @@
             // groupBox4
             // 
             resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Controls.Add(this.txtCashOfPOS);
             this.groupBox4.Controls.Add(this.txtCashDiffrence);
             this.groupBox4.Controls.Add(this.label32);
+            this.groupBox4.Controls.Add(this.label42);
             this.groupBox4.Controls.Add(this.label33);
+            this.groupBox4.Controls.Add(this.label43);
             this.groupBox4.Controls.Add(this.txtHandInCash);
             this.groupBox4.Controls.Add(this.label20);
             this.groupBox4.Controls.Add(this.label29);
@@ -170,7 +182,10 @@
             this.groupBox4.Controls.Add(this.label16);
             this.groupBox4.Controls.Add(this.label17);
             this.groupBox4.Controls.Add(this.txtCashDiscount);
+            this.groupBox4.Controls.Add(this.txtCashOfRefund);
             this.groupBox4.Controls.Add(this.txtCashOfCardRecycle);
+            this.groupBox4.Controls.Add(this.label37);
+            this.groupBox4.Controls.Add(this.label15);
             this.groupBox4.Controls.Add(this.label39);
             this.groupBox4.Controls.Add(this.label40);
             this.groupBox4.Controls.Add(this.txtCashOfDeposit);
@@ -193,6 +208,12 @@
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
             // 
+            // txtCashOfPOS
+            // 
+            resources.ApplyResources(this.txtCashOfPOS, "txtCashOfPOS");
+            this.txtCashOfPOS.BackColor = System.Drawing.SystemColors.Control;
+            this.txtCashOfPOS.Name = "txtCashOfPOS";
+            // 
             // txtCashDiffrence
             // 
             resources.ApplyResources(this.txtCashDiffrence, "txtCashDiffrence");
@@ -205,11 +226,23 @@
             this.label32.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label32.Name = "label32";
             // 
+            // label42
+            // 
+            resources.ApplyResources(this.label42, "label42");
+            this.label42.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label42.Name = "label42";
+            // 
             // label33
             // 
             resources.ApplyResources(this.label33, "label33");
             this.label33.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label33.Name = "label33";
+            // 
+            // label43
+            // 
+            resources.ApplyResources(this.label43, "label43");
+            this.label43.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label43.Name = "label43";
             // 
             // txtHandInCash
             // 
@@ -254,12 +287,33 @@
             this.txtCashDiscount.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.txtCashDiscount.Name = "txtCashDiscount";
             // 
+            // txtCashOfRefund
+            // 
+            resources.ApplyResources(this.txtCashOfRefund, "txtCashOfRefund");
+            this.txtCashOfRefund.ForeColor = System.Drawing.Color.Red;
+            this.txtCashOfRefund.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.txtCashOfRefund.Name = "txtCashOfRefund";
+            // 
             // txtCashOfCardRecycle
             // 
             resources.ApplyResources(this.txtCashOfCardRecycle, "txtCashOfCardRecycle");
             this.txtCashOfCardRecycle.ForeColor = System.Drawing.Color.Red;
             this.txtCashOfCardRecycle.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.txtCashOfCardRecycle.Name = "txtCashOfCardRecycle";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.ForeColor = System.Drawing.Color.Red;
+            this.label37.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label37.Name = "label37";
+            // 
+            // label15
+            // 
+            resources.ApplyResources(this.label15, "label15");
+            this.label15.ForeColor = System.Drawing.Color.Red;
+            this.label15.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label15.Name = "label15";
             // 
             // label39
             // 
@@ -395,8 +449,11 @@
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.label34);
             this.groupBox2.Controls.Add(this.txtNonCashDiscount);
+            this.groupBox2.Controls.Add(this.label45);
             this.groupBox2.Controls.Add(this.label7);
+            this.groupBox2.Controls.Add(this.label41);
             this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.txtHandInPOS);
             this.groupBox2.Controls.Add(this.txtNonCashTotal);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label12);
@@ -437,17 +494,35 @@
             this.txtNonCashDiscount.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.txtNonCashDiscount.Name = "txtNonCashDiscount";
             // 
+            // label45
+            // 
+            resources.ApplyResources(this.label45, "label45");
+            this.label45.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label45.Name = "label45";
+            // 
             // label7
             // 
             resources.ApplyResources(this.label7, "label7");
             this.label7.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label7.Name = "label7";
             // 
+            // label41
+            // 
+            resources.ApplyResources(this.label41, "label41");
+            this.label41.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label41.Name = "label41";
+            // 
             // label9
             // 
             resources.ApplyResources(this.label9, "label9");
             this.label9.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label9.Name = "label9";
+            // 
+            // txtHandInPOS
+            // 
+            resources.ApplyResources(this.txtHandInPOS, "txtHandInPOS");
+            this.txtHandInPOS.BackColor = System.Drawing.SystemColors.Control;
+            this.txtHandInPOS.Name = "txtHandInPOS";
             // 
             // txtNonCashTotal
             // 
@@ -678,5 +753,14 @@
         private System.Windows.Forms.Label label36;
         private System.Windows.Forms.Label label35;
         private System.Windows.Forms.Label txtCashOfOperatorCard;
+        private System.Windows.Forms.Label txtCashOfRefund;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label txtCashOfPOS;
+        private System.Windows.Forms.Label label42;
+        private System.Windows.Forms.Label label43;
+        private System.Windows.Forms.Label label45;
+        private System.Windows.Forms.Label label41;
+        private System.Windows.Forms.Label txtHandInPOS;
     }
 }

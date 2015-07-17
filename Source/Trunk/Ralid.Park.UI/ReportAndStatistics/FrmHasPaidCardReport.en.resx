@@ -125,7 +125,34 @@
     <value>83, 12</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
-    <value>month Premium</value>
+    <value>month premium</value>
+  </data>
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>123, 25</value>
+  </data>
+  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label3.Text" xml:space="preserve">
+    <value>year</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>422, 24</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>95, 12</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>，month premium</value>
+  </data>
+  <data name="comCardType.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 21</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Yuan</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>CardID</value>
@@ -136,26 +163,29 @@
   <data name="colCardCertificate.HeaderText" xml:space="preserve">
     <value>CardNum</value>
   </data>
+  <data name="colCardType.HeaderText" xml:space="preserve">
+    <value>CardType</value>
+  </data>
   <data name="colCarPlate.HeaderText" xml:space="preserve">
     <value>CarPlate</value>
   </data>
   <data name="colPaid.HeaderText" xml:space="preserve">
     <value>Paid</value>
   </data>
+  <data name="colDeduction.HeaderText" xml:space="preserve">
+    <value>Deduction</value>
+  </data>
+  <data name="colAccount.HeaderText" xml:space="preserve">
+    <value>Account</value>
+  </data>
+  <data name="colBalance.HeaderText" xml:space="preserve">
+    <value>Balance</value>
+  </data>
   <data name="colBegin.HeaderText" xml:space="preserve">
     <value>BeginData</value>
   </data>
   <data name="colEnd.HeaderText" xml:space="preserve">
     <value>EndData</value>
-  </data>
-  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>123, 25</value>
-  </data>
-  <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>29, 12</value>
-  </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>year</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Paid Premium Card Statistics</value>

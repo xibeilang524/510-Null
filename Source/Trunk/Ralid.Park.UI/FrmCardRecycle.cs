@@ -107,6 +107,13 @@ namespace Ralid.Park.UI
             {
                 this.ucCardInfo.Card = this.RecycleCard;
                 this.txtTurnbackMoney.DecimalValue = this.RecycleCard.Deposit;
+
+                if (!RecycleCard.IsCardList)
+                {
+                    //不是卡片名单时，不需要进行写卡
+                    this.chkWriteCard.Checked = false;
+                    this.chkWriteCard.Enabled = false;
+                }
             }
             if (AppSettings.CurrentSetting.EnableWriteCard)
             {
@@ -117,37 +124,45 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (RecycleCard != null)
+            try
             {
-                if (CheckInput())
+                if (RecycleCard != null)
                 {
-                    decimal money;
-                    money = this.txtTurnbackMoney.DecimalValue;
-                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                    CommandResult result = bll.CardRecycle(this.RecycleCard, money, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
-                    if (result.Result == ResultCode.Successful)
+                    if (CheckInput())
                     {
-                        //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
-                        if (this.chkWriteCard.Checked)
+                        decimal money;
+                        money = this.txtTurnbackMoney.DecimalValue;
+                        CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                        CommandResult result = bll.CardRecycle(this.RecycleCard, money, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);
+                        if (result.Result == ResultCode.Successful)
                         {
-                            CardOperationManager.Instance.WriteCardLoop(RecycleCard);                            
+                            //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                            if (this.chkWriteCard.Checked)
+                            {
+                                CardOperationManager.Instance.WriteCardLoop(RecycleCard);
+                            }
+
+                            if (this.ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(RecycleCard));
+
+                            if (DataBaseConnectionsManager.Current.StandbyConnected)
+                            {
+                                //备用数据连上时，同步到备用数据库
+                                bll.SyncCardToDatabaseWithoutPaymentInfo(RecycleCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            }
+
+                            this.Close();
                         }
-
-                        if (this.ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(RecycleCard));
-
-                        if (DataBaseConnectionsManager.Current.StandbyConnected)
+                        else
                         {
-                            //备用数据连上时，同步到备用数据库
-                            bll.SyncCardToDatabaseWithoutPaymentInfo(RecycleCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            MessageBox.Show(result.Message);
                         }
-
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(result.Message);
                     }
                 }
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

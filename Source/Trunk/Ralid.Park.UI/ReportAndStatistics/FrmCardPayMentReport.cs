@@ -33,20 +33,21 @@ namespace Ralid.Park.UI.ReportAndStatistics
         #region 事件处理方法
         private void FrmParkingPayDetailReport_Load(object sender, EventArgs e)
         {
-            this.ucDateTimeInterval1.Init();
+            this.UCChargeDateTime.Init();
+            this.UCEnterDateTime.Init();
             if (UserSetting.Current.EnableForceShifting && UserSetting.Current.ForceShiftingTime != null)
             {
                 TimeEntity te = UserSetting.Current.ForceShiftingTime;
                 if ((DateTime.Now.Hour > te.Hour) ||
                     (DateTime.Now.Hour == te.Hour && DateTime.Now.Minute >= te.Minute))
                 {
-                    ucDateTimeInterval1.StartDateTime = DateTime.Today.AddHours(te.Hour).AddMinutes(te.Minute);
-                    ucDateTimeInterval1.EndDateTime = DateTime.Today.AddDays(1).AddHours(te.Hour).AddMinutes(te.Minute).AddSeconds(-1);
+                    UCChargeDateTime.StartDateTime = DateTime.Today.AddHours(te.Hour).AddMinutes(te.Minute);
+                    UCChargeDateTime.EndDateTime = DateTime.Today.AddDays(1).AddHours(te.Hour).AddMinutes(te.Minute).AddSeconds(-1);
                 }
                 else
                 {
-                    ucDateTimeInterval1.StartDateTime = DateTime.Today.AddDays(-1).AddHours(te.Hour).AddMinutes(te.Minute);
-                    ucDateTimeInterval1.EndDateTime = DateTime.Today.AddHours(te.Hour).AddMinutes(te.Minute).AddSeconds(-1);
+                    UCChargeDateTime.StartDateTime = DateTime.Today.AddDays(-1).AddHours(te.Hour).AddMinutes(te.Minute);
+                    UCChargeDateTime.EndDateTime = DateTime.Today.AddHours(te.Hour).AddMinutes(te.Minute).AddSeconds(-1);
                 }
             }
             this.comCardType.Init();
@@ -55,14 +56,25 @@ namespace Ralid.Park.UI.ReportAndStatistics
             this.workStationCombobox1.Init();
             this.carTypeComboBox1.Init();
             this.comPaymentCode.Init();
+            this.comOperatorDept.Init();
+            this.comStationDept.Init();
         }
 
         private void ItemSearching_Handler(object sender, EventArgs e)
         {
             CardPaymentRecordSearchCondition con = new CardPaymentRecordSearchCondition();
-            con.RecordDateTimeRange = new DateTimeRange();
-            con.RecordDateTimeRange.Begin = this.ucDateTimeInterval1.StartDateTime;
-            con.RecordDateTimeRange.End = this.ucDateTimeInterval1.EndDateTime;
+            if (this.chkChargeDateTime.Checked)
+            {
+                con.RecordDateTimeRange = new DateTimeRange();
+                con.RecordDateTimeRange.Begin = this.UCChargeDateTime.StartDateTime;
+                con.RecordDateTimeRange.End = this.UCChargeDateTime.EndDateTime;
+            }
+            if (this.chkEnterDateTime.Checked)
+            {
+                con.EnterDateTimeRange = new DateTimeRange();
+                con.EnterDateTimeRange.Begin = this.UCEnterDateTime.StartDateTime;
+                con.EnterDateTimeRange.End = this.UCEnterDateTime.EndDateTime;
+            }
             con.CardType = this.comCardType.SelectedCardType;
             con.CardID = this.txtCardID.Text.Trim();
             con.CardCertificate = txtCertificate.Text.Trim();
@@ -82,7 +94,52 @@ namespace Ralid.Park.UI.ReportAndStatistics
             }
             con.StationID = this.workStationCombobox1.Text.Trim();
             con.PaymentCode = this.comPaymentCode.SelectedPaymentCode;
-            con.OperatorCardID = this.txtOperatorCardID.Text.Trim(); ;
+            con.OperatorCardID = this.txtOperatorCardID.Text.Trim();
+            con.StationIDs = this.txtWorkStations.Tag as List<string>;
+            con.OperatorDeptID = this.comOperatorDept.SelectedDeptID;
+            con.StationDeptID = this.comStationDept.SelectedDeptID;
+
+            //if (!string.IsNullOrEmpty(this.comOperatorDept.SelectedDeptIDString))
+            //{//操作员部门 
+            //    OperatorBll opeBll = new OperatorBll(AppSettings.CurrentSetting.ParkConnect);
+            //    OperatorSearchCondition opeCon = new OperatorSearchCondition();
+            //    opeCon.DeptID = Guid.Parse(this.comOperatorDept.SelectedDeptIDString);
+            //    List<OperatorInfo> operators = opeBll.GetOperators(opeCon).QueryObjects;
+            //    List<string> lts_operators = new List<string>();
+            //    if (operators.Count > 0)
+            //    {
+            //        foreach (OperatorInfo item in operators)
+            //        {
+            //            //lts_operators.Add(item.OperatorID);
+            //            lts_operators.Add(item.OperatorName);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        lts_operators.Add("此部门没有操作员");
+            //    }
+            //    con.OperatorIDs = lts_operators;
+            //}
+            //if (!string.IsNullOrEmpty(this.comStationDept.SelectedDeptIDString))
+            //{//工作站部门 
+            //    WorkstationBll workBll = new WorkstationBll(AppSettings.CurrentSetting.ParkConnect);
+            //    WorkstationSearchCondition workCon = new WorkstationSearchCondition();
+            //    workCon.DeptID = Guid.Parse(this.comStationDept.SelectedDeptIDString);
+            //    List<WorkStationInfo> stations = workBll.GetWorkstations(workCon).QueryObjects;
+            //    List<string> lts_stations = new List<string>();
+            //    if (stations.Count > 0)
+            //    {
+            //        foreach (WorkStationInfo item in stations)
+            //        {
+            //            lts_stations.Add(item.StationName);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        lts_stations.Add("此部门没有工作站");
+            //    }
+            //    con.StationIDs = lts_stations;
+            //}
 
             CardPaymentRecordBll bll = new CardPaymentRecordBll(AppSettings.CurrentSetting.ParkConnect); 
             QueryResultList<CardPaymentInfo> result = bll.GetItems(con);
@@ -100,6 +157,9 @@ namespace Ralid.Park.UI.ReportAndStatistics
         {
             decimal paid = 0;
             decimal discount = 0;
+            decimal cash = 0;
+            decimal pos = 0;
+            decimal other = 0;
             this.GridView.Rows.Clear();
             items = (from CardPaymentInfo cr in items
                      orderby cr.ChargeDateTime descending
@@ -112,10 +172,25 @@ namespace Ralid.Park.UI.ReportAndStatistics
                 ShowCardPaymentOnRow(info,row);
                 paid += info.Paid;
                 discount += info.Discount;
+                if (info.PaymentMode == PaymentMode.Cash)
+                {
+                    cash += info.Paid;
+                }
+                else if (info.PaymentMode == PaymentMode.Pos)
+                {
+                    pos += info.Paid;
+                }
+                else
+                {
+                    other += info.Paid;
+                }
             }
-            this.txtTotal.Text = (paid + discount).ToString();
-            this.txtPaid.Text = paid.ToString();
-            this.txtAccounts.Text = discount.ToString();
+            this.txtTotal.Text = (paid + discount).ToString("N");
+            this.txtPaid.Text = paid.ToString("N");
+            this.txtAccounts.Text = discount.ToString("N");
+            this.txtCash.Text = cash.ToString("N");
+            this.txtPOS.Text = pos.ToString("N");
+            this.txtOther.Text = other.ToString("N");
         }
 
         private void ShowCardPaymentOnRow(CardPaymentInfo info, int row)
@@ -134,16 +209,18 @@ namespace Ralid.Park.UI.ReportAndStatistics
             GridView.Rows[row].Cells["colTimeSpan"].Value = info.TimeInterval;
             GridView.Rows[row].Cells["colPaid"].Value = info.Paid;
             GridView.Rows[row].Cells["colDiscount"].Value = info.Discount;
+            GridView.Rows[row].Cells["colCurDiscountHour"].Value = info.CurrDiscountHour.HasValue ? info.CurrDiscountHour.Value.ToString() : string.Empty;
             GridView.Rows[row].Cells["colHandled"].Value = info.SettleDateTime != null;
             GridView.Rows[row].Cells["colSettleDateTime"].Value = info.SettleDateTime;
             GridView.Rows[row].Cells["colTotalAccounts"].Value = info.Accounts;
             GridView.Rows[row].Cells["colTotalPaid"].Value = info.TotalPaid;
             GridView.Rows[row].Cells["colTotalDiscount"].Value = info.TotalDiscount;
+            GridView.Rows[row].Cells["colDiscountHour"].Value = info.DiscountHour;
             GridView.Rows[row].Cells["colStation"].Value = info.StationID;
             GridView.Rows[row].Cells["colMemo"].Value = info.Memo;
             GridView.Rows[row].Cells["colPaymentCode"].Value = Ralid.Park.BusinessModel.Resouce.PaymentCodeDescription.GetDescription(info.PaymentCode);
             GridView.Rows[row].Cells["colOperatorCardID"].Value = info.OperatorCardID;
-            GridView.Rows[row].DefaultCellStyle.ForeColor = info.Discount >0?Color.Red:Color.Black;
+            GridView.Rows[row].DefaultCellStyle.ForeColor = info.Discount > 0 ? Color.Red : Color.Black;
         }
 
         private void customDataGridView1_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
@@ -223,6 +300,47 @@ namespace Ralid.Park.UI.ReportAndStatistics
             }
             e.IsTopRecord = (_EventIndex == 0);
         }
+        private void customDataGridView1_SortCompare(object sender, DataGridViewSortCompareEventArgs e)
+        {
+            //停车时长按停车的时间长度排序，不是按字符串排序
+            if (e.Column.Name == "colTimeSpan")
+            {
+                CardPaymentInfo info1 = this.customDataGridView1.Rows[e.RowIndex1].Tag as CardPaymentInfo;
+                CardPaymentInfo info2 = this.customDataGridView1.Rows[e.RowIndex2].Tag as CardPaymentInfo;
+                if (info1 != null
+                    && info2 != null
+                    && info1.EnterDateTime.HasValue
+                    && info2.EnterDateTime.HasValue)
+                {
+                    TimeSpan ts1 = new TimeSpan(info1.ChargeDateTime.Ticks - info1.EnterDateTime.Value.Ticks);
+                    TimeSpan ts2 = new TimeSpan(info2.ChargeDateTime.Ticks - info2.EnterDateTime.Value.Ticks);
+                    e.SortResult = ts1.Ticks > ts2.Ticks ? 1 : ts1.Ticks < ts2.Ticks ? -1 : 0;
+                    e.Handled = true;
+                }
+            }
+        }
+        private void chkChargeDateTime_CheckedChanged(object sender, EventArgs e)
+        {
+            this.UCChargeDateTime.Enabled = this.chkChargeDateTime.Checked;
+        }
+
+        private void chkEnterDateTime_CheckedChanged(object sender, EventArgs e)
+        {
+            this.UCEnterDateTime.Enabled = this.chkEnterDateTime.Checked;
+        }
+        private void lklWorkStations_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            FrmWorkstationsSelection frm = new FrmWorkstationsSelection();
+            frm.SelectionItems = this.txtWorkStations.Tag as List<string>;
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                this.txtWorkStations.Tag = frm.SelectionItems;
+                this.txtWorkStations.Text = string.Join(";", frm.SelectionItems);
+            }
+        }
         #endregion
+
+
+
     }
 }

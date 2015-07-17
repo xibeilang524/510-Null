@@ -283,7 +283,7 @@
     <value>txtDescription</value>
   </data>
   <data name="&gt;&gt;txtDescription.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.303, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtDescription.Parent" xml:space="preserve">
     <value>$this</value>
@@ -409,7 +409,7 @@
     <value>txtCardID</value>
   </data>
   <data name="&gt;&gt;txtCardID.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.303, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
     <value>$this</value>
@@ -433,7 +433,7 @@
     <value>txtSerialNum</value>
   </data>
   <data name="&gt;&gt;txtSerialNum.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.303, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtSerialNum.Parent" xml:space="preserve">
     <value>$this</value>

@@ -1,0 +1,307 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd6" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" />
+  <xs:element name="GetCardByID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardByIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardByIDResult" nillable="true" type="q1:QueryResultOfCardInfoGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="cardNum" type="xs:short" />
+        <xs:element minOccurs="0" name="carType" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="status" type="xs:unsignedByte" />
+        <xs:element minOccurs="0" name="index" type="xs:short" />
+        <xs:element minOccurs="0" name="lastEntrance" type="xs:int" />
+        <xs:element minOccurs="0" name="activationDate" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="validDate" type="xs:dateTime" />
+        <xs:element minOccurs="0" name="balance" type="xs:decimal" />
+        <xs:element minOccurs="0" name="deposit" type="xs:decimal" />
+        <xs:element minOccurs="0" name="discountHour" type="xs:int" />
+        <xs:element minOccurs="0" name="options" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" minOccurs="0" name="SaveCardResult" type="q2:InterfaceReturnCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCard2">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="card" nillable="true" type="q3:CardInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SaveCard2Response">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="SaveCard2Result" nillable="true" type="q4:CommandResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCard">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCardResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="DeleteCardResult" nillable="true" type="q5:CommandResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVacant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parkid" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetVacantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetVacantResult" type="xs:short" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetVacant">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="parkid" type="xs:int" />
+        <xs:element minOccurs="0" name="vacant" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="SetVacantResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" minOccurs="0" name="SetVacantResult" type="q6:InterfaceReturnCode" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardLastPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="info" nillable="true" type="q7:CardInfo" />
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="operatorInfo" nillable="true" type="q8:OperatorInfo" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardLastPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetCardLastPaymentResult" type="xs:decimal" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardChargeRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q9:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardChargeRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardChargeRecordsResult" nillable="true" type="q10:QueryResultListOfCardChargeRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDeferRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q11:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDeferRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardDeferRecordsResult" nillable="true" type="q12:QueryResultListOfCardDeferRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardLostRestoreRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q13:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardLostRestoreRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardLostRestoreRecordsResult" nillable="true" type="q14:QueryResultListOfCardLostRestoreRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDisableEnableRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q15:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDisableEnableRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardDisableEnableRecordsResult" nillable="true" type="q16:QueryResultListOfCardDisableEnableRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardRecycleRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q17:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardRecycleRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardRecycleRecordsResult" nillable="true" type="q18:QueryResultListOfCardRecycleRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardReleaseRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q19:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardReleaseRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardReleaseRecordsResult" nillable="true" type="q20:QueryResultListOfCardReleaseRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDeleteRecords">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" minOccurs="0" name="search" nillable="true" type="q21:RecordSearchCondition" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardDeleteRecordsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardDeleteRecordsResult" nillable="true" type="q22:QueryResultListOfCardDeleteRecordGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllEntraces">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllEntracesResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetAllEntracesResult" nillable="true" type="q23:QueryResultListOfEntranceInfoGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardStatusByCardID">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardStatusByCardIDResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="GetCardStatusByCardIDResult" type="q24:CardStatus" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryParkByCarPlate">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="carPlate" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="QueryParkByCarPlateResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q25="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="QueryParkByCarPlateResult" nillable="true" type="q25:QueryResultOfParkInfoGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllPark">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllParkResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q26="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetAllParkResult" nillable="true" type="q26:QueryResultListOfParkInfoGb4BZX1A" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardPayment">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="discountHour" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="discountAmount" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reserve1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reserve2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCardPaymentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q27="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="GetCardPaymentResult" nillable="true" type="q27:QueryResultOfWSCardPaymentInfoPcvV6n_Pz" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CardFeePay">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="cardID" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="chargeDateTime" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="paid" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="payMode" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="memo" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reserve1" nillable="true" type="xs:string" />
+        <xs:element minOccurs="0" name="reserve2" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="CardFeePayResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q28="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" minOccurs="0" name="CardFeePayResult" nillable="true" type="q28:CommandResult" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

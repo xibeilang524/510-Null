@@ -19,5 +19,17 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 操作员编号
         /// </summary>
         public byte? OperatorNum { get; set; }
+
+        /// <summary>
+        /// 操作员ID
+        /// </summary>
+        public string OperatorID { get; set; }
+
+        /// <summary>
+        /// 操作员名称
+        /// </summary>
+        public string OperatorName { get; set; }
+
+        public Guid DeptID { get; set; }
     }
 }

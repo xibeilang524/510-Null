@@ -120,6 +120,9 @@
   <data name="btnClose.Text" xml:space="preserve">
     <value>關閉(&amp;C)</value>
   </data>
+  <data name="tabGeneral.Text" xml:space="preserve">
+    <value>基本資料</value>
+  </data>
   <data name="label11.Text" xml:space="preserve">
     <value>繳費事件索引</value>
   </data>
@@ -148,24 +151,6 @@
   <data name="label33.Text" xml:space="preserve">
     <value>控制器類型</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>165, 231</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>控制埠號</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>267, 231</value>
-  </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>事件埠號</value>
-  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>閘道</value>
   </data>
@@ -181,8 +166,20 @@
   <data name="label1.Text" xml:space="preserve">
     <value>IP 位址</value>
   </data>
-  <data name="tabGeneral.Text" xml:space="preserve">
-    <value>基本資料</value>
+  <data name="tabPage2.Text" xml:space="preserve">
+    <value>高級選項</value>
+  </data>
+  <data name="chkPrinterUseNotch.Text" xml:space="preserve">
+    <value>紙票印表機使用黑標打印</value>
+  </data>
+  <data name="chkWeigand34.Text" xml:space="preserve">
+    <value>使用韋根34協議</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>條碼槍串口號2:</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Text" xml:space="preserve">
+    <value>卡片不在名單中轉在線處理</value>
   </data>
   <data name="chkUseAsACS.Text" xml:space="preserve">
     <value>路閘模式</value>
@@ -237,9 +234,6 @@
   </data>
   <data name="chkTakeCardNeedCarSense.Text" xml:space="preserve">
     <value>取/讀卡要求壓地感</value>
-  </data>
-  <data name="tabPage2.Text" xml:space="preserve">
-    <value>高級選項</value>
   </data>
   <data name="tabCardProperty.Text" xml:space="preserve">
     <value>卡片類型屬性</value>

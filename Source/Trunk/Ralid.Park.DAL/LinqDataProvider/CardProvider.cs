@@ -46,7 +46,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 }
                 if (con.Status != null)
                 {
-                    result = result.Where(c => (c.Status & con.Status.Value) == c.Status);
+                    result = result.Where(c => c.Status == con.Status.Value);
                 }
                 if (con.CarType != null)
                 {
@@ -59,6 +59,10 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 if (!string.IsNullOrEmpty(con.OwnerName))
                 {
                     result = result.Where(c => c.OwnerName.Contains(con.OwnerName));
+                }
+                if (!string.IsNullOrEmpty(con.Department))
+                {
+                    result = result.Where(c => c.Department.Contains(con.Department));
                 }
                 if (!string.IsNullOrEmpty(con.LastCarPlate))
                 {
@@ -73,6 +77,13 @@ namespace Ralid.Park.DAL.LinqDataProvider
                     result = result.Where(c => c.CardCertificate.Contains(con.CardCertificate));
                 }
                 if (con.ParkingStatus != null) result = result.Where(c => c.ParkingStatus == con.ParkingStatus);
+                if (con.IsIn != null)
+                {
+                    if (con.IsIn.Value)
+                        result = result.Where(c => (c.ParkingStatus & ParkingStatus.In) == ParkingStatus.In);
+                    else
+                        result = result.Where(c => (c.ParkingStatus & ParkingStatus.In) != ParkingStatus.In);
+                }
                 if (con.LastDateTime != null)
                 {
                     result = result.Where(c => c.LastDateTime >= con.LastDateTime.Begin && c.LastDateTime <= con.LastDateTime.End);
@@ -81,11 +92,53 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 {
                     result = result.Where(c => c.UpdateFlag == con.UpdateFlag);
                 }
-                infoes = result.OrderBy(c => c.CardID).ToList();
+                if (!string.IsNullOrEmpty(con.CarPlateOrLast))
+                {
+                    result = result.Where(c => c.LastCarPlate.Contains(con.CarPlateOrLast) || c.CarPlate.Contains(con.CarPlateOrLast));
+                }
+                if (con.ListType != null)
+                {
+                    result = result.Where(c => c.ListType == con.ListType.Value);
+                }
+                if (!string.IsNullOrEmpty(con.ListCarPlate))
+                {
+                    result = result.Where(c => c.CarPlate == con.ListCarPlate);
+                }
                 if (con.CardType != null)
                 {
-                    infoes = infoes.Where(c => c.CardType == con.CardType).ToList();
+                    //这里不能使用Card类的CardType来作为条件查询，因为CardType未做映射，会报错
+                    //必须使用_CardType作为条件
+                    result = result.Where(c => c._CardType == con.CardType.ID);
                 }
+                if (con.OnlineHandleWhenOfflineMode != null)
+                {
+                    if (con.OnlineHandleWhenOfflineMode.Value)
+                    {
+                        //脱机时在线处理卡片
+                        result = result.Where(c => (c.Options & CardOptions.OfflineHandleWhenOfflineMode) != CardOptions.OfflineHandleWhenOfflineMode);
+                    }
+                    else
+                    {
+                        //脱机时脱机线处理卡片
+                        result = result.Where(c => (c.Options & CardOptions.OfflineHandleWhenOfflineMode) == CardOptions.OfflineHandleWhenOfflineMode);
+                    }
+                }
+
+                //先排序
+                result = result.OrderBy(c => c.CardID);
+                con.TotalCountEx = result.Count();
+                if (con.PageSize > 0 && con.PageIndex > 0)
+                {
+                    //需要分页时，再分页
+                    result = result.Skip((con.PageIndex - 1) * con.PageSize).Take(con.PageSize);
+                    con.TotalCount = result.Count();
+                }
+                infoes = result.ToList();
+                //infoes = result.OrderBy(c => c.CardID).ToList();
+                //if (con.CardType != null)
+                //{
+                //    infoes = infoes.Where(c => c.CardType == con.CardType).ToList();
+                //}
             }
             return infoes;
         }

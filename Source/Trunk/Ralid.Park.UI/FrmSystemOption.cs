@@ -4,6 +4,7 @@ using System.Linq;
 using System.Threading;
 using System.Windows.Forms;
 using Ralid.Park.BLL;
+using System.Data.SqlClient;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Configuration;
@@ -148,7 +149,8 @@ namespace Ralid.Park.UI
 
             KeySetting.Current = GetKeySettingFromInput();
             ssb.SaveSetting<KeySetting>(KeySetting.Current);
-            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+
+            GlobalVariables.SetCardReaderKeysetting();
 
             SaveToStandby();
 
@@ -199,30 +201,33 @@ namespace Ralid.Park.UI
         {
             LDB_SysParaSettingsBll ssb = new LDB_SysParaSettingsBll(LDB_AppSettings.Current.LDBConnect);
             UserSetting.Current = GetUserSettingFromInput();
-            ssb.SaveSetting<UserSetting>(UserSetting.Current);
+            ssb.SaveSettingWithUnitWork<UserSetting>(UserSetting.Current);
 
             BaseCardTypeSetting.Current = GetBaseCardTypeFromInput();
-            ssb.SaveSetting<BaseCardTypeSetting>(BaseCardTypeSetting.Current);
+            ssb.SaveSettingWithUnitWork<BaseCardTypeSetting>(BaseCardTypeSetting.Current);
 
             CarTypeSetting.Current = GetCarTypeSettingFromInput();
-            ssb.SaveSetting<CarTypeSetting>(CarTypeSetting.Current);
+            ssb.SaveSettingWithUnitWork<CarTypeSetting>(CarTypeSetting.Current);
 
             AccessSetting.Current = GetAccessSettingFromInput();
-            ssb.SaveSetting<AccessSetting>(AccessSetting.Current);
+            ssb.SaveSettingWithUnitWork<AccessSetting>(AccessSetting.Current);
 
             HolidaySetting.Current = GetHolidaySettingFromInput();
-            ssb.SaveSetting<HolidaySetting>(HolidaySetting.Current);
+            ssb.SaveSettingWithUnitWork<HolidaySetting>(HolidaySetting.Current);
 
             TariffSetting.Current = GetTariffSettingFromInput();
             TariffSetting.Current.TariffOption = GetTollOptionFromInput();
-            ssb.SaveSetting<TariffSetting>(TariffSetting.Current);
+            ssb.SaveSettingWithUnitWork<TariffSetting>(TariffSetting.Current);
 
             CustomCardTypeSetting.Current = GetCustomCardTypeFromInput();
-            ssb.SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
+            ssb.SaveSettingWithUnitWork<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
 
             KeySetting.Current = GetKeySettingFromInput();
-            ssb.SaveSetting<KeySetting>(KeySetting.Current);
-            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+            ssb.SaveSettingWithUnitWork<KeySetting>(KeySetting.Current);
+
+            ssb.UnitWorkCommit();
+
+            GlobalVariables.SetCardReaderKeysetting();
         }
         #endregion
 
@@ -238,6 +243,8 @@ namespace Ralid.Park.UI
             //    this.carTypeGrid.AllowUserToAddRows = false;
             //    this.carTypeGrid.AllowUserToDeleteRows = false;
             //}
+            this.tab1.TabPages.Remove(this.tabGeneral);
+
 
             InitKeyInput();
 
@@ -257,6 +264,9 @@ namespace Ralid.Park.UI
             {
                 ShowCurrentParking();
             }
+
+
+            this.rdbCPU.CheckedChanged += rdbCPU_CheckedChanged_1;
         }
 
         private void butOK_Click(object sender, EventArgs e)
@@ -317,6 +327,12 @@ namespace Ralid.Park.UI
                 this.txtMonth.Focus();
                 return false;
             }
+            if (chkEnableDeleteOverTimeCardEvents.Checked && txtCardEventMonth.IntergerValue <= 0)
+            {
+                MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidMonth);
+                this.txtCardEventMonth.Focus();
+                return false;
+            }
             if (this.txtMaxCarPlateErrorChar.IntergerValue > 7 || this.txtMaxCarPlateErrorChar.IntergerValue < 0)
             {
                 MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidMaxCarplateErrorChar);
@@ -331,6 +347,12 @@ namespace Ralid.Park.UI
             if (!CheckTariffInput()) return false;
 
             if (!CheckKeyInput()) return false;
+
+            if(!CheckParkingCouponInput()) return false;
+
+            if (!CheckRotationInput()) return false;
+
+            if (!CheckImageDBConnectString()) return false;
 
             return true;
         }
@@ -458,62 +480,193 @@ namespace Ralid.Park.UI
 
         private bool CheckKeyInput()
         {
-            if (string.IsNullOrEmpty(txtCardSection.Text))
+            if (this.rdbIC.Checked)
             {
-                this.tab1.SelectedTab = this.tabKey;
-                this.chkCardSection.Checked = true;
-                this.txtCardSection.Focus();
-                MessageBox.Show(Resources.Resource1.FrmSystemOption_InputCardSection);
-                return false;
-            }
-
-            if (chkChangeKey.Checked)
-            {
-                if (this.pnlOldKey.Enabled)
+                //IC卡检查
+                if (string.IsNullOrEmpty(txtCardSection.Text))
                 {
-                    if (this.txtOldKey.HexValue.Length != 6)
+                    this.tab1.SelectedTab = this.tabKey;
+                    this.chkCardSection.Checked = true;
+                    this.txtCardSection.Focus();
+                    MessageBox.Show(Resources.Resource1.FrmSystemOption_InputCardSection);
+                    return false;
+                }
+
+                if (chkChangeKey.Checked)
+                {
+                    if (this.pnlOldKey.Enabled)
                     {
-                        MessageBox.Show(Resources.Resource1.FrmSystemOption_InputOldKey);
-                        this.tab1.SelectedTab = this.tabKey;
-                        this.txtOldKey.Focus();
-                        return false;
+                        if (this.txtOldKey.HexValue.Length != 6)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InputOldKey);
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.txtOldKey.Focus();
+                            return false;
+                        }
+                        if (!Ralid.GeneralLibrary.HexStringConverter.HexEquals(this.txtOldKey.HexValue, KeySetting.Current.ParkingKey))
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidOldKey);
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.txtOldKey.Focus();
+                            return false;
+                        }
                     }
-                    if (!Ralid.GeneralLibrary.HexStringConverter.HexEquals(this.txtOldKey.HexValue, KeySetting.Current.ParkingKey))
+                    if (rdbInputKey.Checked)
                     {
-                        MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidOldKey);
+                        if (this.txtNewKey.HexValue.Length != 6)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InputNewKey);
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.txtNewKey.Focus();
+                            return false;
+                        }
+                        if (this.txtConfirmKey.HexValue.Length != 6)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InputConfirmNewKey);
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.txtConfirmKey.Focus();
+                            return false;
+                        }
+                        if (this.txtNewKey.Text.Trim().ToLower() != this.txtConfirmKey.Text.Trim().ToLower())
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_NewKeyInconformity);
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.txtConfirmKey.Focus();
+                            return false;
+                        }
+                    }
+                }
+            }
+            else 
+            {
+                //CPU卡检查                
+                if (this.rdbFixedKey.Checked)
+                {
+                    if (this.txtCPUKey.HexValue == null || this.txtCPUKey.HexValue.Length != 16)
+                    {
+                        MessageBox.Show(Resources.Resource1.FrmSystemOption_CPUKeyInvalid);
                         this.tab1.SelectedTab = this.tabKey;
-                        this.txtOldKey.Focus();
+                        this.txtCPUKey.Focus();
                         return false;
                     }
                 }
-                if (rdbInputKey.Checked)
+
+                //检查CPU密钥设置是否已更改，如更改了，需用户确认
+                AlgorithmType algorith = this.rdbSM1.Checked ? AlgorithmType.SM1 : AlgorithmType.DES3;
+                ReaderReadMode mode = this.rdbSamNo.Checked ? ReaderReadMode.SAM : ReaderReadMode.FixedKey;
+                byte[] cpuKey=this.txtCPUKey.HexValue;
+                KeySetting ks = KeySetting.Current;
+                if (ks != null)
                 {
-                    if (this.txtNewKey.HexValue.Length != 6)
+                    if (algorith != ks.AlgorithmType
+                        || mode != ks.ReaderReadMode
+                        || (ks.ReaderReadMode== ReaderReadMode.FixedKey &&!Ralid.GeneralLibrary.HexStringConverter.HexEquals(cpuKey, ks.ParkingCPUKeyBase)))
                     {
-                        MessageBox.Show(Resources.Resource1.FrmSystemOption_InputNewKey);
-                        this.tab1.SelectedTab = this.tabKey;
-                        this.txtNewKey.Focus();
-                        return false;
+                        if (MessageBox.Show(Resources.Resource1.FrmSystemOption_CPUKeyNote,Resources.Resource1.FrmSystemOption_SaveCPUKeyComfirm, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                        {
+                            this.tab1.SelectedTab = this.tabKey;
+                            this.rdbCPU.Focus();
+                            return false;
+                        }
                     }
-                    if (this.txtConfirmKey.HexValue.Length != 6)
+                }
+                    
+
+            }
+            return true;
+        }
+
+        private bool CheckParkingCouponInput()
+        {
+            if (this.gridParkingCoupon.Rows.Count > 0)
+            {
+                decimal pravalue = 0;
+
+                for (int i = 0; i < this.gridParkingCoupon.Rows.Count; i++)
+                {
+                    if (!this.gridParkingCoupon.Rows[i].IsNewRow)
                     {
-                        MessageBox.Show(Resources.Resource1.FrmSystemOption_InputConfirmNewKey);
-                        this.tab1.SelectedTab = this.tabKey;
-                        this.txtConfirmKey.Focus();
-                        return false;
-                    }
-                    if (this.txtNewKey.Text.Trim().ToLower() != this.txtConfirmKey.Text.Trim().ToLower())
-                    {
-                        MessageBox.Show(Resources.Resource1.FrmSystemOption_NewKeyInconformity);
-                        this.tab1.SelectedTab = this.tabKey;
-                        this.txtConfirmKey.Focus();
-                        return false;
+                        if (string.IsNullOrEmpty(this.gridParkingCoupon.Rows[i].Cells["colCouponName"].Value as string))
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidCouponName);
+                            this.tab1.SelectedTab = this.tabParkingCoupon;
+                            this.gridParkingCoupon.Focus();
+                            this.gridParkingCoupon.CurrentCell = this.gridParkingCoupon.Rows[i].Cells["colCouponName"];
+                            return false;
+                        }
+
+                        if (this.gridParkingCoupon.Rows[i].Cells["colCouponValue"].Value == null
+                            || !decimal.TryParse(this.gridParkingCoupon.Rows[i].Cells["colCouponValue"].Value.ToString(), out pravalue)
+                            || pravalue < 0)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidCouponValue);
+                            this.tab1.SelectedTab = this.tabParkingCoupon;
+                            this.gridParkingCoupon.Focus();
+                            this.gridParkingCoupon.CurrentCell = this.gridParkingCoupon.Rows[i].Cells["colCouponValue"];
+                            return false;
+                        }
                     }
                 }
             }
             return true;
         }
 
+        private bool CheckRotationInput()
+        {
+            if (this.gridRotation.Rows.Count > 0)
+            {
+                for (int i = 0; i < this.gridRotation.Rows.Count; i++)
+                {
+                    if (!this.gridRotation.Rows[i].IsNewRow)
+                    {
+                        int entranceID = Convert.ToInt32(this.gridRotation.Rows[i].Cells["colRotationEntrance"].Value);
+                        if (entranceID <= 0)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidRotationEntrance);
+                            this.tab1.SelectedTab = this.tabRotation;
+                            this.gridRotation.Focus();
+                            this.gridRotation.CurrentCell = this.gridRotation.Rows[i].Cells["colRotationEntrance"];
+                            this.gridRotation.CurrentCell.Selected = true;
+                            return false;
+                        }
+
+                        int number = Convert.ToInt32(this.gridRotation.Rows[i].Cells["colRotationNumber"].Value);
+                        if (number <= 0)
+                        {
+                            MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidRotationNumber);
+                            this.tab1.SelectedTab = this.tabRotation;
+                            this.gridRotation.Focus();
+                            this.gridRotation.CurrentCell = this.gridRotation.Rows[i].Cells["colRotationNumber"];
+                            this.gridRotation.CurrentCell.Selected = true;
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+
+        public bool CheckImageDBConnectString()
+        {
+            if (!string.IsNullOrEmpty(this.txtServer.Text.Trim())
+                || !string.IsNullOrEmpty(this.txtServer.Text.Trim()))
+            {
+                //其中一个部位空时，表示设置了图片数据库
+                if (string.IsNullOrEmpty(this.txtServer.Text.Trim()))
+                {
+                    MessageBox.Show(Resources.Resource1.FrmLogin_InvalidServer);
+                    this.txtServer.Focus();
+                    return false;
+                }
+                if (string.IsNullOrEmpty(this.txtDataBase.Text.Trim()))
+                {
+                    MessageBox.Show(Resources.Resource1.FrmLogin_InvalidDataBase);
+                    this.txtDataBase.Focus();
+                    return false;
+                }
+            }
+            return true;
+        }
 
         private void chkShowOld_CheckedChanged(object sender, EventArgs e)
         {
@@ -543,6 +696,16 @@ namespace Ralid.Park.UI
                 || tab1.SelectedTab == tabHoliday
                 || tab1.SelectedTab == tabTariff
                 || tab1.SelectedTab == tabKey);
+
+            if (tab1.SelectedTab == tabTariff)
+            {
+                this.lblMsg.Text = "该处费率为停车场共用费率，如需设置停车场单独费率，请在对应停车场处设置。";
+                this.lblMsg.Visible = true;
+            }
+            else
+            {
+                this.lblMsg.Visible = false;
+            }
         }
 
         private void btnDownLoad_Click(object sender, EventArgs e)
@@ -575,6 +738,7 @@ namespace Ralid.Park.UI
             else if (tab1.SelectedTab == tabTariff && CheckTariffInput())
             {
                 TariffSetting.Current = GetTariffSettingFromInput();
+                TariffSetting.Current.TariffOption = GetTollOptionFromInput();
                 ssb.SaveSetting<TariffSetting>(TariffSetting.Current);
                 foreach (IParkingAdapter ad in ParkingAdapterManager.Instance.ParkAdapters)
                 {
@@ -587,7 +751,9 @@ namespace Ralid.Park.UI
             {
                 KeySetting.Current = GetKeySettingFromInput();
                 ssb.SaveSetting<KeySetting>(KeySetting.Current);
-                CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+
+                GlobalVariables.SetCardReaderKeysetting();
+
                 foreach (IParkingAdapter ad in ParkingAdapterManager.Instance.ParkAdapters)
                 {
                     ad.DownloadKeySetting(KeySetting.Current);
@@ -642,6 +808,7 @@ namespace Ralid.Park.UI
             this.comLedType.Items.Clear();
             this.comLedType.Items.Add(Resources.Resource1.LEDType_Zhongkuang);
             this.comLedType.Items.Add(Resources.Resource1.LEDType_YanSe);
+            this.comLedType.Items.Add(Resources.Resource1.LEDType_HSD);
             this.comParkingCommunicationIP.Items.Clear();
             this.comParkingCommunicationIP.Items.Add(string.Empty);
             this.comParkingCommunicationIP.Items.AddRange(GeneralLibrary.NetTool.GetLocalIPS());
@@ -668,10 +835,14 @@ namespace Ralid.Park.UI
             this.chkAuotAddToFirewallException.Checked = AppSettings.CurrentSetting.AuotAddToFirewallException;
             this.comParkingCommunicationIP.Text = AppSettings.CurrentSetting.ParkingCommunicationIP;
             this.chkCheckConnectionWithPing.Checked = AppSettings.CurrentSetting.CheckConnectionWithPing;
+            this.chkSwitchEntrance.Checked = AppSettings.CurrentSetting.SwitchEntrance;
+            this.chkEnableHotel.Checked = AppSettings.CurrentSetting.EnableHotel;
         }
 
         private void SaveAppSetting()
         {
+            if (!this.tab1.TabPages.Contains(this.tabGeneral)) return;
+
             AppSettings.CurrentSetting.ParkFeeLedCOMPort = this.comFeeLed.ComPort;
             AppSettings.CurrentSetting.TicketReaderCOMPort = this.comTicketReader.ComPort;
             AppSettings.CurrentSetting.BillPrinterCOMPort = this.comBillPrinter.ComPort;
@@ -697,6 +868,8 @@ namespace Ralid.Park.UI
             }
             AppSettings.CurrentSetting.ParkingCommunicationIP = this.comParkingCommunicationIP.Text;
             AppSettings.CurrentSetting.CheckConnectionWithPing = this.chkCheckConnectionWithPing.Checked;
+            AppSettings.CurrentSetting.SwitchEntrance = this.chkSwitchEntrance.Checked;
+            AppSettings.CurrentSetting.EnableHotel = this.chkEnableHotel.Checked;
         }
         #endregion
 
@@ -706,12 +879,26 @@ namespace Ralid.Park.UI
             this.comVideoType.Items.Clear();
             this.comVideoType.Items.Add(Resources.Resource1.FrmSystemOption_Type + " " + "A");
             this.comVideoType.Items.Add(Resources.Resource1.FrmSystemOption_Type + " " + "X");
+            this.comVideoType.Items.Add(Resources.Resource1.FrmSystemOption_Type + " " + "J");
+            this.comVideoType.Items.Add(Resources.Resource1.FrmSystemOption_Type + " " + "D");
 
             this.txtCompanyName.Text = us.CompanyName;
             if (us.EnableDeleteOverTimeImages)  //数据库优化
             {
                 this.chkEnableDeleteOverTimeImages.Checked = true;
-                this.txtMonth.IntergerValue = us.Month;
+            }
+            if (us.Month > 0)
+            {
+                this.txtMonth.IntergerValue = us.Month; 
+            }
+            if (us.EnableDeleteOverTimeCardEvents)
+            {
+                this.chkEnableDeleteOverTimeCardEvents.Checked = true;
+                this.txtCardEventMonth.IntergerValue = us.CardEventMonth;
+            }
+            if (us.CardEventMonth > 0)
+            {
+                this.txtCardEventMonth.IntergerValue = us.CardEventMonth;
             }
             this.chkEnableForceShifting.Checked = us.EnableForceShifting;//强制交班
             if (us.ForceShiftingTime != null)
@@ -722,6 +909,11 @@ namespace Ralid.Park.UI
             this.chkWegen34Enable.Checked = us.WegenType == Ralid.GeneralLibrary.CardReader.WegenType.Wengen34;
             this.chkSnapshotWhenCarArrive.Checked = us.SnapshotWhenCarArrive;
             this.chkInputHandInCashWhenSettle.Checked = us.InputHandInCashWhenSettle;
+            this.chkEnableOutdoorLed.Checked = us.EnableOutdoorLed;
+            this.chkOperatorCardCashWhenSettle.Checked = us.OperatorCardCashWhenSettle;
+            this.chkForbiddenEnterWhenSpeeding.Checked = us.ForbiddenEnterWhenSpeeding;
+            this.chkForbiddenExitWhenSpeeding.Checked = us.ForbiddenExitWhenSpeeding;
+            this.chkNotShowSettleDetail.Checked = us.NotShowSettleDetail;
             this.gridPaymentComments.Rows.Clear();  //收费说明
             if (us.PaymentComments != null && us.PaymentComments.Count > 0)
             {
@@ -732,6 +924,16 @@ namespace Ralid.Park.UI
                 }
             }
             this.txtMinTempCard.IntergerValue = us.MinTempCard;
+            this.gridParkingCoupon.Rows.Clear();//停车券设置
+            if (us.ParkingCoupon != null && us.ParkingCoupon.Count > 0)
+            {
+                foreach (ParkingCouponInfo coupon in us.ParkingCoupon)
+                {
+                    int row = this.gridParkingCoupon.Rows.Add();
+                    this.gridParkingCoupon.Rows[row].Cells["colCouponName"].Value = coupon.Name;
+                    this.gridParkingCoupon.Rows[row].Cells["colCouponValue"].Value = coupon.ParValue;
+                }
+            }
             //车牌识别
             this.chkEnableCarPlateRecognize.Checked = us.EnableCarPlateRecognize;
             this.txtMaxCarPlateErrorChar.IntergerValue = us.MaxCarPlateErrorChar;
@@ -742,8 +944,43 @@ namespace Ralid.Park.UI
             this.rdTempExit.Checked = us.TempCardExitWaitWhenCarPlateFail;
             this.rdSoftWareRecognize.Checked = us.SoftWareCarPlateRecognize;
             this.rdHardWareRecognize.Checked = us.HardWareCarPlateRecognize;
-            this.comVideoType.SelectedIndex = us.VideoType;
-            this.chkOperatorCardCashWhenSettle.Checked = us.OperatorCardCashWhenSettle;
+            this.comVideoType.SelectedIndex = this.comVideoType.Items.Count > us.VideoType ? us.VideoType : 0;
+            this.chkFixCardAccessWhenRecognize.Checked = us.FixCardAccessWhenRecognize;
+
+            //轮换设置
+            this.chkEnableRotation.Checked = us.EnableRotation;
+            this.txtRotationVacant.IntergerValue = us.RotationVacant;
+            this.gridRotation.Rows.Clear();
+            if (us.Rotations != null && us.Rotations.Count > 0)
+            {
+                foreach (int rkey in us.Rotations.Keys)
+                {
+                    foreach (RotationInfo rotation in us.Rotations[rkey])
+                    {
+                        int row = this.gridRotation.Rows.Add();
+                        EntranceInfo entrance = ParkBuffer.Current.GetEntrance(rotation.EntranceID);
+                        if (entrance != null) this.gridRotation.Rows[row].Cells["colRotationEntrance"].Value = rotation.EntranceID;
+                        this.gridRotation.Rows[row].Cells["colRotationNumber"].Value = rotation.Number;
+                    }
+                }
+            }
+
+            if (!string.IsNullOrEmpty(us.ParkingImageConnStr))
+            {
+                SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder(us.ParkingImageConnStr);
+                txtServer.Text = sb.DataSource;
+                txtDataBase.Text = sb.InitialCatalog;
+                if (sb.IntegratedSecurity)
+                {
+                    this.rdSystem.Checked = true;
+                }
+                else
+                {
+                    this.rdUser.Checked = true;
+                    this.txtUserID.Text = sb.UserID;
+                    this.txtPasswd.Text = sb.Password;
+                }
+            }
         }
 
         private UserSetting GetUserSettingFromInput()
@@ -752,12 +989,19 @@ namespace Ralid.Park.UI
             info.CompanyName = this.txtCompanyName.Text;
             info.EnableDeleteOverTimeImages = this.chkEnableDeleteOverTimeImages.Checked;
             info.Month = this.txtMonth.IntergerValue;
+            info.EnableDeleteOverTimeCardEvents = this.chkEnableDeleteOverTimeCardEvents.Checked;
+            info.CardEventMonth = this.txtCardEventMonth.IntergerValue;
             info.EnableForceShifting = this.chkEnableForceShifting.Checked;
             info.OneKeyOpenDoor = this.chkOneKeyOpenDoor.Checked;
             info.ForceShiftingTime = new TimeEntity(this.dtForceShiftingTime.Value.Hour, this.dtForceShiftingTime.Value.Minute);
             info.WegenType = (chkWegen34Enable.Checked ? Ralid.GeneralLibrary.CardReader.WegenType.Wengen34 : Ralid.GeneralLibrary.CardReader.WegenType.Wengen26);
             info.SnapshotWhenCarArrive = chkSnapshotWhenCarArrive.Checked;
             info.InputHandInCashWhenSettle = chkInputHandInCashWhenSettle.Checked;
+            info.EnableOutdoorLed = chkEnableOutdoorLed.Checked;
+            info.OperatorCardCashWhenSettle = chkOperatorCardCashWhenSettle.Checked;
+            info.ForbiddenEnterWhenSpeeding = chkForbiddenEnterWhenSpeeding.Checked;
+            info.ForbiddenExitWhenSpeeding = chkForbiddenExitWhenSpeeding.Checked;
+            info.NotShowSettleDetail = chkNotShowSettleDetail.Checked;
             if (this.gridPaymentComments.Rows.Count > 0)
             {
                 info.PaymentComments = new List<string>();
@@ -768,6 +1012,24 @@ namespace Ralid.Park.UI
                 }
             }
             info.MinTempCard = this.txtMinTempCard.IntergerValue;
+            if (this.gridParkingCoupon.Rows.Count > 0)
+            {
+                info.ParkingCoupon = new List<ParkingCouponInfo>();
+                for (int i = 0; i < this.gridParkingCoupon.Rows.Count; i++)
+                {
+                    if (!this.gridParkingCoupon.Rows[i].IsNewRow)
+                    {
+                        string couponName = this.gridParkingCoupon.Rows[i].Cells["colCouponName"].Value as string;
+                        decimal couponValue = Convert.ToDecimal(this.gridParkingCoupon.Rows[i].Cells["colCouponValue"].Value);
+                        ParkingCouponInfo coupon = new ParkingCouponInfo();
+                        coupon.Name = couponName;
+                        coupon.ParValue = couponValue;
+
+                        info.ParkingCoupon.Add(coupon);
+                    }
+                }
+            }
+
             //车片识别
             info.EnableCarPlateRecognize = this.chkEnableCarPlateRecognize.Checked;
             info.MaxCarPlateErrorChar = this.txtMaxCarPlateErrorChar.IntergerValue;
@@ -777,8 +1039,113 @@ namespace Ralid.Park.UI
             info.SoftWareCarPlateRecognize = rdSoftWareRecognize.Checked;
             info.HardWareCarPlateRecognize = rdHardWareRecognize.Checked;
             info.VideoType = comVideoType.SelectedIndex >= 0 ? comVideoType.SelectedIndex : 0;
-            info.OperatorCardCashWhenSettle = chkOperatorCardCashWhenSettle.Checked;
+            info.FixCardAccessWhenRecognize = this.chkFixCardAccessWhenRecognize.Checked;
+
+            //轮换设置
+            info.EnableRotation = this.chkEnableRotation.Checked;
+            info.RotationVacant = this.txtRotationVacant.IntergerValue;
+            if (this.gridRotation.Rows.Count>0)
+            {
+                List<RotationInfo> rotations = new List<RotationInfo>();
+                for (int i = 0; i < this.gridRotation.Rows.Count; i++)
+                {
+                    if (!this.gridRotation.Rows[i].IsNewRow)
+                    {
+                        if (this.gridRotation.Rows[i].Cells["colRotationEntrance"].Value != null)
+                        {
+                            RotationInfo rotation = new RotationInfo();
+                            rotation.EntranceID = Convert.ToInt32(this.gridRotation.Rows[i].Cells["colRotationEntrance"].Value);
+                            rotation.Number = Convert.ToInt32(this.gridRotation.Rows[i].Cells["colRotationNumber"].Value);
+                            rotations.Add(rotation);
+                        }
+                    }
+                }
+                rotations = rotations.OrderBy(r => r.Number).ToList();
+                info.Rotations = new Dictionary<int, List<RotationInfo>>();
+                foreach (RotationInfo rotation in rotations)
+                {
+                    if (!info.Rotations.ContainsKey(rotation.Number))
+                    {
+                        info.Rotations.Add(rotation.Number, new List<RotationInfo>());
+                    }
+                    info.Rotations[rotation.Number].Add(rotation);
+                }
+            }
+
+            SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
+            sb.DataSource = this.txtServer.Text.Trim();
+            sb.InitialCatalog = this.txtDataBase.Text.Trim();
+            sb.IntegratedSecurity = rdSystem.Checked;
+            sb.UserID = this.txtUserID.Text.Trim();
+            sb.Password = this.txtPasswd.Text.Trim();
+            sb.PersistSecurityInfo = true;
+            sb.ConnectTimeout = 3;
+            if (!string.IsNullOrEmpty(sb.DataSource) && !string.IsNullOrEmpty(sb.ConnectionString))
+            {
+                this.Cursor = Cursors.WaitCursor;
+                bool result = false;
+                using (SqlConnection sqlconn = new SqlConnection(sb.ConnectionString))
+                {
+                    //测试图片数据库连接串的可用性
+                    try
+                    {
+                        sqlconn.Open();
+                        result = sqlconn.State == System.Data.ConnectionState.Open;
+                    }
+                    catch
+                    {
+                    }
+                }
+                this.Cursor = Cursors.Default;
+                if (!result)
+                {
+                    MessageBox.Show(Resources.Resource1.FrmSystemOption_ImageDBConnErro);
+                    sb.DataSource = "";
+                }
+                else
+                {
+                    MessageBox.Show(Resources.Resource1.FrmSystemOption_ImageDBConnSuccess);
+                }
+
+                if (!string.IsNullOrEmpty(sb.DataSource) && !string.IsNullOrEmpty(sb.InitialCatalog))
+                {
+                    //当设置了图片数据库时
+                    info.ParkingImageConnStr = sb.ConnectionString;
+                }
+                else
+                {
+                    info.ParkingImageConnStr = string.Empty;
+                }
+                this.Cursor = Cursors.Arrow;
+            }
             return info;
+        }
+
+
+        private void dgvRotation_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            List<EntranceInfo> entrances = ParkBuffer.Current.GetEntrances();
+            entrances = entrances.Where(et => et.IsExitDevice == false).ToList();
+            if (entrances.Count > 0)
+            {
+                DataGridViewComboBoxCell rotationCol = this.gridRotation.Rows[e.RowIndex].Cells["colRotationEntrance"] as DataGridViewComboBoxCell;
+                rotationCol.DataSource = entrances;
+                rotationCol.DisplayMember = "EntranceName";
+                rotationCol.ValueMember = "EntranceID";
+            }
+        }
+
+        private void dgvRotation_RowEnter(object sender, DataGridViewCellEventArgs e)
+        {
+            List<EntranceInfo> entrances = ParkBuffer.Current.GetEntrances();
+            entrances = entrances.Where(et => et.IsExitDevice == false).ToList();
+            if (entrances.Count > 0)
+            {
+                DataGridViewComboBoxCell rotationCol = this.gridRotation.Rows[e.RowIndex].Cells["colRotationEntrance"] as DataGridViewComboBoxCell;
+                rotationCol.DataSource = entrances;
+                rotationCol.DisplayMember = "EntranceName";
+                rotationCol.ValueMember = "EntranceID";
+            }
         }
         #endregion
 
@@ -1004,15 +1371,33 @@ namespace Ralid.Park.UI
         private void ShowTollOption(TollOptionSetting tos)
         {
             this.txtFreeTimeAfterPay.IntergerValue = (int)tos.FreeTimeAfterPay;
-            this.rdYuan.Checked = tos.PointCount == 0;
-            this.rdJiao.Checked = tos.PointCount == 1;
+            if (string.IsNullOrEmpty(tos.MoneyUnit))
+            {
+                this.rdYuan.Checked = tos.PointCount == 0;
+                this.rdJiao.Checked = tos.PointCount == 1;
+            }
+            else
+            {
+                this.rdCustom.Checked = true;
+                this.txtMoneyUnit.Text = tos.MoneyUnit;
+            }
+
+            this.lblCouponUnit.Text = tos.GetMoneyUnit();
         }
 
         private TollOptionSetting GetTollOptionFromInput()
         {
             TollOptionSetting tos = new TollOptionSetting();
             tos.FreeTimeAfterPay = this.txtFreeTimeAfterPay.IntergerValue;
-            tos.PointCount = (byte)(rdYuan.Checked ? 0 : 1);
+            if (rdCustom.Checked)
+            {
+                tos.PointCount = 0;//固定0个小数点
+                tos.MoneyUnit = this.txtMoneyUnit.Text.Trim();
+            }
+            else
+            {
+                tos.PointCount = (byte)(rdYuan.Checked ? 0 : 1);
+            }
             return tos;
         }
         #endregion
@@ -1057,6 +1442,7 @@ namespace Ralid.Park.UI
             {
                 cardTtypes.AddRange(CustomCardTypeSetting.Current.CardTypes);
             }
+            cardTtypes.Remove(CardType.Ticket);//纸票与临时卡使用同一种费率，所以这里就不在设置纸票的费率了
             foreach (CardType cardType in cardTtypes)
             {
                 foreach (CarType carType in CarTypeSetting.Current.CarTypes)
@@ -1069,7 +1455,9 @@ namespace Ralid.Park.UI
 
         private TariffSetting GetTariffSettingFromInput()
         {
-            TariffSetting ts = new TariffSetting();
+            TariffSetting ts = TariffSetting.Current;
+            ts.TariffOption = GetTollOptionFromInput();
+            ts.TariffArray.Clear();
 
             foreach (DataGridViewRow row in tariffGrid.Rows)
             {
@@ -1270,11 +1658,50 @@ namespace Ralid.Park.UI
         #region 密钥设置
         private void ShowKeySetting(KeySetting ks)
         {
+            this.rdbIC.Checked = ks.ReaderReadMode == ReaderReadMode.MifareIC;
             this.txtCardSection.IntergerValue = ks.ParkingSection;
+
+            this.rdbCPU.Checked = ks.ReaderReadMode != ReaderReadMode.MifareIC;
+
+            this.rdb3Des.Checked = ks.AlgorithmType != AlgorithmType.SM1;
+            this.rdbSM1.Checked = ks.AlgorithmType == AlgorithmType.SM1;
+            if (ks.ReaderReadMode== ReaderReadMode.SAM)
+            {
+                this.rdbSamNo.Checked = true;
+            }
+            else
+            {
+                this.rdbFixedKey.Checked = true;
+            }
+            this.chkChangeCPUKey.Enabled = ks.ParkingCPUKeyIsValid;
+            if (!ks.ParkingCPUKeyIsValid)
+            {
+                this.txtCPUKey.PasswordChar = char.MinValue;
+            }
+            this.txtCPUKey.Enabled = !ks.ParkingCPUKeyIsValid;
+            this.txtCPUKey.HexValue = ks.ParkingCPUKeyBase;
         }
         private KeySetting GetKeySettingFromInput()
         {
             KeySetting ks = new KeySetting();
+
+            if (this.rdbIC.Checked)
+            {
+                ks.ReaderReadMode = ReaderReadMode.MifareIC;
+            }
+            else
+            {
+                if (this.rdbSamNo.Checked)
+                {
+                    ks.ReaderReadMode = ReaderReadMode.SAM;
+                }
+                else
+                {
+                    ks.ReaderReadMode = ReaderReadMode.FixedKey;
+                }
+            }
+
+            //IC卡密钥设置
             ks.ParkingSection = (byte)this.txtCardSection.IntergerValue;
             if (chkChangeKey.Checked)
             {
@@ -1288,6 +1715,18 @@ namespace Ralid.Park.UI
             {
                 ks.ParkingKey = KeySetting.Current.ParkingKey;
             }
+
+            //CPU卡密钥设置
+            ks.AlgorithmType = this.rdbSM1.Checked ? AlgorithmType.SM1 : AlgorithmType.DES3;
+            if (this.rdbFixedKey.Checked)
+            {
+                ks.ParkingCPUKeyBase = this.txtCPUKey.HexValue;
+            }
+            else 
+            {
+                ks.ParkingCPUKeyBase = KeySetting.Current.ParkingCPUKeyBase;
+            }
+
             return ks;
         }
 
@@ -1344,9 +1783,17 @@ namespace Ralid.Park.UI
                 DialogResult ret = MessageBox.Show(Resources.Resource1.FrmSystemOptions_ClearSnapshotQuery, Resources.Resource1.Form_Query, MessageBoxButtons.YesNo);
                 if (ret == DialogResult.Yes)
                 {
+                    if (txtMonth.IntergerValue <= 0)
+                    {
+                        MessageBox.Show(Resources.Resource1.FrmSystemOption_InvalidMonth);
+                        this.txtMonth.Focus();
+                        return;
+                    }
+                    UserSetting.Current.Month = txtMonth.IntergerValue;
+
                     this.Cursor = Cursors.WaitCursor;
                     DateTime dt = DateTime.Today.AddMonths(-UserSetting.Current.Month);
-                    SnapShotBll ssb = new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
+                    SnapShotBll ssb = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
                     ssb.DeleteAllSnapShotBefore(dt);
                     this.Cursor = Cursors.Arrow;
                     MessageBox.Show(Resources.Resource1.FrmSystemOptions_ClearSnapshotComplete, Resources.Resource1.Form_Success);
@@ -1358,5 +1805,146 @@ namespace Ralid.Park.UI
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
+
+        private void btnClearExpiredCardEvent_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void rdb3Des_CheckedChanged(object sender, EventArgs e)
+        {
+            this.rdbFixedKey.Enabled = this.rdb3Des.Checked;
+            if (!this.rdbFixedKey.Enabled && this.rdbFixedKey.Checked)
+            {
+                this.rdbSamNo.Checked = true;
+            }
+        }
+
+        private void rdbIC_CheckedChanged(object sender, EventArgs e)
+        {
+            this.pnlIC.Enabled = this.rdbIC.Checked;
+        }
+
+        private void rdbCPU_CheckedChanged(object sender, EventArgs e)
+        {
+            this.pnlCPU.Enabled = this.rdbCPU.Checked;
+        }
+
+        private void rdbCPU_CheckedChanged_1(object sender, EventArgs e)
+        {
+            if (this.rdbCPU.Checked)
+            {
+                if (MessageBox.Show(Resources.Resource1.FrmSystemOption_CPUKeyNote, Resources.Resource1.FrmSystemOption_UseCPUComfirm, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                {
+                    this.rdbCPU.CheckedChanged -= rdbCPU_CheckedChanged_1;
+                    this.rdbIC.Checked = true;
+                    this.rdbCPU.CheckedChanged += rdbCPU_CheckedChanged_1;
+                    return;
+                }
+            }
+        }
+
+        private void chkChangeCPUKey_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkChangeCPUKey.Checked)
+            {
+                if (MessageBox.Show(Resources.Resource1.FrmSystemOption_CPUKeyNote, Resources.Resource1.FrmSystemOption_ChangeCPUKeyComfirm, MessageBoxButtons.YesNo, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button1) == DialogResult.No)
+                {
+                    this.chkChangeCPUKey.CheckedChanged -= chkChangeCPUKey_CheckedChanged;
+                    this.chkChangeCPUKey.Checked = false;
+                    this.chkChangeCPUKey.CheckedChanged += chkChangeCPUKey_CheckedChanged;
+                    return;
+                }
+
+                this.txtCPUKey.Text=string.Empty;
+                this.txtCPUKey.PasswordChar = char.MinValue;
+            }
+            else
+            {
+                this.txtCPUKey.PasswordChar = '*' ;
+                this.txtCPUKey.HexValue = KeySetting.Current.ParkingCPUKeyBase;
+            }
+            if (this.chkChangeCPUKey.Enabled)
+            {
+                this.txtCPUKey.Enabled = this.chkChangeCPUKey.Checked;
+            }
+
+        }
+
+        private void rdbSamNo_CheckedChanged(object sender, EventArgs e)
+        {
+            this.pnlFixedKey.Enabled = !this.rdbSamNo.Checked;
+        }
+
+        private void rdCustom_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtMoneyUnit.Enabled = this.rdCustom.Checked;
+        }
+
+        private void rdSystem_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtUserID.Enabled = !rdSystem.Checked;
+            this.txtPasswd.Enabled = !rdSystem.Checked;
+        }
+
+        private void rdUser_CheckedChanged(object sender, EventArgs e)
+        {
+            this.txtUserID.Enabled = rdUser.Checked;
+            this.txtPasswd.Enabled = rdUser.Checked;
+        }
+
+        private void btnTestConnect_Click(object sender, EventArgs e)
+        {
+
+            SqlConnectionStringBuilder sb = new SqlConnectionStringBuilder();
+            sb.DataSource = this.txtServer.Text.Trim();
+            sb.InitialCatalog = this.txtDataBase.Text.Trim();
+            sb.IntegratedSecurity = rdSystem.Checked;
+            sb.UserID = this.txtUserID.Text.Trim();
+            sb.Password = this.txtPasswd.Text.Trim();
+            sb.PersistSecurityInfo = true;
+            sb.ConnectTimeout = 3;
+
+            if (string.IsNullOrEmpty(sb.DataSource))
+            {
+                MessageBox.Show(Resources.Resource1.FrmLogin_InvalidServer);
+                this.txtServer.Focus();
+                return;
+            }
+            if (string.IsNullOrEmpty(sb.InitialCatalog))
+            {
+                MessageBox.Show(Resources.Resource1.FrmLogin_InvalidDataBase);
+                this.txtDataBase.Focus();
+                return;
+            }
+
+            this.Cursor = Cursors.WaitCursor;
+            bool result = false;
+            using (SqlConnection sqlconn = new SqlConnection(sb.ConnectionString))
+            {
+                //测试图片数据库连接串的可用性
+                try
+                {
+                    sqlconn.Open();
+                    result = sqlconn.State == System.Data.ConnectionState.Open;
+                }
+                catch
+                {
+                }
+            }
+            this.Cursor = Cursors.Default;
+            if (!result)
+            {
+                MessageBox.Show(Resources.Resource1.FrmSystemOption_ImageDBConnErro);
+            }
+            else
+            {
+                MessageBox.Show(Resources.Resource1.FrmSystemOption_ImageDBConnSuccess); 
+            }
+        }
+
+     
+
+
     }
 }

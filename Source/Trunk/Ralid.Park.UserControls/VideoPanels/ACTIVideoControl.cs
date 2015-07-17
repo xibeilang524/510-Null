@@ -47,6 +47,7 @@ namespace Ralid.Park.UserControls.VideoPanels
             media.StreamingPort = VideoSource.StreamPort;
             media.AutoReconnect = VideoSource.AutoReconnect ? 1 : 0;
             media.Connect(CONNECT_ASYNC);
+            media.Visible = true;
         }
 
         private void media_OnConnect(object sender, AxnvUnifiedControlLib._DnvUnifiedControlEvents_OnConnectEvent e)
@@ -78,6 +79,8 @@ namespace Ralid.Park.UserControls.VideoPanels
             {
                 media.StretchToFit = 0;
             }
+            //media.Visible = true;
+            //media.Refresh();
             media.StartStream();
             media.Play();
         }
@@ -158,6 +161,7 @@ namespace Ralid.Park.UserControls.VideoPanels
                 this._Status = VideoStatus.Disconnected;
                 media.Stop();
                 media.Disconnect();
+                media.Visible = false;
             }
             if (!this.TitlePanel.InvokeRequired)
             {
@@ -165,9 +169,9 @@ namespace Ralid.Park.UserControls.VideoPanels
             }
         }
 
-        public override bool SnapShotTo(string path)
+        public override bool SnapShotTo(ref string path)
         {
-            return SnapShotTo(path, 1000);
+            return SnapShotTo(ref path, 1000, false);
         }
         /// <summary>
         /// 抓拍图片
@@ -175,7 +179,7 @@ namespace Ralid.Park.UserControls.VideoPanels
         /// <param name="path"></param>
         /// <param name="timeout">超时时间(ms)</param>
         /// <returns></returns>
-        public override bool SnapShotTo(string path, int timeout)
+        public override bool SnapShotTo(ref string path, int timeout, bool force)
         {
             bool success = false;
             try

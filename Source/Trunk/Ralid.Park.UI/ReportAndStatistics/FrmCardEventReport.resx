@@ -131,8 +131,14 @@
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
-  <data name="&gt;&gt;comEntrance.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="&gt;&gt;colOperatorID.Name" xml:space="preserve">
+    <value>colOperatorID</value>
+  </data>
+  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 2</value>
+  </data>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>14</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -150,7 +156,7 @@
     <value>7</value>
   </data>
   <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 38</value>
+    <value>233, 13</value>
   </data>
   <data name="&gt;&gt;rdbStandby.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -168,19 +174,26 @@
     <value>47, 12</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>551, 95</value>
+    <value>555, 115</value>
   </data>
   <data name="&gt;&gt;ucEntrance1.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;comPark.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtCertificate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
   <data name="&gt;&gt;rdbMaster.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;gbDB.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
   <data name="label6.Text" xml:space="preserve">
     <value>卡片编号:</value>
+  </data>
+  <data name="&gt;&gt;txtCertificate.ZOrder" xml:space="preserve">
+    <value>2</value>
   </data>
   <data name="rdbMaster.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 16</value>
@@ -198,10 +211,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtCertificate.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
+  <data name="colEventDateTime.Width" type="System.Int32, mscorlib">
+    <value>130</value>
+  </data>
+  <data name="colCarPlate.HeaderText" xml:space="preserve">
+    <value>车牌</value>
   </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -209,8 +225,14 @@
   <data name="rdbStandby.Location" type="System.Drawing.Point, System.Drawing">
     <value>6, 46</value>
   </data>
-  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>971, 345</value>
+  <data name="&gt;&gt;txtDepartment.ZOrder" xml:space="preserve">
+    <value>10</value>
+  </data>
+  <data name="txtOwnerName.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 21</value>
+  </data>
+  <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;btnSearch.Parent" xml:space="preserve">
     <value>$this</value>
@@ -224,8 +246,8 @@
   <data name="&gt;&gt;ucDateTimeInterval1.Parent" xml:space="preserve">
     <value>groupBox1</value>
   </data>
-  <data name="&gt;&gt;btnExport.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="customDataGridView1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>971, 325</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>车辆进出记录查询</value>
@@ -233,21 +255,26 @@
   <data name="&gt;&gt;txtCertificate.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="colCardCertificate.HeaderText" xml:space="preserve">
-    <value>卡片编号</value>
+  <data name="rdbStandby.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 16</value>
   </data>
   <data name="&gt;&gt;comEntrance.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.EntranceComboBox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>14</value>
+  <data name="comOperator.Location" type="System.Drawing.Point, System.Drawing">
+    <value>401, 63</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>16</value>
+  </data>
+  <data name="&gt;&gt;label3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="txtCarPlate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="&gt;&gt;txtCarPlate.ZOrder" xml:space="preserve">
-    <value>9</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="comCardType.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -255,8 +282,8 @@
   <data name="&gt;&gt;ucEntrance1.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.UCEntrance, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="label3.TabIndex" type="System.Int32, mscorlib">
-    <value>2</value>
+  <data name="colCardCertificate.HeaderText" xml:space="preserve">
+    <value>卡片编号</value>
   </data>
   <data name="&gt;&gt;txtCarPlate.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -270,11 +297,8 @@
   <data name="colEventDateTime.HeaderText" xml:space="preserve">
     <value>刷卡时间</value>
   </data>
-  <data name="&gt;&gt;rdbMaster.Type" xml:space="preserve">
-    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <data name="&gt;&gt;txtCarPlate.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -289,7 +313,7 @@
     <value>NoControl</value>
   </data>
   <data name="txtCarPlate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 13</value>
+    <value>60, 63</value>
   </data>
   <data name="label5.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -324,29 +348,32 @@
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="txtDepartment.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
   <data name="&gt;&gt;txtOwnerName.Name" xml:space="preserve">
     <value>txtOwnerName</value>
   </data>
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>200, 69</value>
+  <data name="label3.TabIndex" type="System.Int32, mscorlib">
+    <value>2</value>
   </data>
   <data name="&gt;&gt;txtCarPlate.Name" xml:space="preserve">
     <value>txtCarPlate</value>
   </data>
   <data name="&gt;&gt;customDataGridView1.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>5</value>
   </data>
   <data name="&gt;&gt;rdbStandby.Parent" xml:space="preserve">
     <value>gbDB</value>
   </data>
   <data name="gbDB.Size" type="System.Drawing.Size, System.Drawing">
-    <value>57, 95</value>
+    <value>57, 115</value>
   </data>
   <data name="txtCarPlate.Size" type="System.Drawing.Size, System.Drawing">
     <value>109, 21</value>
@@ -357,6 +384,9 @@
   <data name="&gt;&gt;colOperatorID.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="&gt;&gt;rdbStandby.Name" xml:space="preserve">
+    <value>rdbStandby</value>
+  </data>
   <data name="rdbStandby.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
@@ -366,11 +396,14 @@
   <data name="customDataGridView1.TabIndex" type="System.Int32, mscorlib">
     <value>7</value>
   </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
   <data name="btnSaveAs.Location" type="System.Drawing.Point, System.Drawing">
     <value>858, 39</value>
   </data>
   <data name="comOperator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>141, 20</value>
+    <value>145, 20</value>
   </data>
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -378,17 +411,26 @@
   <data name="colLastDateTime.Width" type="System.Int32, mscorlib">
     <value>130</value>
   </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>部门:</value>
+  </data>
   <data name="&gt;&gt;btnSearch.Name" xml:space="preserve">
     <value>btnSearch</value>
   </data>
   <data name="btnExport.Location" type="System.Drawing.Point, System.Drawing">
     <value>858, 69</value>
   </data>
+  <data name="txtDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 21</value>
+  </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 42</value>
+  </data>
   <data name="&gt;&gt;label5.Name" xml:space="preserve">
     <value>label5</value>
   </data>
-  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
+  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;carTypeComboBox1.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.CarTypeComboBox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
@@ -399,17 +441,14 @@
   <data name="rdbMaster.Text" xml:space="preserve">
     <value>主</value>
   </data>
-  <data name="label5.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="&gt;&gt;comPark.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
-  <data name="txtCardID.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 13</value>
+  <data name="txtDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>188, 17</value>
-  </data>
-  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 42</value>
+    <value>14, 67</value>
   </data>
   <data name="&gt;&gt;comOperator.ZOrder" xml:space="preserve">
     <value>8</value>
@@ -436,10 +475,13 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>4</value>
   </data>
   <data name="&gt;&gt;txtOwnerName.Parent" xml:space="preserve">
     <value>groupBox3</value>
+  </data>
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="colCardID.Width" type="System.Int32, mscorlib">
     <value>80</value>
@@ -453,9 +495,6 @@
   <data name="&gt;&gt;btnSearch.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="ucDateTimeInterval1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>221, 74</value>
-  </data>
   <data name="&gt;&gt;groupBox3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
@@ -463,7 +502,7 @@
     <value>60, 38</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="&gt;&gt;carTypeComboBox1.ZOrder" xml:space="preserve">
     <value>5</value>
@@ -477,11 +516,14 @@
   <data name="txtCardID.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
+  <data name="comEntrance.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
   <data name="comPark.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>15</value>
   </data>
   <data name="rdbStandby.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -492,29 +534,32 @@
   <data name="colEventType.Width" type="System.Int32, mscorlib">
     <value>150</value>
   </data>
-  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
-  </data>
   <data name="rdbMaster.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
   <data name="&gt;&gt;comOperator.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.OperatorComboBox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="&gt;&gt;colOperatorID.Name" xml:space="preserve">
-    <value>colOperatorID</value>
+  <data name="ucDateTimeInterval1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>221, 74</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>26, 93</value>
   </data>
   <data name="&gt;&gt;btnSaveAs.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;txtCertificate.ZOrder" xml:space="preserve">
+  <data name="&gt;&gt;btnExport.ZOrder" xml:space="preserve">
     <value>2</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>200, 67</value>
   </data>
   <data name="&gt;&gt;colCarPlate.Name" xml:space="preserve">
     <value>colCarPlate</value>
   </data>
   <data name="&gt;&gt;txtOwnerName.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>groupBox3</value>
@@ -522,8 +567,8 @@
   <data name="&gt;&gt;colCardCertificate.Name" xml:space="preserve">
     <value>colCardCertificate</value>
   </data>
-  <data name="comPark.Location" type="System.Drawing.Point, System.Drawing">
-    <value>59, 2</value>
+  <data name="comCardType.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 20</value>
   </data>
   <data name="btnSearch.Size" type="System.Drawing.Size, System.Drawing">
     <value>105, 23</value>
@@ -531,8 +576,8 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 12</value>
   </data>
-  <data name="carTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 65</value>
+  <data name="&gt;&gt;comCardType.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="&gt;&gt;gbDB.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -546,26 +591,26 @@
   <data name="&gt;&gt;colCardCertificate.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comOperator.Name" xml:space="preserve">
-    <value>comOperator</value>
+  <data name="&gt;&gt;label8.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
-  <data name="rdbStandby.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 16</value>
+  <data name="&gt;&gt;colCardID.Name" xml:space="preserve">
+    <value>colCardID</value>
   </data>
-  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
-    <value>858, 11</value>
+  <data name="&gt;&gt;comEntrance.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
-  <data name="&gt;&gt;gbDB.ZOrder" xml:space="preserve">
-    <value>7</value>
+  <data name="&gt;&gt;txtDepartment.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="ucDateTimeInterval1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
   </data>
-  <data name="&gt;&gt;customDataGridView1.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="rdbMaster.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="gbDB.Location" type="System.Drawing.Point, System.Drawing">
-    <value>790, 2</value>
+    <value>794, 2</value>
   </data>
   <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
@@ -573,23 +618,23 @@
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
   </data>
-  <data name="&gt;&gt;comCardType.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;customDataGridView1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;colOwnerName.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="rdbMaster.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 20</value>
   </data>
-  <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
-    <value>groupBox3</value>
+  <data name="&gt;&gt;carTypeComboBox1.Name" xml:space="preserve">
+    <value>carTypeComboBox1</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>持卡人:</value>
   </data>
-  <data name="&gt;&gt;gbDB.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;txtCarPlate.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
-  <data name="gbDB.TabIndex" type="System.Int32, mscorlib">
-    <value>69</value>
+  <data name="&gt;&gt;txtDepartment.Name" xml:space="preserve">
+    <value>txtDepartment</value>
   </data>
   <data name="&gt;&gt;txtOwnerName.ZOrder" xml:space="preserve">
     <value>0</value>
@@ -601,19 +646,22 @@
     <value>105, 23</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>352, 69</value>
+    <value>353, 67</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
   </data>
+  <data name="&gt;&gt;ucEntrance1.Name" xml:space="preserve">
+    <value>ucEntrance1</value>
+  </data>
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>12</value>
   </data>
-  <data name="txtCertificate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>On</value>
+  <data name="&gt;&gt;colOwnerName.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;txtCardID.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="&gt;&gt;customDataGridView1.Type" xml:space="preserve">
     <value>Ralid.Park.UserControls.CustomDataGridView, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
@@ -621,11 +669,20 @@
   <data name="comOperator.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
   </data>
+  <data name="ucEntrance1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>210, 53</value>
+  </data>
   <data name="&gt;&gt;rdbMaster.Parent" xml:space="preserve">
     <value>gbDB</value>
   </data>
+  <data name="&gt;&gt;colDepartment.Name" xml:space="preserve">
+    <value>colDepartment</value>
+  </data>
   <data name="btnExport.Text" xml:space="preserve">
     <value>导出抓拍图片</value>
+  </data>
+  <data name="colOperatorID.HeaderText" xml:space="preserve">
+    <value>操作员</value>
   </data>
   <data name="colEntranceName.HeaderText" xml:space="preserve">
     <value>刷卡通道</value>
@@ -639,17 +696,23 @@
   <data name="&gt;&gt;groupBox3.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comCardType.Name" xml:space="preserve">
-    <value>comCardType</value>
+  <data name="comPark.Location" type="System.Drawing.Point, System.Drawing">
+    <value>59, 2</value>
   </data>
-  <data name="&gt;&gt;comPark.Parent" xml:space="preserve">
-    <value>ucEntrance1</value>
+  <data name="&gt;&gt;colCarType.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;colCardType.Name" xml:space="preserve">
-    <value>colCardType</value>
+  <data name="gbDB.TabIndex" type="System.Int32, mscorlib">
+    <value>69</value>
+  </data>
+  <data name="&gt;&gt;label5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;gbDB.Name" xml:space="preserve">
     <value>gbDB</value>
+  </data>
+  <data name="&gt;&gt;colCardType.Name" xml:space="preserve">
+    <value>colCardType</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
     <value>3</value>
@@ -851,11 +914,11 @@
   <data name="customDataGridView1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
   </data>
-  <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>233, 2</value>
+  <data name="label8.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
-  <data name="&gt;&gt;ucEntrance1.Name" xml:space="preserve">
-    <value>ucEntrance1</value>
+  <data name="&gt;&gt;txtDepartment.Parent" xml:space="preserve">
+    <value>groupBox3</value>
   </data>
   <data name="txtCarPlate.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
@@ -866,17 +929,20 @@
   <data name="txtCardID.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
   </data>
-  <data name="colEntranceName.Width" type="System.Int32, mscorlib">
-    <value>130</value>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
   </data>
-  <data name="btnExport.TabIndex" type="System.Int32, mscorlib">
-    <value>68</value>
+  <data name="label3.Text" xml:space="preserve">
+    <value>操作员:</value>
   </data>
   <data name="colCardID.HeaderText" xml:space="preserve">
     <value>卡号</value>
   </data>
-  <data name="label3.Text" xml:space="preserve">
-    <value>操作员:</value>
+  <data name="label5.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
+  </data>
+  <data name="&gt;&gt;rdbMaster.Type" xml:space="preserve">
+    <value>System.Windows.Forms.RadioButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
     <value>6</value>
@@ -896,14 +962,14 @@
   <data name="&gt;&gt;colLastDateTime.Type" xml:space="preserve">
     <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="colOperatorID.HeaderText" xml:space="preserve">
-    <value>操作员</value>
+  <data name="txtDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 88</value>
   </data>
-  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
+  <data name="btnExport.TabIndex" type="System.Int32, mscorlib">
+    <value>68</value>
   </data>
-  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>2, 69</value>
+  <data name="&gt;&gt;colDepartment.Type" xml:space="preserve">
+    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colCarType.Name" xml:space="preserve">
     <value>colCarType</value>
@@ -917,11 +983,14 @@
   <data name="&gt;&gt;colEventType.Name" xml:space="preserve">
     <value>colEventType</value>
   </data>
-  <data name="comOperator.Location" type="System.Drawing.Point, System.Drawing">
-    <value>401, 65</value>
+  <data name="label8.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="&gt;&gt;txtCardID.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;comOperator.Name" xml:space="preserve">
+    <value>comOperator</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -932,17 +1001,14 @@
   <data name="ucDateTimeInterval1.Location" type="System.Drawing.Point, System.Drawing">
     <value>3, 12</value>
   </data>
-  <data name="&gt;&gt;label3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="txtCardID.Location" type="System.Drawing.Point, System.Drawing">
+    <value>60, 13</value>
   </data>
   <data name="&gt;&gt;ucDateTimeInterval1.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <data name="customDataGridView1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>1, 103</value>
-  </data>
-  <data name="colEventDateTime.Width" type="System.Int32, mscorlib">
-    <value>130</value>
+  <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -950,17 +1016,14 @@
   <data name="&gt;&gt;btnSaveAs.Name" xml:space="preserve">
     <value>btnSaveAs</value>
   </data>
-  <data name="colCarPlate.HeaderText" xml:space="preserve">
-    <value>车牌</value>
-  </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>975, 473</value>
   </data>
-  <data name="&gt;&gt;label5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;colEventDateTime.Name" xml:space="preserve">
+    <value>colEventDateTime</value>
   </data>
-  <data name="&gt;&gt;colCardID.Name" xml:space="preserve">
-    <value>colCardID</value>
+  <data name="customDataGridView1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>1, 123</value>
   </data>
   <data name="&gt;&gt;txtCardID.Name" xml:space="preserve">
     <value>txtCardID</value>
@@ -968,17 +1031,14 @@
   <data name="&gt;&gt;btnExport.Name" xml:space="preserve">
     <value>btnExport</value>
   </data>
-  <data name="&gt;&gt;colCarType.Type" xml:space="preserve">
-    <value>System.Windows.Forms.DataGridViewTextBoxColumn, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;gbDB.ZOrder" xml:space="preserve">
+    <value>6</value>
   </data>
-  <data name="ucEntrance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>210, 53</value>
+  <data name="carTypeComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>233, 63</value>
   </data>
-  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>14, 42</value>
-  </data>
-  <data name="comCardType.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 20</value>
+  <data name="&gt;&gt;label8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label7.Name" xml:space="preserve">
     <value>label7</value>
@@ -987,10 +1047,10 @@
     <value>0</value>
   </data>
   <data name="ucEntrance1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>340, 9</value>
+    <value>342, 9</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>226, 95</value>
+    <value>226, 115</value>
   </data>
   <data name="txtOwnerName.TabIndex" type="System.Int32, mscorlib">
     <value>6</value>
@@ -1001,14 +1061,11 @@
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
   </data>
-  <data name="&gt;&gt;groupBox3.Name" xml:space="preserve">
-    <value>groupBox3</value>
-  </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="&gt;&gt;customDataGridView1.Name" xml:space="preserve">
     <value>customDataGridView1</value>
@@ -1019,35 +1076,41 @@
   <data name="&gt;&gt;comCardType.ZOrder" xml:space="preserve">
     <value>7</value>
   </data>
-  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;comCardType.Name" xml:space="preserve">
+    <value>comCardType</value>
   </data>
   <data name="colOwnerName.HeaderText" xml:space="preserve">
     <value>持卡人</value>
   </data>
-  <data name="&gt;&gt;carTypeComboBox1.Name" xml:space="preserve">
-    <value>carTypeComboBox1</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>35, 12</value>
   </data>
-  <data name="comEntrance.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>14, 42</value>
   </data>
-  <data name="&gt;&gt;rdbStandby.Name" xml:space="preserve">
-    <value>rdbStandby</value>
+  <data name="btnSearch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>858, 11</value>
+  </data>
+  <data name="colEntranceName.Width" type="System.Int32, mscorlib">
+    <value>130</value>
+  </data>
+  <data name="colDepartment.HeaderText" xml:space="preserve">
+    <value>部门</value>
   </data>
   <data name="comCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>60, 65</value>
+    <value>233, 38</value>
   </data>
   <data name="rdbStandby.Text" xml:space="preserve">
     <value>备用</value>
   </data>
-  <data name="txtOwnerName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>109, 21</value>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
   </data>
   <data name="&gt;&gt;folderBrowserDialog1.Name" xml:space="preserve">
     <value>folderBrowserDialog1</value>
   </data>
-  <data name="rdbMaster.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;comPark.Parent" xml:space="preserve">
+    <value>ucEntrance1</value>
   </data>
   <data name="groupBox1.Text" xml:space="preserve">
     <value>刷卡时间</value>
@@ -1055,8 +1118,8 @@
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>groupBox3</value>
   </data>
-  <data name="&gt;&gt;colEventDateTime.Name" xml:space="preserve">
-    <value>colEventDateTime</value>
+  <data name="groupBox3.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
   </data>
   <data name="&gt;&gt;folderBrowserDialog1.Type" xml:space="preserve">
     <value>System.Windows.Forms.FolderBrowserDialog, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -1064,8 +1127,8 @@
   <data name="carTypeComboBox1.TabIndex" type="System.Int32, mscorlib">
     <value>9</value>
   </data>
-  <data name="rdbMaster.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 20</value>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>176, 17</value>
   </data>
   <data name="colCarType.HeaderText" xml:space="preserve">
     <value>车型</value>
@@ -1082,6 +1145,9 @@
   <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
     <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <metadata name="colDepartment.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
   <metadata name="folderBrowserDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>138, 17</value>
   </metadata>

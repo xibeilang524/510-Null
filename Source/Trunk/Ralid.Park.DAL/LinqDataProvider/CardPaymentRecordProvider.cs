@@ -55,10 +55,15 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 if (!string.IsNullOrEmpty(condition.OwnerName)) result = result.Where(c => c.OwnerName.Contains(condition.OwnerName));
                 if (!string.IsNullOrEmpty(condition.CardCertificate)) result = result.Where(c => c.CardCertificate.Contains(condition.CardCertificate));
                 if (condition.UpdateFlag != null) result = result.Where(c => c.UpdateFlag == condition.UpdateFlag);
+                if (condition.StationIDs != null && condition.StationIDs.Count > 0) result = result.Where(c => condition.StationIDs.Contains(c.StationID));
+                if (condition.OperatorIDs != null && condition.OperatorIDs.Count > 0) result = result.Where(c => condition.OperatorIDs.Contains(c.OperatorID));
+                if (condition.StationDeptID.HasValue) result = result.Where(c => c.StationDeptID.HasValue && c.StationDeptID.Value == condition.StationDeptID.Value);
+                if (condition.OperatorDeptID.HasValue) result = result.Where(c => c.OperatorDeptID.HasValue && c.OperatorDeptID.Value == condition.OperatorDeptID.Value);
                 if (search is CardPaymentRecordSearchCondition)
                 {
                     CardPaymentRecordSearchCondition condition1 = search as CardPaymentRecordSearchCondition;
                     if (condition1.EnterDateTime != null) result = result.Where(c => c.EnterDateTime == condition1.EnterDateTime.Value);
+                    if (condition1.EnterDateTimeRange != null) result = result.Where(c => c.EnterDateTime >= condition1.EnterDateTimeRange.Begin && c.EnterDateTime <= condition1.EnterDateTimeRange.End);
                     if (condition1.IsCenterCharge != null && condition1.IsCenterCharge.Value) result = result.Where(c => c.IsCenterCharge == true);
                     if (condition1.IsCenterCharge != null && !condition1.IsCenterCharge.Value) result = result.Where(c => c.IsCenterCharge == false);
                     if (condition1.ChargeDateTime != null) result = result.Where(c => c.ChargeDateTime == condition1.ChargeDateTime.Value);

@@ -303,6 +303,7 @@ namespace Ralid.Park.UI
                 this.gpDB.Visible = _Adance;
                 this.gpSDB.Visible = _Adance;
                 this.gpDBSelect.Visible = _Adance;
+                this.btnAdvance.Text = this.btnAdvance.Text.Replace(">>>", "<<<");
                 this.Height = 409;
             }
             else
@@ -310,6 +311,7 @@ namespace Ralid.Park.UI
                 this.gpDB.Visible = false;
                 this.gpSDB.Visible = false;
                 this.gpDBSelect.Visible = false;
+                this.btnAdvance.Text = this.btnAdvance.Text.Replace("<<<", ">>>");
                 this.Height = 148;
             }
         }

@@ -122,7 +122,7 @@
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="dtValidDate.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 116</value>
+    <value>173, 146</value>
   </data>
   <data name="dtValidDate.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 21</value>
@@ -141,13 +141,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;dtValidDate.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>31</value>
   </data>
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 120</value>
+    <value>108, 150</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -168,13 +168,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>32</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 92</value>
+    <value>108, 120</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -195,13 +195,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>33</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>327, 152</value>
+    <value>327, 180</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -222,13 +222,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>27</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>327, 120</value>
+    <value>327, 150</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -249,13 +249,13 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>29</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 152</value>
+    <value>108, 180</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -276,14 +276,14 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>26</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="btnNext.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Right</value>
   </data>
   <data name="btnNext.Location" type="System.Drawing.Point, System.Drawing">
-    <value>597, 336</value>
+    <value>597, 368</value>
   </data>
   <data name="btnNext.Size" type="System.Drawing.Size, System.Drawing">
     <value>73, 23</value>
@@ -310,7 +310,7 @@
     <value>On</value>
   </data>
   <data name="txtBalance.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 116</value>
+    <value>392, 146</value>
   </data>
   <data name="txtBalance.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 21</value>
@@ -325,16 +325,16 @@
     <value>txtBalance</value>
   </data>
   <data name="&gt;&gt;txtBalance.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtBalance.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtBalance.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>34</value>
   </data>
   <data name="comAccessLevel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 148</value>
+    <value>173, 176</value>
   </data>
   <data name="comAccessLevel.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 20</value>
@@ -352,10 +352,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;comAccessLevel.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>28</value>
   </data>
   <data name="comChargeType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 148</value>
+    <value>392, 176</value>
   </data>
   <data name="comChargeType.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 20</value>
@@ -373,7 +373,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;comChargeType.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>30</value>
   </data>
   <data name="tabControl1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -469,7 +469,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabPage3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>748, 316</value>
+    <value>748, 348</value>
   </data>
   <data name="tabPage3.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
@@ -489,6 +489,117 @@
   <data name="&gt;&gt;tabPage3.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <data name="label17.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
+    <value>554, 75</value>
+  </data>
+  <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
+    <value>143, 12</value>
+  </data>
+  <data name="label17.TabIndex" type="System.Int32, mscorlib">
+    <value>41</value>
+  </data>
+  <data name="label17.Text" xml:space="preserve">
+    <value>(自增0位表示没限制位数)</value>
+  </data>
+  <data name="&gt;&gt;label17.Name" xml:space="preserve">
+    <value>label17</value>
+  </data>
+  <data name="&gt;&gt;label17.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label17.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="label21.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label21.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 91</value>
+  </data>
+  <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="label21.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="label21.Text" xml:space="preserve">
+    <value>位数字</value>
+  </data>
+  <data name="&gt;&gt;label21.Name" xml:space="preserve">
+    <value>label21</value>
+  </data>
+  <data name="&gt;&gt;label21.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label21.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label21.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="label12.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
+    <value>345, 61</value>
+  </data>
+  <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="label12.TabIndex" type="System.Int32, mscorlib">
+    <value>40</value>
+  </data>
+  <data name="label12.Text" xml:space="preserve">
+    <value>位数字</value>
+  </data>
+  <data name="&gt;&gt;label12.Name" xml:space="preserve">
+    <value>label12</value>
+  </data>
+  <data name="&gt;&gt;label12.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label12.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
+    <value>2</value>
+  </data>
+  <data name="chkInPark.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkInPark.Location" type="System.Drawing.Point, System.Drawing">
+    <value>329, 120</value>
+  </data>
+  <data name="chkInPark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 16</value>
+  </data>
+  <data name="chkInPark.TabIndex" type="System.Int32, mscorlib">
+    <value>39</value>
+  </data>
+  <data name="chkInPark.Text" xml:space="preserve">
+    <value>已入场</value>
+  </data>
+  <data name="&gt;&gt;chkInPark.Name" xml:space="preserve">
+    <value>chkInPark</value>
+  </data>
+  <data name="&gt;&gt;chkInPark.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkInPark.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkInPark.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <data name="chkWriteCard.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
@@ -496,7 +607,7 @@
     <value>NoControl</value>
   </data>
   <data name="chkWriteCard.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 280</value>
+    <value>108, 323</value>
   </data>
   <data name="chkWriteCard.Size" type="System.Drawing.Size, System.Drawing">
     <value>96, 16</value>
@@ -517,13 +628,43 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkWriteCard.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>4</value>
+  </data>
+  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>465, 93</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 12</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>37</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="&gt;&gt;label20.Name" xml:space="preserve">
+    <value>label20</value>
+  </data>
+  <data name="&gt;&gt;label20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 65</value>
+    <value>465, 63</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>11, 12</value>
@@ -544,13 +685,43 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>6</value>
+  </data>
+  <data name="label19.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label19.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
+    <value>256, 93</value>
+  </data>
+  <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>11, 12</value>
+  </data>
+  <data name="label19.TabIndex" type="System.Int32, mscorlib">
+    <value>36</value>
+  </data>
+  <data name="label19.Text" xml:space="preserve">
+    <value>+</value>
+  </data>
+  <data name="&gt;&gt;label19.Name" xml:space="preserve">
+    <value>label19</value>
+  </data>
+  <data name="&gt;&gt;label19.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label19.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
+    <value>7</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>256, 65</value>
+    <value>256, 63</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>11, 12</value>
@@ -571,13 +742,37 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label15.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>8</value>
+  </data>
+  <data name="txtNumSuffix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtNumSuffix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>482, 86</value>
+  </data>
+  <data name="txtNumSuffix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 21</value>
+  </data>
+  <data name="txtNumSuffix.TabIndex" type="System.Int32, mscorlib">
+    <value>35</value>
+  </data>
+  <data name="&gt;&gt;txtNumSuffix.Name" xml:space="preserve">
+    <value>txtNumSuffix</value>
+  </data>
+  <data name="&gt;&gt;txtNumSuffix.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtNumSuffix.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtNumSuffix.ZOrder" xml:space="preserve">
+    <value>9</value>
   </data>
   <data name="txtSuffix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
   <data name="txtSuffix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>430, 58</value>
+    <value>482, 56</value>
   </data>
   <data name="txtSuffix.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 21</value>
@@ -589,19 +784,100 @@
     <value>txtSuffix</value>
   </data>
   <data name="&gt;&gt;txtSuffix.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtSuffix.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtSuffix.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>10</value>
+  </data>
+  <data name="txtNumDigit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtNumDigit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 86</value>
+  </data>
+  <data name="txtNumDigit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 21</value>
+  </data>
+  <data name="txtNumDigit.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="txtNumDigit.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtNumDigit.Name" xml:space="preserve">
+    <value>txtNumDigit</value>
+  </data>
+  <data name="&gt;&gt;txtNumDigit.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtNumDigit.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtNumDigit.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="txtDigit.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtDigit.Location" type="System.Drawing.Point, System.Drawing">
+    <value>320, 56</value>
+  </data>
+  <data name="txtDigit.Size" type="System.Drawing.Size, System.Drawing">
+    <value>21, 21</value>
+  </data>
+  <data name="txtDigit.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="txtDigit.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtDigit.Name" xml:space="preserve">
+    <value>txtDigit</value>
+  </data>
+  <data name="&gt;&gt;txtDigit.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtDigit.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtDigit.ZOrder" xml:space="preserve">
+    <value>12</value>
+  </data>
+  <data name="txtAutoNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtAutoNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>392, 86</value>
+  </data>
+  <data name="txtAutoNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>67, 21</value>
+  </data>
+  <data name="txtAutoNum.TabIndex" type="System.Int32, mscorlib">
+    <value>34</value>
+  </data>
+  <data name="txtAutoNum.Text" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;txtAutoNum.Name" xml:space="preserve">
+    <value>txtAutoNum</value>
+  </data>
+  <data name="&gt;&gt;txtAutoNum.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtAutoNum.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtAutoNum.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="txtAutoIncrement.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
   <data name="txtAutoIncrement.Location" type="System.Drawing.Point, System.Drawing">
-    <value>340, 58</value>
+    <value>392, 56</value>
   </data>
   <data name="txtAutoIncrement.Size" type="System.Drawing.Size, System.Drawing">
     <value>67, 21</value>
@@ -616,28 +892,88 @@
     <value>txtAutoIncrement</value>
   </data>
   <data name="&gt;&gt;txtAutoIncrement.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtAutoIncrement.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtAutoIncrement.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>14</value>
+  </data>
+  <data name="chkAutoNum.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkAutoNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="chkAutoNum.Location" type="System.Drawing.Point, System.Drawing">
+    <value>273, 90</value>
+  </data>
+  <data name="chkAutoNum.Size" type="System.Drawing.Size, System.Drawing">
+    <value>48, 16</value>
+  </data>
+  <data name="chkAutoNum.TabIndex" type="System.Int32, mscorlib">
+    <value>33</value>
+  </data>
+  <data name="chkAutoNum.Text" xml:space="preserve">
+    <value>自增</value>
+  </data>
+  <data name="&gt;&gt;chkAutoNum.Name" xml:space="preserve">
+    <value>chkAutoNum</value>
+  </data>
+  <data name="&gt;&gt;chkAutoNum.Type" xml:space="preserve">
+    <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;chkAutoNum.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;chkAutoNum.ZOrder" xml:space="preserve">
+    <value>15</value>
+  </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 90</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>卡片编号:</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>16</value>
   </data>
   <data name="chkAutoIncrement.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="chkAutoIncrement.Location" type="System.Drawing.Point, System.Drawing">
-    <value>273, 62</value>
+    <value>273, 60</value>
   </data>
   <data name="chkAutoIncrement.Size" type="System.Drawing.Size, System.Drawing">
-    <value>72, 16</value>
+    <value>48, 16</value>
   </data>
   <data name="chkAutoIncrement.TabIndex" type="System.Int32, mscorlib">
     <value>33</value>
   </data>
   <data name="chkAutoIncrement.Text" xml:space="preserve">
-    <value>自增数字</value>
+    <value>自增</value>
   </data>
   <data name="&gt;&gt;chkAutoIncrement.Name" xml:space="preserve">
     <value>chkAutoIncrement</value>
@@ -649,13 +985,67 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;chkAutoIncrement.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>17</value>
+  </data>
+  <data name="txtNumPrefix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtNumPrefix.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 86</value>
+  </data>
+  <data name="txtNumPrefix.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 21</value>
+  </data>
+  <data name="txtNumPrefix.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;txtNumPrefix.Name" xml:space="preserve">
+    <value>txtNumPrefix</value>
+  </data>
+  <data name="&gt;&gt;txtNumPrefix.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtNumPrefix.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtNumPrefix.ZOrder" xml:space="preserve">
+    <value>18</value>
+  </data>
+  <data name="label22.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label22.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
+    <value>108, 210</value>
+  </data>
+  <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label22.TabIndex" type="System.Int32, mscorlib">
+    <value>32</value>
+  </data>
+  <data name="label22.Text" xml:space="preserve">
+    <value>所属部门:</value>
+  </data>
+  <data name="&gt;&gt;label22.Name" xml:space="preserve">
+    <value>label22</value>
+  </data>
+  <data name="&gt;&gt;label22.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label22.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;label22.ZOrder" xml:space="preserve">
+    <value>19</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>108, 62</value>
+    <value>108, 60</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -676,13 +1066,40 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>20</value>
+  </data>
+  <data name="txtDepartment.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtDepartment.Location" type="System.Drawing.Point, System.Drawing">
+    <value>173, 206</value>
+  </data>
+  <data name="txtDepartment.MaxLength" type="System.Int32, mscorlib">
+    <value>100</value>
+  </data>
+  <data name="txtDepartment.Size" type="System.Drawing.Size, System.Drawing">
+    <value>375, 21</value>
+  </data>
+  <data name="txtDepartment.TabIndex" type="System.Int32, mscorlib">
+    <value>31</value>
+  </data>
+  <data name="&gt;&gt;txtDepartment.Name" xml:space="preserve">
+    <value>txtDepartment</value>
+  </data>
+  <data name="&gt;&gt;txtDepartment.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtDepartment.Parent" xml:space="preserve">
+    <value>tabPage1</value>
+  </data>
+  <data name="&gt;&gt;txtDepartment.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
   <data name="txtPrefix.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
   <data name="txtPrefix.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 58</value>
+    <value>173, 56</value>
   </data>
   <data name="txtPrefix.Size" type="System.Drawing.Size, System.Drawing">
     <value>77, 21</value>
@@ -694,13 +1111,13 @@
     <value>txtPrefix</value>
   </data>
   <data name="&gt;&gt;txtPrefix.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.711, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtPrefix.Parent" xml:space="preserve">
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;txtPrefix.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>22</value>
   </data>
   <data name="chkOnlineHandleWhenOfflineMode.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -895,7 +1312,7 @@
     <value>6</value>
   </data>
   <data name="groupBox3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>96, 181</value>
+    <value>95, 233</value>
   </data>
   <data name="groupBox3.Size" type="System.Drawing.Size, System.Drawing">
     <value>473, 84</value>
@@ -913,10 +1330,10 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;groupBox3.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>23</value>
   </data>
   <data name="comCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>173, 88</value>
+    <value>173, 116</value>
   </data>
   <data name="comCardType.Size" type="System.Drawing.Size, System.Drawing">
     <value>117, 20</value>
@@ -934,7 +1351,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;comCardType.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>24</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -964,7 +1381,7 @@
     <value>tabPage1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>25</value>
   </data>
   <data name="tabPage1.Location" type="System.Drawing.Point, System.Drawing">
     <value>4, 22</value>
@@ -973,7 +1390,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>748, 316</value>
+    <value>748, 348</value>
   </data>
   <data name="tabPage1.TabIndex" type="System.Int32, mscorlib">
     <value>0</value>
@@ -1078,7 +1495,7 @@
     <value>Bottom</value>
   </data>
   <data name="cardView.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 59</value>
+    <value>3, 91</value>
   </data>
   <data name="cardView.Size" type="System.Drawing.Size, System.Drawing">
     <value>742, 254</value>
@@ -1105,7 +1522,7 @@
     <value>3, 3, 3, 3</value>
   </data>
   <data name="tabPage2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>748, 316</value>
+    <value>748, 348</value>
   </data>
   <data name="tabPage2.TabIndex" type="System.Int32, mscorlib">
     <value>1</value>
@@ -1258,7 +1675,7 @@
     <value>4, 22</value>
   </data>
   <data name="tabPage4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>748, 316</value>
+    <value>748, 348</value>
   </data>
   <data name="tabPage4.TabIndex" type="System.Int32, mscorlib">
     <value>3</value>
@@ -1282,7 +1699,7 @@
     <value>0, -13</value>
   </data>
   <data name="tabControl1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>756, 342</value>
+    <value>756, 374</value>
   </data>
   <data name="tabControl1.TabIndex" type="System.Int32, mscorlib">
     <value>28</value>
@@ -1303,7 +1720,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnPrevious.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 336</value>
+    <value>517, 368</value>
   </data>
   <data name="btnPrevious.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1330,7 +1747,7 @@
     <value>Bottom, Right</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>677, 336</value>
+    <value>677, 368</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>75, 23</value>
@@ -1353,8 +1770,11 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
+  <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
+  </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-6, 319</value>
+    <value>-6, 363</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 3</value>
@@ -1381,7 +1801,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>754, 378</value>
+    <value>754, 410</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

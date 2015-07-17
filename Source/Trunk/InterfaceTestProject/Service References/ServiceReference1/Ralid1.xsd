@@ -1,0 +1,387 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:complexType name="CardInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AccessID" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="ActivationDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarType" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardNum" type="xs:short" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="CardType" nillable="true" type="q1:CardType" />
+      <xs:element minOccurs="0" name="CardVersion" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Department" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Deposit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountHour" type="xs:int" />
+      <xs:element minOccurs="0" name="FreeDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Index" type="xs:short" />
+      <xs:element minOccurs="0" name="IndexNumber" type="xs:int" />
+      <xs:element minOccurs="0" name="LastCarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastEntrance" type="xs:int" />
+      <xs:element minOccurs="0" name="LastNestParkDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LastPayment" nillable="true" type="tns:CardPaymentInfo" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="ListType" type="q2:CardListType" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="Options" type="q3:CardOptions" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaidDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ParkFee" type="xs:decimal" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="ParkingStatus" type="q4:ParkingStatus" />
+      <xs:element minOccurs="0" name="PreferentialTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RegCarPlate" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="Status" type="q5:CardStatus" />
+      <xs:element minOccurs="0" name="TotalPaidFee" type="xs:decimal" />
+      <xs:element minOccurs="0" name="UpdateFlag" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="ValidDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardInfo" nillable="true" type="tns:CardInfo" />
+  <xs:complexType name="CardPaymentInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Accounts" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarType" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="CardType" nillable="true" type="q6:CardType" />
+      <xs:element minOccurs="0" name="ChargeDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="CurrDiscountHour" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="Discount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="DiscountHour" type="xs:int" />
+      <xs:element minOccurs="0" name="EnterDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="ID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsCenterCharge" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="LastStationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LastTotalDiscount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LastTotalPaid" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorCardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorDeptID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Paid" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ParkFee" type="xs:decimal" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="PaymentCode" type="q7:PaymentCode" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="PaymentMode" type="q8:PaymentMode" />
+      <xs:element minOccurs="0" name="StationDeptID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="StationID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="TariffType" type="q9:TariffType" />
+      <xs:element minOccurs="0" name="UpdateFlag" nillable="true" type="xs:boolean" />
+      <xs:element minOccurs="0" name="_CardType" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardPaymentInfo" nillable="true" type="tns:CardPaymentInfo" />
+  <xs:complexType name="OperatorInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Dept" nillable="true" type="tns:DeptInfo" />
+      <xs:element minOccurs="0" name="DeptID" nillable="true" type="ser:guid" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorNum" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="Role" nillable="true" type="tns:RoleInfo" />
+      <xs:element minOccurs="0" name="RoleID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_Password" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="OperatorInfo" nillable="true" type="tns:OperatorInfo" />
+  <xs:complexType name="DeptInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="DeptID" type="ser:guid" />
+      <xs:element minOccurs="0" name="DeptName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Descrption" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParentID" nillable="true" type="ser:guid" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DeptInfo" nillable="true" type="tns:DeptInfo" />
+  <xs:complexType name="RoleInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Admin" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardManager" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="PaymentOperator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RoleID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_myRights" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="_rights" nillable="true" type="q10:ArrayOfPermission" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoleInfo" nillable="true" type="tns:RoleInfo" />
+  <xs:complexType name="ArrayOfCardChargeRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardChargeRecord" nillable="true" type="tns:CardChargeRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardChargeRecord" nillable="true" type="tns:ArrayOfCardChargeRecord" />
+  <xs:complexType name="CardChargeRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ChargeAmount" type="xs:decimal" />
+      <xs:element minOccurs="0" name="ChargeDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Payment" type="xs:decimal" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="PaymentMode" type="q11:PaymentMode" />
+      <xs:element minOccurs="0" name="SettleDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardChargeRecord" nillable="true" type="tns:CardChargeRecord" />
+  <xs:complexType name="ArrayOfCardDeferRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardDeferRecord" nillable="true" type="tns:CardDeferRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardDeferRecord" nillable="true" type="tns:ArrayOfCardDeferRecord" />
+  <xs:complexType name="CardDeferRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="CardType" nillable="true" type="q12:CardType" />
+      <xs:element minOccurs="0" name="CurrentDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeferDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DeferMoney" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OriginalDate" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="PaymentMode" type="q13:PaymentMode" />
+      <xs:element minOccurs="0" name="SettleDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_CardType" nillable="true" type="xs:unsignedByte" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardDeferRecord" nillable="true" type="tns:CardDeferRecord" />
+  <xs:complexType name="ArrayOfCardLostRestoreRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardLostRestoreRecord" nillable="true" type="tns:CardLostRestoreRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardLostRestoreRecord" nillable="true" type="tns:ArrayOfCardLostRestoreRecord" />
+  <xs:complexType name="CardLostRestoreRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardStatus" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="LostCardCost" nillable="true" type="xs:decimal" />
+      <xs:element minOccurs="0" name="LostDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="LostMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LostOperator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="LostStation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="PaymentMode" nillable="true" type="q14:PaymentMode" />
+      <xs:element minOccurs="0" name="RestoreDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RestoreMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RestoreOperator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RestoreStation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="SettleDateTime" nillable="true" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardLostRestoreRecord" nillable="true" type="tns:CardLostRestoreRecord" />
+  <xs:complexType name="ArrayOfCardDisableEnableRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardDisableEnableRecord" nillable="true" type="tns:CardDisableEnableRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardDisableEnableRecord" nillable="true" type="tns:ArrayOfCardDisableEnableRecord" />
+  <xs:complexType name="CardDisableEnableRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisableDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="DisableMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisableOperator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="DisableStationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnableDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="EnableMemo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnableOperator" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EnableStationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardDisableEnableRecord" nillable="true" type="tns:CardDisableEnableRecord" />
+  <xs:complexType name="ArrayOfCardRecycleRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardRecycleRecord" nillable="true" type="tns:CardRecycleRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardRecycleRecord" nillable="true" type="tns:ArrayOfCardRecycleRecord" />
+  <xs:complexType name="CardRecycleRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="CardType" nillable="true" type="q15:CardType" />
+      <xs:element minOccurs="0" name="Deposit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RecycleDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="RecycleMoney" type="xs:decimal" />
+      <xs:element minOccurs="0" name="SettleDateTime" nillable="true" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="StationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardRecycleRecord" nillable="true" type="tns:CardRecycleRecord" />
+  <xs:complexType name="ArrayOfCardReleaseRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardReleaseRecord" nillable="true" type="tns:CardReleaseRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardReleaseRecord" nillable="true" type="tns:ArrayOfCardReleaseRecord" />
+  <xs:complexType name="CardReleaseRecord">
+    <xs:sequence>
+      <xs:element name="_CardType" type="xs:unsignedByte" />
+      <xs:element name="_x003C_ActivationDate_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_Balance_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_CarPlate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CardCertificate_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_CardID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_Deposit_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_HolidayEnabled_x003E_k__BackingField" type="xs:boolean" />
+      <xs:element name="_x003C_Memo_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_OperatorID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_OwnerName_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" name="_x003C_PaymentMode_x003E_k__BackingField" type="q16:PaymentMode" />
+      <xs:element name="_x003C_ReleaseDateTime_x003E_k__BackingField" type="xs:dateTime" />
+      <xs:element name="_x003C_ReleaseMoney_x003E_k__BackingField" type="xs:decimal" />
+      <xs:element name="_x003C_SettleDateTime_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+      <xs:element name="_x003C_StationID_x003E_k__BackingField" nillable="true" type="xs:string" />
+      <xs:element name="_x003C_ValidDate_x003E_k__BackingField" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardReleaseRecord" nillable="true" type="tns:CardReleaseRecord" />
+  <xs:complexType name="ArrayOfCardDeleteRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="CardDeleteRecord" nillable="true" type="tns:CardDeleteRecord" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfCardDeleteRecord" nillable="true" type="tns:ArrayOfCardDeleteRecord" />
+  <xs:complexType name="CardDeleteRecord">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Balance" type="xs:decimal" />
+      <xs:element minOccurs="0" name="CarPlate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardCertificate" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardID" nillable="true" type="xs:string" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="CardType" nillable="true" type="q17:CardType" />
+      <xs:element minOccurs="0" name="DeleteDateTime" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="Deposit" type="xs:decimal" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OperatorID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="OwnerName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StationID" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ValidDate" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CardDeleteRecord" nillable="true" type="tns:CardDeleteRecord" />
+  <xs:complexType name="ArrayOfEntranceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="EntranceInfo" nillable="true" type="tns:EntranceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfEntranceInfo" nillable="true" type="tns:ArrayOfEntranceInfo" />
+  <xs:complexType name="EntranceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Address" type="xs:int" />
+      <xs:element minOccurs="0" name="CarPlateIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CarPlateNotifyIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CardTypeProperty" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ControlPort" type="xs:int" />
+      <xs:element minOccurs="0" name="EntranceID" type="xs:int" />
+      <xs:element minOccurs="0" name="EntranceName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="EventPort" type="xs:int" />
+      <xs:element minOccurs="0" name="Gateway" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IPMask" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MACAddress" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MasterIP" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MinTempCard" type="xs:int" />
+      <xs:element minOccurs="0" name="ParkID" type="xs:int" />
+      <xs:element minOccurs="0" name="PaymentEventIndex" type="xs:int" />
+      <xs:element minOccurs="0" name="ReadCardInterval" type="xs:int" />
+      <xs:element minOccurs="0" name="RootParkID" type="xs:int" />
+      <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="Status" type="q18:EntranceStatus" />
+      <xs:element minOccurs="0" name="TempCard" type="xs:int" />
+      <xs:element minOccurs="0" name="TicketPrinterCOMPort" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="TicketReaderCOMPort" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="TicketReaderCOMPort2" nillable="true" type="xs:unsignedByte" />
+      <xs:element minOccurs="0" name="VideoID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoSources" nillable="true" type="tns:ArrayOfVideoSourceInfo" />
+      <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="WorkMode" type="q19:EntranceWorkmodeOption" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="EntranceInfo" nillable="true" type="tns:EntranceInfo" />
+  <xs:complexType name="ArrayOfVideoSourceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="VideoSourceInfo" nillable="true" type="tns:VideoSourceInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfVideoSourceInfo" nillable="true" type="tns:ArrayOfVideoSourceInfo" />
+  <xs:complexType name="VideoSourceInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="AutoReconnect" type="xs:boolean" />
+      <xs:element minOccurs="0" name="AutoReconnectInterval" type="xs:int" />
+      <xs:element minOccurs="0" name="Channel" type="xs:int" />
+      <xs:element minOccurs="0" name="ConnectTimeOut" type="xs:int" />
+      <xs:element minOccurs="0" name="ControlPort" type="xs:int" />
+      <xs:element minOccurs="0" name="EntranceID" type="xs:int" />
+      <xs:element minOccurs="0" name="IsForCarPlate" type="xs:boolean" />
+      <xs:element minOccurs="0" name="MediaSource" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="StreamPort" type="xs:int" />
+      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoID" type="xs:int" />
+      <xs:element minOccurs="0" name="VideoName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="VideoType" nillable="true" type="xs:int" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="VideoSourceInfo" nillable="true" type="tns:VideoSourceInfo" />
+  <xs:complexType name="ParkInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="CarPlateRecognizeUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="CommPort" type="xs:unsignedByte" />
+      <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="DeviceType" type="q20:EntranceDeviceType" />
+      <xs:element minOccurs="0" name="Entrances" nillable="true" type="tns:ArrayOfEntranceInfo" />
+      <xs:element minOccurs="0" name="GPS" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="HostWorkstation" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="IsNested" type="xs:boolean" />
+      <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="ListMode" type="q21:ParkListMode" />
+      <xs:element minOccurs="0" name="Memo" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="MinPosition" type="xs:short" />
+      <xs:element minOccurs="0" name="Options" type="xs:int" />
+      <xs:element minOccurs="0" name="ParentID" nillable="true" type="xs:int" />
+      <xs:element minOccurs="0" name="ParkAdapterUri" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParkFullText" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="ParkID" type="xs:int" />
+      <xs:element minOccurs="0" name="ParkName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="RootParkID" type="xs:int" />
+      <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="Status" type="q22:EntranceStatus" />
+      <xs:element minOccurs="0" name="SubParks" nillable="true" type="tns:ArrayOfParkInfo" />
+      <xs:element minOccurs="0" name="TotalPosition" type="xs:short" />
+      <xs:element minOccurs="0" name="Vacant" type="xs:short" />
+      <xs:element minOccurs="0" name="VacantText" nillable="true" type="xs:string" />
+      <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" minOccurs="0" name="WorkMode" type="q23:ParkWorkMode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ParkInfo" nillable="true" type="tns:ParkInfo" />
+  <xs:complexType name="ArrayOfParkInfo">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ParkInfo" nillable="true" type="tns:ParkInfo" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfParkInfo" nillable="true" type="tns:ArrayOfParkInfo" />
+</xs:schema>

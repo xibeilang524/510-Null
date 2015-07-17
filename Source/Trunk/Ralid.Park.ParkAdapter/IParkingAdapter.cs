@@ -105,6 +105,14 @@ namespace Ralid.Park.ParkAdapter
         bool DownloadVacantSetting(CarPortSetting vacantSetting);
 
         /// <summary>
+        /// 修正空车位数
+        /// </summary>
+        /// <param name="vacant">需要增加的空车位数，负数为减小</param>
+        /// <returns></returns>
+        [OperationContract()]
+        bool ModifiedVacant(short vacant);
+
+        /// <summary>
         /// 下载通道权限，网络型只会更新服务器实例，不会下发到控制器
         /// </summary>
         /// <param name="ascLevel"></param>
@@ -187,6 +195,13 @@ namespace Ralid.Park.ParkAdapter
         bool SwitchCarType(CarTypeSwitchNotify notify);
 
         /// <summary>
+        /// 更换卡片收费通道
+        /// </summary>
+        /// <param name="notify"></param>
+        [OperationContract()]
+        bool SwitchEntrance(EntranceSwitchNotify notify);
+
+        /// <summary>
         /// 设置入口通道临时卡数量
         /// </summary>
         /// <returns></returns>
@@ -200,6 +215,14 @@ namespace Ralid.Park.ParkAdapter
         /// <returns></returns>
         [OperationContract]
         bool RemoteReadCard(RemoteReadCardNotify notify);
+
+        /// <summary>
+        /// 更新系统参数设置通知
+        /// </summary>
+        /// <param name="notify"></param>
+        /// <returns></returns>
+        [OperationContract]
+        bool UpdateSystemParamSetting(UpdateSystemParamSettingNotity notify);
 
         /// <summary>
         /// 事件订阅指定串口事件

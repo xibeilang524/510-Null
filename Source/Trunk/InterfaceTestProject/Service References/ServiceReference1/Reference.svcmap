@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="0c82bf65-1c0c-4e99-8fc4-f89d16fe5032" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="Ralid.disco" MetadataType="Disco" ID="6fcb56fe-b811-45db-9977-7c2d614d7cf4" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?disco" />
+    <MetadataFile FileName="Ralid.xsd" MetadataType="Schema" ID="04456130-4eea-4de1-b651-5dc42b2c0a1a" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd2" />
+    <MetadataFile FileName="Ralid1.xsd" MetadataType="Schema" ID="b2c2ebb5-8633-438c-a261-3aac36bad7e3" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd3" />
+    <MetadataFile FileName="ParkWebService.wsdl" MetadataType="Wsdl" ID="e0e6003b-da27-4cc8-982f-1af1d05c2ea0" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?wsdl" />
+    <MetadataFile FileName="Ralid2.xsd" MetadataType="Schema" ID="779308a4-afc8-4f48-918c-0180adcc552e" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" />
+    <MetadataFile FileName="Ralid3.xsd" MetadataType="Schema" ID="9d09ee6d-f51b-41bc-af32-3cb1493d669b" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd0" />
+    <MetadataFile FileName="Ralid4.xsd" MetadataType="Schema" ID="27de80b4-e0df-44f7-9865-debf39ab5fe4" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd7" />
+    <MetadataFile FileName="Ralid5.xsd" MetadataType="Schema" ID="eb463949-9824-4227-8ec8-b2ef9a29a4a7" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd6" />
+    <MetadataFile FileName="Ralid7.xsd" MetadataType="Schema" ID="afa8274b-dd30-4486-8225-9d3902e70f32" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd5" />
+    <MetadataFile FileName="Ralid8.xsd" MetadataType="Schema" ID="add47d04-d48f-49a7-af0a-e1bdc4b9ad0e" SourceId="1" SourceUrl="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd4" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

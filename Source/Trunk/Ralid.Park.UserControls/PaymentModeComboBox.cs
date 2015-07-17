@@ -33,7 +33,8 @@ namespace Ralid.Park.UserControls
             new TextValueItem <PaymentMode>(PaymentMode .Prepay ,PaymentModeDescription.GetDescription (PaymentMode .Prepay )),
             new TextValueItem<PaymentMode>(PaymentMode.YangChengTong,PaymentModeDescription .GetDescription (PaymentMode.YangChengTong )),
             new TextValueItem<PaymentMode>(PaymentMode.Pos, PaymentModeDescription .GetDescription (PaymentMode.Pos )),
-            new TextValueItem <PaymentMode >(PaymentMode .ZhongShanTong ,PaymentModeDescription .GetDescription (PaymentMode .ZhongShanTong )),
+            new TextValueItem <PaymentMode >(PaymentMode.ZhongShanTong ,PaymentModeDescription .GetDescription (PaymentMode.ZhongShanTong )),
+            new TextValueItem <PaymentMode >(PaymentMode.WeChat ,PaymentModeDescription .GetDescription (PaymentMode.WeChat )),
             };
             this.DataSource = items;
             this.DisplayMember = "Text";

@@ -169,17 +169,20 @@
   <data name="mnu_CardRecycle.Text" xml:space="preserve">
     <value>Recycle</value>
   </data>
+  <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
+    <value>249, 6</value>
+  </data>
   <data name="mnu_CardDownload.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
   <data name="mnu_CardDownload.Text" xml:space="preserve">
-    <value>Download</value>
+    <value>Download To Entrance</value>
   </data>
   <data name="mnu_CardClear.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
   <data name="mnu_CardClear.Text" xml:space="preserve">
-    <value>Delete list</value>
+    <value>Delete list To Entrance</value>
   </data>
   <data name="mnu_SyncCardToStandby.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
@@ -196,6 +199,16 @@
   <data name="mnu_Delete.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ToolStripMenuItem.ShowShortcutKeys" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>252, 22</value>
+  </data>
+  <data name="ToolStripMenuItem.Text" xml:space="preserve">
+    <value>Mandate Delete</value>
+  </data>
   <data name="mnu_Property.Size" type="System.Drawing.Size, System.Drawing">
     <value>252, 22</value>
   </data>
@@ -203,7 +216,10 @@
     <value>Property</value>
   </data>
   <data name="CardOperatorMenuStrip.Size" type="System.Drawing.Size, System.Drawing">
-    <value>253, 302</value>
+    <value>253, 330</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>ListType:</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
@@ -237,6 +253,12 @@
   </data>
   <data name="cmbCarStatus.Items2" xml:space="preserve">
     <value>Out</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Department:</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 12</value>

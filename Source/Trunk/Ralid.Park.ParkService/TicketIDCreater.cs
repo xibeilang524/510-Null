@@ -29,8 +29,8 @@ namespace Ralid.Park.ParkService
                 if (_LastID7 == id)
                 {
                     id += 1;
-                    _LastID7 = id;
                 }
+                _LastID7 = id;
                 return id.ToString();
             }
         }

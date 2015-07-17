@@ -201,6 +201,7 @@ namespace Ralid.Park.BusinessModel.Enum
             cardTypes.Add(new CardType(CardType.OwnerCard.ID));
             cardTypes.Add(new CardType(CardType.PrePayCard.ID));
             cardTypes.Add(new CardType(CardType.TempCard.ID));
+            cardTypes.Add(new CardType(CardType.Ticket.ID));
             return cardTypes;
         }
 

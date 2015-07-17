@@ -142,6 +142,10 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Role:</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="txtPassword.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 131</value>
   </data>
@@ -159,6 +163,9 @@
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>Name:</value>
+  </data>
+  <data name="txtOperatorNum.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
   <data name="btnChangePwd.Text" xml:space="preserve">
     <value>MD</value>

@@ -166,6 +166,16 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
+      <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
+      <Name>Ralid.Park.BLL</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.BusinessModel\Ralid.Park.BusinessModel.csproj">
+      <Project>{D88B14D7-71E1-4DD3-A919-B2E716985D23}</Project>
+      <Name>Ralid.Park.BusinessModel</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -28,6 +28,7 @@ namespace Ralid.Park.BusinessModel.Report
         }
         #endregion
 
+        #region 公共属性
         /// <summary>
         /// 卡号
         /// </summary>
@@ -75,12 +76,55 @@ namespace Ralid.Park.BusinessModel.Report
         [DataMember]
         public bool CannotIgnored { get; set; }
 
+        /// <summary>
+        /// 获取或设置对比失败时，识别到的车牌是否为空
+        /// </summary>
+        [DataMember]
+        public bool EmptyPlateWhenCompareFail { get; set; }
+
+        /// <summary>
+        /// 获取或设置是否按车牌事件处理
+        /// </summary>
+        [DataMember]
+        public bool IsCarPlateEventHandle { get; set; }
+
+        /// <summary>
+        /// 获取或设置车辆是否没有车牌
+        /// </summary>
+        [DataMember]
+        public bool IsCarNotPlate { get; set; }
+        #endregion
+
+        #region 只读公共属性
+        /// <summary>
+        /// 获取是否识别车牌失败
+        /// </summary>
+        public bool IsRecognitionFailure
+        {
+            get
+            {
+                return string.IsNullOrEmpty(CarPlate)
+                    || CarPlate == "无车牌"
+                    || CarPlate.ToUpper() == "NO PLATE";
+            }
+        }
+        #endregion
+
+        #region 重写属性
         public override string Description
         {
             get
             {
-                return string.Format("【{0} ＠ {1}】:{2}{3} Reader:{4} 车牌号:{5}", EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"), SourceName, Resouce.Resource1.Report_CardRead, CardID, Reader, CarPlate);
+                return string.Format("【{0} ＠ {1}】:{2}{3} Reader:{4} 车牌号:{5} {6}",
+                    EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                    SourceName,
+                    Resouce.Resource1.Report_CardRead,
+                    CardID,
+                    Reader,
+                    CarPlate,
+                    IsCarPlateEventHandle ? "车牌事件" : string.Empty);
             }
         }
+        #endregion
     }
 }

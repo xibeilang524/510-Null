@@ -73,6 +73,18 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public byte OperatorNum { get; set; }
+
+        /// <summary>
+        /// 部门ID
+        /// </summary>
+        [DataMember]
+        public Guid? DeptID { get; set; }
+        /// <summary>
+        /// 操作员部门
+        /// </summary>
+        [DataMember]
+        public DeptInfo Dept { get; set; }
+
         #endregion
 
         public OperatorInfo()

@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ralid.Park.DAL.IDAL;
+using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Result;
+using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.SearchCondition;
 
@@ -28,6 +30,11 @@ namespace Ralid.Park.BLL
         #endregion 成员变量
 
         #region 公共方法
+        /// <summary>
+        /// 获取控制器ID为entranceID的所有等待下发命令
+        /// </summary>
+        /// <param name="entranceID"></param>
+        /// <returns></returns>
         public QueryResultList<WaitingCommandInfo> GetCommands(int entranceID)
         {
             WaitingCommandSearchCondition search = new WaitingCommandSearchCondition();
@@ -35,19 +42,50 @@ namespace Ralid.Park.BLL
             return provider.GetItems(search);
         }
 
+        /// <summary>
+        /// 获取等待下发的命令
+        /// </summary>
+        /// <returns></returns>
+        public QueryResultList<WaitingCommandInfo> GetWaitingCommands()
+        {
+            WaitingCommandSearchCondition search = new WaitingCommandSearchCondition();
+            search.Status = WaitingCommandStatus.Waiting;
+            return provider.GetItems(search);
+        }
+
+        public QueryResultList<WaitingCommandInfo> GetCommands(WaitingCommandSearchCondition search)
+        {
+            return provider.GetItems(search);
+        } 
+
         public QueryResultList<WaitingCommandInfo> GetAllCommands()
         {
             return provider.GetAll();
         }
 
-        public CommandResult Insert(WaitingCommandInfo t)
+        public CommandResult DeleteAndInsert(WaitingCommandInfo t)
         {
-            return provider.Insert(t);
+            CommandResult result = provider.Delete(t);
+            if (result.Result == ResultCode.Successful)
+            {
+                result = provider.Insert(t);
+            }
+            return result;
         }
 
         public CommandResult Delete(WaitingCommandInfo t)
         {
             return provider.Delete(t);
+        }
+
+        public CommandResult Update(WaitingCommandInfo newInfo)
+        {
+            WaitingCommandInfo original = provider.GetByID(new WaitingCommandID(newInfo.EntranceID, newInfo.Command, newInfo.CardID)).QueryObject;
+            if (original != null)
+            {
+                return provider.Update(newInfo, original);
+            }
+            return new CommandResult(ResultCode.NoRecord);
         }
         #endregion
     }

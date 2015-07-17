@@ -53,13 +53,20 @@ namespace Ralid.Park.UserControls
             }
             set
             {
-                for (int i=0 ;i<this.Items.Count ;i++)
+                if (value == null)
                 {
-                    RoleInfo info = (RoleInfo)this.Items[i];
-                    if (info.RoleID == value.RoleID)
+                    this.SelectedIndex = -1;
+                }
+                else
+                {
+                    for (int i = 0; i < this.Items.Count; i++)
                     {
-                        this.SelectedIndex = i;
-                        break;
+                        RoleInfo info = (RoleInfo)this.Items[i];
+                        if (info.RoleID == value.RoleID)
+                        {
+                            this.SelectedIndex = i;
+                            break;
+                        }
                     }
                 }
             }

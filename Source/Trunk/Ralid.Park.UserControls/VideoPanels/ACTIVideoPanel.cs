@@ -156,7 +156,7 @@ namespace Ralid.Park.UserControls.VideoPanels
             }
         }
 
-        public override bool SnapShotTo(string path)
+        public override bool SnapShotTo(ref string path)
         {
 
             bool success = false;

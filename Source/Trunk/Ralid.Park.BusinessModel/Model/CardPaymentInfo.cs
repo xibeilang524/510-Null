@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Runtime .Serialization ;
+using System.Runtime.Serialization;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.GeneralLibrary.Printer;
 
@@ -116,15 +116,27 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public PaymentMode PaymentMode { get; set; }
         /// <summary>
-        /// 获取或设置卡片未用的优惠时数
+        /// 获取或设置已优惠的时数，且这个值是个累加值。
         /// </summary>
         [DataMember]
         public int DiscountHour { get; set; }
+
+        /// <summary>
+        /// 获取或设置卡片本次收费的优惠时数
+        /// </summary>
+        [DataMember]
+        public int? CurrDiscountHour { get; set; }
+
+        ///// <summary>
+        ///// 获取或设置卡片本次累计已收费的优惠时数
+        ///// </summary>
+        //public int CurrHasPaidDiscountHour { get; set; }
+
         /// <summary>
         /// 获取或设置操作员编号
         /// </summary>
         [DataMember]
-        public string  OperatorID { get; set; }
+        public string OperatorID { get; set; }
         /// <summary>
         /// 获取或设置工作站
         /// </summary>
@@ -160,6 +172,16 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public bool? UpdateFlag { get; set; }
+        /// <summary>
+        /// 获取或设置操作员部门ID
+        /// </summary>
+        [DataMember]
+        public Guid? OperatorDeptID { get; set; }
+        /// <summary>
+        /// 获取或设置工作站部门ID
+        /// </summary>
+        [DataMember]
+        public Guid? StationDeptID { get; set; }
         #endregion
 
         #region 只读属性
@@ -303,3 +325,4 @@ VALUES
         #endregion
     }
 }
+

@@ -33,161 +33,6 @@ namespace Ralid.Park.BusinessModel.Model
         #endregion
 
         #region 重写基类方法
-        public override string ToString()
-        {
-            return Resouce.Resource1.Tariff_Limitation;
-        }
-
-        public override decimal CalcalateIntradayFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = 0;
-            TimeSpan ts = new TimeSpan(ending.Ticks - beginning.Ticks);
-            double minutes = Math.Ceiling(ts.TotalMinutes); //停车分钟数
-            double calmins = 0;//已计算的停车分钟数
-
-            if (FirstCharge != null && calMins <= FirstCharge.Minutes)
-            {
-                if (calMins == 0)
-                {
-                    fee += FirstCharge.Fee;
-                }
-                calmins += (FirstCharge.Minutes - calMins);
-                calmins = calmins > minutes ? minutes : calmins;
-            }
-
-            if (FeeOf12Hour > 0)//有设置12小时最高收费
-            {
-                if (calmins < 12 * 60)//已计算的停车时间未超过12小时
-                {
-                    //计算12小时内的费用
-                    double minutes12 = (minutes > 12 * 60 ? 12 * 60 : minutes) - calmins;
-                    int c12 = (int)Math.Ceiling(minutes12 / RegularCharge.Minutes);
-                    fee += ((decimal)c12 * RegularCharge.Fee);
-
-                    calmins += c12 * RegularCharge.Minutes;
-                    calmins = calmins > minutes ? minutes : calmins;
-                }
-                fee = fee > FeeOf12Hour ? FeeOf12Hour : fee;
-            }
-
-            if (minutes - calmins > 0)
-            {
-                //计算剩下时间的费用
-                fee += ((decimal)Math.Ceiling((minutes - calmins) / RegularCharge.Minutes) * RegularCharge.Fee);
-            }
-
-            if (FeeOf24Hour > 0)
-            {
-                fee = fee > FeeOf24Hour ? FeeOf24Hour : fee;
-            }
-
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-
-            return fee;
-
-        }
-
-        public override decimal GetChargeUnitFee(DateTime beginning)
-        {
-            decimal fee = 0;
-
-            if (FirstCharge != null)
-            {
-                fee = FirstCharge.Fee;
-
-            }
-            else
-            {
-                fee = RegularCharge.Fee;
-            }
-
-            if (FeeOf12Hour > 0)
-            {
-                fee = fee > FeeOf12Hour ? FeeOf12Hour : fee;
-            }
-
-            if (FeeOf24Hour > 0)
-            {
-                fee = fee > FeeOf24Hour ? FeeOf24Hour : fee;
-            }
-
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-
-            return fee;
-        }
-
-        public override decimal CalcalateCycleFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = 0;
-            double minutes = 24 * 60;
-
-            if (FirstCharge != null && calMins <= FirstCharge.Minutes)
-            {
-                if (calMins == 0)
-                {
-                    fee += FirstCharge.Fee;
-                }
-
-                minutes -= (FirstCharge.Minutes - calMins);
-                minutes = minutes > 0 ? minutes : 0;
-            }
-
-            if (FeeOf12Hour > 0)//有设置12小时最高收费
-            {
-                if (minutes >= 12 * 60)//已计算的停车时间未超过12小时
-                {
-                    //计算第一个12小时内的费用
-                    double minutes12 = minutes - 12 * 60;
-                    int c12 = (int)Math.Ceiling(minutes12 / RegularCharge.Minutes);
-                    fee += ((decimal)c12 * RegularCharge.Fee);
-
-                    minutes -= c12 * RegularCharge.Minutes;
-                    minutes = minutes > 0 ? minutes : 0;
-                    fee = fee > FeeOf12Hour ? FeeOf12Hour : fee;
-                }
-                else
-                {
-                    fee = fee > FeeOf12Hour ? FeeOf12Hour : fee;
-                }
-                while (minutes > 0)
-                {
-                    //计算剩下的12小时
-                    decimal fee12 = 0;
-                    double minutes12 = minutes > 12 * 60 ? 12 * 60 : minutes;
-                    int c12 = (int)Math.Ceiling(minutes12 / RegularCharge.Minutes);
-                    fee12 += ((decimal)c12 * RegularCharge.Fee);
-
-                    minutes -= c12 * RegularCharge.Minutes;
-                    minutes = minutes > 0 ? minutes : 0;
-                    fee12 = fee12 > FeeOf12Hour ? FeeOf12Hour : fee12;
-
-                    fee += fee12;
-                }
-            }
-            else
-            {
-                fee += ((decimal)Math.Ceiling(minutes / RegularCharge.Minutes) * RegularCharge.Fee);
-            }
-
-            if (FeeOf24Hour > 0)
-            {
-                fee = fee > FeeOf24Hour ? FeeOf24Hour : fee;
-            }
-
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-
-            return fee;
-        }
-
         public override decimal CalculateFee(DateTime beginning, DateTime ending)
         {
             decimal fee = 0;
@@ -232,6 +77,11 @@ namespace Ralid.Park.BusinessModel.Model
             reg += ((int)Math.Ceiling(minutes / RegularCharge.Minutes)) * RegularCharge.Fee;
             fee += (max > 0 && reg > max) ? max : reg;
             return fee;
+        }
+
+        public override string ToString()
+        {
+            return Resouce.Resource1.Tariff_Limitation;
         }
         #endregion
     }

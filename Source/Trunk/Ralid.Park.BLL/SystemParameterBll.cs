@@ -37,6 +37,11 @@ namespace Ralid.Park.BLL
             return provider.Insert(info);
         }
 
+        public CommandResult Delete(SysparameterInfo info)
+        {
+            return provider.Delete(info);
+        }
+
         public List<SysparameterInfo> GetAll()
         {
             return provider.GetAll().QueryObjects;

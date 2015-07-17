@@ -38,8 +38,8 @@ namespace Ralid.Park.BusinessModel.Model
         /// <summary>
         /// 获取或设置公司名称，即在控制器LED上显示的公司名称
         /// </summary>
-        [DataMember ]
-        public string CompanyName{get;set;}
+        [DataMember]
+        public string CompanyName { get; set; }
         /// <summary>
         /// 获取或设置数据库中是否只保留最近几个月的车辆进出抓拍图片
         /// </summary>
@@ -51,6 +51,16 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public int Month { get; set; }
         /// <summary>
+        /// 获取或设置数据库中是否只保留最近几个月的车辆进出记录
+        /// </summary>
+        [DataMember]
+        public bool EnableDeleteOverTimeCardEvents { get; set; }
+        /// <summary>
+        /// 获取或设置数据库中保留最近多少个月的车辆进出记录
+        /// </summary>
+        [DataMember]
+        public int CardEventMonth { get; set; }
+        /// <summary>
         /// 获取或设置是否强制交班
         /// </summary>
         [DataMember]
@@ -59,7 +69,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置强制交班时间
         /// </summary>
         [DataMember]
-        public TimeEntity  ForceShiftingTime { get; set; }
+        public TimeEntity ForceShiftingTime { get; set; }
         /// <summary>
         /// 获取或设置停车收费自定义说明
         /// </summary>
@@ -69,7 +79,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置系统使用的Wegen协议
         /// </summary>
         [DataMember]
-        public Ralid.GeneralLibrary.CardReader.WegenType  WegenType { get; set; }
+        public Ralid.GeneralLibrary.CardReader.WegenType WegenType { get; set; }
         /// <summary>
         /// 获取或设置一键开闸,Add By Tom,2012-3-6
         /// </summary>
@@ -86,13 +96,18 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public bool InputHandInCashWhenSettle { get; set; }
         /// <summary>
+        /// 获取或设置是否启用澳大户外屏
+        /// </summary>
+        [DataMember]
+        public bool EnableOutdoorLed { get; set; }
+        /// <summary>
         /// 获取或设置最低临时卡报警的临时卡临界数量(小于零时不报警)
         /// </summary>
         [DataMember]
         public int MinTempCard { get; set; }
 
         /// <summary>
-        /// 获取或设置视频服务器类型 0表示ACTI视频服务器，1表示信路通视频服务器
+        /// 获取或设置默认视频服务器类型 0表示ACTI视频服务器，1表示信路通视频服务器, 2表示景阳网络摄像机，3表示大华网络摄像机
         /// </summary>
         [DataMember]
         public int VideoType { get; set; }
@@ -101,6 +116,31 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public bool OperatorCardCashWhenSettle { get; set; }
+        /// <summary>
+        /// 获取或设置超速违章时是否禁止入场
+        /// </summary>
+        [DataMember]
+        public bool ForbiddenEnterWhenSpeeding { get; set; }
+        /// <summary>
+        /// 获取或设置超速违章时是否禁止出场
+        /// </summary>
+        [DataMember]
+        public bool ForbiddenExitWhenSpeeding { get; set; }
+        /// <summary>
+        /// 获取或设置不显示结算详细信息，只显示上交金额
+        /// </summary>
+        [DataMember]
+        public bool NotShowSettleDetail { get; set; }
+        /// <summary>
+        /// 获取或设置优惠券
+        /// </summary>
+        [DataMember]
+        public List<ParkingCouponInfo> ParkingCoupon { get; set; }
+        /// <summary>
+        /// 获取或设置图片资料数据库连接串
+        /// </summary>
+        [DataMember]
+        public string ParkingImageConnStr { get; set; }
         #endregion
 
         #region 车牌识别选项
@@ -117,19 +157,19 @@ namespace Ralid.Park.BusinessModel.Model
         public int MaxCarPlateErrorChar { get; set; }
 
         /// <summary>
-        /// 获取或设置固定卡车入场和出场车牌对比失败需确认(此时比对的是车辆登记时的车牌号)
+        /// 获取或设置固定卡车入场和出场需车牌对比确认(此时比对的是车辆登记时的车牌号)
         /// </summary>
         [DataMember]
         public bool FixCardEnterAndExitWaitWhenCarPlateFail { get; set; }
 
         /// <summary>
-        /// 获取或设置固定卡车出场车牌对比失败需确认
+        /// 获取或设置固定卡车出场需车牌对比确认
         /// </summary>
         [DataMember]
         public bool FixCardExitWaitWhenCarPlateFail { get; set; }
 
         /// <summary>
-        /// 获取或设置临时卡车出场车牌对比失败需确认
+        /// 获取或设置临时卡车出场需车牌对比确认
         /// </summary>
         [DataMember]
         public bool TempCardExitWaitWhenCarPlateFail { get; set; }
@@ -145,6 +185,30 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public bool HardWareCarPlateRecognize { get; set; }
+
+        /// <summary>
+        /// 获取或设置固定卡类自动识别车牌进出场（在线模式下卡片名单有效）
+        /// </summary>
+        [DataMember]
+        public bool FixCardAccessWhenRecognize { get; set; }
+        #endregion
+
+        #region 轮换设置
+        /// <summary>
+        /// 获取或设置是否启用轮换功能
+        /// </summary>
+        [DataMember]
+        public bool EnableRotation { get; set; }
+        /// <summary>
+        /// 获取或设置启动轮换的车位数，少于该车位数的，进入取卡轮换状态
+        /// </summary>
+        [DataMember]
+        public int RotationVacant { get; set; }
+        /// <summary>
+        /// 获取或设置轮换通道列表
+        /// </summary>
+        [DataMember]
+        public Dictionary<int, List<RotationInfo>> Rotations { get; set; }
         #endregion
     }
 }

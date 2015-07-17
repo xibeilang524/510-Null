@@ -118,12 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>172, 378</value>
-  </data>
-  <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>261, 378</value>
-  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 11</value>
   </data>
@@ -152,7 +146,7 @@
     <value>11, 66</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-262, 355</value>
+    <value>-262, 459</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 91</value>
@@ -163,17 +157,8 @@
   <data name="label1.Text" xml:space="preserve">
     <value>TicketPrinter:</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>199, 91</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>TicketReader:</value>
-  </data>
   <data name="cmbTicketPrinter.Location" type="System.Drawing.Point, System.Drawing">
     <value>11, 106</value>
-  </data>
-  <data name="cmbTicketReader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>199, 106</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
     <value>199, 52</value>
@@ -183,6 +168,9 @@
   </data>
   <data name="label29.Text" xml:space="preserve">
     <value>ReadCard Interval(S)</value>
+  </data>
+  <data name="chkLightOnWhenCarArrive.Location" type="System.Drawing.Point, System.Drawing">
+    <value>175, 187</value>
   </data>
   <data name="chkLightOnWhenCarArrive.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 16</value>
@@ -194,10 +182,10 @@
     <value>199, 66</value>
   </data>
   <data name="txtCardReadInterval.Size" type="System.Drawing.Size, System.Drawing">
-    <value>126, 21</value>
+    <value>122, 21</value>
   </data>
   <data name="chkReadCardNeedCarSense.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 134</value>
+    <value>7, 187</value>
   </data>
   <data name="chkReadCardNeedCarSense.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 16</value>
@@ -206,7 +194,7 @@
     <value>ReadCard need carsense</value>
   </data>
   <data name="chkOnlyTempReaderAfterButtonClick.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 250</value>
+    <value>7, 315</value>
   </data>
   <data name="chkOnlyTempReaderAfterButtonClick.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 16</value>
@@ -215,7 +203,7 @@
     <value>Only TempReader After ButtonClick</value>
   </data>
   <data name="chkPrepayCardWaitWhenOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 161</value>
+    <value>175, 271</value>
   </data>
   <data name="chkPrepayCardWaitWhenOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 16</value>
@@ -224,7 +212,7 @@
     <value>PrepayCard Need Confirm</value>
   </data>
   <data name="chkMonthCardWaitWhenOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 161</value>
+    <value>7, 271</value>
   </data>
   <data name="chkMonthCardWaitWhenOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 16</value>
@@ -233,7 +221,7 @@
     <value>MonthCard Need Confirm</value>
   </data>
   <data name="chkCardValidNeedResponse.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 228</value>
+    <value>7, 337</value>
   </data>
   <data name="chkCardValidNeedResponse.Size" type="System.Drawing.Size, System.Drawing">
     <value>216, 16</value>
@@ -242,7 +230,7 @@
     <value>Card Permit Need Device Response</value>
   </data>
   <data name="chkNoReaderOnCardCaptuer.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 186</value>
+    <value>7, 293</value>
   </data>
   <data name="chkNoReaderOnCardCaptuer.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 16</value>
@@ -251,7 +239,7 @@
     <value>No Reader on CardCaptuer</value>
   </data>
   <data name="chkEnableParkvacantLed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 186</value>
+    <value>175, 293</value>
   </data>
   <data name="chkEnableParkvacantLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 16</value>
@@ -260,7 +248,7 @@
     <value>Vacant LEDScreen</value>
   </data>
   <data name="chkNoParkingCount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>204, 208</value>
+    <value>175, 209</value>
   </data>
   <data name="chkNoParkingCount.Size" type="System.Drawing.Size, System.Drawing">
     <value>132, 16</value>
@@ -269,13 +257,13 @@
     <value>Disable Port Count</value>
   </data>
   <data name="chkUseAsACS.Location" type="System.Drawing.Point, System.Drawing">
-    <value>11, 208</value>
+    <value>175, 231</value>
   </data>
   <data name="chkUseAsACS.Size" type="System.Drawing.Size, System.Drawing">
-    <value>186, 16</value>
+    <value>102, 16</value>
   </data>
   <data name="chkUseAsACS.Text" xml:space="preserve">
-    <value>Without changing card state</value>
+    <value>RoadGate Mode</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -287,15 +275,65 @@
     <value>24, 25</value>
   </data>
   <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>12, 272</value>
+    <value>7, 373</value>
   </data>
   <data name="groupBox2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>345, 80</value>
+    <value>317, 80</value>
   </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value> CarPlate recognition machine</value>
   </data>
-  <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>369, 413</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label4.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 91</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>TicketReader:</value>
+  </data>
+  <data name="cmbTicketReader.Location" type="System.Drawing.Point, System.Drawing">
+    <value>199, 106</value>
+  </data>
+  <data name="cmbTicketReader.Size" type="System.Drawing.Size, System.Drawing">
+    <value>122, 20</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="label7.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label7.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>TicketReader2:</value>
+  </data>
+  <data name="chkForbidWhenFull.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 231</value>
+  </data>
+  <data name="chkForbidWhenFull.Size" type="System.Drawing.Size, System.Drawing">
+    <value>120, 16</value>
+  </data>
+  <data name="chkForbidWhenFull.Text" xml:space="preserve">
+    <value>Forbid When Full</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 209</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Size" type="System.Drawing.Size, System.Drawing">
+    <value>168, 16</value>
+  </data>
+  <data name="chkForbidWhenCardExpired.Text" xml:space="preserve">
+    <value>Forbid When Card Expired</value>
+  </data>
+  <data name="chkPrinterUseNotch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>126, 16</value>
+  </data>
+  <data name="chkPrinterUseNotch.Text" xml:space="preserve">
+    <value>Printer Use Notch</value>
   </data>
 </root>

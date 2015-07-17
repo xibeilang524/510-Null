@@ -35,7 +35,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public Decimal? LimiteFee { get; set; }
-
+        
         public TariffTimeZone()
         {
         }
@@ -108,6 +108,25 @@ namespace Ralid.Park.BusinessModel.Model
             if (LimiteFee != null && LimiteFee.Value > 0)  //如果时段有最高收费
             {
                 fee = (LimiteFee.Value < fee) ? LimiteFee.Value : fee;
+            }
+            return fee;
+        }
+
+        /// <summary>
+        /// 不考虑时段最高收费计算费用
+        /// </summary>
+        /// <param name="minutes"></param>
+        /// <returns></returns>
+        public decimal CalculateFeeWithOutLimiteFee(double minutes)
+        {
+            decimal fee = 0;
+            if (minutes > 0)
+            {
+                if (RegularCharge != null)  //只有正常收费
+                {
+                    int count = (int)Math.Ceiling(minutes / RegularCharge.Minutes);
+                    fee = count * RegularCharge.Fee;
+                }
             }
             return fee;
         }

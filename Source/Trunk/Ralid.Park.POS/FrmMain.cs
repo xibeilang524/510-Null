@@ -17,6 +17,7 @@ using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.GeneralLibrary;
 using Ralid.GeneralLibrary.SoftDog;
+using Ralid.Park.POS.Resources;
 
 namespace Ralid.Park.POS
 {
@@ -146,6 +147,7 @@ namespace Ralid.Park.POS
                                      OperatorName = opt.OperatorName,
                                      OperatorNum = opt.OperatorNum,
                                      Password = (new DTEncrypt()).Encrypt(opt.Password),
+                                     Permission = opt.Role != null ? opt.Role.Permission : string.Empty,
                                  }
                                  ).ToList();
         }
@@ -173,9 +175,53 @@ namespace Ralid.Park.POS
                         {
                             fail++;
                         }
-                        frmP.ShowProgress(string.Format("数据导入状态 成功:{0}  失败:{1}  总共需导入: {2}", success, fail, records.Count), (decimal)(success + fail) / records.Count);
+                        frmP.ShowProgress(string.Format(Resource1.FrmMain_ImportCharges + " " + Resource1.FrmMain_Success + ":{0}  " + Resource1.FrmMain_Fail + ":{1}  " + Resource1.FrmMain_ImportTotal + ": {2}", success, fail, records.Count), (decimal)(success + fail) / records.Count);
                     }
-                    ShowMessage(string.Format("数据导入状态 成功:{0}  失败:{1}  总共需导入: {2}", success, fail, records.Count), Color.Black);
+                    ShowMessage(string.Format(Resource1.FrmMain_ImportCharges + " " + Resource1.FrmMain_Success + ":{0}  " + Resource1.FrmMain_Fail + ":{1}  " + Resource1.FrmMain_ImportTotal + ": {2}", success, fail, records.Count), Color.Black);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+                catch (Exception ex)
+                {
+                    frmP.ShowProgress(ex.Message, 1);
+                    ShowMessage(ex.Message, Color.Red);
+                }
+            };
+            Thread t = new Thread(new ThreadStart(action));
+            t.Start();
+            if (frmP.ShowDialog() != DialogResult.OK)
+            {
+                t.Abort();
+            }
+        }
+
+        private void SaveAuthensToPark(List<string> records)
+        {
+            FrmProcessing frmP = new FrmProcessing();
+            Action action = delegate()
+            {
+                try
+                {
+                    int success = 0;
+                    int fail = 0;
+                    FreeAuthorizationLogBll bll = new FreeAuthorizationLogBll(AppSettings.CurrentSetting.ParkConnect);
+                    foreach (string record in records)
+                    {
+                        Ralid.Park.POS.Model.FreeAuthorizationLog p = Ralid.Park.POS.Model.FreeAuthorizationLogSerializer.Deserialize(record);
+                        if (p != null)
+                        {
+                            FreeAuthorizationLog item = CreateFrom(p);
+                            CommandResult ret = bll.InsertRecordWithCheck(item);
+                            if (ret.Result == ResultCode.Successful) success++; else fail++;
+                        }
+                        else
+                        {
+                            fail++;
+                        }
+                        frmP.ShowProgress(string.Format(Resource1.FrmMain_ImportAuthenLog + " " + Resource1.FrmMain_Success + ":{0}  " + Resource1.FrmMain_Fail + ":{1}  " + Resource1.FrmMain_ImportTotal + ": {2}", success, fail, records.Count), (decimal)(success + fail) / records.Count);
+                    }
+                    ShowMessage(string.Format(Resource1.FrmMain_ImportAuthenLog + " " + Resource1.FrmMain_Success + ":{0}  " + Resource1.FrmMain_Fail + ":{1}  " + Resource1.FrmMain_ImportTotal + ": {2}", success, fail, records.Count), Color.Black);
                 }
                 catch (ThreadAbortException)
                 {
@@ -217,6 +263,21 @@ namespace Ralid.Park.POS
             return item;
         }
 
+        private FreeAuthorizationLog CreateFrom(Ralid.Park.POS.Model.FreeAuthorizationLog log)
+        {
+            FreeAuthorizationLog item = new FreeAuthorizationLog();
+            item.LogDateTime = log.LogDateTime;
+            item.CardID = log.CardID;
+            item.BeginDateTime = log.BeginDateTime;
+            item.EndDateTime = log.EndDateTime;
+            item.InPark = log.InPark;
+            item.CheckOut = log.CheckOut;
+            item.OperatorID = log.OperatorID;
+            item.StationID = log.StationID;
+            item.Memo = log.Memo;
+            return item;
+        }
+
         private void ShowMessage(string msg, Color color)
         {
             Action action = delegate()
@@ -241,36 +302,51 @@ namespace Ralid.Park.POS
 
         private void btnExportSetting_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否需要导出参数?", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            if (MessageBox.Show(Resource1.FrmMain_ExportConfig, Resource1.FrmMain_Query, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             try
             {
                 string path = System.IO.Path.Combine(Application.StartupPath, "MySetting.xml");
                 POS.Model.MySetting mysetting = new Model.MySetting();
-                UserSetting us = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<UserSetting>();
-                if (us != null) SetValue(mysetting, us);
-                KeySetting ks = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<KeySetting>();
-                if (ks != null) SetValue(mysetting, ks);
-                TariffSetting ts = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<TariffSetting>();
-                if (ts != null) SetValue(mysetting, ts);
-                HolidaySetting hs = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<HolidaySetting>();
-                if (hs != null) SetValue(mysetting, hs);
-                List<OperatorInfo> opts = (new OperatorBll(AppSettings.CurrentSetting.ParkConnect)).GetAllOperators().QueryObjects;
-                if (opts != null) SetValue(mysetting, opts);
+                FrmWorkstationSelection frm = new FrmWorkstationSelection();
+                if (frm.ShowDialog() == DialogResult.OK)
+                {
+                    mysetting.StationID = frm.SelectedWorkstation;
+                    UserSetting us = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<UserSetting>();
+                    if (us != null) SetValue(mysetting, us);
+                    KeySetting ks = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<KeySetting>();
+                    if (ks != null) SetValue(mysetting, ks);
+                    TariffSetting ts = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<TariffSetting>();
+                    if (ts != null) SetValue(mysetting, ts);
+                    HolidaySetting hs = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<HolidaySetting>();
+                    if (hs != null) SetValue(mysetting, hs);
+                    List<OperatorInfo> opts = (new OperatorBll(AppSettings.CurrentSetting.ParkConnect)).GetAllOperators().QueryObjects;
+                    if (opts != null) SetValue(mysetting, opts);
 
-                XmlSerializer ser = new XmlSerializer(typeof(POS.Model.MySetting));
-                using (FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write))
-                {
-                    ser.Serialize(stream, mysetting);
+                    XmlSerializer ser = new XmlSerializer(typeof(POS.Model.MySetting));
+                    using (FileStream stream = new FileStream(path, FileMode.Create, FileAccess.Write))
+                    {
+                        ser.Serialize(stream, mysetting);
+                    }
+                    string remote = @"FlashDisk\RalidPos\MySetting.xml";
+                    OpenNETCF.Desktop.Communication.RAPI rapi = new OpenNETCF.Desktop.Communication.RAPI();
+                    if (rapi.DevicePresent)
+                    {
+                        rapi.Connect();
+                        if (!rapi.Connected)
+                        {
+                            ShowMessage(Resource1.FrmMain_ConnectHandsetFail, Color.Red);
+                            return;
+                        }
+
+                        rapi.CopyFileToDevice(path, remote, true);
+                        rapi.Disconnect();
+                        ShowMessage(Resource1.FrmMain_ExportConfigSuccess, Color.Black);
+                    }
+                    else
+                    {
+                        ShowMessage(Resource1.FrmMain_FindnotHandet, Color.Red);
+                    }
                 }
-                string remote = @"FlashDisk\RalidPos\MySetting.xml";
-                OpenNETCF.Desktop.Communication.RAPI rapi = new OpenNETCF.Desktop.Communication.RAPI();
-                if (rapi.DevicePresent)
-                {
-                    rapi.Connect();
-                    rapi.CopyFileToDevice(path, remote, true);
-                    rapi.Disconnect();
-                }
-                ShowMessage("导出参数成功,手持机上的收费软件需要重启后参数才会生效", Color.Black);
             }
             catch (Exception ex)
             {
@@ -281,7 +357,7 @@ namespace Ralid.Park.POS
 
         private void btnCardEvent_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show("是否需要导入收费记录?", "询问", MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            if (MessageBox.Show(Resource1.FrmMain_ImportChargesComfirm, Resource1.FrmMain_Query, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
             try
             {
                 string path = System.IO.Path.Combine(Application.StartupPath, "Record.txt");
@@ -290,7 +366,12 @@ namespace Ralid.Park.POS
                 if (rapi.DevicePresent)
                 {
                     rapi.Connect();
-                    rapi.CopyFileFromDevice(path, remote,true);
+                    if (!rapi.Connected)
+                    {
+                        ShowMessage(Resource1.FrmMain_ConnectHandsetFail, Color.Red);
+                        return;
+                    }
+                    rapi.CopyFileFromDevice(path, remote, true);
                     rapi.Disconnect();
                     List<string> records = new List<string>();
                     using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
@@ -305,6 +386,56 @@ namespace Ralid.Park.POS
                         }
                     }
                     if (records.Count > 0) SavePaymentsToPark(records);
+                    else ShowMessage(Resource1.FrmMain_NoCharges, Color.Black);
+                }
+                else
+                {
+                    ShowMessage(Resource1.FrmMain_FindnotHandet, Color.Red);
+                }
+            }
+            catch (Exception ex)
+            {
+                ShowMessage(ex.Message, Color.Red);
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+        }
+
+        private void btnImportAuthen_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show(Resource1.FrmMain_ImportAuthenConfirm, Resource1.FrmMain_Query, MessageBoxButtons.YesNo, MessageBoxIcon.Question) != DialogResult.Yes) return;
+            try
+            {
+                string path = System.IO.Path.Combine(Application.StartupPath, "AuthenRecord.txt");
+                string remote = @"FlashDisk\RalidPos\AuthenRecord.txt";
+                OpenNETCF.Desktop.Communication.RAPI rapi = new OpenNETCF.Desktop.Communication.RAPI();
+                if (rapi.DevicePresent)
+                {
+                    rapi.Connect();
+                    if (!rapi.Connected)
+                    {
+                        ShowMessage(Resource1.FrmMain_ConnectHandsetFail, Color.Red);
+                        return;
+                    }
+                    rapi.CopyFileFromDevice(path, remote, true);
+                    rapi.Disconnect();
+                    List<string> records = new List<string>();
+                    using (FileStream fs = new FileStream(path, FileMode.Open, FileAccess.Read))
+                    {
+                        using (StreamReader reader = new StreamReader(fs))
+                        {
+                            while (!reader.EndOfStream)
+                            {
+                                string record = reader.ReadLine();
+                                if (!string.IsNullOrEmpty(record)) records.Add(record);
+                            }
+                        }
+                    }
+                    if (records.Count > 0) SaveAuthensToPark(records);
+                    else ShowMessage(Resource1.FrmMain_NoAuthenLog, Color.Black);
+                }
+                else
+                {
+                    ShowMessage(Resource1.FrmMain_FindnotHandet, Color.Red);
                 }
             }
             catch (Exception ex)

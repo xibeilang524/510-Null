@@ -117,12 +117,8 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 12</value>
-  </data>
   <data name="label6.Text" xml:space="preserve">
-    <value>卡片編號</value>
+    <value>卡片編號:</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>車型:</value>
@@ -130,8 +126,15 @@
   <data name="label4.Text" xml:space="preserve">
     <value>車牌號:</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
+    <value>351, 67</value>
+  </data>
   <data name="label3.Text" xml:space="preserve">
     <value>操作員:</value>
+  </data>
+  <data name="label8.Text" xml:space="preserve">
+    <value>部門:</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -139,8 +142,17 @@
   <data name="label2.Text" xml:space="preserve">
     <value>卡片類型::</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>卡號:</value>
+  </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>事件資訊</value>
+  </data>
+  <data name="colCardID.HeaderText" xml:space="preserve">
+    <value>卡號</value>
+  </data>
+  <data name="colDepartment.HeaderText" xml:space="preserve">
+    <value>部門</value>
   </data>
   <data name="colCardCertificate.HeaderText" xml:space="preserve">
     <value>卡片編號</value>

@@ -23,7 +23,18 @@ namespace Ralid.Park.DAL.LinqDataProvider
         #region 重写基类方法
         protected override OperatorSettleLog GetingItemByID(DateTime id, ParkDataContext parking)
         {
+            DataLoadOptions opt = new DataLoadOptions();
+            opt.LoadWith<OperatorSettleLog>(o => o.Dept);
+            parking.LoadOptions = opt;
             return parking.OperatorLog.SingleOrDefault(o => o.SettleDateTime == id);
+        }
+
+        protected override List<OperatorSettleLog> GetingAllItems(ParkDataContext parking)
+        {
+            DataLoadOptions opt = new DataLoadOptions();
+            opt.LoadWith<OperatorSettleLog>(o => o.Dept);
+            parking.LoadOptions = opt;
+            return parking.OperatorLog.ToList();
         }
 
         protected override List<OperatorSettleLog> GetingItems(ParkDataContext parking, SearchCondition search)
@@ -31,6 +42,9 @@ namespace Ralid.Park.DAL.LinqDataProvider
             if (search is RecordSearchCondition)
             {
                 RecordSearchCondition condition = search as RecordSearchCondition;
+                DataLoadOptions opt = new DataLoadOptions();
+                opt.LoadWith<OperatorSettleLog>(o => o.Dept);
+                parking.LoadOptions = opt;
                 IQueryable<OperatorSettleLog> result = parking.OperatorLog;
                 if (condition.RecordDateTimeRange != null)
                 {
@@ -41,6 +55,10 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 {
                     result = result.Where(c => c.OperatorID == condition.Operator.OperatorName).AsQueryable();
                 }
+                if (condition.Dept != null)
+                {
+                    result = result.Where(c => c.DeptID == condition.Dept.DeptID).AsQueryable();
+                }
                 if (condition.StationID != null && condition.StationID != "")
                 {
                     result = result.Where(o => o.StationID == condition.StationID).AsQueryable();
@@ -48,6 +66,12 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 return result.ToList();
             }
             return new List<OperatorSettleLog>();
+        }
+
+        protected override void InsertingItem(OperatorSettleLog info, ParkDataContext parking)
+        {
+            if (info.Dept != null) parking.GetTable<DeptInfo>().Attach(info.Dept);//不需要在插入操作员结算记录时同时插入操作员的部门
+            base.InsertingItem(info, parking);
         }
         #endregion
     }

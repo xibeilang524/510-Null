@@ -37,8 +37,8 @@
             this.txtMemo = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.ucCardInfo = new Ralid.Park.UserControls.UCCard();
             this.chkWriteCard = new System.Windows.Forms.CheckBox();
+            this.ucCardInfo = new Ralid.Park.UserControls.UCCard();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -59,11 +59,11 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.txtTurnbackMoney);
             this.groupBox1.Controls.Add(this.txtMemo);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -71,16 +71,17 @@
             // 
             resources.ApplyResources(this.txtTurnbackMoney, "txtTurnbackMoney");
             this.txtTurnbackMoney.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtTurnbackMoney.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtTurnbackMoney.Name = "txtTurnbackMoney";
+            this.txtTurnbackMoney.NumberWithCommas = true;
             this.txtTurnbackMoney.PointCount = 2;
             // 
             // txtMemo
@@ -98,16 +99,16 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // ucCardInfo
-            // 
-            resources.ApplyResources(this.ucCardInfo, "ucCardInfo");
-            this.ucCardInfo.Name = "ucCardInfo";
-            // 
             // chkWriteCard
             // 
             resources.ApplyResources(this.chkWriteCard, "chkWriteCard");
             this.chkWriteCard.Name = "chkWriteCard";
             this.chkWriteCard.UseVisualStyleBackColor = true;
+            // 
+            // ucCardInfo
+            // 
+            resources.ApplyResources(this.ucCardInfo, "ucCardInfo");
+            this.ucCardInfo.Name = "ucCardInfo";
             // 
             // FrmCardRecycle
             // 

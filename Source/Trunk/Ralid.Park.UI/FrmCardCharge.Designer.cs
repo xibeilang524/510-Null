@@ -57,8 +57,8 @@
             // 
             // btnClose
             // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.btnClose, "btnClose");
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnClose.Name = "btnClose";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -112,16 +112,17 @@
             // 
             resources.ApplyResources(this.txtRecieveMoney, "txtRecieveMoney");
             this.txtRecieveMoney.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtRecieveMoney.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtRecieveMoney.Name = "txtRecieveMoney";
+            this.txtRecieveMoney.NumberWithCommas = true;
             this.txtRecieveMoney.PointCount = 2;
             // 
             // label3
@@ -133,16 +134,17 @@
             // 
             resources.ApplyResources(this.txtChargeAmount, "txtChargeAmount");
             this.txtChargeAmount.MaxValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtChargeAmount.MinValue = new decimal(new int[] {
-            10000,
+            1410065407,
+            2,
             0,
-            0,
-            -2147483648});
+            -2147352576});
             this.txtChargeAmount.Name = "txtChargeAmount";
+            this.txtChargeAmount.NumberWithCommas = true;
             this.txtChargeAmount.PointCount = 2;
             this.txtChargeAmount.TextChanged += new System.EventHandler(this.txtChargeAmount_TextChanged);
             // 

@@ -83,8 +83,18 @@ namespace Ralid.Park.UI
                 MessageBox.Show(Resource1.FrmCardCharge_InvalidAmounts);
                 return false;
             }
+            if (ChargingCard.Balance + txtChargeAmount.DecimalValue > 99999999.99M)
+            {
+                MessageBox.Show(string.Format(Resource1.FrmCardCharge_AmountsOver, "99999999.99"));
+                return false;
+            }
             if (this.chkWriteCard.Checked)
             {
+                if (ChargingCard.Balance + txtChargeAmount.DecimalValue > 167772.15M)
+                {
+                    MessageBox.Show(string.Format(Resource1.FrmCardCharge_AmountsOver, "167772.15"));
+                    return false;
+                }
                 if (!readCard)
                 {
                     MessageBox.Show(Resource1.FrmCardCharge_ReadCard);
@@ -107,18 +117,37 @@ namespace Ralid.Park.UI
             this.comPaymentMode.SelectedPaymentMode = PaymentMode.Cash;
             if (ChargingCard != null)
             {
-                this.ucCardInfo.Card = ChargingCard;
-                if (ChargingCard.ValidDate > this.dtValidDate.MaxDate)
+                //获取最新的卡片信息，这是为了防止用户一直打开卡片管理，而使用的卡片信息是缓存信息，导致充值的卡片信息不是最新的
+                CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                CardInfo card = bll.GetCardByID(ChargingCard.CardID).QueryObject;
+                if (card != null)
                 {
-                    this.dtValidDate.Value = this.dtValidDate.MaxDate;
-                }
-                else if (ChargingCard.ValidDate < this.dtValidDate.MinDate)
-                {
-                    this.dtValidDate.Value = this.dtValidDate.MinDate;
+                    ChargingCard = card;
+
+                    this.ucCardInfo.Card = ChargingCard;
+                    if (ChargingCard.ValidDate > this.dtValidDate.MaxDate)
+                    {
+                        this.dtValidDate.Value = this.dtValidDate.MaxDate;
+                    }
+                    else if (ChargingCard.ValidDate < this.dtValidDate.MinDate)
+                    {
+                        this.dtValidDate.Value = this.dtValidDate.MinDate;
+                    }
+                    else
+                    {
+                        this.dtValidDate.Value = ChargingCard.ValidDate;
+                    }
+                    if (!ChargingCard.IsCardList)
+                    {
+                        //不是卡片名单时，不需要进行写卡
+                        this.chkWriteCard.Checked = false;
+                        this.chkWriteCard.Enabled = false;
+                    }
                 }
                 else
                 {
-                    this.dtValidDate.Value = ChargingCard.ValidDate;
+                    this.btnOk.Enabled = false;
+                    MessageBox.Show(Resource1.FrmMain_NoCard);
                 }
             }
 
@@ -135,48 +164,56 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (ChargingCard != null)
+            try
             {
-                if (CheckInput())
+                if (ChargingCard != null)
                 {
-                    if (this.txtRecieveMoney.DecimalValue <= 0)
+                    if (CheckInput())
                     {
-                        if (MessageBox.Show(Resource1.FrmCardPaying_MoneyLittleQuery, Resource1.Form_Alert, MessageBoxButtons.YesNo) == DialogResult.No) return;
-                    }
-                    //写卡模式时，先读取卡片信息
-                    if (this.chkWriteCard.Checked)
-                    {
-                        if (!CardOperationManager.Instance.CheckCardWithMessage(ChargingCard.CardID)) return;
-                    }
-
-                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                    decimal chargeAmount = this.txtChargeAmount.DecimalValue;
-                    decimal recieveMoney = this.txtRecieveMoney.DecimalValue;
-                    DateTime newValid = this.dtValidDate.Value.Date.AddDays(1).AddSeconds(-1);
-                    CommandResult result = bll.CardCharge(ChargingCard, chargeAmount, recieveMoney, this.comPaymentMode.SelectedPaymentMode, newValid, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);//写卡模式不需要保持卡片数据库中的运行状态
-                    if (result.Result == ResultCode.Successful)
-                    {
-                        //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                        if (this.txtRecieveMoney.DecimalValue <= 0)
+                        {
+                            if (MessageBox.Show(Resource1.FrmCardPaying_MoneyLittleQuery, Resource1.Form_Alert, MessageBoxButtons.YesNo) == DialogResult.No) return;
+                        }
+                        //写卡模式时，先读取卡片信息
                         if (this.chkWriteCard.Checked)
                         {
-                            CardOperationManager.Instance.WriteCardLoop(ChargingCard);
+                            if (!CardOperationManager.Instance.CheckCardWithMessage(ChargingCard.CardID)) return;
                         }
 
-                        if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(ChargingCard));
-
-                        if (DataBaseConnectionsManager.Current.StandbyConnected)
+                        CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                        decimal chargeAmount = this.txtChargeAmount.DecimalValue;
+                        decimal recieveMoney = this.txtRecieveMoney.DecimalValue;
+                        DateTime newValid = this.dtValidDate.Value.Date.AddDays(1).AddSeconds(-1);
+                        bool keepParkingStatus = !AppSettings.CurrentSetting.EnableWriteCard || ChargingCard.OnlineHandleWhenOfflineMode;//写卡模式时，脱机处理卡片不需要保持卡片数据库中的运行状态
+                        CommandResult result = bll.CardCharge(ChargingCard, chargeAmount, recieveMoney, this.comPaymentMode.SelectedPaymentMode, newValid, this.txtMemo.Text, keepParkingStatus);
+                        if (result.Result == ResultCode.Successful)
                         {
-                            //备用数据连上时，同步到备用数据库
-                            bll.SyncCardToDatabaseWithoutPaymentInfo(ChargingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
-                        }
+                            //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                            if (this.chkWriteCard.Checked)
+                            {
+                                CardOperationManager.Instance.WriteCardLoop(ChargingCard);
+                            }
 
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(result.Message);
+                            if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(ChargingCard));
+
+                            if (DataBaseConnectionsManager.Current.StandbyConnected)
+                            {
+                                //备用数据连上时，同步到备用数据库
+                                bll.SyncCardToDatabaseWithoutPaymentInfo(ChargingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            }
+
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.Message);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

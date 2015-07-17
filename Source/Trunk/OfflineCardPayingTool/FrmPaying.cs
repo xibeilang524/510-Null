@@ -21,6 +21,7 @@ using Ralid.GeneralLibrary.CardReader;
 using Ralid.GeneralLibrary.Printer;
 using Ralid.GeneralLibrary.LED;
 using Ralid.GeneralLibrary.Speech;
+using Ralid.Park.BLL;
 
 namespace OfflineCardPayingTool
 {
@@ -69,7 +70,7 @@ namespace OfflineCardPayingTool
             this.lblLastWorkstation.Text = cardPayment.LastStationID;
             this.txtPaid.DecimalValue = cardPayment.Accounts - cardPayment.Discount;
             this.lblDiscount.Text = cardPayment.Discount.ToString();
-            this.txtMemo.Text = string.Empty;
+            this.txtMemo.Text = string.IsNullOrEmpty(cardPayment.Memo) ? string.Empty : cardPayment.Memo;
 
             if (_cardInfo.CardType.IsPrepayCard && _cardInfo.Balance >= cardPayment.Accounts)
             {
@@ -173,7 +174,16 @@ namespace OfflineCardPayingTool
             else
             {
                 _cardInfo = card;
-                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                EntranceBll eBll = new EntranceBll(AppSettings.CurrentSetting.ParkConnect);
+                EntranceInfo eInfo = eBll.GetEntranceInfo(_cardInfo.LastEntrance).QueryObject;
+                int parkID = 0;
+                if (eInfo != null)
+                    parkID = eInfo.ParkID;
+                this.parkCombobox1.SelectedParkID = parkID;
+                this.label1.Visible = true;
+                this.parkCombobox1.Visible = true;
+                //_ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.parkCombobox1.SelectedParkID, _cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
                 _ChargeRecord.CarPlate = _cardInfo.CarPlate;
                 ShowCardPaymentInfo(_ChargeRecord);
             }
@@ -261,7 +271,11 @@ namespace OfflineCardPayingTool
             if (result.Result == ResultCode.Successful)
             {
                 _cardInfo.IsInPark = false;//标记已出场
-                CardOperationManager.Instance.WriteCardLoop(_cardInfo);
+                if (CardOperationManager.Instance.WriteCardLoop(_cardInfo) != CardOperationResultCode.Success)
+                {
+                    //这里使用DeleteCardPayment是因为sqlite插入记录后不会自动返回自增的主键，所有需要通过卡号和缴费时间查询来删除
+                    cbll.DeleteCardPayment(_ChargeRecord.CardID, _ChargeRecord.ChargeDateTime);
+                }
             }
             return result;
         }
@@ -356,6 +370,9 @@ namespace OfflineCardPayingTool
                 this.paymentPanel.Width = intVal;
             }
 
+            this.parkCombobox1.Init();
+            this.label1.Visible = false;
+            this.parkCombobox1.Visible = false;
         }
         private void btnCash_Click(object sender, EventArgs e)
         {
@@ -427,7 +444,8 @@ namespace OfflineCardPayingTool
         {
             if (_ChargeRecord != null && CarTypeSetting.Current[carTypePanel1.SelectedCarType] != null)
             {
-                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
+                //_ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.parkCombobox1.SelectedParkID, _cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
                 ShowCardPaymentInfo(_ChargeRecord);
             }
         }
@@ -486,6 +504,15 @@ namespace OfflineCardPayingTool
             }
         }
         #endregion
+
+        private void parkCombobox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_cardInfo != null)
+            {
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.parkCombobox1.SelectedParkID, _cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                ShowCardPaymentInfo(_ChargeRecord);
+            }
+        }
 
 
 

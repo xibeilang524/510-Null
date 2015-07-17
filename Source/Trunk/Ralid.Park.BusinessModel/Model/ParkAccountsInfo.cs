@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Runtime.Serialization;
-using Ralid.Park.BusinessModel .Enum ;
+using Ralid.Park.BusinessModel.Enum;
 
 namespace Ralid.Park.BusinessModel.Model
 {
@@ -24,6 +24,12 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public decimal ParkFee { get; set; }
+
+        /// <summary>
+        /// 获取或设置折扣金额(优惠金额)
+        /// </summary>
+        public decimal DiscountMoney { get; set; }
+
         /// <summary>
         /// 获取或设置收费类型
         /// </summary>
@@ -41,3 +47,4 @@ namespace Ralid.Park.BusinessModel.Model
         }
     }
 }
+

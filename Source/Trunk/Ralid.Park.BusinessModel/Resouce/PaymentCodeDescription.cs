@@ -21,13 +21,15 @@ namespace Ralid.Park.BusinessModel.Resouce
             switch (pc)
             {
                 case PaymentCode.APM:
-                    return "缴费机收费";
+                    return Resource1.PaymentCode_APM;
                 case PaymentCode.Computer:
-                    return "电脑收费";
+                    return Resource1.PaymentCode_Computer;
                 case PaymentCode.FunctionCard:
-                    return "功能卡收费";
-                case PaymentCode .POS :
-                    return "手持机";
+                    return Resource1.PaymentCode_FunctionCard;
+                case PaymentCode.POS:
+                    return Resource1.PaymentCode_POS;
+                case PaymentCode.Internet:
+                    return Resource1.PaymentCode_Internet;
                 default:
                     return string.Empty;
             }

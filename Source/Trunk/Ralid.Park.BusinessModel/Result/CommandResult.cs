@@ -2,14 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Runtime.Serialization;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Resouce;
 
 namespace Ralid.Park.BusinessModel.Result
 {
+    /// <summary>
+    /// 命令操作结果类
+    /// </summary>
+    [DataContract]
     public class CommandResult
     {
-
         public CommandResult()
         {
         }
@@ -26,7 +30,9 @@ namespace Ralid.Park.BusinessModel.Result
             this._msg = msg;
         }
 
+        [DataMember]
         private ResultCode _ret;
+        [DataMember]
         public ResultCode Result
         {
             get
@@ -39,7 +45,9 @@ namespace Ralid.Park.BusinessModel.Result
             }
         }
 
+        [DataMember]
         private string _msg;
+        [DataMember]
         public string Message
         {
             get { return _msg; }

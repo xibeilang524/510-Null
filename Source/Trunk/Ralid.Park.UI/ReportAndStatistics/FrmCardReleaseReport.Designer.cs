@@ -30,25 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCardReleaseReport));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.customDataGridView1 = new Ralid.Park.UserControls.CustomDataGridView(this.components);
-            this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCardCertificate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReleaseDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colActivationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colValidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colDeposit = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPayMentMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colReleaseMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSettled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.txtOwnerName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
@@ -71,6 +56,21 @@
             this.txtRecieveMoney = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCardCertificate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colReleaseDateTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colActivationDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colValidDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDeposit = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPayMentMode = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colReleaseMoney = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSettled = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colStation = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.customDataGridView1)).BeginInit();
             this.groupBox2.SuspendLayout();
             this.groupBox1.SuspendLayout();
@@ -111,109 +111,6 @@
             this.customDataGridView1.Name = "customDataGridView1";
             this.customDataGridView1.RowHeadersVisible = false;
             this.customDataGridView1.RowTemplate.Height = 23;
-            // 
-            // colCardID
-            // 
-            this.colCardID.DataPropertyName = "CardID";
-            resources.ApplyResources(this.colCardID, "colCardID");
-            this.colCardID.Name = "colCardID";
-            this.colCardID.ReadOnly = true;
-            // 
-            // colOwnerName
-            // 
-            resources.ApplyResources(this.colOwnerName, "colOwnerName");
-            this.colOwnerName.Name = "colOwnerName";
-            this.colOwnerName.ReadOnly = true;
-            // 
-            // colCardCertificate
-            // 
-            resources.ApplyResources(this.colCardCertificate, "colCardCertificate");
-            this.colCardCertificate.Name = "colCardCertificate";
-            this.colCardCertificate.ReadOnly = true;
-            // 
-            // colCarPlate
-            // 
-            resources.ApplyResources(this.colCarPlate, "colCarPlate");
-            this.colCarPlate.Name = "colCarPlate";
-            this.colCarPlate.ReadOnly = true;
-            // 
-            // colReleaseDateTime
-            // 
-            this.colReleaseDateTime.DataPropertyName = "ReleaseDateTime";
-            dataGridViewCellStyle1.Format = "yyyy-MM-dd HH:mm:ss";
-            this.colReleaseDateTime.DefaultCellStyle = dataGridViewCellStyle1;
-            resources.ApplyResources(this.colReleaseDateTime, "colReleaseDateTime");
-            this.colReleaseDateTime.Name = "colReleaseDateTime";
-            this.colReleaseDateTime.ReadOnly = true;
-            // 
-            // colCardType
-            // 
-            resources.ApplyResources(this.colCardType, "colCardType");
-            this.colCardType.Name = "colCardType";
-            this.colCardType.ReadOnly = true;
-            // 
-            // colActivationDate
-            // 
-            dataGridViewCellStyle2.Format = "yyyy-MM-dd";
-            this.colActivationDate.DefaultCellStyle = dataGridViewCellStyle2;
-            resources.ApplyResources(this.colActivationDate, "colActivationDate");
-            this.colActivationDate.Name = "colActivationDate";
-            this.colActivationDate.ReadOnly = true;
-            // 
-            // colValidDate
-            // 
-            dataGridViewCellStyle3.Format = "yyyy-MM-dd";
-            this.colValidDate.DefaultCellStyle = dataGridViewCellStyle3;
-            resources.ApplyResources(this.colValidDate, "colValidDate");
-            this.colValidDate.Name = "colValidDate";
-            this.colValidDate.ReadOnly = true;
-            // 
-            // colDeposit
-            // 
-            resources.ApplyResources(this.colDeposit, "colDeposit");
-            this.colDeposit.Name = "colDeposit";
-            this.colDeposit.ReadOnly = true;
-            // 
-            // colPayMentMode
-            // 
-            resources.ApplyResources(this.colPayMentMode, "colPayMentMode");
-            this.colPayMentMode.Name = "colPayMentMode";
-            this.colPayMentMode.ReadOnly = true;
-            // 
-            // colReleaseMoney
-            // 
-            this.colReleaseMoney.DataPropertyName = "ReleaseMoney";
-            resources.ApplyResources(this.colReleaseMoney, "colReleaseMoney");
-            this.colReleaseMoney.Name = "colReleaseMoney";
-            this.colReleaseMoney.ReadOnly = true;
-            // 
-            // colSettled
-            // 
-            resources.ApplyResources(this.colSettled, "colSettled");
-            this.colSettled.Name = "colSettled";
-            this.colSettled.ReadOnly = true;
-            this.colSettled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            // 
-            // colOperatorID
-            // 
-            this.colOperatorID.DataPropertyName = "OperatorID";
-            resources.ApplyResources(this.colOperatorID, "colOperatorID");
-            this.colOperatorID.Name = "colOperatorID";
-            this.colOperatorID.ReadOnly = true;
-            // 
-            // colStation
-            // 
-            this.colStation.DataPropertyName = "StationID";
-            resources.ApplyResources(this.colStation, "colStation");
-            this.colStation.Name = "colStation";
-            this.colStation.ReadOnly = true;
-            // 
-            // ColMemo
-            // 
-            this.ColMemo.DataPropertyName = "Memo";
-            resources.ApplyResources(this.ColMemo, "ColMemo");
-            this.ColMemo.Name = "ColMemo";
-            this.ColMemo.ReadOnly = true;
             // 
             // groupBox2
             // 
@@ -291,6 +188,7 @@
             resources.ApplyResources(this.workStationCombobox1, "workStationCombobox1");
             this.workStationCombobox1.FormattingEnabled = true;
             this.workStationCombobox1.Name = "workStationCombobox1";
+            this.workStationCombobox1.OnlyStation = false;
             // 
             // operatorCombobox1
             // 
@@ -355,6 +253,109 @@
             resources.ApplyResources(this.label4, "label4");
             this.label4.Name = "label4";
             // 
+            // colCardID
+            // 
+            this.colCardID.DataPropertyName = "CardID";
+            resources.ApplyResources(this.colCardID, "colCardID");
+            this.colCardID.Name = "colCardID";
+            this.colCardID.ReadOnly = true;
+            // 
+            // colOwnerName
+            // 
+            resources.ApplyResources(this.colOwnerName, "colOwnerName");
+            this.colOwnerName.Name = "colOwnerName";
+            this.colOwnerName.ReadOnly = true;
+            // 
+            // colCardCertificate
+            // 
+            resources.ApplyResources(this.colCardCertificate, "colCardCertificate");
+            this.colCardCertificate.Name = "colCardCertificate";
+            this.colCardCertificate.ReadOnly = true;
+            // 
+            // colCarPlate
+            // 
+            resources.ApplyResources(this.colCarPlate, "colCarPlate");
+            this.colCarPlate.Name = "colCarPlate";
+            this.colCarPlate.ReadOnly = true;
+            // 
+            // colReleaseDateTime
+            // 
+            this.colReleaseDateTime.DataPropertyName = "ReleaseDateTime";
+            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm:ss";
+            this.colReleaseDateTime.DefaultCellStyle = dataGridViewCellStyle4;
+            resources.ApplyResources(this.colReleaseDateTime, "colReleaseDateTime");
+            this.colReleaseDateTime.Name = "colReleaseDateTime";
+            this.colReleaseDateTime.ReadOnly = true;
+            // 
+            // colCardType
+            // 
+            resources.ApplyResources(this.colCardType, "colCardType");
+            this.colCardType.Name = "colCardType";
+            this.colCardType.ReadOnly = true;
+            // 
+            // colActivationDate
+            // 
+            dataGridViewCellStyle5.Format = "yyyy-MM-dd";
+            this.colActivationDate.DefaultCellStyle = dataGridViewCellStyle5;
+            resources.ApplyResources(this.colActivationDate, "colActivationDate");
+            this.colActivationDate.Name = "colActivationDate";
+            this.colActivationDate.ReadOnly = true;
+            // 
+            // colValidDate
+            // 
+            dataGridViewCellStyle6.Format = "yyyy-MM-dd";
+            this.colValidDate.DefaultCellStyle = dataGridViewCellStyle6;
+            resources.ApplyResources(this.colValidDate, "colValidDate");
+            this.colValidDate.Name = "colValidDate";
+            this.colValidDate.ReadOnly = true;
+            // 
+            // colDeposit
+            // 
+            resources.ApplyResources(this.colDeposit, "colDeposit");
+            this.colDeposit.Name = "colDeposit";
+            this.colDeposit.ReadOnly = true;
+            // 
+            // colPayMentMode
+            // 
+            resources.ApplyResources(this.colPayMentMode, "colPayMentMode");
+            this.colPayMentMode.Name = "colPayMentMode";
+            this.colPayMentMode.ReadOnly = true;
+            // 
+            // colReleaseMoney
+            // 
+            this.colReleaseMoney.DataPropertyName = "ReleaseMoney";
+            resources.ApplyResources(this.colReleaseMoney, "colReleaseMoney");
+            this.colReleaseMoney.Name = "colReleaseMoney";
+            this.colReleaseMoney.ReadOnly = true;
+            // 
+            // colSettled
+            // 
+            resources.ApplyResources(this.colSettled, "colSettled");
+            this.colSettled.Name = "colSettled";
+            this.colSettled.ReadOnly = true;
+            this.colSettled.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // colOperatorID
+            // 
+            this.colOperatorID.DataPropertyName = "OperatorID";
+            resources.ApplyResources(this.colOperatorID, "colOperatorID");
+            this.colOperatorID.Name = "colOperatorID";
+            this.colOperatorID.ReadOnly = true;
+            // 
+            // colStation
+            // 
+            this.colStation.DataPropertyName = "StationID";
+            resources.ApplyResources(this.colStation, "colStation");
+            this.colStation.Name = "colStation";
+            this.colStation.ReadOnly = true;
+            // 
+            // ColMemo
+            // 
+            this.ColMemo.DataPropertyName = "Memo";
+            resources.ApplyResources(this.ColMemo, "ColMemo");
+            this.ColMemo.Name = "ColMemo";
+            this.ColMemo.ReadOnly = true;
+            // 
             // FrmCardReleaseReport
             // 
             resources.ApplyResources(this, "$this");
@@ -399,6 +400,14 @@
         private System.Windows.Forms.Label txtRecieveMoney;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Label label4;
+        private GeneralLibrary.WinformControl.DBCTextBox txtOwnerName;
+        private System.Windows.Forms.Label label7;
+        private GeneralLibrary.WinformControl.DBCTextBox txtCertificate;
+        private System.Windows.Forms.Label label6;
+        private UserControls.CardTypeComboBox comCardType;
+        private GeneralLibrary.WinformControl.DBCTextBox txtCarPlate;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colOwnerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardCertificate;
@@ -414,13 +423,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colOperatorID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colStation;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColMemo;
-        private GeneralLibrary.WinformControl.DBCTextBox txtOwnerName;
-        private System.Windows.Forms.Label label7;
-        private GeneralLibrary.WinformControl.DBCTextBox txtCertificate;
-        private System.Windows.Forms.Label label6;
-        private UserControls.CardTypeComboBox comCardType;
-        private GeneralLibrary.WinformControl.DBCTextBox txtCarPlate;
-        private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.Label label10;
     }
 }

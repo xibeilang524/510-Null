@@ -33,13 +33,13 @@
             this.StationView = new Ralid.Park.UserControls.CustomDataGridView(this.components);
             this.colWorkstationID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCenterCharge = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.colDeptName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Column1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.StationView)).BeginInit();
             this.SuspendLayout();
             // 
             // StationView
             // 
-            resources.ApplyResources(this.StationView, "StationView");
             this.StationView.AllowUserToAddRows = false;
             this.StationView.AllowUserToDeleteRows = false;
             this.StationView.AllowUserToResizeRows = false;
@@ -47,7 +47,9 @@
             this.StationView.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colWorkstationID,
             this.colCenterCharge,
+            this.colDeptName,
             this.Column1});
+            resources.ApplyResources(this.StationView, "StationView");
             this.StationView.Name = "StationView";
             this.StationView.RowHeadersVisible = false;
             this.StationView.RowTemplate.Height = 23;
@@ -66,6 +68,11 @@
             this.colCenterCharge.ReadOnly = true;
             this.colCenterCharge.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colCenterCharge.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // colDeptName
+            // 
+            resources.ApplyResources(this.colDeptName, "colDeptName");
+            this.colDeptName.Name = "colDeptName";
             // 
             // Column1
             // 
@@ -93,6 +100,7 @@
         private Ralid.Park.UserControls.CustomDataGridView StationView;
         private System.Windows.Forms.DataGridViewTextBoxColumn colWorkstationID;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colCenterCharge;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDeptName;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
     }
 }

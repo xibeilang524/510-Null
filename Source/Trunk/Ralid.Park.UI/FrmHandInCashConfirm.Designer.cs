@@ -34,6 +34,8 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.txtHandInCash = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtHandInPOS = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -60,17 +62,40 @@
             // 
             resources.ApplyResources(this.txtHandInCash, "txtHandInCash");
             this.txtHandInCash.MaxValue = new decimal(new int[] {
-            999999,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtHandInCash.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtHandInCash.Name = "txtHandInCash";
+            this.txtHandInCash.NumberWithCommas = true;
             this.txtHandInCash.PointCount = 2;
+            // 
+            // label2
+            // 
+            resources.ApplyResources(this.label2, "label2");
+            this.label2.Name = "label2";
+            // 
+            // txtHandInPOS
+            // 
+            resources.ApplyResources(this.txtHandInPOS, "txtHandInPOS");
+            this.txtHandInPOS.MaxValue = new decimal(new int[] {
+            1410065407,
+            2,
+            0,
+            131072});
+            this.txtHandInPOS.MinValue = new decimal(new int[] {
+            0,
+            0,
+            0,
+            0});
+            this.txtHandInPOS.Name = "txtHandInPOS";
+            this.txtHandInPOS.NumberWithCommas = true;
+            this.txtHandInPOS.PointCount = 2;
             // 
             // FrmHandInCashConfirm
             // 
@@ -78,8 +103,10 @@
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnClose;
+            this.Controls.Add(this.txtHandInPOS);
             this.Controls.Add(this.txtHandInCash);
             this.Controls.Add(this.btnClose);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
@@ -97,5 +124,7 @@
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnOk;
         private GeneralLibrary.WinformControl.DecimalTextBox txtHandInCash;
+        private System.Windows.Forms.Label label2;
+        private GeneralLibrary.WinformControl.DecimalTextBox txtHandInPOS;
     }
 }

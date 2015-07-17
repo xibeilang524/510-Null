@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd5" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" />
+  <xs:complexType name="QueryResultOfCardInfoGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardInfo" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObject" nillable="true" type="q1:CardInfo" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryObject" nillable="true" type="q2:CardInfo" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultOfCardInfoGb4BZX1A" nillable="true" type="tns:QueryResultOfCardInfoGb4BZX1A" />
+  <xs:simpleType name="ResultCode">
+    <xs:restriction base="xs:string">
+      <xs:enumeration value="Successful" />
+      <xs:enumeration value="ParameterError" />
+      <xs:enumeration value="Fail" />
+      <xs:enumeration value="NoRecord" />
+      <xs:enumeration value="SaveDataError" />
+      <xs:enumeration value="CannotConnectServer" />
+      <xs:enumeration value="InterfaceException">
+        <xs:annotation>
+          <xs:appinfo>
+            <EnumerationValue xmlns="http://schemas.microsoft.com/2003/10/Serialization/">255</EnumerationValue>
+          </xs:appinfo>
+        </xs:annotation>
+      </xs:enumeration>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="ResultCode" nillable="true" type="tns:ResultCode" />
+  <xs:complexType name="CommandResult">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="_ret" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="CommandResult" nillable="true" type="tns:CommandResult" />
+  <xs:complexType name="QueryResultListOfCardChargeRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardChargeRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q3:ArrayOfCardChargeRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q4:ArrayOfCardChargeRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardChargeRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardChargeRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardDeferRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardDeferRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q5:ArrayOfCardDeferRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q6:ArrayOfCardDeferRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardDeferRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardDeferRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardLostRestoreRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardLostRestoreRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q7:ArrayOfCardLostRestoreRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q8:ArrayOfCardLostRestoreRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardLostRestoreRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardLostRestoreRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardDisableEnableRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardDisableEnableRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q9:ArrayOfCardDisableEnableRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q10:ArrayOfCardDisableEnableRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardDisableEnableRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardDisableEnableRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardRecycleRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardRecycleRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q11:ArrayOfCardRecycleRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q12:ArrayOfCardRecycleRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardRecycleRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardRecycleRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardReleaseRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardReleaseRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q13:ArrayOfCardReleaseRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q14:ArrayOfCardReleaseRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardReleaseRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardReleaseRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfCardDeleteRecordGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="CardDeleteRecord" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q15:ArrayOfCardDeleteRecord" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q16:ArrayOfCardDeleteRecord" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfCardDeleteRecordGb4BZX1A" nillable="true" type="tns:QueryResultListOfCardDeleteRecordGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfEntranceInfoGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="EntranceInfo" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q17:ArrayOfEntranceInfo" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q18:ArrayOfEntranceInfo" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfEntranceInfoGb4BZX1A" nillable="true" type="tns:QueryResultListOfEntranceInfoGb4BZX1A" />
+  <xs:complexType name="QueryResultOfParkInfoGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ParkInfo" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObject" nillable="true" type="q19:ParkInfo" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryObject" nillable="true" type="q20:ParkInfo" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultOfParkInfoGb4BZX1A" nillable="true" type="tns:QueryResultOfParkInfoGb4BZX1A" />
+  <xs:complexType name="QueryResultListOfParkInfoGb4BZX1A">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultListOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="ParkInfo" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="QueryObjects" nillable="true" type="q21:ArrayOfParkInfo" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" minOccurs="0" name="_queryList" nillable="true" type="q22:ArrayOfParkInfo" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultListOfParkInfoGb4BZX1A" nillable="true" type="tns:QueryResultListOfParkInfoGb4BZX1A" />
+  <xs:complexType name="QueryResultOfWSCardPaymentInfoPcvV6n_Pz">
+    <xs:annotation>
+      <xs:appinfo>
+        <GenericType Name="QueryResultOf{0}{#}" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Result" xmlns="http://schemas.microsoft.com/2003/10/Serialization/">
+          <GenericParameter Name="WSCardPaymentInfo" Namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" />
+        </GenericType>
+      </xs:appinfo>
+    </xs:annotation>
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Message" nillable="true" type="xs:string" />
+      <xs:element xmlns:q23="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" minOccurs="0" name="QueryObject" nillable="true" type="q23:WSCardPaymentInfo" />
+      <xs:element minOccurs="0" name="Result" type="tns:ResultCode" />
+      <xs:element minOccurs="0" name="_msg" nillable="true" type="xs:string" />
+      <xs:element xmlns:q24="http://schemas.datacontract.org/2004/07/Ralid.Park.WebService" minOccurs="0" name="_queryObject" nillable="true" type="q24:WSCardPaymentInfo" />
+      <xs:element minOccurs="0" name="_result" type="tns:ResultCode" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="QueryResultOfWSCardPaymentInfoPcvV6n_Pz" nillable="true" type="tns:QueryResultOfWSCardPaymentInfoPcvV6n_Pz" />
+</xs:schema>

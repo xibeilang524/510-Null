@@ -37,6 +37,7 @@
             // 
             // panel1
             // 
+            this.panel1.BackColor = System.Drawing.Color.Navy;
             this.panel1.Controls.Add(this.media);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
@@ -53,6 +54,7 @@
             this.media.OcxState = ((System.Windows.Forms.AxHost.State)(resources.GetObject("media.OcxState")));
             this.media.Size = new System.Drawing.Size(365, 253);
             this.media.TabIndex = 0;
+            this.media.Visible = false;
             // 
             // ACTIVideoControl
             // 

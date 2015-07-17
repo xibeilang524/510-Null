@@ -34,7 +34,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOk = new System.Windows.Forms.Button();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.progressBar1 = new GeneralLibrary.WinformControl.PercentageProgressBar();
+            this.progressBar1 = new Ralid.GeneralLibrary.WinformControl.PercentageProgressBar(this.components);
             this.SuspendLayout();
             // 
             // label2
@@ -65,6 +65,8 @@
             // 
             resources.ApplyResources(this.progressBar1, "progressBar1");
             this.progressBar1.Name = "progressBar1";
+            this.progressBar1.TextColor = System.Drawing.Color.Black;
+            this.progressBar1.TextFont = new System.Drawing.Font("宋体", 9F);
             // 
             // FrmDownLoadBase
             // 
@@ -75,14 +77,12 @@
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label2);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmDownLoadBase";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmDownloadBase_FormClosing);
             this.Load += new System.EventHandler(this.FrmDownloadBase_Load);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

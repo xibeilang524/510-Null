@@ -120,20 +120,32 @@
   <data name="APMBll_NumbeUsed" xml:space="preserve">
     <value>缴费机编号 "{0}" 已经被使用</value>
   </data>
+  <data name="CardBll_CancelPaymentDescr" xml:space="preserve">
+    <value>卡号:{0} 收费:{1} 入场:{2} 费用:{3} 实收:{4} 说明:{5}</value>
+  </data>
   <data name="CardBll_CannotDelelt" xml:space="preserve">
     <value>已发行的,非临时的卡片不能删除!</value>
   </data>
   <data name="CardBll_CannotDelete" xml:space="preserve">
     <value>已发行的,非临时的卡片不能删除</value>
   </data>
+  <data name="CardBll_CardIDbeUsed" xml:space="preserve">
+    <value>已存在卡号为 "{0}"  的名单！</value>
+  </data>
   <data name="CardBll_CardLost" xml:space="preserve">
     <value>卡片挂失</value>
+  </data>
+  <data name="CardBll_CreateListCardIDFail" xml:space="preserve">
+    <value>自动生成卡号失败，请重新发行！</value>
   </data>
   <data name="CardPaymentRecordBll_notSingle" xml:space="preserve">
     <value>卡片收费记录不唯一</value>
   </data>
   <data name="DatetimeSyncService_Invalidtime" xml:space="preserve">
     <value>同步时间间隔设置不正确，要设置成大于零的值</value>
+  </data>
+  <data name="Mandate_Delete" xml:space="preserve">
+    <value>强制删除</value>
   </data>
   <data name="OperatorBll_CannotDelete" xml:space="preserve">
     <value>操作员 "{0}" 是系统默认的操作员,不能被删除</value>

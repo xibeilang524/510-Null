@@ -84,5 +84,11 @@ namespace Ralid.Park.ParkAdapter
         /// <param name="report"></param>
         [OperationContract(IsOneWay = true)]
         void AlarmSink(AlarmReport report);
+        /// <summary>
+        /// 传递更新系统参数设置通知
+        /// </summary>
+        /// <param name="report"></param>
+        [OperationContract(IsOneWay = true)]
+        void UpdateSystemParamSettingSink(UpdateSystemParamSettingReport report);
     }
 }

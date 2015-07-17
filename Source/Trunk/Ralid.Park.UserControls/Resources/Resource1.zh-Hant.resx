@@ -181,7 +181,7 @@
     <value>臨時卡數量不多，請加卡</value>
   </data>
   <data name="UcCard_InvalidCardID" xml:space="preserve">
-    <value>卡號不是整型,或者卡號超出最大位數</value>
+    <value>卡號不是整型，或者卡號超出最大位數</value>
   </data>
   <data name="UcCard_InvalidCardType" xml:space="preserve">
     <value>請選擇一種卡片類型</value>
@@ -199,7 +199,7 @@
     <value>生效日期不能早於2011年1月1日</value>
   </data>
   <data name="UcCard_InvalidCarPlate" xml:space="preserve">
-    <value>車牌號碼過長，請重新輸入</value>
+    <value>車牌號碼為空，或者車牌號碼過長，請重新輸入</value>
   </data>
   <data name="UcCard_InvalidValidDate" xml:space="preserve">
     <value>有效日期不能早於2011年1月1日</value>
@@ -209,5 +209,23 @@
   </data>
   <data name="UcCard_InvalidMaxValidDate" xml:space="preserve">
     <value>有效日期不能晚於2099年12月31日</value>
+  </data>
+  <data name="UCAPMMonitor_NeedAddCoin" xml:space="preserve">
+    <value>需添加硬幣</value>
+  </data>
+  <data name="CardGridHeader_Department" xml:space="preserve">
+    <value>部門</value>
+  </data>
+  <data name="CardGridHeader_ListType" xml:space="preserve">
+    <value>名單類型</value>
+  </data>
+  <data name="UcCard_BalanceOver" xml:space="preserve">
+    <value>脫機卡片的儲值餘額不能大於167772.15</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>型號</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>默認</value>
   </data>
 </root>

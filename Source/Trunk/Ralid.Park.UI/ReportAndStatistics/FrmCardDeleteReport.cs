@@ -41,6 +41,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
                 row.Cells["colCardType"].Value = record.CardType.ToString();
                 row.Cells["colOperatorID"].Value = record.OperatorID;
                 row.Cells["colStation"].Value = record.StationID;
+                row.Cells["colMemo"].Value = record.Memo;
             }
         }
         #endregion

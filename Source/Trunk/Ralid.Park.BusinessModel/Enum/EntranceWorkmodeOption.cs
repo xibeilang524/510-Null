@@ -54,6 +54,11 @@ namespace Ralid.Park.BusinessModel.Enum
         [EnumMember]
         OPT_ExportCharge = 0x200,
         /// <summary>
+        /// 卡不在名单中不转在线处理
+        /// </summary>
+        [EnumMember]
+        OPT_NotOnlineHandleWhenNotOnList=0x400,
+        /// <summary>
         /// 车场满时禁止进场
         /// </summary>
         [EnumMember]
@@ -63,6 +68,11 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [EnumMember]
         OPT_DisableTempCard = 0x1000,
+        /// <summary>
+        /// 使用韦根34
+        /// </summary>
+        [EnumMember]
+        OPT_Wiegand34 = 0x2000,
         /// <summary>
         /// 不进行车位计数
         /// </summary>
@@ -74,7 +84,15 @@ namespace Ralid.Park.BusinessModel.Enum
         [EnumMember]
         OPT_Valid = 0x8000,
 
-        #region 2013-5-10 增加的几个选项,这几个选项不用下发到控制器
+
+        #region 以下选项不用下发到控制器
+        /// <summary>
+        /// 保留字段1
+        /// </summary>
+        [EnumMember]
+        Reserve1 = 0x800000,
+
+        //#region 2013-5-10 增加的几个选项,这几个选项不用下发到控制器
         /// <summary>
         /// 出口收卡机内没有安装读卡器
         /// </summary>
@@ -105,11 +123,11 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [EnumMember]
         EnableParkvacantLed = 0x20000000,
+        #endregion
         /// <summary>
         /// 将此通道当成门禁方式来用，启用这一选项时，卡片进出场不会改变卡片的状态，只记录卡片的进出记录
         /// </summary>
         [EnumMember]
         UseAsACS = 0x40000000,
-        #endregion
     }
 }

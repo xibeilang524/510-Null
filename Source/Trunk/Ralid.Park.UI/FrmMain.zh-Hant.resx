@@ -117,28 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="mnu_SysManager.Text" xml:space="preserve">
-    <value>系統管理</value>
-  </data>
-  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>68, 21</value>
-  </data>
-  <data name="mnu_DBManager.Text" xml:space="preserve">
-    <value>資料管理</value>
-  </data>
-  <data name="Mnu_Reports.Text" xml:space="preserve">
-    <value>查詢與報表</value>
-  </data>
-  <data name="mnu_Language.Text" xml:space="preserve">
-    <value>語言</value>
-  </data>
-  <data name="mnu_Help.Text" xml:space="preserve">
-    <value>説明</value>
-  </data>
   <data name="mnu_OperatorShift.Text" xml:space="preserve">
     <value>操作員交班結算</value>
   </data>
@@ -148,8 +126,18 @@
   <data name="mnu_LogOut.Text" xml:space="preserve">
     <value>登出</value>
   </data>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="mnu_SysManager.Text" xml:space="preserve">
+    <value>系統管理</value>
+  </data>
   <data name="mnu_SystemOption.Text" xml:space="preserve">
     <value>系統設置</value>
+  </data>
+  <data name="mnu_LocalSettings.Text" xml:space="preserve">
+    <value>本地設置</value>
   </data>
   <data name="mnu_APM.Text" xml:space="preserve">
     <value>自助繳費機管理</value>
@@ -157,14 +145,17 @@
   <data name="mnu_ZSTSetting.Text" xml:space="preserve">
     <value>中山通設置</value>
   </data>
-  <data name="mnu_ExportParameter.Text" xml:space="preserve">
-    <value>導出系統參數設置</value>
+  <data name="mnu_VehicleLedSetting.Text" xml:space="preserve">
+    <value>車輛信息顯示屏設置</value>
+  </data>
+  <data name="mnu_HostStandbySetting.Text" xml:space="preserve">
+    <value>服務器切換設置</value>
   </data>
   <data name="mnu_SyncDataToStandby.Text" xml:space="preserve">
     <value>同步數據到備用資料庫</value>
   </data>
-  <data name="mnu_ImportRecord.Text" xml:space="preserve">
-    <value>導入記錄</value>
+  <data name="mnu_ExportParameter.Text" xml:space="preserve">
+    <value>導出系統參數設置</value>
   </data>
   <data name="mnu_ImportCardPayments.Text" xml:space="preserve">
     <value>導入收費記錄</value>
@@ -172,14 +163,29 @@
   <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
     <value>導入充值記錄</value>
   </data>
+  <data name="mnu_ImportRecord.Text" xml:space="preserve">
+    <value>導入記錄</value>
+  </data>
+  <data name="mnu_APMSyncTool.Text" xml:space="preserve">
+    <value>自助繳費機同步</value>
+  </data>
   <data name="mnu_PosSyncTool.Text" xml:space="preserve">
     <value>手持機同步工具</value>
+  </data>
+  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>68, 21</value>
+  </data>
+  <data name="mnu_DBManager.Text" xml:space="preserve">
+    <value>資料管理</value>
   </data>
   <data name="mnu_Operator.Text" xml:space="preserve">
     <value>操作員管理</value>
   </data>
   <data name="mnu_ChangePwd.Text" xml:space="preserve">
     <value>修改密碼</value>
+  </data>
+  <data name="mnu_Depts.Text" xml:space="preserve">
+    <value>部門管理</value>
   </data>
   <data name="mnu_CardReleaseReport.Text" xml:space="preserve">
     <value>卡片發行記錄查詢</value>
@@ -192,6 +198,9 @@
   </data>
   <data name="mnu_HasPaidCardReport.Text" xml:space="preserve">
     <value>已交月保費卡統計</value>
+  </data>
+  <data name="mnu_CardReport.Text" xml:space="preserve">
+    <value>卡片查詢</value>
   </data>
   <data name="mnu_CardChargeReport.Text" xml:space="preserve">
     <value>卡片充值記錄查詢</value>
@@ -223,6 +232,15 @@
   <data name="mnu_OperatorShiftStatistics.Text" xml:space="preserve">
     <value>操作員交班结算記錄查詢</value>
   </data>
+  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
+    <value>自助繳費機日誌查詢</value>
+  </data>
+  <data name="mnu_APMCheckOutRecordRport.Text" xml:space="preserve">
+    <value>自助繳費機結賬記錄查詢</value>
+  </data>
+  <data name="mnu_APMRefundRecordRport.Text" xml:space="preserve">
+    <value>自助繳費機退款記錄查詢</value>
+  </data>
   <data name="mnu_ReportDetail.Text" xml:space="preserve">
     <value>車類型匯總查詢</value>
   </data>
@@ -232,11 +250,23 @@
   <data name="mnu_Alarm.Text" xml:space="preserve">
     <value>報警記錄查詢</value>
   </data>
-  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
-    <value>自助繳費機日誌查詢</value>
-  </data>
   <data name="mnu_YCTLog.Text" xml:space="preserve">
     <value>羊城通扣費記錄查詢</value>
+  </data>
+  <data name="mnu_WaitingCommand.Text" xml:space="preserve">
+    <value>下發命令記錄查詢</value>
+  </data>
+  <data name="mnu_FreeAuthorizationLog.Text" xml:space="preserve">
+    <value>免費授權記錄查詢</value>
+  </data>
+  <data name="mnu_SpeedingReport.Text" xml:space="preserve">
+    <value>超速違章記錄查詢</value>
+  </data>
+  <data name="mnu_ServerSwitchReport.Text" xml:space="preserve">
+    <value>服務器切換記錄查詢</value>
+  </data>
+  <data name="Mnu_Reports.Text" xml:space="preserve">
+    <value>查詢與報表</value>
   </data>
   <data name="mnu_Monitor.Text" xml:space="preserve">
     <value>即時視頻</value>
@@ -250,8 +280,32 @@
   <data name="mnu_HotelAuthorization.Text" xml:space="preserve">
     <value>免費停車優惠授權</value>
   </data>
+  <data name="mnu_CardOut.Text" xml:space="preserve">
+    <value>卡片直接出場</value>
+  </data>
+  <data name="mnu_APMRefund.Text" xml:space="preserve">
+    <value>繳費機退款</value>
+  </data>
+  <data name="mnu_NoCardLost.Text" xml:space="preserve">
+    <value>無卡掛失</value>
+  </data>
+  <data name="mnu_SpeedingProcess.Text" xml:space="preserve">
+    <value>超速違章處理</value>
+  </data>
   <data name="mnu_SnapShoter.Text" xml:space="preserve">
     <value>視頻抓拍視窗</value>
+  </data>
+  <data name="mnu_CarplateRegW.Text" xml:space="preserve">
+    <value>型號W</value>
+  </data>
+  <data name="mnu_CarplateRegV.Text" xml:space="preserve">
+    <value>型號V</value>
+  </data>
+  <data name="mnu_CarplateRegX.Text" xml:space="preserve">
+    <value>型號X</value>
+  </data>
+  <data name="mnu_CarplateRegD.Text" xml:space="preserve">
+    <value>型號D</value>
   </data>
   <data name="mnu_CarplateReg.Text" xml:space="preserve">
     <value>車牌識別視窗</value>
@@ -271,6 +325,9 @@
   <data name="mnu_English.Text" xml:space="preserve">
     <value>英語</value>
   </data>
+  <data name="mnu_Language.Text" xml:space="preserve">
+    <value>語言</value>
+  </data>
   <data name="mnu_Manual.Size" type="System.Drawing.Size, System.Drawing">
     <value>136, 22</value>
   </data>
@@ -282,6 +339,9 @@
   </data>
   <data name="mnu_Aboat.Text" xml:space="preserve">
     <value>關於...</value>
+  </data>
+  <data name="mnu_Help.Text" xml:space="preserve">
+    <value>説明</value>
   </data>
   <data name="mnu_VideoSyncTime.Text" xml:space="preserve">
     <value>同步時間</value>
@@ -334,6 +394,9 @@
   <data name="mnu_AddDivision.Text" xml:space="preserve">
     <value>增加停車區域</value>
   </data>
+  <data name="mnu_SetParkTariff.Text" xml:space="preserve">
+    <value>設置停車場費率</value>
+  </data>
   <data name="mnu_ParkProperty.Text" xml:space="preserve">
     <value>屬性</value>
   </data>
@@ -349,6 +412,9 @@
   <data name="mnu_RemoteReadCard.Text" xml:space="preserve">
     <value>遠端讀卡</value>
   </data>
+  <data name="mnu_CarPlateManualProccess.Text" xml:space="preserve">
+    <value>車牌名單手動處理</value>
+  </data>
   <data name="mnu_Up.Text" xml:space="preserve">
     <value>抬閘</value>
   </data>
@@ -357,6 +423,9 @@
   </data>
   <data name="btn_EntranceProperty.Text" xml:space="preserve">
     <value>屬性</value>
+  </data>
+  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 236</value>
   </data>
   <data name="mnu_Fresh.Text" xml:space="preserve">
     <value>刷新停車場清單</value>
@@ -1225,10 +1294,6 @@
         /////4AAAAAAAAP////////////gAAAAAAAf/////////////gAAAAAB///////////////wAAAAH///
         /////////////////////////////w==
 </value>
-  </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>瑞立德停車場系統</value>

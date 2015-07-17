@@ -47,6 +47,10 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置备用数据库连接状态
         /// </summary>
         public DataBaseConnectionStatus StandbyStatus { get; set; }
+        /// <summary>
+        /// 获取或设置图片数据库连接状态
+        /// </summary>
+        public DataBaseConnectionStatus ImageDBStatus { get; set; }
         #endregion
 
         #region 公共只读属性

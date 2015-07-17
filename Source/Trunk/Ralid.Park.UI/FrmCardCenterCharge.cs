@@ -40,18 +40,30 @@ namespace Ralid.Park.UI
         //private SnapShotBll _SnapShotBll = new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
         private FrmCardEventDetail frmEventDetail;
         private FrmCarPlateFailDetail frmCarPlateFailDetail;
+        private FrmSpeedingDetail _frmSpeedingDetail;//超速违章详细信息窗口
 
-        //这两个参数用于长隆转会员卡功能 
-        private string _TempCardID;  //要转会员卡收费的临时卡卡号
-        private string _VipCardID;   //通过刷卡获取的会员卡卡号
+        //这两个参数用于长隆转会员卡、转员工卡功能 
+        private string _TempCardID;  //要转会员卡、转员工卡收费的临时卡卡号
+        private string _VipCardID;   //通过刷卡获取的会员卡或员工卡卡号
         private string _ToVipCard = "转会员卡";
         private string _VipCard = "会员卡";
+        private string _ToStaffCard = "转员工卡";
+        private string _StaffCard = "员工卡";
         //end 
+
+        private string _OperatorCardID;//授权卡卡号
+        private string _OperatorOwnerName;//授权卡持卡人
         #endregion
 
         #region 私有方法
         private void ShowCardPaymentInfo(CardPaymentInfo cardPayment)
         {
+            //如果打开了超速违章详细信息窗口，先关闭窗口
+            if (this._frmSpeedingDetail != null && this._frmSpeedingDetail.ProcessingEvent != null)
+            {
+                this._frmSpeedingDetail.CloseSpeedingDetail();
+            }
+
             this.txtCardID.Text = cardPayment.CardID;
             this.txtCardID.SelectAll();
             this.lblOwnerName.Text = cardPayment.OwnerName;
@@ -61,24 +73,24 @@ namespace Ralid.Park.UI
             this.lblParkingTime.Text = cardPayment.TimeInterval;
             this.lblCardType.Text = cardPayment.CardType.ToString();
             this.lblTariffType.Text = Ralid.Park.BusinessModel.Resouce.TariffTypeDescription.GetDescription(cardPayment.TariffType);
-            //this.lblLastTotalPaid.Text = cardPayment.LastTotalPaid.ToString();
-            this.lblLastTotalPaid.Text = _cardInfo.TotalPaidFee.ToString();
-            //this.lblLastTotalDiscount.Text = cardPayment.LastTotalDiscount.ToString();
-            this.lblAccounts.Text = cardPayment.Accounts.ToString();
+            this.lblLastTotalPaid.Text = _cardInfo.TotalPaidFee.ToString("N");
+            this.lblAccounts.Text = cardPayment.Accounts.ToString("N");
             this.lblLastWorkstation.Text = cardPayment.LastStationID;
             this.txtPaid.DecimalValue = cardPayment.Accounts - cardPayment.Discount;
-            this.lblDiscount.Text = cardPayment.Discount.ToString();
-            this.txtMemo.Text = string.Empty;
+            this.lblDiscount.Text = cardPayment.Discount.ToString("N");
+            this.lblCurrDiscountHour.Text = cardPayment.CurrDiscountHour.HasValue ? cardPayment.CurrDiscountHour.ToString() : "0";
+            this.lblDiscountMemo.Text = string.IsNullOrEmpty(cardPayment.Memo) ? string.Empty : cardPayment.Memo;
 
             this.picIn.Clear();
-            SnapShotBll _SnapShotBll = new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
+            SnapShotBll _SnapShotBll  = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> imgs = _SnapShotBll.GetSnapShots(cardPayment.EnterDateTime.Value, cardPayment.CardID);
             if (imgs != null && imgs.Count > 0)
             {
                 this.picIn.ShowSnapShots(imgs);
             }
 
-            string msg = string.Format(Resource1.FrmCardPaying_PayingSpeech, TariffSetting.Current.TariffOption.StrMoney(cardPayment.Accounts));
+            decimal paid = this.txtPaid.DecimalValue;
+            string msg = string.Format(Resource1.FrmCardPaying_PayingSpeech, TariffSetting.Current.TariffOption.StrMoney(paid) + TariffSetting.Current.TariffOption.GetMoneyUnit());
 
             this.carTypePanel1.SelectedCarType = cardPayment.CarType;
             this.btnCash.Enabled = true;
@@ -110,10 +122,21 @@ namespace Ralid.Park.UI
             if (_ChargeLed != null) _ChargeLed.DisplayMsg(msg);
             if (AppSettings.CurrentSetting.EnableTTS) TTSSpeech.Instance.Speek(msg);
 
-            //长隆转会员卡功能
-            if (cardPayment.CardID == _TempCardID && CarTypeSetting.Current.GetDescription(cardPayment.CarType) == _ToVipCard)
+            //长隆转会员卡、转员工卡功能
+            if (cardPayment.CardID == _TempCardID)
             {
-                this.txtMemo.Text = _ToVipCard + _VipCardID;
+                if (CarTypeSetting.Current.GetDescription(cardPayment.CarType) == _ToVipCard)
+                {
+                    this.txtMemo.Text = _ToVipCard + _VipCardID;
+                }
+                else if (CarTypeSetting.Current.GetDescription(cardPayment.CarType) == _ToStaffCard)
+                {
+                    this.txtMemo.Text = _ToStaffCard + _VipCardID;
+                }
+            }
+            if (!string.IsNullOrEmpty(_OperatorCardID) && CarTypeSetting.Current.GetDescription(cardPayment.CarType) == "特种车")
+            {
+                this.txtMemo.Text = "授权卡" + _OperatorCardID + "收费";
             }
 
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).StopReadCard();
@@ -134,6 +157,7 @@ namespace Ralid.Park.UI
             this.lblLastWorkstation.Text = string.Empty;
             this.txtPaid.DecimalValue = 0;
             this.lblDiscount.Text = string.Empty;
+            this.lblCurrDiscountHour.Text = string.Empty;
             this.btnCancel.Enabled = false;
             this.btnCash.Enabled = false;
             this.btnYCT.Enabled = false;
@@ -142,8 +166,48 @@ namespace Ralid.Park.UI
             this._ChargeRecord = null;
             this.picIn.Clear();
             this.txtCardID.ReadOnly = false;
+            this.lblDiscountMemo.Text = string.Empty;
             this.txtMemo.Text = string.Empty;
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
+        }
+
+        /// <summary>
+        /// 缴费信息回滚
+        /// </summary>
+        /// <param name="ldb_cbll">本地数据库连接</param>
+        /// <param name="info">缴费前的卡片信息</param>
+        /// <param name="record">收费记录</param>
+        private void PaymentRollback(LDB_CardPaymentRecordBll ldb_cbll,CardInfo info,CardPaymentInfo record)
+        {
+            if (info != null)
+            {
+                _cardInfo = info;
+                //当本地数据库连接不为空时，说明主数据库和备用数据库都写失败了
+                if (ldb_cbll != null)
+                {
+                    LDB_CardPaymentInfo ldbRecord = LDB_InfoFactory.CreateLDBCardPaymentInfo(record);
+                    //这里使用DeleteCardPayment是因为sqlite插入记录后不会自动返回自增的主键，所有需要通过卡号和缴费时间查询来删除
+                    ldb_cbll.DeleteCardPayment(record.CardID, record.ChargeDateTime);
+                }
+                else
+                {
+                    CardBll cbll = new CardBll(AppSettings.CurrentSetting.CurrentMasterConnect);
+                    if (!string.IsNullOrEmpty(AppSettings.CurrentSetting.StandbyParkConnect))
+                    {
+                        //这里使用收费时间来回滚，主要是因为不清楚record的主键ID是主数据库的还是备用数据库的
+                        cbll.RollbackPayment(info, record.ChargeDateTime);
+                        if (!string.IsNullOrEmpty(AppSettings.CurrentSetting.CurrentStandbyConnect))
+                        {
+                            CardBll standby = new CardBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            standby.RollbackPayment(info, record.ChargeDateTime);
+                        }
+                    }
+                    else
+                    {
+                        cbll.RollbackPayment(info, record);
+                    }
+                }
+            }
         }
 
         private CommandResult SaveCardPayment(PaymentMode paymentMode)
@@ -151,32 +215,59 @@ namespace Ralid.Park.UI
             CommandResult result = null;
             _ChargeRecord.PaymentMode = paymentMode;
             _ChargeRecord.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
+            _ChargeRecord.OperatorDeptID = OperatorInfo.CurrentOperator.DeptID;
             _ChargeRecord.StationID = WorkStationInfo.CurrentStation.StationName;
+            _ChargeRecord.StationDeptID = WorkStationInfo.CurrentStation.DeptID;
             _ChargeRecord.Paid = this.txtPaid.DecimalValue;
             _ChargeRecord.Discount = _ChargeRecord.Accounts - this.txtPaid.DecimalValue;
             _ChargeRecord.IsCenterCharge = true;
-            _ChargeRecord.Memo = this.txtMemo.Text;
-            
+            _ChargeRecord.Memo = this.lblDiscountMemo.Text + this.txtMemo.Text;
+
+            LDB_CardPaymentRecordBll ldb_cbll = null;
             CardBll cbll = new CardBll(AppSettings.CurrentSetting.CurrentMasterConnect);
 
             bool both = WorkStationInfo.CurrentStation.NeedBothDatabaseUpdate;
+            //因为车牌名单不能写卡，所以车牌名单也不是脱机处理的卡片
             bool offlineHandleCard = AppSettings.CurrentSetting.EnableWriteCard
                 && _cardInfo != null
-                && !_cardInfo.OnlineHandleWhenOfflineMode;
+                && !_cardInfo.OnlineHandleWhenOfflineMode
+                && _cardInfo.IsCardList;
+
+            CardInfo payBefore = _cardInfo == null ? null : _cardInfo.Clone();
 
             result = cbll.PayParkFee(_cardInfo, _ChargeRecord, AppSettings.CurrentSetting.CurrentStandbyConnect, both, offlineHandleCard);
 
             if (result.Result != ResultCode.Successful && offlineHandleCard)
             {
                 //与主数据库通信故障时，脱机模式时按脱机模式处理的卡片，收费信息写入本地数据库，待通信正在时，上传到主数据库
-                LDB_CardPaymentRecordBll ldb_cbll = new LDB_CardPaymentRecordBll(LDB_AppSettings.Current.LDBConnect);
+                ldb_cbll = new LDB_CardPaymentRecordBll(LDB_AppSettings.Current.LDBConnect);
                 result = ldb_cbll.PayParkFee(_cardInfo, _ChargeRecord);
             }
 
             //写卡模式需要将收费信息写入卡片扇区
             if (result.Result == ResultCode.Successful && offlineHandleCard)
             {
-                CardOperationManager.Instance.WriteCardLoop(_cardInfo);
+                if (CardOperationManager.Instance.WriteCardLoop(_cardInfo) != CardOperationResultCode.Success)
+                {
+                    result = new CommandResult(ResultCode.Fail);
+                    PaymentRollback(ldb_cbll, payBefore, _ChargeRecord);
+                }
+            }
+
+            if (result.Result == ResultCode.Successful)
+            {
+                //保存转换特种车授权操作警报
+                if (!string.IsNullOrEmpty(_OperatorCardID) && CarTypeSetting.Current.GetDescription(_ChargeRecord.CarType) == "特种车")
+                {
+                    AlarmInfo alarm = new AlarmInfo()
+                    {
+                        AlarmDateTime = _ChargeRecord.ChargeDateTime,
+                        AlarmType = AlarmType.OperatorCardWork,
+                        AlarmDescr = string.Format("中央收费，收费卡：{0}，进场时间：{1}，转换特种车，授权卡{2}操作。", _ChargeRecord.CardID, _ChargeRecord.EnterDateTime, _OperatorCardID),
+                        OperatorID = _OperatorOwnerName,
+                    };
+                    (new AlarmBll(AppSettings.CurrentSetting.ParkConnect)).Insert(alarm);
+                }
             }
             return result;
         }
@@ -271,15 +362,46 @@ namespace Ralid.Park.UI
 
         private bool CheckWriteCard()
         {
-            //写卡模式并且不是按在线模式处理时需要检查卡片是否在读卡区域
+            //写卡模式并且不是按在线模式处理时的卡片名单需要检查卡片是否在读卡区域
             if (AppSettings.CurrentSetting.EnableWriteCard
                 && _cardInfo != null
-                && !_cardInfo.OnlineHandleWhenOfflineMode)
+                && !_cardInfo.OnlineHandleWhenOfflineMode
+                &&_cardInfo.IsCardList)
             {
+                //需要检查收费金额是否有效
+                if (this.txtPaid.DecimalValue > 167772.15M)
+                {
+                    MessageBox.Show(Resources.Resource1.UcCard_PaidOver);
+                    return false;
+                }
                 return CardOperationManager.Instance.CheckCardWithMessage(_cardInfo.CardID, false, true);
             }
 
             return true;
+        }
+
+        private string GetCardIDFromBarCode(string barcode)
+        {
+            if (!string.IsNullOrEmpty(barcode))
+            {
+                if (barcode.Length == 7)
+                {
+                    return barcode;
+                }
+                if (barcode.Length == 8)
+                {
+                    string ck = Ralid.GeneralLibrary.ITFCheckCreater.Create(barcode.Substring(0, barcode.Length - 1));
+                    if (!string.IsNullOrEmpty(ck) && ck == barcode.Substring(barcode.Length - 1, 1))
+                    {
+                        return barcode.Substring(0, barcode.Length - 1);
+                    }
+                }
+            }
+            if (!string.IsNullOrEmpty(barcode) && AppSettings.CurrentSetting.Debug)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log("丢弃条码", barcode);
+            }
+            return string.Empty;
         }
         #endregion
 
@@ -299,13 +421,28 @@ namespace Ralid.Park.UI
                     if (!(report1 is ParkVacantReport) && !(report1 is EntranceRemainTempCardReport) && !(report1 is EntranceStatusReport))
                     {
                         eventList.InsertReport(report1);
+                        if (report1 is CardInvalidEventReport)
+                        {
+                            CardInvalidEventReport ciereport = report1 as CardInvalidEventReport;
+                            //如果是超速行驶违章，弹出超速行驶违章详细信息
+                            if (ciereport.InvalidType == EventInvalidType.INV_Speeding)
+                            {
+                                if (_frmSpeedingDetail == null)
+                                {
+                                    _frmSpeedingDetail = new FrmSpeedingDetail();
+                                }
+                                _frmSpeedingDetail.ProcessingEvent = ciereport;
+                                _frmSpeedingDetail.Show();
+                                _frmSpeedingDetail.Activate();
+                            }
+                        }
                     }
                 }
             };
 
             if (this.InvokeRequired)
             {
-                this.Invoke(action, report);
+                this.BeginInvoke(action, report);
             }
             else
             {
@@ -330,16 +467,21 @@ namespace Ralid.Park.UI
             }
             if (AppSettings.CurrentSetting.ParkFeeLedCOMPort > 0)
             {
-                if (AppSettings.CurrentSetting.ParkFeeLedType == 0)
-                {
-                    _ChargeLed = new ZhongKuangLed(AppSettings.CurrentSetting.ParkFeeLedCOMPort);
-                }
-                else
+                if (AppSettings.CurrentSetting.ParkFeeLedType == 1)
                 {
                     _ChargeLed = new YanseDesktopLed(AppSettings.CurrentSetting.ParkFeeLedCOMPort);
                 }
+                else if (AppSettings.CurrentSetting.ParkFeeLedType == 2)
+                {
+                    _ChargeLed = new HSDDesktopLed(AppSettings.CurrentSetting.ParkFeeLedCOMPort);
+                }
+                else
+                {
+                    _ChargeLed = new ZhongKuangLed(AppSettings.CurrentSetting.ParkFeeLedCOMPort);
+                }
                 _ChargeLed.Open();
                 _ChargeLed.PermanentSentence = Resource1.FrmCardPaying_CentralCharge;
+                _ChargeLed.DisplayMsg(Resource1.FrmCardPaying_CentralCharge, int.MaxValue);
             }
             if (AppSettings.CurrentSetting.BillPrinterCOMPort > 0)
             {
@@ -383,6 +525,24 @@ namespace Ralid.Park.UI
 
             //写卡模式不允许输入卡号
             //this.txtCardID.Enabled = !GlobalVariables.IsNETParkAndOffLie;
+
+            this.comPark.Init(string.Empty,true);
+            //this.label1.Visible = false;
+            //this.comPark.Visible = false;
+            //this.label1.Visible = false;
+
+            //是否显示POS收费按钮
+            if (!AppSettings.CurrentSetting.EnablePOSButton)
+            {
+                this.btnPos.Visible = false;
+            }
+
+            if (UserSetting.Current.ParkingCoupon == null || UserSetting.Current.ParkingCoupon.Count == 0)
+            {
+                this.btnCoupon.Visible = false;
+            }
+            //重新排列按钮
+            panel6_Resize(this, EventArgs.Empty);
         }
 
         private void btnCash_Click(object sender, EventArgs e)
@@ -454,7 +614,7 @@ namespace Ralid.Park.UI
 
         private void btnPos_Click(object sender, EventArgs e)
         {
-            if (_ChargeRecord != null && CheckPaid())
+            if (_ChargeRecord != null && CheckPaid() && CheckWriteCard())
             {
                 if (AppSettings.CurrentSetting.EnableTTS) TTSSpeech.Instance.Speek(Resource1.FrmCardPaying_Paying);
                 CommandResult result = SaveCardPayment(PaymentMode.Pos);
@@ -479,7 +639,7 @@ namespace Ralid.Park.UI
         {
             if (!DataBaseConnectionsManager.Current.BothCconnectedOrNoStandby)
             {
-                MessageBox.Show("与数据库连接断开。");
+                MessageBox.Show(Resource1.Form_DataBaseNotConnected);
                 return;
             }
 
@@ -536,11 +696,15 @@ namespace Ralid.Park.UI
         {
             if (_ChargeRecord != null && CarTypeSetting.Current[carTypePanel1.SelectedCarType] != null)
             {
-                //专门针对长隆停车场设置一种“转会员卡"车型，选择“转会员卡"车型时必须重新刷一张会员卡才能时行这个操作，并在收费说明中写入“转会员卡+会员卡号"
+                //专门针对长隆停车场设置的“转会员卡"和“转员工卡"车型，选择“转会员卡"或“转员工卡"车型时必须重新刷一张会员卡或员工卡才能时行这个操作，并在收费说明中写入“转会员卡\转员工卡+会员卡号"
                 //这个功能采用硬编码
-                if (CarTypeSetting.Current[carTypePanel1.SelectedCarType].Description == _ToVipCard)
+                if (CarTypeSetting.Current[carTypePanel1.SelectedCarType].Description == _ToVipCard
+                    || CarTypeSetting.Current[carTypePanel1.SelectedCarType].Description == _ToStaffCard)
                 {
+                    string toCard = CarTypeSetting.Current[carTypePanel1.SelectedCarType].Description == _ToVipCard ? _VipCard : _StaffCard;
+
                     FrmVipCardReader frm = new FrmVipCardReader();
+                    frm.VipCardName = toCard;
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         string cardid = frm.VipCardID;
@@ -556,14 +720,14 @@ namespace Ralid.Park.UI
                                 card = (new CardBll(AppSettings.CurrentSetting.CurrentStandbyConnect)).GetCardByID(cardid).QueryObject;
                             }
 
-                            if (card != null && card.CardType.Name == _VipCard)
+                            if (card != null && card.CardType.Name == toCard)
                             {
                                 _TempCardID = _ChargeRecord.CardID;
                                 _VipCardID = cardid;
                             }
                             else
                             {
-                                MessageBox.Show(string.Format("卡号为 {0} 的卡不存在或者不是会员卡，请刷会员卡", cardid), Resource1.Form_Alert);
+                                MessageBox.Show(string.Format("卡号为 {0} 的卡不存在或者不是{1}，请刷{1}", cardid, toCard), Resource1.Form_Alert);
                                 return;
                             }
                         }
@@ -578,9 +742,32 @@ namespace Ralid.Park.UI
                         return;
                     }
                 }
-                //end 转会员卡功能 
+                //end 转会员卡、转员工卡功能 
 
-                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
+                //新增需求，特种车需要读取授权卡
+                if (CarTypeSetting.Current[carTypePanel1.SelectedCarType].Description == "特种车")
+                {
+                    string toCard = "特种车";
+                    FrmOperatorCardReader frm = new FrmOperatorCardReader();
+                    frm.OpeCardName = toCard;
+                    frm.MoneyCardID = _ChargeRecord.CardID;
+                    if (frm.ShowDialog() == DialogResult.OK)
+                    {
+                        _OperatorCardID = frm.OperatorCardID;
+                        _OperatorOwnerName = frm.OperatorCardOwnerName;
+                        //...
+                    }
+                    else
+                    {
+                        this.carTypePanel1.Select(0);
+                        //ClearCardEvent();
+                        ClearInput();
+                        return;
+                    }
+                }
+
+                //_ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.comPark.SelectedParkID, _cardInfo, TariffSetting.Current, carTypePanel1.SelectedCarType, _ChargeRecord.ChargeDateTime);
                 ShowCardPaymentInfo(_ChargeRecord);
             }
         }
@@ -744,9 +931,11 @@ namespace Ralid.Park.UI
             string msg = string.Empty;
             CardInfo card = null;
 
+            //因为车牌名单不能写卡，所以车牌名单也不是脱机处理的卡片
             bool offlineHandleCard = AppSettings.CurrentSetting.EnableWriteCard
                 && info != null
-                && !info.OnlineHandleWhenOfflineMode;
+                && !info.OnlineHandleWhenOfflineMode
+                && info.IsCardList;
 
             if (!WorkStationInfo.CurrentStation.CanPayment(offlineHandleCard, out msg))
             {
@@ -762,7 +951,8 @@ namespace Ralid.Park.UI
             }
             else if (AppSettings.CurrentSetting.EnableWriteCard
                 && !card.OnlineHandleWhenOfflineMode
-                && !CardDateResolver.Instance.CopyCardDataToCard(card, info))
+                && !CardDateResolver.Instance.CopyPaidDataToCard(card, info))//只复制缴费相关的信息，如果复制了所有的信息，会覆盖数据库内的卡片状态，如挂失，禁用等状态
+                //&& !CardDateResolver.Instance.CopyCardDataToCard(card, info))
             {
                 //写卡模式时，卡片信息从扇区数据中获取
                 msg = Resource1.FrmCardCenterCharge_CardDataErr;
@@ -771,7 +961,8 @@ namespace Ralid.Park.UI
             {
                 //卡片无效
             }
-            else if (TariffSetting.Current.GetTariff(card.CardType.ID, card.CarType) == null)
+            //else if (TariffSetting.Current.GetTariff(card.CardType.ID, card.CarType) == null)
+            else if (TariffSetting.Current.GetTariff(this.comPark.SelectedParkID, card.CardType.ID, card.CarType) == null)
             {
                 //msg = Resource1.FrmCardPaying_NotTempCard;
                 msg = Resource1.FrmCardCenterCharge_NotPaymentCard;
@@ -787,7 +978,17 @@ namespace Ralid.Park.UI
             else
             {
                 _cardInfo = card;
-                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                //EntranceBll eBll = new EntranceBll(AppSettings.CurrentSetting.ParkConnect);
+                //EntranceInfo eInfo = eBll.GetEntranceInfo(_cardInfo.LastEntrance).QueryObject;
+                EntranceInfo eInfo = ParkBuffer.Current.GetEntrance(_cardInfo.LastEntrance);
+                int parkID = 0;
+                if (eInfo != null)
+                    parkID = eInfo.ParkID;
+                this.comPark.SelectedParkID = parkID;
+                //this.label1.Visible = true;
+                //this.comPark.Visible = true;//屏蔽多费率支持
+                //_ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(_cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.comPark.SelectedParkID, _cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
                 ShowCardPaymentInfo(_ChargeRecord);
             }
             if (!string.IsNullOrEmpty(msg))
@@ -846,6 +1047,18 @@ namespace Ralid.Park.UI
                 case Keys.D9:
                     if (this.carTypePanel1.Visible) this.carTypePanel1.Select(9);
                     break;
+                case Keys.F7:
+                    if (this.btnCarPlateList.Enabled)
+                    {
+                        btnCarPlateList_Click(this.btnCarPlateList, EventArgs.Empty);
+                    }
+                    break;
+                case Keys.F8:
+                    if (this.btnCoupon.Enabled)
+                    {
+                        btnCoupon_Click(this.btnCoupon, EventArgs.Empty);
+                    }
+                    break;
                 case Keys.F9:
                     if (this.btnCash.Enabled)
                     {
@@ -859,10 +1072,10 @@ namespace Ralid.Park.UI
                     }
                     break;
                 case Keys.F11:
-                    //if (this.btnPos.Enabled)
-                    //{
-                    //    btnPos_Click(this.btnPos, EventArgs.Empty);
-                    //}
+                    if (this.btnPos.Enabled)
+                    {
+                        btnPos_Click(this.btnPos, EventArgs.Empty);
+                    }
                     break;
                 case Keys.F12:
                     if (this.btnCancel.Enabled)
@@ -901,7 +1114,8 @@ namespace Ralid.Park.UI
             if (!string.IsNullOrEmpty(e.BarCode))
             {
                 ClearInput();
-                ReadCardIDHandler(e.BarCode, null);
+                string cardID = GetCardIDFromBarCode(e.BarCode);
+                ReadCardIDHandler(cardID, null);
             }
         }
 
@@ -999,7 +1213,7 @@ namespace Ralid.Park.UI
         {
             if (_ChargeRecord != null)
             {
-                lblDiscount.Text = (_ChargeRecord.Accounts - txtPaid.DecimalValue).ToString();
+                lblDiscount.Text = (_ChargeRecord.Accounts - txtPaid.DecimalValue).ToString("N");
             }
         }
 
@@ -1029,6 +1243,14 @@ namespace Ralid.Park.UI
             List<Button> buttons = new List<Button>();
             buttons.Add(btnCash);
             buttons.Add(btnYCT);
+            if (btnPos.Visible)
+            {
+                buttons.Add(btnPos);
+            }
+            if (btnCoupon.Visible)
+            {
+                buttons.Add(btnCoupon);
+            }
             LayoutCarTypeButtons(panel6, buttons, btnCash.Height, 3);
         }
 
@@ -1100,5 +1322,66 @@ namespace Ralid.Park.UI
             }
         }
         #endregion
+
+        private void parkCombobox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_cardInfo != null)
+            {
+                _ChargeRecord = CardPaymentInfoFactory.CreateCardPaymentRecord(this.comPark.SelectedParkID, _cardInfo, TariffSetting.Current, _cardInfo.CarType, DateTime.Now);
+                ShowCardPaymentInfo(_ChargeRecord);
+            }
+        }
+
+        private void btnCarPlateList_Click(object sender, EventArgs e)
+        {
+            FrmCarPlateManualExit frm = new FrmCarPlateManualExit();
+            if (frm.ShowDialog() == DialogResult.OK)
+            {
+                if (!string.IsNullOrEmpty(frm.CardID))
+                {
+                    this.txtCardID.Text = frm.CardID;
+                }
+                else
+                {
+                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                    CardInfo card = bll.GetFirstCarPlateList(frm.CarPlate);
+                    if (card != null)
+                    {
+                        ReadCardIDHandler(card.CardID, card);
+                    }
+                }
+            }
+            frm.Close();
+        }
+
+        private void btnCash_EnabledChanged(object sender, EventArgs e)
+        {
+            this.btnPos.Enabled = btnCash.Enabled;
+            this.btnCoupon.Enabled = this.btnCash.Enabled;
+        }
+
+        private void btnCoupon_Click(object sender, EventArgs e)
+        {
+            FrmParkingCouponInput frm = new FrmParkingCouponInput();
+            if (frm.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                decimal coupon = frm.CouponDiscount;
+                if (coupon > 0)
+                {
+                    decimal discount = _ChargeRecord.Discount + coupon;
+                    //如果停车券优惠大于应缴费用，停车券优惠为应缴费用
+                    if (discount > _ChargeRecord.Accounts)
+                    {
+                        discount = _ChargeRecord.Accounts;
+                    }
+                    string discountMemo = _ChargeRecord.Memo + frm.CouponDescription;
+
+                    this.lblDiscount.Text = discount.ToString("N");
+                    this.lblDiscountMemo.Text = string.IsNullOrEmpty(discountMemo) ? string.Empty : discountMemo;
+
+                    this.txtPaid.DecimalValue = _ChargeRecord.Accounts - discount;
+                }
+            }
+        }
     }
 }

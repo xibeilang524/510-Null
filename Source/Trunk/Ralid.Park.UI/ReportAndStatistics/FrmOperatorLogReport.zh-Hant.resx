@@ -120,11 +120,17 @@
   <data name="groupBox1.Text" xml:space="preserve">
     <value>結算時間</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>部門:</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>操作員:</value>
   </data>
   <data name="colOperatorID.HeaderText" xml:space="preserve">
-    <value>操作員:</value>
+    <value>操作員</value>
+  </data>
+  <data name="colDept.HeaderText" xml:space="preserve">
+    <value>部門</value>
   </data>
   <data name="colSettleDateTime.HeaderText" xml:space="preserve">
     <value>結算時間</value>
@@ -149,6 +155,9 @@
   </data>
   <data name="colCashOfCardRecycle.HeaderText" xml:space="preserve">
     <value>退還現金</value>
+  </data>
+  <data name="colCashOfRefund.HeaderText" xml:space="preserve">
+    <value>收費退款</value>
   </data>
   <data name="colTotalCash.HeaderText" xml:space="preserve">
     <value>現金合計</value>
@@ -176,6 +185,9 @@
   </data>
   <data name="colTotalNonCash.HeaderText" xml:space="preserve">
     <value>非現合計</value>
+  </data>
+  <data name="colHandInPOS.HeaderText" xml:space="preserve">
+    <value>上交POS金額</value>
   </data>
   <data name="colOpenDoorCount.HeaderText" xml:space="preserve">
     <value>軟體開閘</value>
@@ -225,6 +237,21 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>操作員结算</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>現金合計:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>非現合計:</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>現金差額:</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>上交現金:</value>
+  </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>統計信息</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>操作員交班結算記錄查詢</value>

@@ -6,10 +6,11 @@ using System.ServiceModel;
 using System.Threading;
 using System.ServiceModel.Channels;
 using Ralid.GeneralLibrary.ExceptionHandling;
-using Ralid.Park.BusinessModel.Model ;
+using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Notify;
 using Ralid.Park.BusinessModel.Enum;
-using Ralid.Park .BusinessModel .Report;
+using Ralid.Park.BusinessModel.Report;
 
 namespace Ralid.Park.ParkAdapter
 {
@@ -33,9 +34,8 @@ namespace Ralid.Park.ParkAdapter
             ParkAdapterConnectFail += new EventHandler(ParkingAdapter_ParkAdapterConnectFail);
             ParkApaterReconnected += new EventHandler(ParkingAdapter_ParkApaterReconnected);
 
-            Thread t = new Thread(ReportHandler_Thread);
-            t.IsBackground = true;
-            t.Start();
+            _ReportHandleThread = new Thread(ReportHandler_Thread);
+            _ReportHandleThread.Start();
         }
         #endregion
 
@@ -50,7 +50,8 @@ namespace Ralid.Park.ParkAdapter
         private Thread _CheckServerConnectedThread;
 
         private Queue<Ralid.Park.BusinessModel.Report.ReportBase> _Reports = new Queue<BusinessModel.Report.ReportBase>();
-        private object _ReportsLocker=new object ();
+        private object _ReportsLocker = new object();
+        private Thread _ReportHandleThread;
         private AutoResetEvent _ReportEvent = new AutoResetEvent(false);
         #endregion
 
@@ -106,45 +107,96 @@ namespace Ralid.Park.ParkAdapter
 
         private void EnQueue(ReportBase report)
         {
+            int count = 0;
+
             lock (_ReportsLocker)
             {
                 _Reports.Enqueue(report);
-                _ReportEvent.Set();
+                count = _Reports.Count;
+
+                //如果处理队列中的消息超过最大数量,则丢弃最开始的一个事件
+                if (count > 10000)
+                {
+                    _Reports.Dequeue();
+                    count = _Reports.Count;
+                }
             }
+            _ReportEvent.Set();
+            //2014-10-17 注销 Jan
+            //if (AppSettings.CurrentSetting.Debug)
+            //{
+            //    string logmsg = "收到事件: " + report.Description + "；" + "事件列表内事件数量: " + count;
+            //    if (count > 100)
+            //    {
+            //        //当事件个数大于100时，可认为处理线程出错了，记录下线程的状态
+            //        if (_ReportHandleThread != null)
+            //        {
+            //            logmsg += "\r\n" + "处理进程状态: " + _ReportHandleThread.ThreadState;
+            //        }
+            //    }
+            //    Ralid.GeneralLibrary.LOG.FileLog.Log("收到事件", logmsg);
+            //}
         }
 
         private ReportBase Dequeue()
         {
-            if (_Reports.Count > 0)
+            ReportBase report = null;
+
+            lock (_ReportsLocker)
             {
-                lock (_ReportsLocker)
+                if (_Reports.Count > 0)
                 {
-                    return _Reports.Dequeue();
+                    report = _Reports.Dequeue();
                 }
             }
-            return null;
+            //2014-10-17 注销 Jan
+            //if (AppSettings.CurrentSetting.Debug)
+            //{
+            //    if (report != null)
+            //    {
+            //        Ralid.GeneralLibrary.LOG.FileLog.Log("事件处理", "正在处理事件: " + report.Description);
+            //    }
+            //    //else
+            //    //{
+            //    //    Ralid.GeneralLibrary.LOG.FileLog.Log("事件处理", "未获取到事件");
+            //    //}
+            //}
+            return report;
         }
 
         private void ReportHandler_Thread()
         {
-            while (true)
+            try
             {
-                if (_ReportEvent.WaitOne(int.MaxValue))
+                while (true)
                 {
-                    ReportBase report = Dequeue();
-                    while (report != null)
+                    try
                     {
-                        try
+                        if (_ReportEvent.WaitOne(int.MaxValue))
                         {
-                            if (this.Reporting != null) this.Reporting(this,report);
+                            ReportBase report = Dequeue();
+                            while (report != null)
+                            {
+                                if (this.Reporting != null)
+                                {
+                                    this.Reporting(this, report);
+                                }
+                                report = Dequeue();
+                            }
                         }
-                        catch (Exception ex)
-                        {
-                            ExceptionPolicy.HandleException(ex);
-                        }
-                        report = Dequeue();
+                        ////如果不使用_ReportEvent等待，直接用while（true），如果不Sleep1毫秒，会导致CPU占用率一直很高
+                        //Thread.Sleep(1);
+                    }
+                    catch (Exception ex)
+                    {
+                        ExceptionPolicy.HandleException(ex);
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log("事件处理", "事件循环线程被终止");
+                ExceptionPolicy.HandleException(ex);
             }
         }
         #endregion
@@ -161,7 +213,7 @@ namespace Ralid.Park.ParkAdapter
         /// <summary>
         /// 获取或设置停车场ID
         /// </summary>
-        public int ParkID{get;set;}
+        public int ParkID { get; set; }
         #endregion
 
         #region 公共方法
@@ -339,13 +391,13 @@ namespace Ralid.Park.ParkAdapter
             return false;
         }
 
-        public bool SaveCard(CardInfo card,ActionType action)
+        public bool SaveCard(CardInfo card, ActionType action)
         {
             try
             {
                 if (_Channel != null)
                 {
-                    return _Channel.SaveCard(card,action);
+                    return _Channel.SaveCard(card, action);
                 }
             }
             catch (CommunicationException ex)
@@ -431,7 +483,7 @@ namespace Ralid.Park.ParkAdapter
             return false;
         }
 
-        public bool DeleteCardToEntrance(int entranceID,CardInfo card)
+        public bool DeleteCardToEntrance(int entranceID, CardInfo card)
         {
             try
             {
@@ -507,6 +559,29 @@ namespace Ralid.Park.ParkAdapter
                 if (_Channel != null)
                 {
                     return _Channel.DownloadVacantSetting(notify);
+                }
+            }
+            catch (CommunicationException)
+            {
+                if (ParkAdapterConnectFail != null)
+                {
+                    ParkAdapterConnectFail(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return false;
+        }
+
+        public bool ModifiedVacant(short vacant)
+        {
+            try
+            {
+                if (_Channel != null)
+                {
+                    return _Channel.ModifiedVacant(vacant);
                 }
             }
             catch (CommunicationException)
@@ -615,7 +690,7 @@ namespace Ralid.Park.ParkAdapter
             return false;
         }
 
-        public bool DownloadTariffSettingToEntrance(int entranceID,TariffSetting tariffSetting)
+        public bool DownloadTariffSettingToEntrance(int entranceID, TariffSetting tariffSetting)
         {
             try
             {
@@ -913,6 +988,29 @@ namespace Ralid.Park.ParkAdapter
             return false;
         }
 
+        public bool SwitchEntrance(EntranceSwitchNotify notify)
+        {
+            try
+            {
+                if (_Channel != null)
+                {
+                    return _Channel.SwitchEntrance(notify);
+                }
+            }
+            catch (CommunicationException)
+            {
+                if (ParkAdapterConnectFail != null)
+                {
+                    ParkAdapterConnectFail(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return false;
+        }
+
         public bool RemoteReadCard(RemoteReadCardNotify notify)
         {
             try
@@ -920,6 +1018,29 @@ namespace Ralid.Park.ParkAdapter
                 if (_Channel != null)
                 {
                     return _Channel.RemoteReadCard(notify);
+                }
+            }
+            catch (CommunicationException)
+            {
+                if (ParkAdapterConnectFail != null)
+                {
+                    ParkAdapterConnectFail(this, EventArgs.Empty);
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return false;
+        }
+
+        public bool UpdateSystemParamSetting(UpdateSystemParamSettingNotity notify)
+        {
+            try
+            {
+                if (_Channel != null)
+                {
+                    return _Channel.UpdateSystemParamSetting(notify);
                 }
             }
             catch (CommunicationException)
@@ -1201,6 +1322,11 @@ namespace Ralid.Park.ParkAdapter
         }
 
         public void AlarmSink(BusinessModel.Report.AlarmReport report)
+        {
+            EnQueue(report);
+        }
+
+        public void UpdateSystemParamSettingSink(BusinessModel.Report.UpdateSystemParamSettingReport report)
         {
             EnQueue(report);
         }

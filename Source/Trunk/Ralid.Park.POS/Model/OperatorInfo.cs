@@ -13,7 +13,7 @@ namespace Ralid.Park.POS.Model
     [Serializable]
     public class OperatorInfo
     {
-        private static DSEncrypt DES=new DSEncrypt ();
+        private static DSEncrypt DES = new DSEncrypt();
 
         private static OperatorInfo currentOperator;
         /// <summary>
@@ -37,11 +37,15 @@ namespace Ralid.Park.POS.Model
         /// <summary>
         /// 操作员登录密码
         /// </summary>
-        public string Password{get;set;}
+        public string Password { get; set; }
         /// <summary>
         /// 操作员编号
         /// </summary>
         public byte OperatorNum { get; set; }
+        /// <summary>
+        /// 权限列表
+        /// </summary>
+        public string Permission { get; set; }
         #endregion
 
         public OperatorInfo()

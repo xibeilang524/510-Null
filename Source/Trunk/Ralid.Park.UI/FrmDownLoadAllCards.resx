@@ -157,7 +157,7 @@
     <value>NoControl</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>53, 388</value>
+    <value>95, 388</value>
   </data>
   <data name="btnOk.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 23</value>
@@ -180,8 +180,8 @@
   <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
     <value>5</value>
   </data>
-  <data name="label2.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="label2.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
   </data>
   <data name="label2.Font" type="System.Drawing.Font, System.Drawing">
     <value>宋体, 9pt, style=Bold</value>
@@ -193,7 +193,7 @@
     <value>12, 334</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 12</value>
+    <value>430, 29</value>
   </data>
   <data name="label2.TabIndex" type="System.Int32, mscorlib">
     <value>8</value>
@@ -214,13 +214,13 @@
     <value>4</value>
   </data>
   <data name="btnCancel.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
-    <value>Bottom, Right</value>
+    <value>Bottom, Left</value>
   </data>
   <data name="btnCancel.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
   <data name="btnCancel.Location" type="System.Drawing.Point, System.Drawing">
-    <value>221, 388</value>
+    <value>270, 388</value>
   </data>
   <data name="btnCancel.Size" type="System.Drawing.Size, System.Drawing">
     <value>93, 23</value>
@@ -243,11 +243,14 @@
   <data name="&gt;&gt;btnCancel.ZOrder" xml:space="preserve">
     <value>3</value>
   </data>
+  <data name="hardwareTree1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Top, Bottom, Left, Right</value>
+  </data>
   <data name="hardwareTree1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 42</value>
   </data>
   <data name="hardwareTree1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>334, 251</value>
+    <value>430, 251</value>
   </data>
   <data name="hardwareTree1.TabIndex" type="System.Int32, mscorlib">
     <value>10</value>
@@ -264,11 +267,14 @@
   <data name="&gt;&gt;hardwareTree1.ZOrder" xml:space="preserve">
     <value>2</value>
   </data>
+  <data name="progressBar1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left, Right</value>
+  </data>
   <data name="progressBar1.Location" type="System.Drawing.Point, System.Drawing">
     <value>12, 299</value>
   </data>
   <data name="progressBar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>334, 23</value>
+    <value>430, 23</value>
   </data>
   <data name="progressBar1.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
@@ -277,13 +283,16 @@
     <value>progressBar1</value>
   </data>
   <data name="&gt;&gt;progressBar1.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.PercentageProgressBar, Ralid.GeneralLibrary, Version=2.0.2013.923, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.PercentageProgressBar, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;progressBar1.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;progressBar1.ZOrder" xml:space="preserve">
     <value>1</value>
+  </data>
+  <data name="label3.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
+    <value>Bottom, Left</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -322,7 +331,7 @@
     <value>6, 12</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>358, 423</value>
+    <value>458, 423</value>
   </data>
   <data name="$this.StartPosition" type="System.Windows.Forms.FormStartPosition, System.Windows.Forms">
     <value>CenterParent</value>

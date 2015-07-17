@@ -37,11 +37,11 @@ namespace Ralid.Park.UserControls
                 CardType.VipCard,
                 CardType.Ticket 
             });
-            if (AppSettings.CurrentSetting.EnableWriteCard)
-            {
-                //写卡模式屏蔽纸票选择
-                this.Items.Remove(CardType.Ticket);
-            }
+            //if (AppSettings.CurrentSetting.EnableWriteCard)
+            //{
+            //    //写卡模式屏蔽纸票选择
+            //    this.Items.Remove(CardType.Ticket);
+            //}
             if (CustomCardTypeSetting.Current != null)
             {
                 CardType[] customs = CustomCardTypeSetting.Current.CardTypes;

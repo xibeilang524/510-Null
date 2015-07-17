@@ -9,5 +9,6 @@ namespace Ralid.Park.DAL.IDAL
 {
     public interface ICardEventProvider : IProvider<CardEventRecord,RecordID>
     {
+        void DeleteAllCardEventBefore(DateTime eventDatetime);
     }
 }

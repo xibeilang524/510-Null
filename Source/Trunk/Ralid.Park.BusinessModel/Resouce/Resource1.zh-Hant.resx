@@ -526,7 +526,7 @@
     <value>操作員交接班報表</value>
   </data>
   <data name="Permission_PayOperationLogReport" xml:space="preserve">
-    <value>自助繳費機日誌查詢</value>
+    <value>自助繳費機日誌報表</value>
   </data>
   <data name="Permission_ReadAPM" xml:space="preserve">
     <value>讀取自助繳費機資訊</value>
@@ -682,22 +682,22 @@
     <value>連接資料庫失敗</value>
   </data>
   <data name="AlarmType_APMBillValidator" xml:space="preserve">
-    <value>自助缴费机纸币识别机警报</value>
+    <value>自助繳費機紙幣識別機警報</value>
   </data>
   <data name="AlarmType_APMCardReader" xml:space="preserve">
-    <value>自助缴费机读卡器警报</value>
+    <value>自助繳費機讀卡器警報</value>
   </data>
   <data name="AlarmType_APMCoinCharger" xml:space="preserve">
-    <value>自助缴费机硬币找零机警报</value>
+    <value>自助繳費機硬幣找零機警報</value>
   </data>
   <data name="AlarmType_APMKeyboard" xml:space="preserve">
-    <value>自助缴费机密码键盘警报</value>
+    <value>自助繳費機密碼鍵盤警報</value>
   </data>
   <data name="AlarmType_APMPrinter" xml:space="preserve">
-    <value>自助缴费机打印机警报</value>
+    <value>自助繳費機打印機警報</value>
   </data>
   <data name="AlarmType_APMSystem" xml:space="preserve">
-    <value>自助缴费机系统警报</value>
+    <value>自助繳費機系統警報</value>
   </data>
   <data name="Permission_CardInParkReport" xml:space="preserve">
     <value>在場卡片查詢</value>
@@ -802,7 +802,7 @@
     <value>未能讀到卡片數據！</value>
   </data>
   <data name="Permission_YangChenTongLogReport" xml:space="preserve">
-    <value>羊城通扣費記錄查詢</value>
+    <value>羊城通扣費報表</value>
   </data>
   <data name="INV_Cancelled" xml:space="preserve">
     <value>此卡已註銷</value>
@@ -944,5 +944,224 @@
   </data>
   <data name="AlarmType_CardOutAnomaly" xml:space="preserve">
     <value>卡片直接出場</value>
+  </data>
+  <data name="Permission_CardOut" xml:space="preserve">
+    <value>卡片直接出場</value>
+  </data>
+  <data name="Permission_FreeAuthorizationLogReport" xml:space="preserve">
+    <value>免費授權報表</value>
+  </data>
+  <data name="Permission_WaitingCommandReport" xml:space="preserve">
+    <value>下發命令報表</value>
+  </data>
+  <data name="Permission_EditLocalSetting" xml:space="preserve">
+    <value>編輯本地設置</value>
+  </data>
+  <data name="Permission_ReadLocalSetting" xml:space="preserve">
+    <value>查看本地設置</value>
+  </data>
+  <data name="Permission_APMCheckOutRecordReport" xml:space="preserve">
+    <value>自助繳費機結賬報表</value>
+  </data>
+  <data name="Permission_APMRefund" xml:space="preserve">
+    <value>繳費機退款</value>
+  </data>
+  <data name="Permission_APMRefundRecordReport" xml:space="preserve">
+    <value>自助繳費機退款報表</value>
+  </data>
+  <data name="PaymentCode_APM" xml:space="preserve">
+    <value>繳費機收費</value>
+  </data>
+  <data name="PaymentCode_Computer" xml:space="preserve">
+    <value>電腦收費</value>
+  </data>
+  <data name="PaymentCode_FunctionCard" xml:space="preserve">
+    <value>功能卡收費</value>
+  </data>
+  <data name="PaymentCode_POS" xml:space="preserve">
+    <value>手持機</value>
+  </data>
+  <data name="VehicleLEDMessageType_Balance" xml:space="preserve">
+    <value>儲值餘額</value>
+  </data>
+  <data name="VehicleLEDMessageType_CardCertificate" xml:space="preserve">
+    <value>卡片編號</value>
+  </data>
+  <data name="VehicleLEDMessageType_CardCarPlate" xml:space="preserve">
+    <value>登記車牌</value>
+  </data>
+  <data name="VehicleLEDMessageType_Department" xml:space="preserve">
+    <value>部門名稱</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastCarPlate" xml:space="preserve">
+    <value>入場車牌</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastDateTime" xml:space="preserve">
+    <value>入場時間</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastEntrance" xml:space="preserve">
+    <value>入場通道</value>
+  </data>
+  <data name="VehicleLEDMessageType_None" xml:space="preserve">
+    <value>不顯示信息</value>
+  </data>
+  <data name="VehicleLEDMessageType_OwnerName" xml:space="preserve">
+    <value>車主姓名</value>
+  </data>
+  <data name="VehicleLEDMessageType_ValidDate" xml:space="preserve">
+    <value>有效期限</value>
+  </data>
+  <data name="VehicleLEDMessageType_Entrance" xml:space="preserve">
+    <value>通道名稱</value>
+  </data>
+  <data name="VehicleLEDMessageType_Park" xml:space="preserve">
+    <value>停車場名</value>
+  </data>
+  <data name="VehicleLEDMessageType_TotalPosition" xml:space="preserve">
+    <value>總車位數</value>
+  </data>
+  <data name="VehicleLEDMessageType_Vacant" xml:space="preserve">
+    <value>空車位數</value>
+  </data>
+  <data name="VehicleLEDMessageType_RegCarPlate" xml:space="preserve">
+    <value>識別車牌</value>
+  </data>
+  <data name="UpdateSystemParamSettingReport_Update" xml:space="preserve">
+    <value>修改系統參數</value>
+  </data>
+  <data name="Permission_VehicleLedSetting" xml:space="preserve">
+    <value>車輛信息顯示屏設置</value>
+  </data>
+  <data name="Report_NeedPay" xml:space="preserve">
+    <value>未繳費</value>
+  </data>
+  <data name="AlarmType_BarcodeGunStatus" xml:space="preserve">
+    <value>條碼槍狀態</value>
+  </data>
+  <data name="AlarmType_ServerSwitching" xml:space="preserve">
+    <value>服務器切換</value>
+  </data>
+  <data name="BarcodeGun" xml:space="preserve">
+    <value>條碼槍</value>
+  </data>
+  <data name="BarcodeStatus_ComPortNotOpend" xml:space="preserve">
+    <value>串口打開失敗</value>
+  </data>
+  <data name="BarcodeStatus_OK" xml:space="preserve">
+    <value>狀態正常</value>
+  </data>
+  <data name="HostStandbyStatus_Host" xml:space="preserve">
+    <value>主機</value>
+  </data>
+  <data name="HostStandbyStatus_Standby" xml:space="preserve">
+    <value>從機</value>
+  </data>
+  <data name="HostStandbyStatus_UnKnown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="SMSSendStatus_Fail" xml:space="preserve">
+    <value>發送失敗</value>
+  </data>
+  <data name="SMSSendStatus_NotSend" xml:space="preserve">
+    <value>不發送</value>
+  </data>
+  <data name="SMSSendStatus_Success" xml:space="preserve">
+    <value>發送成功</value>
+  </data>
+  <data name="SMSSendStatus_Waiting" xml:space="preserve">
+    <value>等待發送</value>
+  </data>
+  <data name="Permission_HostStandbySetting" xml:space="preserve">
+    <value>服務器切換設置</value>
+  </data>
+  <data name="Permission_ServerSwitchReport" xml:space="preserve">
+    <value>服務器切換記錄查詢</value>
+  </data>
+  <data name="AlarmType_OperatorCardWork" xml:space="preserve">
+    <value>授權卡操作</value>
+  </data>
+  <data name="Preferential" xml:space="preserve">
+    <value>優惠</value>
+  </data>
+  <data name="Permission_EditDept" xml:space="preserve">
+    <value>編輯部門</value>
+  </data>
+  <data name="Permission_NoCardLost" xml:space="preserve">
+    <value>無卡掛失</value>
+  </data>
+  <data name="Permission_ReadDept" xml:space="preserve">
+    <value>查看部門</value>
+  </data>
+  <data name="Permission_SpeedingProcess" xml:space="preserve">
+    <value>超速違章處理</value>
+  </data>
+  <data name="Permission_SpeedingReport" xml:space="preserve">
+    <value>超速違章記錄查詢</value>
+  </data>
+  <data name="INV_Speeding" xml:space="preserve">
+    <value>行駛違章</value>
+  </data>
+  <data name="CardListType_Card" xml:space="preserve">
+    <value>卡片名單</value>
+  </data>
+  <data name="CardListType_CarPlate" xml:space="preserve">
+    <value>車牌名單</value>
+  </data>
+  <data name="ParkListMode_Card" xml:space="preserve">
+    <value>卡片</value>
+  </data>
+  <data name="ParkListMode_CarPlate" xml:space="preserve">
+    <value>車牌</value>
+  </data>
+  <data name="ParkListMode_CarPlateAndCard" xml:space="preserve">
+    <value>車牌 + 卡片</value>
+  </data>
+  <data name="AlarmType_CarPlateFail" xml:space="preserve">
+    <value>車牌識別失敗</value>
+  </data>
+  <data name="AlarmType_NeedManualProcessing" xml:space="preserve">
+    <value>需要手動處理</value>
+  </data>
+  <data name="INV_CarPlateFail" xml:space="preserve">
+    <value>車牌識別失敗</value>
+  </data>
+  <data name="INV_Expired" xml:space="preserve">
+    <value>已過有效期</value>
+  </data>
+  <data name="INV_ListNotEnabled" xml:space="preserve">
+    <value>名單未啟用</value>
+  </data>
+  <data name="INV_ListType" xml:space="preserve">
+    <value>名單類型不符</value>
+  </data>
+  <data name="INV_NoAccess" xml:space="preserve">
+    <value>無進入權限</value>
+  </data>
+  <data name="INV_NotOnTheList" xml:space="preserve">
+    <value>不在名單中</value>
+  </data>
+  <data name="INV_CarIsIn" xml:space="preserve">
+    <value>車輛已入場</value>
+  </data>
+  <data name="INV_CarIsOut" xml:space="preserve">
+    <value>車輛已出場</value>
+  </data>
+  <data name="Report_ExpiredCard" xml:space="preserve">
+    <value>過期卡</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>元</value>
+  </data>
+  <data name="Tariff_ThreeTimeZone" xml:space="preserve">
+    <value>三時段收費</value>
+  </data>
+  <data name="Permission_DeleteAtAll" xml:space="preserve">
+    <value>強制刪除</value>
+  </data>
+  <data name="PaymentCode_Internet" xml:space="preserve">
+    <value>互聯網收費</value>
+  </data>
+  <data name="PaymentMode_WeChat" xml:space="preserve">
+    <value>微信支付</value>
   </data>
 </root>

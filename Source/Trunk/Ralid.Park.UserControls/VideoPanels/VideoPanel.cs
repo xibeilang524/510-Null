@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Enum;
 
 namespace Ralid.Park.UserControls.VideoPanels
 {
@@ -22,6 +23,13 @@ namespace Ralid.Park.UserControls.VideoPanels
         #region 变量
         protected VideoStatus _Status;
         protected object _StatusLock = new object();
+        #endregion
+
+        #region 公共事件
+        /// <summary>
+        /// 视频源拖动事件处理
+        /// </summary>
+        public VideoDragDropHandler VideoDragDropHandling;
         #endregion
 
         #region 私有方法
@@ -54,7 +62,33 @@ namespace Ralid.Park.UserControls.VideoPanels
             }
         }
         #endregion
-        
+
+        #region 只读方法
+        /// <summary>
+        /// 视频服务类型
+        /// </summary>
+        public int VideoType
+        {
+            get
+            {
+                if (this is XingLuTongVideoPanel)
+                {
+                    return (int)VideoServerType.XinLuTong;
+                }
+                else if (this is JingYangVideoPanel)
+                {
+                    return (int)VideoServerType.JingYang;
+                }
+                else if (this is DaHuaVideoPanel)
+                {
+                    return (int)VideoServerType.DaHua;
+                }
+                //默认返回ACTi类型
+                return (int)VideoServerType.ACTi;
+            }
+        }
+        #endregion
+
         #region 公共方法和属性
         /// <summary>
         /// 获取或设置控件的标题
@@ -68,6 +102,20 @@ namespace Ralid.Park.UserControls.VideoPanels
             set
             {
                 this.label1.Text = value;
+            }
+        }
+        /// <summary>
+        /// 获取或设置控件的标题颜色
+        /// </summary>
+        public Color CaptionColor
+        {
+            get
+            {
+                return this.label1.ForeColor;
+            }
+            set
+            {
+                this.label1.ForeColor = value;
             }
         }
         /// <summary>
@@ -131,7 +179,7 @@ namespace Ralid.Park.UserControls.VideoPanels
         /// 抓拍图片到文件
         /// </summary>
         /// <param name="path">文件保存路径(包括文件名)</param>
-        public virtual bool SnapShotTo(string path)
+        public virtual bool SnapShotTo(ref string path)
         {
             bool ret = false;
             return ret;
@@ -141,10 +189,20 @@ namespace Ralid.Park.UserControls.VideoPanels
         /// 抓拍图片到文件
         /// </summary>
         /// <param name="path">文件保存路径(包括文件名)</param>
-        public virtual bool SnapShotTo(string path, int timeout)
+        /// <param name="timeout">超时时间(ms)</param>
+        /// <param name="force">是否强制重新抓拍，不管之前有没有抓拍到图片</param>
+        public virtual bool SnapShotTo(ref string path, int timeout, bool force)
         {
             bool ret = false;
             return ret;
+        }
+
+        /// <summary>
+        /// 清除最近保存的抓拍图片信息
+        /// </summary>
+        public virtual void ClearSnapShot()
+        {
+ 
         }
 
         /// <summary>
@@ -155,6 +213,24 @@ namespace Ralid.Park.UserControls.VideoPanels
         {
             //this.count = count;
             //this.timer1.Enabled = true;
+        }
+        /// <summary>
+        /// 打开视频用于抓拍图片,(由于某些类型的视频服务器不需要播放视频流也能抓拍，所以增加这一个方法用于与Play区分作用)
+        /// </summary>
+        /// <param name="async"></param>
+        public virtual void OpenForSnapshot(bool _async)
+        {
+            Play(_async);
+        }
+        /// <summary>
+        /// 获取视频是否已经可以用于抓拍
+        /// </summary>
+        public virtual bool IsReadyForSnapshot
+        {
+            get
+            {
+                return this.Status == VideoStatus.Playing;
+            }
         }
         #endregion
 
@@ -167,9 +243,19 @@ namespace Ralid.Park.UserControls.VideoPanels
                 object o = e.Data.GetData(s[0]);
                 if (o is VideoSourceInfo)
                 {
-                    this.Close();
-                    this.VideoSource = o as VideoSourceInfo;
-                    this.Play(true);
+                    VideoSourceInfo video = o as VideoSourceInfo;
+
+                    if (video.VideoSourceType == this.VideoType)
+                    {
+                        //只有视频类型相同的才处理
+                        this.Close();
+                        this.VideoSource = video;
+                        this.Play(true);
+                    }
+                    else if (this.VideoDragDropHandling != null)
+                    {
+                        this.VideoDragDropHandling(this, video);
+                    }
                 }
             }
         }
@@ -197,14 +283,33 @@ namespace Ralid.Park.UserControls.VideoPanels
 
         private void btn_Capture_Click(object sender, EventArgs e)
         {
-            string dir = System.IO.Path.Combine(Application.StartupPath, "Capture") ;
+            string dir = System.IO.Path.Combine(Application.StartupPath, "Capture");
             if (AppSettings.CurrentSetting != null && !string.IsNullOrEmpty(AppSettings.CurrentSetting.SnapShotSavePath))
             {
                 dir = AppSettings.CurrentSetting.SnapShotSavePath;
             }
-            string file = DateTime.Now.ToString("yyyyMMddHHmmss") + ".jpg";
-            this.SnapShotTo(System.IO.Path.Combine(dir, file));
+            if (!System.IO.Directory.Exists(dir))
+            {
+                try
+                {
+                    System.IO.Directory.CreateDirectory(dir);
+                }
+                catch
+                {
+                }
+            }
+            string file = string.Format("{0}_{1}.jpg", this.VideoSource.VideoID.ToString(), DateTime.Now.ToString("yyyyMMddHHmmssfff"));
+            string path = System.IO.Path.Combine(dir, file);
+            this.SnapShotTo(ref path);
         }
         #endregion
     }
+
+    /// <summary>
+    /// 视频源拖动事件处理
+    /// </summary>
+    /// <param name="sender"></param>
+    /// <param name="video"></param>
+    /// <returns></returns>
+    public delegate void VideoDragDropHandler(object sender,VideoSourceInfo video);
 }

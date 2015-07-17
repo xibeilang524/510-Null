@@ -117,33 +117,6 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="colCardCertificate.HeaderText" xml:space="preserve">
-    <value>卡片編號</value>
-  </data>
-  <data name="colCarPlate.HeaderText" xml:space="preserve">
-    <value>車牌</value>
-  </data>
-  <data name="colReleaseDateTime.HeaderText" xml:space="preserve">
-    <value>發行時間</value>
-  </data>
-  <data name="colCardType.HeaderText" xml:space="preserve">
-    <value>卡片類型</value>
-  </data>
-  <data name="colPayMentMode.HeaderText" xml:space="preserve">
-    <value>收費方式</value>
-  </data>
-  <data name="colReleaseMoney.HeaderText" xml:space="preserve">
-    <value>實收金額</value>
-  </data>
-  <data name="colSettled.HeaderText" xml:space="preserve">
-    <value>結算</value>
-  </data>
-  <data name="colOperatorID.HeaderText" xml:space="preserve">
-    <value>操作員</value>
-  </data>
-  <data name="ColMemo.HeaderText" xml:space="preserve">
-    <value>備註</value>
-  </data>
   <data name="groupBox2.Text" xml:space="preserve">
     <value>查詢準則</value>
   </data>
@@ -167,6 +140,36 @@
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>記錄數:</value>
+  </data>
+  <data name="colCardCertificate.HeaderText" xml:space="preserve">
+    <value>卡片編號</value>
+  </data>
+  <data name="colCarPlate.HeaderText" xml:space="preserve">
+    <value>車牌</value>
+  </data>
+  <data name="colReleaseDateTime.HeaderText" xml:space="preserve">
+    <value>發行時間</value>
+  </data>
+  <data name="colCardType.HeaderText" xml:space="preserve">
+    <value>卡片類型</value>
+  </data>
+  <data name="colDeposit.HeaderText" xml:space="preserve">
+    <value>工本費</value>
+  </data>
+  <data name="colPayMentMode.HeaderText" xml:space="preserve">
+    <value>收費方式</value>
+  </data>
+  <data name="colReleaseMoney.HeaderText" xml:space="preserve">
+    <value>實收金額</value>
+  </data>
+  <data name="colSettled.HeaderText" xml:space="preserve">
+    <value>結算</value>
+  </data>
+  <data name="colOperatorID.HeaderText" xml:space="preserve">
+    <value>操作員</value>
+  </data>
+  <data name="ColMemo.HeaderText" xml:space="preserve">
+    <value>備註</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>卡片发行記錄查詢</value>

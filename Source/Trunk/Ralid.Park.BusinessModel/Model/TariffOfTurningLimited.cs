@@ -67,7 +67,7 @@ namespace Ralid.Park.BusinessModel.Model
 
         public override string ToString()
         {
-            return "限时收费";
+            return Resouce.Resource1.Tariff_TurningLimited;
         }
         #endregion
     }

@@ -117,1001 +117,1499 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <metadata name="mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>28, 17</value>
-  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mnu_OperatorShift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
+  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 60</value>
   </data>
-  <data name="mnu_OperatorShift.Text" xml:space="preserve">
-    <value>操作员交班结算</value>
+  <data name="&gt;&gt;mnu_VehicleLedSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_SystemIDSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_SystemIDSetting.Text" xml:space="preserve">
-    <value>选择当前工作站</value>
-  </data>
-  <data name="mnu_LogOut.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_LogOut.Text" xml:space="preserve">
-    <value>注销</value>
-  </data>
-  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_SysManager.Text" xml:space="preserve">
-    <value>系统</value>
-  </data>
-  <data name="mnu_Cards.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_Cards.Text" xml:space="preserve">
-    <value>卡片管理</value>
-  </data>
-  <data name="mnu_Workstations.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_Workstations.Text" xml:space="preserve">
-    <value>工作站管理</value>
-  </data>
-  <data name="mnu_APM.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_APM.Text" xml:space="preserve">
-    <value>自助缴费机管理</value>
-  </data>
-  <data name="mnu_ZSTSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_ZSTSetting.Text" xml:space="preserve">
-    <value>中山通设置</value>
-  </data>
-  <data name="mnu_PosSyncTool.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_PosSyncTool.Text" xml:space="preserve">
-    <value>手持机同步工具</value>
-  </data>
-  <data name="mnu_SystemOption.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_SystemOption.Text" xml:space="preserve">
-    <value>系统选项</value>
-  </data>
-  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_DBManager.Text" xml:space="preserve">
-    <value>数据</value>
-  </data>
-  <data name="mnu_Operator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="mnu_Operator.Text" xml:space="preserve">
-    <value>操作员管理</value>
-  </data>
-  <data name="mnu_ChangePwd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="mnu_ChangePwd.Text" xml:space="preserve">
-    <value>修改密码</value>
-  </data>
-  <data name="mnu_Roles.Size" type="System.Drawing.Size, System.Drawing">
-    <value>136, 22</value>
-  </data>
-  <data name="mnu_Roles.Text" xml:space="preserve">
-    <value>角色管理</value>
-  </data>
-  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_Security.Text" xml:space="preserve">
-    <value>安全</value>
-  </data>
-  <data name="mnu_CardReleaseReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardReleaseReport.Text" xml:space="preserve">
-    <value>卡片发行记录查询</value>
-  </data>
-  <data name="mnu_CardDeferReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardDeferReport.Text" xml:space="preserve">
-    <value>卡片延期记录查询</value>
-  </data>
-  <data name="mnu_CardDeferStatistic.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardDeferStatistic.Text" xml:space="preserve">
-    <value>月租卡收费统计</value>
-  </data>
-  <data name="mnu_HasPaidCardReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_HasPaidCardReport.Text" xml:space="preserve">
-    <value>已交月保费卡统计</value>
-  </data>
-  <data name="mnu_CardReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardReport.Text" xml:space="preserve">
-    <value>卡片查询</value>
-  </data>
-  <data name="mnu_CardChargeReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardChargeReport.Text" xml:space="preserve">
-    <value>卡片充值记录查询</value>
+  <data name="toolStrip1.Text" xml:space="preserve">
+    <value>toolStrip1</value>
   </data>
   <data name="toolStripSeparator1.Size" type="System.Drawing.Size, System.Drawing">
     <value>205, 6</value>
   </data>
-  <data name="mnu_CardLostRestoreReport.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_Down.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_AddDivision.Text" xml:space="preserve">
+    <value>增加停车区域</value>
+  </data>
+  <data name="&gt;&gt;mnu_Aboat.Name" xml:space="preserve">
+    <value>mnu_Aboat</value>
+  </data>
+  <data name="&gt;&gt;mnu_SpeedingReport.Name" xml:space="preserve">
+    <value>mnu_SpeedingReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_TempCardSetting.Name" xml:space="preserve">
+    <value>mnu_TempCardSetting</value>
+  </data>
+  <data name="mnu_WaitingCommand.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
+  </data>
+  <data name="mnu_CarplateRegX.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 60</value>
+  </data>
+  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 6</value>
+  </data>
+  <data name="&gt;&gt;lblMasterStatus.Name" xml:space="preserve">
+    <value>lblMasterStatus</value>
+  </data>
+  <data name="&gt;&gt;lblStartFrom.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardOut.Name" xml:space="preserve">
+    <value>mnu_CardOut</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
+    <value>toolStripSeparator8</value>
+  </data>
+  <data name="&gt;&gt;lblEventServiceStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Fresh.Name" xml:space="preserve">
+    <value>mnu_Fresh</value>
+  </data>
+  <data name="&gt;&gt;tmrForceShifting.Name" xml:space="preserve">
+    <value>tmrForceShifting</value>
+  </data>
+  <data name="mnu_HostStandbySetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;splitter1.ZOrder" xml:space="preserve">
+    <value>5</value>
+  </data>
+  <data name="mnu_ParkProperty.Text" xml:space="preserve">
+    <value>属性</value>
+  </data>
+  <data name="btn_EntranceProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarPlateManualProccess.Name" xml:space="preserve">
+    <value>mnu_CarPlateManualProccess</value>
+  </data>
+  <data name="&gt;&gt;btn_Cards.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportChargeRecords.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;Mnu_Reports.Name" xml:space="preserve">
+    <value>Mnu_Reports</value>
+  </data>
+  <data name="&gt;&gt;mnu_ServerSwitchReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
+    <value>toolStripSeparator9</value>
+  </data>
+  <data name="&gt;&gt;mnu_SpeedingProcess.Name" xml:space="preserve">
+    <value>mnu_SpeedingProcess</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMRefund.Name" xml:space="preserve">
+    <value>mnu_APMRefund</value>
+  </data>
+  <data name="mnu_Alarm.Text" xml:space="preserve">
+    <value>报警记录查询</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoProperty.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CardReport.Text" xml:space="preserve">
+    <value>卡片查询</value>
+  </data>
+  <data name="mnu_SimpleChinese.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDisableEnableReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardReleaseReport.Name" xml:space="preserve">
+    <value>mnu_CardReleaseReport</value>
+  </data>
+  <data name="entranceTree.TabIndex" type="System.Int32, mscorlib">
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;btn_ChangePwd.Name" xml:space="preserve">
+    <value>btn_ChangePwd</value>
+  </data>
+  <data name="&gt;&gt;mnu_View.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator14.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_SystemIDSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ParkRename.Name" xml:space="preserve">
+    <value>mnu_ParkRename</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
+    <value>8</value>
+  </data>
+  <data name="&gt;&gt;mnu_FreeAuthorizationLog.Name" xml:space="preserve">
+    <value>mnu_FreeAuthorizationLog</value>
+  </data>
+  <data name="lblCommuicationStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="mnu_SwitchEntranceMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;lblMasterStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_AlarmReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.ZOrder" xml:space="preserve">
+    <value>9</value>
+  </data>
+  <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
+    <value>导入充值记录</value>
+  </data>
+  <data name="mnu_RoadWays.Text" xml:space="preserve">
+    <value>通道路口管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardEventReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_HostStandbySetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Language.Text" xml:space="preserve">
+    <value>语言</value>
+  </data>
+  <data name="&gt;&gt;entranceTree.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="mnu_CardLostRestoreReport.Text" xml:space="preserve">
     <value>卡片挂失恢复记录查询</value>
   </data>
-  <data name="mnu_CardDisableEnableReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="&gt;&gt;mnu_CarplateRegD.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_CardDisableEnableReport.Text" xml:space="preserve">
-    <value>卡片禁用启用记录查询</value>
+  <data name="&gt;&gt;mnu_HotelAuthorization.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_CardRecycleReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="&gt;&gt;mnu_ExportParameter.Name" xml:space="preserve">
+    <value>mnu_ExportParameter</value>
   </data>
-  <data name="mnu_CardRecycleReport.Text" xml:space="preserve">
-    <value>卡片回收记录查询</value>
+  <data name="&gt;&gt;btn_CardPaymentReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_CardDeleteReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="&gt;&gt;mnu_OutdoorLedVacant.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_CardDeleteReport.Text" xml:space="preserve">
-    <value>卡片删除记录查询</value>
+  <data name="mnu_OutdoorLedVacant.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
   </data>
-  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
+  <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="mnu_CardPayingReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="&gt;&gt;formPanel1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="mnu_CardPayingReport.Text" xml:space="preserve">
-    <value>停车费用明细记录查询</value>
+  <data name="btn_VideoReboot.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
   </data>
-  <data name="mnu_CardPayingStatistic.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
+  <data name="&gt;&gt;mnu_DBManager.Name" xml:space="preserve">
+    <value>mnu_DBManager</value>
   </data>
-  <data name="mnu_CardPayingStatistic.Text" xml:space="preserve">
-    <value>停车收费统计</value>
+  <data name="mnu_DeletePark.Text" xml:space="preserve">
+    <value>删除</value>
   </data>
-  <data name="mnu_CardEventReport.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="&gt;&gt;tmrCheckDog.Name" xml:space="preserve">
+    <value>tmrCheckDog</value>
+  </data>
+  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="lblStation.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="btn_SwitchEntranceMode.Text" xml:space="preserve">
+    <value>通道切换</value>
+  </data>
+  <data name="&gt;&gt;mnu_Manual.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_TempCardSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
+    <value>toolStripSeparator10</value>
+  </data>
+  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 60</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMSyncTool.Name" xml:space="preserve">
+    <value>mnu_APMSyncTool</value>
+  </data>
+  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="mnu_FreeAuthorizationLog.Text" xml:space="preserve">
+    <value>免费授权记录查询</value>
+  </data>
+  <data name="&gt;&gt;mnu_SystemOption.Name" xml:space="preserve">
+    <value>mnu_SystemOption</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDeleteReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMCheckOutRecordRport.Name" xml:space="preserve">
+    <value>mnu_APMCheckOutRecordRport</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardReleaseReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddVideo.Name" xml:space="preserve">
+    <value>mnu_AddVideo</value>
+  </data>
+  <data name="mnu_HostStandbySetting.Text" xml:space="preserve">
+    <value>服务器切换设置</value>
+  </data>
+  <data name="btn_CardeventReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>停车场硬件</value>
+  </data>
+  <data name="btn_ChangePwd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mnu_SpeedingProcess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_SnapShoter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_AlarmReport.Text" xml:space="preserve">
+    <value>报警查询</value>
+  </data>
+  <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>161, 202</value>
+  </data>
+  <data name="&gt;&gt;$this.Name" xml:space="preserve">
+    <value>FrmMain</value>
+  </data>
+  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 114</value>
+  </data>
+  <data name="&gt;&gt;mnu_Alarm.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblServerSwitch.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="mnu_SnapShoter.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;mnu_SimpleChinese.Name" xml:space="preserve">
+    <value>mnu_SimpleChinese</value>
+  </data>
+  <data name="mnu_Workstations.Text" xml:space="preserve">
+    <value>工作站管理</value>
+  </data>
+  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 472</value>
+  </data>
+  <data name="Mnu_Reports.Text" xml:space="preserve">
+    <value>查询与报表</value>
+  </data>
+  <data name="mnu_SyncDataToStandby.Text" xml:space="preserve">
+    <value>同步数据到备用数据库</value>
+  </data>
+  <data name="mnu_CardLostRestoreReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>208, 22</value>
   </data>
   <data name="mnu_CardEventReport.Text" xml:space="preserve">
     <value>车辆进出记录查询</value>
   </data>
-  <data name="mnu_CardInPark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CardInPark.Text" xml:space="preserve">
-    <value>在场车辆查询</value>
-  </data>
-  <data name="mnu_OperatorShiftStatistics.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_OperatorShiftStatistics.Text" xml:space="preserve">
-    <value>操作员交班结算记录查询</value>
-  </data>
-  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
-    <value>205, 6</value>
-  </data>
-  <data name="mnu_ReportDetail.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_ReportDetail.Text" xml:space="preserve">
-    <value>车类型汇总查询</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="mnu_ReportDetail.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_CarFlowStatistics.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_CarFlowStatistics.Text" xml:space="preserve">
-    <value>车流量统计</value>
-  </data>
-  <data name="mnu_Alarm.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_Alarm.Text" xml:space="preserve">
-    <value>报警记录查询</value>
-  </data>
-  <data name="mnu_PayOperationLogReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
-    <value>自助缴费机日志查询</value>
-  </data>
-  <data name="mnu_YCTLog.Size" type="System.Drawing.Size, System.Drawing">
-    <value>208, 22</value>
-  </data>
-  <data name="mnu_YCTLog.Text" xml:space="preserve">
-    <value>羊城通扣费记录查询</value>
-  </data>
-  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 21</value>
-  </data>
-  <data name="Mnu_Reports.Text" xml:space="preserve">
-    <value>查询与报表</value>
-  </data>
-  <data name="mnu_Monitor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_Monitor.Text" xml:space="preserve">
-    <value>实时视频</value>
-  </data>
-  <data name="mnu_RealReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_RealReport.Text" xml:space="preserve">
-    <value>实时事件窗口</value>
-  </data>
-  <data name="mnu_CardPaying.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_CardPaying.Text" xml:space="preserve">
-    <value>进出收费</value>
-  </data>
-  <data name="mnu_SnapShoter.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_SnapShoter.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_SnapShoter.Text" xml:space="preserve">
-    <value>视频抓拍窗口</value>
-  </data>
-  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>169, 6</value>
-  </data>
-  <data name="mnu_CarplateReg.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_CarplateReg.Text" xml:space="preserve">
-    <value>车牌识别窗口</value>
-  </data>
-  <data name="mnu_CarplateReg.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_CarPlateTestForFile.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_CarPlateTestForFile.Text" xml:space="preserve">
-    <value>车牌识别图片测试</value>
-  </data>
-  <data name="mnu_CarPlateTestForFile.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_CarPlateTestForVideo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_CarPlateTestForVideo.Text" xml:space="preserve">
-    <value>车牌识别视频测试</value>
-  </data>
-  <data name="mnu_CarPlateTestForVideo.Visible" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
-  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_View.Text" xml:space="preserve">
-    <value>视图</value>
-  </data>
-  <data name="mnu_SimpleChinese.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_SimpleChinese.Text" xml:space="preserve">
-    <value>简体中文</value>
-  </data>
-  <data name="mnu_TraditionalChinese.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_TraditionalChinese.Text" xml:space="preserve">
-    <value>繁体中文</value>
-  </data>
-  <data name="mnu_English.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_English.Text" xml:space="preserve">
-    <value>英语</value>
-  </data>
-  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_Language.Text" xml:space="preserve">
-    <value>语言</value>
-  </data>
-  <data name="mnu_Manual.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_Manual.Text" xml:space="preserve">
-    <value>用户手册</value>
-  </data>
-  <data name="mnu_Aboat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_Aboat.Text" xml:space="preserve">
-    <value>关于...</value>
-  </data>
-  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>44, 21</value>
-  </data>
-  <data name="mnu_Help.Text" xml:space="preserve">
-    <value>帮助</value>
-  </data>
-  <data name="mainMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="mainMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 25</value>
-  </data>
-  <data name="mainMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="mainMenu.Text" xml:space="preserve">
-    <value>menuStrip1</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Name" xml:space="preserve">
-    <value>mainMenu</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;mainMenu.ZOrder" xml:space="preserve">
-    <value>9</value>
-  </data>
-  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>126, 18</value>
-  </metadata>
-  <data name="lblOperator.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblOperator.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblStation.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblStation.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblStartFrom.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblStartFrom.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblMasterStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblMasterStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblMasterStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="lblStandbyStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblStandbyStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblStandbyStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="lblEventServiceStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblEventServiceStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>4, 17</value>
-  </data>
-  <data name="lblEventServiceStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="lblCommuicationStatus.Font" type="System.Drawing.Font, System.Drawing">
-    <value>宋体, 9pt, style=Bold</value>
-  </data>
-  <data name="lblCommuicationStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>753, 17</value>
-  </data>
-  <data name="lblCommuicationStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="statusStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 472</value>
-  </data>
-  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 22</value>
-  </data>
-  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="statusStrip1.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;statusStrip1.ZOrder" xml:space="preserve">
-    <value>8</value>
-  </data>
-  <metadata name="videoContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>694, 22</value>
-  </metadata>
-  <data name="mnu_VideoSyncTime.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_VideoSyncTime.Text" xml:space="preserve">
-    <value>同步时间</value>
-  </data>
-  <data name="btn_VideoReboot.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="btn_VideoReboot.Text" xml:space="preserve">
-    <value>重启</value>
-  </data>
-  <data name="mnu_DeleteVideo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_DeleteVideo.Text" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="mnu_VideoRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_VideoRename.Text" xml:space="preserve">
-    <value>重命名</value>
-  </data>
-  <data name="mnu_VideoProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>124, 22</value>
-  </data>
-  <data name="mnu_VideoProperty.Text" xml:space="preserve">
-    <value>属性</value>
-  </data>
-  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>125, 114</value>
-  </data>
-  <data name="&gt;&gt;videoContextMenu.Name" xml:space="preserve">
-    <value>videoContextMenu</value>
-  </data>
-  <data name="&gt;&gt;videoContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="entranceTree.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="entranceTree.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 31</value>
-  </data>
-  <data name="entranceTree.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 348</value>
-  </data>
-  <data name="entranceTree.TabIndex" type="System.Int32, mscorlib">
-    <value>12</value>
-  </data>
-  <data name="&gt;&gt;entranceTree.Name" xml:space="preserve">
-    <value>entranceTree</value>
-  </data>
-  <data name="&gt;&gt;entranceTree.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.HardwareTree, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;entranceTree.Parent" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;entranceTree.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
-  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>7, 6</value>
-  </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
-  </data>
-  <data name="label1.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>停车场硬件</value>
-  </data>
-  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
-    <value>MiddleLeft</value>
-  </data>
-  <data name="&gt;&gt;label1.Name" xml:space="preserve">
-    <value>label1</value>
-  </data>
-  <data name="&gt;&gt;label1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="btnCloseLeft.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
-    <value>Stretch</value>
-  </data>
-  <data name="btnCloseLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Right</value>
-  </data>
-  <data name="btnCloseLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
-    <value>Flat</value>
-  </data>
-  <data name="btnCloseLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
-  <data name="btnCloseLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>262, 0</value>
-  </data>
-  <data name="btnCloseLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>25, 25</value>
-  </data>
-  <data name="btnCloseLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Name" xml:space="preserve">
-    <value>btnCloseLeft</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.Parent" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;btnCloseLeft.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
-  </data>
-  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>6, 6</value>
-  </data>
-  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>287, 25</value>
-  </data>
-  <data name="panel2.TabIndex" type="System.Int32, mscorlib">
-    <value>11</value>
-  </data>
-  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
-    <value>panel2</value>
-  </data>
-  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="panelLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Left</value>
-  </data>
-  <data name="panelLeft.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 85</value>
-  </data>
-  <data name="panelLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>6, 6, 0, 6</value>
-  </data>
-  <data name="panelLeft.Size" type="System.Drawing.Size, System.Drawing">
-    <value>295, 387</value>
-  </data>
-  <data name="panelLeft.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Name" xml:space="preserve">
-    <value>panelLeft</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;panelLeft.ZOrder" xml:space="preserve">
-    <value>6</value>
-  </data>
-  <data name="toolStripSeparator5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 60</value>
-  </data>
-  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 60</value>
-  </data>
-  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 60</value>
-  </data>
-  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>257, 19</value>
-  </metadata>
-  <data name="btn_HardWare.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_HardWare.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_HardWare.Text" xml:space="preserve">
-    <value>硬件列表</value>
-  </data>
   <data name="btn_HardWare.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
     <value>ImageAboveText</value>
   </data>
-  <data name="btn_Shift.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_Shift.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_Shift.Text" xml:space="preserve">
-    <value>系统交班</value>
-  </data>
-  <data name="btn_Shift.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_ChangePwd.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_ChangePwd.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_ChangePwd.Text" xml:space="preserve">
-    <value>修改密码</value>
-  </data>
-  <data name="btn_ChangePwd.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_Cards.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_Cards.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_Cards.Text" xml:space="preserve">
-    <value>卡片管理</value>
-  </data>
-  <data name="btn_Cards.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_Monitor.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_Monitor.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_Monitor.Text" xml:space="preserve">
-    <value>实时视频</value>
-  </data>
-  <data name="btn_Monitor.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_CardPaying.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_CardPaying.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_CardPaying.Text" xml:space="preserve">
-    <value>进出收费</value>
-  </data>
-  <data name="btn_CardPaying.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 60</value>
-  </data>
-  <data name="btn_AlarmReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_AlarmReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_AlarmReport.Text" xml:space="preserve">
-    <value>报警查询</value>
-  </data>
-  <data name="btn_AlarmReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_CardeventReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_CardeventReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_CardeventReport.Text" xml:space="preserve">
-    <value>进出查询</value>
-  </data>
-  <data name="btn_CardeventReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="btn_CardPaymentReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
-    <value>Magenta</value>
-  </data>
-  <data name="btn_CardPaymentReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>60, 57</value>
-  </data>
-  <data name="btn_CardPaymentReport.Text" xml:space="preserve">
-    <value>收费查询</value>
-  </data>
-  <data name="btn_CardPaymentReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
-    <value>ImageAboveText</value>
-  </data>
-  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 25</value>
-  </data>
-  <data name="toolStrip1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>792, 60</value>
-  </data>
-  <data name="toolStrip1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="toolStrip1.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
-    <value>7</value>
-  </data>
-  <metadata name="parkContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>370, 19</value>
-  </metadata>
-  <data name="mnu_SearchDevice.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_SearchDevice.Text" xml:space="preserve">
-    <value>搜索控制器</value>
-  </data>
-  <data name="mnu_AddEntrance1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_AddEntrance1.Text" xml:space="preserve">
-    <value>增加控制器</value>
-  </data>
-  <data name="mnu_AddDivision.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_AddDivision.Text" xml:space="preserve">
-    <value>增加停车区域</value>
-  </data>
-  <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_DeletePark.Text" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="mnu_ParkRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_ParkRename.Text" xml:space="preserve">
-    <value>重命名</value>
-  </data>
-  <data name="mnu_ParkProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="mnu_ParkProperty.Text" xml:space="preserve">
-    <value>属性</value>
-  </data>
-  <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>149, 136</value>
-  </data>
-  <data name="&gt;&gt;parkContextMenu.Name" xml:space="preserve">
-    <value>parkContextMenu</value>
-  </data>
-  <data name="&gt;&gt;parkContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="entranceContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>524, 22</value>
-  </metadata>
-  <data name="mnu_AddVideo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_AddVideo.Text" xml:space="preserve">
-    <value>增加摄像机</value>
-  </data>
-  <data name="mnu_Reset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_Reset.Text" xml:space="preserve">
-    <value>控制器复位</value>
-  </data>
-  <data name="mnu_TempCardSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_TempCardSetting.Text" xml:space="preserve">
-    <value>临时卡数量设置</value>
-  </data>
-  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
-  </data>
-  <data name="mnu_RemoteReadCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_RemoteReadCard.Text" xml:space="preserve">
-    <value>远程读卡</value>
-  </data>
-  <data name="mnu_Up.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_Up.Text" xml:space="preserve">
-    <value>抬闸</value>
-  </data>
-  <data name="mnu_Down.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_Down.Text" xml:space="preserve">
-    <value>落闸</value>
-  </data>
-  <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>157, 6</value>
-  </data>
-  <data name="mnu_DeleteEntrance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_DeleteEntrance.Text" xml:space="preserve">
-    <value>删除</value>
-  </data>
-  <data name="mnu_EntranceRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="mnu_EntranceRename.Text" xml:space="preserve">
-    <value>重命名</value>
-  </data>
-  <data name="btn_EntranceProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>160, 22</value>
-  </data>
-  <data name="btn_EntranceProperty.Text" xml:space="preserve">
-    <value>属性</value>
-  </data>
-  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>161, 214</value>
-  </data>
-  <data name="&gt;&gt;entranceContextMenu.Name" xml:space="preserve">
-    <value>entranceContextMenu</value>
-  </data>
-  <data name="&gt;&gt;entranceContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <metadata name="treeContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>843, 20</value>
-  </metadata>
-  <data name="mnu_Fresh.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_Fresh.Text" xml:space="preserve">
-    <value>刷新硬件列表</value>
-  </data>
-  <data name="mnu_AddPark.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_AddPark.Text" xml:space="preserve">
-    <value>增加停车场</value>
-  </data>
-  <data name="mnu_SwitchEntranceMode.Size" type="System.Drawing.Size, System.Drawing">
-    <value>172, 22</value>
-  </data>
-  <data name="mnu_SwitchEntranceMode.Text" xml:space="preserve">
-    <value>通道路口模式切换</value>
+  <data name="&gt;&gt;mnu_CarplateReg.Name" xml:space="preserve">
+    <value>mnu_CarplateReg</value>
   </data>
   <data name="treeContextMenu.Size" type="System.Drawing.Size, System.Drawing">
     <value>173, 70</value>
   </data>
-  <data name="&gt;&gt;treeContextMenu.Name" xml:space="preserve">
-    <value>treeContextMenu</value>
+  <data name="&gt;&gt;mnu_English.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;treeContextMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;btn_FreeAuthorization.Name" xml:space="preserve">
+    <value>btn_FreeAuthorization</value>
   </data>
-  <data name="splitter1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
+  <data name="btn_Shift.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
-  <data name="splitter1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>295, 85</value>
+  <data name="&gt;&gt;mnu_ChangePwd.Name" xml:space="preserve">
+    <value>mnu_ChangePwd</value>
   </data>
-  <data name="splitter1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
-    <value>0, 0, 0, 0</value>
+  <data name="mnu_PosSyncTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
   </data>
-  <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>6, 387</value>
+  <data name="label1.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
   </data>
-  <data name="splitter1.TabIndex" type="System.Int32, mscorlib">
-    <value>14</value>
+  <data name="mnu_Depts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
   </data>
-  <data name="&gt;&gt;splitter1.Name" xml:space="preserve">
-    <value>splitter1</value>
+  <data name="mnu_AddVideo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
   </data>
-  <data name="&gt;&gt;splitter1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Splitter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnu_RemoteReadCard.Name" xml:space="preserve">
+    <value>mnu_RemoteReadCard</value>
   </data>
-  <data name="&gt;&gt;splitter1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;panel2.Name" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="mnu_CarFlowStatistics.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_EntranceRename.Name" xml:space="preserve">
+    <value>mnu_EntranceRename</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;splitter1.ZOrder" xml:space="preserve">
-    <value>5</value>
+  <data name="&gt;&gt;btn_SwitchEntranceMode.Name" xml:space="preserve">
+    <value>btn_SwitchEntranceMode</value>
   </data>
-  <metadata name="tmrDeleteSnapShot.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 58</value>
-  </metadata>
-  <metadata name="tmrForceShifting.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>184, 58</value>
-  </metadata>
-  <metadata name="tmrCheckDog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>334, 58</value>
-  </metadata>
-  <data name="formPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Top</value>
+  <data name="mnu_CarPlateTestForVideo.Text" xml:space="preserve">
+    <value>车牌识别视频测试</value>
   </data>
-  <data name="formPanel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>301, 85</value>
+  <data name="mnu_PosSyncTool.Text" xml:space="preserve">
+    <value>手持机同步工具</value>
   </data>
-  <data name="formPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>491, 25</value>
+  <data name="mainMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="mnu_CardDeferStatistic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddEntrance1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateReg.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_HardWare.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mnu_CardRecycleReport.Text" xml:space="preserve">
+    <value>卡片回收记录查询</value>
+  </data>
+  <data name="lblStandbyStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="&gt;&gt;mnu_RealReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_ParkRename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_ChangePwd.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_TraditionalChinese.Text" xml:space="preserve">
+    <value>繁体中文</value>
+  </data>
+  <data name="lblEventServiceStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;Mnu_Reports.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_HardWare.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="mnu_Manual.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="btn_CardeventReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="&gt;&gt;btn_CardeventReport.Name" xml:space="preserve">
+    <value>btn_CardeventReport</value>
+  </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="mnu_CardPaying.Text" xml:space="preserve">
+    <value>进出收费</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarPlateManualProccess.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="formPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
-  <data name="&gt;&gt;formPanel1.Name" xml:space="preserve">
-    <value>formPanel1</value>
+  <data name="&gt;&gt;mnu_DeletePark.Name" xml:space="preserve">
+    <value>mnu_DeletePark</value>
   </data>
-  <data name="&gt;&gt;formPanel1.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.FormPanel, Ralid.GeneralLibrary, Version=2.0.2014.106, Culture=neutral, PublicKeyToken=null</value>
+  <data name="&gt;&gt;panelLeft.Name" xml:space="preserve">
+    <value>panelLeft</value>
   </data>
-  <data name="&gt;&gt;formPanel1.Parent" xml:space="preserve">
+  <data name="&gt;&gt;mnu_RealReport.Name" xml:space="preserve">
+    <value>mnu_RealReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_Operator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_SetParkTariff.Text" xml:space="preserve">
+    <value>设置停车场费率</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDeferStatistic.Name" xml:space="preserve">
+    <value>mnu_CardDeferStatistic</value>
+  </data>
+  <data name="mnu_Depts.Text" xml:space="preserve">
+    <value>部门管理</value>
+  </data>
+  <data name="mnu_ExportParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="btnCloseLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>262, 0</value>
+  </data>
+  <data name="mnu_SpeedingProcess.Text" xml:space="preserve">
+    <value>超速违章处理</value>
+  </data>
+  <data name="&gt;&gt;splitter1.Parent" xml:space="preserve">
     <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mnu_Security.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_DeleteVideo.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportDetail.Name" xml:space="preserve">
+    <value>mnu_ReportDetail</value>
+  </data>
+  <data name="mnu_SystemOption.Text" xml:space="preserve">
+    <value>系统选项</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_VideoSyncTime.Text" xml:space="preserve">
+    <value>同步时间</value>
+  </data>
+  <data name="mnu_VehicleLedSetting.Text" xml:space="preserve">
+    <value>车辆信息显示屏设置</value>
+  </data>
+  <data name="mnu_YCTLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_CardReleaseReport.Text" xml:space="preserve">
+    <value>卡片发行记录查询</value>
+  </data>
+  <data name="&gt;&gt;mnu_ExportParameter.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblOperator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="&gt;&gt;$this.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_FreeAuthorization.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_DeleteVideo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_SearchDevice.Name" xml:space="preserve">
+    <value>mnu_SearchDevice</value>
+  </data>
+  <data name="panel2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 6</value>
+  </data>
+  <data name="btn_CardeventReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mnu_CardPayingReport.Text" xml:space="preserve">
+    <value>停车费用明细记录查询</value>
+  </data>
+  <data name="mnu_NoCardLost.Text" xml:space="preserve">
+    <value>无卡挂失</value>
+  </data>
+  <data name="&gt;&gt;btn_EntranceProperty.Name" xml:space="preserve">
+    <value>btn_EntranceProperty</value>
+  </data>
+  <data name="mnu_Down.Text" xml:space="preserve">
+    <value>落闸</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Name" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="lblOperator.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="mnu_CarplateRegW.Text" xml:space="preserve">
+    <value>型号W</value>
+  </data>
+  <data name="mnu_HotelAuthorization.Text" xml:space="preserve">
+    <value>免费停车优惠授权</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarPlateTestForVideo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddVideo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDeleteReport.Name" xml:space="preserve">
+    <value>mnu_CardDeleteReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_SwitchEntranceMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value>瑞立德停车场系统</value>
+  </data>
+  <data name="mnu_ReportDetail.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardLostRestoreReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardPayingStatistic.Name" xml:space="preserve">
+    <value>mnu_CardPayingStatistic</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardChargeReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_SnapShoter.Text" xml:space="preserve">
+    <value>视频抓拍窗口</value>
+  </data>
+  <data name="mnu_LocalSettings.Text" xml:space="preserve">
+    <value>本地设置</value>
+  </data>
+  <data name="&gt;&gt;mnu_Language.Name" xml:space="preserve">
+    <value>mnu_Language</value>
+  </data>
+  <data name="&gt;&gt;mnu_Workstations.Name" xml:space="preserve">
+    <value>mnu_Workstations</value>
+  </data>
+  <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 6</value>
+  </data>
+  <data name="mnu_SysManager.Text" xml:space="preserve">
+    <value>系统</value>
+  </data>
+  <data name="mnu_APMCheckOutRecordRport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;lblCommuicationStatus.Name" xml:space="preserve">
+    <value>lblCommuicationStatus</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddDivision.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;formPanel1.ZOrder" xml:space="preserve">
     <value>4</value>
   </data>
-  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>78</value>
-  </metadata>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <data name="&gt;&gt;mnu_Roles.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CarplateRegV.Text" xml:space="preserve">
+    <value>型号V</value>
+  </data>
+  <data name="&gt;&gt;mnu_TraditionalChinese.Name" xml:space="preserve">
+    <value>mnu_TraditionalChinese</value>
+  </data>
+  <data name="&gt;&gt;panelLeft.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
+  <data name="&gt;&gt;mnu_YCTLog.Name" xml:space="preserve">
+    <value>mnu_YCTLog</value>
+  </data>
+  <data name="&gt;&gt;mnu_PayOperationLogReport.Name" xml:space="preserve">
+    <value>mnu_PayOperationLogReport</value>
+  </data>
+  <data name="mnu_DeleteEntrance.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_CardDeferStatistic.Text" xml:space="preserve">
+    <value>月租卡收费统计</value>
+  </data>
+  <data name="mnu_ChangePwd.Text" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="mnu_APMRefund.Text" xml:space="preserve">
+    <value>缴费机退款</value>
+  </data>
+  <data name="btnCloseLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegD.Name" xml:space="preserve">
+    <value>mnu_CarplateRegD</value>
+  </data>
+  <data name="lblMasterStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegX.Name" xml:space="preserve">
+    <value>mnu_CarplateRegX</value>
+  </data>
+  <data name="&gt;&gt;mnu_Fresh.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="mnu_VideoProperty.Text" xml:space="preserve">
+    <value>属性</value>
+  </data>
+  <data name="splitter1.Margin" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>0, 0, 0, 0</value>
+  </data>
+  <data name="&gt;&gt;mnu_Cards.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_LocalSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_Monitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CarFlowStatistics.Text" xml:space="preserve">
+    <value>车流量统计</value>
+  </data>
+  <data name="mnu_CardPayingReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_AddPark.Text" xml:space="preserve">
+    <value>增加停车场</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportChargeRecords.Name" xml:space="preserve">
+    <value>mnu_ImportChargeRecords</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddDivision.Name" xml:space="preserve">
+    <value>mnu_AddDivision</value>
+  </data>
+  <data name="&gt;&gt;treeContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_FreeAuthorization.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="mnu_ChangePwd.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_Monitor.Name" xml:space="preserve">
+    <value>btn_Monitor</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardRecycleReport.Name" xml:space="preserve">
+    <value>mnu_CardRecycleReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_DeletePark.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CardInPark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;lblStandbyStatus.Name" xml:space="preserve">
+    <value>lblStandbyStatus</value>
+  </data>
+  <data name="&gt;&gt;mnu_SwitchEntranceMode.Name" xml:space="preserve">
+    <value>mnu_SwitchEntranceMode</value>
+  </data>
+  <data name="mnu_Security.Text" xml:space="preserve">
+    <value>安全</value>
+  </data>
+  <data name="&gt;&gt;mnu_ParkProperty.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblStation.Name" xml:space="preserve">
+    <value>lblStation</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoProperty.Name" xml:space="preserve">
+    <value>mnu_VideoProperty</value>
+  </data>
+  <data name="&gt;&gt;mnu_ParkProperty.Name" xml:space="preserve">
+    <value>mnu_ParkProperty</value>
+  </data>
+  <data name="&gt;&gt;btn_SwitchEntranceMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_CardeventReport.Text" xml:space="preserve">
+    <value>进出查询</value>
+  </data>
+  <data name="&gt;&gt;mnu_OperatorShiftStatistics.Name" xml:space="preserve">
+    <value>mnu_OperatorShiftStatistics</value>
+  </data>
+  <data name="panel2.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="lblCommuicationStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ParkRename.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>792, 494</value>
+  </data>
+  <data name="&gt;&gt;mnu_Down.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardChargeReport.Name" xml:space="preserve">
+    <value>mnu_CardChargeReport</value>
+  </data>
+  <data name="mnu_SearchDevice.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="mnu_ImportCardPayments.Text" xml:space="preserve">
+    <value>导入收费记录</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardPayingStatistic.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Workstations.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 60</value>
+  </data>
+  <data name="mnu_VehicleLedSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_SystemOption.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;tmrCheckDog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Operator.Name" xml:space="preserve">
+    <value>mnu_Operator</value>
+  </data>
+  <data name="mnu_English.Text" xml:space="preserve">
+    <value>英语</value>
+  </data>
+  <data name="&gt;&gt;mnu_SetParkTariff.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Monitor.Text" xml:space="preserve">
+    <value>实时视频</value>
+  </data>
+  <data name="mnu_APMSyncTool.Text" xml:space="preserve">
+    <value>自助缴费机同步</value>
+  </data>
+  <data name="mnu_AddEntrance1.Text" xml:space="preserve">
+    <value>增加控制器</value>
+  </data>
+  <data name="mnu_SimpleChinese.Text" xml:space="preserve">
+    <value>简体中文</value>
+  </data>
+  <data name="&gt;&gt;btn_Shift.Name" xml:space="preserve">
+    <value>btn_Shift</value>
+  </data>
+  <data name="&gt;&gt;formPanel1.Name" xml:space="preserve">
+    <value>formPanel1</value>
+  </data>
+  <data name="&gt;&gt;lblStartFrom.Name" xml:space="preserve">
+    <value>lblStartFrom</value>
+  </data>
+  <data name="&gt;&gt;mnu_SearchDevice.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_DeleteEntrance.Text" xml:space="preserve">
+    <value>删除</value>
+  </data>
+  <data name="&gt;&gt;mnu_DeleteVideo.Name" xml:space="preserve">
+    <value>mnu_DeleteVideo</value>
+  </data>
+  <data name="&gt;&gt;entranceTree.Parent" xml:space="preserve">
+    <value>panelLeft</value>
+  </data>
+  <data name="&gt;&gt;mnu_Monitor.Name" xml:space="preserve">
+    <value>mnu_Monitor</value>
+  </data>
+  <data name="&gt;&gt;mnu_Depts.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_VideoSyncTime.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportRecord.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_APMSyncTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="mnu_SystemIDSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_ReportDetail.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Aboat.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_CardPaymentReport.Name" xml:space="preserve">
+    <value>btn_CardPaymentReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardReport.Name" xml:space="preserve">
+    <value>mnu_CardReport</value>
+  </data>
+  <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoSyncTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="formPanel1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>301, 85</value>
+  </data>
+  <data name="&gt;&gt;mnu_Monitor.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_VideoReboot.Text" xml:space="preserve">
+    <value>重启</value>
+  </data>
+  <data name="mnu_RemoteReadCard.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_Fresh.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDisableEnableReport.Name" xml:space="preserve">
+    <value>mnu_CardDisableEnableReport</value>
+  </data>
+  <data name="btn_Monitor.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="&gt;&gt;formPanel1.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.FormPanel, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="mnu_Up.Text" xml:space="preserve">
+    <value>抬闸</value>
+  </data>
+  <data name="&gt;&gt;lblOperator.Name" xml:space="preserve">
+    <value>lblOperator</value>
+  </data>
+  <data name="&gt;&gt;btnCloseLeft.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mnu_SnapShoter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="panelLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>295, 387</value>
+  </data>
+  <data name="mnu_View.Text" xml:space="preserve">
+    <value>视图</value>
+  </data>
+  <data name="mnu_AddDivision.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;splitter1.Name" xml:space="preserve">
+    <value>splitter1</value>
+  </data>
+  <data name="mnu_APMCheckOutRecordRport.Text" xml:space="preserve">
+    <value>自助缴费机结账记录查询</value>
+  </data>
+  <data name="mnu_CarPlateTestForFile.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_Shift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Aboat.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_Depts.Name" xml:space="preserve">
+    <value>mnu_Depts</value>
+  </data>
+  <data name="mnu_OperatorShift.Text" xml:space="preserve">
+    <value>操作员交班结算</value>
+  </data>
+  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 21</value>
+  </data>
+  <data name="mnu_NoCardLost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="panelLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Left</value>
+  </data>
+  <data name="&gt;&gt;statusStrip1.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
+    <value>自助缴费机日志查询</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Name" xml:space="preserve">
+    <value>mainMenu</value>
+  </data>
+  <data name="&gt;&gt;mnu_SpeedingReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_ParkRename.Text" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="statusStrip1.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="toolStrip1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 25</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegW.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="splitter1.TabIndex" type="System.Int32, mscorlib">
+    <value>14</value>
+  </data>
+  <data name="btn_HardWare.Text" xml:space="preserve">
+    <value>硬件列表</value>
+  </data>
+  <data name="mnu_Roles.Text" xml:space="preserve">
+    <value>角色管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_APM.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btnCloseLeft.Parent" xml:space="preserve">
+    <value>panel2</value>
+  </data>
+  <data name="&gt;&gt;lblOperator.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator14.Name" xml:space="preserve">
+    <value>toolStripSeparator14</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Name" xml:space="preserve">
+    <value>toolStripSeparator11</value>
+  </data>
+  <data name="&gt;&gt;lblStandbyStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Reset.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="btn_CardPaymentReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;mnu_SyncDataToStandby.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_Cards.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="mnu_SpeedingReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_VideoReboot.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_SnapShoter.Name" xml:space="preserve">
+    <value>mnu_SnapShoter</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportCardPayments.Name" xml:space="preserve">
+    <value>mnu_ImportCardPayments</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardPayingReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_DeleteVideo.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CardDeleteReport.Text" xml:space="preserve">
+    <value>卡片删除记录查询</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardLostRestoreReport.Name" xml:space="preserve">
+    <value>mnu_CardLostRestoreReport</value>
+  </data>
+  <data name="&gt;&gt;lblCommuicationStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_APMRefundRecordRport.Text" xml:space="preserve">
+    <value>自助缴费机退款记录查询</value>
+  </data>
+  <data name="mnu_TraditionalChinese.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_CardReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;videoContextMenu.Name" xml:space="preserve">
+    <value>videoContextMenu</value>
+  </data>
+  <data name="&gt;&gt;mnu_NoCardLost.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_Cards.Text" xml:space="preserve">
+    <value>卡片管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoSyncTime.Name" xml:space="preserve">
+    <value>mnu_VideoSyncTime</value>
+  </data>
+  <data name="btn_CardPaymentReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="formPanel1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>491, 25</value>
+  </data>
+  <data name="statusStrip1.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;btnCloseLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_FreeAuthorizationLog.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="lblEventServiceStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="mnu_ZSTSetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_View.Name" xml:space="preserve">
+    <value>mnu_View</value>
+  </data>
+  <data name="mnu_CardReleaseReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegX.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Security.Name" xml:space="preserve">
+    <value>mnu_Security</value>
+  </data>
+  <data name="&gt;&gt;btn_HardWare.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_DeleteEntrance.Name" xml:space="preserve">
+    <value>mnu_DeleteEntrance</value>
+  </data>
+  <data name="&gt;&gt;btn_VideoReboot.Name" xml:space="preserve">
+    <value>btn_VideoReboot</value>
+  </data>
+  <data name="&gt;&gt;mnu_LocalSettings.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardPaying.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMCheckOutRecordRport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Reset.Text" xml:space="preserve">
+    <value>控制器复位</value>
+  </data>
+  <data name="&gt;&gt;mnu_SystemIDSetting.Name" xml:space="preserve">
+    <value>mnu_SystemIDSetting</value>
+  </data>
+  <data name="&gt;&gt;mnu_HasPaidCardReport.Name" xml:space="preserve">
+    <value>mnu_HasPaidCardReport</value>
+  </data>
+  <data name="mnu_VideoProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_CardPaying.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_PayOperationLogReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.Name" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="mnu_CarPlateTestForFile.Text" xml:space="preserve">
+    <value>车牌识别图片测试</value>
+  </data>
+  <data name="mnu_CarplateRegD.Text" xml:space="preserve">
+    <value>型号D</value>
+  </data>
+  <data name="mnu_CardChargeReport.Text" xml:space="preserve">
+    <value>卡片充值记录查询</value>
+  </data>
+  <data name="mnu_ExportParameter.Text" xml:space="preserve">
+    <value>导出系统参数设置</value>
+  </data>
+  <data name="lblCommuicationStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="panel2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 25</value>
+  </data>
+  <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_WaitingCommand.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CarplateReg.Text" xml:space="preserve">
+    <value>车牌识别窗口</value>
+  </data>
+  <data name="&gt;&gt;mnu_Workstations.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="panelLeft.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>173, 258</value>
+  </data>
+  <data name="&gt;&gt;mnu_TempCardSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_TraditionalChinese.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_LogOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_OperatorShift.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;btn_CardPaying.Name" xml:space="preserve">
+    <value>btn_CardPaying</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarPlateTestForFile.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CarplateRegV.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegV.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDeferStatistic.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Language.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardDeferReport.Name" xml:space="preserve">
+    <value>mnu_CardDeferReport</value>
+  </data>
+  <data name="&gt;&gt;mnu_Down.Name" xml:space="preserve">
+    <value>mnu_Down</value>
+  </data>
+  <data name="&gt;&gt;mnu_APM.Name" xml:space="preserve">
+    <value>mnu_APM</value>
+  </data>
+  <data name="mnu_CarplateRegD.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="lblStandbyStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMRefund.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="panelLeft.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
+    <value>6, 6, 0, 6</value>
+  </data>
+  <data name="mnu_CarplateRegX.Text" xml:space="preserve">
+    <value>型号X</value>
+  </data>
+  <data name="mnu_DBManager.Text" xml:space="preserve">
+    <value>数据</value>
+  </data>
+  <data name="mnu_Monitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_CardEventReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_OutdoorLedVacant.Text" xml:space="preserve">
+    <value>户外屏车位设置</value>
+  </data>
+  <data name="&gt;&gt;splitter1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Splitter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_ZSTSetting.Text" xml:space="preserve">
+    <value>中山通设置</value>
+  </data>
+  <data name="&gt;&gt;mainMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;tmrDeleteOverTime.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_RemoteReadCard.Text" xml:space="preserve">
+    <value>远程读卡</value>
+  </data>
+  <data name="mnu_CardRecycleReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_Cards.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_ZSTSetting.Name" xml:space="preserve">
+    <value>mnu_ZSTSetting</value>
+  </data>
+  <data name="entranceTree.Size" type="System.Drawing.Size, System.Drawing">
+    <value>287, 348</value>
+  </data>
+  <data name="&gt;&gt;mnu_OperatorShift.Name" xml:space="preserve">
+    <value>mnu_OperatorShift</value>
+  </data>
+  <data name="mnu_Manual.Text" xml:space="preserve">
+    <value>用户手册</value>
+  </data>
+  <data name="&gt;&gt;btn_AlarmReport.Name" xml:space="preserve">
+    <value>btn_AlarmReport</value>
+  </data>
+  <data name="mnu_EntranceRename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_CarPlateManualProccess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_YCTLog.Text" xml:space="preserve">
+    <value>羊城通扣费记录查询</value>
+  </data>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
+  </data>
+  <data name="btn_EntranceProperty.Text" xml:space="preserve">
+    <value>属性</value>
+  </data>
+  <data name="&gt;&gt;mnu_ZSTSetting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_OperatorShiftStatistics.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_SystemIDSetting.Text" xml:space="preserve">
+    <value>选择当前工作站</value>
+  </data>
+  <data name="mnu_SearchDevice.Text" xml:space="preserve">
+    <value>搜索控制器</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>193, 6</value>
+  </data>
+  <data name="mnu_Alarm.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_SetParkTariff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarPlateTestForVideo.Name" xml:space="preserve">
+    <value>mnu_CarPlateTestForVideo</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportCardPayments.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_ImportCardPayments.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarFlowStatistics.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Fresh.Text" xml:space="preserve">
+    <value>刷新硬件列表</value>
+  </data>
+  <data name="mnu_CarPlateTestForVideo.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="btn_Monitor.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mnu_CardPayingStatistic.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_LocalSettings.Name" xml:space="preserve">
+    <value>mnu_LocalSettings</value>
+  </data>
+  <data name="mnu_Roles.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="mnu_ImportChargeRecords.Size" type="System.Drawing.Size, System.Drawing">
+    <value>148, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_EntranceProperty.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_CardDeferReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="mnu_APMRefundRecordRport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;videoContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_RoadWays.Name" xml:space="preserve">
+    <value>mnu_RoadWays</value>
+  </data>
+  <data name="mnu_HasPaidCardReport.Text" xml:space="preserve">
+    <value>已交月保费卡统计</value>
+  </data>
+  <data name="&gt;&gt;toolStrip1.ZOrder" xml:space="preserve">
+    <value>7</value>
+  </data>
+  <data name="mnu_ReportDetail.Text" xml:space="preserve">
+    <value>车类型汇总查询</value>
+  </data>
+  <data name="mnu_CarplateReg.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_CarPlateTestForFile.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarFlowStatistics.Name" xml:space="preserve">
+    <value>mnu_CarFlowStatistics</value>
+  </data>
+  <data name="btn_Shift.Text" xml:space="preserve">
+    <value>系统交班</value>
+  </data>
+  <data name="mnu_PayOperationLogReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_FreeAuthorization.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Reset.Name" xml:space="preserve">
+    <value>mnu_Reset</value>
+  </data>
+  <data name="btn_Monitor.Text" xml:space="preserve">
+    <value>实时视频</value>
+  </data>
+  <data name="&gt;&gt;panel2.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblEventServiceStatus.Name" xml:space="preserve">
+    <value>lblEventServiceStatus</value>
+  </data>
+  <data name="mnu_VideoRename.Size" type="System.Drawing.Size, System.Drawing">
+    <value>124, 22</value>
+  </data>
+  <data name="mnu_CarPlateTestForVideo.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_HardWare.Name" xml:space="preserve">
+    <value>btn_HardWare</value>
+  </data>
+  <data name="mnu_CardDisableEnableReport.Text" xml:space="preserve">
+    <value>卡片禁用启用记录查询</value>
+  </data>
+  <data name="btnCloseLeft.FlatStyle" type="System.Windows.Forms.FlatStyle, System.Windows.Forms">
+    <value>Flat</value>
+  </data>
+  <data name="&gt;&gt;btn_CardeventReport.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_APM.Text" xml:space="preserve">
+    <value>自助缴费机管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_LogOut.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btn_CardPaying.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="&gt;&gt;mnu_ImportRecord.Name" xml:space="preserve">
+    <value>mnu_ImportRecord</value>
+  </data>
+  <data name="splitter1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 387</value>
+  </data>
+  <data name="mnu_Up.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="lblEventServiceStatus.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
+  </data>
+  <data name="mnu_AddVideo.Text" xml:space="preserve">
+    <value>增加摄像机</value>
+  </data>
+  <data name="mnu_OperatorShiftStatistics.Text" xml:space="preserve">
+    <value>操作员交班结算记录查询</value>
+  </data>
+  <data name="splitter1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>295, 85</value>
+  </data>
+  <data name="&gt;&gt;mnu_OperatorShiftStatistics.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;entranceContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_AddPark.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_VideoRename.Text" xml:space="preserve">
+    <value>重命名</value>
+  </data>
+  <data name="&gt;&gt;mnu_SpeedingProcess.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="mnu_Help.Text" xml:space="preserve">
+    <value>帮助</value>
+  </data>
+  <data name="btn_SwitchEntranceMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="btn_CardPaying.Text" xml:space="preserve">
+    <value>进出收费</value>
   </data>
   <data name="$this.Icon" type="System.Drawing.Icon, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
@@ -1972,631 +2470,553 @@
         /////////////////////////////w==
 </value>
   </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value>瑞立德停车场系统</value>
+  <data name="mnu_CardOut.Text" xml:space="preserve">
+    <value>卡片直接出场</value>
   </data>
-  <data name="&gt;&gt;mnu_SysManager.Name" xml:space="preserve">
-    <value>mnu_SysManager</value>
+  <data name="&gt;&gt;panelLeft.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Panel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_SysManager.Type" xml:space="preserve">
+  <data name="mnu_CarplateReg.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="btnCloseLeft.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Right</value>
+  </data>
+  <data name="&gt;&gt;mnu_Up.Name" xml:space="preserve">
+    <value>mnu_Up</value>
+  </data>
+  <data name="mnu_APMRefund.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;mnu_Reset.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_OperatorShift.Name" xml:space="preserve">
-    <value>mnu_OperatorShift</value>
-  </data>
-  <data name="&gt;&gt;mnu_OperatorShift.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_SystemIDSetting.Name" xml:space="preserve">
-    <value>mnu_SystemIDSetting</value>
-  </data>
-  <data name="&gt;&gt;mnu_SystemIDSetting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_LogOut.Name" xml:space="preserve">
-    <value>mnu_LogOut</value>
-  </data>
-  <data name="&gt;&gt;mnu_LogOut.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_DBManager.Name" xml:space="preserve">
-    <value>mnu_DBManager</value>
-  </data>
-  <data name="&gt;&gt;mnu_DBManager.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Name" xml:space="preserve">
+    <value>label1</value>
   </data>
   <data name="&gt;&gt;mnu_Cards.Name" xml:space="preserve">
     <value>mnu_Cards</value>
   </data>
-  <data name="&gt;&gt;mnu_Cards.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Workstations.Name" xml:space="preserve">
-    <value>mnu_Workstations</value>
-  </data>
-  <data name="&gt;&gt;mnu_Workstations.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_APM.Name" xml:space="preserve">
-    <value>mnu_APM</value>
-  </data>
-  <data name="&gt;&gt;mnu_APM.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ZSTSetting.Name" xml:space="preserve">
-    <value>mnu_ZSTSetting</value>
-  </data>
-  <data name="&gt;&gt;mnu_ZSTSetting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_PosSyncTool.Name" xml:space="preserve">
-    <value>mnu_PosSyncTool</value>
-  </data>
-  <data name="&gt;&gt;mnu_PosSyncTool.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_SystemOption.Name" xml:space="preserve">
-    <value>mnu_SystemOption</value>
-  </data>
-  <data name="&gt;&gt;mnu_SystemOption.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Security.Name" xml:space="preserve">
-    <value>mnu_Security</value>
-  </data>
-  <data name="&gt;&gt;mnu_Security.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Operator.Name" xml:space="preserve">
-    <value>mnu_Operator</value>
-  </data>
-  <data name="&gt;&gt;mnu_Operator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ChangePwd.Name" xml:space="preserve">
-    <value>mnu_ChangePwd</value>
-  </data>
-  <data name="&gt;&gt;mnu_ChangePwd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Roles.Name" xml:space="preserve">
-    <value>mnu_Roles</value>
-  </data>
-  <data name="&gt;&gt;mnu_Roles.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;Mnu_Reports.Name" xml:space="preserve">
-    <value>Mnu_Reports</value>
-  </data>
-  <data name="&gt;&gt;Mnu_Reports.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardReleaseReport.Name" xml:space="preserve">
-    <value>mnu_CardReleaseReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardReleaseReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardDeferReport.Name" xml:space="preserve">
-    <value>mnu_CardDeferReport</value>
+  <data name="btn_FreeAuthorization.Text" xml:space="preserve">
+    <value>免费授权</value>
   </data>
   <data name="&gt;&gt;mnu_CardDeferReport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardDeferStatistic.Name" xml:space="preserve">
-    <value>mnu_CardDeferStatistic</value>
+  <data name="&gt;&gt;panel2.Parent" xml:space="preserve">
+    <value>panelLeft</value>
   </data>
-  <data name="&gt;&gt;mnu_CardDeferStatistic.Type" xml:space="preserve">
+  <data name="mnu_CardPayingStatistic.Text" xml:space="preserve">
+    <value>停车收费统计</value>
+  </data>
+  <data name="&gt;&gt;mnu_DeleteEntrance.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_HasPaidCardReport.Name" xml:space="preserve">
-    <value>mnu_HasPaidCardReport</value>
+  <data name="mnu_ImportRecord.Text" xml:space="preserve">
+    <value>导入记录</value>
   </data>
-  <data name="&gt;&gt;mnu_HasPaidCardReport.Type" xml:space="preserve">
+  <data name="mnu_CardPaying.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="mnu_Operator.Text" xml:space="preserve">
+    <value>操作员管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_RemoteReadCard.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardReport.Name" xml:space="preserve">
-    <value>mnu_CardReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardChargeReport.Name" xml:space="preserve">
-    <value>mnu_CardChargeReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardChargeReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
-    <value>toolStripSeparator1</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator1.Type" xml:space="preserve">
+  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardLostRestoreReport.Name" xml:space="preserve">
-    <value>mnu_CardLostRestoreReport</value>
+  <data name="&gt;&gt;mnu_SetParkTariff.Name" xml:space="preserve">
+    <value>mnu_SetParkTariff</value>
   </data>
-  <data name="&gt;&gt;mnu_CardLostRestoreReport.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_Roles.Name" xml:space="preserve">
+    <value>mnu_Roles</value>
+  </data>
+  <data name="&gt;&gt;mnu_WaitingCommand.Name" xml:space="preserve">
+    <value>mnu_WaitingCommand</value>
+  </data>
+  <data name="&gt;&gt;lblServerSwitch.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label1.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;panel2.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
+  <data name="mnu_CardChargeReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="btn_Shift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mainMenu.Text" xml:space="preserve">
+    <value>menuStrip1</value>
+  </data>
+  <data name="btn_ChangePwd.Text" xml:space="preserve">
+    <value>修改密码</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>7, 6</value>
+  </data>
+  <data name="mnu_RealReport.Text" xml:space="preserve">
+    <value>实时事件窗口</value>
+  </data>
+  <data name="btnCloseLeft.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="btn_AlarmReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="mnu_ServerSwitchReport.Text" xml:space="preserve">
+    <value>服务器切换记录查询</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
+    <value>toolStripSeparator2</value>
+  </data>
+  <data name="btn_CardPaying.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="btn_Cards.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="btn_Cards.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="mnu_LogOut.Text" xml:space="preserve">
+    <value>注销</value>
+  </data>
+  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
+    <value>44, 21</value>
+  </data>
+  <data name="&gt;&gt;tmrDeleteOverTime.Name" xml:space="preserve">
+    <value>tmrDeleteOverTime</value>
+  </data>
+  <data name="&gt;&gt;btnCloseLeft.Name" xml:space="preserve">
+    <value>btnCloseLeft</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoRename.Name" xml:space="preserve">
+    <value>mnu_VideoRename</value>
+  </data>
+  <data name="btn_ChangePwd.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="&gt;&gt;mnu_Help.Name" xml:space="preserve">
+    <value>mnu_Help</value>
+  </data>
+  <data name="&gt;&gt;entranceTree.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.HardwareTree, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;mnu_PosSyncTool.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardDisableEnableReport.Name" xml:space="preserve">
-    <value>mnu_CardDisableEnableReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardDisableEnableReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardRecycleReport.Name" xml:space="preserve">
-    <value>mnu_CardRecycleReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardRecycleReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardDeleteReport.Name" xml:space="preserve">
-    <value>mnu_CardDeleteReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardDeleteReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnu_HotelAuthorization.Name" xml:space="preserve">
+    <value>mnu_HotelAuthorization</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator3.Name" xml:space="preserve">
     <value>toolStripSeparator3</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator3.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_ParkProperty.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_CardPayingReport.Name" xml:space="preserve">
-    <value>mnu_CardPayingReport</value>
+  <data name="&gt;&gt;mnu_APMRefundRecordRport.Name" xml:space="preserve">
+    <value>mnu_APMRefundRecordRport</value>
   </data>
-  <data name="&gt;&gt;mnu_CardPayingReport.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_Help.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardPayingStatistic.Name" xml:space="preserve">
-    <value>mnu_CardPayingStatistic</value>
+  <data name="mnu_SyncDataToStandby.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_CardPayingStatistic.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_APMRefundRecordRport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CardEventReport.Name" xml:space="preserve">
-    <value>mnu_CardEventReport</value>
+  <data name="&gt;&gt;mnu_SyncDataToStandby.Name" xml:space="preserve">
+    <value>mnu_SyncDataToStandby</value>
   </data>
-  <data name="&gt;&gt;mnu_CardEventReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_RoadWays.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_CardInPark.Name" xml:space="preserve">
-    <value>mnu_CardInPark</value>
+  <data name="btn_ChangePwd.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;mnu_CardInPark.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblMasterStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
   </data>
-  <data name="&gt;&gt;mnu_OperatorShiftStatistics.Name" xml:space="preserve">
-    <value>mnu_OperatorShiftStatistics</value>
+  <data name="&gt;&gt;mnu_HostStandbySetting.Name" xml:space="preserve">
+    <value>mnu_HostStandbySetting</value>
   </data>
-  <data name="&gt;&gt;mnu_OperatorShiftStatistics.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;entranceTree.Name" xml:space="preserve">
+    <value>entranceTree</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator10.Name" xml:space="preserve">
-    <value>toolStripSeparator10</value>
+  <data name="btn_Shift.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator10.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="btn_Monitor.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;mnu_ReportDetail.Name" xml:space="preserve">
-    <value>mnu_ReportDetail</value>
+  <data name="mnu_APM.Size" type="System.Drawing.Size, System.Drawing">
+    <value>196, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_ReportDetail.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_EntranceRename.Text" xml:space="preserve">
+    <value>重命名</value>
   </data>
-  <data name="&gt;&gt;mnu_CarFlowStatistics.Name" xml:space="preserve">
-    <value>mnu_CarFlowStatistics</value>
+  <data name="lblServerSwitch.Font" type="System.Drawing.Font, System.Drawing">
+    <value>微软雅黑, 9pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;mnu_CarFlowStatistics.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Alarm.Name" xml:space="preserve">
-    <value>mnu_Alarm</value>
+  <data name="btn_SwitchEntranceMode.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
-  <data name="&gt;&gt;mnu_Alarm.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_FreeAuthorizationLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_PayOperationLogReport.Name" xml:space="preserve">
-    <value>mnu_PayOperationLogReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_PayOperationLogReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_YCTLog.Name" xml:space="preserve">
-    <value>mnu_YCTLog</value>
-  </data>
-  <data name="&gt;&gt;mnu_YCTLog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_View.Name" xml:space="preserve">
-    <value>mnu_View</value>
-  </data>
-  <data name="&gt;&gt;mnu_View.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Monitor.Name" xml:space="preserve">
-    <value>mnu_Monitor</value>
-  </data>
-  <data name="&gt;&gt;mnu_Monitor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_RealReport.Name" xml:space="preserve">
-    <value>mnu_RealReport</value>
-  </data>
-  <data name="&gt;&gt;mnu_RealReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardPaying.Name" xml:space="preserve">
-    <value>mnu_CardPaying</value>
-  </data>
-  <data name="&gt;&gt;mnu_CardPaying.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_SnapShoter.Name" xml:space="preserve">
-    <value>mnu_SnapShoter</value>
-  </data>
-  <data name="&gt;&gt;mnu_SnapShoter.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_ReportDetail.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
   </data>
   <data name="&gt;&gt;toolStripSeparator6.Name" xml:space="preserve">
     <value>toolStripSeparator6</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator6.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnu_CardPayingReport.Name" xml:space="preserve">
+    <value>mnu_CardPayingReport</value>
   </data>
-  <data name="&gt;&gt;mnu_CarplateReg.Name" xml:space="preserve">
-    <value>mnu_CarplateReg</value>
+  <data name="mnu_CarPlateManualProccess.Text" xml:space="preserve">
+    <value>车牌名单手动处理</value>
   </data>
-  <data name="&gt;&gt;mnu_CarplateReg.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_YCTLog.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_CarPlateTestForFile.Name" xml:space="preserve">
     <value>mnu_CarPlateTestForFile</value>
   </data>
-  <data name="&gt;&gt;mnu_CarPlateTestForFile.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_SystemOption.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_CarPlateTestForVideo.Name" xml:space="preserve">
-    <value>mnu_CarPlateTestForVideo</value>
+  <data name="mnu_CardInPark.Text" xml:space="preserve">
+    <value>在场车辆查询</value>
   </data>
-  <data name="&gt;&gt;mnu_CarPlateTestForVideo.Type" xml:space="preserve">
+  <data name="&gt;&gt;lblStation.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardInPark.Name" xml:space="preserve">
+    <value>mnu_CardInPark</value>
+  </data>
+  <data name="lblStartFrom.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="label1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="splitter1.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
+    <value>toolStripSeparator7</value>
+  </data>
+  <data name="mnu_SwitchEntranceMode.Text" xml:space="preserve">
+    <value>通道路口模式切换</value>
+  </data>
+  <data name="btn_CardPaymentReport.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
+  </data>
+  <data name="&gt;&gt;mnu_LogOut.Name" xml:space="preserve">
+    <value>mnu_LogOut</value>
+  </data>
+  <data name="&gt;&gt;mnu_VideoRename.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Language.Name" xml:space="preserve">
-    <value>mnu_Language</value>
+  <data name="statusStrip1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_Language.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_CardRecycleReport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_SimpleChinese.Name" xml:space="preserve">
-    <value>mnu_SimpleChinese</value>
+  <data name="lblStartFrom.Font" type="System.Drawing.Font, System.Drawing">
+    <value>宋体, 9pt, style=Bold</value>
   </data>
-  <data name="&gt;&gt;mnu_SimpleChinese.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="entranceTree.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
   </data>
-  <data name="&gt;&gt;mnu_TraditionalChinese.Name" xml:space="preserve">
-    <value>mnu_TraditionalChinese</value>
+  <data name="&gt;&gt;mnu_CardPaying.Name" xml:space="preserve">
+    <value>mnu_CardPaying</value>
   </data>
-  <data name="&gt;&gt;mnu_TraditionalChinese.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_SysManager.Name" xml:space="preserve">
+    <value>mnu_SysManager</value>
+  </data>
+  <data name="toolStripSeparator3.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
+  </data>
+  <data name="mnu_Operator.Size" type="System.Drawing.Size, System.Drawing">
+    <value>136, 22</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_EntranceRename.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_English.Name" xml:space="preserve">
     <value>mnu_English</value>
   </data>
-  <data name="&gt;&gt;mnu_English.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_SysManager.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Help.Name" xml:space="preserve">
-    <value>mnu_Help</value>
+  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
   </data>
-  <data name="&gt;&gt;mnu_Help.Type" xml:space="preserve">
+  <data name="btnCloseLeft.Size" type="System.Drawing.Size, System.Drawing">
+    <value>25, 25</value>
+  </data>
+  <data name="&gt;&gt;mnu_HasPaidCardReport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Manual.Name" xml:space="preserve">
-    <value>mnu_Manual</value>
+  <data name="mnu_CardDeferReport.Text" xml:space="preserve">
+    <value>卡片延期记录查询</value>
   </data>
-  <data name="&gt;&gt;mnu_Manual.Type" xml:space="preserve">
+  <data name="&gt;&gt;statusStrip1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_Alarm.Name" xml:space="preserve">
+    <value>mnu_Alarm</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardEventReport.Name" xml:space="preserve">
+    <value>mnu_CardEventReport</value>
+  </data>
+  <data name="&gt;&gt;lblServerSwitch.Name" xml:space="preserve">
+    <value>lblServerSwitch</value>
+  </data>
+  <data name="entranceTree.Location" type="System.Drawing.Point, System.Drawing">
+    <value>6, 31</value>
+  </data>
+  <data name="btn_AlarmReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
+  </data>
+  <data name="&gt;&gt;mnu_SimpleChinese.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Aboat.Name" xml:space="preserve">
-    <value>mnu_Aboat</value>
+  <data name="&gt;&gt;toolStripSeparator1.Name" xml:space="preserve">
+    <value>toolStripSeparator1</value>
   </data>
-  <data name="&gt;&gt;mnu_Aboat.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="panelLeft.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 85</value>
   </data>
-  <data name="&gt;&gt;lblOperator.Name" xml:space="preserve">
-    <value>lblOperator</value>
+  <data name="btn_CardPaying.TextImageRelation" type="System.Windows.Forms.TextImageRelation, System.Windows.Forms">
+    <value>ImageAboveText</value>
   </data>
-  <data name="&gt;&gt;lblOperator.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_HotelAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
   </data>
-  <data name="&gt;&gt;lblStation.Name" xml:space="preserve">
-    <value>lblStation</value>
+  <data name="mnu_English.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
   </data>
-  <data name="&gt;&gt;lblStation.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStartFrom.Name" xml:space="preserve">
-    <value>lblStartFrom</value>
-  </data>
-  <data name="&gt;&gt;lblStartFrom.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblMasterStatus.Name" xml:space="preserve">
-    <value>lblMasterStatus</value>
-  </data>
-  <data name="&gt;&gt;lblMasterStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblStandbyStatus.Name" xml:space="preserve">
-    <value>lblStandbyStatus</value>
-  </data>
-  <data name="&gt;&gt;lblStandbyStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblEventServiceStatus.Name" xml:space="preserve">
-    <value>lblEventServiceStatus</value>
-  </data>
-  <data name="&gt;&gt;lblEventServiceStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;lblCommuicationStatus.Name" xml:space="preserve">
-    <value>lblCommuicationStatus</value>
-  </data>
-  <data name="&gt;&gt;lblCommuicationStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoSyncTime.Name" xml:space="preserve">
-    <value>mnu_VideoSyncTime</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoSyncTime.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_VideoReboot.Name" xml:space="preserve">
-    <value>btn_VideoReboot</value>
-  </data>
-  <data name="&gt;&gt;btn_VideoReboot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_DeleteVideo.Name" xml:space="preserve">
-    <value>mnu_DeleteVideo</value>
-  </data>
-  <data name="&gt;&gt;mnu_DeleteVideo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoRename.Name" xml:space="preserve">
-    <value>mnu_VideoRename</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoRename.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoProperty.Name" xml:space="preserve">
-    <value>mnu_VideoProperty</value>
-  </data>
-  <data name="&gt;&gt;mnu_VideoProperty.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
-    <value>toolStripSeparator5</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator5.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Name" xml:space="preserve">
-    <value>toolStripSeparator2</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator2.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
-    <value>toolStripSeparator4</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator4.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_HardWare.Name" xml:space="preserve">
-    <value>btn_HardWare</value>
-  </data>
-  <data name="&gt;&gt;btn_HardWare.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_Shift.Name" xml:space="preserve">
-    <value>btn_Shift</value>
-  </data>
-  <data name="&gt;&gt;btn_Shift.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_ChangePwd.Name" xml:space="preserve">
-    <value>btn_ChangePwd</value>
-  </data>
-  <data name="&gt;&gt;btn_ChangePwd.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_Cards.Name" xml:space="preserve">
-    <value>btn_Cards</value>
-  </data>
-  <data name="&gt;&gt;btn_Cards.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_Monitor.Name" xml:space="preserve">
-    <value>btn_Monitor</value>
-  </data>
-  <data name="&gt;&gt;btn_Monitor.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_CardPaying.Name" xml:space="preserve">
-    <value>btn_CardPaying</value>
-  </data>
-  <data name="&gt;&gt;btn_CardPaying.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator7.Name" xml:space="preserve">
-    <value>toolStripSeparator7</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator7.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_AlarmReport.Name" xml:space="preserve">
-    <value>btn_AlarmReport</value>
-  </data>
-  <data name="&gt;&gt;btn_AlarmReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_CardeventReport.Name" xml:space="preserve">
-    <value>btn_CardeventReport</value>
-  </data>
-  <data name="&gt;&gt;btn_CardeventReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;btn_CardPaymentReport.Name" xml:space="preserve">
-    <value>btn_CardPaymentReport</value>
-  </data>
-  <data name="&gt;&gt;btn_CardPaymentReport.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripButton, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_SearchDevice.Name" xml:space="preserve">
-    <value>mnu_SearchDevice</value>
-  </data>
-  <data name="&gt;&gt;mnu_SearchDevice.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_DBManager.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_AddEntrance1.Name" xml:space="preserve">
     <value>mnu_AddEntrance1</value>
   </data>
-  <data name="&gt;&gt;mnu_AddEntrance1.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_CarplateRegV.Name" xml:space="preserve">
+    <value>mnu_CarplateRegV</value>
+  </data>
+  <data name="&gt;&gt;mnu_ChangePwd.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_AddDivision.Name" xml:space="preserve">
-    <value>mnu_AddDivision</value>
+  <data name="mnu_WaitingCommand.Text" xml:space="preserve">
+    <value>下发命令记录查询</value>
   </data>
-  <data name="&gt;&gt;mnu_AddDivision.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_DeletePark.Name" xml:space="preserve">
-    <value>mnu_DeletePark</value>
-  </data>
-  <data name="&gt;&gt;mnu_DeletePark.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ParkRename.Name" xml:space="preserve">
-    <value>mnu_ParkRename</value>
-  </data>
-  <data name="&gt;&gt;mnu_ParkRename.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_ParkProperty.Name" xml:space="preserve">
-    <value>mnu_ParkProperty</value>
-  </data>
-  <data name="&gt;&gt;mnu_ParkProperty.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_AddVideo.Name" xml:space="preserve">
-    <value>mnu_AddVideo</value>
-  </data>
-  <data name="&gt;&gt;mnu_AddVideo.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Reset.Name" xml:space="preserve">
-    <value>mnu_Reset</value>
-  </data>
-  <data name="&gt;&gt;mnu_Reset.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_TempCardSetting.Name" xml:space="preserve">
-    <value>mnu_TempCardSetting</value>
-  </data>
-  <data name="&gt;&gt;mnu_TempCardSetting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Name" xml:space="preserve">
-    <value>toolStripSeparator8</value>
-  </data>
-  <data name="&gt;&gt;toolStripSeparator8.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_RemoteReadCard.Name" xml:space="preserve">
-    <value>mnu_RemoteReadCard</value>
-  </data>
-  <data name="&gt;&gt;mnu_RemoteReadCard.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Up.Name" xml:space="preserve">
-    <value>mnu_Up</value>
+  <data name="lblServerSwitch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>749, 17</value>
   </data>
   <data name="&gt;&gt;mnu_Up.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_Down.Name" xml:space="preserve">
-    <value>mnu_Down</value>
+  <data name="btn_AlarmReport.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
   </data>
-  <data name="&gt;&gt;mnu_Down.Type" xml:space="preserve">
+  <data name="mnu_ServerSwitchReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;btn_Cards.Name" xml:space="preserve">
+    <value>btn_Cards</value>
+  </data>
+  <data name="mainMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>792, 25</value>
+  </data>
+  <data name="&gt;&gt;entranceContextMenu.Name" xml:space="preserve">
+    <value>entranceContextMenu</value>
+  </data>
+  <data name="toolStripSeparator2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>6, 60</value>
+  </data>
+  <data name="mnu_Aboat.Text" xml:space="preserve">
+    <value>关于...</value>
+  </data>
+  <data name="&gt;&gt;mnu_CarplateRegW.Name" xml:space="preserve">
+    <value>mnu_CarplateRegW</value>
+  </data>
+  <data name="btnCloseLeft.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
+    <value>Stretch</value>
+  </data>
+  <data name="mnu_CardOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="lblStandbyStatus.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;mnu_NoCardLost.Name" xml:space="preserve">
+    <value>mnu_NoCardLost</value>
+  </data>
+  <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>169, 6</value>
+  </data>
+  <data name="lblStation.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
+  </data>
+  <data name="&gt;&gt;parkContextMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ContextMenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;mnu_ServerSwitchReport.Name" xml:space="preserve">
+    <value>mnu_ServerSwitchReport</value>
+  </data>
+  <data name="btn_SwitchEntranceMode.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
+    <value>Magenta</value>
+  </data>
+  <data name="mnu_CardDisableEnableReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator4.Name" xml:space="preserve">
+    <value>toolStripSeparator4</value>
+  </data>
+  <data name="&gt;&gt;mnu_CardReport.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator9.Name" xml:space="preserve">
-    <value>toolStripSeparator9</value>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>205, 6</value>
   </data>
-  <data name="&gt;&gt;toolStripSeparator9.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="lblMasterStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>4, 17</value>
   </data>
-  <data name="&gt;&gt;mnu_DeleteEntrance.Name" xml:space="preserve">
-    <value>mnu_DeleteEntrance</value>
+  <data name="&gt;&gt;mnu_VehicleLedSetting.Name" xml:space="preserve">
+    <value>mnu_VehicleLedSetting</value>
   </data>
-  <data name="&gt;&gt;mnu_DeleteEntrance.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_CardInPark.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_EntranceRename.Name" xml:space="preserve">
-    <value>mnu_EntranceRename</value>
+  <data name="btn_FreeAuthorization.Size" type="System.Drawing.Size, System.Drawing">
+    <value>60, 57</value>
   </data>
-  <data name="&gt;&gt;mnu_EntranceRename.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_PosSyncTool.Name" xml:space="preserve">
+    <value>mnu_PosSyncTool</value>
+  </data>
+  <data name="formPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Top</value>
+  </data>
+  <data name="mnu_RealReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>172, 22</value>
+  </data>
+  <data name="&gt;&gt;treeContextMenu.Name" xml:space="preserve">
+    <value>treeContextMenu</value>
+  </data>
+  <data name="mnu_CarplateRegW.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_AddEntrance1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
+  </data>
+  <data name="&gt;&gt;tmrForceShifting.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator5.Name" xml:space="preserve">
+    <value>toolStripSeparator5</value>
+  </data>
+  <data name="mainMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="&gt;&gt;mnu_AddPark.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;btn_EntranceProperty.Name" xml:space="preserve">
-    <value>btn_EntranceProperty</value>
+  <data name="mnu_HasPaidCardReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
   </data>
-  <data name="&gt;&gt;btn_EntranceProperty.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;mnu_Fresh.Name" xml:space="preserve">
-    <value>mnu_Fresh</value>
-  </data>
-  <data name="&gt;&gt;mnu_Fresh.Type" xml:space="preserve">
+  <data name="&gt;&gt;mnu_RoadWays.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;mnu_AddPark.Name" xml:space="preserve">
     <value>mnu_AddPark</value>
   </data>
-  <data name="&gt;&gt;mnu_AddPark.Type" xml:space="preserve">
+  <data name="&gt;&gt;parkContextMenu.Name" xml:space="preserve">
+    <value>parkContextMenu</value>
+  </data>
+  <data name="mnu_Cards.Text" xml:space="preserve">
+    <value>卡片管理</value>
+  </data>
+  <data name="&gt;&gt;mnu_Manual.Name" xml:space="preserve">
+    <value>mnu_Manual</value>
+  </data>
+  <data name="&gt;&gt;mnu_APMSyncTool.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;mnu_SwitchEntranceMode.Name" xml:space="preserve">
-    <value>mnu_SwitchEntranceMode</value>
+  <data name="mnu_SpeedingReport.Text" xml:space="preserve">
+    <value>超速违章记录查询</value>
   </data>
-  <data name="&gt;&gt;mnu_SwitchEntranceMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;mnu_OutdoorLedVacant.Name" xml:space="preserve">
+    <value>mnu_OutdoorLedVacant</value>
   </data>
-  <data name="&gt;&gt;tmrDeleteSnapShot.Name" xml:space="preserve">
-    <value>tmrDeleteSnapShot</value>
+  <data name="mnu_CardDeleteReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>208, 22</value>
   </data>
-  <data name="&gt;&gt;tmrDeleteSnapShot.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_TempCardSetting.Text" xml:space="preserve">
+    <value>临时卡数量设置</value>
   </data>
-  <data name="&gt;&gt;tmrForceShifting.Name" xml:space="preserve">
-    <value>tmrForceShifting</value>
+  <data name="btn_CardPaymentReport.Text" xml:space="preserve">
+    <value>收费查询</value>
   </data>
-  <data name="&gt;&gt;tmrForceShifting.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="mnu_SyncDataToStandby.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
-  <data name="&gt;&gt;tmrCheckDog.Name" xml:space="preserve">
-    <value>tmrCheckDog</value>
+  <data name="mnu_OperatorShift.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 22</value>
   </data>
-  <data name="&gt;&gt;tmrCheckDog.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;$this.Name" xml:space="preserve">
-    <value>FrmMain</value>
-  </data>
-  <data name="&gt;&gt;$this.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Form, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
+  <metadata name="tmrDeleteOverTime.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 52</value>
+  </metadata>
+  <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>126, 18</value>
+  </metadata>
+  <metadata name="tmrCheckDog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>334, 58</value>
+  </metadata>
+  <metadata name="entranceContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>524, 22</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>88</value>
+  </metadata>
+  <metadata name="treeContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>843, 20</value>
+  </metadata>
+  <metadata name="videoContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>694, 22</value>
+  </metadata>
+  <metadata name="parkContextMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>370, 19</value>
+  </metadata>
+  <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <metadata name="tmrForceShifting.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>184, 58</value>
+  </metadata>
+  <metadata name="toolStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>257, 19</value>
+  </metadata>
+  <metadata name="mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>28, 17</value>
+  </metadata>
 </root>

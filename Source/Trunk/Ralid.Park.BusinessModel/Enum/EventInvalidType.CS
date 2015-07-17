@@ -14,7 +14,7 @@ namespace Ralid.Park.BusinessModel.Enum
         /// <summary>
         /// 无效卡片
         /// </summary>
-        INV_Invalid =0x1,
+        INV_Invalid = 0x1,
         /// <summary>
         /// 卡片类型不符
         /// </summary>
@@ -126,14 +126,50 @@ namespace Ralid.Park.BusinessModel.Enum
         /// <summary>
         /// 权限不足
         /// </summary>
-        INV_NoAccessRight=264,
+        INV_NoAccessRight = 264,
         /// <summary>
         /// 卡片余额不足
         /// </summary>
-        INV_Balance=265,
+        INV_Balance = 265,
         /// <summary>
         /// 请继续读卡，用于作读写器使用
         /// </summary>
-        INV_ReadCard =266
+        INV_ReadCard = 266,
+        /// <summary>
+        /// 超速行驶违章
+        /// </summary>
+        INV_Speeding = 267,
+        /// <summary>
+        /// 车牌识别失败
+        /// </summary>
+        INV_CarPlateFail = 0x26,
+        /// <summary>
+        /// 不在名单中
+        /// </summary>
+        INV_NotOnTheList = 0x27,
+        /// <summary>
+        /// 已过有效期
+        /// </summary>
+        INV_Expired = 0x28,
+        /// <summary>
+        /// 无进入权限
+        /// </summary>
+        INV_NoAccess = 0x29,
+        /// <summary>
+        /// 名单类型不符
+        /// </summary>
+        INV_ListType = 0x2A,
+        /// <summary>
+        /// 名单未启用
+        /// </summary>
+        INV_ListNotEnabled = 0x2B,
+        /// <summary>
+        /// 车辆已入场
+        /// </summary>
+        INV_CarIsIn = 0x2C,
+        /// <summary>
+        /// 车辆已出场
+        /// </summary>
+        INV_CarIsOut = 0x2D,
     }
 }

@@ -62,14 +62,14 @@
             this.txtIP = new Ralid.GeneralLibrary.WinformControl.UCIPTextBox();
             this.txtEntranceName = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label7 = new System.Windows.Forms.Label();
-            this.txtEventPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
-            this.txtControlPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
-            this.label5 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.chkWeigand34 = new System.Windows.Forms.CheckBox();
+            this.cmbTicketReader2 = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.label14 = new System.Windows.Forms.Label();
+            this.chkOnlineHandleWhenNotOnList = new System.Windows.Forms.CheckBox();
             this.chkUseAsACS = new System.Windows.Forms.CheckBox();
             this.chkValid = new System.Windows.Forms.CheckBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -146,10 +146,6 @@
             this.tabGeneral.Controls.Add(this.txtIP);
             this.tabGeneral.Controls.Add(this.txtEntranceName);
             this.tabGeneral.Controls.Add(this.label7);
-            this.tabGeneral.Controls.Add(this.txtEventPort);
-            this.tabGeneral.Controls.Add(this.txtControlPort);
-            this.tabGeneral.Controls.Add(this.label5);
-            this.tabGeneral.Controls.Add(this.label4);
             this.tabGeneral.Controls.Add(this.label3);
             this.tabGeneral.Controls.Add(this.label2);
             this.tabGeneral.Controls.Add(this.label1);
@@ -349,32 +345,6 @@
             this.label7.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label7.Name = "label7";
             // 
-            // txtEventPort
-            // 
-            resources.ApplyResources(this.txtEventPort, "txtEventPort");
-            this.txtEventPort.MaxValue = 65535;
-            this.txtEventPort.MinValue = 0;
-            this.txtEventPort.Name = "txtEventPort";
-            // 
-            // txtControlPort
-            // 
-            resources.ApplyResources(this.txtControlPort, "txtControlPort");
-            this.txtControlPort.MaxValue = 65535;
-            this.txtControlPort.MinValue = 0;
-            this.txtControlPort.Name = "txtControlPort";
-            // 
-            // label5
-            // 
-            resources.ApplyResources(this.label5, "label5");
-            this.label5.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
-            this.label5.Name = "label5";
-            // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
-            this.label4.Name = "label4";
-            // 
             // label3
             // 
             resources.ApplyResources(this.label3, "label3");
@@ -396,6 +366,10 @@
             // tabPage2
             // 
             this.tabPage2.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tabPage2.Controls.Add(this.chkWeigand34);
+            this.tabPage2.Controls.Add(this.cmbTicketReader2);
+            this.tabPage2.Controls.Add(this.label14);
+            this.tabPage2.Controls.Add(this.chkOnlineHandleWhenNotOnList);
             this.tabPage2.Controls.Add(this.chkUseAsACS);
             this.tabPage2.Controls.Add(this.chkValid);
             this.tabPage2.Controls.Add(this.groupBox2);
@@ -423,6 +397,33 @@
             resources.ApplyResources(this.tabPage2, "tabPage2");
             this.tabPage2.Name = "tabPage2";
             this.tabPage2.ToolTipText = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            // 
+            // chkWeigand34
+            // 
+            resources.ApplyResources(this.chkWeigand34, "chkWeigand34");
+            this.chkWeigand34.Checked = true;
+            this.chkWeigand34.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkWeigand34.Name = "chkWeigand34";
+            this.chkWeigand34.UseVisualStyleBackColor = true;
+            // 
+            // cmbTicketReader2
+            // 
+            this.cmbTicketReader2.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbTicketReader2, "cmbTicketReader2");
+            this.cmbTicketReader2.Name = "cmbTicketReader2";
+            // 
+            // label14
+            // 
+            resources.ApplyResources(this.label14, "label14");
+            this.label14.Name = "label14";
+            // 
+            // chkOnlineHandleWhenNotOnList
+            // 
+            resources.ApplyResources(this.chkOnlineHandleWhenNotOnList, "chkOnlineHandleWhenNotOnList");
+            this.chkOnlineHandleWhenNotOnList.Checked = true;
+            this.chkOnlineHandleWhenNotOnList.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkOnlineHandleWhenNotOnList.Name = "chkOnlineHandleWhenNotOnList";
+            this.chkOnlineHandleWhenNotOnList.UseVisualStyleBackColor = true;
             // 
             // chkUseAsACS
             // 
@@ -636,10 +637,6 @@
         private System.Windows.Forms.CheckBox chkTakeCardNeedCarSense;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.CheckBox chkLightEnable;
-        private Ralid.GeneralLibrary.WinformControl.IntergerTextBox txtEventPort;
-        private Ralid.GeneralLibrary.WinformControl.IntergerTextBox txtControlPort;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
@@ -696,5 +693,9 @@
         private GeneralLibrary.WinformControl.IntergerTextBox ip3;
         private GeneralLibrary.WinformControl.IntergerTextBox ip1;
         private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.CheckBox chkOnlineHandleWhenNotOnList;
+        private GeneralLibrary.WinformControl.ComPortComboBox cmbTicketReader2;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.CheckBox chkWeigand34;
     }
 }

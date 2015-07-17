@@ -64,6 +64,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             }
             con.Source = this.ucEntrance1.SelectedEntrances;
             con.CarPlate = this.txtCarPlate.Text;
+            con.Department = this.txtDepartment.Text;
 
             CardEventBll bll = null;
             if (this.rdbMaster.Checked)
@@ -99,6 +100,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
                 row.Tag = record;
                 row.Cells["colCardID"].Value = record.CardID;
                 row.Cells["colOwnerName"].Value = record.OwnerName;
+                row.Cells["colDepartment"].Value = record.Department;
                 row.Cells["colCardCertificate"].Value = record.CardCertificate;
                 row.Cells["colCardType"].Value = record.CardType.ToString();
                 row.Cells["colCarType"].Value = CarTypeSetting.Current != null ? CarTypeSetting.Current.GetDescription(record.CarType) : string.Empty;

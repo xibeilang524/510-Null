@@ -34,6 +34,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             con.OwnerName = this.txtOwnerName.Text;
             con.CarPlate = this.txtCarPlate.Text;
             con.CardCertificate = this.txtCertificate.Text;
+            con.CardType = this.comCardType.SelectedCardType;
             CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect); 
             List < CardDeferRecord > items= bll.GetCardDeferRecords(con).QueryObjects;
             ShowReportsOnGrid(items);
@@ -46,6 +47,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             this.ucDateTimeInterval1.Init();
             this.operatorCombobox1.Init();
             this.workStationCombobox1.Init();
+            this.comCardType.Init();
         }
 
         private void ShowReportsOnGrid(List<CardDeferRecord> items)
@@ -56,22 +58,23 @@ namespace Ralid.Park.UI.ReportAndStatistics
                      select cr).ToList();
             foreach (CardDeferRecord record in items)
             {
-               int index= GridView.Rows.Add();
-               DataGridViewRow row = GridView.Rows[index];
-               row.Tag = record;
-               row.Cells["colCardID"].Value = record.CardID;
-               row.Cells["colOwnerName"].Value = record.OwnerName;
-               row.Cells["colCardCertificate"].Value = record.CardCertificate;
-               row.Cells["colCarPlate"].Value = record.CarPlate;
-               row.Cells["colDeferDateTime"].Value = record.DeferDateTime;
-               row.Cells["colCurValidDate"].Value = record.CurrentDate;
-               row.Cells["colOriginalValidDate"].Value = record.OriginalDate;
-               row.Cells["colPaymentMode"].Value = Ralid.Park.BusinessModel.Resouce.PaymentModeDescription.GetDescription(record.PaymentMode);
-               row.Cells["colRecieveMoney"].Value = record.DeferMoney;
-               row.Cells["colSettled"].Value = record.SettleDateTime != null;
-               row.Cells["colOperator"].Value = record.OperatorID;
-               row.Cells["colStation"].Value = record.StationID;
-               row.Cells["colMemo"].Value = record.Memo;
+                int index = GridView.Rows.Add();
+                DataGridViewRow row = GridView.Rows[index];
+                row.Tag = record;
+                row.Cells["colCardID"].Value = record.CardID;
+                row.Cells["colOwnerName"].Value = record.OwnerName;
+                row.Cells["colCardType"].Value = record.CardType != null ? record.CardType.Name : string.Empty;
+                row.Cells["colCardCertificate"].Value = record.CardCertificate;
+                row.Cells["colCarPlate"].Value = record.CarPlate;
+                row.Cells["colDeferDateTime"].Value = record.DeferDateTime;
+                row.Cells["colCurValidDate"].Value = record.CurrentDate;
+                row.Cells["colOriginalValidDate"].Value = record.OriginalDate;
+                row.Cells["colPaymentMode"].Value = Ralid.Park.BusinessModel.Resouce.PaymentModeDescription.GetDescription(record.PaymentMode);
+                row.Cells["colRecieveMoney"].Value = record.DeferMoney;
+                row.Cells["colSettled"].Value = record.SettleDateTime != null;
+                row.Cells["colOperator"].Value = record.OperatorID;
+                row.Cells["colStation"].Value = record.StationID;
+                row.Cells["colMemo"].Value = record.Memo;
             }
         }
     }

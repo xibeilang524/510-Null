@@ -32,16 +32,23 @@ namespace Ralid.Park.BusinessModel.Report
         [DataMember]
         public string CardID { get; set; }
 
+        /// <summary>
+        /// 获取或设置车牌号码
+        /// </summary>
+        [DataMember]
+        public string CarPlate { get; set; }
+
 
         public override string Description
         {
             get
             {
-                return string.Format("【{0} ＠ {1}】:{2} {3}",
+                return string.Format("【{0} ＠ {1}】:{2} {3} {4}",
                                      EventDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                                      SourceName,
                                      Resouce.CardInvalidDescripition.GetDescription(InvalidType),
-                                     CardID);
+                                     CardID,
+                                     CarPlate);
             }
         }
         #endregion

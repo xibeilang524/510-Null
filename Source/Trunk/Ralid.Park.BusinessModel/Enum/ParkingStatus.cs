@@ -26,16 +26,16 @@ namespace Ralid.Park.BusinessModel.Enum
         In = 0x80,
 
         /// <summary>
-        /// 64-重复入场
+        /// 64-酒店未退房（当酒店应用启用时有效）
         /// </summary>
         [EnumMember]
-        RepeatIn = 0x40,
+        NotCheckOut = 0x40,
 
         /// <summary>
-        /// 32-重复出场
+        /// 32-酒店应用
         /// </summary>
         [EnumMember]
-        RepeatOut = 0x20,
+        HotelApp = 0x20,
 
         /// <summary>
         /// 16-固定/月租/储值等过期欠费卡用作临时卡,入场或出场事件中标定为用作临时卡

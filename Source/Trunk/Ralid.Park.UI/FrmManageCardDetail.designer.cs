@@ -43,6 +43,9 @@
             this.chkWriteCard = new System.Windows.Forms.CheckBox();
             this.label3 = new System.Windows.Forms.Label();
             this.lblReceivedFees = new System.Windows.Forms.Label();
+            this.txtDepartment = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label4 = new System.Windows.Forms.Label();
+            this.chkIsForbid = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -128,10 +131,29 @@
             resources.ApplyResources(this.lblReceivedFees, "lblReceivedFees");
             this.lblReceivedFees.Name = "lblReceivedFees";
             // 
+            // txtDepartment
+            // 
+            resources.ApplyResources(this.txtDepartment, "txtDepartment");
+            this.txtDepartment.Name = "txtDepartment";
+            // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // chkIsForbid
+            // 
+            resources.ApplyResources(this.chkIsForbid, "chkIsForbid");
+            this.chkIsForbid.Name = "chkIsForbid";
+            this.chkIsForbid.UseVisualStyleBackColor = true;
+            // 
             // FrmManageCardDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.chkIsForbid);
+            this.Controls.Add(this.txtDepartment);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.lblReceivedFees);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.chkWriteCard);
@@ -166,6 +188,9 @@
             this.Controls.SetChildIndex(this.chkWriteCard, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.lblReceivedFees, 0);
+            this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.txtDepartment, 0);
+            this.Controls.SetChildIndex(this.chkIsForbid, 0);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -187,6 +212,9 @@
         private System.Windows.Forms.CheckBox chkWriteCard;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label lblReceivedFees;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDepartment;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.CheckBox chkIsForbid;
 
     }
 }

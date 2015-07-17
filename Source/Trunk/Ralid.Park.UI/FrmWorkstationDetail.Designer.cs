@@ -35,6 +35,8 @@
             this.EntranceTree = new Ralid.Park.UserControls.HardwareTree(this.components);
             this.chkCenterCharge = new System.Windows.Forms.CheckBox();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.comDeptList = new Ralid.Park.UserControls.DeptComboBox(this.components);
             this.SuspendLayout();
             // 
             // btnOk
@@ -58,9 +60,9 @@
             // 
             // EntranceTree
             // 
-            resources.ApplyResources(this.EntranceTree, "EntranceTree");
             this.EntranceTree.CheckBoxes = true;
             this.EntranceTree.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            resources.ApplyResources(this.EntranceTree, "EntranceTree");
             this.EntranceTree.Name = "EntranceTree";
             this.EntranceTree.SelectedImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.EntranceTree.ShowEntrance = true;
@@ -79,10 +81,23 @@
             this.label2.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
             this.label2.Name = "label2";
             // 
+            // label3
+            // 
+            resources.ApplyResources(this.label3, "label3");
+            this.label3.Name = "label3";
+            // 
+            // comDeptList
+            // 
+            this.comDeptList.FormattingEnabled = true;
+            resources.ApplyResources(this.comDeptList, "comDeptList");
+            this.comDeptList.Name = "comDeptList";
+            // 
             // FrmWorkstationDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.comDeptList);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.chkCenterCharge);
             this.Controls.Add(this.EntranceTree);
@@ -98,6 +113,8 @@
             this.Controls.SetChildIndex(this.EntranceTree, 0);
             this.Controls.SetChildIndex(this.chkCenterCharge, 0);
             this.Controls.SetChildIndex(this.label2, 0);
+            this.Controls.SetChildIndex(this.comDeptList, 0);
+            this.Controls.SetChildIndex(this.label3, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -110,5 +127,7 @@
         private Ralid.Park.UserControls.HardwareTree EntranceTree;
         private System.Windows.Forms.CheckBox chkCenterCharge;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private UserControls.DeptComboBox comDeptList;
     }
 }

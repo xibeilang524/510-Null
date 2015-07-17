@@ -162,6 +162,7 @@ namespace Ralid.Park.UI
             this.dataGridView1.Rows.Clear();
             int count = 0;
             CardSearchCondition con = new CardSearchCondition();
+            con.ListType = CardListType.Card;//只查找卡片名单
             con.CardType = comCardType.SelectedCardType;
             con.OwnerName = txtOwnerName.Text;
             con.CarPlate = txtCarPlate.Text;
@@ -194,7 +195,7 @@ namespace Ralid.Park.UI
             {
                 this.btnConvert.Text = Resources.Resource1.FrmCardDataConvert_StopConvert;
                 _StartConvert = true;
-                CardReaderManager.GetInstance(WegenType.Wengen34).PushCardReadRequest(ReadCardHandler);
+                CardReaderManager.GetInstance(UserSetting.Current.WegenType).PushCardReadRequest(ReadCardHandler);
             }
         }
         private void FrmCardDataConvert_FormClosing(object sender, FormClosingEventArgs e)

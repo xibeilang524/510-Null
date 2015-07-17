@@ -33,6 +33,8 @@
             this.btnOk = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.parkCombobox1 = new Ralid.Park.UserControls.ParkCombobox(this.components);
             this.lblParkFee = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.txtParkFee = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
@@ -65,7 +67,8 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
+            this.groupBox1.Controls.Add(this.label5);
+            this.groupBox1.Controls.Add(this.parkCombobox1);
             this.groupBox1.Controls.Add(this.lblParkFee);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.txtParkFee);
@@ -76,8 +79,21 @@
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtMemo);
             this.groupBox1.Controls.Add(this.label1);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            resources.ApplyResources(this.label5, "label5");
+            this.label5.Name = "label5";
+            // 
+            // parkCombobox1
+            // 
+            this.parkCombobox1.FormattingEnabled = true;
+            resources.ApplyResources(this.parkCombobox1, "parkCombobox1");
+            this.parkCombobox1.Name = "parkCombobox1";
+            this.parkCombobox1.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
             // 
             // lblParkFee
             // 
@@ -95,16 +111,17 @@
             // 
             resources.ApplyResources(this.txtParkFee, "txtParkFee");
             this.txtParkFee.MaxValue = new decimal(new int[] {
-            1000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtParkFee.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtParkFee.Name = "txtParkFee";
+            this.txtParkFee.NumberWithCommas = true;
             this.txtParkFee.PointCount = 2;
             this.txtParkFee.TextChanged += new System.EventHandler(this.txtParkFee_TextChanged);
             // 
@@ -117,8 +134,8 @@
             // 
             // comPaymentMode
             // 
-            resources.ApplyResources(this.comPaymentMode, "comPaymentMode");
             this.comPaymentMode.FormattingEnabled = true;
+            resources.ApplyResources(this.comPaymentMode, "comPaymentMode");
             this.comPaymentMode.Name = "comPaymentMode";
             // 
             // label3
@@ -130,16 +147,17 @@
             // 
             resources.ApplyResources(this.txtCardCost, "txtCardCost");
             this.txtCardCost.MaxValue = new decimal(new int[] {
-            1000,
+            1410065407,
+            2,
             0,
-            0,
-            0});
+            131072});
             this.txtCardCost.MinValue = new decimal(new int[] {
             0,
             0,
             0,
             0});
             this.txtCardCost.Name = "txtCardCost";
+            this.txtCardCost.NumberWithCommas = true;
             this.txtCardCost.PointCount = 2;
             this.txtCardCost.TextChanged += new System.EventHandler(this.txtCardCost_TextChanged);
             // 
@@ -209,5 +227,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label lblParkFee;
         private System.Windows.Forms.CheckBox chkWriteCard;
+        private System.Windows.Forms.Label label5;
+        private UserControls.ParkCombobox parkCombobox1;
     }
 }

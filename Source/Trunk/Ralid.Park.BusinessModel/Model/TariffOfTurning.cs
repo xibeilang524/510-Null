@@ -42,9 +42,9 @@ namespace Ralid.Park.BusinessModel.Model
 
             fee += FirstFee;
             DateTime turn = new DateTime(beginning.Year, beginning.Month, beginning.Day, Turning.Hour, Turning.Minute, 0).AddDays(1);
-            if (ending >= turn)
+            if (ending > turn)
             {
-                while (ending >= turn)
+                while (ending > turn)
                 {
                     fee += FeeOfTurning;
                     turn = turn.AddDays(1);
@@ -55,46 +55,6 @@ namespace Ralid.Park.BusinessModel.Model
             {
                 return fee;
             }
-        }
-
-        public override decimal CalcalateCycleFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = calMins > 0 ? 0 : FirstFee;
-            DateTime turn = new DateTime(beginning.Year, beginning.Month, beginning.Day, Turning.Hour, Turning.Minute, 0).AddDays(1);
-            if (ending >= turn)
-            {
-                fee += FeeOfTurning;
-            }
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
-        }
-
-        public override decimal CalcalateIntradayFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = calMins > 0 ? 0 : FirstFee;
-            DateTime turn = new DateTime(beginning.Year, beginning.Month, beginning.Day, Turning.Hour, Turning.Minute, 0).AddDays(1);
-            if (ending > turn)
-            {
-                fee += FeeOfTurning;
-            }
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
-        }
-
-        public override decimal GetChargeUnitFee(DateTime beginning)
-        {
-            decimal fee = FirstFee;
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
         }
 
         public override string ToString()

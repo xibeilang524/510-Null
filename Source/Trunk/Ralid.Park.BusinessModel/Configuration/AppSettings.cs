@@ -48,6 +48,7 @@ namespace Ralid.Park.BusinessModel.Configuration
         private byte _BillPrinterCOMPort;
         private byte _YCTReaderCOMPort;
         private byte _ParkFullLedCOMPort;
+        private byte _VehicleLedCOMPort;
         private bool _Debug;
         private bool _DatabaseNeedUpgrade;
         private bool _OpenLastOpenedVideo;
@@ -68,6 +69,13 @@ namespace Ralid.Park.BusinessModel.Configuration
         private bool _AllowChangeParkWorkMode;
         private bool _CheckConnectionWithPing = true;
         private int _ParkVacantLed;
+        private bool _SwitchEntrance;
+        private bool _EnableHotel;
+        private bool _NewCardValidCommand;
+        private byte _ParkingSamNO;
+        private bool _EnablePOSButton = true;
+        private bool _SpeakPromptWhenCarArrival;
+        private CarPlateRecognizationType _CarPlateRecognization;
         #endregion
 
         #region 构造函数
@@ -112,6 +120,9 @@ namespace Ralid.Park.BusinessModel.Configuration
 
                     temp = GetConfigContent("ParkFullLedCOMPort");
                     byte.TryParse(temp, out _ParkFullLedCOMPort);
+
+                    temp = GetConfigContent("ThreeLedCOMPort");
+                    byte.TryParse(temp, out _VehicleLedCOMPort);
 
                     temp = GetConfigContent("Debug");
                     bool.TryParse(temp, out _Debug);
@@ -169,6 +180,43 @@ namespace Ralid.Park.BusinessModel.Configuration
 
                     temp = GetConfigContent("ParkVacantLed");
                     if (!string.IsNullOrEmpty(temp)) int.TryParse(temp, out _ParkVacantLed);
+
+                    temp = GetConfigContent("SwitchEntrance");
+                    bool.TryParse(temp, out _SwitchEntrance);
+
+                    temp = GetConfigContent("EnableHotel");
+                    bool.TryParse(temp, out _EnableHotel);
+
+                    temp = GetConfigContent("NewCardValidCommand");
+                    bool.TryParse(temp, out _NewCardValidCommand);
+
+                    temp = GetConfigContent("ParkingSamNO");
+                    byte.TryParse(temp, out _ParkingSamNO);
+
+                    temp = GetConfigContent("EnablePosButton");
+                    _EnablePOSButton = bool.TryParse(temp, out _EnablePOSButton) ? _EnablePOSButton : true;//默认显示
+
+                    temp = GetConfigContent("SpeakPromptWhenCarArrival");
+                    bool.TryParse(temp, out _SpeakPromptWhenCarArrival);
+
+                    temp = GetConfigContent("CarPlateRecognization");
+                    if (temp == "VECON")
+                    {
+                        _CarPlateRecognization = CarPlateRecognizationType.VECON;
+                    }
+                    else if (temp == "XinLuTong")
+                    {
+                        _CarPlateRecognization = CarPlateRecognizationType.XinLuTong;
+                    }
+                    else if (temp == "DaHua")
+                    {
+                        _CarPlateRecognization = CarPlateRecognizationType.DaHua;
+                    }
+                    else
+                    {
+                        //默认用文通
+                        _CarPlateRecognization = CarPlateRecognizationType.WINTONE;
+                    }
                 }
                 catch
                 {
@@ -334,6 +382,35 @@ namespace Ralid.Park.BusinessModel.Configuration
                     return SelectedParkConnect;
                 }
                 return string.Empty;//没有可用的数据库
+            }
+        }
+
+        /// <summary>
+        /// 获取图片数据连接串
+        /// </summary>
+        public string ImageDBConnStr
+        {
+            get
+            {
+                string connectstr = string.Empty;
+                if (string.IsNullOrEmpty(UserSetting.Current.ParkingImageConnStr))
+                {
+                    //没有设置数据库连接字符串的，返回主数据库连接字符串
+                    connectstr= ParkConnect;
+                }
+                else
+                {
+                    //图片据库连接断开的，返回空字符串
+                    if (DataBaseConnectionsManager.Current.ImageDBStatus == DataBaseConnectionStatus.Disconnect)
+                    {
+                        connectstr = string.Empty;
+                    }
+                    else
+                    {
+                        connectstr = UserSetting.Current.ParkingImageConnStr;
+                    }
+                }
+                return connectstr;
             }
         }
 
@@ -509,6 +586,22 @@ namespace Ralid.Park.BusinessModel.Configuration
                 {
                     _YCTReaderCOMPort = value;
                     SaveConfig("YCTReaderCOMPort", value.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置车辆信息LED显示屏串口号(目前用于神华项目，分三栏显示）
+        /// </summary>
+        public byte VehicleLedCOMPort
+        {
+            get { return _VehicleLedCOMPort; }
+            set
+            {
+                if (_VehicleLedCOMPort != value)
+                {
+                    _VehicleLedCOMPort = value;
+                    SaveConfig("ThreeLedCOMPort", value.ToString());
                 }
             }
         }
@@ -872,6 +965,157 @@ namespace Ralid.Park.BusinessModel.Configuration
                 }
             }
         }
+
+        /// <summary>
+        /// 获取或设置是否显示通道切换按钮
+        /// </summary>
+        public bool SwitchEntrance
+        {
+            get
+            {
+                return _SwitchEntrance;
+            }
+            set
+            {
+                if (_SwitchEntrance != value)
+                {
+                    _SwitchEntrance = value;
+                    SaveConfig("SwitchEntrance", _SwitchEntrance.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置是否启用酒店应用
+        /// </summary>
+        public bool EnableHotel
+        {
+            get
+            {
+                return _EnableHotel;
+            }
+            set
+            {
+                if (_EnableHotel != value)
+                {
+                    _EnableHotel = value;
+                    SaveConfig("EnableHotel", _EnableHotel.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置-网络控制板是否使用新的卡片有效命令，新命令数据包含卡片属性信息，该功能需控制器硬件支持，否则可能导致卡片出场不能抬闸
+        /// </summary>
+        public bool NewCardValidCommand
+        {
+            get
+            {
+                return _NewCardValidCommand;
+            }
+            set
+            {
+                if (_NewCardValidCommand != value)
+                {
+                    _NewCardValidCommand = value;
+                    SaveConfig("NewCardValidCommand", _NewCardValidCommand.ToString());
+                }
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置验证CPU卡使用SAM卡所在的读卡器SAM卡座号，范围1~8
+        /// </summary>
+        public byte ParkingSamNO
+        {
+            get
+            {
+                if (_ParkingSamNO > 0 && _ParkingSamNO < 9)
+                {
+                    return _ParkingSamNO;
+                }
+                return 1;
+            }
+            set
+            {
+                if (_ParkingSamNO > 0 && _ParkingSamNO < 9)
+                {
+                    _ParkingSamNO = value;
+                    SaveConfig("ParkingSamNO", _ParkingSamNO.ToString());
+                }
+            }
+        }
+        /// <summary>
+        /// 获取或设置是否启用POS收费按钮
+        /// </summary>
+        public bool EnablePOSButton
+        {
+            get
+            {
+                return _EnablePOSButton;
+            }
+            set
+            {
+                if (_EnablePOSButton != value)
+                {
+                    _EnablePOSButton = value;
+                    SaveConfig("EnablePosButton", _EnablePOSButton.ToString());
+                }
+            }
+        }
+        /// <summary>
+        /// 获取或设置是车辆到达时是否播放欢迎语
+        /// </summary>
+        public bool SpeakPromptWhenCarArrival
+        {
+            get
+            {
+                return _SpeakPromptWhenCarArrival;
+            }
+            set
+            {
+                if (_SpeakPromptWhenCarArrival != value)
+                {
+                    _SpeakPromptWhenCarArrival = value;
+                    SaveConfig("SpeakPromptWhenCarArrival", _SpeakPromptWhenCarArrival.ToString());
+                }
+            }
+        }
+        /// <summary>
+        /// 获取或设置软件方式的车牌识别厂家，VECON表示亚视，WINTONE表示清华文通，其他默认使用清华文通
+        /// </summary>
+        public CarPlateRecognizationType CarPlateRecognization
+        {
+            get
+            {
+                return _CarPlateRecognization;
+            }
+            set
+            {
+                if (_CarPlateRecognization != value)
+                {
+                    _CarPlateRecognization = value;
+                    string temp = string.Empty;
+                    switch (_CarPlateRecognization)
+                    {
+                        case CarPlateRecognizationType.VECON:
+                            temp = "VECON";
+                            break;
+                        case CarPlateRecognizationType.XinLuTong:
+                            temp = "XinLuTong";
+                            break;
+                        case CarPlateRecognizationType.DaHua:
+                            temp = "DaHua";
+                            break;
+                        default:
+                            temp = "WINTONE";
+                            break;
+                    }
+                    SaveConfig("CarPlateRecognization", temp);
+                }
+            }
+        }
+        
         #endregion
 
         #region 公共方法

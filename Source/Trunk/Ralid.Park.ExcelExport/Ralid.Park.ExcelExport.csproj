@@ -118,6 +118,7 @@
     <Compile Include="MonthCardReportToExcel.cs" />
     <Compile Include="OperatorShiftToExcel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Resources\Resource1.Designer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
@@ -145,6 +146,12 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource1.en.resx" />
+    <EmbeddedResource Include="Resources\Resource1.resx" />
+    <EmbeddedResource Include="Resources\Resource1.zh-Hant.resx" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -14,10 +14,12 @@ using Ralid.Park.BusinessModel.Interface;
 using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.Result;
+//using Ralid.Park.SnapShotCapture;
+using Ralid.Park.VideoCapture;
 
 namespace Ralid.Park.UI
 {
-    public partial class FrmCarPlateOfXinLuTong : Form, IPlateRecognition, IReportHandler
+    public partial class FrmCarPlateOfXinLuTong : Form, IPlateRecognition, IVideoCapture//, IReportHandler, ISnapShotCapture
     {
         #region 处理共享内存的函数
         //打开共享内存
@@ -57,10 +59,11 @@ namespace Ralid.Park.UI
         }
         #endregion
 
-        #region 私有方法
+        #region 私有变量
         private List<CarPlateDevice> _Devices = new List<CarPlateDevice>();
         private List<AxHVActiveX2Lib.AxHVActiveX2> _HVS = new List<AxHVActiveX2Lib.AxHVActiveX2>();
         private CarPlateDevice _ActiveDevice;
+        private bool _Inited = false;//窗体是否已进行初始化了
         #endregion
 
         #region 私有方法
@@ -71,10 +74,11 @@ namespace Ralid.Park.UI
                 foreach (AxHVActiveX2Lib.AxHVActiveX2 axHV in _HVS)
                 {
                     DeviceState ds = axHV.Tag as DeviceState;
-                    if (ds.State != 0)
+                    if (axHV.GetStatus() != 0)
                     {
                         axHV.ConnectTo(ds.IP);
                     }
+                    ds.State = axHV.GetStatus();
                 }
                 Action action = delegate()
                 {
@@ -88,7 +92,7 @@ namespace Ralid.Park.UI
                 {
                     action();
                 }
-                Thread.Sleep(5 * 60 * 1000);
+                Thread.Sleep(30 * 1000);
             }
         }
 
@@ -111,7 +115,47 @@ namespace Ralid.Park.UI
             row.Cells["colCarPlate"].Value = device.CarPlate;
             row.Cells["colEventDate"].Value = device.EventDateTime;
             AxHVActiveX2Lib.AxHVActiveX2 ax = _HVS.SingleOrDefault(item => (item.Tag as DeviceState).IP == device.IP);
-            if (ax != null) row.Cells["colState"].Value = (ax.Tag as DeviceState).State == 0 ? "已连接" : "未连接";
+            if (ax != null) row.Cells["colState"].Value = (ax.Tag as DeviceState).State == 0 ? Resources.Resource1.Connected : Resources.Resource1.Unconnected;
+        }
+
+        /// <summary>
+        /// 抓拍图片
+        /// </summary>
+        /// <param name="device">要抓拍的摄像机</param>
+        /// <param name="force">是否强制重新抓拍，不管之前有没有抓拍到图片</param>
+        /// <returns></returns>
+        private bool SnapShotTo(CarPlateDevice device, bool force)
+        {
+            if (device != null)
+            {
+                if (!force && !string.IsNullOrEmpty(device.SnapPath))
+                {
+                    //如果不强制重新抓拍，之前已经有抓拍图片了，就不再需要抓拍图片了
+                    return true;
+                }
+
+                AxHVActiveX2Lib.AxHVActiveX2 axHV = _HVS.SingleOrDefault(item => (item.Tag as DeviceState).IP == device.IP);
+                if (axHV != null)
+                {
+                    device.ResetResult();
+                    axHV.ForceSendEx(device.VideoID);
+
+                    int wait = 0;
+                    //最多等待1秒来等待抓拍图片
+                    while (wait < 1000)
+                    {
+                        Thread.Sleep(100);
+                        if (!string.IsNullOrEmpty(device.SnapPath))
+                        {
+                            return true;
+                        }
+                        wait += 100;
+                    }
+                }
+
+            }
+
+            return false;
         }
         #endregion
 
@@ -124,7 +168,6 @@ namespace Ralid.Park.UI
         /// <returns></returns>
         public PlateRecognitionResult Recognize(int parkID, int entranceID)
         {
-            string dir = TempFolderManager.GetCurrentFolder();
             PlateRecognitionResult ret = new PlateRecognitionResult();
             try
             {
@@ -147,13 +190,107 @@ namespace Ralid.Park.UI
         /// </summary>
         public PlateRecognitionResult Recognize(string path)
         {
-            return null;
+            return new PlateRecognitionResult();
+        }
+        #endregion
+
+        #region ISnapShot接口实现
+        /// <summary>
+        /// 对通道进行图片抓拍,要求此通道有一个用于车牌识别的摄像机
+        /// </summary>
+        /// <param name="parkID"></param>
+        /// <param name="entranceID"></param>
+        /// <returns>抓拍图片的地址，返回空时表示抓拍失败</returns>
+        public string SnapShot(int parkID, int entranceID)
+        {
+            try
+            {
+                CarPlateDevice device = _Devices.SingleOrDefault(item => item.EntranceID == entranceID);
+                if (device != null)
+                {
+                    AxHVActiveX2Lib.AxHVActiveX2 axHV = _HVS.SingleOrDefault(item => (item.Tag as DeviceState).IP == device.IP);
+                    if (axHV != null)
+                    {
+                        device.ResetResult();
+                        axHV.ForceSendEx(device.VideoID);
+
+                        int wait = 0;
+                        //最多等待1秒来等待抓拍图片
+                        while (wait < 1000)
+                        {
+                            Thread.Sleep(100);
+                            if (!string.IsNullOrEmpty(device.SnapPath))
+                            {
+                                return device.SnapPath;
+                            }
+                            wait += 100;
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return string.Empty;
+        }
+        #endregion
+
+        #region IVideoCapture接口实现
+        /// <summary>
+        /// 抓拍图片
+        /// </summary>
+        /// <param name="info">摄像机</param>
+        /// <param name="force">是否强制重新抓拍，不管之前有没有抓拍到图片</param>
+        /// <returns>抓拍图片的地址，返回空时表示抓拍失败</returns>
+        public string CapturePicture(VideoSourceInfo info, bool force)
+        {
+            try
+            {
+                //获取该通道车牌识别一体机
+                CarPlateDevice device = _Devices.FirstOrDefault(item => item.EntranceID == info.EntranceID);
+                if (SnapShotTo(device, force))
+                {
+                    return device.SnapPath;
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return string.Empty;
+        }
+
+        /// <summary>
+        /// 清除抓拍图片信息
+        /// </summary>
+        /// <param name="info">摄像机</param>
+        public void ClearCapture(VideoSourceInfo info)
+        {
+            try
+            {
+                CarPlateDevice device = _Devices.FirstOrDefault(item => item.EntranceID == info.EntranceID);
+                if (device != null)
+                {
+                    lock (device)
+                    {
+                        device.ResetResult();
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
         }
         #endregion
 
         #region 公共方法
         public void Init()
         {
+            if (_Inited) return;//已经初始化的，返回
+            _Inited = true;
+
             foreach (ParkInfo park in ParkBuffer.Current.Parks)
             {
                 if (park.IsRootPark && park.HostWorkstation == WorkStationInfo.CurrentStation.StationID)
@@ -161,7 +298,8 @@ namespace Ralid.Park.UI
                     List<EntranceInfo> entrances = park.GetEntrances(true);
                     foreach (EntranceInfo entrance in entrances)
                     {
-                        if (!string.IsNullOrEmpty(entrance.CarPlateIP))
+                        if (!string.IsNullOrEmpty(entrance.CarPlateIP)
+                            && entrance.CarPlateIP != "0.0.0.0")
                         {
                             if (!_HVS.Exists(item => (item.Tag as DeviceState).IP == entrance.CarPlateIP))
                             {
@@ -175,8 +313,12 @@ namespace Ralid.Park.UI
                                 axHV.RecvPlateBinImageFlag = 0;
                                 axHV.RecvVideoFlag = 0;
                                 axHV.AutoSaveFlag = false;
+                                axHV.OnReceivePlate -= new EventHandler(axHV_OnReceivePlate);
                                 axHV.OnReceivePlate += new EventHandler(axHV_OnReceivePlate);
+                                axHV.OnReceiveVideo -= new EventHandler(axHV_OnReceiveVideo);
                                 axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo);
+                                axHV.OnReceiveVideo -= new EventHandler(axHV_OnReceiveVideo1);
+                                axHV.OnReceiveVideo += new EventHandler(axHV_OnReceiveVideo1);
                                 axHV.Tag = new DeviceState() { IP = entrance.CarPlateIP, State = -1 };
                                 _HVS.Add(axHV);
                             }
@@ -195,6 +337,9 @@ namespace Ralid.Park.UI
                     {
                         _ActiveDevice = _Devices[0];
                     }
+                }
+                if (this.dataGridView1.Rows.Count > 0)
+                {
                     dataGridView1_CellMouseDown(this.dataGridView1, new DataGridViewCellMouseEventArgs(0, 0, 0, 0, new MouseEventArgs(MouseButtons.Left, 1, 0, 0, 0)));
                 }
             }
@@ -207,35 +352,67 @@ namespace Ralid.Park.UI
         #region IReportHandler 成员
         public void ProcessReport(ReportBase r)
         {
-            ParkInfo park = ParkBuffer.Current.GetPark(r.ParkID);
-            foreach (DataGridViewRow row in this.dataGridView1.Rows)
+            if (r is CarSenseReport)
             {
-                CarPlateDevice device = row.Tag as CarPlateDevice;
-                if (device.EntranceID == r.EntranceID)
+                CarSenseReport cp = r as CarSenseReport;
+                if (cp.InOrOutFlag == 0)//车走时清空识别结果
                 {
-                    if (r is CardEventReport)
+                    foreach (CarPlateDevice device in _Devices)
                     {
-                        CardEventReport cardEvent = r as CardEventReport;
-                        if (cardEvent.EventStatus == CardEventStatus.Valid && !string.IsNullOrEmpty(device.SnapPath))
+                        if (device.EntranceID == r.EntranceID)
                         {
-                            EntranceInfo entrace = ParkBuffer.Current.GetEntrance(r.EntranceID);
-                            int videoSourceID = -1;
-                            if (entrace != null)
+                            lock (device)
                             {
-                                VideoSourceInfo videoSource = entrace.VideoSources.FirstOrDefault(item => item.MediaSource == device.IP && item.Channel == device.VideoID);
-                                if (videoSource != null) videoSourceID = videoSource.VideoID;
+                                device.ResetResult();
                             }
-                            if (videoSourceID == -1) videoSourceID = r.EntranceID * 1000 + device.VideoID;//没有找到视频ID的，手动生成一个，通道id*1000+视频路数
-                            SnapShot shot = new SnapShot(cardEvent.EventDateTime, videoSourceID, cardEvent.CardID, device.SnapPath);
-                            string master = AppSettings.CurrentSetting.CurrentMasterConnect;
-                            string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
-                            CommandResult result = (new SnapShotBll(master)).Insert(shot);
-                            if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
-                            //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
                         }
                     }
                 }
             }
+
+            #region 以下操作由FrmSnapShoter完成
+            //ParkInfo park = ParkBuffer.Current.GetPark(r.ParkID);
+            //if (park != null && park.RootParkID > 0) park = ParkBuffer.Current.GetPark(park.RootParkID);
+            //if (park == null) return;
+
+            //foreach (DataGridViewRow row in this.dataGridView1.Rows)
+            //{
+            //    CarPlateDevice device = row.Tag as CarPlateDevice;
+            //    if (device.EntranceID == r.EntranceID)
+            //    {
+            //        if (r is CardEventReport)
+            //        {
+            //            CardEventReport cardEvent = r as CardEventReport;
+            //            if (cardEvent.EventStatus == CardEventStatus.Valid && !string.IsNullOrEmpty(device.SnapPath))
+            //            {
+            //                EntranceInfo entrace = ParkBuffer.Current.GetEntrance(r.EntranceID);
+            //                int videoSourceID = -1;
+            //                if (entrace != null)
+            //                {
+            //                    VideoSourceInfo videoSource = entrace.VideoSources.FirstOrDefault(item => item.MediaSource == device.IP && item.Channel == device.VideoID);
+            //                    if (videoSource != null) videoSourceID = videoSource.VideoID;
+            //                }
+            //                if (videoSourceID == -1) videoSourceID = r.EntranceID * 1000 + device.VideoID;//没有找到视频ID的，手动生成一个，通道id*1000+视频路数
+            //                SnapShot shot = new SnapShot(cardEvent.EventDateTime, videoSourceID, cardEvent.CardID, device.SnapPath);
+            //                if (!string.IsNullOrEmpty(AppSettings.CurrentSetting.ImageDBConnStr))
+            //                {
+            //                    CommandResult result = (new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr)).Insert(shot);
+            //                    string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
+            //                    if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
+            //                }
+            //                else
+            //                {
+            //                    string master = AppSettings.CurrentSetting.CurrentMasterConnect;
+            //                    string standby = AppSettings.CurrentSetting.CurrentStandbyConnect;
+            //                    CommandResult result = (new SnapShotBll(master)).Insert(shot);
+            //                    if (result.Result != ResultCode.Successful && !string.IsNullOrEmpty(standby)) (new SnapShotBll(standby)).Insert(shot);
+            //                }
+            //                //(new SnapShotBll(AppSettings.CurrentSetting.ParkConnect)).Insert(shot);
+            //            }
+            //        }
+            //    }
+            //}
+            #endregion
         }
         #endregion
 
@@ -313,39 +490,99 @@ namespace Ralid.Park.UI
 
         private void axHV_OnReceiveVideo(object sender, EventArgs e)
         {
-            string strName = "";
-            int iSize = 1024 * 1024;
-            IntPtr irMapFile = IntPtr.Zero;
-            IntPtr itData = IntPtr.Zero;
             try
             {
-                AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
-                if (_ActiveDevice != null && _ActiveDevice.IP == (axHV.Tag as DeviceState).IP)
+                if (_ActiveDevice.VideoID == 0)
                 {
-                    byte[] fuck=new byte[1024*1024];
-                    int ret = axHV.GetVideoFrame(ref fuck[0], ref iSize);
-                    strName = axHV.GetVideoFrameSM(_ActiveDevice.VideoID, ref iSize);
-                    irMapFile = OpenFileMapping(FILE_MAP_READ, false, strName);
-                    if (irMapFile == IntPtr.Zero) return;
+                    AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+                    if (_ActiveDevice != null && _ActiveDevice.IP == (axHV.Tag as DeviceState).IP)
+                    {
+                        string strName = "";
+                        int iSize = 0;
+                        strName = axHV.GetVideoFrameSM(0, ref iSize);
+                        if (iSize == 0) return;
 
-                    itData = MapViewOfFile(irMapFile, FILE_MAP_READ, 0, 0, 0);
-                    if (itData == IntPtr.Zero) return;
+                        IntPtr irMapFile = IntPtr.Zero;
+                        irMapFile = OpenFileMapping(FILE_MAP_READ, false, strName);
+                        if (irMapFile == IntPtr.Zero) return;
 
-                    byte[] bData = new byte[iSize];
-                    Marshal.Copy(itData, bData, 0, iSize);
-                    MemoryStream stream = new MemoryStream(bData);
-                    video.Image = Image.FromStream(stream);
+                        IntPtr itData = IntPtr.Zero;
+                        itData = MapViewOfFile(irMapFile, FILE_MAP_READ, 0, 0, 0);
+                        if (itData == IntPtr.Zero)
+                        {
+                            CloseHandle(irMapFile);
+                            return;
+                        }
+
+                        byte[] bData = new byte[iSize];
+                        Marshal.Copy(itData, bData, 0, iSize);
+
+                        ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+                        UnmapViewOfFile(itData);
+                        CloseHandle(irMapFile);
+
+                        using (MemoryStream stream = new MemoryStream(bData))
+                        {
+                            video.Image = Image.FromStream(stream);
+                        }
+                    }
                 }
             }
             catch (Exception ex)
             {
-                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                //Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
             finally
             {
-                ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
-                UnmapViewOfFile(itData);
-                CloseHandle(irMapFile);
+            }
+        }
+
+        private void axHV_OnReceiveVideo1(object sender, EventArgs e)
+        {
+            try
+            {
+                if (_ActiveDevice.VideoID == 1)
+                {
+                    AxHVActiveX2Lib.AxHVActiveX2 axHV = sender as AxHVActiveX2Lib.AxHVActiveX2;
+                    if (_ActiveDevice != null && _ActiveDevice.IP == (axHV.Tag as DeviceState).IP)
+                    {
+                        string strName = "";
+                        int iSize = 0;
+                        strName = axHV.GetVideoFrameSM(1, ref iSize);
+                        if (iSize == 0) return;
+
+                        IntPtr irMapFile = IntPtr.Zero;
+                        irMapFile = OpenFileMapping(FILE_MAP_READ, false, strName);
+                        if (irMapFile == IntPtr.Zero) return;
+
+                        IntPtr itData = IntPtr.Zero;
+                        itData = MapViewOfFile(irMapFile, FILE_MAP_READ, 0, 0, 0);
+                        if (itData == IntPtr.Zero)
+                        {
+                            CloseHandle(irMapFile);
+                            return;
+                        }
+
+                        byte[] bData = new byte[iSize];
+                        Marshal.Copy(itData, bData, 0, iSize);
+
+                        ///完成一次接收后调用下面两个函数关闭共享内存(也就是不用内存映射的时候要关闭)
+                        UnmapViewOfFile(itData);
+                        CloseHandle(irMapFile);
+
+                        using (MemoryStream stream = new MemoryStream(bData))
+                        {
+                            video.Image = Image.FromStream(stream);
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                //Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            finally
+            {
             }
         }
 
@@ -458,6 +695,41 @@ namespace Ralid.Park.UI
         /// 获取或设置上传时间
         /// </summary>
         public DateTime? EventDateTime { get; set; }
+
+        #region 以下是大华摄像机会用到的
+        /// <summary>
+        /// 获取或设置视频源信息
+        /// </summary>
+        public VideoSourceInfo VideoSource { get; set; }
+        /// <summary>
+        /// 获取或设置登陆返回的句柄
+        /// </summary>
+        public int m_nLoginID { get; set; }
+        /// <summary>
+        /// 获取或设置设备消息事件订阅句柄
+        /// </summary>
+        public int m_nRealLoadPic { get; set; }
+        /// <summary>
+        /// 获取或设置启动实时监控返回的句柄
+        /// </summary>
+        public int m_realPlayH { get; set; }
+        /// <summary>
+        /// 获取或设置设备的连接状态 0表示未连接，1表示已连接，2表示断线，其它的表示未连接
+        /// </summary>
+        public int State { get; set; }
+        /// <summary>
+        /// 获取或设置车身颜色
+        /// </summary>
+        public string CarColor { get; set; }
+        /// <summary>
+        /// 获取或设置车道号
+        /// </summary>
+        public int Lane { get; set; }
+        /// <summary>
+        /// 设置抓拍的时间
+        /// </summary>
+        public DateTime? DeviceSnapTime { get; set; }
+        #endregion
         #endregion
 
         #region 公共方法
@@ -471,6 +743,10 @@ namespace Ralid.Park.UI
             SnapPath = string.Empty;
             PlatePath = string.Empty;
             EventDateTime = null;
+
+            CarColor = string.Empty;
+            Lane = 0;
+            DeviceSnapTime = null;
         }
         #endregion
     }

@@ -140,7 +140,7 @@
             this.ucDateTimeInterval1.EndDateTime = new System.DateTime(2012, 9, 14, 15, 12, 56, 827);
             resources.ApplyResources(this.ucDateTimeInterval1, "ucDateTimeInterval1");
             this.ucDateTimeInterval1.Name = "ucDateTimeInterval1";
-            this.ucDateTimeInterval1.ShowTime = false;
+            this.ucDateTimeInterval1.ShowTime = true;
             this.ucDateTimeInterval1.StartDateTime = new System.DateTime(2012, 9, 14, 15, 12, 56, 830);
             // 
             // txtDescription

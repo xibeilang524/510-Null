@@ -37,65 +37,133 @@ namespace Ralid.Park.UI
         #endregion
 
         #region 车牌识别库封装
+        #region 以下是就版本的结构体
+        //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        //struct TH_PlateIDCfg
+        //{
+        //    public int nMinPlateWidth; // 检测的最小车牌宽度，以像素为单位
+        //    public int nMaxPlateWidth; // 检测的最大车牌宽度，以像素为单位
+        //    public int nMaxImageWidth; // 最大图像宽度
+        //    public int nMaxImageHeight; // 最大图像高度
+        //    public byte bVertCompress; // 是否只取帧图像的一场进行识别。
+        //    public byte bIsFieldImage; // 是否输入场图像
+        //    public byte bOutputSingleFrame; /*是否视频图像中同一个车的多幅图像只输出一次结果*/
+        //    public byte bMovingImage; // 识别运动or 静止图像
+        //    public byte bIsNight; //夜间模式
+        //    public byte nImageFormat; //图像格式
+        //    public IntPtr pFastMemory; /*DSP 等的片内内存，耗时多的运算优先使用这些内存*/
+        //    public int nFastMemorySize; // 快速内存的大小
+        //    public IntPtr pMemory; /*普通内存的地址，内建的内存管理，避免内存泄漏等问题*/
+        //    public int nMemorySize; // 普通内存的大小
+        //    public int nLastError; // 用于传递错误信息
+        //    // 0: 无错误
+        //    // 1: Find Plate(没有找到车牌)
+        //    // 2: 车牌评价值(0 分)
+        //    // 3: 车牌评价值(不及格)
+        //    // 4: 车牌识别分数(0 分)
+        //    // 5: 车牌识别分数(不及格)
+        //    public int nErrorModelSN; // 出错的模块编号
+        //    public byte nOrderOpt;		//输出顺序选项 0-置信度 1-自上而下 2-自下而上
+        //    public byte bLeanCorrection;	// 是否启用车牌旋转功能
+        //    public byte bMovingOutputOpt; 	// 0-内部推送+外部获取 1:外部获取
+        //    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 117)]
+        //    public char[] reserve; //保留
+        //}
+
+        //[StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
+        //struct TH_PlateResult
+        //{
+        //    public short lic0;
+        //    public char lic1;
+        //    public char lic2;
+        //    public char lic3;
+        //    public char lic4;
+        //    public char lic5;
+        //    public char lic6;
+        //    public int lic7;
+        //    public int lic8;
+        //    public int color0;
+        //    public int color1;
+        //    public int nColor;	//颜色（数值）
+        //    public int nType;	//车牌类型（见定义）
+        //    public int nConfidence;	//整牌可信度
+        //    public int nBright;	//亮度评价
+        //    public int nDirection; // 运动方向，0 unknown, 1 left, 2 right, 3 up , 4 down
+        //    public TH_RECT rcLocation;	//车牌在整个图像中的位置
+
+        //    public int pbyBits;	// DSP等的片内内存，耗时多的运算优先使用这些内存
+        //    public int nTime;	//识别时间
+        //    public byte nCarBright;    //车的亮度  保留
+        //    public byte nCarColor;		//车的颜色  保留
+        //    [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
+        //    public char[] reserved;	//保留
+        //}
+        #endregion
+
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         struct TH_PlateIDCfg
         {
-            public int nMinPlateWidth; // 检测的最小车牌宽度，以像素为单位
-            public int nMaxPlateWidth; // 检测的最大车牌宽度，以像素为单位
-            public int nMaxImageWidth; // 最大图像宽度
-            public int nMaxImageHeight; // 最大图像高度
-            public byte bVertCompress; // 是否只取帧图像的一场进行识别。
-            public byte bIsFieldImage; // 是否输入场图像
-            public byte bOutputSingleFrame; /*是否视频图像中同一个车的多幅图像只输出一次结果*/
-            public byte bMovingImage; // 识别运动or 静止图像
-            public byte bIsNight; //夜间模式
-            public byte nImageFormat; //图像格式
-            public IntPtr pFastMemory; /*DSP 等的片内内存，耗时多的运算优先使用这些内存*/
-            public int nFastMemorySize; // 快速内存的大小
-            public IntPtr pMemory; /*普通内存的地址，内建的内存管理，避免内存泄漏等问题*/
-            public int nMemorySize; // 普通内存的大小
-            public int nLastError; // 用于传递错误信息
+            public int nMinPlateWidth;      //检测的最小车牌宽度，以像素为单位
+            public int nMaxPlateWidth;      //检测的最大车牌宽度，以像素为单位
+            public int nMaxImageWidth;      //最大图像宽度
+            public int nMaxImageHeight;     //最大图像高度
+            public byte bVertCompress;      //是否只取帧图像的一场进行识别。
+            public byte bIsFieldImage;      //是否输入场图像
+            public byte bOutputSingleFrame; //是否视频图像中同一个车的多幅图像只输出一次结果
+            public byte bMovingImage;       //识别运动or 静止图像
+            public byte bIsNight;           //夜间模式
+            public byte nImageFormat;       //图像格式
+            public IntPtr pFastMemory;      //DSP 等的片内内存，耗时多的运算优先使用这些内存
+            public int nFastMemorySize;     //快速内存的大小
+            public IntPtr pMemory;          //普通内存的地址，内建的内存管理，避免内存泄漏等问题
+            public int nMemorySize;         //普通内存的大小
+            //int (*DMA_DataCopy)(void *dst, void *src,int nSize);
+            //int (*Check_DMA_Finished)();
+            public IntPtr DMA_DataCopy;     //PC上用不到的函数指针,为了不影响下面的参数设置生效,暂时这么写
+            public IntPtr Check_DMA_Finished;
+
+            public int nLastError;          //用于传递错误信息
             // 0: 无错误
             // 1: Find Plate(没有找到车牌)
             // 2: 车牌评价值(0 分)
             // 3: 车牌评价值(不及格)
             // 4: 车牌识别分数(0 分)
             // 5: 车牌识别分数(不及格)
-            public int nErrorModelSN; // 出错的模块编号
-            public byte nOrderOpt;		//输出顺序选项 0-置信度 1-自上而下 2-自下而上
-            public byte bLeanCorrection;	// 是否启用车牌旋转功能
-            public byte bMovingOutputOpt; 	// 0-内部推送+外部获取 1:外部获取
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 117)]
-            public char[] reserve; //保留
+            public int nErrorModelSN;       //出错的模块编号
+            public byte nOrderOpt;		    //输出顺序选项 0-置信度 1-自上而下 2-自下而上
+            public byte bLeanCorrection;	//是否启用倾斜校正
+            public byte bMovingOutputOpt; 	//0-内部推送+外部获取 1:外部获取
+            public byte nImproveSpeed;      //0: 识别率优先 1:识别速度优先
+            public byte bCarLogo;           //0: 不检测车标 1: 检测车标
+            public byte bLotDetect;			//0: 不检测车位 1: 检测车位
+            public byte bShadow;            //0: 针对无阴影的车牌 1：针对有阴影的车牌
+            public byte bUTF8;				//0:汉字GBK,1:汉字UTF-8
+            public byte bShieldRailing;		//0: 屏蔽栏杆干扰， 1:不屏蔽栏杆干扰
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 103)]
+            public byte[] reserved;         //保留
         }
 
         [StructLayout(LayoutKind.Sequential, CharSet = CharSet.Auto)]
         struct TH_PlateResult
         {
-            public short lic0;
-            public char lic1;
-            public char lic2;
-            public char lic3;
-            public char lic4;
-            public char lic5;
-            public char lic6;
-            public int lic7;
-            public int lic8;
-            public int color0;
-            public int color1;
-            public int nColor;	//颜色（数值）
-            public int nType;	//车牌类型（见定义）
-            public int nConfidence;	//整牌可信度
-            public int nBright;	//亮度评价
-            public int nDirection; // 运动方向，0 unknown, 1 left, 2 right, 3 up , 4 down
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
+            public byte[] license;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
+            public byte[] color;
+            public int nColor;          //颜色（数字）
+            public int nType;	        //车牌类型
+            public int nConfidence;	    //整牌可信度
+            public int nBright;	        //亮度评价
+            public int nDirection;      //运动方向，0 unknown, 1 left, 2 right, 3 up , 4 down
             public TH_RECT rcLocation;	//车牌在整个图像中的位置
-
-            public int pbyBits;	// DSP等的片内内存，耗时多的运算优先使用这些内存
-            public int nTime;	//识别时间
-            public byte nCarBright;    //车的亮度  保留
+            IntPtr pbyBits;	            //DSP等的片内内存，耗时多的运算优先使用这些内存
+            public int nTime;	        //识别时间
+            public byte nCarBright;     //车的亮度  保留
             public byte nCarColor;		//车的颜色  保留
-            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 100)]
-            public char[] reserved;	//保留
+            public byte nCarLogo;
+            public byte nCarType;
+            [MarshalAs(UnmanagedType.ByValArray, SizeConst = 98)]
+            public byte[] reserved;	    //保留
         }
 
         [StructLayout(LayoutKind.Explicit, CharSet = CharSet.Auto)]
@@ -121,7 +189,7 @@ namespace Ralid.Park.UI
         static extern int TH_SetImageFormat(byte cImageFormat, bool bVertFlip,
             bool bDwordAligned, ref TH_PlateIDCfg pPlateIDConfig);
 
-        [DllImport("TH_PLATEID.dll")]  
+        [DllImport("TH_PLATEID.dll")]   ///     识别车牌号码
         static extern int TH_SetRecogThreshold(byte nLocaticon_th, byte nPlate_th, ref TH_PlateIDCfg pPlateConfig);
 
         [DllImport("TH_PLATEID.dll")]
@@ -170,20 +238,64 @@ namespace Ralid.Park.UI
         private object _Locker = new object();
         #endregion
 
+
         #region 私有方法
         //转换车牌号码
-        private string PlateLicense(short sh0, short sh1, short sh2, short sh3, short sh4)
+        private string PlateLicense(short sh0, char sh1, char sh2, char sh3)
         {
-            List<byte> bytes = new List<byte>();
-            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh0));
-            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh1));
-            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh2));
-            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh3));
-            bytes.AddRange(SEBinaryConverter.ShortToBytes(sh4));
-
-            string ret = Encoding.GetEncoding("GB2312").GetString(bytes.ToArray()).Trim();
-            ret = ret.Trim('\0');
-            return ret;
+            StringBuilder sbo = new StringBuilder();
+            ///　转换数字及字母 1-2
+            byte[] bytearrayNum = new byte[2];
+            string constructed = "";
+            ASCIIEncoding assencoding = new ASCIIEncoding();
+            ///　转换汉字
+            for (int i = 0; i < bytearrayNum.Length; i++)
+            {
+                bytearrayNum[i] = (byte)(sh0 >> 8 * (i) & 0xFF);
+            }
+            Encoding encod = Encoding.GetEncoding(936);
+            byte[] buf2 = Encoding.Convert(encod, Encoding.Unicode, bytearrayNum);
+            constructed = Encoding.Unicode.GetString(buf2, 0, buf2.Length);
+            if (!constructed.Equals(""))
+            {
+                sbo.Append(constructed);
+                constructed = "";
+            }
+            ///　转换数字及字母 1-2 
+            for (int i = 0; i < bytearrayNum.Length; i++)
+            {
+                bytearrayNum[i] = (byte)(sh1 >> 8 * (i) & 0xFF);
+            }
+            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
+            if (!constructed.Equals(""))
+            {
+                sbo.Append(constructed);
+                constructed = "";
+            }
+            ///　转换数字及字母 3-4 
+            for (int i = 0; i < bytearrayNum.Length; i++)
+            {
+                bytearrayNum[i] = (byte)(sh2 >> 8 * (i) & 0xFF);
+            }
+            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
+            if (!constructed.Equals(""))
+            {
+                sbo.Append(constructed);
+                constructed = "";
+            }
+            ///　转换数字及字母 5-6
+            for (int i = 0; i < bytearrayNum.Length; i++)
+            {
+                bytearrayNum[i] = (byte)(sh3 >> 8 * (i) & 0xFF);
+            }
+            constructed = assencoding.GetString(bytearrayNum, 0, bytearrayNum.Length);
+            if (!constructed.Equals(""))
+            {
+                sbo.Append(constructed);
+                constructed = "";
+            }
+            if (sbo.Length > 0) return sbo.ToString().Trim('\0');
+            return string.Empty;
         }
 
         //读取BMP图片到内存
@@ -279,7 +391,8 @@ namespace Ralid.Park.UI
             PlateRecognitionResult ret = new PlateRecognitionResult();
             try
             {
-                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(entranceID);
+                //EntranceInfo entrance = ParkBuffer.Current.GetEntrance(entranceID);
+                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(parkID, entranceID);
                 if (entrance != null)
                 {
                     foreach (VideoSourceInfo video in entrance.VideoSources)
@@ -288,7 +401,7 @@ namespace Ralid.Park.UI
                         {
                             FrmSnapShoter frm = FrmSnapShoter.GetInstance();
                             string path = Path.Combine(dir, string.Format("{0}_{1}_{2}.jpg", "CarPlate", Guid.NewGuid().ToString(), video.VideoID));
-                            if (frm.SnapShotTo(video, path, true))
+                            if (frm.SnapShotTo(video, ref path, true, false))
                             {
                                 ret = Recognize(path);
                             }
@@ -332,7 +445,14 @@ namespace Ralid.Park.UI
                     }
                     if (nResult == 0)
                     {
-                        result.CarPlate = PlateLicense(pRes[0].lic0, (short)pRes[0].lic1, (short)pRes[0].lic2, (short)pRes[0].lic3, (short)pRes[0].lic4);//调用车牌号码转换函数
+                        //以下是就版本的结构体转换车牌，使用该结构体转换得到的车牌，如果车牌后包括“港”、“警”等汉字的，转换后会变成“？”
+                        //result.CarPlate = PlateLicense(pRes[0].lic0, pRes[0].lic1, pRes[0].lic2, pRes[0].lic3);//调用车牌号码转换函数
+
+                        //车牌号码转换
+                        Encoding gbkencoding = Encoding.GetEncoding("gbk");
+                        byte[] unicodebuf = Encoding.Convert(gbkencoding, Encoding.Unicode, pRes[0].license);
+                        string carplate = Encoding.Unicode.GetString(unicodebuf, 0, unicodebuf.Length);
+                        result.CarPlate = carplate.Trim('\0');//去掉结尾的\0符
                     }
                 }
             }
@@ -361,9 +481,8 @@ namespace Ralid.Park.UI
                 {
                     c_defConfig = new TH_PlateIDCfg();
                 }
-                _Inited = true;
+                
                 if (_CarplateSetting == null) _CarplateSetting = WintoneCarplateSetting.DefaultSetting();
-
                 c_defConfig.nFastMemorySize = _CarplateSetting.FastMemorySize;
                 if (c_defConfig.nFastMemorySize > 0) c_defConfig.pFastMemory = Marshal.AllocHGlobal(c_defConfig.nFastMemorySize);   // stackalloc char[];// mChar;
                 c_defConfig.nMemorySize = _CarplateSetting.MemorySize;
@@ -375,7 +494,7 @@ namespace Ralid.Park.UI
                 c_defConfig.bVertCompress = (byte)(_CarplateSetting.VertCompress ? 1 : 0);
                 c_defConfig.bIsFieldImage = (byte)(_CarplateSetting.IsFieldImage ? 1 : 0);
                 c_defConfig.bOutputSingleFrame = (byte)(_CarplateSetting.OutputSingleFrame ? 1 : 0);
-                c_defConfig.bMovingImage = (byte)(_CarplateSetting.MovingImage ? 1 : 0);
+                //c_defConfig.bMovingImage = (byte)(_CarplateSetting.MovingImage ? 1 : 0);
                 c_defConfig.bLeanCorrection = (byte)(_CarplateSetting.LeanCorrection ? 1 : 0);		// 倾斜校正默认为关闭
                 c_defConfig.nImageFormat = _CarplateSetting.ImageFormat;
                 c_defConfig.bIsNight = (byte)(_CarplateSetting.IsNight ? 1 : 0);
@@ -383,7 +502,9 @@ namespace Ralid.Park.UI
                 ret = TH_InitPlateIDSDK(ref c_defConfig);
                 if (ret != 0)
                 {
-                    MessageBox.Show(Resources.Resource1.CarPlate_Fail);
+                    _Inited = false;
+                    //MessageBox.Show(Resources.Resource1.CarPlate_Fail);
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "型号W车牌识别初始化失败");
                     return;
                 }
                 ret = TH_SetProvinceOrder(_CarplateSetting.DefaultProvince, ref c_defConfig);
@@ -397,9 +518,11 @@ namespace Ralid.Park.UI
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.Embassy_On ? 12 : 13, ref c_defConfig);
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.Only_Location_On ? 14 : 15, ref c_defConfig);
                 ret = TH_SetEnabledPlateFormat(_CarplateSetting.TwoRowArmPolice_On ? 16 : 17, ref c_defConfig);
+                _Inited = true;
             }
             catch (Exception ex)
             {
+                _Inited = false;
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
@@ -411,13 +534,17 @@ namespace Ralid.Park.UI
             try
             {
                 GetFromInput();
-                Init();
                 string filePath = Application.StartupPath + @"\WintoneCarplateSetting.xml";
                 Type t = _CarplateSetting.GetType();
                 XmlSerializer xs = new XmlSerializer(t);
                 using (FileStream stream = new FileStream(filePath, FileMode.Create, FileAccess.Write))
                 {
                     xs.Serialize(stream, _CarplateSetting);
+                }
+                Init();
+                if (!_Inited)
+                {
+                    MessageBox.Show(Resources.Resource1.CarPlate_Fail);
                 }
                 MessageBox.Show(Resources.Resource1.CarPlate_SavePara);
             }

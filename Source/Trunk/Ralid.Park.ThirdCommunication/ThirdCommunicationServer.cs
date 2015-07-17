@@ -132,21 +132,27 @@ namespace Ralid.Park.ThirdCommunication
         #region 私有方法
         private void pad_CardEventReporting(object sender, ReportBase report)
         {
-            if (report is CardEventReport)
+            try
             {
-                CardEventReport cer = report as CardEventReport;
-                if (cer.EventStatus == CardEventStatus.Valid)
+                if (report is CardEventReport)
                 {
-                    lock (_Locker)
+                    CardEventReport cer = report as CardEventReport;
+                    if (cer.EventStatus == CardEventStatus.Valid)
                     {
-                        if (_SendingEvents.Count >= 1000)
+                        lock (_Locker)
                         {
-                            _SendingEvents.Clear();
+                            if (_SendingEvents.Count >= 1000)
+                            {
+                                _SendingEvents.Clear();
+                            }
+                            _SendingEvents.Push(cer);
+                            _AutoResetEvent.Set();
                         }
-                        _SendingEvents.Push(cer);
-                        _AutoResetEvent.Set();
                     }
                 }
+            }
+            catch 
+            {
             }
         }
 

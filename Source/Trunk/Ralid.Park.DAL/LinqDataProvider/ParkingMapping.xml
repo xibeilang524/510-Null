@@ -34,11 +34,15 @@
       <Column Name="CardCertificate" Member="CardCertificate" DbType="nvarchar(50) null" UpdateCheck="Never"/>
       <Column Name="OwnerName" Member="OwnerName"  DbType="nvarchar(50) NULL" UpdateCheck="Never"/>
       <Column Name="CarPlate" Member="CarPlate"  DbType="nvarchar(50)" UpdateCheck="Never"/>
+      <Column Name="Department" Member="Department"  DbType="nvarchar(100) NULL" UpdateCheck="Never"/>
       <Column Name="Memo" Member="Memo"  DbType="nvarchar(200)" UpdateCheck="Never"/>
       <Column Name="PaidDateTime" Member="PaidDateTime"  DbType="DateTime null" UpdateCheck="Never"/>
       <Column Name="ParkFee" Member="ParkFee"  DbType="Decimal(10,2) NOT NULL" UpdateCheck="Never"/>
       <Column Name="TotalPaidFee" Member="TotalPaidFee" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="FreeDateTime" Member="FreeDateTime"  DbType="DateTime null" UpdateCheck="Never"/>
+      <Column Name="PreferentialTime" Member="PreferentialTime"  DbType="DateTime null" UpdateCheck="Never"/>
       <Column Name="UpdateFlag" Member="UpdateFlag" DbType="bit null" UpdateCheck="Never"/>
+      <Column Name="ListType" Member="ListType"  DbType="tinyint not null" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.CardCharge" Member="Ralid.Park.BusinessModel.Model.CardChargeRecord">
@@ -74,6 +78,7 @@
       <Column Name="StationID" Member="StationID"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never" />
       <Column Name="Memo" Member="Memo" DbType="nvarchar(200)" UpdateCheck="Never"/>
       <Column Name="SettleDateTime" Member="SettleDateTime" DbType="datetime" UpdateCheck="Never"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyint null" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.CardDisableEnable" Member="Ralid.Park.BusinessModel.Model.CardDisableEnableRecord">
@@ -112,6 +117,8 @@
       <Column Name="OperatorNum" Member="OperatorID"  DbType="nvarchar(50) null" UpdateCheck="Never"/>
       <Column Name="StationID" Member="StationID" DbType="nvarchar(50) null" UpdateCheck="Never"/>
       <Column Name="SettleDateTime" Member="SettleDateTime" DbType="datetime" UpdateCheck="Never"/>
+      <Column Name="UpdateFlag" Member="UpdateFlag" DbType="bit null" UpdateCheck="Never"/>
+      <Column Name="Department" Member="Department" DbType="nvarchar(100) NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.CardPaymentRecord" Member="Ralid.Park.BusinessModel.Model.CardPaymentInfo">
@@ -141,6 +148,9 @@
       <Column Name="PaymentCode" Member="PaymentCode" DbType="tinyint not null" UpdateCheck="Never"/>
       <Column Name="OperatorCardID" Member="OperatorCardID" DbType="nvarchar(50) null" UpdateCheck="Never"/>
       <Column Name="UpdateFlag" Member="UpdateFlag" DbType="bit" UpdateCheck="Never"/>
+      <Column Name="CurrDiscountHour" Member="CurrDiscountHour" DbType="int null" UpdateCheck="Never"/>
+      <Column Name="OperatorDeptID" Member="OperatorDeptID" DbType="uniqueidentifier" UpdateCheck="Never"/>
+      <Column Name="StationDeptID" Member="StationDeptID" DbType="uniqueidentifier" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.CardLostRestore" Member="Ralid.Park.BusinessModel.Model.CardLostRestoreRecord">
@@ -235,6 +245,7 @@
       <Column Name="ParkID" Member="ParkID" DbType="Int NOT NULL" UpdateCheck="Never"/>
       <Column Name="TicketPrinterCOMPort" Member="TicketPrinterCOMPort"  DbType="tinyint not null" UpdateCheck="Never"/>
       <Column Name="TicketReaderCOMPort" Member="TicketReaderCOMPort" DbType="tinyint not null" UpdateCheck="Never"/>
+      <Column Name="TicketReaderCOMPort2" Member="TicketReaderCOMPort2" DbType="tinyint" UpdateCheck="Never"/>
       <Column Name="TempCard" Member="TempCard" DbType="int not null" UpdateCheck="Never"/>
       <Column Name="CarPlateIP" Member="CarPlateIP"  DbType="nvarchar(20)" UpdateCheck="Never"/>
       <Column Name="VideoID" Member="VideoID"  DbType="int" UpdateCheck="Never"/>
@@ -251,7 +262,19 @@
       <Column Name="OperatorPwd" Member="_Password"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" />
       <Column Name="RoleID" Member="RoleID" DbType="nvarchar(50) NOT NULL" CanBeNull="false" />
       <Column Name="OperatorNum" Member="OperatorNum"  DbType="Int" />
+      <Column Name="DeptID" Member="DeptID" DbType="uniqueidentifier" />
       <Association Name="FK_Operator_Role" Member="Role"  ThisKey="RoleID" OtherKey="RoleID" IsForeignKey="false" />
+      <Association Name="FK_Operator_Dept" Member="Dept"  ThisKey="DeptID" OtherKey="DeptID" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PREOperator" Member="Ralid.Park.BusinessModel.Model.PREOperatorInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.PREOperatorInfo">
+      <Column Name="OperatorID" Member="OperatorID" DbType="nvarchar(50) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="OperatorName" Member="OperatorName"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OperatorPwd" Member="_Password"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="RoleID" Member="RoleID" DbType="nvarchar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="OperatorNum" Member="OperatorNum"  DbType="Int" />
+      <Association Name="FK_PREOperator_PRERole" Member="Role"  ThisKey="RoleID" OtherKey="RoleID" IsForeignKey="false" />
     </Type>
   </Table>
   <Table Name="dbo.OperatorSettleLog" Member="Ralid.Park.BusinessModel.Model.OperatorSettleLog">
@@ -267,6 +290,8 @@
       <Column Name="CashOfDeposit" Member="CashOfDeposit" DbType="Decimal(10,2) not null"/>
       <Column Name="CashOfCardRecycle" Member="CashOfCardRecycle" DbType="Decimal(10,2) not null"/>
       <Column Name="CashOfCardLost" Member="CashOfCardLost" DbType="Decimal(10,2) not null"/>
+      <Column Name="CashOfPOS" Member="CashOfPOS" DbType="Decimal(10,2)"/>
+      <Column Name="CashOfRefund" Member="CashOfRefund" DbType="Decimal(10,2)"/>
       <Column Name="HandInCash" Member="HandInCash" DbType="Decimal(10,2)"/>
       <Column Name="NonCashParkFact" Member="NonCashParkFact"  DbType="Decimal(10,2) not null" />
       <Column Name="NonCashParkDiscount" Member="NonCashParkDiscount"  DbType="Decimal(10,2) not null" />
@@ -275,6 +300,9 @@
       <Column Name="NonCashOfCardLost" Member="NonCashOfCardLost" DbType="Decimal(10,2) not null"/>
       <Column Name="TempCardRecycle" Member="TempCardRecycle" DbType="int not null"/>
       <Column Name="OpenDoorCount" Member="OpenDoorCount" DbType="int not null"/>
+      <Column Name="DeptID" Member="DeptID" DbType="uniqueidentifier" />
+      <Column Name="HandInPOS" Member="HandInPOS" DbType="Decimal(10,2)"/>
+      <Association Name="FK_OperatorSettleLog_Dept" Member="Dept"  ThisKey="DeptID" OtherKey="DeptID" IsForeignKey="false" />
     </Type>
   </Table>
   <Table Name="dbo.Park" Member="Ralid.Park.BusinessModel.Model.ParkInfo">
@@ -296,6 +324,8 @@
       <Column Name="DeviceType" Member="DeviceType" DbType="tinyInt not null" UpdateCheck="Never"/>
       <Column Name="Options" Member="Options"  DbType="Int NOT NULL" UpdateCheck="Never" />
       <Column Name="Memo" Member="Memo" DbType="nvarchar(200)" UpdateCheck="Never"/>
+      <Column Name="GPS" Member="GPS" DbType="nvarchar(200)" UpdateCheck="Never"/>
+      <Column Name="ListMode" Member="ListMode"  DbType="tinyint not null" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.ParkCarPort" Member="Ralid.Park.BusinessModel.Model.ParkCarPort">
@@ -313,7 +343,72 @@
       <Column Name="RoleID" Member="RoleID"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
       <Column Name="Name" Member="Name"  DbType="nvarchar(50)" />
       <Column Name="Description" Member="Description"  DbType="nvarchar(200)" />
-      <Column Name="Permission" Member="Permission"  DbType="nvarchar(200)" />
+      <Column Name="Permission" Member="Permission"  DbType="nvarchar(4000)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Dept" Member="Ralid.Park.BusinessModel.Model.DeptInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.DeptInfo">
+      <Column Name="DeptID" Member="DeptID" DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="DeptName" Member="DeptName" DbType="nvarchar(50)" />
+      <Column Name="Descrption" Member="Descrption" DbType="nvarchar(200)" />
+      <Column Name="ParentID" Member="ParentID" DbType="uniqueidentifier" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PRERole" Member="Ralid.Park.BusinessModel.Model.PRERoleInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.PRERoleInfo">
+      <Column Name="RoleID" Member="RoleID"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="Name" Member="Name"  DbType="nvarchar(50)" />
+      <Column Name="Description" Member="Description"  DbType="nvarchar(200)" />
+      <Column Name="Permission" Member="Permission"  DbType="nvarchar(4000)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PREBusinesses" Member="Ralid.Park.BusinessModel.Model.PREBusinesses">
+    <Type Name="Ralid.Park.BusinessModel.Model.PREBusinesses">
+      <Column Name="BusinessesID" Member="BusinessesID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="BusinessesName" Member="BusinessesName"  DbType="nvarchar(50)" />
+      <Column Name="Description" Member="BusinessesDesc"  DbType="nvarchar(200)" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PREPreferential" Member="Ralid.Park.BusinessModel.Model.PREPreferentialInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.PREPreferentialInfo">
+      <Column Name="PreferentialID" Member="PreferentialID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50)" />
+      <Column Name="PreferentialHour" Member="PreferentialHour" DbType="int" />
+      <Column Name="BusinessesName1" Member="BusinessesName1" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney1" Member="BusinessesMoney1" DbType="decimal(10,2)" />
+      <Column Name="BusinessesName2" Member="BusinessesName2" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney2" Member="BusinessesMoney2" DbType="decimal(10,2)" />
+      <Column Name="BusinessesName3" Member="BusinessesName3" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney3" Member="BusinessesMoney3" DbType="decimal(10,2)" />
+      <Column Name="Notes" Member="Notes" DbType="nvarchar(2000)" />
+      <Column Name="WorkstationID" Member="WorkstationID" DbType="uniqueidentifier" />
+      <Column Name="WorkstationName" Member="WorkstationName" DbType="nvarchar(200)" />
+      <Column Name="OperatorID" Member="OperatorID" DbType="nvarchar(50)" />
+      <Column Name="PreferentialTime" Member="PreferentialTime" DbType="datetime" />
+      <Column Name="EntranceTime" Member="EntranceTime" DbType="datetime" />
+      <Association Name="FK_PREPreferential_PREOperator" Member="Operator"  ThisKey="OperatorID" OtherKey="OperatorID" IsForeignKey="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.PREPreferentialLog" Member="Ralid.Park.BusinessModel.Model.PREPreferentialLog">
+    <Type Name="Ralid.Park.BusinessModel.Model.PREPreferentialLog">
+      <Column Name="PreferentialID" Member="PreferentialID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50)" />
+      <Column Name="PreferentialHour" Member="PreferentialHour" DbType="int" />
+      <Column Name="BusinessesName1" Member="BusinessesName1" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney1" Member="BusinessesMoney1" DbType="decimal(10,2)" />
+      <Column Name="BusinessesName2" Member="BusinessesName2" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney2" Member="BusinessesMoney2" DbType="decimal(10,2)" />
+      <Column Name="BusinessesName3" Member="BusinessesName3" DbType="nvarchar(200)" />
+      <Column Name="BusinessesMoney3" Member="BusinessesMoney3" DbType="decimal(10,2)" />
+      <Column Name="Notes" Member="Notes" DbType="nvarchar(2000)" />
+      <Column Name="WorkstationID" Member="WorkstationID" DbType="uniqueidentifier" />
+      <Column Name="WorkstationName" Member="WorkstationName" DbType="nvarchar(200)" />
+      <Column Name="OperatorID" Member="OperatorID" DbType="nvarchar(50)" />
+      <Column Name="OperatorTime" Member="OperatorTime" DbType="datetime" />
+      <Column Name="EntranceTime" Member="EntranceTime" DbType="datetime" />
+      <Column Name="IsCancel" Member="IsCancel" DbType="bit" />
+      <Column Name="CancelReason" Member="CancelReason" DbType="nvarchar" />
+      <Association Name="FK_PREPreferentialLog_PREOperator" Member="Operator"  ThisKey="OperatorID" OtherKey="OperatorID" IsForeignKey="false" />
     </Type>
   </Table>
   <Table Name="SnapShot" Member="Ralid.Park.BusinessModel.Model.SnapShot">
@@ -346,6 +441,7 @@
       <Column Name="ConnectTimeOut" Member="ConnectTimeOut" DbType="int not null"/>
       <Column Name="IsForCarPlate" Member="IsForCarPlate" DbType="bit not null"/>
       <Column Name="EntranceID" Member="EntranceID" DbType="Int NOT NULL" />
+      <Column Name="VideoType" Member="VideoType" DbType="Int NULL" />
     </Type>
   </Table>
   <Table Name="dbo.WaitingCommand" Member="Ralid.Park.BusinessModel.Model.WaitingCommandInfo">
@@ -353,6 +449,8 @@
       <Column Name="EntranceID" Member="EntranceID"  DbType="int NOT NULL" IsPrimaryKey="true" />
       <Column Name="Command" Member="Command" DbType="tinyint not null" IsPrimaryKey="true"/>
       <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Status" Member="Status"  DbType="tinyint not null" UpdateCheck="Never" />
+      <Column Name="CardIDType" Member="CardIDType"  DbType="tinyint null" UpdateCheck="Never" />
     </Type>
   </Table>
   <Table Name="dbo.WorkStation" Member="Ralid.Park.BusinessModel.Model.WorkStationInfo">
@@ -366,6 +464,8 @@
       <Column Name="OnDutyOperator" Member="OnDutyOperator" DbType="nvarchar(50) null"/>
       <Column Name="OnDutyDateTime" Member="OnDutyDateTime" DbType="datetime null"/>
       <Column Name="Memo" Member="Memo"  DbType="nvarchar(200)" />
+      <Column Name="DeptID" Member="DeptID" DbType="uniqueidentifier" />
+      <Association Name="FK_WorkStation_Dept" Member="Dept"  ThisKey="DeptID" OtherKey="DeptID" IsForeignKey="false" />
     </Type>
   </Table>
   <Table Name="dbo.APM" Member="Ralid.Park.BusinessModel.Model.APM">
@@ -404,6 +504,119 @@
       <Column Name="Payment" Member="Payment" DbType="decimal(10,2) not null"/>
       <Column Name="Balance" Member="Balance" DbType="decimal(10,2) not null"/>
       <Column Name="Data" Member="Data" DbType="nvarchar(1000) not null" />
+    </Type>
+  </Table>
+  <Table Name="dbo.RoadWay" Member="Ralid.Park.BusinessModel.Model.RoadWayInfo">
+    <Type Name="Ralid.Park.BusinessModel.Model.RoadWayInfo">
+      <Column Name="RoadID" Member="RoadID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="RoadName" Member="RoadName"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="EntranceIDs" Member="_EntranceIDs" DbType="nvarchar(200)" UpdateCheck="Never"/>
+      <Column Name="Mode" Member="Mode" DbType="Int not null" UpdateCheck="Never"/>
+    </Type>
+  </Table>
+  <Table Name="dbo.FreeAuthorizationLog" Member="Ralid.Park.BusinessModel.Model.FreeAuthorizationLog">
+    <Type Name="Ralid.Park.BusinessModel.Model.FreeAuthorizationLog">
+      <Column Name="LogID" Member="LogID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="LogDateTime" Member="LogDateTime"  DbType="datetime NOT NULL"/>
+      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL"/>
+      <Column Name="BeginDateTime" Member="BeginDateTime"  DbType="datetime NOT NULL"/>
+      <Column Name="EndDateTime" Member="EndDateTime"  DbType="datetime NOT NULL"/>
+      <Column Name="InPark" Member="InPark" DbType="bit not null"/>
+      <Column Name="CheckOut" Member="CheckOut" DbType="bit not null"/>
+      <Column Name="OperatorID" Member="OperatorID" DbType="nvarchar(50) not null"/>
+      <Column Name="StationID" Member="StationID" DbType="nvarchar(50) null"/>
+      <Column Name="Memo" Member="Memo" DbType="nvarchar(200) null" />
+    </Type>
+  </Table>
+
+  <Table Name="dbo.APMCheckOutRecord" Member="Ralid.Park.BusinessModel.Model.APMCheckOutRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.APMCheckOutRecord">
+      <Column Name="ID" Member="ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="MID" Member="MID"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="CheckOutDateTime" Member="CheckOutDateTime"  DbType="datetime NOT NULL" UpdateCheck="Never"/>
+      <Column Name="LastDateTime" Member="LastDateTime"  DbType="datetime NOT NULL" UpdateCheck="Never"/>
+      <Column Name="LastBalance" Member="LastBalance" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="Amount" Member="Amount" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="ActualAmount" Member="ActualAmount" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="Balance" Member="TheBalance" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="PayMoney" Member="PayMoney" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="IncomeMoneny" Member="IncomeMoneny" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="Hundred" Member="Hundred" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="Fifty" Member="Fifty" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="Twenty" Member="Twenty" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="Ten" Member="Ten" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="Cash" Member="Cash" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="CashAmount" Member="CashAmount" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="Coin" Member="Coin" DbType="int not null" UpdateCheck="Never"/>
+      <Column Name="APMOperator" Member="APMOperator" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="Memo" Member="Memo" DbType="nvarchar(200) null" UpdateCheck="Never"/>
+    </Type>
+  </Table>
+
+  <Table Name="dbo.APMRefundRecord" Member="Ralid.Park.BusinessModel.Model.APMRefundRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.APMRefundRecord">
+      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="RefundDateTime" Member="RefundDateTime"  DbType="dateTime NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="MID" Member="MID"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="PaymentSerialNumber" Member="PaymentSerialNumber"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="OwnerName" Member="OwnerName" DbType="nvarchar(50) null" UpdateCheck="Never"/>
+      <Column Name="CardCertificate" Member="CardCertificate" DbType="nvarchar(50) null" UpdateCheck="Never"/>
+      <Column Name="CarPlate" Member="CarPlate" DbType="nvarchar(50) null" UpdateCheck="Never"/>
+      <Column Name="CardType" Member="_CardType" DbType="tinyint not null" UpdateCheck="Never"/>
+      <Column Name="EnterDateTime" Member="EnterDateTime" DbType="dateTime not null" UpdateCheck="Never"/>
+      <Column Name="PaidDateTime" Member="PaidDateTime" DbType="dateTime null" UpdateCheck="Never"/>
+      <Column Name="ParkFee" Member="ParkFee" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="TotalPaidFee" Member="TotalPaidFee" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="RefundMoney" Member="RefundMoney" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="OperatorID" Member="OperatorID" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="StationID" Member="StationID" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="Memo" Member="Memo" DbType="nvarchar(200) null" UpdateCheck="Never"/>
+      <Column Name="SettleDateTime" Member="SettleDateTime" DbType="dateTime null" UpdateCheck="Never"/>
+    </Type>
+  </Table>
+
+  <Table Name="dbo.ServerSwitchRecord" Member="Ralid.Park.BusinessModel.Model.ServerSwitchRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.ServerSwitchRecord">
+      <Column Name="RecordID" Member="RecordID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="ParkID" Member="ParkID"  DbType="Int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="SwitchDateTime" Member="SwitchDateTime"  DbType="datetime NOT NULL" UpdateCheck="Never"/>
+      <Column Name="LastDateTime" Member="LastDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>
+      <Column Name="LastBalance" Member="LastBalance" DbType="Decimal(10,2) not null" UpdateCheck="Never"/>
+      <Column Name="SwitchServerIP" Member="SwitchServerIP" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="LastIP" Member="LastIP" DbType="nvarchar(50) null" UpdateCheck="Never"/>
+      <Column Name="SwitchStatus" Member="SwitchStatus" DbType="tinyint not null" UpdateCheck="Never"/>
+      <Column Name="LastStatus" Member="LastStatus" DbType="tinyint not null" UpdateCheck="Never"/>
+      <Column Name="SMSStatus" Member="SMSStatus" DbType="tinyint not null" UpdateCheck="Never"/>
+      <Column Name="Operator" Member="Operator" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="StationID" Member="StationID" DbType="nvarchar(50) not null" UpdateCheck="Never"/>
+      <Column Name="Memo" Member="Memo" DbType="nvarchar(2000) null" UpdateCheck="Never"/>
+    </Type>
+  </Table>
+
+  <Table Name="dbo.SpeedingRecord" Member="Ralid.Park.BusinessModel.Model.SpeedingRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.SpeedingRecord">
+      <Column Name="SpeedingID" Member="SpeedingID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="SpeedingDateTime" Member="SpeedingDateTime"  DbType="datetime NOT NULL" />
+      <Column Name="PlateNumber" Member="PlateNumber"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Place" Member="Place"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Speed" Member="Speed"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Photo" Member="Photo"  DbType="nvarchar(1000) NOT NULL" />
+      <Column Name="Memo" Member="Memo"  DbType="nvarchar(200) NOT NULL" />
+    </Type>
+  </Table>
+
+  <Table Name="dbo.SpeedingLog" Member="Ralid.Park.BusinessModel.Model.SpeedingLog">
+    <Type Name="Ralid.Park.BusinessModel.Model.SpeedingLog">
+      <Column Name="SpeedingID" Member="SpeedingID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
+      <Column Name="SpeedingDateTime" Member="SpeedingDateTime"  DbType="datetime NOT NULL" />
+      <Column Name="PlateNumber" Member="PlateNumber"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Place" Member="Place"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Speed" Member="Speed"  DbType="nvarchar(50) NOT NULL" />
+      <Column Name="Photo" Member="Photo"  DbType="nvarchar(1000) NOT NULL" />
+      <Column Name="Memo" Member="Memo"  DbType="nvarchar(200) NOT NULL" />
+      <Column Name="DealOperatorID" Member="DealOperatorID"  DbType="nvarchar(50) NULL" />
+      <Column Name="DealDateTime" Member="DealDateTime"  DbType="datetime NULL" />
+      <Column Name="DealMemo" Member="DealMemo"  DbType="nvarchar(200) NULL" />
     </Type>
   </Table>
 </Database>

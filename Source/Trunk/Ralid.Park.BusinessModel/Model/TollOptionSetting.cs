@@ -23,6 +23,7 @@ namespace Ralid.Park.BusinessModel.Model
         }
         #endregion
 
+        #region 公共属性
         /// <summary>
         /// 小数点数量
         /// </summary>
@@ -49,6 +50,14 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public int FreeTimeAfterPay { get; set; }
 
+        /// <summary>
+        /// 获取或设置自定义的金额单位名称
+        /// </summary>
+        [DataMember]
+        public string MoneyUnit { get; set; }
+        #endregion
+
+        #region 公共方法
         /// <summary>
         /// 把系统最小金额单位的整形转换成单位为元表示的金额
         /// </summary>
@@ -80,6 +89,22 @@ namespace Ralid.Park.BusinessModel.Model
             else
                 return money.ToString("F1");
         }
+        /// <summary>
+        /// 获取系统金额单位名单
+        /// </summary>
+        /// <returns></returns>
+        public string GetMoneyUnit()
+        {
+            if (string.IsNullOrEmpty(MoneyUnit))
+            {
+                return Resouce.Resource1.Yuan;
+            }
+            else
+            {
+                return MoneyUnit;
+            }
+        }
+        #endregion
     }
 }
 

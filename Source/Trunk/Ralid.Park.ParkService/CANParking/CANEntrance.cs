@@ -150,11 +150,15 @@ namespace Ralid.Park.ParkService.CANParking
                         SetEntranceMode(ParkWorkMode.Fool);
                     }
                     if (report is CommandEchoReport) _CardValidResponseEvent.Set();
+                    if (report is CardReadReport) //读卡事件
+                    {
+                        if (!IsReadCardIntervalOver(DateTime.Now)) return; //如果未超过读卡间隔,不处理
+                    }
                     AddToReportPool(report);  //消息入队
                 }
-                _LastEventDatetime = DateTime.Now;
-                Status = EntranceStatus.Ok;
             }
+            _LastEventDatetime = DateTime.Now;
+            Status = EntranceStatus.Ok;
         }
 
         protected override void OnButtonClickedReporting(ButtonClickedReport report)
@@ -177,10 +181,26 @@ namespace Ralid.Park.ParkService.CANParking
         protected override void OnCardReadingReporting(CardReadReport report)
         {
             UserSetting us = UserSetting.Current;
+            if (!IsExitDevice)
+            {
+                //按了取卡按钮后，只接受临时卡读头上的刷卡事件,防止远距离卡对取卡进行扰
+                if (this.EntranceInfo.OnlyTempReaderAfterButtonClick && this.OptStatus == EntranceOperationStatus.CardTakeingOut && !IsTempReader(report.Reader)) return;
+            }
+            else
+            {
+                //防止无效远距离卡对出场进行干扰, 出口时如果收到刷卡事件时之前有未处理的卡片事件，且卡片事件由临时读头或远程读卡产生，
+                //则此时忽略非临时读头或远程读卡的事件 
+                if (report.Reader != EntranceReader.DeskTopReader && !IsTempReader(report.Reader))
+                {
+                    if (ProcessingEvent != null && (IsTempReader(ProcessingEvent.Reader) || ProcessingEvent.Reader == EntranceReader.DeskTopReader))
+                    {
+                        return;
+                    }
+                }
+            }
             if (!report.CannotIgnored)
             {
                 if (EntranceInfo.ReadAndTakeCardNeedCarSense && (OptStatus != EntranceOperationStatus.CarArrival && OptStatus != EntranceOperationStatus.CardTakeingOut)) return; //要求地感读卡时,如果没有车压地感,则不处理
-                if (!IsReadCardIntervalOver(DateTime.Now)) return; //如果未超过读卡间隔,不处理
             }
             base.OnCardReadingReporting(report);
         }
@@ -192,7 +212,7 @@ namespace Ralid.Park.ParkService.CANParking
                 for (int i = 0; i < 2; i++)
                 {
                     _CardValidResponseEvent.Reset();
-                    if (this.EntranceInfo.CardValidNeedResponse && !_CardValidResponseEvent.WaitOne(3000))
+                    if (!_CardValidResponseEvent.WaitOne(2000))
                     {
                         //如果启用了卡片有效需要下位机回复选项,则如果在2秒钟内没有收到回复，则再发送一次卡片有效指令。
                     }
@@ -486,26 +506,6 @@ namespace Ralid.Park.ParkService.CANParking
         /// <returns></returns>
         public override bool SaveCard(CardInfo card, ActionType action)
         {
-            return SaveCard(card, action, false);
-        }
-        /// <summary>
-        /// 上传多张卡片到控制板
-        /// </summary>
-        /// <param name="card"></param>
-        /// <param name="action"></param>
-        /// <returns></returns>
-        public override bool SaveCards(List<CardInfo> cards, ActionType action)
-        {
-            return SaveCards(cards, action, false);
-        }
-
-        /// <summary>
-        /// 上传卡片到控制板
-        /// </summary>
-        /// <param name="card"></param>
-        /// <returns></returns>
-        public override bool SaveCard(CardInfo card, ActionType action, bool savefail)
-        {
             if (Parent.WorkMode == ParkWorkMode.OffLine)
             {
                 if (action == ActionType.Add)
@@ -530,7 +530,7 @@ namespace Ralid.Park.ParkService.CANParking
         /// <param name="card"></param>
         /// <param name="action"></param>
         /// <returns></returns>
-        public override bool SaveCards(List<CardInfo> cards, ActionType action, bool savefail)
+        public override bool SaveCards(List<CardInfo> cards, ActionType action)
         {
             if (Parent.WorkMode == ParkWorkMode.OffLine)
             {
@@ -553,6 +553,61 @@ namespace Ralid.Park.ParkService.CANParking
             }
             return true;
         }
+
+        ///// <summary>
+        ///// 上传卡片到控制板
+        ///// </summary>
+        ///// <param name="card"></param>
+        ///// <returns></returns>
+        //public override bool SaveCard(CardInfo card, ActionType action, bool savefail)
+        //{
+        //    if (Parent.WorkMode == ParkWorkMode.OffLine)
+        //    {
+        //        if (action == ActionType.Add)
+        //        {
+        //            List<Packet> packets = _PacketCreater.CreateInsertCardPackets(Address, card);
+        //            foreach (Packet p in packets)
+        //            {
+        //                _CommComponent.SendPacket(p);
+        //            }
+        //        }
+        //        else if (action == ActionType.Upate)
+        //        {
+        //            Packet packet = _PacketCreater.CreateUpdateCardPacket(Address, card);
+        //            this._CommComponent.SendPacket(packet);
+        //        }
+        //    }
+        //    return true;
+        //}
+        ///// <summary>
+        ///// 上传多张卡片到控制板
+        ///// </summary>
+        ///// <param name="card"></param>
+        ///// <param name="action"></param>
+        ///// <returns></returns>
+        //public override bool SaveCards(List<CardInfo> cards, ActionType action, bool savefail)
+        //{
+        //    if (Parent.WorkMode == ParkWorkMode.OffLine)
+        //    {
+        //        foreach (CardInfo card in cards)
+        //        {
+        //            if (action == ActionType.Add)
+        //            {
+        //                List<Packet> packets = _PacketCreater.CreateInsertCardPackets(Address, card);
+        //                foreach (Packet p in packets)
+        //                {
+        //                    _CommComponent.SendPacket(p);
+        //                }
+        //            }
+        //            else if (action == ActionType.Upate)
+        //            {
+        //                Packet packet = _PacketCreater.CreateUpdateCardPacket(Address, card);
+        //                this._CommComponent.SendPacket(packet);
+        //            }
+        //        }
+        //    }
+        //    return true;
+        //}
 
         /// <summary>
         /// 删除卡片
@@ -586,8 +641,9 @@ namespace Ralid.Park.ParkService.CANParking
         {
             if (ProcessingEvent != null)
             {
-                for (int i = 0; i < 2; i++)
+                for (int i = 0; i < 3; i++)
                 {
+                    _CardValidResponseEvent.Reset();
                     if (AppSettings.CurrentSetting.Debug) FileLog.Log(EntranceName, "发送卡片有效指令 " + ProcessingEvent.CardID);
                     if (ProcessingEvent.IsExitEvent)
                     {
@@ -627,11 +683,9 @@ namespace Ralid.Park.ParkService.CANParking
                             }
                         }
                     }
-
-                    _CardValidResponseEvent.Reset();
-                    if (this.EntranceInfo.CardValidNeedResponse && !_CardValidResponseEvent.WaitOne(3000))
+                    if (!_CardValidResponseEvent.WaitOne(2000))
                     {
-                        //如果启用了卡片有效需要下位机回复选项,则如果在1秒钟内没有收到回复，则再发送一次卡片有效指令。
+                        //如果启用了卡片有效需要下位机回复选项,则如果在2秒钟内没有收到回复，则再发送一次卡片有效指令。
                     }
                     else
                     {
@@ -676,7 +730,7 @@ namespace Ralid.Park.ParkService.CANParking
         /// 向控制板发送卡片无效
         /// </summary>
         /// <param name="cardevent"></param>
-        public override void CardInValid(EventInvalidType invalidType,object param)
+        public override void CardInValid(string cardID, CardType cardType, byte hcardType, EntranceReader reader, EventInvalidType invalidType, object param)
         {
             if (AppSettings.CurrentSetting.Debug) FileLog.Log(EntranceName, "发送卡片无效" + CardInvalidDescripition.GetDescription(invalidType));
             Packet p = _PacketCreater.CreateCardInvalidPacket(Address, invalidType, param);
@@ -690,6 +744,14 @@ namespace Ralid.Park.ParkService.CANParking
         public override string GetRecognizedCarPlate()
         {
             return string.Empty;
+        }
+
+        /// <summary>
+        /// 播放语音，同时把播放内容显示到屏上
+        /// </summary>
+        /// <param name="msg"></param>
+        public override void SpeakAndShow(Hardware.DeviceVoiceAndMessage msg)
+        {
         }
 
         /// <summary>

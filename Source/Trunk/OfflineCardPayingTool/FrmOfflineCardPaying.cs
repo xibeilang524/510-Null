@@ -135,10 +135,9 @@ namespace OfflineCardPayingTool
             TariffSetting.Current = ssb.GetOrCreateSetting<TariffSetting>();
             CarTypeSetting.Current = ssb.GetOrCreateSetting<CarTypeSetting>();
             CustomCardTypeSetting.Current = ssb.GetOrCreateSetting<CustomCardTypeSetting>();
-            KeySetting.Current = ssb.GetOrCreateSetting<KeySetting>();            
-            
-            //添加读卡器读取扇区2和密钥
-            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+            KeySetting.Current = ssb.GetOrCreateSetting<KeySetting>();
+
+            GlobalVariables.SetCardReaderKeysetting();
             
         }
         private void InitWorkStation()
@@ -251,6 +250,11 @@ namespace OfflineCardPayingTool
             frm.IsLDB = true;
             frm.ShowDialog();
         }
+        private void mnu_LocalSettings_Click(object sender, EventArgs e)
+        {
+            FrmLocalSettings frm = new FrmLocalSettings();
+            frm.ShowDialog();
+        }
         private void mnu_Exit_Click(object sender, EventArgs e)
         {
             Environment.Exit(0);
@@ -264,6 +268,7 @@ namespace OfflineCardPayingTool
             ShowSingleForm(typeof(FrmUpdatePaymentRecord));
         }
         #endregion
+
 
 
 

@@ -118,48 +118,6 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 21</value>
-  </data>
-  <data name="mnu_SysManager.Text" xml:space="preserve">
-    <value>System</value>
-  </data>
-  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
-    <value>99, 21</value>
-  </data>
-  <data name="mnu_DBManager.Text" xml:space="preserve">
-    <value>Data Manage</value>
-  </data>
-  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 21</value>
-  </data>
-  <data name="mnu_Security.Text" xml:space="preserve">
-    <value>Security</value>
-  </data>
-  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
-    <value>66, 21</value>
-  </data>
-  <data name="Mnu_Reports.Text" xml:space="preserve">
-    <value>Reports</value>
-  </data>
-  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 21</value>
-  </data>
-  <data name="mnu_View.Text" xml:space="preserve">
-    <value>View</value>
-  </data>
-  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 21</value>
-  </data>
-  <data name="mnu_Language.Text" xml:space="preserve">
-    <value>Language</value>
-  </data>
-  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
-    <value>47, 21</value>
-  </data>
-  <data name="mnu_Help.Text" xml:space="preserve">
-    <value>Help</value>
-  </data>
   <data name="mnu_OperatorShift.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 22</value>
   </data>
@@ -177,6 +135,12 @@
   </data>
   <data name="mnu_LogOut.Text" xml:space="preserve">
     <value>LogOff</value>
+  </data>
+  <data name="mnu_SysManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 21</value>
+  </data>
+  <data name="mnu_SysManager.Text" xml:space="preserve">
+    <value>System</value>
   </data>
   <data name="mnu_Cards.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
@@ -196,6 +160,12 @@
   <data name="mnu_SystemOption.Text" xml:space="preserve">
     <value>Options</value>
   </data>
+  <data name="mnu_LocalSettings.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="mnu_LocalSettings.Text" xml:space="preserve">
+    <value>Local Settings</value>
+  </data>
   <data name="mnu_APM.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
@@ -214,14 +184,20 @@
   <data name="mnu_ZSTSetting.Text" xml:space="preserve">
     <value>ZST Setting</value>
   </data>
-  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
-  </data>
-  <data name="mnu_ExportParameter.Size" type="System.Drawing.Size, System.Drawing">
+  <data name="mnu_VehicleLedSetting.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
-  <data name="mnu_ExportParameter.Text" xml:space="preserve">
-    <value>Export Options</value>
+  <data name="mnu_VehicleLedSetting.Text" xml:space="preserve">
+    <value>Vehicle Screen Setting</value>
+  </data>
+  <data name="mnu_HostStandbySetting.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="mnu_HostStandbySetting.Text" xml:space="preserve">
+    <value>Server Switch Setting</value>
+  </data>
+  <data name="toolStripSeparator11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>215, 6</value>
   </data>
   <data name="mnu_SyncDataToStandby.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
@@ -229,14 +205,11 @@
   <data name="mnu_SyncDataToStandby.Text" xml:space="preserve">
     <value>Synchrodata To Standby</value>
   </data>
-  <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+  <data name="mnu_ExportParameter.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 22</value>
   </data>
-  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
-    <value>218, 22</value>
-  </data>
-  <data name="mnu_ImportRecord.Text" xml:space="preserve">
-    <value>Import Record</value>
+  <data name="mnu_ExportParameter.Text" xml:space="preserve">
+    <value>Export Options</value>
   </data>
   <data name="mnu_ImportCardPayments.Size" type="System.Drawing.Size, System.Drawing">
     <value>203, 22</value>
@@ -250,14 +223,29 @@
   <data name="mnu_ImportChargeRecords.Text" xml:space="preserve">
     <value>Card Charge Record</value>
   </data>
-  <data name="toolStripSeparator13.Size" type="System.Drawing.Size, System.Drawing">
-    <value>215, 6</value>
+  <data name="mnu_ImportRecord.Size" type="System.Drawing.Size, System.Drawing">
+    <value>164, 22</value>
+  </data>
+  <data name="mnu_ImportRecord.Text" xml:space="preserve">
+    <value>Import Record</value>
+  </data>
+  <data name="mnu_APMSyncTool.Size" type="System.Drawing.Size, System.Drawing">
+    <value>218, 22</value>
+  </data>
+  <data name="mnu_APMSyncTool.Text" xml:space="preserve">
+    <value>APM Sync</value>
   </data>
   <data name="mnu_PosSyncTool.Size" type="System.Drawing.Size, System.Drawing">
     <value>218, 22</value>
   </data>
   <data name="mnu_PosSyncTool.Text" xml:space="preserve">
     <value>POS Sync Tool</value>
+  </data>
+  <data name="mnu_DBManager.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 21</value>
+  </data>
+  <data name="mnu_DBManager.Text" xml:space="preserve">
+    <value>Data Manage</value>
   </data>
   <data name="mnu_Operator.Size" type="System.Drawing.Size, System.Drawing">
     <value>152, 22</value>
@@ -276,6 +264,18 @@
   </data>
   <data name="mnu_Roles.Text" xml:space="preserve">
     <value>Role</value>
+  </data>
+  <data name="mnu_Depts.Size" type="System.Drawing.Size, System.Drawing">
+    <value>152, 22</value>
+  </data>
+  <data name="mnu_Depts.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="mnu_Security.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 21</value>
+  </data>
+  <data name="mnu_Security.Text" xml:space="preserve">
+    <value>Security</value>
   </data>
   <data name="mnu_CardReleaseReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -303,6 +303,9 @@
   </data>
   <data name="mnu_CardReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
+  </data>
+  <data name="mnu_CardReport.Text" xml:space="preserve">
+    <value>Card Report</value>
   </data>
   <data name="mnu_CardChargeReport.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -373,11 +376,35 @@
   <data name="mnu_OperatorShiftStatistics.Text" xml:space="preserve">
     <value>Operator Settle Report</value>
   </data>
+  <data name="toolStripSeparator14.Size" type="System.Drawing.Size, System.Drawing">
+    <value>239, 6</value>
+  </data>
+  <data name="mnu_PayOperationLogReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
+    <value>APMLog Report</value>
+  </data>
+  <data name="mnu_APMCheckOutRecordRport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_APMCheckOutRecordRport.Text" xml:space="preserve">
+    <value>APM CheckOut Report</value>
+  </data>
+  <data name="mnu_APMRefundRecordRport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_APMRefundRecordRport.Text" xml:space="preserve">
+    <value>APM Refund Report</value>
+  </data>
   <data name="toolStripSeparator10.Size" type="System.Drawing.Size, System.Drawing">
     <value>239, 6</value>
   </data>
   <data name="mnu_ReportDetail.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
+  </data>
+  <data name="mnu_ReportDetail.Text" xml:space="preserve">
+    <value>CarTypes Report</value>
   </data>
   <data name="mnu_CarFlowStatistics.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
@@ -391,17 +418,41 @@
   <data name="mnu_Alarm.Text" xml:space="preserve">
     <value>Alarm Report</value>
   </data>
-  <data name="mnu_PayOperationLogReport.Size" type="System.Drawing.Size, System.Drawing">
-    <value>242, 22</value>
-  </data>
-  <data name="mnu_PayOperationLogReport.Text" xml:space="preserve">
-    <value>APMLog Report</value>
-  </data>
   <data name="mnu_YCTLog.Size" type="System.Drawing.Size, System.Drawing">
     <value>242, 22</value>
   </data>
   <data name="mnu_YCTLog.Text" xml:space="preserve">
     <value>YCTLog Report</value>
+  </data>
+  <data name="mnu_WaitingCommand.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_WaitingCommand.Text" xml:space="preserve">
+    <value>WaitingCommand Report</value>
+  </data>
+  <data name="mnu_FreeAuthorizationLog.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_FreeAuthorizationLog.Text" xml:space="preserve">
+    <value>FreeLog Report</value>
+  </data>
+  <data name="mnu_SpeedingReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_SpeedingReport.Text" xml:space="preserve">
+    <value>Speeding Report</value>
+  </data>
+  <data name="mnu_ServerSwitchReport.Size" type="System.Drawing.Size, System.Drawing">
+    <value>242, 22</value>
+  </data>
+  <data name="mnu_ServerSwitchReport.Text" xml:space="preserve">
+    <value>Server Switch Report</value>
+  </data>
+  <data name="Mnu_Reports.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 21</value>
+  </data>
+  <data name="Mnu_Reports.Text" xml:space="preserve">
+    <value>Reports</value>
   </data>
   <data name="mnu_Monitor.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -427,6 +478,30 @@
   <data name="mnu_HotelAuthorization.Text" xml:space="preserve">
     <value>Free Authorization</value>
   </data>
+  <data name="mnu_CardOut.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="mnu_CardOut.Text" xml:space="preserve">
+    <value>Card Out</value>
+  </data>
+  <data name="mnu_APMRefund.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="mnu_APMRefund.Text" xml:space="preserve">
+    <value>APM Refund</value>
+  </data>
+  <data name="mnu_NoCardLost.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="mnu_NoCardLost.Text" xml:space="preserve">
+    <value>No Card Lost</value>
+  </data>
+  <data name="mnu_SpeedingProcess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>214, 22</value>
+  </data>
+  <data name="mnu_SpeedingProcess.Text" xml:space="preserve">
+    <value>Speeding Process</value>
+  </data>
   <data name="mnu_SnapShoter.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
   </data>
@@ -435,6 +510,18 @@
   </data>
   <data name="toolStripSeparator6.Size" type="System.Drawing.Size, System.Drawing">
     <value>211, 6</value>
+  </data>
+  <data name="mnu_CarplateRegW.Text" xml:space="preserve">
+    <value>Type W</value>
+  </data>
+  <data name="mnu_CarplateRegV.Text" xml:space="preserve">
+    <value>Type V</value>
+  </data>
+  <data name="mnu_CarplateRegX.Text" xml:space="preserve">
+    <value>Type X</value>
+  </data>
+  <data name="mnu_CarplateRegD.Text" xml:space="preserve">
+    <value>Type D</value>
   </data>
   <data name="mnu_CarplateReg.Size" type="System.Drawing.Size, System.Drawing">
     <value>214, 22</value>
@@ -454,6 +541,12 @@
   <data name="mnu_CarPlateTestForVideo.Text" xml:space="preserve">
     <value>CarPlate Test for Video</value>
   </data>
+  <data name="mnu_View.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 21</value>
+  </data>
+  <data name="mnu_View.Text" xml:space="preserve">
+    <value>View</value>
+  </data>
   <data name="mnu_SimpleChinese.Size" type="System.Drawing.Size, System.Drawing">
     <value>187, 22</value>
   </data>
@@ -472,20 +565,29 @@
   <data name="mnu_English.Text" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="mnu_Language.Size" type="System.Drawing.Size, System.Drawing">
+    <value>77, 21</value>
+  </data>
+  <data name="mnu_Language.Text" xml:space="preserve">
+    <value>Language</value>
+  </data>
   <data name="mnu_Manual.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="mnu_Manual.Text" xml:space="preserve">
     <value>Manual</value>
   </data>
   <data name="mnu_Aboat.Size" type="System.Drawing.Size, System.Drawing">
-    <value>120, 22</value>
+    <value>152, 22</value>
   </data>
   <data name="mnu_Aboat.Text" xml:space="preserve">
     <value>Aboat...</value>
   </data>
-  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>147, 114</value>
+  <data name="mnu_Help.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 21</value>
+  </data>
+  <data name="mnu_Help.Text" xml:space="preserve">
+    <value>Help</value>
   </data>
   <data name="mnu_VideoSyncTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>146, 22</value>
@@ -516,6 +618,9 @@
   </data>
   <data name="mnu_VideoProperty.Text" xml:space="preserve">
     <value>Property</value>
+  </data>
+  <data name="videoContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>147, 114</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -589,9 +694,6 @@
   <data name="btn_FreeAuthorization.Text" xml:space="preserve">
     <value>Free</value>
   </data>
-  <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>238, 158</value>
-  </data>
   <data name="mnu_OutdoorLedVacant.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 22</value>
   </data>
@@ -616,6 +718,12 @@
   <data name="mnu_AddDivision.Text" xml:space="preserve">
     <value>Add Division</value>
   </data>
+  <data name="mnu_SetParkTariff.Size" type="System.Drawing.Size, System.Drawing">
+    <value>237, 22</value>
+  </data>
+  <data name="mnu_SetParkTariff.Text" xml:space="preserve">
+    <value>Set Park Tariff</value>
+  </data>
   <data name="mnu_DeletePark.Size" type="System.Drawing.Size, System.Drawing">
     <value>237, 22</value>
   </data>
@@ -634,68 +742,77 @@
   <data name="mnu_ParkProperty.Text" xml:space="preserve">
     <value>Property</value>
   </data>
-  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>184, 214</value>
+  <data name="parkContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>238, 202</value>
   </data>
   <data name="mnu_AddVideo.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_AddVideo.Text" xml:space="preserve">
     <value>Add Video</value>
   </data>
   <data name="mnu_Reset.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_Reset.Text" xml:space="preserve">
     <value>Device Reset</value>
   </data>
   <data name="mnu_TempCardSetting.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_TempCardSetting.Text" xml:space="preserve">
     <value>Set TempCard</value>
   </data>
   <data name="toolStripSeparator8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>223, 6</value>
   </data>
   <data name="mnu_RemoteReadCard.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_RemoteReadCard.Text" xml:space="preserve">
     <value>Remote ReadCard</value>
   </data>
+  <data name="mnu_CarPlateManualProccess.Size" type="System.Drawing.Size, System.Drawing">
+    <value>226, 22</value>
+  </data>
+  <data name="mnu_CarPlateManualProccess.Text" xml:space="preserve">
+    <value>CarPlate Manual Proccess</value>
+  </data>
   <data name="mnu_Up.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_Up.Text" xml:space="preserve">
     <value>GateUp</value>
   </data>
   <data name="mnu_Down.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_Down.Text" xml:space="preserve">
     <value>Gate Down</value>
   </data>
   <data name="toolStripSeparator9.Size" type="System.Drawing.Size, System.Drawing">
-    <value>180, 6</value>
+    <value>223, 6</value>
   </data>
   <data name="mnu_DeleteEntrance.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_DeleteEntrance.Text" xml:space="preserve">
     <value>Delete</value>
   </data>
   <data name="mnu_EntranceRename.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="mnu_EntranceRename.Text" xml:space="preserve">
     <value>Rename</value>
   </data>
   <data name="btn_EntranceProperty.Size" type="System.Drawing.Size, System.Drawing">
-    <value>183, 22</value>
+    <value>226, 22</value>
   </data>
   <data name="btn_EntranceProperty.Text" xml:space="preserve">
     <value>Property</value>
+  </data>
+  <data name="entranceContextMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>227, 236</value>
   </data>
   <data name="mnu_Fresh.Text" xml:space="preserve">
     <value>Refresh</value>

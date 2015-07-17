@@ -56,26 +56,28 @@ namespace Ralid.Park.UI
         public event CardEventProcessedHandler CardEventProcessed;
         #endregion
 
-        #region 事件处理
-
-        private void ShowFrmCarPlateFailDetail(CardEventReport info)
+        #region 私有方法
+        private void ShowDetail(string cardID,string enterCarPlate, string exitCarPlate, DateTime? enterDateTime, DateTime? exitDateTime)
         {
+            this.txtCardID.Text = cardID;
+            this.lblEnterCarPlate.Text = enterCarPlate;
+            this.lblExitCarPlate.Text = exitCarPlate;
+            this.lblEnterDateTime.Text = string.Empty;
+            this.lblExitDateTime.Text = string.Empty;
 
-            this.txtCardID.Text = info.CardID;
-            this.lblEnterCarPlate.Text = info.LastCarPlate;
-            this.lblExitCarPlate.Text = info.CarPlate;
-            if (info.LastDateTime != null)
+            if (enterDateTime != null)
             {
-                this.lblEnterDateTime.Text = info.LastDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+                this.lblEnterDateTime.Text = enterDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
             }
-            this.lblExitDateTime.Text = info.EventDateTime.ToString("yyyy-MM-dd HH:mm:ss");            
-
-            SnapShotBll ssbll=new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
-
-            this.picIn.Clear();
-            if (info.LastDateTime != null)
+            if (exitDateTime != null)
             {
-                List<SnapShot> imgs = ssbll.GetSnapShots(info.LastDateTime.Value,info.CardID);
+                this.lblExitDateTime.Text = exitDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            }
+            SnapShotBll ssbll = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
+            this.picIn.Clear();
+            if (enterDateTime != null)
+            {
+                List<SnapShot> imgs = ssbll.GetSnapShots(enterDateTime.Value, cardID);
                 if (imgs != null && imgs.Count > 0)
                 {
                     this.picIn.ShowSnapShots(imgs);
@@ -83,13 +85,60 @@ namespace Ralid.Park.UI
             }
 
             this.picOut.Clear();
-            if (info.EventDateTime != null)
+            if (exitDateTime != null)
             {
-                List<SnapShot> outImgs = ssbll.GetSnapShots(info.EventDateTime, info.CardID);
+                List<SnapShot> outImgs = ssbll.GetSnapShots(exitDateTime.Value, cardID);
                 if (outImgs != null && outImgs.Count > 0)
                 {
                     this.picOut.ShowSnapShots(outImgs);
                 }
+            }
+        }
+        #endregion
+
+        #region 事件处理
+
+        private void ShowFrmCarPlateFailDetail(CardEventReport info)
+        {
+
+            //this.txtCardID.Text = info.CardID;
+            //this.lblEnterCarPlate.Text = info.LastCarPlate;
+            //this.lblExitCarPlate.Text = info.CarPlate;
+            //if (info.LastDateTime != null)
+            //{
+            //    this.lblEnterDateTime.Text = info.LastDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
+            //}
+            //this.lblExitDateTime.Text = info.EventDateTime.ToString("yyyy-MM-dd HH:mm:ss");            
+
+            //SnapShotBll ssbll=new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
+
+            //this.picIn.Clear();
+            //if (info.LastDateTime != null)
+            //{
+            //    List<SnapShot> imgs = ssbll.GetSnapShots(info.LastDateTime.Value,info.CardID);
+            //    if (imgs != null && imgs.Count > 0)
+            //    {
+            //        this.picIn.ShowSnapShots(imgs);
+            //    }
+            //}
+
+            //this.picOut.Clear();
+            //if (info.EventDateTime != null)
+            //{
+            //    List<SnapShot> outImgs = ssbll.GetSnapShots(info.EventDateTime, info.CardID);
+            //    if (outImgs != null && outImgs.Count > 0)
+            //    {
+            //        this.picOut.ShowSnapShots(outImgs);
+            //    }
+            //}
+
+            if (info.IsExitEvent)
+            {
+                ShowDetail(info.CardID, info.LastCarPlate, info.CarPlate, info.LastDateTime, info.EventDateTime);
+            }
+            else
+            {
+                ShowDetail(info.CardID, info.CarPlate, string.Empty, info.EventDateTime, null);
             }
             ucVideoes.ShowVideoes(ParkBuffer.Current.GetEntrance(info.EntranceID).VideoSources);
         }

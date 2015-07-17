@@ -117,25 +117,31 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="&gt;&gt;comWorkStation.Type" xml:space="preserve">
-    <value>Ralid.Park.UserControls.StationIDCombobox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="txtGPS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 125</value>
+  </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>59, 12</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>进出凭证:</value>
   </data>
   <data name="&gt;&gt;label6.Name" xml:space="preserve">
     <value>label6</value>
   </data>
   <data name="btnOk.Location" type="System.Drawing.Point, System.Drawing">
-    <value>290, 211</value>
+    <value>290, 271</value>
   </data>
   <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="label6.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>3</value>
+  <data name="label11.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="chkIsNested.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 238</value>
   </data>
   <data name="&gt;&gt;txtParkFullText.Parent" xml:space="preserve">
     <value>$this</value>
@@ -153,6 +159,9 @@
   <data name="txtVacant.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
   <data name="label5.TabIndex" type="System.Int32, mscorlib">
     <value>23</value>
   </data>
@@ -160,7 +169,7 @@
     <value>$this</value>
   </data>
   <data name="&gt;&gt;txtParkFullText.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="txtParkFullText.Text" xml:space="preserve">
     <value>车位已满!</value>
@@ -171,14 +180,11 @@
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>Ralid.Park.UI.FrmDetailBase, Ralid.Park.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
   </data>
-  <data name="chkIsNested.Size" type="System.Drawing.Size, System.Drawing">
-    <value>84, 16</value>
-  </data>
   <data name="&gt;&gt;label1.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>281, 156</value>
+    <value>281, 184</value>
   </data>
   <data name="&gt;&gt;label6.Parent" xml:space="preserve">
     <value>$this</value>
@@ -187,7 +193,7 @@
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="txtParkName.Size" type="System.Drawing.Size, System.Drawing">
-    <value>174, 21</value>
+    <value>430, 21</value>
   </data>
   <data name="&gt;&gt;txtVacant.Name" xml:space="preserve">
     <value>txtVacant</value>
@@ -195,11 +201,14 @@
   <data name="comWorkStation.TabIndex" type="System.Int32, mscorlib">
     <value>5</value>
   </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 12</value>
+  </data>
   <data name="&gt;&gt;label3.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="txtVacantText.Text" xml:space="preserve">
-    <value>空车位:</value>
+  <data name="&gt;&gt;txtParkName.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="txtParkFullText.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 64</value>
@@ -210,11 +219,11 @@
   <data name="txtVacantText.TabIndex" type="System.Int32, mscorlib">
     <value>4</value>
   </data>
-  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
-  </data>
   <data name="&gt;&gt;btnOk.Type" xml:space="preserve">
     <value>System.Windows.Forms.Button, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="label10.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
   </data>
   <data name="&gt;&gt;txtVacantText.Name" xml:space="preserve">
     <value>txtVacantText</value>
@@ -222,20 +231,35 @@
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
+  <data name="&gt;&gt;label10.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="comDeviceType.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 20</value>
   </data>
   <data name="&gt;&gt;txtParkName.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>23</value>
+  </data>
+  <data name="&gt;&gt;label10.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="comListMode.TabIndex" type="System.Int32, mscorlib">
+    <value>30</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>25</value>
+  </data>
+  <data name="&gt;&gt;label10.Name" xml:space="preserve">
+    <value>label10</value>
   </data>
   <data name="&gt;&gt;label1.Name" xml:space="preserve">
     <value>label1</value>
   </data>
   <data name="&gt;&gt;comWorkStation.Name" xml:space="preserve">
     <value>comWorkStation</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
   </data>
   <data name="label7.TabIndex" type="System.Int32, mscorlib">
     <value>26</value>
@@ -246,8 +270,14 @@
   <data name="label9.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
   </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>32, 128</value>
+  </data>
+  <data name="&gt;&gt;label11.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
   <data name="btnClose.Location" type="System.Drawing.Point, System.Drawing">
-    <value>398, 211</value>
+    <value>398, 271</value>
   </data>
   <data name="&gt;&gt;txtVacantText.Parent" xml:space="preserve">
     <value>$this</value>
@@ -255,14 +285,17 @@
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
   </data>
-  <data name="txtParkName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 10</value>
+  <data name="comDeviceType.TabIndex" type="System.Int32, mscorlib">
+    <value>7</value>
   </data>
-  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>8</value>
+  <data name="label10.Text" xml:space="preserve">
+    <value>GPS坐标:</value>
   </data>
-  <data name="&gt;&gt;comWorkMode.Name" xml:space="preserve">
-    <value>comWorkMode</value>
+  <data name="&gt;&gt;label11.Name" xml:space="preserve">
+    <value>label11</value>
+  </data>
+  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 184</value>
   </data>
   <data name="label5.Text" xml:space="preserve">
     <value>通讯服务器:</value>
@@ -276,41 +309,47 @@
   <data name="&gt;&gt;comDeviceType.Type" xml:space="preserve">
     <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;label7.Name" xml:space="preserve">
-    <value>label7</value>
-  </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label3.TabIndex" type="System.Int32, mscorlib">
     <value>16</value>
   </data>
+  <data name="txtParkFullText.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
   <data name="comPort.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 20</value>
+  </data>
+  <data name="&gt;&gt;comWorkMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;label5.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="&gt;&gt;comPort.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
-    <value>$this</value>
+    <value>Ralid.GeneralLibrary.WinformControl.ComPortComboBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="groupBox1.TabIndex" type="System.Int32, mscorlib">
     <value>20</value>
+  </data>
+  <data name="label10.TabIndex" type="System.Int32, mscorlib">
+    <value>24</value>
   </data>
   <data name="&gt;&gt;btnOk.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="comWorkMode.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 152</value>
+    <value>343, 180</value>
   </data>
   <data name="&gt;&gt;chkIsNested.Type" xml:space="preserve">
     <value>System.Windows.Forms.CheckBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
+  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
   <data name="&gt;&gt;comWorkStation.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>15</value>
   </data>
   <data name="comWorkMode.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 20</value>
@@ -318,14 +357,14 @@
   <data name="label8.Text" xml:space="preserve">
     <value>硬件类型:</value>
   </data>
-  <data name="chkIsNested.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 178</value>
+  <data name="txtGPS.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
   </data>
   <data name="groupBox1.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Bottom, Left</value>
   </data>
-  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>2</value>
+  <data name="&gt;&gt;label5.Name" xml:space="preserve">
+    <value>label5</value>
   </data>
   <data name="&gt;&gt;groupBox1.Name" xml:space="preserve">
     <value>groupBox1</value>
@@ -339,8 +378,8 @@
   <data name="txtParkFullText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="&gt;&gt;txtParkFullText.ZOrder" xml:space="preserve">
-    <value>4</value>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>269, 39</value>
   </data>
   <data name="txtVacant.Text" xml:space="preserve">
     <value>0</value>
@@ -348,11 +387,14 @@
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 14</value>
   </data>
-  <data name="&gt;&gt;label5.Name" xml:space="preserve">
-    <value>label5</value>
+  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
+    <value>6, 12</value>
   </data>
-  <data name="txtParkFullText.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
+  <data name="&gt;&gt;txtGPS.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
+  <data name="&gt;&gt;comWorkMode.Name" xml:space="preserve">
+    <value>comWorkMode</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmParkDetail</value>
@@ -360,29 +402,38 @@
   <data name="&gt;&gt;label4.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>25, 156</value>
+  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
+    <value>22</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>13, 158</value>
   </data>
   <data name="comWorkStation.Size" type="System.Drawing.Size, System.Drawing">
     <value>174, 20</value>
   </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>停车场名:</value>
+  </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>19</value>
   </data>
   <data name="&gt;&gt;groupBox1.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>17</value>
   </data>
   <data name="&gt;&gt;label7.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="comWorkMode.TabIndex" type="System.Int32, mscorlib">
-    <value>8</value>
+  <data name="txtVacantText.Size" type="System.Drawing.Size, System.Drawing">
+    <value>430, 21</value>
   </data>
-  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
-    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="chkIsNested.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>24</value>
+  </data>
+  <data name="&gt;&gt;comWorkMode.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;groupBox1.Parent" xml:space="preserve">
     <value>$this</value>
@@ -393,23 +444,23 @@
   <data name="&gt;&gt;btnOk.Name" xml:space="preserve">
     <value>btnOk</value>
   </data>
-  <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
-    <value>17</value>
+  <data name="&gt;&gt;txtGPS.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="&gt;&gt;txtParkName.Name" xml:space="preserve">
-    <value>txtParkName</value>
+  <data name="&gt;&gt;comWorkStation.Type" xml:space="preserve">
+    <value>Ralid.Park.UserControls.StationIDCombobox, Ralid.Park.UserControls, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;btnClose.ZOrder" xml:space="preserve">
+    <value>21</value>
   </data>
   <data name="txtVacantText.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
   </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>13, 130</value>
-  </data>
-  <data name="&gt;&gt;txtParkName.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
+    <value>10</value>
   </data>
   <data name="&gt;&gt;txtMaxPortCount.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>20</value>
   </data>
   <data name="&gt;&gt;label2.Parent" xml:space="preserve">
     <value>$this</value>
@@ -420,17 +471,26 @@
   <data name="&gt;&gt;label9.Name" xml:space="preserve">
     <value>label9</value>
   </data>
+  <data name="&gt;&gt;label8.Name" xml:space="preserve">
+    <value>label8</value>
+  </data>
   <data name="&gt;&gt;txtVacant.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;comListMode.Name" xml:space="preserve">
+    <value>comListMode</value>
   </data>
   <data name="comDeviceType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 152</value>
+    <value>87, 180</value>
+  </data>
+  <data name="txtVacantText.Text" xml:space="preserve">
+    <value>空车位:</value>
   </data>
   <data name="txtParkFullText.Size" type="System.Drawing.Size, System.Drawing">
     <value>430, 21</value>
   </data>
   <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>-20, 200</value>
+    <value>-20, 260</value>
   </data>
   <data name="txtParkName.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>On</value>
@@ -441,11 +501,14 @@
   <data name="&gt;&gt;comPort.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
+  <data name="txtParkName.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 10</value>
   </data>
   <data name="&gt;&gt;txtVacantText.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="comListMode.Size" type="System.Drawing.Size, System.Drawing">
+    <value>174, 20</value>
   </data>
   <data name="txtVacant.Location" type="System.Drawing.Point, System.Drawing">
     <value>343, 35</value>
@@ -456,32 +519,38 @@
   <data name="&gt;&gt;label4.Name" xml:space="preserve">
     <value>label4</value>
   </data>
-  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
-    <value>btnClose</value>
+  <data name="&gt;&gt;txtParkFullText.Name" xml:space="preserve">
+    <value>txtParkFullText</value>
   </data>
-  <data name="&gt;&gt;btnOk.ZOrder" xml:space="preserve">
-    <value>18</value>
+  <data name="txtGPS.Size" type="System.Drawing.Size, System.Drawing">
+    <value>430, 21</value>
+  </data>
+  <data name="txtParkName.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
   </data>
   <data name="label7.Text" xml:space="preserve">
     <value>通信串口号:</value>
   </data>
-  <data name="label9.Text" xml:space="preserve">
-    <value>工作模式:</value>
+  <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
+    <value>5</value>
   </data>
   <data name="&gt;&gt;txtMaxPortCount.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
   <data name="comWorkStation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>87, 126</value>
+    <value>87, 154</value>
   </data>
-  <data name="txtParkName.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
+  <data name="comListMode.Location" type="System.Drawing.Point, System.Drawing">
+    <value>87, 208</value>
   </data>
   <data name="label1.TabIndex" type="System.Int32, mscorlib">
     <value>2</value>
   </data>
-  <data name="comDeviceType.TabIndex" type="System.Int32, mscorlib">
-    <value>7</value>
+  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
+    <value>13</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>25, 69</value>
@@ -492,17 +561,20 @@
   <data name="label6.TabIndex" type="System.Int32, mscorlib">
     <value>24</value>
   </data>
-  <data name="&gt;&gt;txtVacant.ZOrder" xml:space="preserve">
-    <value>14</value>
-  </data>
   <data name="&gt;&gt;txtParkName.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="label10.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;txtVacantText.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>12</value>
+  </data>
+  <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
+    <value>4</value>
   </data>
   <data name="comPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>343, 127</value>
+    <value>343, 154</value>
   </data>
   <data name="txtParkName.MaxLength" type="System.Int32, mscorlib">
     <value>30</value>
@@ -513,47 +585,53 @@
   <data name="&gt;&gt;label7.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
+    <value>1</value>
+  </data>
   <data name="&gt;&gt;label6.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="&gt;&gt;comWorkMode.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  <data name="&gt;&gt;label1.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
-  <data name="$this.AutoScaleDimensions" type="System.Drawing.SizeF, System.Drawing">
-    <value>6, 12</value>
+  <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="txtGPS.MaxLength" type="System.Int32, mscorlib">
+    <value>200</value>
   </data>
   <data name="&gt;&gt;label3.Name" xml:space="preserve">
     <value>label3</value>
   </data>
+  <data name="label11.TabIndex" type="System.Int32, mscorlib">
+    <value>29</value>
+  </data>
   <data name="label2.Text" xml:space="preserve">
     <value>车位总数:</value>
-  </data>
-  <data name="$this.Text" xml:space="preserve">
-    <value />
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
-    <value>10</value>
+  <data name="txtGPS.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
   </data>
   <data name="&gt;&gt;txtMaxPortCount.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2013.524, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.IntergerTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 131</value>
+    <value>269, 158</value>
   </data>
-  <data name="&gt;&gt;label8.Name" xml:space="preserve">
-    <value>label8</value>
+  <data name="&gt;&gt;txtParkName.Name" xml:space="preserve">
+    <value>txtParkName</value>
   </data>
   <data name="label3.Text" xml:space="preserve">
     <value>满位字符:</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>16</value>
   </data>
-  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 12</value>
+  <data name="&gt;&gt;btnClose.Name" xml:space="preserve">
+    <value>btnClose</value>
   </data>
   <data name="chkIsNested.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -561,8 +639,14 @@
   <data name="txtParkFullText.MaxLength" type="System.Int32, mscorlib">
     <value>63</value>
   </data>
+  <data name="&gt;&gt;txtParkFullText.ZOrder" xml:space="preserve">
+    <value>6</value>
+  </data>
   <data name="txtVacantText.Location" type="System.Drawing.Point, System.Drawing">
     <value>87, 95</value>
+  </data>
+  <data name="&gt;&gt;comListMode.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ComboBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;btnClose.Parent" xml:space="preserve">
     <value>$this</value>
@@ -570,23 +654,23 @@
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
-  <data name="chkIsNested.TabIndex" type="System.Int32, mscorlib">
-    <value>9</value>
+  <data name="comWorkMode.TabIndex" type="System.Int32, mscorlib">
+    <value>8</value>
   </data>
-  <data name="label1.Text" xml:space="preserve">
-    <value>停车场名:</value>
+  <data name="btnOk.TabIndex" type="System.Int32, mscorlib">
+    <value>10</value>
   </data>
   <data name="label8.TabIndex" type="System.Int32, mscorlib">
     <value>27</value>
   </data>
   <data name="&gt;&gt;comDeviceType.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>3</value>
   </data>
   <data name="&gt;&gt;chkIsNested.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="txtVacantText.Size" type="System.Drawing.Size, System.Drawing">
-    <value>430, 21</value>
+  <data name="&gt;&gt;comListMode.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;comDeviceType.Name" xml:space="preserve">
     <value>comDeviceType</value>
@@ -597,8 +681,14 @@
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
   </data>
+  <data name="&gt;&gt;txtGPS.Name" xml:space="preserve">
+    <value>txtGPS</value>
+  </data>
   <data name="label8.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
     <value>NoControl</value>
+  </data>
+  <data name="&gt;&gt;txtGPS.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.411, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;label2.Name" xml:space="preserve">
     <value>label2</value>
@@ -616,25 +706,31 @@
     <value>0</value>
   </data>
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
-    <value>524, 244</value>
+    <value>524, 304</value>
   </data>
-  <data name="&gt;&gt;comWorkMode.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;txtVacant.ZOrder" xml:space="preserve">
+    <value>18</value>
   </data>
-  <data name="&gt;&gt;txtParkFullText.Name" xml:space="preserve">
-    <value>txtParkFullText</value>
+  <data name="&gt;&gt;comListMode.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="$this.Text" xml:space="preserve">
+    <value />
+  </data>
+  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
   </data>
   <data name="&gt;&gt;comDeviceType.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
-  <data name="&gt;&gt;label9.Parent" xml:space="preserve">
-    <value>$this</value>
+  <data name="&gt;&gt;label7.Name" xml:space="preserve">
+    <value>label7</value>
   </data>
   <data name="groupBox1.Size" type="System.Drawing.Size, System.Drawing">
     <value>800, 1</value>
   </data>
   <data name="&gt;&gt;label6.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>14</value>
   </data>
   <data name="&gt;&gt;comWorkStation.Parent" xml:space="preserve">
     <value>$this</value>
@@ -646,25 +742,31 @@
     <value>63</value>
   </data>
   <data name="&gt;&gt;comPort.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>9</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>8</value>
+  </data>
+  <data name="chkIsNested.TabIndex" type="System.Int32, mscorlib">
+    <value>9</value>
   </data>
   <data name="&gt;&gt;comWorkMode.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>2</value>
   </data>
   <data name="btnClose.TabIndex" type="System.Int32, mscorlib">
     <value>11</value>
   </data>
-  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
-    <value>71, 12</value>
+  <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
   </data>
   <data name="&gt;&gt;label8.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>71, 12</value>
+  </data>
+  <data name="&gt;&gt;label11.Parent" xml:space="preserve">
+    <value>$this</value>
   </data>
   <data name="&gt;&gt;comPort.Name" xml:space="preserve">
     <value>comPort</value>
@@ -675,8 +777,11 @@
   <data name="&gt;&gt;label4.Parent" xml:space="preserve">
     <value>$this</value>
   </data>
+  <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
+    <value>25, 211</value>
+  </data>
   <data name="&gt;&gt;chkIsNested.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>7</value>
   </data>
   <data name="&gt;&gt;label9.Type" xml:space="preserve">
     <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
@@ -684,17 +789,17 @@
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
     <value>13, 99</value>
   </data>
-  <data name="label1.AutoSize" type="System.Boolean, mscorlib">
+  <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
   </data>
   <data name="label4.Text" xml:space="preserve">
     <value>现余车位数:</value>
   </data>
-  <data name="label9.AutoSize" type="System.Boolean, mscorlib">
-    <value>True</value>
+  <data name="&gt;&gt;groupBox1.Type" xml:space="preserve">
+    <value>System.Windows.Forms.GroupBox, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>269, 39</value>
+  <data name="label9.Text" xml:space="preserve">
+    <value>工作模式:</value>
   </data>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>

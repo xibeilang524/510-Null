@@ -50,6 +50,10 @@
             this.label9 = new System.Windows.Forms.Label();
             this.comDeviceType = new System.Windows.Forms.ComboBox();
             this.comWorkMode = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtGPS = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label11 = new System.Windows.Forms.Label();
+            this.comListMode = new System.Windows.Forms.ComboBox();
             this.SuspendLayout();
             // 
             // btnOk
@@ -186,10 +190,35 @@
             this.comWorkMode.FormattingEnabled = true;
             this.comWorkMode.Name = "comWorkMode";
             // 
+            // label10
+            // 
+            resources.ApplyResources(this.label10, "label10");
+            this.label10.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.label10.Name = "label10";
+            // 
+            // txtGPS
+            // 
+            resources.ApplyResources(this.txtGPS, "txtGPS");
+            this.txtGPS.Name = "txtGPS";
+            // 
+            // label11
+            // 
+            resources.ApplyResources(this.label11, "label11");
+            this.label11.Name = "label11";
+            // 
+            // comListMode
+            // 
+            resources.ApplyResources(this.comListMode, "comListMode");
+            this.comListMode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comListMode.FormattingEnabled = true;
+            this.comListMode.Name = "comListMode";
+            // 
             // FrmParkDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.comListMode);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.comWorkMode);
             this.Controls.Add(this.comDeviceType);
             this.Controls.Add(this.label9);
@@ -199,7 +228,9 @@
             this.Controls.Add(this.label3);
             this.Controls.Add(this.comPort);
             this.Controls.Add(this.label7);
+            this.Controls.Add(this.txtGPS);
             this.Controls.Add(this.txtVacantText);
+            this.Controls.Add(this.label10);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.comWorkStation);
             this.Controls.Add(this.label5);
@@ -225,7 +256,9 @@
             this.Controls.SetChildIndex(this.label5, 0);
             this.Controls.SetChildIndex(this.comWorkStation, 0);
             this.Controls.SetChildIndex(this.label6, 0);
+            this.Controls.SetChildIndex(this.label10, 0);
             this.Controls.SetChildIndex(this.txtVacantText, 0);
+            this.Controls.SetChildIndex(this.txtGPS, 0);
             this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.comPort, 0);
             this.Controls.SetChildIndex(this.label3, 0);
@@ -235,6 +268,8 @@
             this.Controls.SetChildIndex(this.label9, 0);
             this.Controls.SetChildIndex(this.comDeviceType, 0);
             this.Controls.SetChildIndex(this.comWorkMode, 0);
+            this.Controls.SetChildIndex(this.label11, 0);
+            this.Controls.SetChildIndex(this.comListMode, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -262,5 +297,9 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox comDeviceType;
         private System.Windows.Forms.ComboBox comWorkMode;
+        private System.Windows.Forms.Label label10;
+        private GeneralLibrary.WinformControl.DBCTextBox txtGPS;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox comListMode;
     }
 }

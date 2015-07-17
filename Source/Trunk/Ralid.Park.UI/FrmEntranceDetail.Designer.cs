@@ -36,9 +36,7 @@
             this.comAddress = new Ralid.Park.UserControls.EntranceAddressComboBox(this.components);
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.cmbTicketPrinter = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
-            this.cmbTicketReader = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
             this.label29 = new System.Windows.Forms.Label();
             this.chkLightOnWhenCarArrive = new System.Windows.Forms.CheckBox();
             this.txtCardReadInterval = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
@@ -56,6 +54,15 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtVideoID = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtCarPlateIP = new Ralid.GeneralLibrary.WinformControl.UCIPTextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cmbTicketReader = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.cmbTicketReader2 = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.label7 = new System.Windows.Forms.Label();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.chkForbidWhenFull = new System.Windows.Forms.CheckBox();
+            this.chkForbidWhenCardExpired = new System.Windows.Forms.CheckBox();
+            this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.groupBox5 = new System.Windows.Forms.GroupBox();
             this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -84,8 +91,8 @@
             // 
             // comAddress
             // 
-            resources.ApplyResources(this.comAddress, "comAddress");
             this.comAddress.FormattingEnabled = true;
+            resources.ApplyResources(this.comAddress, "comAddress");
             this.comAddress.Name = "comAddress";
             this.comAddress.SelectedIndexChanged += new System.EventHandler(this.comAddress_SelectedIndexChanged);
             // 
@@ -101,22 +108,11 @@
             resources.ApplyResources(this.label1, "label1");
             this.label1.Name = "label1";
             // 
-            // label4
-            // 
-            resources.ApplyResources(this.label4, "label4");
-            this.label4.Name = "label4";
-            // 
             // cmbTicketPrinter
             // 
-            resources.ApplyResources(this.cmbTicketPrinter, "cmbTicketPrinter");
             this.cmbTicketPrinter.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbTicketPrinter, "cmbTicketPrinter");
             this.cmbTicketPrinter.Name = "cmbTicketPrinter";
-            // 
-            // cmbTicketReader
-            // 
-            resources.ApplyResources(this.cmbTicketReader, "cmbTicketReader");
-            this.cmbTicketReader.FormattingEnabled = true;
-            this.cmbTicketReader.Name = "cmbTicketReader";
             // 
             // label29
             // 
@@ -192,11 +188,11 @@
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.txtVideoID);
             this.groupBox2.Controls.Add(this.txtCarPlateIP);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -222,25 +218,86 @@
             resources.ApplyResources(this.txtCarPlateIP, "txtCarPlateIP");
             this.txtCarPlateIP.Name = "txtCarPlateIP";
             // 
+            // label4
+            // 
+            resources.ApplyResources(this.label4, "label4");
+            this.label4.Name = "label4";
+            // 
+            // cmbTicketReader
+            // 
+            this.cmbTicketReader.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbTicketReader, "cmbTicketReader");
+            this.cmbTicketReader.Name = "cmbTicketReader";
+            // 
+            // cmbTicketReader2
+            // 
+            this.cmbTicketReader2.FormattingEnabled = true;
+            resources.ApplyResources(this.cmbTicketReader2, "cmbTicketReader2");
+            this.cmbTicketReader2.Name = "cmbTicketReader2";
+            // 
+            // label7
+            // 
+            resources.ApplyResources(this.label7, "label7");
+            this.label7.Name = "label7";
+            // 
+            // groupBox3
+            // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.TabStop = false;
+            // 
+            // chkForbidWhenFull
+            // 
+            resources.ApplyResources(this.chkForbidWhenFull, "chkForbidWhenFull");
+            this.chkForbidWhenFull.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.chkForbidWhenFull.Name = "chkForbidWhenFull";
+            this.chkForbidWhenFull.UseVisualStyleBackColor = true;
+            // 
+            // chkForbidWhenCardExpired
+            // 
+            resources.ApplyResources(this.chkForbidWhenCardExpired, "chkForbidWhenCardExpired");
+            this.chkForbidWhenCardExpired.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            this.chkForbidWhenCardExpired.Name = "chkForbidWhenCardExpired";
+            this.chkForbidWhenCardExpired.UseVisualStyleBackColor = true;
+            // 
+            // groupBox4
+            // 
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Name = "groupBox4";
+            this.groupBox4.TabStop = false;
+            // 
+            // groupBox5
+            // 
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Name = "groupBox5";
+            this.groupBox5.TabStop = false;
+            // 
             // FrmEntranceDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.chkUseAsACS);
+            this.Controls.Add(this.groupBox5);
+            this.Controls.Add(this.groupBox4);
+            this.Controls.Add(this.chkForbidWhenFull);
+            this.Controls.Add(this.chkForbidWhenCardExpired);
+            this.Controls.Add(this.chkCardValidNeedResponse);
+            this.Controls.Add(this.groupBox3);
+            this.Controls.Add(this.cmbTicketReader2);
+            this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.chkNoParkingCount);
             this.Controls.Add(this.chkEnableParkvacantLed);
             this.Controls.Add(this.chkOnlyTempReaderAfterButtonClick);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.chkPrepayCardWaitWhenOut);
             this.Controls.Add(this.chkMonthCardWaitWhenOut);
-            this.Controls.Add(this.chkCardValidNeedResponse);
             this.Controls.Add(this.chkNoReaderOnCardCaptuer);
             this.Controls.Add(this.label29);
-            this.Controls.Add(this.chkLightOnWhenCarArrive);
             this.Controls.Add(this.txtCardReadInterval);
             this.Controls.Add(this.chkReadCardNeedCarSense);
             this.Controls.Add(this.cmbTicketReader);
             this.Controls.Add(this.cmbTicketPrinter);
+            this.Controls.Add(this.chkLightOnWhenCarArrive);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.groupBox1);
@@ -255,27 +312,34 @@
             this.Controls.SetChildIndex(this.label2, 0);
             this.Controls.SetChildIndex(this.label3, 0);
             this.Controls.SetChildIndex(this.txtEntranceName, 0);
-            this.Controls.SetChildIndex(this.btnClose, 0);
-            this.Controls.SetChildIndex(this.btnOk, 0);
             this.Controls.SetChildIndex(this.comAddress, 0);
             this.Controls.SetChildIndex(this.groupBox1, 0);
             this.Controls.SetChildIndex(this.label1, 0);
             this.Controls.SetChildIndex(this.label4, 0);
+            this.Controls.SetChildIndex(this.chkLightOnWhenCarArrive, 0);
             this.Controls.SetChildIndex(this.cmbTicketPrinter, 0);
             this.Controls.SetChildIndex(this.cmbTicketReader, 0);
             this.Controls.SetChildIndex(this.chkReadCardNeedCarSense, 0);
             this.Controls.SetChildIndex(this.txtCardReadInterval, 0);
-            this.Controls.SetChildIndex(this.chkLightOnWhenCarArrive, 0);
             this.Controls.SetChildIndex(this.label29, 0);
             this.Controls.SetChildIndex(this.chkNoReaderOnCardCaptuer, 0);
-            this.Controls.SetChildIndex(this.chkCardValidNeedResponse, 0);
             this.Controls.SetChildIndex(this.chkMonthCardWaitWhenOut, 0);
             this.Controls.SetChildIndex(this.chkPrepayCardWaitWhenOut, 0);
+            this.Controls.SetChildIndex(this.label7, 0);
             this.Controls.SetChildIndex(this.chkOnlyTempReaderAfterButtonClick, 0);
             this.Controls.SetChildIndex(this.chkEnableParkvacantLed, 0);
             this.Controls.SetChildIndex(this.chkNoParkingCount, 0);
-            this.Controls.SetChildIndex(this.chkUseAsACS, 0);
             this.Controls.SetChildIndex(this.groupBox2, 0);
+            this.Controls.SetChildIndex(this.cmbTicketReader2, 0);
+            this.Controls.SetChildIndex(this.btnClose, 0);
+            this.Controls.SetChildIndex(this.btnOk, 0);
+            this.Controls.SetChildIndex(this.groupBox3, 0);
+            this.Controls.SetChildIndex(this.chkCardValidNeedResponse, 0);
+            this.Controls.SetChildIndex(this.chkForbidWhenCardExpired, 0);
+            this.Controls.SetChildIndex(this.chkForbidWhenFull, 0);
+            this.Controls.SetChildIndex(this.groupBox4, 0);
+            this.Controls.SetChildIndex(this.groupBox5, 0);
+            this.Controls.SetChildIndex(this.chkUseAsACS, 0);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
@@ -291,9 +355,7 @@
         private Ralid.Park.UserControls.EntranceAddressComboBox comAddress;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label4;
-        private Ralid.GeneralLibrary .WinformControl .ComPortComboBox cmbTicketPrinter;
-        private Ralid.GeneralLibrary .WinformControl .ComPortComboBox cmbTicketReader;
+        private Ralid.GeneralLibrary.WinformControl.ComPortComboBox cmbTicketPrinter;
         private System.Windows.Forms.Label label29;
         private System.Windows.Forms.CheckBox chkLightOnWhenCarArrive;
         private GeneralLibrary.WinformControl.IntergerTextBox txtCardReadInterval;
@@ -311,5 +373,14 @@
         private Ralid.GeneralLibrary.WinformControl.IntergerTextBox txtVideoID;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label4;
+        private GeneralLibrary.WinformControl.ComPortComboBox cmbTicketReader;
+        private GeneralLibrary.WinformControl.ComPortComboBox cmbTicketReader2;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.CheckBox chkForbidWhenFull;
+        private System.Windows.Forms.CheckBox chkForbidWhenCardExpired;
+        private System.Windows.Forms.GroupBox groupBox4;
+        private System.Windows.Forms.GroupBox groupBox5;
     }
 }

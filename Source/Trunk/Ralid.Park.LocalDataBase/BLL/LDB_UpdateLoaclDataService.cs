@@ -8,6 +8,7 @@ using Ralid.Park.LocalDataBase.DAL.IDAL;
 using Ralid.Park.DAL.IDAL;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.SearchCondition;
 
 namespace Ralid.Park.LocalDataBase.BLL
@@ -51,51 +52,54 @@ namespace Ralid.Park.LocalDataBase.BLL
                 {
                     _UpdateLoaclDataEvent.WaitOne(UpdateInterval * 60 * 1000);
 
-                    LDB_CardPaymentRecordBll bll = new LDB_CardPaymentRecordBll(LDB_AppSettings.Current.LDBConnect);
-                    try
+                    if (AppSettings.CurrentSetting.EnableWriteCard)
                     {
-                        //如果是主数据库时，需要主数据库连接上
-                        if (!DataBaseConnectionsManager.Current.IsMasterConnectionString(_DataBaseUri)
-                            || DataBaseConnectionsManager.Current.MasterConnected)
+                        LDB_CardPaymentRecordBll bll = new LDB_CardPaymentRecordBll(LDB_AppSettings.Current.LDBConnect);
+                        try
                         {
-                            LDB_CardPaymentRecordSearchCondition con = new LDB_CardPaymentRecordSearchCondition();
-                            con.UpdateFlag = false;
-                            List<LDB_CardPaymentInfo> records = bll.GetItems(con).QueryObjects;
-                            if (records != null && records.Count > 0)
+                            //如果是主数据库时，需要主数据库连接上
+                            if (!DataBaseConnectionsManager.Current.IsMasterConnectionString(_DataBaseUri)
+                                || DataBaseConnectionsManager.Current.MasterConnected)
                             {
-                                CommandResult result = null;
-                                foreach (LDB_CardPaymentInfo record in records)
+                                LDB_CardPaymentRecordSearchCondition con = new LDB_CardPaymentRecordSearchCondition();
+                                con.UpdateFlag = false;
+                                List<LDB_CardPaymentInfo> records = bll.GetItems(con).QueryObjects;
+                                if (records != null && records.Count > 0)
                                 {
-                                    CardPaymentInfo info = LDB_InfoFactory.CreateCardPaymentInfo(record);
-                                    info.UpdateFlag = true;
-
-                                    CardPaymentRecordSearchCondition searchCondition = new CardPaymentRecordSearchCondition();
-                                    searchCondition.CardID = info.CardID;
-                                    searchCondition.ChargeDateTime = info.ChargeDateTime;
-
-                                    List<CardPaymentInfo> check = _CardPaymentProvider.GetItems(searchCondition).QueryObjects;
-                                    if (check == null || check.Count == 0)
+                                    CommandResult result = null;
+                                    foreach (LDB_CardPaymentInfo record in records)
                                     {
-                                        result = _CardPaymentProvider.Insert(info);
-                                    }
-                                    else
-                                    {
-                                        //已存在该记录，可认为插入成功
-                                        result = new CommandResult(ResultCode.Successful, string.Empty);
-                                    }
+                                        CardPaymentInfo info = LDB_InfoFactory.CreateCardPaymentInfo(record);
+                                        info.UpdateFlag = true;
 
-                                    if (result.Result == ResultCode.Successful)
-                                    {
-                                        record.UpdateFlag = true;
-                                        bll.Update(record);
+                                        CardPaymentRecordSearchCondition searchCondition = new CardPaymentRecordSearchCondition();
+                                        searchCondition.CardID = info.CardID;
+                                        searchCondition.ChargeDateTime = info.ChargeDateTime;
+
+                                        List<CardPaymentInfo> check = _CardPaymentProvider.GetItems(searchCondition).QueryObjects;
+                                        if (check == null || check.Count == 0)
+                                        {
+                                            result = _CardPaymentProvider.Insert(info);
+                                        }
+                                        else
+                                        {
+                                            //已存在该记录，可认为插入成功
+                                            result = new CommandResult(ResultCode.Successful, string.Empty);
+                                        }
+
+                                        if (result.Result == ResultCode.Successful)
+                                        {
+                                            record.UpdateFlag = true;
+                                            bll.Update(record);
+                                        }
                                     }
                                 }
                             }
                         }
-                    }
-                    catch (Exception ex)
-                    {
-                        Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                        catch (Exception ex)
+                        {
+                            Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                        }
                     }
                 }
             }

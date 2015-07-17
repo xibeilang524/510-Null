@@ -43,6 +43,8 @@
             this.txtOperatorNum = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.label8 = new System.Windows.Forms.Label();
             this.btnChangePwd = new System.Windows.Forms.Button();
+            this.label6 = new System.Windows.Forms.Label();
+            this.comDeptList = new Ralid.Park.UserControls.DeptComboBox(this.components);
             this.SuspendLayout();
             // 
             // btnOk
@@ -89,8 +91,8 @@
             // 
             // comRoleList
             // 
-            resources.ApplyResources(this.comRoleList, "comRoleList");
             this.comRoleList.FormattingEnabled = true;
+            resources.ApplyResources(this.comRoleList, "comRoleList");
             this.comRoleList.Name = "comRoleList";
             // 
             // groupBox1
@@ -125,16 +127,29 @@
             // 
             // btnChangePwd
             // 
-            resources.ApplyResources(this.btnChangePwd, "btnChangePwd");
             this.btnChangePwd.ImageKey = global::Ralid.Park.UI.Resources.Resource1.FrmTariffSelection_InvalidTimezone;
+            resources.ApplyResources(this.btnChangePwd, "btnChangePwd");
             this.btnChangePwd.Name = "btnChangePwd";
             this.btnChangePwd.UseVisualStyleBackColor = true;
             this.btnChangePwd.Click += new System.EventHandler(this.btnChangePwd_Click);
+            // 
+            // label6
+            // 
+            resources.ApplyResources(this.label6, "label6");
+            this.label6.Name = "label6";
+            // 
+            // comDeptList
+            // 
+            this.comDeptList.FormattingEnabled = true;
+            resources.ApplyResources(this.comDeptList, "comDeptList");
+            this.comDeptList.Name = "comDeptList";
             // 
             // FrmOperatorDetail
             // 
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.comDeptList);
             this.Controls.Add(this.btnChangePwd);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtOperatorNum);
@@ -167,6 +182,8 @@
             this.Controls.SetChildIndex(this.txtOperatorNum, 0);
             this.Controls.SetChildIndex(this.label8, 0);
             this.Controls.SetChildIndex(this.btnChangePwd, 0);
+            this.Controls.SetChildIndex(this.comDeptList, 0);
+            this.Controls.SetChildIndex(this.label6, 0);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -187,5 +204,7 @@
         private Ralid.GeneralLibrary .WinformControl .IntergerTextBox txtOperatorNum;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnChangePwd;
+        private System.Windows.Forms.Label label6;
+        private UserControls.DeptComboBox comDeptList;
     }
 }

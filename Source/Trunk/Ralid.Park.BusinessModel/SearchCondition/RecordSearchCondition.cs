@@ -40,6 +40,7 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 获取或设置查询条件中的操作员
         /// </summary>
         public OperatorInfo Operator { get; set; }       //操作员
+        public DeptInfo Dept { get; set; }
         /// <summary>
         /// 获取或设置记录是否已经结算过
         /// </summary>
@@ -64,5 +65,25 @@ namespace Ralid.Park.BusinessModel.SearchCondition
         /// 获取或设置查询条件中记录是否已上去到主数据库
         /// </summary>
         public bool? UpdateFlag { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的多个工作站ID
+        /// </summary>
+        public List<string> StationIDs { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的多个操作员ID
+        /// </summary>
+        public List<string> OperatorIDs { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的工作站部门ID
+        /// </summary>
+        public Guid? StationDeptID { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的操作员部门ID
+        /// </summary>
+        public Guid? OperatorDeptID { get; set; }
+        /// <summary>
+        /// 获取或设置查询条件中的部门
+        /// </summary>
+        public string Department { get; set; }
     }
 }

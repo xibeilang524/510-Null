@@ -49,6 +49,29 @@ namespace Ralid.Park.BLL
             return provider.Insert(info);
         }
         /// <summary>
+        /// 更新卡片事件
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public CommandResult Update(CardEventRecord info)
+        {
+            CardEventRecord oldVal = provider.GetByID(new RecordID(info.CardID,info.EventDateTime)).QueryObject;
+            if (oldVal != null)
+            {
+                return provider.Update(info, oldVal);
+            }
+            return new CommandResult(ResultCode.NoRecord);
+        }
+        /// <summary>
+        /// 删除卡片事件
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public CommandResult Delete(CardEventRecord info)
+        {
+            return provider.Delete(info);
+        }
+        /// <summary>
         /// 通过查询条件获取卡片事件
         /// </summary>
         /// <param name="search"></param>
@@ -120,6 +143,36 @@ namespace Ralid.Park.BLL
 
             }
             return statistics;
+        }
+
+        /// <summary>
+        /// 检查有无该记录，无则插入
+        /// </summary>
+        /// <param name="info"></param>
+        /// <returns></returns>
+        public CommandResult InsertRecordWithCheck(CardEventRecord info)
+        {
+            CardEventSearchCondition searchCondition = new CardEventSearchCondition();
+            searchCondition.CardID = info.CardID;
+            searchCondition.RecordDateTimeRange = new DateTimeRange(info.EventDateTime, info.EventDateTime);
+
+            List<CardEventRecord> check = provider.GetItems(searchCondition).QueryObjects;
+            if (check == null || check.Count == 0)
+            {
+                return provider.Insert(info);
+            }
+            //已存在该记录，可认为插入成功
+            return new CommandResult(ResultCode.Successful, string.Empty);
+        }
+
+
+        /// <summary>
+        /// 删除所有在eventDatetime之前的进出记录
+        /// </summary>
+        /// <param name="datetime"></param>
+        public void DeleteAllCardEventBefore(DateTime eventDatetime)
+        {
+            provider.DeleteAllCardEventBefore(eventDatetime);
         }
         #endregion
     }

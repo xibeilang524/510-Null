@@ -144,19 +144,19 @@
     <value>按次收費</value>
   </data>
   <data name="chkFirstCharge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>255, 169</value>
+    <value>255, 240</value>
   </data>
   <data name="chkFirstCharge.Text" xml:space="preserve">
     <value>入場</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>476, 170</value>
+    <value>476, 243</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>703, 170</value>
+    <value>703, 243</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>499, 170</value>
+    <value>499, 243</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>41, 12</value>
@@ -165,13 +165,13 @@
     <value>此后每</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>346, 170</value>
+    <value>346, 242</value>
   </data>
   <data name="label14.Text" xml:space="preserve">
     <value>分鐘内收取</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>592, 170</value>
+    <value>592, 243</value>
   </data>
   <data name="label24.Text" xml:space="preserve">
     <value>分鐘收取</value>
@@ -198,7 +198,7 @@
     <value>入場免費</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>210, 169</value>
+    <value>210, 242</value>
   </data>
   <data name="label2.Text" xml:space="preserve">
     <value>分鐘</value>
@@ -240,13 +240,13 @@
     <value>分鐘</value>
   </data>
   <data name="txtRegularMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>546, 166</value>
+    <value>546, 239</value>
   </data>
   <data name="txtRegularFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>649, 166</value>
+    <value>649, 239</value>
   </data>
   <data name="txtFirstFee1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>422, 166</value>
+    <value>422, 238</value>
   </data>
   <data name="ck_Is12Hour.Text" xml:space="preserve">
     <value>12小時最高收費</value>
@@ -285,7 +285,7 @@
     <value>最高限價</value>
   </data>
   <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
-    <value>485, 332</value>
+    <value>485, 402</value>
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>分鐘收取</value>
@@ -309,7 +309,7 @@
     <value>封頂收費</value>
   </data>
   <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
-    <value>647, 332</value>
+    <value>643, 402</value>
   </data>
   <data name="tl_chkFeeOfMax.Text" xml:space="preserve">
     <value>封頂收費</value>
@@ -319,6 +319,66 @@
   </data>
   <data name="tl_chkFeeOf24.Text" xml:space="preserve">
     <value>24小時最高收費</value>
+  </data>
+  <data name="chkTuringLimitedOfMax.Text" xml:space="preserve">
+    <value>封頂收費</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>超過24小時的每過</value>
+  </data>
+  <data name="label67.Text" xml:space="preserve">
+    <value>分鐘</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>入場免費</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>24小時內收取</value>
+  </data>
+  <data name="rdTariffOfTurningLimited.Text" xml:space="preserve">
+    <value>限時過點收費</value>
+  </data>
+  <data name="rdTariffOfThreeTimeZone.Text" xml:space="preserve">
+    <value>三時段收費</value>
+  </data>
+  <data name="tThree_chkFeeOf24.Text" xml:space="preserve">
+    <value>24小時最高收費</value>
+  </data>
+  <data name="tThree_chkFeeOfMax.Text" xml:space="preserve">
+    <value>封頂收費</value>
+  </data>
+  <data name="tThree_chkTime3LimitFee.Text" xml:space="preserve">
+    <value>最高限價</value>
+  </data>
+  <data name="tThree_chkTime2LimitFee.Text" xml:space="preserve">
+    <value>最高限價</value>
+  </data>
+  <data name="tThree_chkTime1LimitFee.Text" xml:space="preserve">
+    <value>最高限價</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>分鐘收取</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>分鐘收取</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>時段3</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>時段2</value>
+  </data>
+  <data name="label85.Text" xml:space="preserve">
+    <value>分鐘收取</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>時段1</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>入場免費</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>分鐘</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>費率設置</value>

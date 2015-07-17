@@ -63,6 +63,94 @@ namespace Ralid.Park.UserControls.VideoPanels
                 this.ResumeLayout(false);
             }
         }
+
+        /// <summary>
+        /// 创建视频窗口
+        /// </summary>
+        /// <param name="videoType"></param>
+        /// <param name="name"></param>
+        /// <param name="visible"></param>
+        /// <returns></returns>
+        private VideoPanel CreateVideoPanel(int videoType, string name, bool visible)
+        {
+            VideoPanel video = VideoPanelFactory.CreatePanel(videoType);
+            video.AllowDrop = true;
+            video.Name = name;
+            video.ShowTitle = true;
+            video.StretchToFit = true;
+            video.VideoSource = null;
+            this.Controls.Add(video);
+            video.Visible = visible;
+            video.VideoDragDropHandling -= VideoDragDropHandling;
+            video.VideoDragDropHandling += VideoDragDropHandling;
+            return video;
+        }
+
+        //从窗体控件中移除视频控件
+        private void RemoveVideoPanel(VideoPanel p)
+        {
+            p.Close();
+            p.VideoDragDropHandling -= VideoDragDropHandling;
+            this.Controls.Remove(p);
+        }
+
+        //获取空闲的视频
+        private VideoPanel GetFreeVideoPanel(VideoSourceInfo video)
+        {
+            if (video != null)
+            {
+                VideoPanel panel = _Videoes.FirstOrDefault(vp => vp.VideoSource == null);
+                if (panel != null)
+                {
+                    if (video.VideoSourceType != panel.VideoType)
+                    {
+                        int index = _Videoes.FindIndex(vp => vp == panel);
+                        if (index >= 0)
+                        {
+                            RemoveVideoPanel(panel);
+
+                            //视频类型不同的，重新创建视频
+                            VideoPanel p = CreateVideoPanel(video.VideoSourceType, panel.Name, panel.Visible);
+                            p.Left = panel.Left;
+                            p.Top = panel.Top;
+                            p.Width = panel.Width;
+                            p.Height = panel.Height;
+                            _Videoes[index] = p;
+
+                            return p;
+                        }
+                    }
+                }
+                return panel;
+            }
+            return null;
+        }
+        #endregion
+
+        #region 事件处理
+        private void VideoDragDropHandling(object sender, VideoSourceInfo video)
+        {
+            VideoPanel panel = sender as VideoPanel;
+            if (panel != null)
+            {
+                int index = _Videoes.FindIndex(vp => vp == panel);
+                if (index >= 0)
+                {
+                    RemoveVideoPanel(panel);
+
+                    //视频类型不同的，重新创建视频
+                    VideoPanel p = CreateVideoPanel(video.VideoSourceType, panel.Name, panel.Visible);
+                    p.Left = panel.Left;
+                    p.Top = panel.Top;
+                    p.Width = panel.Width;
+                    p.Height = panel.Height;
+                    _Videoes[index] = p;
+
+                    p.VideoSource = video;
+                    p.Play(true);
+                }
+            }
+        }
         #endregion
 
         #region 公共方法和属性
@@ -136,7 +224,7 @@ namespace Ralid.Park.UserControls.VideoPanels
             }
             else
             {
-                p = _Videoes.FirstOrDefault(vp => vp.VideoSource == null);
+                p = GetFreeVideoPanel(video) ;
                 if (p != null)
                 {
                     p.VideoSource = video;
@@ -156,7 +244,7 @@ namespace Ralid.Park.UserControls.VideoPanels
                 {
                     if (!_Videoes.Exists(vp => vp.VideoSource == vs))
                     {
-                        VideoPanel p = _Videoes.FirstOrDefault(vp => vp.VideoSource == null);
+                        VideoPanel p = GetFreeVideoPanel(vs);
                         if (p != null)
                         {
                             p.VideoSource = vs;
@@ -177,16 +265,23 @@ namespace Ralid.Park.UserControls.VideoPanels
             {
                 _Rows = rows;
                 _Columns = columns;
+                int videoType = (int)VideoServerType.ACTi;
+                if (UserSetting.Current != null)
+                {
+                    videoType = UserSetting.Current.VideoType;
+                }
                 for (int i = _Videoes.Count; i < rows * columns; i++)
                 {
-                    VideoPanel video = VideoPanelFactory.CreatePanel();
-                    video.AllowDrop = true;
-                    video.Name = "actiVideoPanel" + i.ToString();
-                    video.ShowTitle = true;
-                    video.StretchToFit = true;
-                    video.VideoSource = null;
-                    this.Controls.Add(video);
-                    video.Visible = true;
+                    VideoPanel video = CreateVideoPanel(videoType, "actiVideoPanel" + i.ToString(), true);
+
+                    //VideoPanel video = VideoPanelFactory.CreatePanel();
+                    //video.AllowDrop = true;
+                    //video.Name = "actiVideoPanel" + i.ToString();
+                    //video.ShowTitle = true;
+                    //video.StretchToFit = true;
+                    //video.VideoSource = null;
+                    //this.Controls.Add(video);
+                    //video.Visible = true;
                     _Videoes.Add(video);
                 }
                 //只显示行列数,其它的隐藏

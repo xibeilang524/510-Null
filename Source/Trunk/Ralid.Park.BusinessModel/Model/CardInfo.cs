@@ -4,6 +4,7 @@ using System.Linq;
 using System.Data.Linq;
 using System.Text;
 using Ralid.Park.BusinessModel.Enum;
+using Ralid.Park.BusinessModel.Report;
 using System.Runtime.Serialization;
 
 namespace Ralid.Park.BusinessModel.Model
@@ -20,11 +21,12 @@ namespace Ralid.Park.BusinessModel.Model
             this.LastDateTime = new DateTime(2011, 1, 1);
             this.CardVersion = GlobalVariables.CurrentCardVersion;
             this.OnlineHandleWhenOfflineMode = false;
+            this.IndexNumber = 0xFFFFFF;
         }
         #endregion
 
         #region 私有变量
-        private byte _CardType;
+        public byte _CardType;//Modify by Jan 2015-05-11 ,将private改为public是因为需要使用_CardType作为查询条件
         #endregion
 
         #region 实体字段
@@ -128,7 +130,13 @@ namespace Ralid.Park.BusinessModel.Model
         public CardOptions Options { get; set; }
 
         /// <summary>
-        /// 获取或设置卡片未用的优惠时数
+        /// 获取或设置卡片入场后的最近一次收费记录
+        /// </summary>
+        [DataMember]
+        public CardPaymentInfo LastPayment { get; set; }
+
+        /// <summary>
+        /// 获取或设置卡片的总优惠时数(0~255，注意：数据库存储使用的是byte类型)
         /// </summary>
         [DataMember]
         public int DiscountHour { get; set; }
@@ -149,6 +157,11 @@ namespace Ralid.Park.BusinessModel.Model
         [DataMember]
         public string CarPlate { get; set; }
         /// <summary>
+        /// 获取或设置部门
+        /// </summary>
+        [DataMember]
+        public string Department { get; set; }
+        /// <summary>
         /// 获取或设置卡片描述
         /// </summary>
         [DataMember]
@@ -158,6 +171,21 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public bool? UpdateFlag { get; set; }
+        /// <summary>
+        /// 获取或设置免费时间点
+        /// </summary>
+        [DataMember]
+        public DateTime? FreeDateTime { get; set; }
+        /// <summary>
+        /// 获取或设置优惠信息的录入时间
+        /// </summary>
+        [DataMember]
+        public DateTime? PreferentialTime { get; set; }
+        /// <summary>
+        /// 获取或设置名单类型
+        /// </summary>
+        [DataMember]
+        public CardListType ListType { get; set; }
         #endregion
 
         #region 卡片选项
@@ -176,6 +204,22 @@ namespace Ralid.Park.BusinessModel.Model
                 if (value) Options -= CardOptions.ForbidRepeatIn;
             }
         }
+
+        /// <summary>
+        /// 操作员卡专用，收费时允许切换车型(即为授权卡)
+        /// </summary>
+        public bool OperatorAllowSwitchCarType
+        {
+            get
+            {
+                return CanRepeatIn;
+            }
+            set
+            {
+                CanRepeatIn = value;
+            }
+        }
+
         /// <summary>
         /// 获取或设置卡片是否可以重复出场
         /// </summary>
@@ -265,6 +309,11 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public string RegCarPlate { get; set; }
+        /// <summary>
+        /// 获取或设置自增序号,珠海长隆停车场4.0.20140127~4.0.20140131版本需要用到
+        /// </summary>
+        [DataMember]
+        public int IndexNumber { get; set; }
         #endregion
 
         #region 只读属性
@@ -391,13 +440,65 @@ namespace Ralid.Park.BusinessModel.Model
                 if (!value) ParkingStatus ^= ParkingStatus.NestedParkMarked; 
             }
         }
+
+        /// <summary>
+        /// 获取或设置是否启用酒店应用
+        /// </summary>
+        public bool EnableHotelApp
+        {
+            get
+            {
+                return (ParkingStatus & ParkingStatus.HotelApp) == ParkingStatus.HotelApp;
+            }
+            set
+            {
+                ParkingStatus |= ParkingStatus.HotelApp;
+                if (!value) ParkingStatus ^= ParkingStatus.HotelApp;
+            }
+        }
+
+        /// <summary>
+        /// 获取或设置是否已退房
+        /// </summary>
+        public bool HotelCheckOut
+        {
+            get
+            {
+                return (ParkingStatus & ParkingStatus.NotCheckOut) != ParkingStatus.NotCheckOut;
+            }
+            set
+            {
+                ParkingStatus |= ParkingStatus.NotCheckOut;
+                if (value) ParkingStatus ^= ParkingStatus.NotCheckOut;
+            }
+        }
+        /// <summary>
+        /// 获取是否卡片名单
+        /// </summary>
+        public bool IsCardList
+        {
+            get
+            {
+                return ListType == CardListType.Card;
+            }
+        }
+        /// <summary>
+        /// 获取是否车牌名单
+        /// </summary>
+        public bool IsCarPlateList
+        {
+            get
+            {
+                return ListType == CardListType.CarPlate;
+            } 
+        }
         #endregion
 
         #region 公共方法
         /// <summary>
         /// 卡片入场
         /// </summary>
-        /// <param name="entrance"></param>
+        /// <param name="entranceID"></param>
         /// <param name="enterDateTime"></param>
         public void Enter(int entranceID, DateTime enterDateTime)
         {
@@ -408,7 +509,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// <summary>
         /// 卡片出场
         /// </summary>
-        /// <param name="entrance"></param>
+        /// <param name="entranceID"></param>
         /// <param name="exitDateTime"></param>
         public void Exit(int entrnaceID, DateTime exitDateTime)
         {
@@ -469,7 +570,13 @@ namespace Ralid.Park.BusinessModel.Model
             LastDateTime = DateTime.Now;
             LastEntrance = 0;
             LastCarPlate = string.Empty;
-            ParkingStatus = ParkingStatus.Out;
+            ParkingStatus = IsInPark ? ParkingStatus.In : ParkingStatus.Out;
+            PaidDateTime = null;
+            TotalPaidFee = 0;
+            ParkFee = 0;
+            FreeDateTime = null;
+            DiscountHour = 0;
+            PreferentialTime = null;
             Status = CardStatus.Enabled;
         }
         /// <summary>
@@ -514,6 +621,20 @@ namespace Ralid.Park.BusinessModel.Model
             }
 
             return true;
+        }
+
+        /// <summary>
+        /// 检查时间是否未过免费时间点
+        /// </summary>
+        /// <param name="dateTime">检查的时间</param>
+        /// <returns></returns>
+        public bool IsInFreeTime(DateTime dateTime)
+        {
+            if (FreeDateTime.HasValue)
+            {
+                return dateTime <= FreeDateTime.Value;
+            }
+            return false;
         }
         #endregion
 
@@ -652,6 +773,25 @@ namespace Ralid.Park.BusinessModel.Model
             TotalPaidFee = 0;
         }
 
+        /// <summary>
+        /// 清除免费优惠授权信息
+        /// </summary>
+        public void ClearFreeAuthorization()
+        {
+            EnableHotelApp = false;
+            HotelCheckOut = true;
+            FreeDateTime = null;
+        }
+
+        /// <summary>
+        /// 清除优惠录入信息
+        /// </summary>
+        public void ClearDiscount()
+        {
+            DiscountHour = 0;
+            PreferentialTime = null;
+        }
+
         ///// <summary>
         ///// 更新室内停车场累计停车时间
         ///// </summary>
@@ -690,6 +830,19 @@ namespace Ralid.Park.BusinessModel.Model
         //    return chargeDateTime.AddMinutes(0 - IndoorTimeInterval);
         //}
 
+        /// <summary>
+        /// 通过刷卡事件设置卡片的相关信息
+        /// </summary>
+        /// <param name="report"></param>
+        public void SetEventReportData(CardEventReport report)
+        {
+            if (report != null)
+            {
+                ParkingStatus = report.ParkingStatus;//使用事件的状态
+                //如果启用了酒店应用，保留免费时间点，否则清空免费时间点
+                FreeDateTime = report.EnableHotelApp ? report.FreeDateTime : null;
+            }
+        }
         #endregion
         #endregion
     }

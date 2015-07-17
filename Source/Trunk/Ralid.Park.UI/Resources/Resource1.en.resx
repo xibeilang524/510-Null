@@ -202,7 +202,7 @@
     <value>Paying, please wait…</value>
   </data>
   <data name="FrmCardPaying_PayingSpeech" xml:space="preserve">
-    <value>Account {0} yuan</value>
+    <value>Account {0} </value>
   </data>
   <data name="FrmCardPaymentRecordDetail_ModifyPayment" xml:space="preserve">
     <value>revise charging information:\"card number{{{0}}} charging time{{{1}}} in-time{{{2}}} receivable account{{{3}}} paid-in amount{{{4}}} specification{{{5}}}\" paid-in amount{{{6}}} specification{{{7}}}</value>
@@ -619,7 +619,7 @@
     <value>Not select workmode</value>
   </data>
   <data name="FrmParkDetail_WorkModeChangedAlert" xml:space="preserve">
-    <value>Workmode have changed, if you want the change to take effect, you need to restart software</value>
+    <value>Worksetting have changed, if you want the change to take effect, you need to restart software</value>
   </data>
   <data name="EnableWriteCard" xml:space="preserve">
     <value>Enable Offline Mode</value>
@@ -1046,5 +1046,248 @@
   </data>
   <data name="OperatorLogOutAlarm" xml:space="preserve">
     <value>Sation:[{0}]  LogIn:[{1}]  Host:[{2}]  IP:[{3}]  MAC:[{4}]</value>
+  </data>
+  <data name="FrmLocalSettings_EnabledComfirm" xml:space="preserve">
+    <value>Whether to use this function?</value>
+  </data>
+  <data name="FrmLocalSettings_NewCardValidCommand" xml:space="preserve">
+    <value>This feature requires control board hardware support, make sure the control panel whether to support the new card valid commands, such as control panel does not support, will cause the card played not lift gate!</value>
+  </data>
+  <data name="FrmSystemOption_ChangeCPUKeyComfirm" xml:space="preserve">
+    <value>Whether to modify CPU card authentication key?</value>
+  </data>
+  <data name="FrmSystemOption_CPUKeyInvalid" xml:space="preserve">
+    <value>Please enter a 32 bit CPU key!</value>
+  </data>
+  <data name="FrmSystemOption_CPUKeyNote" xml:space="preserve">
+    <value>Note: the CPU card authentication key setup error may lead to CPU card lock card, please make sure that the authentication key information is set up correctly! Please carefully set!</value>
+  </data>
+  <data name="FrmSystemOption_SAMNoInvalid" xml:space="preserve">
+    <value>Please enter the SAM card seat!</value>
+  </data>
+  <data name="FrmSystemOption_SaveCPUKeyComfirm" xml:space="preserve">
+    <value>Do you want to save the CPU key settings?</value>
+  </data>
+  <data name="FrmSystemOption_UseCPUComfirm" xml:space="preserve">
+    <value>Whether the system use CPU card?</value>
+  </data>
+  <data name="FrmSystemOptions_ClearCardEventQuery" xml:space="preserve">
+    <value>Manual removal of expired cardevents, you will be busy for a long time, do you want to continue?</value>
+  </data>
+  <data name="FrmSystemOptions_ClearCardEventComplete" xml:space="preserve">
+    <value>Manual purge outdated cardevent is finished</value>
+  </data>
+  <data name="FrmSystemOption_InvalidMonth" xml:space="preserve">
+    <value>Set the database optimization saved months cannot be less than zero.</value>
+  </data>
+  <data name="FrmMain_NoCard" xml:space="preserve">
+    <value>Failed to find card</value>
+  </data>
+  <data name="FrmMain_RemoteReadCardInvalid" xml:space="preserve">
+    <value>Only the online processing card to remote read</value>
+  </data>
+  <data name="FrmMain_SwicthRoadModeFail" xml:space="preserve">
+    <value>Fail to swicth road mode！</value>
+  </data>
+  <data name="FrmMain_SwicthRoadModeSuccess" xml:space="preserve">
+    <value>Swicth road mode successfully！</value>
+  </data>
+  <data name="FrmCardOut_CardID" xml:space="preserve">
+    <value>Card ID</value>
+  </data>
+  <data name="FrmCardOut_InDateTime" xml:space="preserve">
+    <value>In DateTime</value>
+  </data>
+  <data name="FrmCardOut_NoTempCard" xml:space="preserve">
+    <value>Not temp card</value>
+  </data>
+  <data name="FrmCardOut_OutCount" xml:space="preserve">
+    <value>The total number of out cards</value>
+  </data>
+  <data name="FrmCardOut_OutReason" xml:space="preserve">
+    <value>Out reason</value>
+  </data>
+  <data name="FrmCardOut_SelectEntrance" xml:space="preserve">
+    <value>Please select the entrance.</value>
+  </data>
+  <data name="FrmCardOut_SelectPark" xml:space="preserve">
+    <value>Please select the parking.</value>
+  </data>
+  <data name="FrmCardOut_StarOut" xml:space="preserve">
+    <value>Out</value>
+  </data>
+  <data name="FrmCardOut_StopOut" xml:space="preserve">
+    <value>Stop out</value>
+  </data>
+  <data name="FrmCardOut_UpdateVacant" xml:space="preserve">
+    <value>The system will update the relevant parking car number, please wait for the update is complete.</value>
+  </data>
+  <data name="FrmCardOut_VacantCount" xml:space="preserve">
+    <value>Increase the parking vacant number</value>
+  </data>
+  <data name="FrmCardOut_VacantManual" xml:space="preserve">
+    <value>Please increase the parking vacant number manual.</value>
+  </data>
+  <data name="FrmRoadWay_NoEntrance" xml:space="preserve">
+    <value>The roadway had not entrances.</value>
+  </data>
+  <data name="FrmRoadWay_RoadWays" xml:space="preserve">
+    <value>Road Way</value>
+  </data>
+  <data name="FrmRoadWay_Switch" xml:space="preserve">
+    <value>Road Mode Switch</value>
+  </data>
+  <data name="Form_Total" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="FrmWaitingCommandReport_Delete" xml:space="preserve">
+    <value>Are you sure you want to delete the selected records?</value>
+  </data>
+  <data name="FrmHotelAuthorization_Authe" xml:space="preserve">
+    <value>Authorize</value>
+  </data>
+  <data name="FrmHotelAuthorization_Authorization" xml:space="preserve">
+    <value>Authorized</value>
+  </data>
+  <data name="FrmHotelAuthorization_FreeDays" xml:space="preserve">
+    <value>Please enter the free times.</value>
+  </data>
+  <data name="FrmHotelAuthorization_InPark" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="FrmHotelAuthorization_MultipleAccess" xml:space="preserve">
+    <value>Yes</value>
+  </data>
+  <data name="FrmHotelAuthorization_NoCard" xml:space="preserve">
+    <value>Fail to fail the card.</value>
+  </data>
+  <data name="FrmHotelAuthorization_NotAuthorization" xml:space="preserve">
+    <value>Unauthorized</value>
+  </data>
+  <data name="FrmHotelAuthorization_NotMultipleAccess" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="FrmHotelAuthorization_OutPark" xml:space="preserve">
+    <value>No</value>
+  </data>
+  <data name="FrmAPMRefund_AmountInvalid" xml:space="preserve">
+    <value>Please input the refund amount.</value>
+  </data>
+  <data name="FrmAPMRefund_APMInvalid" xml:space="preserve">
+    <value>Please select a payment machine.</value>
+  </data>
+  <data name="FrmAPMRefund_Comfirm" xml:space="preserve">
+    <value>To determine whether or not a refund?</value>
+  </data>
+  <data name="FrmAPMRefund_Continue" xml:space="preserve">
+    <value>Refund amount and paid the parking fees are not consistent, do you want to continue?</value>
+  </data>
+  <data name="FrmAPMRefund_Fail" xml:space="preserve">
+    <value>Refund failed.</value>
+  </data>
+  <data name="FrmAPMRefund_MasterConnectFail" xml:space="preserve">
+    <value>Connected with the master database failed.</value>
+  </data>
+  <data name="FrmAPMRefund_NoCard" xml:space="preserve">
+    <value>Could not find the card.</value>
+  </data>
+  <data name="FrmAPMRefund_NoTempCard" xml:space="preserve">
+    <value>The card is not the temporary card</value>
+  </data>
+  <data name="FrmAPMRefund_SerialNumInvalid" xml:space="preserve">
+    <value>Please input the payment serial number.</value>
+  </data>
+  <data name="FrmAPMRefund_Success" xml:space="preserve">
+    <value>Refund success.</value>
+  </data>
+  <data name="FrmMain_DeleteParkTariff" xml:space="preserve">
+    <value>Sure you want to empty the parking fee?</value>
+  </data>
+  <data name="FrmVehicleLedDetail_InvalidName" xml:space="preserve">
+    <value>Invalid name！</value>
+  </data>
+  <data name="FrmVehicleLedSetting_HadLed" xml:space="preserve">
+    <value>Vehicle information screen name [{0}] already exists</value>
+  </data>
+  <data name="FrmVehicleLedSetting_CannotContralLed" xml:space="preserve">
+    <value>The information of the vehicle information led screen can only be initialized with the workstation communication</value>
+  </data>
+  <data name="FrmVehicleLedSetting_SelectLed" xml:space="preserve">
+    <value>Please select a vehicle information led screen</value>
+  </data>
+  <data name="FrmVehicleLedSetting_SendInitLedItemMessage" xml:space="preserve">
+    <value>Send the initial information command</value>
+  </data>
+  <data name="FrmMain_ManualFilePDF" xml:space="preserve">
+    <value>Ralid Park User Manual_en.pdf</value>
+  </data>
+  <data name="Form_Park" xml:space="preserve">
+    <value>Parking</value>
+  </data>
+  <data name="FrmMain_ServerSwitchWarm" xml:space="preserve">
+    <value>The [{0}] server in the {1} switching ({2}{3}) running</value>
+  </data>
+  <data name="FrmNoCardLost_InvalidCarPlate" xml:space="preserve">
+    <value>Please input car plate</value>
+  </data>
+  <data name="FrmSpeedingProcess_NotRecords" xml:space="preserve">
+    <value>Find not speeding records</value>
+  </data>
+  <data name="FrmSpeedingProcess_ProcessedCount" xml:space="preserve">
+    <value>Total {0} record processed</value>
+  </data>
+  <data name="UcCard_BalanceOver" xml:space="preserve">
+    <value>Offline card balanc cannot be more than 167772.15</value>
+  </data>
+  <data name="FrmCardCharge_AmountsOver" xml:space="preserve">
+    <value>Recharge amount is not correct, recharge card balance cannot be more than {0} !</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidThreeTimezone" xml:space="preserve">
+    <value>Invalid Timezone.</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCouponName" xml:space="preserve">
+    <value>Invalid coupon name!</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCouponValue" xml:space="preserve">
+    <value>Invalid coupon value!</value>
+  </data>
+  <data name="FrmParkingCouponInput_InvalidCouponCount" xml:space="preserve">
+    <value>Invalid coupon count!</value>
+  </data>
+  <data name="Form_DataBaseNotConnected" xml:space="preserve">
+    <value>Database disconnect!</value>
+  </data>
+  <data name="FrmCardDisableEnable_Disable" xml:space="preserve">
+    <value>Card Disable</value>
+  </data>
+  <data name="FrmCardDisableEnable_Enable" xml:space="preserve">
+    <value>Card Enable</value>
+  </data>
+  <data name="UcCard_DeleteCardAtAll" xml:space="preserve">
+    <value>This operation will ignore the card staus and card fees, are you sure mandate delete?</value>
+  </data>
+  <data name="FrmSystemOption_InvalidRotationEntrance" xml:space="preserve">
+    <value>Invalid rotation entrance!</value>
+  </data>
+  <data name="FrmSystemOption_InvalidRotationNumber" xml:space="preserve">
+    <value>Invalid rotation number!</value>
+  </data>
+  <data name="FrmChangLanguage" xml:space="preserve">
+    <value>Sure you want to modify the display language? Click "OK" will close all window and modify the language, click "Cancel" to  cancel this operation</value>
+  </data>
+  <data name="FrmSystemOption_ImageDBConnErro" xml:space="preserve">
+    <value>Picture database connection parameters error</value>
+  </data>
+  <data name="FrmSystemOption_ImageDBConnSuccess" xml:space="preserve">
+    <value>Connection test successful.</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>Connected</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>Disconnect</value>
+  </data>
+  <data name="Unconnected" xml:space="preserve">
+    <value>Unconnected</value>
   </data>
 </root>

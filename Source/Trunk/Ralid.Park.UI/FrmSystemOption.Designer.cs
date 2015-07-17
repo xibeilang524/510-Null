@@ -33,6 +33,7 @@
             this.tab1 = new System.Windows.Forms.TabControl();
             this.tabUserSetting = new System.Windows.Forms.TabPage();
             this.groupBox6 = new System.Windows.Forms.GroupBox();
+            this.chkFixCardAccessWhenRecognize = new System.Windows.Forms.CheckBox();
             this.groupBox9 = new System.Windows.Forms.GroupBox();
             this.rdHardWareRecognize = new System.Windows.Forms.RadioButton();
             this.rdSoftWareRecognize = new System.Windows.Forms.RadioButton();
@@ -51,14 +52,26 @@
             this.label10 = new System.Windows.Forms.Label();
             this.chkEnableCarPlateRecognize = new System.Windows.Forms.CheckBox();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
+            this.btnClearExpiredCardEvent = new System.Windows.Forms.Button();
+            this.label32 = new System.Windows.Forms.Label();
+            this.txtCardEventMonth = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.chkEnableDeleteOverTimeCardEvents = new System.Windows.Forms.CheckBox();
             this.btnClearExpiredSnapShot = new System.Windows.Forms.Button();
             this.label16 = new System.Windows.Forms.Label();
             this.txtMonth = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.chkEnableDeleteOverTimeImages = new System.Windows.Forms.CheckBox();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
+            this.rdCustom = new System.Windows.Forms.RadioButton();
+            this.txtMoneyUnit = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.chkNotShowSettleDetail = new System.Windows.Forms.CheckBox();
+            this.groupBox12 = new System.Windows.Forms.GroupBox();
+            this.chkForbiddenExitWhenSpeeding = new System.Windows.Forms.CheckBox();
+            this.chkForbiddenEnterWhenSpeeding = new System.Windows.Forms.CheckBox();
+            this.label33 = new System.Windows.Forms.Label();
             this.comVideoType = new System.Windows.Forms.ComboBox();
             this.label28 = new System.Windows.Forms.Label();
             this.label17 = new System.Windows.Forms.Label();
+            this.chkEnableOutdoorLed = new System.Windows.Forms.CheckBox();
             this.chkOperatorCardCashWhenSettle = new System.Windows.Forms.CheckBox();
             this.chkInputHandInCashWhenSettle = new System.Windows.Forms.CheckBox();
             this.chkSnapshotWhenCarArrive = new System.Windows.Forms.CheckBox();
@@ -81,10 +94,12 @@
             this.comParkingCommunicationIP = new System.Windows.Forms.ComboBox();
             this.label29 = new System.Windows.Forms.Label();
             this.chkCheckConnectionWithPing = new System.Windows.Forms.CheckBox();
+            this.chkEnableHotel = new System.Windows.Forms.CheckBox();
             this.chkEnableWriteCard = new System.Windows.Forms.CheckBox();
             this.txtZSTReaderIP = new Ralid.GeneralLibrary.WinformControl.UCIPTextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.chkAuotAddToFirewallException = new System.Windows.Forms.CheckBox();
+            this.chkSwitchEntrance = new System.Windows.Forms.CheckBox();
             this.chkEnableZST = new System.Windows.Forms.CheckBox();
             this.chkShowAPMMonitor = new System.Windows.Forms.CheckBox();
             this.chkChargeAfterMemo = new System.Windows.Forms.CheckBox();
@@ -109,9 +124,22 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tabKey = new System.Windows.Forms.TabPage();
-            this.chkCardSection = new System.Windows.Forms.CheckBox();
-            this.txtCardSection = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.pnlCPU = new System.Windows.Forms.Panel();
+            this.pnlCPUType = new System.Windows.Forms.Panel();
+            this.rdb3Des = new System.Windows.Forms.RadioButton();
+            this.rdbSM1 = new System.Windows.Forms.RadioButton();
+            this.groupBox11 = new System.Windows.Forms.GroupBox();
+            this.rdbSamNo = new System.Windows.Forms.RadioButton();
+            this.rdbFixedKey = new System.Windows.Forms.RadioButton();
+            this.pnlFixedKey = new System.Windows.Forms.Panel();
+            this.txtCPUKey = new Ralid.GeneralLibrary.WinformControl.HexTextBox(this.components);
+            this.chkChangeCPUKey = new System.Windows.Forms.CheckBox();
+            this.label31 = new System.Windows.Forms.Label();
+            this.rdbCPU = new System.Windows.Forms.RadioButton();
+            this.rdbIC = new System.Windows.Forms.RadioButton();
+            this.pnlIC = new System.Windows.Forms.Panel();
             this.chkChangeKey = new System.Windows.Forms.CheckBox();
+            this.chkCardSection = new System.Windows.Forms.CheckBox();
             this.pnlChangeKey = new System.Windows.Forms.Panel();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.pnlOldKey = new System.Windows.Forms.Panel();
@@ -127,6 +155,8 @@
             this.txtConfirmKey = new Ralid.GeneralLibrary.WinformControl.HexTextBox(this.components);
             this.rdbDefaultKey = new System.Windows.Forms.RadioButton();
             this.label22 = new System.Windows.Forms.Label();
+            this.txtCardSection = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.tabCarTypeSetting = new System.Windows.Forms.TabPage();
             this.label21 = new System.Windows.Forms.Label();
             this.label20 = new System.Windows.Forms.Label();
@@ -168,14 +198,42 @@
             this.colHolidayAndInnerRoom = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TariffMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Clear = new System.Windows.Forms.ToolStripMenuItem();
+            this.tabRotation = new System.Windows.Forms.TabPage();
+            this.label35 = new System.Windows.Forms.Label();
+            this.txtRotationVacant = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.gridRotation = new System.Windows.Forms.DataGridView();
+            this.colRotationEntrance = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.colRotationNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkEnableRotation = new System.Windows.Forms.CheckBox();
+            this.tabParkingCoupon = new System.Windows.Forms.TabPage();
+            this.lblCouponUnit = new System.Windows.Forms.Label();
+            this.label34 = new System.Windows.Forms.Label();
+            this.gridParkingCoupon = new System.Windows.Forms.DataGridView();
+            this.colCouponName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCouponValue = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabPaymentComments = new System.Windows.Forms.TabPage();
             this.gridPaymentComments = new System.Windows.Forms.DataGridView();
             this.colComment = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabother = new System.Windows.Forms.TabPage();
+            this.gbimageDatabaseConnStr = new System.Windows.Forms.GroupBox();
+            this.btnTestConnect = new System.Windows.Forms.Button();
+            this.txtPasswd = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtUserID = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtDataBase = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtServer = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label36 = new System.Windows.Forms.Label();
+            this.label37 = new System.Windows.Forms.Label();
+            this.label38 = new System.Windows.Forms.Label();
+            this.label39 = new System.Windows.Forms.Label();
+            this.rdUser = new System.Windows.Forms.RadioButton();
+            this.rdSystem = new System.Windows.Forms.RadioButton();
             this.mnu_CustomCardType = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_ClearTariff = new System.Windows.Forms.ToolStripMenuItem();
             this.butOK = new System.Windows.Forms.Button();
             this.butCancel = new System.Windows.Forms.Button();
             this.btnDownLoad = new System.Windows.Forms.Button();
+            this.label30 = new System.Windows.Forms.Label();
+            this.lblMsg = new System.Windows.Forms.Label();
             this.tab1.SuspendLayout();
             this.tabUserSetting.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -184,8 +242,14 @@
             this.groupBox7.SuspendLayout();
             this.groupBox5.SuspendLayout();
             this.groupBox4.SuspendLayout();
+            this.groupBox12.SuspendLayout();
             this.tabGeneral.SuspendLayout();
             this.tabKey.SuspendLayout();
+            this.pnlCPU.SuspendLayout();
+            this.pnlCPUType.SuspendLayout();
+            this.groupBox11.SuspendLayout();
+            this.pnlFixedKey.SuspendLayout();
+            this.pnlIC.SuspendLayout();
             this.pnlChangeKey.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.pnlOldKey.SuspendLayout();
@@ -206,13 +270,20 @@
             this.tabTariff.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tariffGrid)).BeginInit();
             this.TariffMenu.SuspendLayout();
+            this.tabRotation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRotation)).BeginInit();
+            this.tabParkingCoupon.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridParkingCoupon)).BeginInit();
             this.tabPaymentComments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.gridPaymentComments)).BeginInit();
+            this.tabother.SuspendLayout();
+            this.gbimageDatabaseConnStr.SuspendLayout();
             this.mnu_CustomCardType.SuspendLayout();
             this.SuspendLayout();
             // 
             // tab1
             // 
+            resources.ApplyResources(this.tab1, "tab1");
             this.tab1.Controls.Add(this.tabUserSetting);
             this.tab1.Controls.Add(this.tabGeneral);
             this.tab1.Controls.Add(this.tabKey);
@@ -222,23 +293,27 @@
             this.tab1.Controls.Add(this.tabAccess);
             this.tab1.Controls.Add(this.tabHoliday);
             this.tab1.Controls.Add(this.tabTariff);
+            this.tab1.Controls.Add(this.tabRotation);
+            this.tab1.Controls.Add(this.tabParkingCoupon);
             this.tab1.Controls.Add(this.tabPaymentComments);
-            resources.ApplyResources(this.tab1, "tab1");
+            this.tab1.Controls.Add(this.tabother);
             this.tab1.Name = "tab1";
             this.tab1.SelectedIndex = 0;
             this.tab1.Selected += new System.Windows.Forms.TabControlEventHandler(this.tab1_Selected);
             // 
             // tabUserSetting
             // 
+            resources.ApplyResources(this.tabUserSetting, "tabUserSetting");
             this.tabUserSetting.Controls.Add(this.groupBox6);
             this.tabUserSetting.Controls.Add(this.groupBox5);
             this.tabUserSetting.Controls.Add(this.groupBox4);
-            resources.ApplyResources(this.tabUserSetting, "tabUserSetting");
             this.tabUserSetting.Name = "tabUserSetting";
             this.tabUserSetting.UseVisualStyleBackColor = true;
             // 
             // groupBox6
             // 
+            resources.ApplyResources(this.groupBox6, "groupBox6");
+            this.groupBox6.Controls.Add(this.chkFixCardAccessWhenRecognize);
             this.groupBox6.Controls.Add(this.groupBox9);
             this.groupBox6.Controls.Add(this.label23);
             this.groupBox6.Controls.Add(this.txtMaxCarPlateErrorChar);
@@ -249,15 +324,20 @@
             this.groupBox6.Controls.Add(this.label11);
             this.groupBox6.Controls.Add(this.label10);
             this.groupBox6.Controls.Add(this.chkEnableCarPlateRecognize);
-            resources.ApplyResources(this.groupBox6, "groupBox6");
             this.groupBox6.Name = "groupBox6";
             this.groupBox6.TabStop = false;
             // 
+            // chkFixCardAccessWhenRecognize
+            // 
+            resources.ApplyResources(this.chkFixCardAccessWhenRecognize, "chkFixCardAccessWhenRecognize");
+            this.chkFixCardAccessWhenRecognize.Name = "chkFixCardAccessWhenRecognize";
+            this.chkFixCardAccessWhenRecognize.UseVisualStyleBackColor = true;
+            // 
             // groupBox9
             // 
+            resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Controls.Add(this.rdHardWareRecognize);
             this.groupBox9.Controls.Add(this.rdSoftWareRecognize);
-            resources.ApplyResources(this.groupBox9, "groupBox9");
             this.groupBox9.Name = "groupBox9";
             this.groupBox9.TabStop = false;
             // 
@@ -286,13 +366,14 @@
             this.txtMaxCarPlateErrorChar.MaxValue = 7;
             this.txtMaxCarPlateErrorChar.MinValue = 0;
             this.txtMaxCarPlateErrorChar.Name = "txtMaxCarPlateErrorChar";
+            this.txtMaxCarPlateErrorChar.NumberWithCommas = false;
             // 
             // groupBox8
             // 
+            resources.ApplyResources(this.groupBox8, "groupBox8");
             this.groupBox8.Controls.Add(this.rdFixEnterAndExit);
             this.groupBox8.Controls.Add(this.rdFixOnlyExit);
             this.groupBox8.Controls.Add(this.rdFixNone);
-            resources.ApplyResources(this.groupBox8, "groupBox8");
             this.groupBox8.Name = "groupBox8";
             this.groupBox8.TabStop = false;
             // 
@@ -318,9 +399,9 @@
             // 
             // groupBox7
             // 
+            resources.ApplyResources(this.groupBox7, "groupBox7");
             this.groupBox7.Controls.Add(this.rdTempExit);
             this.groupBox7.Controls.Add(this.rdTempNone);
-            resources.ApplyResources(this.groupBox7, "groupBox7");
             this.groupBox7.Name = "groupBox7";
             this.groupBox7.TabStop = false;
             // 
@@ -366,13 +447,42 @@
             // 
             // groupBox5
             // 
+            resources.ApplyResources(this.groupBox5, "groupBox5");
+            this.groupBox5.Controls.Add(this.btnClearExpiredCardEvent);
+            this.groupBox5.Controls.Add(this.label32);
+            this.groupBox5.Controls.Add(this.txtCardEventMonth);
+            this.groupBox5.Controls.Add(this.chkEnableDeleteOverTimeCardEvents);
             this.groupBox5.Controls.Add(this.btnClearExpiredSnapShot);
             this.groupBox5.Controls.Add(this.label16);
             this.groupBox5.Controls.Add(this.txtMonth);
             this.groupBox5.Controls.Add(this.chkEnableDeleteOverTimeImages);
-            resources.ApplyResources(this.groupBox5, "groupBox5");
             this.groupBox5.Name = "groupBox5";
             this.groupBox5.TabStop = false;
+            // 
+            // btnClearExpiredCardEvent
+            // 
+            resources.ApplyResources(this.btnClearExpiredCardEvent, "btnClearExpiredCardEvent");
+            this.btnClearExpiredCardEvent.Name = "btnClearExpiredCardEvent";
+            this.btnClearExpiredCardEvent.UseVisualStyleBackColor = true;
+            // 
+            // label32
+            // 
+            resources.ApplyResources(this.label32, "label32");
+            this.label32.Name = "label32";
+            // 
+            // txtCardEventMonth
+            // 
+            resources.ApplyResources(this.txtCardEventMonth, "txtCardEventMonth");
+            this.txtCardEventMonth.MaxValue = 100;
+            this.txtCardEventMonth.MinValue = 1;
+            this.txtCardEventMonth.Name = "txtCardEventMonth";
+            this.txtCardEventMonth.NumberWithCommas = false;
+            // 
+            // chkEnableDeleteOverTimeCardEvents
+            // 
+            resources.ApplyResources(this.chkEnableDeleteOverTimeCardEvents, "chkEnableDeleteOverTimeCardEvents");
+            this.chkEnableDeleteOverTimeCardEvents.Name = "chkEnableDeleteOverTimeCardEvents";
+            this.chkEnableDeleteOverTimeCardEvents.UseVisualStyleBackColor = true;
             // 
             // btnClearExpiredSnapShot
             // 
@@ -392,6 +502,7 @@
             this.txtMonth.MaxValue = 100;
             this.txtMonth.MinValue = 1;
             this.txtMonth.Name = "txtMonth";
+            this.txtMonth.NumberWithCommas = false;
             // 
             // chkEnableDeleteOverTimeImages
             // 
@@ -401,9 +512,16 @@
             // 
             // groupBox4
             // 
+            resources.ApplyResources(this.groupBox4, "groupBox4");
+            this.groupBox4.Controls.Add(this.rdCustom);
+            this.groupBox4.Controls.Add(this.txtMoneyUnit);
+            this.groupBox4.Controls.Add(this.chkNotShowSettleDetail);
+            this.groupBox4.Controls.Add(this.groupBox12);
+            this.groupBox4.Controls.Add(this.label33);
             this.groupBox4.Controls.Add(this.comVideoType);
             this.groupBox4.Controls.Add(this.label28);
             this.groupBox4.Controls.Add(this.label17);
+            this.groupBox4.Controls.Add(this.chkEnableOutdoorLed);
             this.groupBox4.Controls.Add(this.chkOperatorCardCashWhenSettle);
             this.groupBox4.Controls.Add(this.chkInputHandInCashWhenSettle);
             this.groupBox4.Controls.Add(this.chkSnapshotWhenCarArrive);
@@ -422,15 +540,58 @@
             this.groupBox4.Controls.Add(this.label14);
             this.groupBox4.Controls.Add(this.txtCompanyName);
             this.groupBox4.Controls.Add(this.label13);
-            resources.ApplyResources(this.groupBox4, "groupBox4");
             this.groupBox4.Name = "groupBox4";
             this.groupBox4.TabStop = false;
             // 
+            // rdCustom
+            // 
+            resources.ApplyResources(this.rdCustom, "rdCustom");
+            this.rdCustom.Name = "rdCustom";
+            this.rdCustom.TabStop = true;
+            this.rdCustom.UseVisualStyleBackColor = true;
+            this.rdCustom.CheckedChanged += new System.EventHandler(this.rdCustom_CheckedChanged);
+            // 
+            // txtMoneyUnit
+            // 
+            resources.ApplyResources(this.txtMoneyUnit, "txtMoneyUnit");
+            this.txtMoneyUnit.Name = "txtMoneyUnit";
+            // 
+            // chkNotShowSettleDetail
+            // 
+            resources.ApplyResources(this.chkNotShowSettleDetail, "chkNotShowSettleDetail");
+            this.chkNotShowSettleDetail.Name = "chkNotShowSettleDetail";
+            this.chkNotShowSettleDetail.UseVisualStyleBackColor = true;
+            // 
+            // groupBox12
+            // 
+            resources.ApplyResources(this.groupBox12, "groupBox12");
+            this.groupBox12.Controls.Add(this.chkForbiddenExitWhenSpeeding);
+            this.groupBox12.Controls.Add(this.chkForbiddenEnterWhenSpeeding);
+            this.groupBox12.Name = "groupBox12";
+            this.groupBox12.TabStop = false;
+            // 
+            // chkForbiddenExitWhenSpeeding
+            // 
+            resources.ApplyResources(this.chkForbiddenExitWhenSpeeding, "chkForbiddenExitWhenSpeeding");
+            this.chkForbiddenExitWhenSpeeding.Name = "chkForbiddenExitWhenSpeeding";
+            this.chkForbiddenExitWhenSpeeding.UseVisualStyleBackColor = true;
+            // 
+            // chkForbiddenEnterWhenSpeeding
+            // 
+            resources.ApplyResources(this.chkForbiddenEnterWhenSpeeding, "chkForbiddenEnterWhenSpeeding");
+            this.chkForbiddenEnterWhenSpeeding.Name = "chkForbiddenEnterWhenSpeeding";
+            this.chkForbiddenEnterWhenSpeeding.UseVisualStyleBackColor = true;
+            // 
+            // label33
+            // 
+            resources.ApplyResources(this.label33, "label33");
+            this.label33.Name = "label33";
+            // 
             // comVideoType
             // 
+            resources.ApplyResources(this.comVideoType, "comVideoType");
             this.comVideoType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comVideoType.FormattingEnabled = true;
-            resources.ApplyResources(this.comVideoType, "comVideoType");
             this.comVideoType.Name = "comVideoType";
             this.comVideoType.SelectedIndexChanged += new System.EventHandler(this.comVideoType_SelectedIndexChanged);
             // 
@@ -443,6 +604,12 @@
             // 
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
+            // 
+            // chkEnableOutdoorLed
+            // 
+            resources.ApplyResources(this.chkEnableOutdoorLed, "chkEnableOutdoorLed");
+            this.chkEnableOutdoorLed.Name = "chkEnableOutdoorLed";
+            this.chkEnableOutdoorLed.UseVisualStyleBackColor = true;
             // 
             // chkOperatorCardCashWhenSettle
             // 
@@ -468,6 +635,7 @@
             this.txtMinTempCard.MaxValue = 100;
             this.txtMinTempCard.MinValue = -1;
             this.txtMinTempCard.Name = "txtMinTempCard";
+            this.txtMinTempCard.NumberWithCommas = false;
             // 
             // label8
             // 
@@ -515,6 +683,7 @@
             this.txtFreeTimeAfterPay.MaxValue = 65535;
             this.txtFreeTimeAfterPay.MinValue = 0;
             this.txtFreeTimeAfterPay.Name = "txtFreeTimeAfterPay";
+            this.txtFreeTimeAfterPay.NumberWithCommas = false;
             // 
             // label12
             // 
@@ -557,13 +726,16 @@
             // 
             // tabGeneral
             // 
+            resources.ApplyResources(this.tabGeneral, "tabGeneral");
             this.tabGeneral.Controls.Add(this.comParkingCommunicationIP);
             this.tabGeneral.Controls.Add(this.label29);
             this.tabGeneral.Controls.Add(this.chkCheckConnectionWithPing);
+            this.tabGeneral.Controls.Add(this.chkEnableHotel);
             this.tabGeneral.Controls.Add(this.chkEnableWriteCard);
             this.tabGeneral.Controls.Add(this.txtZSTReaderIP);
             this.tabGeneral.Controls.Add(this.label9);
             this.tabGeneral.Controls.Add(this.chkAuotAddToFirewallException);
+            this.tabGeneral.Controls.Add(this.chkSwitchEntrance);
             this.tabGeneral.Controls.Add(this.chkEnableZST);
             this.tabGeneral.Controls.Add(this.chkShowAPMMonitor);
             this.tabGeneral.Controls.Add(this.chkChargeAfterMemo);
@@ -587,15 +759,14 @@
             this.tabGeneral.Controls.Add(this.comTicketReader);
             this.tabGeneral.Controls.Add(this.groupBox1);
             this.tabGeneral.Controls.Add(this.label2);
-            resources.ApplyResources(this.tabGeneral, "tabGeneral");
             this.tabGeneral.Name = "tabGeneral";
             this.tabGeneral.UseVisualStyleBackColor = true;
             // 
             // comParkingCommunicationIP
             // 
+            resources.ApplyResources(this.comParkingCommunicationIP, "comParkingCommunicationIP");
             this.comParkingCommunicationIP.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comParkingCommunicationIP.FormattingEnabled = true;
-            resources.ApplyResources(this.comParkingCommunicationIP, "comParkingCommunicationIP");
             this.comParkingCommunicationIP.Name = "comParkingCommunicationIP";
             // 
             // label29
@@ -610,6 +781,12 @@
             this.chkCheckConnectionWithPing.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkCheckConnectionWithPing.Name = "chkCheckConnectionWithPing";
             this.chkCheckConnectionWithPing.UseVisualStyleBackColor = true;
+            // 
+            // chkEnableHotel
+            // 
+            resources.ApplyResources(this.chkEnableHotel, "chkEnableHotel");
+            this.chkEnableHotel.Name = "chkEnableHotel";
+            this.chkEnableHotel.UseVisualStyleBackColor = true;
             // 
             // chkEnableWriteCard
             // 
@@ -634,6 +811,12 @@
             this.chkAuotAddToFirewallException.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkAuotAddToFirewallException.Name = "chkAuotAddToFirewallException";
             this.chkAuotAddToFirewallException.UseVisualStyleBackColor = true;
+            // 
+            // chkSwitchEntrance
+            // 
+            resources.ApplyResources(this.chkSwitchEntrance, "chkSwitchEntrance");
+            this.chkSwitchEntrance.Name = "chkSwitchEntrance";
+            this.chkSwitchEntrance.UseVisualStyleBackColor = true;
             // 
             // chkEnableZST
             // 
@@ -703,9 +886,9 @@
             // 
             // comLedType
             // 
+            resources.ApplyResources(this.comLedType, "comLedType");
             this.comLedType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comLedType.FormattingEnabled = true;
-            resources.ApplyResources(this.comLedType, "comLedType");
             this.comLedType.Name = "comLedType";
             // 
             // label4
@@ -715,8 +898,8 @@
             // 
             // comParkFullLed
             // 
-            this.comParkFullLed.FormattingEnabled = true;
             resources.ApplyResources(this.comParkFullLed, "comParkFullLed");
+            this.comParkFullLed.FormattingEnabled = true;
             this.comParkFullLed.Name = "comParkFullLed";
             // 
             // label3
@@ -726,8 +909,8 @@
             // 
             // comYCT
             // 
-            this.comYCT.FormattingEnabled = true;
             resources.ApplyResources(this.comYCT, "comYCT");
+            this.comYCT.FormattingEnabled = true;
             this.comYCT.Name = "comYCT";
             // 
             // label7
@@ -737,8 +920,8 @@
             // 
             // comBillPrinter
             // 
-            this.comBillPrinter.FormattingEnabled = true;
             resources.ApplyResources(this.comBillPrinter, "comBillPrinter");
+            this.comBillPrinter.FormattingEnabled = true;
             this.comBillPrinter.Name = "comBillPrinter";
             // 
             // label6
@@ -748,8 +931,8 @@
             // 
             // comFeeLed
             // 
-            this.comFeeLed.FormattingEnabled = true;
             resources.ApplyResources(this.comFeeLed, "comFeeLed");
+            this.comFeeLed.FormattingEnabled = true;
             this.comFeeLed.Name = "comFeeLed";
             // 
             // label5
@@ -759,8 +942,8 @@
             // 
             // comTicketReader
             // 
-            this.comTicketReader.FormattingEnabled = true;
             resources.ApplyResources(this.comTicketReader, "comTicketReader");
+            this.comTicketReader.FormattingEnabled = true;
             this.comTicketReader.Name = "comTicketReader";
             // 
             // groupBox1
@@ -776,27 +959,119 @@
             // 
             // tabKey
             // 
-            this.tabKey.Controls.Add(this.chkCardSection);
-            this.tabKey.Controls.Add(this.txtCardSection);
-            this.tabKey.Controls.Add(this.chkChangeKey);
-            this.tabKey.Controls.Add(this.pnlChangeKey);
             resources.ApplyResources(this.tabKey, "tabKey");
+            this.tabKey.Controls.Add(this.pnlCPU);
+            this.tabKey.Controls.Add(this.rdbCPU);
+            this.tabKey.Controls.Add(this.rdbIC);
+            this.tabKey.Controls.Add(this.pnlIC);
+            this.tabKey.Controls.Add(this.groupBox10);
             this.tabKey.Name = "tabKey";
             this.tabKey.UseVisualStyleBackColor = true;
             // 
-            // chkCardSection
+            // pnlCPU
             // 
-            resources.ApplyResources(this.chkCardSection, "chkCardSection");
-            this.chkCardSection.Name = "chkCardSection";
-            this.chkCardSection.UseVisualStyleBackColor = true;
-            this.chkCardSection.CheckedChanged += new System.EventHandler(this.chkCardSection_CheckedChanged);
+            resources.ApplyResources(this.pnlCPU, "pnlCPU");
+            this.pnlCPU.Controls.Add(this.pnlCPUType);
+            this.pnlCPU.Controls.Add(this.groupBox11);
+            this.pnlCPU.Controls.Add(this.label31);
+            this.pnlCPU.Name = "pnlCPU";
             // 
-            // txtCardSection
+            // pnlCPUType
             // 
-            resources.ApplyResources(this.txtCardSection, "txtCardSection");
-            this.txtCardSection.MaxValue = 39;
-            this.txtCardSection.MinValue = 1;
-            this.txtCardSection.Name = "txtCardSection";
+            resources.ApplyResources(this.pnlCPUType, "pnlCPUType");
+            this.pnlCPUType.Controls.Add(this.rdb3Des);
+            this.pnlCPUType.Controls.Add(this.rdbSM1);
+            this.pnlCPUType.Name = "pnlCPUType";
+            // 
+            // rdb3Des
+            // 
+            resources.ApplyResources(this.rdb3Des, "rdb3Des");
+            this.rdb3Des.Checked = true;
+            this.rdb3Des.Name = "rdb3Des";
+            this.rdb3Des.TabStop = true;
+            this.rdb3Des.UseVisualStyleBackColor = true;
+            this.rdb3Des.CheckedChanged += new System.EventHandler(this.rdb3Des_CheckedChanged);
+            // 
+            // rdbSM1
+            // 
+            resources.ApplyResources(this.rdbSM1, "rdbSM1");
+            this.rdbSM1.Name = "rdbSM1";
+            this.rdbSM1.UseVisualStyleBackColor = true;
+            // 
+            // groupBox11
+            // 
+            resources.ApplyResources(this.groupBox11, "groupBox11");
+            this.groupBox11.Controls.Add(this.rdbSamNo);
+            this.groupBox11.Controls.Add(this.rdbFixedKey);
+            this.groupBox11.Controls.Add(this.pnlFixedKey);
+            this.groupBox11.Name = "groupBox11";
+            this.groupBox11.TabStop = false;
+            // 
+            // rdbSamNo
+            // 
+            resources.ApplyResources(this.rdbSamNo, "rdbSamNo");
+            this.rdbSamNo.Checked = true;
+            this.rdbSamNo.Name = "rdbSamNo";
+            this.rdbSamNo.TabStop = true;
+            this.rdbSamNo.UseVisualStyleBackColor = true;
+            this.rdbSamNo.CheckedChanged += new System.EventHandler(this.rdbSamNo_CheckedChanged);
+            // 
+            // rdbFixedKey
+            // 
+            resources.ApplyResources(this.rdbFixedKey, "rdbFixedKey");
+            this.rdbFixedKey.Name = "rdbFixedKey";
+            this.rdbFixedKey.TabStop = true;
+            this.rdbFixedKey.UseVisualStyleBackColor = true;
+            // 
+            // pnlFixedKey
+            // 
+            resources.ApplyResources(this.pnlFixedKey, "pnlFixedKey");
+            this.pnlFixedKey.Controls.Add(this.txtCPUKey);
+            this.pnlFixedKey.Controls.Add(this.chkChangeCPUKey);
+            this.pnlFixedKey.Name = "pnlFixedKey";
+            // 
+            // txtCPUKey
+            // 
+            resources.ApplyResources(this.txtCPUKey, "txtCPUKey");
+            this.txtCPUKey.InputSpace = false;
+            this.txtCPUKey.Name = "txtCPUKey";
+            // 
+            // chkChangeCPUKey
+            // 
+            resources.ApplyResources(this.chkChangeCPUKey, "chkChangeCPUKey");
+            this.chkChangeCPUKey.Name = "chkChangeCPUKey";
+            this.chkChangeCPUKey.UseVisualStyleBackColor = true;
+            this.chkChangeCPUKey.CheckedChanged += new System.EventHandler(this.chkChangeCPUKey_CheckedChanged);
+            // 
+            // label31
+            // 
+            resources.ApplyResources(this.label31, "label31");
+            this.label31.Name = "label31";
+            // 
+            // rdbCPU
+            // 
+            resources.ApplyResources(this.rdbCPU, "rdbCPU");
+            this.rdbCPU.Name = "rdbCPU";
+            this.rdbCPU.UseVisualStyleBackColor = true;
+            this.rdbCPU.CheckedChanged += new System.EventHandler(this.rdbCPU_CheckedChanged);
+            // 
+            // rdbIC
+            // 
+            resources.ApplyResources(this.rdbIC, "rdbIC");
+            this.rdbIC.Checked = true;
+            this.rdbIC.Name = "rdbIC";
+            this.rdbIC.TabStop = true;
+            this.rdbIC.UseVisualStyleBackColor = true;
+            this.rdbIC.CheckedChanged += new System.EventHandler(this.rdbIC_CheckedChanged);
+            // 
+            // pnlIC
+            // 
+            resources.ApplyResources(this.pnlIC, "pnlIC");
+            this.pnlIC.Controls.Add(this.chkChangeKey);
+            this.pnlIC.Controls.Add(this.chkCardSection);
+            this.pnlIC.Controls.Add(this.pnlChangeKey);
+            this.pnlIC.Controls.Add(this.txtCardSection);
+            this.pnlIC.Name = "pnlIC";
             // 
             // chkChangeKey
             // 
@@ -805,33 +1080,40 @@
             this.chkChangeKey.UseVisualStyleBackColor = true;
             this.chkChangeKey.CheckedChanged += new System.EventHandler(this.chkChangeKey_CheckedChanged);
             // 
+            // chkCardSection
+            // 
+            resources.ApplyResources(this.chkCardSection, "chkCardSection");
+            this.chkCardSection.Name = "chkCardSection";
+            this.chkCardSection.UseVisualStyleBackColor = true;
+            this.chkCardSection.CheckedChanged += new System.EventHandler(this.chkCardSection_CheckedChanged);
+            // 
             // pnlChangeKey
             // 
+            resources.ApplyResources(this.pnlChangeKey, "pnlChangeKey");
             this.pnlChangeKey.Controls.Add(this.groupBox2);
             this.pnlChangeKey.Controls.Add(this.groupBox3);
             this.pnlChangeKey.Controls.Add(this.label22);
-            resources.ApplyResources(this.pnlChangeKey, "pnlChangeKey");
             this.pnlChangeKey.Name = "pnlChangeKey";
             // 
             // groupBox2
             // 
-            this.groupBox2.Controls.Add(this.pnlOldKey);
             resources.ApplyResources(this.groupBox2, "groupBox2");
+            this.groupBox2.Controls.Add(this.pnlOldKey);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
             // pnlOldKey
             // 
+            resources.ApplyResources(this.pnlOldKey, "pnlOldKey");
             this.pnlOldKey.Controls.Add(this.txtOldKey);
             this.pnlOldKey.Controls.Add(this.chkShowOld);
             this.pnlOldKey.Controls.Add(this.label27);
-            resources.ApplyResources(this.pnlOldKey, "pnlOldKey");
             this.pnlOldKey.Name = "pnlOldKey";
             // 
             // txtOldKey
             // 
-            this.txtOldKey.InputSpace = false;
             resources.ApplyResources(this.txtOldKey, "txtOldKey");
+            this.txtOldKey.InputSpace = false;
             this.txtOldKey.Name = "txtOldKey";
             // 
             // chkShowOld
@@ -848,10 +1130,10 @@
             // 
             // groupBox3
             // 
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.rdbInputKey);
             this.groupBox3.Controls.Add(this.pnlNewKey);
             this.groupBox3.Controls.Add(this.rdbDefaultKey);
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
@@ -866,11 +1148,11 @@
             // 
             // pnlNewKey
             // 
+            resources.ApplyResources(this.pnlNewKey, "pnlNewKey");
             this.pnlNewKey.Controls.Add(this.label26);
             this.pnlNewKey.Controls.Add(this.label25);
             this.pnlNewKey.Controls.Add(this.txtNewKey);
             this.pnlNewKey.Controls.Add(this.txtConfirmKey);
-            resources.ApplyResources(this.pnlNewKey, "pnlNewKey");
             this.pnlNewKey.Name = "pnlNewKey";
             // 
             // label26
@@ -885,14 +1167,14 @@
             // 
             // txtNewKey
             // 
-            this.txtNewKey.InputSpace = false;
             resources.ApplyResources(this.txtNewKey, "txtNewKey");
+            this.txtNewKey.InputSpace = false;
             this.txtNewKey.Name = "txtNewKey";
             // 
             // txtConfirmKey
             // 
-            this.txtConfirmKey.InputSpace = false;
             resources.ApplyResources(this.txtConfirmKey, "txtConfirmKey");
+            this.txtConfirmKey.InputSpace = false;
             this.txtConfirmKey.Name = "txtConfirmKey";
             // 
             // rdbDefaultKey
@@ -906,12 +1188,27 @@
             resources.ApplyResources(this.label22, "label22");
             this.label22.Name = "label22";
             // 
+            // txtCardSection
+            // 
+            resources.ApplyResources(this.txtCardSection, "txtCardSection");
+            this.txtCardSection.MaxValue = 39;
+            this.txtCardSection.MinValue = 1;
+            this.txtCardSection.Name = "txtCardSection";
+            this.txtCardSection.NumberWithCommas = false;
+            // 
+            // groupBox10
+            // 
+            resources.ApplyResources(this.groupBox10, "groupBox10");
+            this.groupBox10.BackColor = System.Drawing.Color.Blue;
+            this.groupBox10.Name = "groupBox10";
+            this.groupBox10.TabStop = false;
+            // 
             // tabCarTypeSetting
             // 
+            resources.ApplyResources(this.tabCarTypeSetting, "tabCarTypeSetting");
             this.tabCarTypeSetting.Controls.Add(this.label21);
             this.tabCarTypeSetting.Controls.Add(this.label20);
             this.tabCarTypeSetting.Controls.Add(this.carTypeGrid);
-            resources.ApplyResources(this.tabCarTypeSetting, "tabCarTypeSetting");
             this.tabCarTypeSetting.Name = "tabCarTypeSetting";
             this.tabCarTypeSetting.UseVisualStyleBackColor = true;
             // 
@@ -929,9 +1226,9 @@
             // 
             // carTypeGrid
             // 
+            resources.ApplyResources(this.carTypeGrid, "carTypeGrid");
             this.carTypeGrid.AllowUserToResizeColumns = false;
             this.carTypeGrid.AllowUserToResizeRows = false;
-            resources.ApplyResources(this.carTypeGrid, "carTypeGrid");
             this.carTypeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.carTypeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCarTypeDescr,
@@ -958,20 +1255,20 @@
             // 
             // tabBaseCardType
             // 
-            this.tabBaseCardType.Controls.Add(this.BaseCardTypeGrid);
             resources.ApplyResources(this.tabBaseCardType, "tabBaseCardType");
+            this.tabBaseCardType.Controls.Add(this.BaseCardTypeGrid);
             this.tabBaseCardType.Name = "tabBaseCardType";
             this.tabBaseCardType.UseVisualStyleBackColor = true;
             // 
             // BaseCardTypeGrid
             // 
+            resources.ApplyResources(this.BaseCardTypeGrid, "BaseCardTypeGrid");
             this.BaseCardTypeGrid.AllowUserToAddRows = false;
             this.BaseCardTypeGrid.AllowUserToDeleteRows = false;
             this.BaseCardTypeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.BaseCardTypeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colBaseCardTypeName,
             this.colUserDefinedName});
-            resources.ApplyResources(this.BaseCardTypeGrid, "BaseCardTypeGrid");
             this.BaseCardTypeGrid.Name = "BaseCardTypeGrid";
             this.BaseCardTypeGrid.RowTemplate.Height = 23;
             this.BaseCardTypeGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -990,18 +1287,18 @@
             // 
             // tabCardType
             // 
-            this.tabCardType.Controls.Add(this.CardTypeGrid);
             resources.ApplyResources(this.tabCardType, "tabCardType");
+            this.tabCardType.Controls.Add(this.CardTypeGrid);
             this.tabCardType.Name = "tabCardType";
             this.tabCardType.UseVisualStyleBackColor = true;
             // 
             // CardTypeGrid
             // 
+            resources.ApplyResources(this.CardTypeGrid, "CardTypeGrid");
             this.CardTypeGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.CardTypeGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colName,
             this.colBaseCardType});
-            resources.ApplyResources(this.CardTypeGrid, "CardTypeGrid");
             this.CardTypeGrid.Name = "CardTypeGrid";
             this.CardTypeGrid.RowTemplate.Height = 23;
             this.CardTypeGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -1023,13 +1320,14 @@
             // 
             // tabAccess
             // 
-            this.tabAccess.Controls.Add(this.accessGrid);
             resources.ApplyResources(this.tabAccess, "tabAccess");
+            this.tabAccess.Controls.Add(this.accessGrid);
             this.tabAccess.Name = "tabAccess";
             this.tabAccess.UseVisualStyleBackColor = true;
             // 
             // accessGrid
             // 
+            resources.ApplyResources(this.accessGrid, "accessGrid");
             this.accessGrid.AllowUserToAddRows = false;
             this.accessGrid.AllowUserToDeleteRows = false;
             this.accessGrid.AllowUserToResizeRows = false;
@@ -1037,7 +1335,6 @@
             this.accessGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colAccessLevelName});
             this.accessGrid.ContextMenuStrip = this.accessMenu;
-            resources.ApplyResources(this.accessGrid, "accessGrid");
             this.accessGrid.Name = "accessGrid";
             this.accessGrid.RowHeadersVisible = false;
             this.accessGrid.RowTemplate.Height = 23;
@@ -1054,31 +1351,31 @@
             // 
             // accessMenu
             // 
+            resources.ApplyResources(this.accessMenu, "accessMenu");
             this.accessMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_AddAccess,
             this.mnu_DeleteAccess});
             this.accessMenu.Name = "contextMenuStrip1";
-            resources.ApplyResources(this.accessMenu, "accessMenu");
             // 
             // mnu_AddAccess
             // 
-            this.mnu_AddAccess.Name = "mnu_AddAccess";
             resources.ApplyResources(this.mnu_AddAccess, "mnu_AddAccess");
+            this.mnu_AddAccess.Name = "mnu_AddAccess";
             this.mnu_AddAccess.Click += new System.EventHandler(this.mnu_AddAccess_Click);
             // 
             // mnu_DeleteAccess
             // 
-            this.mnu_DeleteAccess.Name = "mnu_DeleteAccess";
             resources.ApplyResources(this.mnu_DeleteAccess, "mnu_DeleteAccess");
+            this.mnu_DeleteAccess.Name = "mnu_DeleteAccess";
             this.mnu_DeleteAccess.Click += new System.EventHandler(this.mnu_DeleteAccess_Click);
             // 
             // tabHoliday
             // 
+            resources.ApplyResources(this.tabHoliday, "tabHoliday");
             this.tabHoliday.Controls.Add(this.label1);
             this.tabHoliday.Controls.Add(this.chkSundayIsHoliday);
             this.tabHoliday.Controls.Add(this.chkSaturdayIsHoliday);
             this.tabHoliday.Controls.Add(this.holidayGrid);
-            resources.ApplyResources(this.tabHoliday, "tabHoliday");
             this.tabHoliday.Name = "tabHoliday";
             this.tabHoliday.UseVisualStyleBackColor = true;
             // 
@@ -1101,6 +1398,7 @@
             // 
             // holidayGrid
             // 
+            resources.ApplyResources(this.holidayGrid, "holidayGrid");
             this.holidayGrid.AllowUserToAddRows = false;
             this.holidayGrid.AllowUserToDeleteRows = false;
             this.holidayGrid.AllowUserToResizeRows = false;
@@ -1110,7 +1408,6 @@
             this.colEndDate,
             this.Column1});
             this.holidayGrid.ContextMenuStrip = this.holidayMenu;
-            resources.ApplyResources(this.holidayGrid, "holidayGrid");
             this.holidayGrid.Name = "holidayGrid";
             this.holidayGrid.RowHeadersVisible = false;
             this.holidayGrid.RowTemplate.Height = 23;
@@ -1138,33 +1435,34 @@
             // 
             // holidayMenu
             // 
+            resources.ApplyResources(this.holidayMenu, "holidayMenu");
             this.holidayMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_Add,
             this.mnu_Delete});
             this.holidayMenu.Name = "contextMenuStrip1";
-            resources.ApplyResources(this.holidayMenu, "holidayMenu");
             // 
             // mnu_Add
             // 
-            this.mnu_Add.Name = "mnu_Add";
             resources.ApplyResources(this.mnu_Add, "mnu_Add");
+            this.mnu_Add.Name = "mnu_Add";
             this.mnu_Add.Click += new System.EventHandler(this.mnu_Add_Click);
             // 
             // mnu_Delete
             // 
-            this.mnu_Delete.Name = "mnu_Delete";
             resources.ApplyResources(this.mnu_Delete, "mnu_Delete");
+            this.mnu_Delete.Name = "mnu_Delete";
             this.mnu_Delete.Click += new System.EventHandler(this.mnu_Delete_Click);
             // 
             // tabTariff
             // 
-            this.tabTariff.Controls.Add(this.tariffGrid);
             resources.ApplyResources(this.tabTariff, "tabTariff");
+            this.tabTariff.Controls.Add(this.tariffGrid);
             this.tabTariff.Name = "tabTariff";
             this.tabTariff.UseVisualStyleBackColor = true;
             // 
             // tariffGrid
             // 
+            resources.ApplyResources(this.tariffGrid, "tariffGrid");
             this.tariffGrid.AllowUserToAddRows = false;
             this.tariffGrid.AllowUserToDeleteRows = false;
             this.tariffGrid.AllowUserToResizeColumns = false;
@@ -1178,7 +1476,6 @@
             this.colInnerRoom,
             this.colHolidayAndInnerRoom});
             this.tariffGrid.ContextMenuStrip = this.TariffMenu;
-            resources.ApplyResources(this.tariffGrid, "tariffGrid");
             this.tariffGrid.Name = "tariffGrid";
             this.tariffGrid.ReadOnly = true;
             this.tariffGrid.RowHeadersVisible = false;
@@ -1224,31 +1521,127 @@
             // 
             // TariffMenu
             // 
+            resources.ApplyResources(this.TariffMenu, "TariffMenu");
             this.TariffMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_Clear});
             this.TariffMenu.Name = "TariffMenu";
-            resources.ApplyResources(this.TariffMenu, "TariffMenu");
             // 
             // mnu_Clear
             // 
-            this.mnu_Clear.Name = "mnu_Clear";
             resources.ApplyResources(this.mnu_Clear, "mnu_Clear");
+            this.mnu_Clear.Name = "mnu_Clear";
             this.mnu_Clear.Click += new System.EventHandler(this.mnu_Clear_Click);
+            // 
+            // tabRotation
+            // 
+            resources.ApplyResources(this.tabRotation, "tabRotation");
+            this.tabRotation.Controls.Add(this.label35);
+            this.tabRotation.Controls.Add(this.txtRotationVacant);
+            this.tabRotation.Controls.Add(this.gridRotation);
+            this.tabRotation.Controls.Add(this.chkEnableRotation);
+            this.tabRotation.Name = "tabRotation";
+            this.tabRotation.UseVisualStyleBackColor = true;
+            // 
+            // label35
+            // 
+            resources.ApplyResources(this.label35, "label35");
+            this.label35.Name = "label35";
+            // 
+            // txtRotationVacant
+            // 
+            resources.ApplyResources(this.txtRotationVacant, "txtRotationVacant");
+            this.txtRotationVacant.MaxValue = 65535;
+            this.txtRotationVacant.MinValue = 0;
+            this.txtRotationVacant.Name = "txtRotationVacant";
+            this.txtRotationVacant.NumberWithCommas = false;
+            // 
+            // gridRotation
+            // 
+            resources.ApplyResources(this.gridRotation, "gridRotation");
+            this.gridRotation.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.gridRotation.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridRotation.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colRotationEntrance,
+            this.colRotationNumber});
+            this.gridRotation.Name = "gridRotation";
+            this.gridRotation.RowTemplate.Height = 23;
+            this.gridRotation.RowEnter += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRotation_RowEnter);
+            this.gridRotation.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvRotation_RowsAdded);
+            // 
+            // colRotationEntrance
+            // 
+            this.colRotationEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.colRotationEntrance, "colRotationEntrance");
+            this.colRotationEntrance.Name = "colRotationEntrance";
+            this.colRotationEntrance.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colRotationEntrance.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // colRotationNumber
+            // 
+            resources.ApplyResources(this.colRotationNumber, "colRotationNumber");
+            this.colRotationNumber.Name = "colRotationNumber";
+            // 
+            // chkEnableRotation
+            // 
+            resources.ApplyResources(this.chkEnableRotation, "chkEnableRotation");
+            this.chkEnableRotation.Name = "chkEnableRotation";
+            this.chkEnableRotation.UseVisualStyleBackColor = true;
+            // 
+            // tabParkingCoupon
+            // 
+            resources.ApplyResources(this.tabParkingCoupon, "tabParkingCoupon");
+            this.tabParkingCoupon.Controls.Add(this.lblCouponUnit);
+            this.tabParkingCoupon.Controls.Add(this.label34);
+            this.tabParkingCoupon.Controls.Add(this.gridParkingCoupon);
+            this.tabParkingCoupon.Name = "tabParkingCoupon";
+            this.tabParkingCoupon.UseVisualStyleBackColor = true;
+            // 
+            // lblCouponUnit
+            // 
+            resources.ApplyResources(this.lblCouponUnit, "lblCouponUnit");
+            this.lblCouponUnit.Name = "lblCouponUnit";
+            // 
+            // label34
+            // 
+            resources.ApplyResources(this.label34, "label34");
+            this.label34.Name = "label34";
+            // 
+            // gridParkingCoupon
+            // 
+            resources.ApplyResources(this.gridParkingCoupon, "gridParkingCoupon");
+            this.gridParkingCoupon.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.gridParkingCoupon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.gridParkingCoupon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colCouponName,
+            this.colCouponValue});
+            this.gridParkingCoupon.Name = "gridParkingCoupon";
+            this.gridParkingCoupon.RowTemplate.Height = 23;
+            // 
+            // colCouponName
+            // 
+            this.colCouponName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.colCouponName, "colCouponName");
+            this.colCouponName.Name = "colCouponName";
+            // 
+            // colCouponValue
+            // 
+            resources.ApplyResources(this.colCouponValue, "colCouponValue");
+            this.colCouponValue.Name = "colCouponValue";
             // 
             // tabPaymentComments
             // 
-            this.tabPaymentComments.Controls.Add(this.gridPaymentComments);
             resources.ApplyResources(this.tabPaymentComments, "tabPaymentComments");
+            this.tabPaymentComments.Controls.Add(this.gridPaymentComments);
             this.tabPaymentComments.Name = "tabPaymentComments";
             this.tabPaymentComments.UseVisualStyleBackColor = true;
             // 
             // gridPaymentComments
             // 
+            resources.ApplyResources(this.gridPaymentComments, "gridPaymentComments");
             this.gridPaymentComments.BackgroundColor = System.Drawing.SystemColors.ButtonHighlight;
             this.gridPaymentComments.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.gridPaymentComments.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colComment});
-            resources.ApplyResources(this.gridPaymentComments, "gridPaymentComments");
             this.gridPaymentComments.Name = "gridPaymentComments";
             this.gridPaymentComments.RowTemplate.Height = 23;
             // 
@@ -1258,17 +1651,104 @@
             resources.ApplyResources(this.colComment, "colComment");
             this.colComment.Name = "colComment";
             // 
+            // tabother
+            // 
+            resources.ApplyResources(this.tabother, "tabother");
+            this.tabother.Controls.Add(this.gbimageDatabaseConnStr);
+            this.tabother.Name = "tabother";
+            this.tabother.UseVisualStyleBackColor = true;
+            // 
+            // gbimageDatabaseConnStr
+            // 
+            resources.ApplyResources(this.gbimageDatabaseConnStr, "gbimageDatabaseConnStr");
+            this.gbimageDatabaseConnStr.Controls.Add(this.btnTestConnect);
+            this.gbimageDatabaseConnStr.Controls.Add(this.txtPasswd);
+            this.gbimageDatabaseConnStr.Controls.Add(this.txtUserID);
+            this.gbimageDatabaseConnStr.Controls.Add(this.txtDataBase);
+            this.gbimageDatabaseConnStr.Controls.Add(this.txtServer);
+            this.gbimageDatabaseConnStr.Controls.Add(this.label36);
+            this.gbimageDatabaseConnStr.Controls.Add(this.label37);
+            this.gbimageDatabaseConnStr.Controls.Add(this.label38);
+            this.gbimageDatabaseConnStr.Controls.Add(this.label39);
+            this.gbimageDatabaseConnStr.Controls.Add(this.rdUser);
+            this.gbimageDatabaseConnStr.Controls.Add(this.rdSystem);
+            this.gbimageDatabaseConnStr.Name = "gbimageDatabaseConnStr";
+            this.gbimageDatabaseConnStr.TabStop = false;
+            // 
+            // btnTestConnect
+            // 
+            resources.ApplyResources(this.btnTestConnect, "btnTestConnect");
+            this.btnTestConnect.Name = "btnTestConnect";
+            this.btnTestConnect.UseVisualStyleBackColor = true;
+            this.btnTestConnect.Click += new System.EventHandler(this.btnTestConnect_Click);
+            // 
+            // txtPasswd
+            // 
+            resources.ApplyResources(this.txtPasswd, "txtPasswd");
+            this.txtPasswd.Name = "txtPasswd";
+            // 
+            // txtUserID
+            // 
+            resources.ApplyResources(this.txtUserID, "txtUserID");
+            this.txtUserID.Name = "txtUserID";
+            // 
+            // txtDataBase
+            // 
+            resources.ApplyResources(this.txtDataBase, "txtDataBase");
+            this.txtDataBase.Name = "txtDataBase";
+            // 
+            // txtServer
+            // 
+            resources.ApplyResources(this.txtServer, "txtServer");
+            this.txtServer.Name = "txtServer";
+            // 
+            // label36
+            // 
+            resources.ApplyResources(this.label36, "label36");
+            this.label36.Name = "label36";
+            // 
+            // label37
+            // 
+            resources.ApplyResources(this.label37, "label37");
+            this.label37.Name = "label37";
+            // 
+            // label38
+            // 
+            resources.ApplyResources(this.label38, "label38");
+            this.label38.Name = "label38";
+            // 
+            // label39
+            // 
+            resources.ApplyResources(this.label39, "label39");
+            this.label39.Name = "label39";
+            // 
+            // rdUser
+            // 
+            resources.ApplyResources(this.rdUser, "rdUser");
+            this.rdUser.Name = "rdUser";
+            this.rdUser.UseVisualStyleBackColor = true;
+            this.rdUser.CheckedChanged += new System.EventHandler(this.rdUser_CheckedChanged);
+            // 
+            // rdSystem
+            // 
+            resources.ApplyResources(this.rdSystem, "rdSystem");
+            this.rdSystem.Checked = true;
+            this.rdSystem.Name = "rdSystem";
+            this.rdSystem.TabStop = true;
+            this.rdSystem.UseVisualStyleBackColor = true;
+            this.rdSystem.CheckedChanged += new System.EventHandler(this.rdSystem_CheckedChanged);
+            // 
             // mnu_CustomCardType
             // 
+            resources.ApplyResources(this.mnu_CustomCardType, "mnu_CustomCardType");
             this.mnu_CustomCardType.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_ClearTariff});
             this.mnu_CustomCardType.Name = "mnu_CustomCardType";
-            resources.ApplyResources(this.mnu_CustomCardType, "mnu_CustomCardType");
             // 
             // mnu_ClearTariff
             // 
-            this.mnu_ClearTariff.Name = "mnu_ClearTariff";
             resources.ApplyResources(this.mnu_ClearTariff, "mnu_ClearTariff");
+            this.mnu_ClearTariff.Name = "mnu_ClearTariff";
             this.mnu_ClearTariff.Click += new System.EventHandler(this.mnu_ClearTariff_Click);
             // 
             // butOK
@@ -1280,8 +1760,8 @@
             // 
             // butCancel
             // 
-            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             resources.ApplyResources(this.butCancel, "butCancel");
+            this.butCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.butCancel.Name = "butCancel";
             this.butCancel.UseVisualStyleBackColor = true;
             this.butCancel.Click += new System.EventHandler(this.butCancel_Click);
@@ -1293,15 +1773,29 @@
             this.btnDownLoad.UseVisualStyleBackColor = true;
             this.btnDownLoad.Click += new System.EventHandler(this.btnDownLoad_Click);
             // 
+            // label30
+            // 
+            resources.ApplyResources(this.label30, "label30");
+            this.label30.ForeColor = System.Drawing.Color.Red;
+            this.label30.Name = "label30";
+            // 
+            // lblMsg
+            // 
+            resources.ApplyResources(this.lblMsg, "lblMsg");
+            this.lblMsg.ForeColor = System.Drawing.Color.Blue;
+            this.lblMsg.Name = "lblMsg";
+            // 
             // FrmSystemOption
             // 
             this.AcceptButton = this.butOK;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.butCancel;
+            this.Controls.Add(this.lblMsg);
             this.Controls.Add(this.tab1);
             this.Controls.Add(this.butOK);
             this.Controls.Add(this.butCancel);
+            this.Controls.Add(this.label30);
             this.Controls.Add(this.btnDownLoad);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -1322,10 +1816,22 @@
             this.groupBox5.PerformLayout();
             this.groupBox4.ResumeLayout(false);
             this.groupBox4.PerformLayout();
+            this.groupBox12.ResumeLayout(false);
+            this.groupBox12.PerformLayout();
             this.tabGeneral.ResumeLayout(false);
             this.tabGeneral.PerformLayout();
             this.tabKey.ResumeLayout(false);
             this.tabKey.PerformLayout();
+            this.pnlCPU.ResumeLayout(false);
+            this.pnlCPU.PerformLayout();
+            this.pnlCPUType.ResumeLayout(false);
+            this.pnlCPUType.PerformLayout();
+            this.groupBox11.ResumeLayout(false);
+            this.groupBox11.PerformLayout();
+            this.pnlFixedKey.ResumeLayout(false);
+            this.pnlFixedKey.PerformLayout();
+            this.pnlIC.ResumeLayout(false);
+            this.pnlIC.PerformLayout();
             this.pnlChangeKey.ResumeLayout(false);
             this.pnlChangeKey.PerformLayout();
             this.groupBox2.ResumeLayout(false);
@@ -1352,10 +1858,20 @@
             this.tabTariff.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tariffGrid)).EndInit();
             this.TariffMenu.ResumeLayout(false);
+            this.tabRotation.ResumeLayout(false);
+            this.tabRotation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridRotation)).EndInit();
+            this.tabParkingCoupon.ResumeLayout(false);
+            this.tabParkingCoupon.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.gridParkingCoupon)).EndInit();
             this.tabPaymentComments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.gridPaymentComments)).EndInit();
+            this.tabother.ResumeLayout(false);
+            this.gbimageDatabaseConnStr.ResumeLayout(false);
+            this.gbimageDatabaseConnStr.PerformLayout();
             this.mnu_CustomCardType.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -1466,6 +1982,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHoliday;
         private System.Windows.Forms.DataGridViewTextBoxColumn colInnerRoom;
         private System.Windows.Forms.DataGridViewTextBoxColumn colHolidayAndInnerRoom;
+        private System.Windows.Forms.CheckBox chkEnableOutdoorLed;
         private System.Windows.Forms.CheckBox chkEnableWriteCard;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewComboBoxColumn colBaseCardType;
@@ -1507,5 +2024,62 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colUserDefinedName;
         private System.Windows.Forms.CheckBox chkCheckConnectionWithPing;
         private System.Windows.Forms.Button btnClearExpiredSnapShot;
+        private System.Windows.Forms.CheckBox chkSwitchEntrance;
+        private System.Windows.Forms.CheckBox chkEnableHotel;
+        private System.Windows.Forms.Label label30;
+        private System.Windows.Forms.GroupBox groupBox10;
+        private System.Windows.Forms.Panel pnlCPU;
+        private System.Windows.Forms.RadioButton rdb3Des;
+        private System.Windows.Forms.GroupBox groupBox11;
+        private System.Windows.Forms.RadioButton rdbSamNo;
+        private System.Windows.Forms.RadioButton rdbFixedKey;
+        private System.Windows.Forms.Panel pnlFixedKey;
+        private GeneralLibrary.WinformControl.HexTextBox txtCPUKey;
+        private System.Windows.Forms.CheckBox chkChangeCPUKey;
+        private System.Windows.Forms.Label label31;
+        private System.Windows.Forms.RadioButton rdbCPU;
+        private System.Windows.Forms.RadioButton rdbIC;
+        private System.Windows.Forms.Panel pnlIC;
+        private System.Windows.Forms.Panel pnlCPUType;
+        private System.Windows.Forms.RadioButton rdbSM1;
+        private System.Windows.Forms.Button btnClearExpiredCardEvent;
+        private System.Windows.Forms.Label label32;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtCardEventMonth;
+        private System.Windows.Forms.CheckBox chkEnableDeleteOverTimeCardEvents;
+        private System.Windows.Forms.GroupBox groupBox12;
+        private System.Windows.Forms.CheckBox chkForbiddenExitWhenSpeeding;
+        private System.Windows.Forms.CheckBox chkForbiddenEnterWhenSpeeding;
+        private System.Windows.Forms.Label label33;
+        private System.Windows.Forms.CheckBox chkNotShowSettleDetail;
+        private System.Windows.Forms.TabPage tabParkingCoupon;
+        private System.Windows.Forms.DataGridView gridParkingCoupon;
+        private System.Windows.Forms.RadioButton rdCustom;
+        private GeneralLibrary.WinformControl.DBCTextBox txtMoneyUnit;
+        private System.Windows.Forms.Label lblCouponUnit;
+        private System.Windows.Forms.Label label34;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCouponName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCouponValue;
+        private System.Windows.Forms.CheckBox chkFixCardAccessWhenRecognize;
+        private System.Windows.Forms.TabPage tabRotation;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtRotationVacant;
+        private System.Windows.Forms.DataGridView gridRotation;
+        private System.Windows.Forms.CheckBox chkEnableRotation;
+        private System.Windows.Forms.Label label35;
+        private System.Windows.Forms.DataGridViewComboBoxColumn colRotationEntrance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colRotationNumber;
+        private System.Windows.Forms.Label lblMsg;
+        private System.Windows.Forms.TabPage tabother;
+        private System.Windows.Forms.GroupBox gbimageDatabaseConnStr;
+        private GeneralLibrary.WinformControl.DBCTextBox txtPasswd;
+        private GeneralLibrary.WinformControl.DBCTextBox txtUserID;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDataBase;
+        private GeneralLibrary.WinformControl.DBCTextBox txtServer;
+        private System.Windows.Forms.Label label36;
+        private System.Windows.Forms.Label label37;
+        private System.Windows.Forms.Label label38;
+        private System.Windows.Forms.Label label39;
+        private System.Windows.Forms.RadioButton rdUser;
+        private System.Windows.Forms.RadioButton rdSystem;
+        private System.Windows.Forms.Button btnTestConnect;
     }
 }

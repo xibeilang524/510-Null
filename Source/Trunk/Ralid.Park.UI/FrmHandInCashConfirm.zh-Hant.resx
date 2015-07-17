@@ -123,6 +123,9 @@
   <data name="btnOk.Text" xml:space="preserve">
     <value>確定(&amp;O)</value>
   </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>POS機實收</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
     <value>操作員實收現金 確認</value>
   </data>

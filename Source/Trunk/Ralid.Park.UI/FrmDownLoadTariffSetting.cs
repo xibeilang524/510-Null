@@ -6,6 +6,8 @@ using System.Drawing;
 using System.Text;
 using System.Linq;
 using System.Windows.Forms;
+using Ralid.Park.BLL;
+using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.ParkAdapter;
@@ -29,7 +31,8 @@ namespace Ralid.Park.UI
         protected override void InitControls()
         {
             this.hardwareTree1.ShowEntrance = true;
-            this.hardwareTree1.Init();
+            this.hardwareTree1.Init(ParkID);
+            this.hardwareTree1.ExpandRootOnly();
 
         }
 
@@ -61,6 +64,14 @@ namespace Ralid.Park.UI
                         {
                             NotifyMessage(string.Format(Resources.Resource1.FrmDownLoadTariffSetting_Download, entrance.EntranceName));
                             ret = pad.DownloadTariffSettingToEntrance(entrance.EntranceID, TariffSetting.Current);
+                            if (!ret)
+                            {
+                                WaitingCommandBLL wcBll = new WaitingCommandBLL(AppSettings.CurrentSetting.CurrentMasterConnect);
+                                WaitingCommandInfo wcInfo = new WaitingCommandInfo();
+                                wcInfo.EntranceID = entrance.EntranceID;
+                                wcInfo.Command = BusinessModel.Enum.CommandType.DownloadTariffs;
+                                wcBll.DeleteAndInsert(wcInfo);
+                            }
                         }
                         success = ret ? success : false;
                         NotifyHardwareTreeEntrance(entrance.EntranceID, ret);

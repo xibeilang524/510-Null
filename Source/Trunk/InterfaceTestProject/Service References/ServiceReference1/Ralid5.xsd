@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:ser="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:tns="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.SearchCondition" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+  <xs:import schemaLocation="http://localhost:8092/ParkingWebService/Ralid.Park.WebService.ParkWebService.svc?xsd=xsd7" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:complexType name="RecordSearchCondition">
+    <xs:complexContent mixed="false">
+      <xs:extension base="tns:SearchCondition">
+        <xs:sequence>
+          <xs:element name="_x003C_CarPlate_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_CarType_x003E_k__BackingField" nillable="true" type="xs:unsignedByte" />
+          <xs:element name="_x003C_CardCertificate_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element name="_x003C_CardID_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" name="_x003C_CardType_x003E_k__BackingField" nillable="true" type="q1:CardType" />
+          <xs:element name="_x003C_Department_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" name="_x003C_Dept_x003E_k__BackingField" nillable="true" type="q2:DeptInfo" />
+          <xs:element name="_x003C_IsUnSettled_x003E_k__BackingField" nillable="true" type="xs:boolean" />
+          <xs:element name="_x003C_OperatorDeptID_x003E_k__BackingField" nillable="true" type="ser:guid" />
+          <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_OperatorIDs_x003E_k__BackingField" nillable="true" type="q3:ArrayOfstring" />
+          <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Model" name="_x003C_Operator_x003E_k__BackingField" nillable="true" type="q4:OperatorInfo" />
+          <xs:element name="_x003C_OwnerName_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/Ralid.Park.BusinessModel.Enum" name="_x003C_PaymentMode_x003E_k__BackingField" nillable="true" type="q5:PaymentMode" />
+          <xs:element name="_x003C_RecordDateTimeRange_x003E_k__BackingField" nillable="true" type="tns:DateTimeRange" />
+          <xs:element name="_x003C_SettleDateTime_x003E_k__BackingField" nillable="true" type="xs:dateTime" />
+          <xs:element name="_x003C_StationDeptID_x003E_k__BackingField" nillable="true" type="ser:guid" />
+          <xs:element name="_x003C_StationID_x003E_k__BackingField" nillable="true" type="xs:string" />
+          <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" name="_x003C_StationIDs_x003E_k__BackingField" nillable="true" type="q6:ArrayOfstring" />
+          <xs:element name="_x003C_UpdateFlag_x003E_k__BackingField" nillable="true" type="xs:boolean" />
+        </xs:sequence>
+      </xs:extension>
+    </xs:complexContent>
+  </xs:complexType>
+  <xs:element name="RecordSearchCondition" nillable="true" type="tns:RecordSearchCondition" />
+  <xs:complexType name="SearchCondition">
+    <xs:sequence />
+  </xs:complexType>
+  <xs:element name="SearchCondition" nillable="true" type="tns:SearchCondition" />
+  <xs:complexType name="DateTimeRange">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Begin" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="End" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="DateTimeRange" nillable="true" type="tns:DateTimeRange" />
+</xs:schema>

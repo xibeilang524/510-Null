@@ -104,16 +104,19 @@ namespace Ralid.Park.UI
             {
                 while (true)
                 {
-                    if (this.ucVideo.Status == VideoStatus.Playing)
+                    foreach (VideoPanel vp in ucVideoPanelGrid1.VideoPanelCollection)
                     {
-                        string file = System.IO.Path.Combine(TempFolderManager.GetCurrentFolder(), string.Format("{0}.jpg", DateTime.Now.ToString("yyyyMMddHHmmss")));
-                        if (this.ucVideo.SnapShotTo(file))
+                        if (vp.Status == VideoStatus.Playing)
                         {
-                            PlateRecognitionResult ret = PlateRecognitionService.CurrentInstance.Recognize(file);
-                            ShowResult(ret, file);
+                            string file = System.IO.Path.Combine(TempFolderManager.GetCurrentFolder(), string.Format("{0}.jpg", DateTime.Now.ToString("yyyyMMddHHmmss")));
+                            if (vp.SnapShotTo(ref file))
+                            {
+                                PlateRecognitionResult ret = PlateRecognitionService.CurrentInstance.Recognize(file);
+                                ShowResult(ret, file);
+                            }
+                            System.Threading.Thread.Sleep(1000);
                         }
                     }
-                    System.Threading.Thread.Sleep(1000);
                 }
             }
             catch (System.Threading.ThreadAbortException)
@@ -135,10 +138,18 @@ namespace Ralid.Park.UI
 
         private void FrmCarplateTestForVideo_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (this.ucVideo.Status == VideoStatus.Playing)
+            foreach (VideoPanel vp in ucVideoPanelGrid1.VideoPanelCollection)
             {
-                this.ucVideo.Close();
+                if (vp.Status == VideoStatus.Playing)
+                {
+                    vp.Close();
+                }
             }
+        }
+
+        private void FrmCarplateTestForVideo_Load(object sender, EventArgs e)
+        {
+            this.ucVideoPanelGrid1.SetShowMode(1, 1);
         }
     }
 }

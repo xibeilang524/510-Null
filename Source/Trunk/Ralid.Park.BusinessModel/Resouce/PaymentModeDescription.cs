@@ -27,6 +27,8 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.PaymentMode_YangChengTong;
                 case PaymentMode .ZhongShanTong :
                     return Resource1.PaymentMode_ZhongShanTong;
+                case PaymentMode.WeChat:
+                    return Resource1.PaymentMode_WeChat;
                 default :
                     return string.Empty;
             }

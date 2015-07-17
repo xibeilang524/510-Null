@@ -12,7 +12,7 @@ namespace Ralid.Park.BusinessModel.Model
     public class WaitingCommandInfo
     {
         /// <summary>
-        /// 获取或设置卡号
+        /// 获取或设置卡号或车牌名单的车牌号
         /// </summary>
         public string CardID { get; set; }
         /// <summary>
@@ -23,6 +23,16 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置命令动作
         /// </summary>
         public CommandType Command { get; set; }
+        /// <summary>
+        /// 获取或设置命令下发状态
+        /// </summary>
+        public WaitingCommandStatus Status { get; set; }
+        /// <summary>
+        /// 获取或设置CardID类型，为空时为默认0,
+        /// 0：名单的卡号
+        /// 1：名单的车牌号
+        /// </summary>
+        public byte? CardIDType { get; set; }
 
         public WaitingCommandInfo()
         {

@@ -202,7 +202,7 @@
     <value>正在收費請稍候</value>
   </data>
   <data name="FrmCardPaying_PayingSpeech" xml:space="preserve">
-    <value>應收{0}元</value>
+    <value>請繳費{0}</value>
   </data>
   <data name="FrmCardPaymentRecordDetail_ModifyPayment" xml:space="preserve">
     <value>修改收費資訊:"卡號{{{0}}} 收費時間{{{1}}} 入場時間{{{2}}} 應收金額{{{3}}} 實收金額{{{4}}} 說明{{{5}}}" 為 實收金額{{{6}}} 說明{{{7}}}</value>
@@ -511,10 +511,10 @@
     <value>卡片禁用</value>
   </data>
   <data name="FrmCardDisableEnable_Enable" xml:space="preserve">
-    <value>卡片启用</value>
+    <value>卡片啟用</value>
   </data>
   <data name="FrmSystemOption_InvalidMonth" xml:space="preserve">
-    <value>数据库优化时设置的保存抓拍图片月数不能小于零</value>
+    <value>数据库优化时设置的保存月数不能小于零</value>
   </data>
   <data name="FrmSystemOption_SameAccessName" xml:space="preserve">
     <value>系统中已经存在 权限组:{0} </value>
@@ -631,7 +631,7 @@
     <value>沒有指定停車場的工作模式</value>
   </data>
   <data name="FrmParkDetail_WorkModeChangedAlert" xml:space="preserve">
-    <value>停車場的工作模式已經改變，如果要使改變生效，需要重啟軟體</value>
+    <value>停車場的工作參數已經改變，如果要使改變生效，需要重啟軟體</value>
   </data>
   <data name="EnableWriteCard" xml:space="preserve">
     <value>啟用脫機模式</value>
@@ -1058,5 +1058,242 @@
   </data>
   <data name="OperatorLogOutAlarm" xml:space="preserve">
     <value>退出工作站:[{0}]  登錄時間:[{1}]  主機名稱:[{2}]  主機IP:[{3}]  MAC:[{4}]</value>
+  </data>
+  <data name="FrmLocalSettings_EnabledComfirm" xml:space="preserve">
+    <value>是否使用該功能？</value>
+  </data>
+  <data name="FrmLocalSettings_NewCardValidCommand" xml:space="preserve">
+    <value>該功能需要控制板硬件功能支持，請確定控制板是否支持新的卡片有效命令，如控制板不支持，會導致卡片出場不能抬閘！</value>
+  </data>
+  <data name="FrmSystemOption_ChangeCPUKeyComfirm" xml:space="preserve">
+    <value>是否修改CPU卡認證密鈅？</value>
+  </data>
+  <data name="FrmSystemOption_CPUKeyInvalid" xml:space="preserve">
+    <value>請輸入32位的CPU卡密鈅！</value>
+  </data>
+  <data name="FrmSystemOption_CPUKeyNote" xml:space="preserve">
+    <value>注意：CPU卡認證密鈅設置錯誤可能會導致CPU卡鎖卡，請務必確保認證密鈅信息設置正確！請謹慎設置！</value>
+  </data>
+  <data name="FrmSystemOption_SAMNoInvalid" xml:space="preserve">
+    <value>請輸入SAM卡座號！</value>
+  </data>
+  <data name="FrmSystemOption_SaveCPUKeyComfirm" xml:space="preserve">
+    <value>是否保存CPU卡密鈅設置？</value>
+  </data>
+  <data name="FrmSystemOption_UseCPUComfirm" xml:space="preserve">
+    <value>系統是否使用CPU卡？</value>
+  </data>
+  <data name="FrmSystemOptions_ClearCardEventQuery" xml:space="preserve">
+    <value>手動清除過期進出記錄，系統會在一段時間內處於忙碌狀態，是否繼續？</value>
+  </data>
+  <data name="FrmSystemOptions_ClearCardEventComplete" xml:space="preserve">
+    <value>手動清除過期進出記錄 完成</value>
+  </data>
+  <data name="FrmMain_NoCard" xml:space="preserve">
+    <value>未能找到卡片</value>
+  </data>
+  <data name="FrmMain_RemoteReadCardInvalid" xml:space="preserve">
+    <value>只有在線處理的卡片才能遠端讀卡</value>
+  </data>
+  <data name="FrmMain_SwicthRoadModeFail" xml:space="preserve">
+    <value>未能成功切換通道路口模式！</value>
+  </data>
+  <data name="FrmMain_SwicthRoadModeSuccess" xml:space="preserve">
+    <value>切換通道路口模式成功！</value>
+  </data>
+  <data name="FrmCardOut_CardID" xml:space="preserve">
+    <value>卡號</value>
+  </data>
+  <data name="FrmCardOut_InDateTime" xml:space="preserve">
+    <value>入場時間</value>
+  </data>
+  <data name="FrmCardOut_NoTempCard" xml:space="preserve">
+    <value>卡片不是臨時卡</value>
+  </data>
+  <data name="FrmCardOut_OutCount" xml:space="preserve">
+    <value>直接出場卡片總數</value>
+  </data>
+  <data name="FrmCardOut_OutReason" xml:space="preserve">
+    <value>出場原因</value>
+  </data>
+  <data name="FrmCardOut_SelectEntrance" xml:space="preserve">
+    <value>請選擇通道口！</value>
+  </data>
+  <data name="FrmCardOut_SelectPark" xml:space="preserve">
+    <value>請選擇停車場！</value>
+  </data>
+  <data name="FrmCardOut_StarOut" xml:space="preserve">
+    <value>批量出場</value>
+  </data>
+  <data name="FrmCardOut_StopOut" xml:space="preserve">
+    <value>停止出場</value>
+  </data>
+  <data name="FrmCardOut_UpdateVacant" xml:space="preserve">
+    <value>系統即將更新相關停車場空車位數，請耐心等待更新完成。</value>
+  </data>
+  <data name="FrmCardOut_VacantCount" xml:space="preserve">
+    <value>增加停車場空車位數</value>
+  </data>
+  <data name="FrmCardOut_VacantManual" xml:space="preserve">
+    <value>請手動增加該停車場空車位數！</value>
+  </data>
+  <data name="FrmRoadWay_NoEntrance" xml:space="preserve">
+    <value>該通道下沒有控制器！</value>
+  </data>
+  <data name="FrmRoadWay_RoadWays" xml:space="preserve">
+    <value>通道路口管理</value>
+  </data>
+  <data name="FrmRoadWay_Switch" xml:space="preserve">
+    <value>通道路口模式切換</value>
+  </data>
+  <data name="Form_Total" xml:space="preserve">
+    <value>總共</value>
+  </data>
+  <data name="FrmWaitingCommandReport_Delete" xml:space="preserve">
+    <value>是否要刪除所選記錄?</value>
+  </data>
+  <data name="FrmHotelAuthorization_Authe" xml:space="preserve">
+    <value>授權</value>
+  </data>
+  <data name="FrmHotelAuthorization_Authorization" xml:space="preserve">
+    <value>已授權</value>
+  </data>
+  <data name="FrmHotelAuthorization_FreeDays" xml:space="preserve">
+    <value>請輸入免費時間！</value>
+  </data>
+  <data name="FrmHotelAuthorization_InPark" xml:space="preserve">
+    <value>已入場</value>
+  </data>
+  <data name="FrmHotelAuthorization_MultipleAccess" xml:space="preserve">
+    <value>允許</value>
+  </data>
+  <data name="FrmHotelAuthorization_NoCard" xml:space="preserve">
+    <value>沒有找到卡片！</value>
+  </data>
+  <data name="FrmHotelAuthorization_NotAuthorization" xml:space="preserve">
+    <value>未授權</value>
+  </data>
+  <data name="FrmHotelAuthorization_NotMultipleAccess" xml:space="preserve">
+    <value>不允許</value>
+  </data>
+  <data name="FrmHotelAuthorization_OutPark" xml:space="preserve">
+    <value>已出場</value>
+  </data>
+  <data name="FrmAPMRefund_AmountInvalid" xml:space="preserve">
+    <value>請輸入退款金額！</value>
+  </data>
+  <data name="FrmAPMRefund_APMInvalid" xml:space="preserve">
+    <value>請選擇繳費機號！</value>
+  </data>
+  <data name="FrmAPMRefund_Comfirm" xml:space="preserve">
+    <value>是否確定退款？</value>
+  </data>
+  <data name="FrmAPMRefund_Continue" xml:space="preserve">
+    <value>退款金額與已繳費停車費不一致，是否繼續？</value>
+  </data>
+  <data name="FrmAPMRefund_Fail" xml:space="preserve">
+    <value>退款失敗！</value>
+  </data>
+  <data name="FrmAPMRefund_MasterConnectFail" xml:space="preserve">
+    <value>與主資料庫連接失敗！</value>
+  </data>
+  <data name="FrmAPMRefund_NoCard" xml:space="preserve">
+    <value>沒有找到卡片！</value>
+  </data>
+  <data name="FrmAPMRefund_NoTempCard" xml:space="preserve">
+    <value>卡片不是臨時卡</value>
+  </data>
+  <data name="FrmAPMRefund_SerialNumInvalid" xml:space="preserve">
+    <value>請輸入繳費流水號！</value>
+  </data>
+  <data name="FrmAPMRefund_Success" xml:space="preserve">
+    <value>退款成功！</value>
+  </data>
+  <data name="FrmMain_DeleteParkTariff" xml:space="preserve">
+    <value>確定要清空當前停車場的費率嗎？</value>
+  </data>
+  <data name="FrmVehicleLedDetail_InvalidName" xml:space="preserve">
+    <value>請輸入正確的名稱！</value>
+  </data>
+  <data name="FrmVehicleLedSetting_HadLed" xml:space="preserve">
+    <value>名稱為 【{0}】 的車輛信息屏已經存在</value>
+  </data>
+  <data name="FrmVehicleLedSetting_CannotContralLed" xml:space="preserve">
+    <value>只能初始化與本工作站通信的車輛信息顯示屏</value>
+  </data>
+  <data name="FrmVehicleLedSetting_SelectLed" xml:space="preserve">
+    <value>請選擇一個車輛信息顯示屏</value>
+  </data>
+  <data name="FrmVehicleLedSetting_SendInitLedItemMessage" xml:space="preserve">
+    <value>已發送初始化信息命令</value>
+  </data>
+  <data name="FrmMain_ManualFilePDF" xml:space="preserve">
+    <value>Ralid Park User Manual.pdf</value>
+  </data>
+  <data name="Form_Park" xml:space="preserve">
+    <value>停車場</value>
+  </data>
+  <data name="FrmMain_ServerSwitchWarm" xml:space="preserve">
+    <value>[{0}]系統在{1}切換到服務器（{2}{3}）運行</value>
+  </data>
+  <data name="FrmNoCardLost_InvalidCarPlate" xml:space="preserve">
+    <value>請輸入車牌號碼</value>
+  </data>
+  <data name="FrmSpeedingProcess_NotRecords" xml:space="preserve">
+    <value>沒有需處理的違章記錄</value>
+  </data>
+  <data name="FrmSpeedingProcess_ProcessedCount" xml:space="preserve">
+    <value>共處理 {0} 條違章記錄</value>
+  </data>
+  <data name="UcCard_BalanceOver" xml:space="preserve">
+    <value>脫機卡片的儲值餘額不能大於167772.15</value>
+  </data>
+  <data name="UcCard_PaidOver" xml:space="preserve">
+    <value>脫機卡片的實收金額不能大於167772.15</value>
+  </data>
+  <data name="FrmCardCharge_AmountsOver" xml:space="preserve">
+    <value>充值金額不正確,充值后卡片餘額不能大於{0}！</value>
+  </data>
+  <data name="FrmTariffSelection_InvalidThreeTimezone" xml:space="preserve">
+    <value>時間段設置不正確，應設置成時段1的開始時間等於時段3的結束時間，時段1的結束時間等於時段2的開始時間，時段2的結束時間等於時段3的開始時間</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCouponName" xml:space="preserve">
+    <value>請輸入停車券名稱！</value>
+  </data>
+  <data name="FrmSystemOption_InvalidCouponValue" xml:space="preserve">
+    <value>請輸入正確的停車券面值！</value>
+  </data>
+  <data name="FrmParkingCouponInput_InvalidCouponCount" xml:space="preserve">
+    <value>請輸入正確的停車券份數！</value>
+  </data>
+  <data name="Form_DataBaseNotConnected" xml:space="preserve">
+    <value>與資料庫連接斷開！</value>
+  </data>
+  <data name="UcCard_DeleteCardAtAll" xml:space="preserve">
+    <value>本次操作將會忽略卡片狀態和卡片費用問題，確定要強制刪除嗎？</value>
+  </data>
+  <data name="FrmSystemOption_InvalidRotationEntrance" xml:space="preserve">
+    <value>請選擇入口通道!</value>
+  </data>
+  <data name="FrmSystemOption_InvalidRotationNumber" xml:space="preserve">
+    <value>請輸入正確的編號!</value>
+  </data>
+  <data name="FrmChangLanguage" xml:space="preserve">
+    <value>確定要修改顯示語言嗎？點擊“確定”將關閉所有子窗口並修改語言，點擊”取消“則取消當前操作</value>
+  </data>
+  <data name="FrmSystemOption_ImageDBConnErro" xml:space="preserve">
+    <value>圖片數據庫連接參數設置錯誤</value>
+  </data>
+  <data name="FrmSystemOption_ImageDBConnSuccess" xml:space="preserve">
+    <value>圖片數據庫測試連接成功</value>
+  </data>
+  <data name="Connected" xml:space="preserve">
+    <value>已連接</value>
+  </data>
+  <data name="Disconnect" xml:space="preserve">
+    <value>斷開</value>
+  </data>
+  <data name="Unconnected" xml:space="preserve">
+    <value>未連接</value>
   </data>
 </root>

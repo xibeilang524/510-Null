@@ -9,6 +9,8 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 using System.Runtime.InteropServices;
+using Ralid.Park.VideoCapture;
+using Ralid.Park.BusinessModel.Enum;
 
 namespace Ralid.Park.UserControls.VideoPanels
 {
@@ -19,18 +21,46 @@ namespace Ralid.Park.UserControls.VideoPanels
             InitializeComponent();
         }
 
+        #region 私有变量
+        /// <summary>
+        /// 是否不打开视频时抓拍
+        /// </summary>
+        private bool _IsReadyForSnapshot;
+        #endregion
+
         #region 私有方法
         private void axHV_OnReceiveVideo(object sender, int channel, byte[] data)
         {
-            if (this.VideoSource != null && this.VideoSource.Channel == channel)
+            try
             {
-                MemoryStream stream = new MemoryStream(data);
-                video.Image = Image.FromStream(stream);
+                if (this.VideoSource != null && this.VideoSource.Channel == channel)
+                {
+                    using (MemoryStream stream = new MemoryStream(data))
+                    {
+                        video.Image = Image.FromStream(stream);
+                    }
+                }
+            }
+            catch
+            { 
             }
         }
         #endregion
 
         #region 重写基类方法
+        public override bool IsReadyForSnapshot
+        {
+            get
+            {
+                return _IsReadyForSnapshot;
+            }
+        }
+
+        public override void OpenForSnapshot(bool _async)
+        {
+            _IsReadyForSnapshot = true;
+        }
+
         public override void Play(bool isAsync)
         {
             lock (_StatusLock)
@@ -41,7 +71,6 @@ namespace Ralid.Park.UserControls.VideoPanels
                     {
                         if (!this.TitlePanel.InvokeRequired)
                         {
-                            Console.WriteLine("线程ＩＤ{0}", Thread.CurrentThread.ManagedThreadId);
                             this.Caption = VideoSource.VideoName;
                             this.TitlePanel.Visible = ShowTitle;
                         }
@@ -85,9 +114,9 @@ namespace Ralid.Park.UserControls.VideoPanels
             }
         }
 
-        public override bool SnapShotTo(string path)
+        public override bool SnapShotTo(ref string path)
         {
-            return SnapShotTo(path, 1000);
+            return SnapShotTo(ref path, 1000, false);
         }
         /// <summary>
         /// 抓拍图片
@@ -95,25 +124,62 @@ namespace Ralid.Park.UserControls.VideoPanels
         /// <param name="path"></param>
         /// <param name="timeout">超时时间(ms)</param>
         /// <returns></returns>
-        public override bool SnapShotTo(string path, int timeout)
+        public override bool SnapShotTo(ref string path, int timeout, bool force)
         {
             bool success = false;
             try
             {
-                lock (_StatusLock)
+                //lock (_StatusLock)
+                //{
+                //    if (video.Image != null)
+                //    {
+                //        Ralid.GeneralLibrary.ImageHelper.SaveImage(video.Image, path);
+                //        success = true;
+                //    }
+                //}
+
+                if (_IsReadyForSnapshot)
                 {
+                    //不打开视频时抓拍
+                    IVideoCapture capture = VideoCaptureManager.Instance[(int)VideoServerType.XinLuTong];
+                    if (capture != null)
+                    {
+                        path = capture.CapturePicture(this.VideoSource,force);
+                        success = !string.IsNullOrEmpty(path);
+                    }
+                }
+                else
+                {
+                    //打开视频时抓拍
                     if (video.Image != null)
                     {
                         Ralid.GeneralLibrary.ImageHelper.SaveImage(video.Image, path);
                         success = true;
                     }
                 }
+
             }
             catch (Exception ex)
             {
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
             return success;
+        }
+
+        public override void ClearSnapShot()
+        {
+            try
+            {
+                IVideoCapture capture = VideoCaptureManager.Instance[(int)VideoServerType.XinLuTong];
+                if (capture != null)
+                {
+                    capture.ClearCapture(this.VideoSource);
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
         }
         #endregion
     }

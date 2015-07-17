@@ -16,6 +16,11 @@ namespace Ralid.Park.BusinessModel.Enum
         UnKnown = 0x00,
 
         /// <summary>
+        /// 互联网收费
+        /// </summary>
+        Internet = 0x01,
+
+        /// <summary>
         /// 缴费机收费
         /// </summary>
         APM = 0xA1,

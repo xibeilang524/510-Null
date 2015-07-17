@@ -20,6 +20,15 @@ namespace Ralid.Park.BusinessModel.Resouce
             return string.Empty;
         }
 
+        public static string GetPREDescription(string catalog)
+        {
+            if (catalog == "System") return "系统";
+            else if (catalog == "Data") return "数据";
+            else if (catalog == "Safe") return "安全";
+            else if (catalog == "Reprot") return Resource1.Permission_Catalog_Report;
+            return string.Empty;
+        }
+
         public static string GetDescription(Permission p)
         {
             switch (p)
@@ -62,6 +71,8 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.Permission_EditAPM;
                 case Permission.EditCard:
                     return Resource1.Permission_EditCard;
+                case Permission.DeleteAtAll:
+                    return Resource1.Permission_DeleteAtAll;
                 case Permission.EditDivision:
                     return Resource1.Permission_EditDivision;
                 case Permission.EditEntrance:
@@ -180,6 +191,67 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.Permission_SwitchRoadWay;
                 case Permission.POSSyncTool:
                     return Resource1.Permission_POSSyncTool;
+                case Permission.FreeAuthorizationLogReport:
+                    return Resource1.Permission_FreeAuthorizationLogReport;
+                case Permission.CardOut:
+                    return Resource1.Permission_CardOut;
+                case Permission.WaitingCommandReport:
+                    return Resource1.Permission_WaitingCommandReport;
+                case Permission.ReadLocalSetting:
+                    return Resource1.Permission_ReadLocalSetting;
+                case Permission.EditLocalSetting:
+                    return Resource1.Permission_EditLocalSetting;
+                case Permission.APMCheckOutRecordReport:
+                    return Resource1.Permission_APMCheckOutRecordReport;
+                case Permission.APMRefundRecordReport:
+                    return Resource1.Permission_APMRefundRecordReport;
+                case Permission.APMRefund:
+                    return Resource1.Permission_APMRefund;
+                case Permission.VehicleLedSetting:
+                    return Resource1.Permission_VehicleLedSetting;
+                case Permission.HostStandbySetting:
+                    return Resource1.Permission_HostStandbySetting;
+                case Permission.ServerSwitchReport:
+                    return Resource1.Permission_ServerSwitchReport;
+                case Permission.ReadDept:
+                    return Resource1.Permission_ReadDept;
+                case Permission.EditDept:
+                    return Resource1.Permission_EditDept;
+                case Permission.NoCardLost:
+                    return Resource1.Permission_NoCardLost;
+                case Permission.SpeedingProcess:
+                    return Resource1.Permission_SpeedingProcess;
+                case Permission.SpeedingReport:
+                    return Resource1.Permission_SpeedingReport;
+                default:
+                    return string.Empty;
+            }
+        }
+
+        public static string GetDescription(PREPermission p)
+        {
+            switch (p)
+            {
+                case PREPermission.SystemSetting:
+                    return "系统设置";
+                case PREPermission.PreferentialCore:
+                    return "优惠录入";
+                case PREPermission.PreferentialCancel:
+                    return "优惠取消";
+                case PREPermission.ReadWorkstations:
+                    return "查看工作站信息";
+                case PREPermission.EditWorkstations:
+                    return "修改工作站信息";
+                case PREPermission.ReadBusiness:
+                    return "查看商家信息";
+                case PREPermission.EditBusiness:
+                    return "修改商家信息";
+                case PREPermission.OperatorManager:
+                    return "操作员管理";
+                case PREPermission.RoleManager:
+                    return "角色管理";
+                case PREPermission.PreferentialReport:
+                    return "优惠记录";
                 default:
                     return string.Empty;
             }

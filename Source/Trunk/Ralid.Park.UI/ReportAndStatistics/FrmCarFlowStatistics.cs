@@ -49,6 +49,13 @@ namespace Ralid.Park.UI.ReportAndStatistics
             this.GridView.Columns.Add(colIn);
 
             colIn = new DataGridViewTextBoxColumn();
+            colIn.HeaderText = CardType.OwnerCard.Name + strIn;
+            colIn.Name = colIn.HeaderText;
+            colIn.ReadOnly = true;
+            colIn.Width = colWidth;
+            this.GridView.Columns.Add(colIn);
+
+            colIn = new DataGridViewTextBoxColumn();
             colIn.HeaderText = CardType.PrePayCard.Name + strIn;
             colIn.Name = colIn.HeaderText;
             colIn.ReadOnly = true;
@@ -84,6 +91,14 @@ namespace Ralid.Park.UI.ReportAndStatistics
 
             DataGridViewTextBoxColumn colOut = new DataGridViewTextBoxColumn();
             colOut.HeaderText = CardType.MonthRentCard.Name + strOut;
+            colOut.Name = colOut.HeaderText;
+            colOut.ReadOnly = true;
+            colIn.Width = colWidth;
+            this.GridView.Columns.Add(colOut);
+
+
+            colOut = new DataGridViewTextBoxColumn();
+            colOut.HeaderText = CardType.OwnerCard.Name + strOut;
             colOut.Name = colOut.HeaderText;
             colOut.ReadOnly = true;
             colIn.Width = colWidth;
@@ -167,6 +182,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             if (CustomCardTypeSetting.Current != null && CustomCardTypeSetting.Current.CardTypes != null)
             {
                 row.Cells[CardType.MonthRentCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.MonthRentCard && !c.IsExitEvent);
+                row.Cells[CardType.OwnerCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.OwnerCard && !c.IsExitEvent);
                 row.Cells[CardType.PrePayCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.PrePayCard && !c.IsExitEvent);
                 row.Cells[CardType.TempCard.Name + strIn].Value = group.Count(c => (c.CardType == CardType.TempCard || c.CardType == CardType.Ticket) && !c.IsExitEvent);
                 CardType[] cardTypes = CustomCardTypeSetting.Current.CardTypes;
@@ -177,15 +193,17 @@ namespace Ralid.Park.UI.ReportAndStatistics
             }
             else
             {
-                row.Cells[CardType.MonthRentCard.Name + strIn].Value = group.Count(c => c.CardType.IsMonthCard && !c.IsExitEvent);
-                row.Cells[CardType.PrePayCard.Name + strIn].Value = group.Count(c => c.CardType.IsPrepayCard && !c.IsExitEvent);
-                row.Cells[CardType.TempCard.Name + strIn].Value = group.Count(c => c.CardType.IsTempCard && !c.IsExitEvent);
+                row.Cells[CardType.MonthRentCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.MonthRentCard && !c.IsExitEvent);
+                row.Cells[CardType.OwnerCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.OwnerCard && !c.IsExitEvent);
+                row.Cells[CardType.PrePayCard.Name + strIn].Value = group.Count(c => c.CardType == CardType.PrePayCard && !c.IsExitEvent);
+                row.Cells[CardType.TempCard.Name + strIn].Value = group.Count(c => (c.CardType == CardType.TempCard || c.CardType == CardType.Ticket) && !c.IsExitEvent);
             }
             row.Cells[strIn + strTotal].Value = group.Count(c => !c.IsExitEvent);
 
             if (CustomCardTypeSetting.Current != null && CustomCardTypeSetting.Current.CardTypes != null)
             {
                 row.Cells[CardType.MonthRentCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.MonthRentCard && c.IsExitEvent);
+                row.Cells[CardType.OwnerCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.OwnerCard && c.IsExitEvent);
                 row.Cells[CardType.PrePayCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.PrePayCard && c.IsExitEvent);
                 row.Cells[CardType.TempCard.Name + strOut].Value = group.Count(c => (c.CardType == CardType.TempCard || c.CardType == CardType.Ticket) && c.IsExitEvent);
                 CardType[] cardTypes = CustomCardTypeSetting.Current.CardTypes;
@@ -196,9 +214,10 @@ namespace Ralid.Park.UI.ReportAndStatistics
             }
             else
             {
-                row.Cells[CardType.MonthRentCard.Name + strOut].Value = group.Count(c => c.CardType.IsMonthCard && c.IsExitEvent);
-                row.Cells[CardType.PrePayCard.Name + strOut].Value = group.Count(c => c.CardType.IsPrepayCard && c.IsExitEvent);
-                row.Cells[CardType.TempCard.Name + strOut].Value = group.Count(c => c.CardType.IsTempCard && c.IsExitEvent);
+                row.Cells[CardType.MonthRentCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.MonthRentCard && c.IsExitEvent);
+                row.Cells[CardType.OwnerCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.OwnerCard && c.IsExitEvent);
+                row.Cells[CardType.PrePayCard.Name + strOut].Value = group.Count(c => c.CardType == CardType.PrePayCard && c.IsExitEvent);
+                row.Cells[CardType.TempCard.Name + strOut].Value = group.Count(c => (c.CardType == CardType.TempCard || c.CardType == CardType.Ticket) && c.IsExitEvent);
             }
             row.Cells[strOut + strTotal].Value = group.Count(c => c.IsExitEvent);
         }

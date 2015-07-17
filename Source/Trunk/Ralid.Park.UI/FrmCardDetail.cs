@@ -20,6 +20,38 @@ namespace Ralid.Park.UI
         private bool readCard = false;//是否读到需操作的卡片，用于写卡模式
         #endregion
 
+        #region 私有事件
+        private void OptionChangedHandler(object sender, EventArgs e)
+        {
+            if (chkWriteCard.Visible)
+            {
+                if (this.chkWriteCard.Enabled)
+                {
+                    if (sender is CheckBox)
+                    {
+                        CheckBox chk = sender as CheckBox;
+                        if (chk.Name == "chkOnlineHandleWhenOfflineMode")
+                        {
+                            this.chkWriteCard.Checked = !chk.Checked;
+                        }
+                    }
+                }
+                if (sender is RadioButton)
+                {
+                    RadioButton rdb = sender as RadioButton;
+                    if (rdb.Name == "rdbCardList")
+                    {
+                        if (!rdb.Checked)
+                        {
+                            this.chkWriteCard.Checked = false;
+                            this.chkWriteCard.Enabled = false;
+                        }
+                    }
+                }
+            }
+        }
+        #endregion
+
         #region 私有方法
         private void CardReadHandler(object sender, CardReadEventArgs e)
         {
@@ -89,6 +121,8 @@ namespace Ralid.Park.UI
             RoleInfo role = OperatorInfo.CurrentOperator.Role;
             this.btnOk.Enabled = role.Permit(Permission.EditCard);
 
+            this.ucCardInfo.OptionChangedEvent += this.OptionChangedHandler;
+
             //增加时该处启动读卡器
             if (AppSettings.CurrentSetting.EnableWriteCard && IsAdding)
             {
@@ -101,6 +135,13 @@ namespace Ralid.Park.UI
             CardInfo info = (CardInfo)UpdatingItem;
             this.ucCardInfo.Card = info;
             this.Text = info.CardID;
+
+            if (!info.IsCardList)
+            {
+                //不是卡片名单时，不需要进行写卡
+                this.chkWriteCard.Checked = false;
+                this.chkWriteCard.Enabled = false;
+            }
 
             //修改时该处启动读卡器
             if (AppSettings.CurrentSetting.EnableWriteCard && !IsAdding)

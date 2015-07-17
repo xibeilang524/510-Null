@@ -946,4 +946,223 @@
   <data name="AlarmType_CardOutAnomaly" xml:space="preserve">
     <value>Card Out Anomaly</value>
   </data>
+  <data name="Permission_CardOut" xml:space="preserve">
+    <value>Card Out</value>
+  </data>
+  <data name="Permission_FreeAuthorizationLogReport" xml:space="preserve">
+    <value>Free AuthorizationLog Report</value>
+  </data>
+  <data name="Permission_WaitingCommandReport" xml:space="preserve">
+    <value>Waiting Command Report</value>
+  </data>
+  <data name="Permission_EditLocalSetting" xml:space="preserve">
+    <value>Edit Local Setting</value>
+  </data>
+  <data name="Permission_ReadLocalSetting" xml:space="preserve">
+    <value>Read Local Setting</value>
+  </data>
+  <data name="Permission_APMCheckOutRecordReport" xml:space="preserve">
+    <value>APM CheckOut Record</value>
+  </data>
+  <data name="Permission_APMRefund" xml:space="preserve">
+    <value>APM Refund</value>
+  </data>
+  <data name="Permission_APMRefundRecordReport" xml:space="preserve">
+    <value>APM Refund Record Report</value>
+  </data>
+  <data name="PaymentCode_APM" xml:space="preserve">
+    <value>APM</value>
+  </data>
+  <data name="PaymentCode_Computer" xml:space="preserve">
+    <value>Computer</value>
+  </data>
+  <data name="PaymentCode_FunctionCard" xml:space="preserve">
+    <value>FunctionCard</value>
+  </data>
+  <data name="PaymentCode_POS" xml:space="preserve">
+    <value>POS</value>
+  </data>
+  <data name="VehicleLEDMessageType_Balance" xml:space="preserve">
+    <value>Balance</value>
+  </data>
+  <data name="VehicleLEDMessageType_CardCertificate" xml:space="preserve">
+    <value>Certificate</value>
+  </data>
+  <data name="VehicleLEDMessageType_CardCarPlate" xml:space="preserve">
+    <value>VehiclePlate</value>
+  </data>
+  <data name="VehicleLEDMessageType_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastCarPlate" xml:space="preserve">
+    <value>In-VehiclePlate</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastDateTime" xml:space="preserve">
+    <value>In-Datetime</value>
+  </data>
+  <data name="VehicleLEDMessageType_LastEntrance" xml:space="preserve">
+    <value>In-Entrance</value>
+  </data>
+  <data name="VehicleLEDMessageType_None" xml:space="preserve">
+    <value>None</value>
+  </data>
+  <data name="VehicleLEDMessageType_OwnerName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="VehicleLEDMessageType_ValidDate" xml:space="preserve">
+    <value>ValidDate</value>
+  </data>
+  <data name="VehicleLEDMessageType_Entrance" xml:space="preserve">
+    <value>Entrance</value>
+  </data>
+  <data name="VehicleLEDMessageType_Park" xml:space="preserve">
+    <value>Park</value>
+  </data>
+  <data name="VehicleLEDMessageType_TotalPosition" xml:space="preserve">
+    <value>Total</value>
+  </data>
+  <data name="VehicleLEDMessageType_Vacant" xml:space="preserve">
+    <value>Vacant</value>
+  </data>
+  <data name="VehicleLEDMessageType_RegCarPlate" xml:space="preserve">
+    <value>RecognitionPlate</value>
+  </data>
+  <data name="UpdateSystemParamSettingReport_Update" xml:space="preserve">
+    <value>Alter System Parameter</value>
+  </data>
+  <data name="Permission_VehicleLedSetting" xml:space="preserve">
+    <value>Vehicle Screen Setting</value>
+  </data>
+  <data name="Report_NeedPay" xml:space="preserve">
+    <value>Need pay</value>
+  </data>
+  <data name="AlarmType_BarcodeGunStatus" xml:space="preserve">
+    <value>Barcode Gun Status</value>
+  </data>
+  <data name="AlarmType_ServerSwitching" xml:space="preserve">
+    <value>Server Switching</value>
+  </data>
+  <data name="BarcodeGun" xml:space="preserve">
+    <value>Barcode Gun</value>
+  </data>
+  <data name="BarcodeStatus_ComPortNotOpend" xml:space="preserve">
+    <value>Serial port failed to open</value>
+  </data>
+  <data name="BarcodeStatus_OK" xml:space="preserve">
+    <value>OK</value>
+  </data>
+  <data name="HostStandbyStatus_Host" xml:space="preserve">
+    <value>Host</value>
+  </data>
+  <data name="HostStandbyStatus_Standby" xml:space="preserve">
+    <value>Standby</value>
+  </data>
+  <data name="HostStandbyStatus_UnKnown" xml:space="preserve">
+    <value>UnKnown</value>
+  </data>
+  <data name="SMSSendStatus_Fail" xml:space="preserve">
+    <value>Fail</value>
+  </data>
+  <data name="SMSSendStatus_NotSend" xml:space="preserve">
+    <value>NotSend</value>
+  </data>
+  <data name="SMSSendStatus_Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
+  <data name="SMSSendStatus_Waiting" xml:space="preserve">
+    <value>Waiting</value>
+  </data>
+  <data name="Permission_HostStandbySetting" xml:space="preserve">
+    <value>Server Switch Setting</value>
+  </data>
+  <data name="Permission_ServerSwitchReport" xml:space="preserve">
+    <value>Server Switch Report</value>
+  </data>
+  <data name="AlarmType_OperatorCardWork" xml:space="preserve">
+    <value>Authorization card operation</value>
+  </data>
+  <data name="Preferential" xml:space="preserve">
+    <value>Preferential</value>
+  </data>
+  <data name="Permission_EditDept" xml:space="preserve">
+    <value>Edit Department</value>
+  </data>
+  <data name="Permission_NoCardLost" xml:space="preserve">
+    <value>No Card Lost</value>
+  </data>
+  <data name="Permission_ReadDept" xml:space="preserve">
+    <value>Read Department</value>
+  </data>
+  <data name="Permission_SpeedingProcess" xml:space="preserve">
+    <value>Speeding Process</value>
+  </data>
+  <data name="Permission_SpeedingReport" xml:space="preserve">
+    <value>Speeding Report</value>
+  </data>
+  <data name="INV_Speeding" xml:space="preserve">
+    <value>Speeding violation</value>
+  </data>
+  <data name="CardListType_Card" xml:space="preserve">
+    <value>Card List</value>
+  </data>
+  <data name="CardListType_CarPlate" xml:space="preserve">
+    <value>CarPlate List</value>
+  </data>
+  <data name="ParkListMode_Card" xml:space="preserve">
+    <value>Card</value>
+  </data>
+  <data name="ParkListMode_CarPlate" xml:space="preserve">
+    <value>CarPlate</value>
+  </data>
+  <data name="ParkListMode_CarPlateAndCard" xml:space="preserve">
+    <value>CarPlate + Card</value>
+  </data>
+  <data name="AlarmType_CarPlateFail" xml:space="preserve">
+    <value>CarPlate Fail</value>
+  </data>
+  <data name="AlarmType_NeedManualProcessing" xml:space="preserve">
+    <value>Need Manual Processing</value>
+  </data>
+  <data name="INV_CarPlateFail" xml:space="preserve">
+    <value>CarPlate Fail</value>
+  </data>
+  <data name="INV_Expired" xml:space="preserve">
+    <value>Expired</value>
+  </data>
+  <data name="INV_ListNotEnabled" xml:space="preserve">
+    <value>List Not Enabled</value>
+  </data>
+  <data name="INV_ListType" xml:space="preserve">
+    <value>List Type Error</value>
+  </data>
+  <data name="INV_NoAccess" xml:space="preserve">
+    <value>No Access</value>
+  </data>
+  <data name="INV_NotOnTheList" xml:space="preserve">
+    <value>Not On The List</value>
+  </data>
+  <data name="INV_CarIsIn" xml:space="preserve">
+    <value>Car Is In</value>
+  </data>
+  <data name="INV_CarIsOut" xml:space="preserve">
+    <value>Car Is Out</value>
+  </data>
+  <data name="Report_ExpiredCard" xml:space="preserve">
+    <value>Expired Card</value>
+  </data>
+  <data name="Yuan" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="Tariff_ThreeTimeZone" xml:space="preserve">
+    <value>Tariff_ThreeTimeZone</value>
+  </data>
+  <data name="Permission_DeleteAtAll" xml:space="preserve">
+    <value>Mandate Delete</value>
+  </data>
+  <data name="PaymentCode_Internet" xml:space="preserve">
+    <value>Internet</value>
+  </data>
+  <data name="PaymentMode_WeChat" xml:space="preserve">
+    <value>WeChat</value>
+  </data>
 </root>

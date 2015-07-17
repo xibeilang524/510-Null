@@ -110,6 +110,13 @@ namespace Ralid.Park.BusinessModel.Model
         public string Memo { get; set; }
 
         /// <summary>
+        /// 部门
+        /// </summary>
+        public Guid? DeptID { get; set; }
+
+        public DeptInfo Dept { get; set; }
+
+        /// <summary>
         /// 工作站是否可以删除,系统默认的工作站不可删除
         /// </summary>
         public bool CanDelete
@@ -139,6 +146,26 @@ namespace Ralid.Park.BusinessModel.Model
                 foreach (ParkInfo sub in park.SubParks)
                 {
                     if (IsInListenList(sub)) return true;
+                }
+            }
+            return false;
+        }
+
+        /// <summary>
+        /// 查看控制器中是否有工作站要侦听的控制器
+        /// </summary>
+        /// <param name="park"></param>
+        /// <returns></returns>
+        public bool IsInListenList(List<int> entranceIDs)
+        {
+            if (entranceIDs != null && entranceIDs.Count > 0)
+            {
+                foreach (int entranceID in entranceIDs)
+                {
+                    if (_EntranceList.Exists(e => e == entranceID))
+                    {
+                        return true;
+                    }
                 }
             }
             return false;
@@ -255,6 +282,51 @@ namespace Ralid.Park.BusinessModel.Model
 
                     if (!IsHostWorkstation
                         && !DataBaseConnectionsManager.Current.MasterConnected)
+                    {
+                        msg = "与主数据库连接失败！";
+                        return false;
+                    }
+                }
+                else if (HasMasterDatabase)
+                {
+                    if (!DataBaseConnectionsManager.Current.MasterConnected)
+                    {
+                        msg = "与主数据库连接失败！";
+                        return false;
+                    }
+                }
+                else
+                {
+                    msg = "没有设置数据库！";
+                    return false;
+                }
+            }
+
+            msg = string.Empty;
+            return true;
+        }
+
+        /// <summary>
+        /// 工作站能否免费时间授权
+        /// </summary>
+        /// <param name="offlineHandleCard">是否脱机处理卡片</param>
+        /// <param name="msg">返回的信息</param>
+        /// <returns></returns>
+        public bool CanFreeAuthorization(bool offlineHandleCard, out string msg)
+        {
+            //脱机模式处理卡片不需要数据库连接也可以授权
+            if (!offlineHandleCard)
+            {
+                //如设置备用数据库，需要主数据库和备用数据库都连接
+                if (HasStandbyDatabase)
+                {
+                    if (!DataBaseConnectionsManager.Current.StandbyConnected)
+                    {
+                        msg = "与备用数据库连接失败！";
+                        return false;
+                    }
+
+                    if (!DataBaseConnectionsManager.Current.MasterConnected)
                     {
                         msg = "与主数据库连接失败！";
                         return false;

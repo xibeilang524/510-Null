@@ -22,8 +22,10 @@ namespace Ralid.Park.BLL
             _StandbyUri = standbyUri;
             _MasterCardBll = new CardBll(masterUri);
             _MasterPaymentBll = new CardPaymentRecordBll(masterUri);
+            _MasterCardEventBll = new CardEventBll(masterUri);
             _StandbyCardBll = new CardBll(standbyUri);
             _StandbyPaymentBll = new CardPaymentRecordBll(standbyUri);
+            _StandbyCardEventBll = new CardEventBll(standbyUri);
             _SyncInterval = 5;
         }
         #endregion
@@ -31,8 +33,10 @@ namespace Ralid.Park.BLL
         #region 私有变量
         private CardBll _MasterCardBll;
         private CardPaymentRecordBll _MasterPaymentBll;
+        private CardEventBll _MasterCardEventBll;
         private CardBll _StandbyCardBll;
         private CardPaymentRecordBll _StandbyPaymentBll;
+        private CardEventBll _StandbyCardEventBll;
         private Thread _SyncDataThread;
         private bool _SyncDataStarted;
         private bool _SyncDataPause;//暂停
@@ -56,51 +60,19 @@ namespace Ralid.Park.BLL
                         if (DataBaseConnectionsManager.Current.MasterConnected
                             && DataBaseConnectionsManager.Current.StandbyConnected)
                         {
-                            CommandResult result = null;
                             if (!_SyncDataPause)
                             {
-                                CardSearchCondition cardcon = new CardSearchCondition();
-                                cardcon.UpdateFlag = false;
-                                List<CardInfo> sCards = _StandbyCardBll.GetCards(cardcon).QueryObjects;
-                                if (sCards != null && sCards.Count > 0)
-                                {
-                                    foreach (CardInfo sCard in sCards)
-                                    {
-                                        if (_SyncDataPause) break;
-                                        CardInfo mCard = _MasterCardBll.GetCardByID(sCard.CardID).QueryObject;
-                                        if (mCard != null)
-                                        {
-                                            sCard.UpdateFlag = true;
-                                            result = _MasterCardBll.UpdateCardPaymentInfo(sCard);
-                                            if (result.Result == ResultCode.Successful)
-                                            {
-                                                _StandbyCardBll.UpdateCard(sCard);
-                                            }
-                                        }
-                                    }
-                                }
+                                UploadCard();
                             }
 
                             if (!_SyncDataPause)
                             {
-                                CardPaymentRecordSearchCondition paymentcon = new CardPaymentRecordSearchCondition();
-                                paymentcon.UpdateFlag = false;
-                                List<CardPaymentInfo> sRecords = _StandbyPaymentBll.GetItems(paymentcon).QueryObjects;
-                                if (sRecords != null && sRecords.Count > 0)
-                                {
-                                    foreach (CardPaymentInfo sRecord in sRecords)
-                                    {
-                                        if (_SyncDataPause) break;
-                                        CardPaymentInfo cpInfo = sRecord.Clone();
-                                        cpInfo.UpdateFlag = true;
-                                        result = _MasterPaymentBll.InsertRecordWithCheck(cpInfo);
-                                        if (result.Result == ResultCode.Successful)
-                                        {
-                                            sRecord.UpdateFlag = true;
-                                            _StandbyPaymentBll.Update(sRecord);
-                                        }
-                                    }
-                                }
+                                UploadCardPayment();
+                            }
+
+                            if (!_SyncDataPause)
+                            {
+                                UploadCardEvent();
                             }
                         }
                     }
@@ -113,6 +85,77 @@ namespace Ralid.Park.BLL
             catch (ThreadAbortException ex)
             {
                 Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "备用数据库同步到主数据库服务停止");
+            }
+        }
+
+        private void UploadCard()
+        {
+            CommandResult result = null;
+            CardSearchCondition cardcon = new CardSearchCondition();
+            cardcon.UpdateFlag = false;
+            List<CardInfo> sCards = _StandbyCardBll.GetCards(cardcon).QueryObjects;
+            if (sCards != null && sCards.Count > 0)
+            {
+                foreach (CardInfo sCard in sCards)
+                {
+                    if (_SyncDataPause) break;
+                    CardInfo mCard = _MasterCardBll.GetCardByID(sCard.CardID).QueryObject;
+                    if (mCard != null)
+                    {
+                        sCard.UpdateFlag = true;
+                        result = _MasterCardBll.UpdateCardPaymentInfo(sCard);
+                        if (result.Result == ResultCode.Successful)
+                        {
+                            _StandbyCardBll.UpdateCard(sCard);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void UploadCardPayment()
+        {
+            CommandResult result = null;
+            CardPaymentRecordSearchCondition paymentcon = new CardPaymentRecordSearchCondition();
+            paymentcon.UpdateFlag = false;
+            List<CardPaymentInfo> sRecords = _StandbyPaymentBll.GetItems(paymentcon).QueryObjects;
+            if (sRecords != null && sRecords.Count > 0)
+            {
+                foreach (CardPaymentInfo sRecord in sRecords)
+                {
+                    if (_SyncDataPause) break;
+                    CardPaymentInfo cpInfo = sRecord.Clone();
+                    cpInfo.UpdateFlag = true;
+                    result = _MasterPaymentBll.InsertRecordWithCheck(cpInfo);
+                    if (result.Result == ResultCode.Successful)
+                    {
+                        sRecord.UpdateFlag = true;
+                        _StandbyPaymentBll.Update(sRecord);
+                    }
+                }
+            }
+        }
+
+        private void UploadCardEvent()
+        {
+            CommandResult result = null;
+            CardEventSearchCondition search = new CardEventSearchCondition();
+            search.UpdateFlag = false;
+            List<CardEventRecord> sRecords = _StandbyCardEventBll.GetCardEvents(search).QueryObjects;
+            if (sRecords != null && sRecords.Count > 0)
+            {
+                foreach (CardEventRecord sRecord in sRecords)
+                {
+                    if (_SyncDataPause) break;
+                    CardEventRecord ceInfo = sRecord.Clone();
+                    ceInfo.UpdateFlag = true;
+                    result = _MasterCardEventBll.InsertRecordWithCheck(ceInfo);
+                    if (result.Result == ResultCode.Successful)
+                    {
+                        sRecord.UpdateFlag = true;
+                        _StandbyCardEventBll.Update(sRecord);
+                    }
+                }
             }
         }
         #endregion

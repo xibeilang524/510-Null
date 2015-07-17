@@ -50,6 +50,20 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.AlarmType_CarArrive;
                 case  AlarmType.CarLeave :
                     return Resource1.AlarmType_CarLeave;
+                case AlarmType.GateAlarm:
+                    return Resource1.AlarmType_GateAlarm;
+                case AlarmType.OperatorLogOut:
+                    return Resource1.AlarmType_OperatorLogOut;
+                case AlarmType.CardOutAnomaly:
+                    return Resource1.AlarmType_CardOutAnomaly;
+                case AlarmType.BarcodeGunStatus:
+                    return Resource1.AlarmType_BarcodeGunStatus;
+                case AlarmType.ServerSwitching:
+                    return Resource1.AlarmType_ServerSwitching;
+                case AlarmType.OperatorCardWork:
+                    return Resource1.AlarmType_OperatorCardWork;
+                case AlarmType.CarPlateFail:
+                    return Resource1.AlarmType_CarPlateFail;
                 default :
                     return string.Empty ;
             }

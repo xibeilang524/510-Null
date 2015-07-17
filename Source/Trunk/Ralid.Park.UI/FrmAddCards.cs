@@ -70,7 +70,44 @@ namespace Ralid.Park.UI
                 MessageBox.Show(Resources.Resource1.FrmAddCards_InvalidCardType);
                 return false;
             }
+            if (this.chkWriteCard.Checked)
+            {
+                //如果需要写卡的，需要检查储值金额是否有效
+                if (this.txtBalance.DecimalValue > 167772.15M)
+                {
+                    MessageBox.Show(Resources.Resource1.UcCard_BalanceOver);
+                    return false;
+                }
+            }
             return true;
+        }
+
+        private string GetAutoIncrement()
+        {
+            string auto = string.Empty;
+            if (chkAutoIncrement.Checked)
+            {
+                auto = (txtAutoIncrement.IntergerValue + cardView.Rows.Count).ToString();
+                if (this.txtDigit.IntergerValue > 0)
+                {
+                    auto = auto.PadLeft(this.txtDigit.IntergerValue, '0');
+                }
+            }
+            return auto;
+        }
+
+        private string GetAutoNum()
+        {
+            string auto = string.Empty;
+            if (chkAutoNum.Checked)
+            {
+                auto = (txtAutoNum.IntergerValue + cardView.Rows.Count).ToString();
+                if (this.txtNumDigit.IntergerValue > 0)
+                {
+                    auto = auto.PadLeft(this.txtNumDigit.IntergerValue, '0');
+                }
+            }
+            return auto;
         }
 
         private void ReadCardSuccess_Handler(string cardID)
@@ -89,9 +126,11 @@ namespace Ralid.Park.UI
                 card.CardType = this.comCardType.SelectedCardType;
                 card.AccessID = (byte)this.comAccessLevel.AccesslevelID;
                 card.Balance = this.txtBalance.DecimalValue;
-                card.ValidDate = this.dtValidDate.Value;
+                card.ActivationDate = DateTime.Now.Date;
+                card.ValidDate = this.dtValidDate.Value.AddDays(1).AddSeconds(-1);
                 card.CarType = this.comChargeType.SelectedCarType;
                 card.Status = CardStatus.Enabled;
+                card.IsInPark = this.chkInPark.Checked;
                 card.CanRepeatIn = this.chkRepeatIn.Checked;
                 card.CanRepeatOut = this.chkRepeatOut.Checked;
                 card.HolidayEnabled = this.chkHoliday.Checked;
@@ -100,8 +139,12 @@ namespace Ralid.Park.UI
                 card.EnableWhenExpired = this.chkEnableWhenExpired.Checked;
                 card.OnlineHandleWhenOfflineMode = this.chkOnlineHandleWhenOfflineMode.Checked;
                 card.OwnerName = string.Format("{0}{1}{2}", this.txtPrefix.Text.Trim(),
-                                                        chkAutoIncrement.Checked ? (txtAutoIncrement.IntergerValue + cardView.Rows.Count).ToString() : string.Empty,
+                                                        GetAutoIncrement(),
                                                         txtSuffix.Text.Trim());
+                card.CardCertificate = string.Format("{0}{1}{2}", this.txtNumPrefix.Text.Trim(),
+                                                        GetAutoNum(),
+                                                        txtNumSuffix.Text.Trim());
+                card.Department = this.txtDepartment.Text.Trim();
 
                 //如果是写卡模式，这里需将信息写入卡片成功后才能继续
                 if (this.chkWriteCard.Checked)
@@ -240,6 +283,14 @@ namespace Ralid.Park.UI
         private void FrmAddCards_FormClosing(object sender, FormClosingEventArgs e)
         {
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).PopCardReadRequest(CardReadHandler);
+        }
+
+        private void chkOnlineHandleWhenOfflineMode_CheckedChanged(object sender, EventArgs e)
+        {
+            if (this.chkWriteCard.Visible)
+            {
+                this.chkWriteCard.Checked = !this.chkOnlineHandleWhenOfflineMode.Checked;
+            }
         }
 
     }

@@ -49,8 +49,13 @@ namespace Ralid.Park.UI
 
         #region 私有变量
         private object _Locker = new object();  //车牌识别多线程之间串行进行，所以车牌识别时加锁
-        #endregion
 
+        private bool initSuccess;
+        private readonly string Para = @"p1|/car|/c|/e|/m|file";
+        private readonly short Success = 0;
+        private string dic = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
+        #endregion
+        
         #region 公共方法
         /// <summary>
         /// 通过图片文件识别车牌号
@@ -95,8 +100,10 @@ namespace Ralid.Park.UI
                         initSuccess = rm.InitializeRecognizer(Para, string.Empty) == Success;
                         if (!initSuccess)
                         {
-                            MessageBox.Show(Resources.Resource1.CarPlate_Fail);
-                            Ralid.GeneralLibrary.LOG.FileLog.Log("System", Resources.Resource1.CarPlate_Fail);
+                            //MessageBox.Show(Resources.Resource1.CarPlate_Fail);
+                            //Ralid.GeneralLibrary.LOG.FileLog.Log("System", Resources.Resource1.CarPlate_Fail);
+
+                            Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "型号V车牌识别初始化失败");
                         }
                     }
                     catch (Exception ex)
@@ -111,10 +118,6 @@ namespace Ralid.Park.UI
         #endregion
 
         #region 私有方法
-        private bool initSuccess;
-        private readonly string Para = @"p1|/car|/c|/e|/m|file";
-        private readonly short Success = 0;
-        private string dic = Environment.GetFolderPath(Environment.SpecialFolder.InternetCache);
 
         private string GetColorDescr(int colorCode)
         {
@@ -191,7 +194,8 @@ namespace Ralid.Park.UI
             PlateRecognitionResult ret = new PlateRecognitionResult();
             try
             {
-                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(entranceID);
+                //EntranceInfo entrance = ParkBuffer.Current.GetEntrance(entranceID);
+                EntranceInfo entrance = ParkBuffer.Current.GetEntrance(parkID, entranceID);
                 if (entrance != null)
                 {
                     foreach (VideoSourceInfo video in entrance.VideoSources)
@@ -200,7 +204,7 @@ namespace Ralid.Park.UI
                         {
                             FrmSnapShoter frm = FrmSnapShoter.GetInstance();
                             string path = Path.Combine(dir, string.Format("{0}_{1}_{2}.jpg", "CarPlate", Guid.NewGuid().ToString(), video.VideoID));
-                            if (frm.SnapShotTo(video, path, true))
+                            if (frm.SnapShotTo(video, ref path, true, false))
                             {
                                 ret = Recognize(path);
                             }
@@ -238,6 +242,10 @@ namespace Ralid.Park.UI
         private void btnInit_Click(object sender, EventArgs e)
         {
             Init();
+            if (!initSuccess)
+            {
+                MessageBox.Show(Resources.Resource1.CarPlate_Fail);
+            }
         }
         #endregion 
     }

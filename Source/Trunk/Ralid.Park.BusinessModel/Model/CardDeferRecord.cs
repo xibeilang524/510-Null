@@ -8,6 +8,9 @@ namespace Ralid.Park.BusinessModel.Model
 {
     public class CardDeferRecord
     {
+        /// <summary>
+        /// 获取或设置延期卡片卡号
+        /// </summary>
         public string CardID { get; set; }
         /// <summary>
         /// 获取或设置延期操作发生时间
@@ -60,6 +63,40 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置结算时间,没有进行结算时为空
         /// </summary>
         public DateTime? SettleDateTime { get; set; }
+
+        /// <summary>
+        /// 获取或设置卡片类型
+        /// </summary>
+        public byte? _CardType { get; set; }
+
+        /// <summary>
+        /// 获取或设置卡片类型
+        /// </summary>
+        public CardType CardType
+        {
+            get
+            {
+                if (_CardType.HasValue)
+                {
+                    return Ralid.Park.BusinessModel.Enum.CardType.GetSystemCardType(_CardType.Value);
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                if (value != null)
+                {
+                    _CardType = (byte)value;
+                }
+                else
+                {
+                    _CardType = null;
+                }
+            }
+        }
 
         public CardDeferRecord Clone()
         {

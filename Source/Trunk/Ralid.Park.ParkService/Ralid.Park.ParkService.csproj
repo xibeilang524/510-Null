@@ -130,16 +130,25 @@
     <Compile Include="CANParking\Packet.cs" />
     <Compile Include="CANParking\PacketCreater.cs" />
     <Compile Include="CANParking\PacketStream.cs" />
+    <Compile Include="NETParking\NetPark.cs" />
+    <Compile Include="Resources\Resource1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resource1.resx</DependentUpon>
+    </Compile>
     <Compile Include="TicketIDCreater.cs" />
     <Compile Include="EntranceBase.cs" />
     <Compile Include="EntranceOperationStatus.cs" />
     <Compile Include="ParkBase.cs" />
     <Compile Include="ReportingtHandler.cs" />
     <Compile Include="NETParking\NetEntrance.cs" />
-    <Compile Include="NETParking\NetPark.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\OutdoorLEDSetting\OutdoorLEDSetting.csproj">
+      <Project>{B9E1E175-6D99-4734-829F-31F0CFEFF9C1}</Project>
+      <Name>OutdoorLEDSetting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Ralid.Park.BLL\Ralid.Park.BLL.csproj">
       <Project>{8F21786B-8B51-4ABE-9BB7-33DCF07B1B50}</Project>
       <Name>Ralid.Park.BLL</Name>
@@ -151,6 +160,10 @@
     <ProjectReference Include="..\Ralid.Park.PlateRecognition\Ralid.Park.PlateRecognition.csproj">
       <Project>{46A3B25B-E823-4884-B4E3-123DEDEBC407}</Project>
       <Name>Ralid.Park.PlateRecognition</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Ralid.Park.SnapShot\Ralid.Park.SnapShotCapture.csproj">
+      <Project>{7E5DB09F-1011-4E8C-97EA-AF3867344532}</Project>
+      <Name>Ralid.Park.SnapShotCapture</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -170,7 +183,14 @@
       <Install>true</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Resource1.en.resx" />
+    <EmbeddedResource Include="Resources\Resource1.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resource1.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\Resource1.zh-Hant.resx" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

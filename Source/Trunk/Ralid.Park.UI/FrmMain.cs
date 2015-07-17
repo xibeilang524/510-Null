@@ -19,9 +19,12 @@ using Ralid.Park.ThirdCommunication;
 using Ralid.Park.UI.Resources;
 using Ralid.GeneralLibrary;
 using Ralid.Park.PlateRecognition;
+using Ralid.Park.UI.OutdoorLed;
 using Ralid.GeneralLibrary.CardReader;
 using Ralid.Park.LocalDataBase.BLL;
 using Ralid.Park.LocalDataBase.Model;
+using Ralid.Park.SnapShotCapture;
+using Ralid.Park.VideoCapture;
 
 namespace Ralid.Park.UI
 {
@@ -38,7 +41,7 @@ namespace Ralid.Park.UI
         #region 私有变量
         private List<Form> _openedForms = new List<Form>();
         private List<IReportHandler> _eventHandlers = new List<IReportHandler>();
-        private Form _CarPlateForm;
+        //private Form _CarPlateForm;
         private bool _hasDeleted = false;
         private int _ForceShiftingAlarmCount = 0;
         private DatetimeSyncService _DatetimeSyncService;
@@ -49,15 +52,18 @@ namespace Ralid.Park.UI
         private LDB_UpdateLoaclDataService _LDB_UpdateLoaclDataService;
         private bool _InitParkingCommunication = false;//是否初始化了通信
         private DateTime? _OperatorLoginTime;//操作员登录时间
+        private Dictionary<int, string> _ParkServerLastIP = new Dictionary<int, string>();//最近一次的服务器使用IP集合
+        //private Dictionary<int, HostStandbyStatus> _ParkLastHostStandbyStatus = new Dictionary<int, HostStandbyStatus>();//最近一次的双机热备使用状态集合
+        private ServerSwitchRemind _ServerSwitchRemind;//停车场切换提醒
         #endregion
 
         #region 私有方法
         private void ReadSoftDog()
         {
-            if (!ParkingSoftDogVerify.VerifyRight())
-            {
-                System.Environment.Exit(0);
-            }
+            //if (!ParkingSoftDogVerify.VerifyRight())
+            //{
+            //    System.Environment.Exit(0);
+            //}
         }
 
         private void tmrCheckDog_Tick(object sender, EventArgs e)
@@ -183,8 +189,7 @@ namespace Ralid.Park.UI
             CustomCardTypeSetting.Current = ssb.GetOrCreateSetting<CustomCardTypeSetting>();
             BaseCardTypeSetting.Current = ssb.GetOrCreateSetting<BaseCardTypeSetting>();
             KeySetting.Current = ssb.GetOrCreateSetting<KeySetting>();
-            //添加读卡器读取停车场扇区和密钥
-            CardReaderManager.GetInstance(UserSetting.Current.WegenType).AddReadSectionAndKey(GlobalVariables.ParkingSection, GlobalVariables.ParkingKey);
+            GlobalVariables.SetCardReaderKeysetting();
 
             SaveSystemParametersToLDB();
         }
@@ -208,19 +213,38 @@ namespace Ralid.Park.UI
 
                         LDB_ParkingDataBuffer.Current.Operators = operators.QueryObjects;
                         LDB_ParkingDataBuffer.Current.WorkStations = workstations.QueryObjects;
-
+                        
                         LDB_SysParaSettingsBll lssb = new LDB_SysParaSettingsBll(LDB_AppSettings.Current.LDBConnect);
-                        lssb.SaveSetting<UserSetting>(UserSetting.Current);
-                        lssb.SaveSetting<HolidaySetting>(HolidaySetting.Current);
-                        lssb.SaveSetting<AccessSetting>(AccessSetting.Current);
-                        lssb.SaveSetting<TariffSetting>(TariffSetting.Current);
-                        lssb.SaveSetting<CarTypeSetting>(CarTypeSetting.Current);
-                        lssb.SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
-                        lssb.SaveSetting<BaseCardTypeSetting>(BaseCardTypeSetting.Current);
-                        lssb.SaveSetting<KeySetting>(KeySetting.Current);
-                        lssb.SaveSetting<LDB_ParkingDataBuffer>(LDB_ParkingDataBuffer.Current);
+                        lssb.SaveSettingWithUnitWork<UserSetting>(UserSetting.Current);
+                        lssb.SaveSettingWithUnitWork<HolidaySetting>(HolidaySetting.Current);
+                        lssb.SaveSettingWithUnitWork<AccessSetting>(AccessSetting.Current);
+                        lssb.SaveSettingWithUnitWork<TariffSetting>(TariffSetting.Current);
+                        lssb.SaveSettingWithUnitWork<CarTypeSetting>(CarTypeSetting.Current);
+                        lssb.SaveSettingWithUnitWork<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
+                        lssb.SaveSettingWithUnitWork<BaseCardTypeSetting>(BaseCardTypeSetting.Current);
+                        lssb.SaveSettingWithUnitWork<KeySetting>(KeySetting.Current);
+                        lssb.SaveSettingWithUnitWork<LDB_ParkingDataBuffer>(LDB_ParkingDataBuffer.Current);
+                        CommandResult result = lssb.UnitWorkCommit();                        
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+        }
+
+        private void StartVideoCapture()
+        {             
+            try
+            {
+                FrmCarPlateOfDaHua frmDaHua = FrmCarPlateOfDaHua.GetInstance();
+                frmDaHua.Init();
+                VideoCaptureManager.Instance.Add((int)VideoServerType.DaHua, frmDaHua);
+
+                FrmCarPlateOfXinLuTong frmXLT = FrmCarPlateOfXinLuTong.GetInstance();
+                frmXLT.Init();
+                VideoCaptureManager.Instance.Add((int)VideoServerType.XinLuTong, frmXLT);
             }
             catch (Exception ex)
             {
@@ -232,41 +256,96 @@ namespace Ralid.Park.UI
         {
             try
             {
-                string carplate = AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization");
-                if (carplate == "WINTONE")
-                {
-                    FrmCarPlateOfWintone frm = FrmCarPlateOfWintone.GetInstance();
-                    frm.Init();
-                    _CarPlateForm = frm;
-                    PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
-                    this.mnu_CarPlateTestForFile.Visible = true;
-                    this.mnu_CarPlateTestForVideo.Visible = true;
-                }
-                else if (carplate == "VECON")
+                CarPlateRecognizationType carplate = AppSettings.CurrentSetting.CarPlateRecognization;
+                //以下是软件方式的车牌识别
+                if (carplate == CarPlateRecognizationType.VECON)
                 {
                     FrmCarPlateOfVecon frm = FrmCarPlateOfVecon.GetInstance();
                     frm.Init();
-                    _CarPlateForm = frm;
-                    PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
-                    this.mnu_CarPlateTestForFile.Visible = true;
-                    this.mnu_CarPlateTestForVideo.Visible = true;
+                    PlateRecognitionService.CurrentInstance.Add((int)CarPlateRecognizationType.VECON, frm);
+                    this.mnu_CarplateRegV.Visible = true;
+                    this.mnu_CarplateRegW.Visible = false;
                 }
-                else if (carplate == "XinLuTong")
+                else
                 {
-                    FrmCarPlateOfXinLuTong frm = FrmCarPlateOfXinLuTong.GetInstance();
+                    FrmCarPlateOfWintone frm = FrmCarPlateOfWintone.GetInstance();
                     frm.Init();
-                    _CarPlateForm = frm;
-                    this._eventHandlers.Add(frm);
-                    PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
-                    this.mnu_CarPlateTestForFile.Visible = false;
-                    this.mnu_CarPlateTestForVideo.Visible = false;
+                    PlateRecognitionService.CurrentInstance.Add((int)CarPlateRecognizationType.WINTONE, frm);
+                    this.mnu_CarplateRegV.Visible = false;
+                    this.mnu_CarplateRegW.Visible = true;
                 }
+
+                //以下是车牌识别一体机
+                FrmCarPlateOfXinLuTong frmXLT = FrmCarPlateOfXinLuTong.GetInstance();
+                frmXLT.Init();
+                PlateRecognitionService.CurrentInstance.Add((int)CarPlateRecognizationType.XinLuTong, frmXLT);
+
+                FrmCarPlateOfDaHua frmDaHua = FrmCarPlateOfDaHua.GetInstance();
+                frmDaHua.Init();
+                PlateRecognitionService.CurrentInstance.Add((int)CarPlateRecognizationType.DaHua, frmDaHua);
+
                 this.mnu_CarplateReg.Visible = true;
+                this.mnu_CarPlateTestForFile.Visible = true;
+                this.mnu_CarPlateTestForVideo.Visible = true;
             }
             catch (Exception ex)
             {
                 Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
+        }
+
+        private void StartCarPlateRecognize(string carplate)
+        {
+            //try
+            //{
+            //    if (_CarPlateForm != null) return;//如果_CarPlateForm不为空，说明前面已开始服务了了，这里就不再需要开始了
+            //    //string carplate = AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization");
+            //    if (carplate == "WINTONE")
+            //    {
+            //        FrmCarPlateOfWintone frm = FrmCarPlateOfWintone.GetInstance();
+            //        frm.Init();
+            //        _CarPlateForm = frm;
+            //        PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
+            //        this.mnu_CarPlateTestForFile.Visible = true;
+            //        this.mnu_CarPlateTestForVideo.Visible = true;
+            //    }
+            //    else if (carplate == "VECON")
+            //    {
+            //        FrmCarPlateOfVecon frm = FrmCarPlateOfVecon.GetInstance();
+            //        frm.Init();
+            //        _CarPlateForm = frm;
+            //        PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
+            //        this.mnu_CarPlateTestForFile.Visible = true;
+            //        this.mnu_CarPlateTestForVideo.Visible = true;
+            //    }
+            //    else if (carplate == "XinLuTong")
+            //    {
+            //        FrmCarPlateOfXinLuTong frm = FrmCarPlateOfXinLuTong.GetInstance();
+            //        frm.Init();
+            //        _CarPlateForm = frm;
+            //        this._eventHandlers.Add(frm);//对事件进行抓拍图片
+            //        SnapShotCaptureService.CurrentInstance = new SnapShotCaptureService(frm);//创建快照抓拍服务实例
+            //        PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
+            //        this.mnu_CarPlateTestForFile.Visible = false;
+            //        this.mnu_CarPlateTestForVideo.Visible = false;
+            //    }
+            //    else if (carplate == "DaHua")
+            //    {
+            //        FrmCarPlateOfDaHua frm = FrmCarPlateOfDaHua.GetInstance();
+            //        frm.Init();
+            //        _CarPlateForm = frm;
+            //        this._eventHandlers.Add(frm);//对事件进行抓拍图片
+            //        SnapShotCaptureService.CurrentInstance = new SnapShotCaptureService(frm);//创建快照抓拍服务实例
+            //        PlateRecognitionService.CurrentInstance = new PlateRecognitionService(frm);
+            //        this.mnu_CarPlateTestForFile.Visible = false;
+            //        this.mnu_CarPlateTestForVideo.Visible = false;
+            //    }
+            //    this.mnu_CarplateReg.Visible = true;
+            //}
+            //catch (Exception ex)
+            //{
+            //    Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            //}
         }
 
         private void InitWorkStation()
@@ -327,7 +406,9 @@ namespace Ralid.Park.UI
             this.mnu_Cards.Enabled = (role.Permit(Permission.ReadCards) || role.Permit(Permission.EditCard));
             this.mnu_Operator.Enabled = (role.Permit(Permission.ReadOperaotor) || role.Permit(Permission.EditOperator));
             this.mnu_Roles.Enabled = (role.Permit(Permission.ReadRole) || role.Permit(Permission.EditRole));
+            this.mnu_Depts.Enabled = (role.Permit(Permission.ReadDept) || role.Permit(Permission.EditDept));
             this.mnu_SystemOption.Enabled = (role.Permit(Permission.ReadSysSetting) || role.Permit(Permission.EditSysSetting));
+            this.mnu_LocalSettings.Enabled = (role.Permit(Permission.ReadLocalSetting) || role.Permit(Permission.EditLocalSetting));
             this.mnu_CardChargeReport.Enabled = role.Permit(Permission.CardChargeReport);
             this.mnu_CardDeferReport.Enabled = role.Permit(Permission.CardDeferReport);
             this.mnu_CardDeferStatistic.Enabled = role.Permit(Permission.CardDeferStatistics);
@@ -380,6 +461,18 @@ namespace Ralid.Park.UI
 
             this.mnu_ZSTSetting.Visible = AppSettings.CurrentSetting.EnableZST;
             this.mnu_ZSTSetting.Enabled = role.Permit(Permission.ZSTSetting);
+
+            this.mnu_VehicleLedSetting.Enabled = role.Permit(Permission.VehicleLedSetting);
+            this.mnu_HostStandbySetting.Enabled = role.Permit(Permission.HostStandbySetting);
+            this.mnu_ServerSwitchReport.Enabled = role.Permit(Permission.ServerSwitchReport);
+
+            this.mnu_SyncDataToStandby.Visible = !string.IsNullOrEmpty(AppSettings.CurrentSetting.StandbyParkConnect);
+            this.mnu_SyncDataToStandby.Enabled = role.Permit(Permission.SyncDataToStandby)
+                && DataBaseConnectionsManager.Current.MasterConnected
+                && DataBaseConnectionsManager.Current.StandbyConnected;
+
+            this.mnu_ExportParameter.Enabled = role.Permit(Permission.ExportParameter);
+            this.mnu_ImportRecord.Enabled = role.Permit(Permission.ImportRecord);
             this.mnu_HasPaidCardReport.Enabled = role.Permit(Permission.HasPaidCardReport);
             this.mnu_CardReport.Enabled = role.Permit(Permission.CardReport);
 
@@ -389,14 +482,39 @@ namespace Ralid.Park.UI
             this.mnu_VideoSyncTime.Enabled = role.Permit(Permission.EditVideo);
             this.btn_VideoReboot.Enabled = role.Permit(Permission.EditVideo);
             this.mnu_VideoProperty.Enabled = role.Permit(Permission.EditVideo);
+            this.mnu_SetParkTariff.Enabled = (role.Permit(Permission.ReadSysSetting) || role.Permit(Permission.EditSysSetting)); ;
+
+            this.mnu_RoadWays.Enabled = role.Permit(Permission.ReadRoadWay) || role.Permit(Permission.EditRoadWay);
+            this.mnu_SwitchEntranceMode.Enabled = role.Permit(Permission.SwitchRoadWay);
+            this.btn_SwitchEntranceMode.Enabled = role.Permit(Permission.SwitchRoadWay);
+
+            this.mnu_HotelAuthorization.Enabled = role.Permit(Permission.FreeAuthorization);
+            this.btn_FreeAuthorization.Enabled = role.Permit(Permission.FreeAuthorization);
             this.mnu_PosSyncTool.Enabled = role.Permit(Permission.POSSyncTool);
+            this.mnu_FreeAuthorizationLog.Enabled = role.Permit(Permission.FreeAuthorizationLogReport);
+            this.mnu_CardOut.Enabled = role.Permit(Permission.CardOut);
+            this.mnu_WaitingCommand.Enabled = role.Permit(Permission.WaitingCommandReport);
+            this.mnu_APMCheckOutRecordRport.Enabled = role.Permit(Permission.APMCheckOutRecordReport);
+            this.mnu_APMRefundRecordRport.Enabled = role.Permit(Permission.APMRefundRecordReport);
+            this.mnu_APMRefund.Enabled = role.Permit(Permission.APMRefund);
+            this.mnu_NoCardLost.Enabled = role.Permit(Permission.NoCardLost);
+
+            this.mnu_SpeedingProcess.Enabled = role.Permit(Permission.SpeedingProcess);
+            this.mnu_SpeedingReport.Enabled = role.Permit(Permission.SpeedingReport);
         }
 
         private void ProcessReport(object sender, ReportBase report)
         {
             foreach (IReportHandler handler in _eventHandlers)
             {
-                handler.ProcessReport(report);
+                try
+                {
+                    handler.ProcessReport(report);
+                }
+                catch (Exception ex)
+                {
+                    Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                }
             }
         }
 
@@ -500,6 +618,24 @@ namespace Ralid.Park.UI
             (new AlarmBll(AppSettings.CurrentSetting.ParkConnect)).Insert(alarm);
         }
 
+        private void LogOperatorLogOut()
+        {
+            AlarmInfo alarm = new AlarmInfo()
+            {
+                AlarmDateTime = DateTime.Now,
+                AlarmSource = string.Empty,
+                AlarmType = AlarmType.OperatorLogOut,
+                OperatorID = OperatorInfo.CurrentOperator.OperatorName,
+                AlarmDescr = string.Format(Resource1.OperatorLogOutAlarm,
+                WorkStationInfo.CurrentStation.StationName,
+                _OperatorLoginTime.HasValue ? _OperatorLoginTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty,
+                NetTool.GetHostName(),
+                NetTool.GetFirstIP(),
+                NetTool.GetLocalMac())
+            };
+            (new AlarmBll(AppSettings.CurrentSetting.ParkConnect)).Insert(alarm);
+        }
+
         private void GetEntrancesStatus(List<ParkInfo> parks)
         {
             foreach (ParkInfo park in parks)
@@ -592,6 +728,8 @@ namespace Ralid.Park.UI
                 }
             };
             Thread t = new Thread(new ThreadStart(action));
+            t.CurrentCulture = Thread.CurrentThread.CurrentCulture;
+            t.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
             t.Start();
             if (frmP.ShowDialog() != DialogResult.OK)
             {
@@ -651,6 +789,223 @@ namespace Ralid.Park.UI
             return false;
         }
 
+        ///// <summary>
+        ///// 获取所有停车场最近一次双机热备使用状态
+        ///// </summary>
+        ///// <param name="parks"></param>
+        //private void GetParkLastHostStandbyStatus(List<ParkInfo> parks)
+        //{
+        //    if (parks != null)
+        //    {
+        //        HostStandbySettingBll bll = new HostStandbySettingBll(AppSettings.CurrentSetting.ParkConnect);
+        //        foreach (ParkInfo park in parks)
+        //        {
+        //            HostStandbySetting setting = bll.Get(park.ParkID);
+        //            if (setting != null)
+        //            {
+        //                if (!_ParkLastHostStandbyStatus.ContainsKey(park.ParkID))
+        //                {
+        //                    _ParkLastHostStandbyStatus.Add(park.ParkID, HostStandbyStatus.UnKnown);
+        //                }
+        //                _ParkLastHostStandbyStatus[park.ParkID] = setting.LastStatus;
+        //            }
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// 获取所有停车场最近一次服务器IP
+        /// </summary>
+        /// <param name="parks"></param>
+        private void GetParkServerLastIP(List<ParkInfo> parks)
+        {
+            if (parks != null)
+            {
+                HostStandbySettingBll bll = new HostStandbySettingBll(AppSettings.CurrentSetting.ParkConnect);
+                foreach (ParkInfo park in parks)
+                {
+                    HostStandbySetting setting = bll.Get(park.ParkID);
+                    if (setting != null)
+                    {
+                        if (!_ParkServerLastIP.ContainsKey(park.ParkID))
+                        {
+                            _ParkServerLastIP.Add(park.ParkID, string.Empty);
+                        }
+                        _ParkServerLastIP[park.ParkID] = setting.LastIP;
+                    }
+                }
+            }
+        }
+
+        
+        ///// <summary>
+        ///// 处理停车场的双机热备使用状态
+        ///// </summary>
+        ///// <param name="parkID"></param>
+        //private void HostStandbyStatusHandle(ParkInfo park)
+        //{
+        //    HostStandbySettingBll bll = new HostStandbySettingBll(AppSettings.CurrentSetting.ParkConnect);
+        //    HostStandbySetting setting = bll.Get(park.ParkID);
+        //    if (setting != null)
+        //    {
+        //        System.Net.IPAddress[] ips = Ralid.GeneralLibrary.NetTool.GetLocalIPS();
+        //        HostStandbyStatus newStatus = HostStandbyStatus.UnKnown;
+        //        if (setting.IsHost(ips))
+        //        {
+        //            newStatus = HostStandbyStatus.Host;
+        //        }
+        //        else if (setting.IsStandby(ips))
+        //        {
+        //            newStatus = HostStandbyStatus.Standby;
+        //        }
+        //        setting.LastStatus = newStatus;
+        //        setting.LastStart = _StartFrom;
+
+        //        if (bll.Save(setting))
+        //        {
+        //            HostStandbyStatus oldStatus = HostStandbyStatus.UnKnown;
+        //            if (_ParkLastHostStandbyStatus.ContainsKey(park.ParkID))
+        //            {
+        //                oldStatus = _ParkLastHostStandbyStatus[park.ParkID];
+        //            }
+        //            AlarmInfo alarm = null;
+        //            if (setting.IsHostSwitch(oldStatus, newStatus))
+        //            {
+        //                alarm = new AlarmInfo()
+        //                {
+        //                    AlarmDateTime = _StartFrom,
+        //                    AlarmSource = string.Empty,
+        //                    AlarmType = AlarmType.ServerSwitching,
+        //                    OperatorID = OperatorInfo.CurrentOperator.OperatorName,
+        //                    AlarmDescr = string.Format("停车场 [{0}] 通讯服务器切换到主机服务器",
+        //                    park.ParkName)
+        //                };
+        //            }
+        //            else if (setting.IsStandbySwitch(oldStatus, newStatus))
+        //            {
+        //                alarm = new AlarmInfo()
+        //                {
+        //                    AlarmDateTime = _StartFrom,
+        //                    AlarmSource = string.Empty,
+        //                    AlarmType = AlarmType.ServerSwitching,
+        //                    OperatorID = OperatorInfo.CurrentOperator.OperatorName,
+        //                    AlarmDescr = string.Format("停车场 [{0}] 通讯服务器切换到从机服务器",
+        //                    park.ParkName)
+        //                };
+        //            }
+
+        //            if (alarm != null)
+        //            {
+        //                (new AlarmBll(AppSettings.CurrentSetting.ParkConnect)).Insert(alarm); 
+        //            }
+        //        }
+        //    }
+        //}
+
+        /// <summary>
+        /// 处理停车场的服务器切换
+        /// </summary>
+        /// <param name="parkID"></param>
+        private void ServerSwitchHandle()
+        {
+            foreach (ParkInfo park in ParkBuffer.Current.Parks)
+            {
+                if (WorkStationInfo.CurrentStation.StationID == park.HostWorkstation)  //如果本工作站是停车场的通讯工作站
+                {
+                    HostStandbySettingBll bll = new HostStandbySettingBll(AppSettings.CurrentSetting.ParkConnect);
+                    HostStandbySetting setting = bll.Get(park.ParkID);
+                    if (setting != null)
+                    {
+                        HostStandbySetting oldSetting = setting.Clone();
+
+                        System.Net.IPAddress[] ips = Ralid.GeneralLibrary.NetTool.GetLocalIPS();
+                        string switchIP = string.Empty;
+                        HostStandbyStatus newStatus = HostStandbyStatus.UnKnown;
+                        if (setting.IsHost(ips))
+                        {
+                            switchIP = setting.HostIP;
+                            newStatus = HostStandbyStatus.Host;
+                        }
+                        else if (setting.IsStandby(ips))
+                        {
+                            switchIP = setting.StandbyIP;
+                            newStatus = HostStandbyStatus.Standby;
+                        }
+                        else
+                        {
+                            System.Net.IPAddress ip = GlobalVariables.CurrentParkingCommunicationIP;
+                            if (ip != null)
+                            {
+                                switchIP = ip.ToString();
+                            }
+                            newStatus = HostStandbyStatus.UnKnown;
+                        }
+                        setting.LastIP = switchIP;
+                        setting.LastStatus = newStatus;
+                        setting.LastStart = _StartFrom;
+
+                        if (bll.Save(setting))
+                        {
+                            if (oldSetting.LastIP != setting.LastIP)
+                            {
+                                ServerSwitchRecord record = new ServerSwitchRecord();
+                                record.ParkID = park.ParkID;
+                                record.SwitchDateTime = _StartFrom;
+                                record.LastDateTime = oldSetting.LastStart;
+                                record.SwitchServerIP = switchIP;
+                                record.LastIP = oldSetting.LastIP;
+                                record.SwitchStatus = newStatus;
+                                record.LastStatus = oldSetting.LastStatus;
+                                record.SMSStatus = oldSetting.SendSMS ? SMSSendStatus.Waiting : SMSSendStatus.NotSend;
+                                record.Operator = OperatorInfo.CurrentOperator.OperatorName;
+                                record.StationID = WorkStationInfo.CurrentStation.StationID;
+
+                                (new ServerSwitchRecordBll(AppSettings.CurrentSetting.ParkConnect)).Insert(record);
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckServerSwitch(ParkInfo park)
+        {
+            int parkID = park.ParkID;
+            HostStandbySettingBll bll = new HostStandbySettingBll(AppSettings.CurrentSetting.ParkConnect);
+            HostStandbySetting setting = bll.Get(parkID);
+            if (setting != null)
+            {
+                if (!_ParkServerLastIP.ContainsKey(parkID))
+                {
+                    _ParkServerLastIP.Add(parkID, string.Empty);
+                }
+                if (_ParkServerLastIP[parkID] != setting.LastIP)
+                {
+                    _ParkServerLastIP[parkID] = setting.LastIP;
+                    
+                    if (_ServerSwitchRemind == null) _ServerSwitchRemind = new ServerSwitchRemind();
+                    _ServerSwitchRemind.Park = park == null ? Resource1.Form_Park : park.ParkName;
+                    _ServerSwitchRemind.SwitchTime = setting.LastStart.HasValue ? setting.LastStart.Value.ToString("yyyy-MM-dd HH:mm:ss") : string.Empty;
+                    _ServerSwitchRemind.SwitchStatus = Ralid.Park.BusinessModel.Resouce.HostStandbyStatusDescription.GetDescription(setting.LastStatus);
+                    _ServerSwitchRemind.SwitchIP = setting.LastIP;
+
+                    string msg = string.Format(Resource1.FrmMain_ServerSwitchWarm, _ServerSwitchRemind.Park, _ServerSwitchRemind.SwitchTime, _ServerSwitchRemind.SwitchStatus, _ServerSwitchRemind.SwitchIP);
+
+                    Action action = delegate()
+                    {
+                        this.lblServerSwitch.Text = msg;
+                    };
+                    if (this.InvokeRequired)
+                    {
+                        this.BeginInvoke(action);
+                    }
+                    else
+                    {
+                        action();
+                    }
+                }
+            }
+        }
         #endregion
 
         #region 硬件树右键菜单的处理
@@ -660,6 +1015,15 @@ namespace Ralid.Park.UI
             detail.IsAdding = true;
             detail.ItemAdded += HardwareAdded_Handler;
             detail.ShowDialog();
+        }
+
+
+        private void mnu_SwitchEntranceMode_Click(object sender, EventArgs e)
+        {
+            FrmRoadWay frm = new FrmRoadWay();
+            frm.ForSwitchMode = true;
+            frm.SwitchModeHandler += SwicthRoadModeHandler;
+            frm.ShowDialog();
         }
 
         private void mnu_AddDivision_Click(object sender, EventArgs e)
@@ -707,6 +1071,18 @@ namespace Ralid.Park.UI
                 detail.ShowDialog();
             };
             frm.ShowDialog();
+        }
+
+        private void mnu_OutdoorLedVacant_Click(object sender, EventArgs e)
+        {
+            ParkInfo park = this.entranceTree.SelectedNode.Tag as ParkInfo;
+            if (park != null)
+            {
+                FrmOutdoorLedSetting frm = new FrmOutdoorLedSetting();
+                frm.ItemUpdated += HardwareUpdated_Handler;
+                frm.Park = park;
+                frm.ShowDialog();
+            }
         }
 
         private void mnu_AddEntrance_Click(object sender, EventArgs e)
@@ -878,13 +1254,13 @@ namespace Ralid.Park.UI
                         CardInfo info = bll.GetCardByID(frm.CardID).QueryObject;
                         if (info == null)
                         {
-                            MessageBox.Show("未能找到卡片");
+                            MessageBox.Show(Resource1.FrmMain_NoCard);
                             frm.Close();
                             return;
                         }
                         if (!info.OnlineHandleWhenOfflineMode)
                         {
-                            MessageBox.Show("只有在线处理的卡片才能远程读卡");
+                            MessageBox.Show(Resource1.FrmMain_RemoteReadCardInvalid);
                             frm.Close();
                             return;
                         }
@@ -904,6 +1280,61 @@ namespace Ralid.Park.UI
                     t.Start();
                 }
                 frm.Close();
+            }
+        }
+
+        private void mnu_CarPlateManualProccess_Click(object sender, EventArgs e)
+        {
+            if (entranceTree.IsEntranceNode(entranceTree.SelectedNode))
+            {
+                DialogResult result = DialogResult.Cancel;
+                string cardID = string.Empty;
+                string carPlate = string.Empty;
+                EntranceInfo entrance = entranceTree.SelectedNode.Tag as EntranceInfo;
+                if (entrance.IsExitDevice)
+                {
+                    FrmCarPlateManualExit frm = new FrmCarPlateManualExit();
+                    result = frm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        cardID = frm.CardID;
+                        carPlate = frm.CarPlate;
+                    }
+                    frm.Close();
+                }
+                else
+                {
+                    FrmCarPlateManualEnter frm = new FrmCarPlateManualEnter();
+                    result = frm.ShowDialog();
+                    if (result == DialogResult.OK)
+                    {
+                        cardID = string.Empty;
+                        if (!string.IsNullOrEmpty(frm.CarPlate))
+                        {
+                            //如果名单车牌不为空，车牌号为名单车牌
+                            carPlate = frm.CarPlate;
+                        }
+                        else
+                        {
+                            //否则为临时车牌号，当为无车牌时，临时车牌号为空
+                            carPlate = frm.VisitorCarPlate;
+                        }
+                    }
+                    frm.Close();
+                }
+                if (result == DialogResult.OK)
+                {
+                    Action action = delegate()
+                    {
+                        RemoteReadCardNotify notify = new RemoteReadCardNotify(entrance.ParkID, entrance.EntranceID, cardID, carPlate, OperatorInfo.CurrentOperator.OperatorName, WorkStationInfo.CurrentStation.StationName);
+                        if (ParkingAdapterManager.Instance[entrance.RootParkID] != null)
+                        {
+                            ParkingAdapterManager.Instance[entrance.RootParkID].RemoteReadCard(notify);
+                        }
+                    };
+                    Thread t = new Thread(new ThreadStart(action));
+                    t.Start();
+                }
             }
         }
 
@@ -1204,8 +1635,10 @@ namespace Ralid.Park.UI
                 if (node != null && entranceTree.IsParkNode(node))
                 {
                     entranceTree.ContextMenuStrip = parkContextMenu;
-                    this.mnu_AddDivision.Enabled = (node.Tag as ParkInfo).IsRootPark;
+                    this.mnu_AddDivision.Visible = (node.Tag as ParkInfo).IsRootPark;
+                    this.mnu_OutdoorLedVacant.Visible = UserSetting.Current.EnableOutdoorLed;
                     this.mnu_SearchDevice.Visible = (node.Tag as ParkInfo).DeviceType == EntranceDeviceType.NETEntrance;
+                    this.mnu_SetParkTariff.Visible = (node.Tag as ParkInfo).IsRootPark;
                 }
                 else if (node != null && entranceTree.IsEntranceNode(node))
                 {
@@ -1229,6 +1662,57 @@ namespace Ralid.Park.UI
                 ShowOperatorRights(OperatorInfo.CurrentOperator);
             }
         }
+
+        private void SwicthRoadModeHandler(object sender, SwitchRoadModeArgs e)
+        {
+            this.Cursor = Cursors.WaitCursor;
+            bool result = true;
+            RoadWayInfo info = e.RoadWay;
+            if (info != null)
+            {
+                foreach (int enID in info.EntranceList)
+                {
+                    EntranceInfo entrance = ParkBuffer.Current.GetEntrance(enID);
+                    if (entrance != null)
+                    {
+                        IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+                        if (pad != null)
+                        {
+                            entrance.Valid = entrance.IsExitDevice ? e.Mode == RoadMode.Exit : e.Mode == RoadMode.Entrance;
+                            if (pad.UpdateEntrance(entrance))
+                            {
+                                if (new EntranceBll(AppSettings.CurrentSetting.CurrentMasterConnect).Update(entrance).Result == ResultCode.Successful)
+                                {
+                                    TreeNode node = this.entranceTree.GetEntranceNode(entrance.EntranceID);
+                                    if (node != null) this.entranceTree.RenderEntrance(node, entrance);
+                                    new EntranceBll(AppSettings.CurrentSetting.CurrentStandbyConnect).Update(entrance);
+                                }
+                            }
+                            else
+                            {
+                                result = false;
+                            }
+                        }
+                    }
+                }
+            }
+            ParkBuffer.Current.InValid(AppSettings.CurrentSetting.AvailableParkConnect);
+            GetEntrancesStatus(ParkBuffer.Current.Parks);
+            if (result)
+            {
+                info.Mode = e.Mode;
+                new RoadWayBll(AppSettings.CurrentSetting.CurrentMasterConnect).Update(info);
+            }
+            this.Cursor = Cursors.Arrow;
+            if (result)
+            {
+                MessageBox.Show(Resource1.FrmMain_SwicthRoadModeSuccess);
+            }
+            else
+            {
+                MessageBox.Show(Resource1.FrmMain_SwicthRoadModeFail);
+            }
+        }
         #endregion
 
         #region 主菜单及工具栏事件处理
@@ -1242,6 +1726,8 @@ namespace Ralid.Park.UI
             //清空强制交班的参数
             tmrForceShifting.Enabled = false;
             _ForceShiftingAlarmCount = 0;
+
+            LogOperatorLogOut();
             //清空操作员登录时间
             _OperatorLoginTime = null;
 
@@ -1287,6 +1773,47 @@ namespace Ralid.Park.UI
             frm.ShowDialog();
         }
 
+        private void mnu_VehicleLedSetting_Click(object sender, EventArgs e)
+        {
+            FrmVehicleLedSetting frm = FrmVehicleLedSetting.GetInstance();
+            frm.ShowDialog();
+
+            try
+            {
+                //查找事件列表中是否已有车辆信息显示屏窗口
+                foreach (IReportHandler handler in this._eventHandlers)
+                {
+                    if (handler.GetType().Name == typeof(FrmVehicleLedSetting).Name)
+                    {
+                        return;
+                    }
+                }
+
+                //如果没有，检查是否需要添加到事件列表中
+                VehicleLedSetting vehicleLedSetting = frm.VehicleLedSetting;
+                if (vehicleLedSetting != null)
+                {
+                    List<VehicleLedItem> items = vehicleLedSetting.GetLEDs(WorkStationInfo.CurrentStation.StationID);
+                    if (items != null && items.Count > 0)
+                    {
+                        //如果该工作站下有通信的车辆信息显示屏，将窗口添加到事件列表中
+                        this._eventHandlers.Add(frm);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+        }
+
+
+        private void mnu_HostStandbySetting_Click(object sender, EventArgs e)
+        {
+            FrmHostStandbySetting frm = new FrmHostStandbySetting();
+            frm.ShowDialog();
+        }
+
         private void mnu_ExportParameter_Click(object sender, EventArgs e)
         {
             SaveFileDialog saveFileDialog1 = new SaveFileDialog();
@@ -1329,6 +1856,11 @@ namespace Ralid.Park.UI
         private void mnu_APM_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmAPMMaster));
+        }
+
+        private void mnu_RoadWays_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmRoadWay));
         }
 
         private void mnu_CardChargeReport_Click(object sender, EventArgs e)
@@ -1393,6 +1925,34 @@ namespace Ralid.Park.UI
             }
         }
 
+        private void mnu_HotelAuthorization_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmHotelAuthorization));
+        }
+
+        private void mnu_CardOut_Click(object sender, EventArgs e)
+        {
+            FrmCardOut frm = new FrmCardOut();
+            frm.ShowDialog();
+        }
+
+        private void mnu_APMRefund_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmAPMRefund));
+        }
+
+        private void mnu_NoCardLost_Click(object sender, EventArgs e)
+        {
+            FrmNoCardLost frm = new FrmNoCardLost();
+            frm.ShowDialog();
+        }
+
+        private void mnu_SpeedingProcess_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmSpeedingProcess));
+        }
+
+
         private void btn_Monitor_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmMonitor));
@@ -1419,6 +1979,7 @@ namespace Ralid.Park.UI
             _ForceShiftingAlarmCount = 0;
 
             decimal? handInCash = null;
+            decimal? handInPOS = null;
             CardInfo operatorCard = null;
 
             if (UserSetting.Current.OperatorCardCashWhenSettle && AppSettings.CurrentSetting.EnableWriteCard)
@@ -1437,6 +1998,7 @@ namespace Ralid.Park.UI
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     handInCash = frm.HandInCash;
+                    handInPOS = frm.HandInPOS;
                 }
                 else
                 {
@@ -1446,6 +2008,7 @@ namespace Ralid.Park.UI
             FrmOperatorSettle frmShift = new FrmOperatorSettle();
             frmShift.Operator = OperatorInfo.CurrentOperator;
             frmShift.HandInCash = handInCash;
+            frmShift.HandInPOS = handInPOS;
             frmShift.OperatorCard = operatorCard;
             if (frmShift.ShowDialog() == DialogResult.OK)
             {
@@ -1462,6 +2025,14 @@ namespace Ralid.Park.UI
             this.lblEventServiceStatus.Text = AppSettings.CurrentSetting.EnableWriteCard ? Resource1.EnableWriteCard : string.Empty;
         }
 
+
+        private void mnu_LocalSettings_Click(object sender, EventArgs e)
+        {
+            FrmLocalSettings frm = new FrmLocalSettings();
+            frm.ShowDialog();
+            this.lblEventServiceStatus.Text = AppSettings.CurrentSetting.EnableWriteCard ? Resource1.EnableWriteCard : string.Empty;
+        }
+
         private void mnu_Alarm_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmAlarmReport));
@@ -1474,8 +2045,28 @@ namespace Ralid.Park.UI
 
         private void mnu_CarplateReg_Click(object sender, EventArgs e)
         {
+            Form _CarPlateForm = null;
+
+            if (sender == this.mnu_CarplateRegW)
+            {
+                _CarPlateForm = FrmCarPlateOfWintone.GetInstance();
+            }
+            else if (sender == this.mnu_CarplateRegV)
+            {
+                _CarPlateForm = FrmCarPlateOfVecon.GetInstance();
+            }
+            else if (sender == this.mnu_CarplateRegX)
+            {
+                _CarPlateForm = FrmCarPlateOfXinLuTong.GetInstance();
+            }
+            else if (sender == this.mnu_CarplateRegD)
+            {
+                _CarPlateForm = FrmCarPlateOfDaHua.GetInstance();
+            }
+
             if (_CarPlateForm != null)
             {
+                //ResourceUtil.ApplyResource(_CarPlateForm);
                 _CarPlateForm.ShowInTaskbar = false;
                 _CarPlateForm.WindowState = FormWindowState.Normal;
                 _CarPlateForm.Show();
@@ -1497,7 +2088,7 @@ namespace Ralid.Park.UI
         {
             try
             {
-                System.Diagnostics.Process.Start(System.IO.Path.Combine(Application.StartupPath, Resource1.FrmMain_ManualFile));
+                System.Diagnostics.Process.Start(System.IO.Path.Combine(Application.StartupPath, Resource1.FrmMain_ManualFilePDF));
             }
             catch (Exception ex)
             {
@@ -1537,6 +2128,17 @@ namespace Ralid.Park.UI
             ShowSingleForm(typeof(FrmAPMLogReport));
         }
 
+
+        private void mnu_APMCheckOutRecordRport_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmAPMCheckOutReport));
+        }
+
+        private void mnu_APMRefundRecordRport_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmAPMRefundReport));
+        }
+
         private void mnu_CardDeleteReport_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmCardDeleteReport));
@@ -1547,6 +2149,26 @@ namespace Ralid.Park.UI
             ShowSingleForm(typeof(FrmYangChenTongLogReport));
         }
 
+        private void mnu_WaitingCommand_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmWaitingCommandReport));
+        }
+
+        private void mnu_FreeAuthorizationLog_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmFreeAuthorizationLogReport));
+        }
+
+        private void mnu_SpeedingReport_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmSpeedingReport));
+        }
+
+        private void mnu_ServerSwitchReport_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmServerSwitchReport));
+        }
+
         private void mnu_HasPaidCardReport_Click(object sender, EventArgs e)
         {
             ShowSingleForm(typeof(FrmHasPaidCardReport));
@@ -1554,6 +2176,17 @@ namespace Ralid.Park.UI
 
         private void mnu_Language_Clicked(object sender, EventArgs e)
         {
+
+            DialogResult result = MessageBox.Show(Resources.Resource1.FrmChangLanguage, Resources.Resource1.Form_Query, MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            if (result == DialogResult.Cancel)
+            {
+                return;
+            }
+            int openedfromcount = _openedForms.Count;
+            for (int i = openedfromcount - 1; i > -1; i--)
+            {
+                _openedForms[i].Close();
+            }
             foreach (ToolStripMenuItem item in mnu_Language.DropDownItems)
             {
                 item.Checked = false;
@@ -1574,7 +2207,6 @@ namespace Ralid.Park.UI
                 mnu_English.Checked = true;
                 AppSettings.CurrentSetting.Language = "en";
             }
-
             System.Globalization.CultureInfo cli = new System.Globalization.CultureInfo(AppSettings.CurrentSetting.Language);
             if (System.Threading.Thread.CurrentThread.CurrentUICulture != cli)
             {
@@ -1586,8 +2218,11 @@ namespace Ralid.Park.UI
                 this.lblStartFrom.Text = string.Format(Resource1.FrmMain_lblStartFrom, _StartFrom.ToString("yyyy-MM-dd HH:mm:ss"));
                 this.lblEventServiceStatus.Text = AppSettings.CurrentSetting.EnableWriteCard ? Resource1.EnableWriteCard : string.Empty;
                 this.lblCommuicationStatus.Text = _InitParkingCommunication ? string.Empty : Resource1.FrmMain_CommunicationFailure;
+                this.lblServerSwitch.Text = _ServerSwitchRemind == null ? string.Empty : string.Format(Resource1.FrmMain_ServerSwitchWarm, _ServerSwitchRemind.Park, _ServerSwitchRemind.SwitchTime, _ServerSwitchRemind.SwitchStatus, _ServerSwitchRemind.SwitchIP);
                 _DataBaseConnectionChecker.CurrentUICulture = cli;
                 this.ShowDataBaseStatusHandler(this, EventArgs.Empty);
+                this.formPanel1.Fresh();
+                RenderHardwareTree();
             }
         }
         #endregion
@@ -1595,6 +2230,8 @@ namespace Ralid.Park.UI
         #region 窗口事件处理
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            _StartFrom = DateTime.Now;
+
             if (AppSettings.CurrentSetting.AuotAddToFirewallException)
             {
                 string appPath = Application.ExecutablePath;
@@ -1604,11 +2241,18 @@ namespace Ralid.Park.UI
             }
 
             //用于所有工作站软件都要加密狗的情形
-            //ReadSoftDog();
-            //this.tmrCheckDog.Enabled = true;
+            ReadSoftDog();
+            this.tmrCheckDog.Enabled = true;
 
             ShowLanguage();
             Authenticate(true);
+            
+            ParkBuffer.Current = new ParkBuffer(AppSettings.CurrentSetting.ParkConnect);
+            ParkBuffer.Current.InValid(AppSettings.CurrentSetting.AvailableParkConnect);  //获取所有硬件信息
+
+            GetParkServerLastIP(ParkBuffer.Current.Parks);//获取停车场上一次服务器使用情况
+            //服务器切换处理
+            ServerSwitchHandle();
 
             ShowDataBaseStatusHandler(this, EventArgs.Empty);
             //启动数据库连接检查服务
@@ -1618,46 +2262,62 @@ namespace Ralid.Park.UI
             _DataBaseConnectionChecker.CurrentUICulture = System.Threading.Thread.CurrentThread.CurrentUICulture;
             _DataBaseConnectionChecker.Start();
 
-            ParkBuffer.Current = new ParkBuffer(AppSettings.CurrentSetting.ParkConnect);
-            ParkBuffer.Current.InValid(AppSettings.CurrentSetting.AvailableParkConnect);  //获取所有硬件信息
+
             InitSystemParameters();
             InitWorkStation();
 
             this._eventHandlers.Add(entranceTree);
+
 
             foreach (ParkInfo park in ParkBuffer.Current.Parks)
             {
                 if (WorkStationInfo.CurrentStation.StationID == park.HostWorkstation)  //如果本工作站是停车场的通讯工作站
                 {
                     //只有服务器用到加密狗的情形
-                    ReadSoftDog();
-                    this.tmrCheckDog.Enabled = true;
+                    //ReadSoftDog();
+                    //this.tmrCheckDog.Enabled = true;
+
 
                     WorkStationInfo.CurrentStation.IsHostWorkstation = true;
 
-                    //如果启用了软件车牌识别,并且用的摄像机类型是信路通的,车牌识别器也是信路通的,那么就不用再启用事件抓拍,而是由识别器上传图片
-                    if (UserSetting.Current.EnableCarPlateRecognize && UserSetting.Current.SoftWareCarPlateRecognize && //启用车牌识别
-                        UserSetting.Current.VideoType == 1 && //用的摄像机是信路通
-                        AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization") == "XinLuTong")
-                    {
+                    ////如果启用了软件车牌识别,并且用的摄像机类型是信路通的,车牌识别器也是信路通的,那么就不用再启用事件抓拍,而是由识别器上传图片
+                    //if (UserSetting.Current.EnableCarPlateRecognize && UserSetting.Current.SoftWareCarPlateRecognize && //启用车牌识别
+                    //    UserSetting.Current.VideoType == 1 && //用的摄像机是信路通
+                    //    AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization") == "XinLuTong")
+                    //{
 
-                    }
-                    else
-                    {
-                        this._eventHandlers.Add(FrmSnapShoter.GetInstance());   //对事件进行抓拍图片
-                        this.mnu_SnapShoter.Enabled = true;
-                    }
+                    //}
+                    ////如果用的摄像机类型是大华的,车牌识别器默认使用大华的,那么就不用再启用事件抓拍,而是由识别器上传图片,不管有没有启用车牌识别
+                    //else if (UserSetting.Current.VideoType == 3)
+                    //{
+                    //    StartCarPlateRecognize("DaHua");//默认使用大华摄像机识别
+                    //}
+                    //else
+                    //{
+                    //    this._eventHandlers.Add(FrmSnapShoter.GetInstance());   //对事件进行抓拍图片
+                    //    SnapShotCaptureService.CurrentInstance = new SnapShotCaptureService(FrmSnapShoter.GetInstance());//创建快照抓拍服务实例
+                    //    this.mnu_SnapShoter.Enabled = true;
+                    //}
+
+                    this._eventHandlers.Add(FrmSnapShoter.GetInstance());   //对事件进行抓拍图片
+                    SnapShotCaptureService.CurrentInstance = new SnapShotCaptureService(FrmSnapShoter.GetInstance());//创建快照抓拍服务实例
+                    this.mnu_SnapShoter.Enabled = true;
                     FrmSnapShoter.GetInstance().Hide();
+
+                    StartVideoCapture();//启动摄像机抓拍管理
+                    
 
                     if (UserSetting.Current.EnableCarPlateRecognize && UserSetting.Current.SoftWareCarPlateRecognize) //启用车牌识别
                     {
                         StartCarPlateRecognize();
+                        //StartCarPlateRecognize(AppSettings.CurrentSetting.GetConfigContent("CarPlateRecognization"));
                     }
 
-                    if (UserSetting.Current.EnableDeleteOverTimeImages)
+                    if (UserSetting.Current.EnableDeleteOverTimeImages
+                        || UserSetting.Current.EnableDeleteOverTimeCardEvents)
                     {
-                        this.tmrDeleteSnapShot.Enabled = true;
-                        this.tmrDeleteSnapShot.Interval = 5 * 60 * 1000; //5分钟
+                        this.tmrDeleteOverTime.Enabled = true;
+                        this.tmrDeleteOverTime.Interval = 5 * 60 * 1000; //5分钟
                     }
 
                     if (!string.IsNullOrEmpty(AppSettings.CurrentSetting.MasterParkConnect)
@@ -1685,7 +2345,7 @@ namespace Ralid.Park.UI
             t.CurrentCulture = Thread.CurrentThread.CurrentCulture;
             t.CurrentUICulture = Thread.CurrentThread.CurrentUICulture;
             t.Start();
-            _StartFrom = DateTime.Now;
+
             this.lblStartFrom.Text = string.Format(Resource1.FrmMain_lblStartFrom, _StartFrom.ToString("yyyy-MM-dd HH:mm:ss"));
 
             //交委接口
@@ -1695,8 +2355,15 @@ namespace Ralid.Park.UI
             ParkVacantLedRender ledRender = new ParkVacantLedRender();
             this._eventHandlers.Add(ledRender);
 
+            //初始化车辆信息LED屏显示
+            if (AppSettings.CurrentSetting.VehicleLedCOMPort > 0)
+            {
+                VehicleLedRender vehicleLedRender = new VehicleLedRender();
+                this._eventHandlers.Add(vehicleLedRender);
+            }
+
             //记录启动时间
-            Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "软件启动");
+            Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "软件启动 " + Application.ProductVersion);
 
             if (AppSettings.CurrentSetting.EnableZST)
             {
@@ -1706,18 +2373,44 @@ namespace Ralid.Park.UI
                 frm.Hide();
             }
 
+            //初始化车辆信息显示屏设置窗口
+            FrmVehicleLedSetting vehicleFrm = FrmVehicleLedSetting.GetInstance();
+            vehicleFrm.Init();
+            vehicleFrm.Hide();
+            VehicleLedSetting vehicleLedSetting = vehicleFrm.VehicleLedSetting;
+            if (vehicleLedSetting != null)
+            {
+                List<VehicleLedItem> items = vehicleLedSetting.GetLEDs(WorkStationInfo.CurrentStation.StationID);
+                if (items != null && items.Count > 0)
+                {
+                    //如果该工作站下有通信的车辆信息显示屏，将窗口添加到事件列表中
+                    this._eventHandlers.Add(vehicleFrm);
+                }
+            }
+
+
             //这一行创建一个信路通容器窗体实例
             Ralid.Park.UserControls.VideoPanels.FrmXinlutongContainer form1 = Ralid.Park.UserControls.VideoPanels.FrmXinlutongContainer.GetInstance();
             form1.Init();
 
+            ////屏蔽停车场单独费率支持的功能
+            //this.mnu_SetParkTariff.Visible = false;
+            //this.mnu_DeleteParkTariff.Visible = false;
         }
 
         private void pad_ParkApaterReconnected(object sender, EventArgs e)
         {
-            Action handler = delegate()
+            Ralid.Park.ParkAdapter.ParkingAdapter pad = sender as Ralid.Park.ParkAdapter.ParkingAdapter;
+            if (pad != null)
             {
-                Ralid.Park.ParkAdapter.ParkingAdapter pad = sender as Ralid.Park.ParkAdapter.ParkingAdapter;
-                if (pad != null)
+                ParkInfo padPark = ParkBuffer.Current.GetPark(pad.ParkID);
+                if (padPark != null)
+                {
+                    //检查服务器有没有切换
+                    CheckServerSwitch(padPark);
+                }
+
+                Action handler = delegate()
                 {
                     TreeNode parkNode = entranceTree.GetParkNode(pad.ParkID);
                     if (parkNode != null)
@@ -1738,15 +2431,15 @@ namespace Ralid.Park.UI
                             }
                         }
                     }
+                };
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(handler);
                 }
-            };
-            if (this.InvokeRequired)
-            {
-                this.Invoke(handler);
-            }
-            else
-            {
-                handler();
+                else
+                {
+                    handler();
+                }
             }
         }
 
@@ -1813,33 +2506,59 @@ namespace Ralid.Park.UI
             {
                 pad.UnSubscription();
             }
-            Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "软件退出");
+            if (_OperatorLoginTime.HasValue)
+            {
+                LogOperatorLogOut();
+            }
+            Ralid.GeneralLibrary.LOG.FileLog.Log("系统", "软件退出 " + Application.ProductVersion);
             Environment.Exit(0);
         }
 
-        private void tmrDeleteSnapShot_Tick(object sender, EventArgs e)
+        private void tmrDeleteOverTime_Tick(object sender, EventArgs e)
         {
             try
             {
-                if (DateTime.Now.Hour == 2)  //每天凌晨2点删除过期的抓拍图片
+                if (DateTime.Now.Hour == 2)  //每天凌晨2点删除过期的抓拍图片和进出记录
                 {
                     if (!_hasDeleted)
                     {
-                        Action delSnapshot = delegate()
+                        if (UserSetting.Current.EnableDeleteOverTimeImages)
                         {
-                            DateTime dt = DateTime.Today.AddMonths(-UserSetting.Current.Month);
-                            SnapShotBll ssb = new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
-                            ssb.DeleteAllSnapShotBefore(dt);
-                            if (DataBaseConnectionsManager.Current.StandbyConnected)
+                            Action delSnapshot = delegate()
                             {
-                                //如果备用数据库连接上了，删除备用数据库的过期抓拍图片
-                                SnapShotBll sbssb = new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
-                                sbssb.DeleteAllSnapShotBefore(dt);
-                            }
-                        };
-                        Thread t = new Thread(new ThreadStart(delSnapshot));
-                        t.IsBackground = true;
-                        t.Start();
+                                DateTime dt = DateTime.Today.AddMonths(-UserSetting.Current.Month);
+                                SnapShotBll ssb = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
+                                ssb.DeleteAllSnapShotBefore(dt);
+                                if (DataBaseConnectionsManager.Current.StandbyConnected)
+                                {
+                                    //如果备用数据库连接上了，删除备用数据库的过期抓拍图片
+                                    SnapShotBll sbssb = new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
+                                    sbssb.DeleteAllSnapShotBefore(dt);
+                                }
+                            };
+                            Thread t = new Thread(new ThreadStart(delSnapshot));
+                            t.IsBackground = true;
+                            t.Start();
+                        }
+
+                        if (UserSetting.Current.EnableDeleteOverTimeCardEvents)
+                        {
+                            Action delCardEvent = delegate()
+                            {
+                                DateTime dt = DateTime.Today.AddMonths(-UserSetting.Current.CardEventMonth);
+                                CardEventBll ceb = new CardEventBll(AppSettings.CurrentSetting.ParkConnect);
+                                ceb.DeleteAllCardEventBefore(dt);
+                                if (DataBaseConnectionsManager.Current.StandbyConnected)
+                                {
+                                    //如果备用数据库连接上了，删除备用数据库的过期进出记录
+                                    CardEventBll sbceb = new CardEventBll(AppSettings.CurrentSetting.CurrentStandbyConnect);
+                                    sbceb.DeleteAllCardEventBefore(dt);
+                                }
+                            };
+                            Thread t2 = new Thread(new ThreadStart(delCardEvent));
+                            t2.IsBackground = true;
+                            t2.Start();
+                        }
 
                         _hasDeleted = true;
                     }
@@ -1904,6 +2623,20 @@ namespace Ralid.Park.UI
 
         private void ShowDataBaseStatusHandler(object sender, EventArgs e)
         {
+            if (DataBaseConnectionsManager.Current.MasterStatus == DataBaseConnectionStatus.Connected)
+            {
+                foreach (ParkInfo park in ParkBuffer.Current.Parks)
+                {
+                    if (park.IsRootPark &&
+                        (park.HostWorkstation == WorkStationInfo.CurrentStation.StationID || WorkStationInfo.CurrentStation.IsInListenList(park))//如果是托管的停车场或者侦听了事件的停车场
+                        )
+                    {
+                        //检查监听的服务器有没有切换
+                        CheckServerSwitch(park);
+                    }
+                }
+            }
+
             Action action = delegate()
             {
                 if (DataBaseConnectionsManager.Current.MasterStatus == DataBaseConnectionStatus.Connected)
@@ -1949,6 +2682,11 @@ namespace Ralid.Park.UI
                 {
                     this.lblStandbyStatus.Text = string.Empty;
                 }
+
+                this.mnu_SyncDataToStandby.Enabled = OperatorInfo.CurrentOperator != null
+                && OperatorInfo.CurrentOperator.Role.Permit(Permission.SyncDataToStandby)
+                && DataBaseConnectionsManager.Current.MasterConnected
+                && DataBaseConnectionsManager.Current.StandbyConnected;
             };
             if (this.InvokeRequired)
             {
@@ -1986,5 +2724,51 @@ namespace Ralid.Park.UI
         {
             ShowSingleForm(typeof(Ralid.Park.POS.FrmMain));
         }
+
+        private void mnu_Depts_Click(object sender, EventArgs e)
+        {
+            ShowSingleForm(typeof(FrmDepts));
+        }
+
+        private void mnu_SetParkTariff_Click(object sender, EventArgs e)
+        {
+            FrmParkTarrif tarrif = null;
+            TreeNode node = this.entranceTree.SelectedNode;
+            if (entranceTree.IsParkNode(node))
+            {
+                tarrif = new FrmParkTarrif();
+                tarrif.ParkID = (node.Tag as ParkInfo).ParkID;
+                tarrif.ParkName = (node.Tag as ParkInfo).ParkName;
+            }
+            if (tarrif != null)
+                tarrif.ShowDialog();
+        }
+
+        private void mnu_DeleteParkTariff_Click(object sender, EventArgs e)
+        {
+            CommandResult result = null;
+            DialogResult ret = MessageBox.Show(Resource1.FrmMain_DeleteParkTariff, Resource1.Form_Query, MessageBoxButtons.YesNo);
+            if (ret == DialogResult.Yes)
+            {
+                TreeNode node = this.entranceTree.SelectedNode;
+                ParkInfo park = node.Tag as ParkInfo;
+                if (entranceTree.IsParkNode(node) && park != null)
+                {
+                    TariffSetting ts = TariffSetting.Current;
+                    ts.ParkTariffDictionary.Remove(park.ParkID);
+                    SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect);
+                    result = ssb.SaveSetting<TariffSetting>(ts);
+                    if (result.Result != ResultCode.Successful)
+                    {
+                        MessageBox.Show(result.Message);
+                    }
+                    else
+                    {
+                        MessageBox.Show(Resource1.Form_Success); 
+                    }
+                }
+            }
+        }
+
     }
 }

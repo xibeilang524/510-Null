@@ -73,6 +73,11 @@ namespace Ralid.Park.BLL
                            orderby r.ChargeDateTime descending
                            select r).ToList();
                 record = records[0];
+                //try
+                //{
+                //    record.CurrHasPaidDiscountHour = records.Sum(p => p.CurrDiscountHour.Value);
+                //}
+                //catch { }
             }
             return record;
         }

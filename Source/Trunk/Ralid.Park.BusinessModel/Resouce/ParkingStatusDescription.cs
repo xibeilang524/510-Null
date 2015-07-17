@@ -44,6 +44,14 @@ namespace Ralid.Park.BusinessModel.Resouce
             {
                 return Resource1.ParkingStatus_PaidBill;
             }
+            if ((parkingFlag & ParkingStatus.NotCheckOut) == ParkingStatus.NotCheckOut)
+            {
+                return Resource1.ParkingStatus_NotCheckOut;
+            }
+            if ((parkingFlag & ParkingStatus.HotelApp) == ParkingStatus.HotelApp)
+            {
+                return Resource1.ParkingStatus_HotelApp;
+            }
             return string.Empty;
         }
     }

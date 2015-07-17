@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Enum;
+
 namespace Ralid.Park.UserControls.VideoPanels
 {
     /// <summary>
@@ -16,6 +18,33 @@ namespace Ralid.Park.UserControls.VideoPanels
             {
                 return new XingLuTongVideoPanel();
             }
+            else if (UserSetting.Current != null && UserSetting.Current.VideoType == 2)
+            {
+                return new JingYangVideoPanel();
+            }
+            else if (UserSetting.Current != null && UserSetting.Current.VideoType == 3)
+            {
+                return new DaHuaVideoPanel();
+            }
+            return new ACTIVideoControl();
+        }
+
+
+        public static VideoPanel CreatePanel(int videoType)
+        {
+            if (videoType == (int)VideoServerType.XinLuTong)
+            {
+                return new XingLuTongVideoPanel();
+            }
+            else if (videoType == (int)VideoServerType.JingYang)
+            {
+                return new JingYangVideoPanel();
+            }
+            else if (videoType == (int)VideoServerType.DaHua)
+            {
+                return new DaHuaVideoPanel();
+            }
+            //默认返回ACTi
             return new ACTIVideoControl();
         }
     }

@@ -80,6 +80,15 @@ namespace Ralid.Park.UI
                 info.OwnerName = owner.OperatorName;
                 info.CardNum = owner.OperatorNum;
             }
+            if (chkIsForbid.Checked)
+            {
+                info.OperatorAllowSwitchCarType = true;
+            }
+            else
+            {
+                info.OperatorAllowSwitchCarType = false;
+            }
+            info.Department = this.txtDepartment.Text.Trim();
             return info;
         }
 
@@ -176,8 +185,10 @@ namespace Ralid.Park.UI
             this.txtCardID.BackColor = Color.White;
             this.comCardType.SelectedCardType = info.CardType;
             this.operatorComboBox1.OperatorName = info.OwnerName;
+            this.txtDepartment.Text = info.Department;
             this.dtValidDate.Value = info.ValidDate;
             this.lblReceivedFees.Text = info.ParkFee.ToString("F2");
+            this.chkIsForbid.Checked = info.OperatorAllowSwitchCarType;
         }
         #endregion
 

@@ -123,6 +123,12 @@
   <data name="btnInvalidEvent.Text" xml:space="preserve">
     <value>放棄處理</value>
   </data>
+  <data name="btnPos.Text" xml:space="preserve">
+    <value>POS收費[F11]</value>
+  </data>
+  <data name="btnCoupon.Text" xml:space="preserve">
+    <value>停車券[F8]</value>
+  </data>
   <data name="btnCash.Text" xml:space="preserve">
     <value>收取現金[F9]</value>
   </data>
@@ -156,9 +162,6 @@
   <data name="label13.Text" xml:space="preserve">
     <value>累計已收:</value>
   </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>累計折扣:</value>
-  </data>
   <data name="label14.Text" xml:space="preserve">
     <value>應收:</value>
   </data>
@@ -169,7 +172,7 @@
     <value>實收:</value>
   </data>
   <data name="label17.Text" xml:space="preserve">
-    <value>優惠說明:</value>
+    <value>備註說明:</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
   <data name="lblAccounts.Font" type="System.Drawing.Font, System.Drawing">
@@ -180,6 +183,9 @@
   </data>
   <data name="label19.Text" xml:space="preserve">
     <value>上次收費:</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>優惠說明:</value>
   </data>
   <data name="label15.Text" xml:space="preserve">
     <value>卡片收費明細</value>

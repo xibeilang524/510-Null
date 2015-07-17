@@ -43,9 +43,23 @@ namespace Ralid.Park.UserControls
 
         public void Init(string emptyPark)
         {
+            Init(emptyPark, false);
+        }
+
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        /// <param name="emptyPark">空白停车场名称</param>
+        /// <param name="onlyRoot">是否只显示顶层停车场</param>
+        public void Init(string emptyPark, bool onlyRoot)
+        {
             ParkBll bll = new ParkBll(AppSettings.CurrentSetting.ParkConnect);
             this.Items.Clear();
             List<ParkInfo> parks = bll.GetAllParks().QueryObjects;
+            if (onlyRoot)
+            {
+                parks = parks.Where(p => p.IsRootPark).ToList();
+            }
 
             ParkInfo info = new ParkInfo();
             info.ParkName = emptyPark; // Resources.Resource1.HardwareTree_Root;

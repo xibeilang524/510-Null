@@ -28,6 +28,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
         {
             this.ucDateTimeInterval1.Init();
             this.operatorCombobox1.Init();
+            this.deptComboBox1.Init();
             this.comOperator.Init();
         }
 
@@ -45,6 +46,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
         {
             RecordSearchCondition con = new RecordSearchCondition();
             con.Operator = this.operatorCombobox1.SelectecOperator;
+            con.Dept = this.deptComboBox1.SelectedDept;
             con.RecordDateTimeRange = new DateTimeRange();
             con.RecordDateTimeRange.Begin = this.ucDateTimeInterval1.StartDateTime;
             con.RecordDateTimeRange.End = this.ucDateTimeInterval1.EndDateTime;
@@ -56,33 +58,83 @@ namespace Ralid.Park.UI.ReportAndStatistics
 
         private void ShowReportsOnGrid(List<OperatorSettleLog> items)
         {
+            decimal totalCash = 0;
+            decimal? totalHandInCash = null;
+            decimal? totalCashDiffrence = null;
+            decimal totalNonCash = 0;
+            decimal? totalHandInPOS = null;
+
             this.GridView.Rows.Clear();
             items = (from OperatorSettleLog cr in items
                      orderby cr.SettleFrom descending
                      select cr).ToList();
+            //DeptBll bll = new DeptBll(AppSettings.CurrentSetting.ParkConnect);
+            //List<DeptInfo> depts = bll.GetAllDepts().QueryObjects;
+            //DeptInfo deptInfo = null;
             foreach (OperatorSettleLog record in items)
             {
                 if (record.SettleDateTime != null)
                 {
                     int index = GridView.Rows.Add();
                     DataGridViewRow row = GridView.Rows[index];
+                    //string dept = string.Empty;
+                    //if (record.DeptID != null && depts != null && depts.Count > 0)
+                    //{
+                    //    if (deptInfo == null || deptInfo.DeptID != record.DeptID.Value)
+                    //    {
+                    //        //部门信息为空或与记录的部门ID不同时，才去查找部门，减小查找部门的时间
+                    //        deptInfo = depts.FirstOrDefault(o => o.DeptID == record.DeptID.Value);
+                    //    }
+                    //    if (deptInfo != null)
+                    //    {
+                    //        dept = deptInfo.DeptName;
+                    //    }
+                    //}
                     ShowOperatorSettleOnRow(record, row);
+
+                    totalCash += record.TotalCash;
+                    if (record.HandInCash.HasValue)
+                    {
+                        if (!totalHandInCash.HasValue) totalHandInCash = 0;
+                        totalHandInCash += record.HandInCash.Value;
+                    }
+                    if (record.CashDiffrence.HasValue)
+                    {
+                        if (!totalCashDiffrence.HasValue) totalCashDiffrence = 0;
+                        totalCashDiffrence += record.CashDiffrence.Value;
+                    }
+                    totalNonCash += record.TotalNonCash;
+                    if (record.HandInPOS.HasValue)
+                    {
+                        if (!totalHandInPOS.HasValue) totalHandInPOS = 0;
+                        totalHandInPOS += record.HandInPOS.Value;
+                    }
                 }
             }
+
+            this.lblTotalCash.Text = totalCash.ToString("N");
+            this.lblTotalHandInCash.Text = totalHandInCash.HasValue ? totalHandInCash.Value.ToString("N") : string.Empty;
+            this.lblTotalCashDiffrence.Text = totalCashDiffrence.HasValue ? totalCashDiffrence.Value.ToString("N") : string.Empty;
+            this.lblTotalNonCash.Text = totalNonCash.ToString("N");
+            this.lblTotalHandInPOS.Text = totalHandInPOS.HasValue ? totalHandInPOS.Value.ToString("N") : string.Empty;
         }
 
         private static void ShowOperatorSettleOnRow(OperatorSettleLog record, DataGridViewRow row)
         {
             row.Tag = record;
             row.Cells["colOperatorID"].Value = record.OperatorID;
+            //row.Cells["colDept"].Value = dept;
+            row.Cells["colDept"].Value = record.Dept != null ? record.Dept.DeptName : string.Empty;
             row.Cells["colSettleDateTime"].Value = record.SettleDateTime;
             row.Cells["colCashParkFact"].Value = record.CashParkFact;
             row.Cells["colCashOperatorCard"].Value = record.CashOperatorCard;
+            row.Cells["colCashOfPOS"].Value = (record.CashOfPOS == null ? 0 : record.CashOfPOS.Value).ToString("F2");
             row.Cells["colCashDiscount"].Value = record.CashParkDiscount;
             row.Cells["colCashOfCard"].Value = record.CashOfCard;
             row.Cells["colCashOfDeposit"].Value = record.CashOfDeposit;
             row.Cells["colCashOfCardRecycle"].Value = record.CashOfCardRecycle;
             row.Cells["colCashOfCardLost"].Value = record.CashOfCardLost;
+            row.Cells["colCashOfRefund"].Value = record.CashOfRefund == null ? "0.00" : record.CashOfRefund.Value.ToString("F2");
             row.Cells["colTotalCash"].Value = record.TotalCash;
             row.Cells["colHandInCash"].Value = record.HandInCash == null ? string.Empty : record.HandInCash.Value.ToString("F2");
             row.Cells["colCashDiffrence"].Value = record.CashDiffrence == null ? string.Empty : record.CashDiffrence.Value.ToString("F2");
@@ -92,6 +144,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             row.Cells["colNonCashOfDeposit"].Value = record.NonCashOfDeposit;
             row.Cells["colNonCashOfCardLost"].Value = record.NonCashOfCardLost;
             row.Cells["colTotalNonCash"].Value = record.TotalNonCash;
+            row.Cells["colHandInPOS"].Value = record.HandInPOS == null ? string.Empty : record.HandInPOS.Value.ToString("F2");
             row.Cells["colOpenDoorCount"].Value = record.OpenDoorCount;
             row.Cells["colTempCardRecycle"].Value = record.TempCardRecycle;
         }
@@ -239,6 +292,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             if (comOperator.SelectecOperator != null)
             {
                 decimal? handInCash = null;
+                decimal? handInPOS = null;
                 CardInfo operatorCard = null;
 
                 if (UserSetting.Current.OperatorCardCashWhenSettle && AppSettings.CurrentSetting.EnableWriteCard)
@@ -256,6 +310,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
                     if (frm.ShowDialog() == DialogResult.OK)
                     {
                         handInCash = frm.HandInCash;
+                        handInPOS = frm.HandInPOS;
                     }
                     else
                     {
@@ -265,11 +320,15 @@ namespace Ralid.Park.UI.ReportAndStatistics
                 FrmOperatorSettle frmShift = new FrmOperatorSettle();
                 frmShift.Operator = comOperator.SelectecOperator;
                 frmShift.HandInCash = handInCash;
+                frmShift.HandInPOS = handInPOS;
                 frmShift.OperatorCard = operatorCard;
                 if (frmShift.ShowDialog() == DialogResult.OK)
                 {
                     int index = GridView.Rows.Add();
                     DataGridViewRow row = GridView.Rows[index];
+                    ////因为是新生成的记录，这里直接使用操作员的部门就可以了
+                    //string dept = frmShift.Operator != null && frmShift.Operator.Dept != null ? frmShift.Operator.Dept.DeptName : string.Empty;
+                    //ShowOperatorSettleOnRow(frmShift.SettledLog, row, dept);
                     ShowOperatorSettleOnRow(frmShift.SettledLog, row);
                 }
             }

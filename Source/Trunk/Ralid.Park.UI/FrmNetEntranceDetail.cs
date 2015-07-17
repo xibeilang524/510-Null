@@ -33,8 +33,6 @@ namespace Ralid.Park.UI
             txtIP.IP = entrance.IPAddress;
             txtIPMask.IP = entrance.IPMask;
             txtGateWay.IP = entrance.Gateway;
-            this.txtControlPort.Text = entrance.ControlPort.ToString();
-            this.txtEventPort.Text = entrance.EventPort.ToString();
             this.txtCarPlateIP.IP = entrance.CarPlateIP;
             this.txtVideoID.IntergerValue = entrance.VideoID == null ? 0 : entrance.VideoID.Value;
             if (entrance.CarPlateNotifyIPs != null)
@@ -53,8 +51,8 @@ namespace Ralid.Park.UI
             info.IPAddress = txtIP.IP;
             info.IPMask = this.txtIPMask.IP;
             info.Gateway = this.txtGateWay.IP;
-            info.ControlPort = this.txtControlPort.IntergerValue;
-            info.EventPort = this.txtEventPort.IntergerValue;
+            info.ControlPort = 4001;
+            info.EventPort = 5001;
             info.CarPlateIP = this.txtCarPlateIP.IP;
             info.VideoID = this.txtVideoID.IntergerValue;
             List<string> ips = new List<string>();
@@ -76,14 +74,17 @@ namespace Ralid.Park.UI
             this.chkAllowEjectCardWhithoutRead.Checked = entrance.AllowEjectCardWhithoutRead;
             this.chkLightEnable.Checked = entrance.LightEnable;
             this.chkExportCharge.Checked = entrance.ExportCharge;
+            this.chkOnlineHandleWhenNotOnList.Checked = entrance.OnlineHandleWhenNotOnList;
             this.chkForbidWhenCardExpired.Checked = entrance.ForbidWhenCardExpired;
             this.chkForbidWhenFull.Checked = entrance.ForbidWhenFull;
             this.chkAllowTempCard.Checked = !entrance.DisableTempCard;
+            this.chkWeigand34.Checked = entrance.Wiegand34;
             this.chkNoParkingCount.Checked = entrance.NoParkingCount;
             this.chkValid.Checked = entrance.Valid;
             this.txtCardReadInterval.IntergerValue = entrance.ReadCardInterval;
             this.cmbTicketPrinter.ComPort = entrance.TicketPrinterCOMPort;
             this.cmbTicketReader.ComPort = entrance.TicketReaderCOMPort;
+            if (entrance.TicketReaderCOMPort2 != null) this.cmbTicketReader2.ComPort = entrance.TicketReaderCOMPort2.Value;
             this.chkEnableParkvacantLed.Checked = entrance.EnableParkvacantLed;
             this.chkNoReaderOnCardCaptuer.Checked = entrance.NoReaderOnCardCaptuer;
             this.chkMonthCardWaitWhenOut.Checked = entrance.MonthCardWaitWhenOut;
@@ -102,13 +103,16 @@ namespace Ralid.Park.UI
             entrance.LightEnable = this.chkLightEnable.Checked;
             entrance.ForbidWhenCardExpired = this.chkForbidWhenCardExpired.Checked;
             entrance.ExportCharge = this.chkExportCharge.Checked;
+            entrance.OnlineHandleWhenNotOnList = this.chkOnlineHandleWhenNotOnList.Checked;
             entrance.ForbidWhenFull = this.chkForbidWhenFull.Checked;
             entrance.DisableTempCard = !this.chkAllowTempCard.Checked;
+            entrance.Wiegand34 = this.chkWeigand34.Checked;
             entrance.NoParkingCount = this.chkNoParkingCount.Checked;
             entrance.Valid = this.chkValid.Checked;
             entrance.ReadCardInterval = this.txtCardReadInterval.IntergerValue;
             entrance.TicketPrinterCOMPort = this.cmbTicketPrinter.ComPort;
             entrance.TicketReaderCOMPort = this.cmbTicketReader.ComPort;
+            entrance.TicketReaderCOMPort2 = this.cmbTicketReader2.ComPort;
             entrance.EnableParkvacantLed = this.chkEnableParkvacantLed.Checked;
             entrance.NoReaderOnCardCaptuer = this.chkNoReaderOnCardCaptuer.Checked;
             entrance.MonthCardWaitWhenOut = this.chkMonthCardWaitWhenOut.Checked;
@@ -137,6 +141,7 @@ namespace Ralid.Park.UI
             }
             this.cmbTicketPrinter.Init();
             this.cmbTicketReader.Init();
+            this.cmbTicketReader2.Init();
             this.UCCardTypeProperty.Init();
             RoleInfo role = OperatorInfo.CurrentOperator.Role;
             this.btnOk.Enabled = role.Permit(Permission.EditEntrance);
@@ -166,17 +171,6 @@ namespace Ralid.Park.UI
             {
                 MessageBox.Show(Resources.Resource1.FrmNetEntrance_InvalidIP);
                 txtIP.Focus();
-                return false;
-            }
-
-            if (!short.TryParse(txtControlPort.Text, out s))
-            {
-                MessageBox.Show(Resources.Resource1.FrmNetEntrance_InvalidControlPort);
-                return false;
-            }
-            if (!short.TryParse(txtEventPort.Text, out s))
-            {
-                MessageBox.Show(Resources.Resource1.FrmNetEntrance_InvalidEventPort);
                 return false;
             }
             if (this.txtCardReadInterval.IntergerValue < 0 || this.txtCardReadInterval.IntergerValue > 255)
@@ -243,6 +237,7 @@ namespace Ralid.Park.UI
         private void rdEnter_CheckedChanged(object sender, EventArgs e)
         {
             cmbTicketReader.Enabled = (rdExit.Checked);
+            cmbTicketReader2.Enabled = (rdExit.Checked);
             cmbTicketPrinter.Enabled = (rdEnter.Checked);
             chkAllowEjectCardWhithoutRead.Enabled = (rdEnter.Checked);
             chkForbidWhenFull.Enabled = (rdEnter.Checked);
@@ -254,6 +249,7 @@ namespace Ralid.Park.UI
 
             if (!cmbTicketReader.Enabled) cmbTicketReader.ComPort = 0;
             if (!cmbTicketPrinter.Enabled) cmbTicketPrinter.ComPort = 0;
+            if (!cmbTicketReader2.Enabled) cmbTicketReader2.ComPort = 0;
             if (!chkAllowEjectCardWhithoutRead.Enabled) chkAllowEjectCardWhithoutRead.Checked = false;
             if (!chkForbidWhenFull.Enabled) chkForbidWhenFull.Checked = false;
             if (!chkMonthCardWaitWhenOut.Enabled) chkMonthCardWaitWhenOut.Checked = false;
@@ -317,8 +313,6 @@ namespace Ralid.Park.UI
             txtIPMask.Enabled = false;
             txtGateWay.IP = info.GateWay;
             txtGateWay.Enabled = false;
-            this.txtControlPort.Text = info.ControlPort.ToString();
-            this.txtEventPort.Text = info.EventPort.ToString();
         }
 
         private void ShowWorkmodeInfo(WorkmodeInfo bs)
@@ -332,6 +326,7 @@ namespace Ralid.Park.UI
             this.chkLightEnable.Checked = (bs.WorkmodeOptions & WorkmodeOptions.LightEnable) == WorkmodeOptions.LightEnable;
             this.chkForbidWhenCardExpired.Checked = (bs.WorkmodeOptions & WorkmodeOptions.ForbidExitWhenCardExpired) == WorkmodeOptions.ForbidExitWhenCardExpired;
             this.chkExportCharge.Checked = (bs.WorkmodeOptions & WorkmodeOptions.ExportCharge) == WorkmodeOptions.ExportCharge;
+            this.chkOnlineHandleWhenNotOnList.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NotOnlineHandleWhenNotOnList) == 0;
             this.chkForbidWhenFull.Checked = (bs.WorkmodeOptions & WorkmodeOptions.ForbidEnterWhenFull) == WorkmodeOptions.ForbidEnterWhenFull;
             this.chkAllowTempCard.Checked = (bs.WorkmodeOptions & WorkmodeOptions.EnableTempCard) == WorkmodeOptions.EnableTempCard;
             this.chkNoParkingCount.Checked = (bs.WorkmodeOptions & WorkmodeOptions.NoParkingCount) == WorkmodeOptions.NoParkingCount;

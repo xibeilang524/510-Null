@@ -30,8 +30,11 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCardEventReport));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.ucDateTimeInterval1 = new Ralid.Park.UserControls.UCDateTimeInterval();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
@@ -47,14 +50,17 @@
             this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
             this.comOperator = new Ralid.Park.UserControls.OperatorComboBox(this.components);
             this.txtCarPlate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtDepartment = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtCardID = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.customDataGridView1 = new Ralid.Park.UserControls.CustomDataGridView(this.components);
             this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOwnerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDepartment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardCertificate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -112,9 +118,11 @@
             this.groupBox3.Controls.Add(this.comCardType);
             this.groupBox3.Controls.Add(this.comOperator);
             this.groupBox3.Controls.Add(this.txtCarPlate);
+            this.groupBox3.Controls.Add(this.txtDepartment);
             this.groupBox3.Controls.Add(this.txtCardID);
             this.groupBox3.Controls.Add(this.label4);
             this.groupBox3.Controls.Add(this.label3);
+            this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label2);
             this.groupBox3.Controls.Add(this.label1);
             this.groupBox3.Name = "groupBox3";
@@ -146,6 +154,7 @@
             this.ucEntrance1.Controls.Add(this.comEntrance);
             this.ucEntrance1.Controls.Add(this.comPark);
             this.ucEntrance1.Name = "ucEntrance1";
+            this.ucEntrance1.OnlyExit = false;
             // 
             // comEntrance
             // 
@@ -187,6 +196,11 @@
             resources.ApplyResources(this.txtCarPlate, "txtCarPlate");
             this.txtCarPlate.Name = "txtCarPlate";
             // 
+            // txtDepartment
+            // 
+            resources.ApplyResources(this.txtDepartment, "txtDepartment");
+            this.txtDepartment.Name = "txtDepartment";
+            // 
             // txtCardID
             // 
             resources.ApplyResources(this.txtCardID, "txtCardID");
@@ -201,6 +215,11 @@
             // 
             resources.ApplyResources(this.label3, "label3");
             this.label3.Name = "label3";
+            // 
+            // label8
+            // 
+            resources.ApplyResources(this.label8, "label8");
+            this.label8.Name = "label8";
             // 
             // label2
             // 
@@ -218,10 +237,19 @@
             this.customDataGridView1.AllowUserToAddRows = false;
             this.customDataGridView1.AllowUserToDeleteRows = false;
             this.customDataGridView1.AllowUserToResizeRows = false;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customDataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.customDataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.customDataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colCardID,
             this.colOwnerName,
+            this.colDepartment,
             this.colCardCertificate,
             this.colCarPlate,
             this.colCardType,
@@ -231,7 +259,23 @@
             this.colLastDateTime,
             this.colOperatorID,
             this.colEventType});
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.customDataGridView1.DefaultCellStyle = dataGridViewCellStyle4;
             this.customDataGridView1.Name = "customDataGridView1";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.customDataGridView1.RowHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.customDataGridView1.RowHeadersVisible = false;
             this.customDataGridView1.RowTemplate.Height = 23;
             this.customDataGridView1.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.customDataGridView1_CellDoubleClick);
@@ -248,6 +292,12 @@
             resources.ApplyResources(this.colOwnerName, "colOwnerName");
             this.colOwnerName.Name = "colOwnerName";
             this.colOwnerName.ReadOnly = true;
+            // 
+            // colDepartment
+            // 
+            resources.ApplyResources(this.colDepartment, "colDepartment");
+            this.colDepartment.Name = "colDepartment";
+            this.colDepartment.ReadOnly = true;
             // 
             // colCardCertificate
             // 
@@ -277,8 +327,8 @@
             // colEventDateTime
             // 
             this.colEventDateTime.DataPropertyName = "EventDateTime";
-            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm:ss";
-            this.colEventDateTime.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Format = "yyyy-MM-dd HH:mm:ss";
+            this.colEventDateTime.DefaultCellStyle = dataGridViewCellStyle2;
             resources.ApplyResources(this.colEventDateTime, "colEventDateTime");
             this.colEventDateTime.Name = "colEventDateTime";
             this.colEventDateTime.ReadOnly = true;
@@ -292,8 +342,8 @@
             // 
             // colLastDateTime
             // 
-            dataGridViewCellStyle4.Format = "yyyy-MM-dd HH:mm:ss";
-            this.colLastDateTime.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Format = "yyyy-MM-dd HH:mm:ss";
+            this.colLastDateTime.DefaultCellStyle = dataGridViewCellStyle3;
             resources.ApplyResources(this.colLastDateTime, "colLastDateTime");
             this.colLastDateTime.Name = "colLastDateTime";
             this.colLastDateTime.ReadOnly = true;
@@ -392,17 +442,6 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnExport;
         private System.Windows.Forms.FolderBrowserDialog folderBrowserDialog1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCardID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colOwnerName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCardCertificate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCarPlate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCardType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colCarType;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEventDateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEntranceName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colLastDateTime;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colOperatorID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEventType;
         private System.Windows.Forms.Label label5;
         private UserControls.CarTypeComboBox carTypeComboBox1;
         private UserControls.UCEntrance ucEntrance1;
@@ -415,5 +454,19 @@
         private System.Windows.Forms.GroupBox gbDB;
         private System.Windows.Forms.RadioButton rdbStandby;
         private System.Windows.Forms.RadioButton rdbMaster;
+        private GeneralLibrary.WinformControl.DBCTextBox txtDepartment;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCardID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOwnerName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDepartment;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCardCertificate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCarPlate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCardType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCarType;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventDateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEntranceName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colLastDateTime;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colOperatorID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEventType;
     }
 }

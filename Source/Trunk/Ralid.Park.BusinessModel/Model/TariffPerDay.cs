@@ -71,41 +71,6 @@ namespace Ralid.Park.BusinessModel.Model
             return fee;
         }
 
-        public override decimal CalcalateCycleFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            decimal fee = 0;
-            if (OverDay > 0)//有设置超过多少天后，超过的每天按超过指定天数后每天收取的费用收费
-            {
-                int calDays = (int)Math.Ceiling(calMins / (24 * 60));//已缴费天数
-                fee = calDays >= OverDay ? FeePerOverDay : FeePerDay;
-            }
-            else
-            {
-                fee = FeePerDay;
-            }
-
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
-        }
-
-        public override decimal CalcalateIntradayFee(double calMins, DateTime beginning, DateTime ending)
-        {
-            return CalcalateCycleFee(calMins, beginning, ending);
-        }
-
-        public override decimal GetChargeUnitFee(DateTime beginning)
-        {
-            decimal fee = FeePerDay;
-            if (FeeOfMax > 0)//有封顶费用
-            {
-                fee = fee > FeeOfMax ? FeeOfMax : fee;
-            }
-            return fee;
-        }
-
         public override string ToString()
         {
             return Resouce.Resource1.Tariff_PerDay;

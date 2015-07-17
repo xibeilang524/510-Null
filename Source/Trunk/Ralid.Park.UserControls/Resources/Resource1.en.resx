@@ -199,7 +199,7 @@
     <value>Activation date cannot be earlier in January 1, 2011</value>
   </data>
   <data name="UcCard_InvalidCarPlate" xml:space="preserve">
-    <value>The license plate number is too long, please input again</value>
+    <value>The license plate number is empty or too long, please input again</value>
   </data>
   <data name="UcCard_InvalidValidDate" xml:space="preserve">
     <value>Valid date cannot be earlier in January 1, 2011</value>
@@ -209,5 +209,23 @@
   </data>
   <data name="UcCard_InvalidMaxValidDate" xml:space="preserve">
     <value>Valid date cannot be later than December 31, 2099</value>
+  </data>
+  <data name="UCAPMMonitor_NeedAddCoin" xml:space="preserve">
+    <value>Need to add coins</value>
+  </data>
+  <data name="CardGridHeader_Department" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="CardGridHeader_ListType" xml:space="preserve">
+    <value>ListType</value>
+  </data>
+  <data name="UcCard_BalanceOver" xml:space="preserve">
+    <value>Offline card balanc cannot be more than 167772.15</value>
+  </data>
+  <data name="Type" xml:space="preserve">
+    <value>Type</value>
+  </data>
+  <data name="Default" xml:space="preserve">
+    <value>Default</value>
   </data>
 </root>

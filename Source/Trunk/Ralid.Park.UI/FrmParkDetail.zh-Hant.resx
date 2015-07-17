@@ -151,4 +151,10 @@
   <data name="label8.Text" xml:space="preserve">
     <value>硬體類型:</value>
   </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>GPS坐標:</value>
+  </data>
+  <data name="label11.Text" xml:space="preserve">
+    <value>進出憑證:</value>
+  </data>
 </root>

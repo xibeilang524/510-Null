@@ -16,7 +16,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
             Stream stream = typeof(ParkDataContextFactory).Assembly.GetManifestResourceStream("Ralid.Park.DAL.LinqDataProvider.ParkingMapping.xml");
             MappingSource mappingSource = XmlMappingSource.FromStream(stream);
             ParkDataContext parking = new ParkDataContext(connStr, mappingSource);
-            parking.Log = System.Console.Out;
+            //parking.Log = System.Console.Out;
             return parking;
         }
     }

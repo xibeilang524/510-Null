@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabCard = new System.Windows.Forms.TabPage();
+            this.ucSection1 = new ParkingDebugTool.UCSection();
             this.btnWriteSection = new System.Windows.Forms.Button();
             this.btnWrite = new System.Windows.Forms.Button();
             this.btnRead = new System.Windows.Forms.Button();
@@ -40,9 +41,11 @@
             this.label10 = new System.Windows.Forms.Label();
             this.txtFee = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.dtPaidTime = new System.Windows.Forms.DateTimePicker();
-            this.label9 = new System.Windows.Forms.Label();
+            this.dtFreeDateTime = new System.Windows.Forms.DateTimePicker();
             this.dtEnterTime = new System.Windows.Forms.DateTimePicker();
             this.label8 = new System.Windows.Forms.Label();
+            this.chkNotCheckOut = new System.Windows.Forms.CheckBox();
+            this.chkEnableHotelApp = new System.Windows.Forms.CheckBox();
             this.chkIn2Mark = new System.Windows.Forms.CheckBox();
             this.chkIn3 = new System.Windows.Forms.CheckBox();
             this.chkPaid1 = new System.Windows.Forms.CheckBox();
@@ -57,6 +60,9 @@
             this.chkRepeatOut = new System.Windows.Forms.CheckBox();
             this.chkHoliday = new System.Windows.Forms.CheckBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtIndexNumber = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.label15 = new System.Windows.Forms.Label();
+            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
             this.label3 = new System.Windows.Forms.Label();
             this.txtCardVersion = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.txtAccessLevel = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
@@ -66,6 +72,7 @@
             this.dtActivationDate = new System.Windows.Forms.DateTimePicker();
             this.label16 = new System.Windows.Forms.Label();
             this.txtBalance = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
+            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox(this.components);
             this.dtValidDate = new System.Windows.Forms.DateTimePicker();
             this.txtCardID = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label6 = new System.Windows.Forms.Label();
@@ -74,6 +81,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.tabSetting = new System.Windows.Forms.TabPage();
+            this.eventReportListBox1 = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.button1 = new System.Windows.Forms.Button();
             this.txtSection = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.label14 = new System.Windows.Forms.Label();
@@ -87,10 +95,8 @@
             this.colSerialNum = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMac = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ucSection1 = new ParkingDebugTool.UCSection();
-            this.comCardType = new Ralid.Park.UserControls.CardTypeComboBox(this.components);
-            this.comChargeType = new Ralid.Park.UserControls.CarTypeComboBox(this.components);
-            this.eventReportListBox1 = new Ralid.Park.UserControls.EventReportListBox(this.components);
+            this.chkPaidTime = new System.Windows.Forms.CheckBox();
+            this.chkFreeDateTime = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.tabCard.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -110,7 +116,7 @@
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(492, 649);
+            this.tabControl1.Size = new System.Drawing.Size(492, 699);
             this.tabControl1.TabIndex = 0;
             this.tabControl1.SelectedIndexChanged += new System.EventHandler(this.tabControl1_SelectedIndexChanged);
             // 
@@ -126,10 +132,18 @@
             this.tabCard.Location = new System.Drawing.Point(4, 22);
             this.tabCard.Name = "tabCard";
             this.tabCard.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCard.Size = new System.Drawing.Size(484, 623);
+            this.tabCard.Size = new System.Drawing.Size(484, 673);
             this.tabCard.TabIndex = 0;
             this.tabCard.Text = "卡片信息";
             this.tabCard.UseVisualStyleBackColor = true;
+            // 
+            // ucSection1
+            // 
+            this.ucSection1.Location = new System.Drawing.Point(8, 6);
+            this.ucSection1.Name = "ucSection1";
+            this.ucSection1.Section = 2;
+            this.ucSection1.Size = new System.Drawing.Size(375, 158);
+            this.ucSection1.TabIndex = 7;
             // 
             // btnWriteSection
             // 
@@ -144,7 +158,7 @@
             // btnWrite
             // 
             this.btnWrite.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnWrite.Location = new System.Drawing.Point(390, 581);
+            this.btnWrite.Location = new System.Drawing.Point(390, 631);
             this.btnWrite.Name = "btnWrite";
             this.btnWrite.Size = new System.Drawing.Size(75, 23);
             this.btnWrite.TabIndex = 4;
@@ -155,7 +169,7 @@
             // btnRead
             // 
             this.btnRead.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnRead.Location = new System.Drawing.Point(276, 581);
+            this.btnRead.Location = new System.Drawing.Point(276, 631);
             this.btnRead.Name = "btnRead";
             this.btnRead.Size = new System.Drawing.Size(75, 23);
             this.btnRead.TabIndex = 4;
@@ -165,14 +179,18 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.chkFreeDateTime);
+            this.groupBox2.Controls.Add(this.chkPaidTime);
             this.groupBox2.Controls.Add(this.label11);
             this.groupBox2.Controls.Add(this.txtPaidFee);
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.txtFee);
             this.groupBox2.Controls.Add(this.dtPaidTime);
-            this.groupBox2.Controls.Add(this.label9);
+            this.groupBox2.Controls.Add(this.dtFreeDateTime);
             this.groupBox2.Controls.Add(this.dtEnterTime);
             this.groupBox2.Controls.Add(this.label8);
+            this.groupBox2.Controls.Add(this.chkNotCheckOut);
+            this.groupBox2.Controls.Add(this.chkEnableHotelApp);
             this.groupBox2.Controls.Add(this.chkIn2Mark);
             this.groupBox2.Controls.Add(this.chkIn3);
             this.groupBox2.Controls.Add(this.chkPaid1);
@@ -180,7 +198,7 @@
             this.groupBox2.Controls.Add(this.chkIn1);
             this.groupBox2.Location = new System.Drawing.Point(8, 430);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(468, 145);
+            this.groupBox2.Size = new System.Drawing.Size(468, 184);
             this.groupBox2.TabIndex = 3;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "车场信息";
@@ -189,7 +207,7 @@
             // 
             this.label11.AutoSize = true;
             this.label11.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label11.Location = new System.Drawing.Point(242, 108);
+            this.label11.Location = new System.Drawing.Point(4, 157);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(59, 12);
             this.label11.TabIndex = 35;
@@ -198,7 +216,7 @@
             // txtPaidFee
             // 
             this.txtPaidFee.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPaidFee.Location = new System.Drawing.Point(302, 105);
+            this.txtPaidFee.Location = new System.Drawing.Point(69, 157);
             this.txtPaidFee.MaxValue = new decimal(new int[] {
             10000,
             0,
@@ -219,7 +237,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label10.Location = new System.Drawing.Point(5, 108);
+            this.label10.Location = new System.Drawing.Point(5, 125);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(59, 12);
             this.label10.TabIndex = 33;
@@ -228,7 +246,7 @@
             // txtFee
             // 
             this.txtFee.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtFee.Location = new System.Drawing.Point(69, 105);
+            this.txtFee.Location = new System.Drawing.Point(69, 122);
             this.txtFee.MaxValue = new decimal(new int[] {
             10000,
             0,
@@ -249,26 +267,25 @@
             // 
             this.dtPaidTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dtPaidTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtPaidTime.Location = new System.Drawing.Point(302, 69);
+            this.dtPaidTime.Location = new System.Drawing.Point(302, 88);
             this.dtPaidTime.Name = "dtPaidTime";
             this.dtPaidTime.Size = new System.Drawing.Size(155, 21);
             this.dtPaidTime.TabIndex = 30;
             // 
-            // label9
+            // dtFreeDateTime
             // 
-            this.label9.AutoSize = true;
-            this.label9.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label9.Location = new System.Drawing.Point(242, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(59, 12);
-            this.label9.TabIndex = 31;
-            this.label9.Text = "缴费时间:";
+            this.dtFreeDateTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
+            this.dtFreeDateTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtFreeDateTime.Location = new System.Drawing.Point(302, 122);
+            this.dtFreeDateTime.Name = "dtFreeDateTime";
+            this.dtFreeDateTime.Size = new System.Drawing.Size(155, 21);
+            this.dtFreeDateTime.TabIndex = 30;
             // 
             // dtEnterTime
             // 
             this.dtEnterTime.CustomFormat = "yyyy-MM-dd HH:mm:ss";
             this.dtEnterTime.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtEnterTime.Location = new System.Drawing.Point(69, 69);
+            this.dtEnterTime.Location = new System.Drawing.Point(69, 88);
             this.dtEnterTime.Name = "dtEnterTime";
             this.dtEnterTime.Size = new System.Drawing.Size(155, 21);
             this.dtEnterTime.TabIndex = 30;
@@ -277,11 +294,31 @@
             // 
             this.label8.AutoSize = true;
             this.label8.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.label8.Location = new System.Drawing.Point(6, 75);
+            this.label8.Location = new System.Drawing.Point(6, 94);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(59, 12);
             this.label8.TabIndex = 31;
             this.label8.Text = "入场时间:";
+            // 
+            // chkNotCheckOut
+            // 
+            this.chkNotCheckOut.AutoSize = true;
+            this.chkNotCheckOut.Location = new System.Drawing.Point(12, 64);
+            this.chkNotCheckOut.Name = "chkNotCheckOut";
+            this.chkNotCheckOut.Size = new System.Drawing.Size(132, 16);
+            this.chkNotCheckOut.TabIndex = 0;
+            this.chkNotCheckOut.Text = "未退房（酒店应用）";
+            this.chkNotCheckOut.UseVisualStyleBackColor = true;
+            // 
+            // chkEnableHotelApp
+            // 
+            this.chkEnableHotelApp.AutoSize = true;
+            this.chkEnableHotelApp.Location = new System.Drawing.Point(292, 42);
+            this.chkEnableHotelApp.Name = "chkEnableHotelApp";
+            this.chkEnableHotelApp.Size = new System.Drawing.Size(96, 16);
+            this.chkEnableHotelApp.TabIndex = 0;
+            this.chkEnableHotelApp.Text = "启用酒店应用";
+            this.chkEnableHotelApp.UseVisualStyleBackColor = true;
             // 
             // chkIn2Mark
             // 
@@ -429,6 +466,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtIndexNumber);
+            this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.comCardType);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.txtCardVersion);
@@ -453,6 +492,34 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "信息";
+            // 
+            // txtIndexNumber
+            // 
+            this.txtIndexNumber.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtIndexNumber.Location = new System.Drawing.Point(302, 128);
+            this.txtIndexNumber.MaxValue = 16777215;
+            this.txtIndexNumber.MinValue = 0;
+            this.txtIndexNumber.Name = "txtIndexNumber";
+            this.txtIndexNumber.Size = new System.Drawing.Size(155, 21);
+            this.txtIndexNumber.TabIndex = 38;
+            this.txtIndexNumber.Text = "0";
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(242, 131);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(59, 12);
+            this.label15.TabIndex = 37;
+            this.label15.Text = "自增序列:";
+            // 
+            // comCardType
+            // 
+            this.comCardType.FormattingEnabled = true;
+            this.comCardType.Location = new System.Drawing.Point(69, 44);
+            this.comCardType.Name = "comCardType";
+            this.comCardType.Size = new System.Drawing.Size(155, 20);
+            this.comCardType.TabIndex = 36;
             // 
             // label3
             // 
@@ -554,6 +621,14 @@
             this.txtBalance.TabIndex = 26;
             this.txtBalance.Text = "0.00";
             // 
+            // comChargeType
+            // 
+            this.comChargeType.FormattingEnabled = true;
+            this.comChargeType.Location = new System.Drawing.Point(302, 44);
+            this.comChargeType.Name = "comChargeType";
+            this.comChargeType.Size = new System.Drawing.Size(155, 20);
+            this.comChargeType.TabIndex = 19;
+            // 
             // dtValidDate
             // 
             this.dtValidDate.CustomFormat = "yyyy-MM-dd";
@@ -635,10 +710,22 @@
             this.tabSetting.Location = new System.Drawing.Point(4, 22);
             this.tabSetting.Name = "tabSetting";
             this.tabSetting.Padding = new System.Windows.Forms.Padding(3);
-            this.tabSetting.Size = new System.Drawing.Size(484, 623);
+            this.tabSetting.Size = new System.Drawing.Size(484, 673);
             this.tabSetting.TabIndex = 1;
             this.tabSetting.Text = "读卡器设置";
             this.tabSetting.UseVisualStyleBackColor = true;
+            // 
+            // eventReportListBox1
+            // 
+            this.eventReportListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.eventReportListBox1.FormattingEnabled = true;
+            this.eventReportListBox1.HorizontalScrollbar = true;
+            this.eventReportListBox1.ItemHeight = 12;
+            this.eventReportListBox1.Location = new System.Drawing.Point(25, 141);
+            this.eventReportListBox1.Name = "eventReportListBox1";
+            this.eventReportListBox1.Size = new System.Drawing.Size(18, 88);
+            this.eventReportListBox1.TabIndex = 12;
+            this.eventReportListBox1.Visible = false;
             // 
             // button1
             // 
@@ -719,7 +806,7 @@
             this.tabEntrance.Controls.Add(this.grid);
             this.tabEntrance.Location = new System.Drawing.Point(4, 22);
             this.tabEntrance.Name = "tabEntrance";
-            this.tabEntrance.Size = new System.Drawing.Size(484, 623);
+            this.tabEntrance.Size = new System.Drawing.Size(484, 673);
             this.tabEntrance.TabIndex = 2;
             this.tabEntrance.Text = "控制板信息";
             this.tabEntrance.UseVisualStyleBackColor = true;
@@ -779,47 +866,31 @@
             this.colMac.Name = "colMac";
             this.colMac.ReadOnly = true;
             // 
-            // ucSection1
+            // chkPaidTime
             // 
-            this.ucSection1.Location = new System.Drawing.Point(8, 6);
-            this.ucSection1.Name = "ucSection1";
-            this.ucSection1.Section = 2;
-            this.ucSection1.Size = new System.Drawing.Size(375, 158);
-            this.ucSection1.TabIndex = 7;
+            this.chkPaidTime.AutoSize = true;
+            this.chkPaidTime.Location = new System.Drawing.Point(230, 91);
+            this.chkPaidTime.Name = "chkPaidTime";
+            this.chkPaidTime.Size = new System.Drawing.Size(72, 16);
+            this.chkPaidTime.TabIndex = 37;
+            this.chkPaidTime.Text = "缴费时间";
+            this.chkPaidTime.UseVisualStyleBackColor = true;
             // 
-            // comCardType
+            // chkFreeDateTime
             // 
-            this.comCardType.FormattingEnabled = true;
-            this.comCardType.Location = new System.Drawing.Point(69, 44);
-            this.comCardType.Name = "comCardType";
-            this.comCardType.Size = new System.Drawing.Size(155, 20);
-            this.comCardType.TabIndex = 36;
-            // 
-            // comChargeType
-            // 
-            this.comChargeType.FormattingEnabled = true;
-            this.comChargeType.Location = new System.Drawing.Point(302, 44);
-            this.comChargeType.Name = "comChargeType";
-            this.comChargeType.Size = new System.Drawing.Size(155, 20);
-            this.comChargeType.TabIndex = 19;
-            // 
-            // eventReportListBox1
-            // 
-            this.eventReportListBox1.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.eventReportListBox1.FormattingEnabled = true;
-            this.eventReportListBox1.HorizontalScrollbar = true;
-            this.eventReportListBox1.ItemHeight = 12;
-            this.eventReportListBox1.Location = new System.Drawing.Point(25, 141);
-            this.eventReportListBox1.Name = "eventReportListBox1";
-            this.eventReportListBox1.Size = new System.Drawing.Size(18, 88);
-            this.eventReportListBox1.TabIndex = 12;
-            this.eventReportListBox1.Visible = false;
+            this.chkFreeDateTime.AutoSize = true;
+            this.chkFreeDateTime.Location = new System.Drawing.Point(230, 125);
+            this.chkFreeDateTime.Name = "chkFreeDateTime";
+            this.chkFreeDateTime.Size = new System.Drawing.Size(72, 16);
+            this.chkFreeDateTime.TabIndex = 38;
+            this.chkFreeDateTime.Text = "免费期限";
+            this.chkFreeDateTime.UseVisualStyleBackColor = true;
             // 
             // FrmParkingDebugTool
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(492, 649);
+            this.ClientSize = new System.Drawing.Size(492, 699);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
@@ -881,7 +952,6 @@
         private System.Windows.Forms.Label label10;
         private Ralid.GeneralLibrary.WinformControl.DecimalTextBox txtFee;
         private System.Windows.Forms.DateTimePicker dtPaidTime;
-        private System.Windows.Forms.Label label9;
         private System.Windows.Forms.DateTimePicker dtEnterTime;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkIn2Mark;
@@ -907,6 +977,13 @@
         private System.Windows.Forms.Button button1;
         private Ralid.Park.UserControls.EventReportListBox eventReportListBox1;
         private System.Windows.Forms.CheckBox chkOnlineHandleWhenOfflineMode;
+        private System.Windows.Forms.CheckBox chkNotCheckOut;
+        private System.Windows.Forms.CheckBox chkEnableHotelApp;
+        private Ralid.GeneralLibrary.WinformControl.IntergerTextBox txtIndexNumber;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.DateTimePicker dtFreeDateTime;
+        private System.Windows.Forms.CheckBox chkFreeDateTime;
+        private System.Windows.Forms.CheckBox chkPaidTime;
     }
 }
 

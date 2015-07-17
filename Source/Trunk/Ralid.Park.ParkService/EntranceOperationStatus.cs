@@ -21,6 +21,14 @@ namespace Ralid.Park.ParkService
         /// <summary>
         /// 正在出卡(按了取卡按钮)
         /// </summary>
-        CardTakeingOut = 3
+        CardTakeingOut = 3,
+        /// <summary>
+        /// 车位已满，并且有车辆等待入场
+        /// </summary>
+        FullAndWait = 4,
+        /// <summary>
+        /// 已抬闸放行
+        /// </summary>
+        LiftGate = 5,
     }
 }

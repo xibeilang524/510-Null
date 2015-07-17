@@ -11,15 +11,15 @@ namespace Ralid.Park.BusinessModel.Enum
     public enum EntranceReader
     {
         /// <summary>
-        /// 读卡器一
+        /// 读卡器一，网络版控制器时为月租卡读头，CAN总线控制器时为临时卡读头
         /// </summary>
         Reader1 = 0,
         /// <summary>
-        /// 读卡器二
+        /// 读卡器二，网络版控制器时为远距离卡读头，CAN总线控制器时为非临时卡读头
         /// </summary>
         Reader2 = 1,
         /// <summary>
-        /// 读卡器三
+        /// 读卡器三，网络版控制器时为临时卡读头
         /// </summary>
         Reader3 = 2,
         ///// <summary>

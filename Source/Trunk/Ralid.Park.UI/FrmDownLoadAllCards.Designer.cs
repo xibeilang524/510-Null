@@ -66,8 +66,8 @@
             // 
             // hardwareTree1
             // 
-            this.hardwareTree1.CheckBoxes = true;
             resources.ApplyResources(this.hardwareTree1, "hardwareTree1");
+            this.hardwareTree1.CheckBoxes = true;
             this.hardwareTree1.Name = "hardwareTree1";
             this.hardwareTree1.ShowEntrance = true;
             this.hardwareTree1.ShowVideoSource = false;
@@ -96,7 +96,6 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmDownLoadAllCards";

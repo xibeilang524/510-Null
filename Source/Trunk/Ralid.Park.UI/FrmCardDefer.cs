@@ -37,8 +37,9 @@ namespace Ralid.Park.UI
             {
                 _deferingCard = value;
                 DateTime dt = _deferingCard.ValidDate.AddDays(1);
-                this.dtBegin.Value = dt;
-                this.dtEnd.Value = dt.AddMonths(1).AddDays(-1);
+                DateTime edt = dt.AddMonths(1).AddDays(-1);
+                this.dtBegin.Value = dt > this.dtBegin.MaxDate ? this.dtBegin.MaxDate : dt;
+                this.dtEnd.Value = edt > this.dtBegin.MaxDate ? this.dtBegin.MaxDate : edt;
             }
         }
 
@@ -115,7 +116,28 @@ namespace Ralid.Park.UI
             this.comPaymentMode.SelectedPaymentMode = PaymentMode.Cash;
             if (DeferingCard != null)
             {
-                ucCardInfo.Card = DeferingCard;
+                
+                //获取最新的卡片信息，这是为了防止用户一直打开卡片管理，而使用的卡片信息是缓存信息，导致延期的卡片信息不是最新的
+                CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                CardInfo card = bll.GetCardByID(DeferingCard.CardID).QueryObject;
+                if (card != null)
+                {
+                    DeferingCard = card;
+
+                    ucCardInfo.Card = DeferingCard;
+
+                    if (!DeferingCard.IsCardList)
+                    {
+                        //不是卡片名单时，不需要进行写卡
+                        this.chkWriteCard.Checked = false;
+                        this.chkWriteCard.Enabled = false;
+                    }
+                }
+                else
+                {
+                    this.btnOk.Enabled = false;
+                    MessageBox.Show(Resource1.FrmMain_NoCard);
+                }
             }
 
             if (AppSettings.CurrentSetting.EnableWriteCard)
@@ -131,49 +153,57 @@ namespace Ralid.Park.UI
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (DeferingCard != null)
+            try
             {
-                if (CheckInput())
+                if (DeferingCard != null)
                 {
-                    if (txtRecieveMoney.DecimalValue <= 0)
+                    if (CheckInput())
                     {
-                        if (MessageBox.Show(Resource1.FrmCardPaying_MoneyLittleQuery, Resource1.Form_Alert, MessageBoxButtons.YesNo) == DialogResult.No) return;
-                    }
+                        if (txtRecieveMoney.DecimalValue <= 0)
+                        {
+                            if (MessageBox.Show(Resource1.FrmCardPaying_MoneyLittleQuery, Resource1.Form_Alert, MessageBoxButtons.YesNo) == DialogResult.No) return;
+                        }
 
-                    //写卡模式时，先读取卡片信息
-                    if (this.chkWriteCard.Checked)
-                    {
-                        if (!CardOperationManager.Instance.CheckCardWithMessage(DeferingCard.CardID)) return;
-                    }
-
-                    CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                    decimal recieveMoney = this.txtRecieveMoney.DecimalValue;
-                    DateTime newValidDate = this.dtEnd.Value.Date.AddDays(1).AddSeconds(-1);
-                    DateTimeRange dr = new DateTimeRange(dtBegin.Value, dtEnd.Value);
-                    CommandResult result = bll.CardDefer(DeferingCard, dr, this.comPaymentMode.SelectedPaymentMode, recieveMoney, this.txtMemo.Text, !AppSettings.CurrentSetting.EnableWriteCard);//写卡模式不需要保持卡片数据库中的运行状态
-                    if (result.Result == ResultCode.Successful)
-                    {
-                        //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                        //写卡模式时，先读取卡片信息
                         if (this.chkWriteCard.Checked)
                         {
-                            CardOperationManager.Instance.WriteCardLoop(DeferingCard);
+                            if (!CardOperationManager.Instance.CheckCardWithMessage(DeferingCard.CardID)) return;
                         }
 
-                        if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(DeferingCard));
-
-                        if (DataBaseConnectionsManager.Current.StandbyConnected)
+                        CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                        decimal recieveMoney = this.txtRecieveMoney.DecimalValue;
+                        DateTime newValidDate = this.dtEnd.Value.Date.AddDays(1).AddSeconds(-1);
+                        DateTimeRange dr = new DateTimeRange(dtBegin.Value, dtEnd.Value);
+                        bool keepParkingStatus = !AppSettings.CurrentSetting.EnableWriteCard || DeferingCard.OnlineHandleWhenOfflineMode;//写卡模式时，脱机处理卡片不需要保持卡片数据库中的运行状态
+                        CommandResult result = bll.CardDefer(DeferingCard, dr, this.comPaymentMode.SelectedPaymentMode, recieveMoney, this.txtMemo.Text, keepParkingStatus);
+                        if (result.Result == ResultCode.Successful)
                         {
-                            //备用数据连上时，同步到备用数据库
-                            bll.SyncCardToDatabaseWithoutPaymentInfo(DeferingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
-                        }
+                            //写卡模式时，将卡片信息写入卡片，这里会使用循环写卡，直到成功或用户取消
+                            if (this.chkWriteCard.Checked)
+                            {
+                                CardOperationManager.Instance.WriteCardLoop(DeferingCard);
+                            }
 
-                        this.Close();
-                    }
-                    else
-                    {
-                        MessageBox.Show(result.Message);
+                            if (ItemUpdated != null) ItemUpdated(this, new ItemUpdatedEventArgs(DeferingCard));
+
+                            if (DataBaseConnectionsManager.Current.StandbyConnected)
+                            {
+                                //备用数据连上时，同步到备用数据库
+                                bll.SyncCardToDatabaseWithoutPaymentInfo(DeferingCard, AppSettings.CurrentSetting.CurrentStandbyConnect);
+                            }
+
+                            this.Close();
+                        }
+                        else
+                        {
+                            MessageBox.Show(result.Message);
+                        }
                     }
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
         }
 

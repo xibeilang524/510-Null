@@ -40,15 +40,15 @@
             this.txtTotal = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.resultGrid = new System.Windows.Forms.DataGridView();
+            this.colFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBackColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.txtCarplate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.btnStart = new System.Windows.Forms.Button();
             this.btnStop = new System.Windows.Forms.Button();
-            this.ucVideo = new Ralid.Park.UserControls.VideoPanels.ACTIVideoControl();
-            this.colFileName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBackColor = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ucVideoPanelGrid1 = new Ralid.Park.UserControls.VideoPanels.UCVideoPanelGrid();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).BeginInit();
             this.panel1.SuspendLayout();
@@ -56,14 +56,13 @@
             // 
             // splitter2
             // 
-            resources.ApplyResources(this.splitter2, "splitter2");
             this.splitter2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(128)))), ((int)(((byte)(128)))), ((int)(((byte)(255)))));
+            resources.ApplyResources(this.splitter2, "splitter2");
             this.splitter2.Name = "splitter2";
             this.splitter2.TabStop = false;
             // 
             // panel2
             // 
-            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Controls.Add(this.btnReset);
             this.panel2.Controls.Add(this.txtPercent);
             this.panel2.Controls.Add(this.txtRegCount);
@@ -72,6 +71,7 @@
             this.panel2.Controls.Add(this.txtTotal);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Controls.Add(this.resultGrid);
+            resources.ApplyResources(this.panel2, "panel2");
             this.panel2.Name = "panel2";
             // 
             // btnReset
@@ -116,10 +116,10 @@
             // 
             // resultGrid
             // 
-            resources.ApplyResources(this.resultGrid, "resultGrid");
             this.resultGrid.AllowUserToAddRows = false;
             this.resultGrid.AllowUserToDeleteRows = false;
             this.resultGrid.AllowUserToResizeRows = false;
+            resources.ApplyResources(this.resultGrid, "resultGrid");
             this.resultGrid.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.resultGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colFileName,
@@ -130,14 +130,32 @@
             this.resultGrid.RowTemplate.Height = 23;
             this.resultGrid.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             // 
+            // colFileName
+            // 
+            this.colFileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            resources.ApplyResources(this.colFileName, "colFileName");
+            this.colFileName.Name = "colFileName";
+            // 
+            // colCarPlate
+            // 
+            resources.ApplyResources(this.colCarPlate, "colCarPlate");
+            this.colCarPlate.Name = "colCarPlate";
+            this.colCarPlate.ReadOnly = true;
+            // 
+            // colBackColor
+            // 
+            resources.ApplyResources(this.colBackColor, "colBackColor");
+            this.colBackColor.Name = "colBackColor";
+            this.colBackColor.ReadOnly = true;
+            // 
             // panel1
             // 
-            resources.ApplyResources(this.panel1, "panel1");
+            this.panel1.Controls.Add(this.ucVideoPanelGrid1);
             this.panel1.Controls.Add(this.label2);
             this.panel1.Controls.Add(this.txtCarplate);
             this.panel1.Controls.Add(this.btnStart);
             this.panel1.Controls.Add(this.btnStop);
-            this.panel1.Controls.Add(this.ucVideo);
+            resources.ApplyResources(this.panel1, "panel1");
             this.panel1.Name = "panel1";
             // 
             // label2
@@ -164,33 +182,10 @@
             this.btnStop.UseVisualStyleBackColor = true;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
-            // ucVideo
+            // ucVideoPanelGrid1
             // 
-            resources.ApplyResources(this.ucVideo, "ucVideo");
-            this.ucVideo.AllowDrop = true;
-            this.ucVideo.Caption = "";
-            this.ucVideo.Name = "ucVideo";
-            this.ucVideo.ShowTitle = true;
-            this.ucVideo.StretchToFit = true;
-            this.ucVideo.VideoSource = null;
-            // 
-            // colFileName
-            // 
-            this.colFileName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            resources.ApplyResources(this.colFileName, "colFileName");
-            this.colFileName.Name = "colFileName";
-            // 
-            // colCarPlate
-            // 
-            resources.ApplyResources(this.colCarPlate, "colCarPlate");
-            this.colCarPlate.Name = "colCarPlate";
-            this.colCarPlate.ReadOnly = true;
-            // 
-            // colBackColor
-            // 
-            resources.ApplyResources(this.colBackColor, "colBackColor");
-            this.colBackColor.Name = "colBackColor";
-            this.colBackColor.ReadOnly = true;
+            resources.ApplyResources(this.ucVideoPanelGrid1, "ucVideoPanelGrid1");
+            this.ucVideoPanelGrid1.Name = "ucVideoPanelGrid1";
             // 
             // FrmCarplateTestForVideo
             // 
@@ -201,6 +196,7 @@
             this.Controls.Add(this.panel2);
             this.Name = "FrmCarplateTestForVideo";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmCarplateTestForVideo_FormClosing);
+            this.Load += new System.EventHandler(this.FrmCarplateTestForVideo_Load);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.resultGrid)).EndInit();
@@ -227,9 +223,9 @@
         private GeneralLibrary.WinformControl.DBCTextBox txtCarplate;
         private System.Windows.Forms.Button btnStart;
         private System.Windows.Forms.Button btnStop;
-        private UserControls.VideoPanels.ACTIVideoControl ucVideo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFileName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCarPlate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBackColor;
+        private UserControls.VideoPanels.UCVideoPanelGrid ucVideoPanelGrid1;
     }
 }

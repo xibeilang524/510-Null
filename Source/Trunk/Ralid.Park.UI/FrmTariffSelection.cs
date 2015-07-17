@@ -38,6 +38,10 @@ namespace Ralid.Park.UI
             {
                 ShowTariff(info as TariffOfTurning);
             }
+            else if (info is TariffOfTurningLimited)
+            {
+                ShowTariff(info as TariffOfTurningLimited);
+            }
             else if (info is TariffOfLimitation)
             {
                 ShowTariff(info as TariffOfLimitation);
@@ -50,6 +54,69 @@ namespace Ralid.Park.UI
             {
                 ShowTariff(info as TariffOfDixiakongjian);
             }
+            else if (info is TariffOfThreeTimeZone)
+            {
+                ShowTariff(info as TariffOfThreeTimeZone);
+            }
+        }
+
+        /// <summary>
+        /// 初始化控件
+        /// </summary>
+        private void InitControl()
+        {
+            if (TariffSetting.Current != null
+                && TariffSetting.Current.TariffOption != null
+                && !string.IsNullOrEmpty(TariffSetting.Current.TariffOption.MoneyUnit))
+            {
+                string moneyUnit = TariffSetting.Current.TariffOption.MoneyUnit;
+
+                foreach (Control ctr in this.Controls)
+                {
+                    if (ctr is Label
+                        && (ctr.Text == "元" || ctr.Text == "Yuan"))
+                    {
+                        ctr.Text = moneyUnit;
+                    }
+                }
+
+                //label53.Text = moneyUnit;
+                //label70.Text = moneyUnit;
+                //label65.Text = moneyUnit;
+                //label64.Text = moneyUnit;
+                //label63.Text = moneyUnit;
+                //label62.Text = moneyUnit;
+                //label61.Text = moneyUnit;
+                //label60.Text = moneyUnit;
+                //label56.Text = moneyUnit;
+                //label54.Text = moneyUnit;
+                //label48.Text = moneyUnit;
+                //label21.Text = moneyUnit;
+                //label27.Text = moneyUnit;
+                //label16.Text = moneyUnit;
+                //label22.Text = moneyUnit;
+                //label15.Text = moneyUnit;
+                //label46.Text = moneyUnit;
+                //label4.Text = moneyUnit;
+                //label5.Text = moneyUnit;
+                //label52.Text = moneyUnit;
+                //label7.Text = moneyUnit;
+                //label37.Text = moneyUnit;
+                //label9.Text = moneyUnit;
+                //label10.Text = moneyUnit;
+                //label23.Text = moneyUnit;
+                //label35.Text = moneyUnit;
+                //label69.Text = moneyUnit;
+                //label89.Text = moneyUnit;
+                //label83.Text = moneyUnit;
+                //label76.Text = moneyUnit;
+                //label94.Text = moneyUnit;
+                //label74.Text = moneyUnit;
+                //label77.Text = moneyUnit;
+                //label75.Text = moneyUnit;
+                //label95.Text = moneyUnit;
+            }
+
         }
         #endregion
 
@@ -179,6 +246,48 @@ namespace Ralid.Park.UI
             this.dtTurning.Enabled = this.rdTariffOfTurning.Checked;
             this.chkTuringFeeOfMax.Enabled = this.rdTariffOfTurning.Checked;
             this.txtTuringFeeOfMax.Enabled = this.rdTariffOfTurning.Checked;
+        }
+        #endregion
+
+        #region 限时过点收费
+        private bool CheckInputOfTariffOfTurningLimited()
+        {
+            return true;
+        }
+
+        private void ShowTariff(TariffOfTurningLimited info)
+        {
+            this.rdTariffOfTurningLimited.Checked = true;
+            this.tpd_txtFreeMinutes.IntergerValue = info.FreeMinutes;
+            this.tpd_txtFirstFee.DecimalValue = info.FirstFee;
+            this.tpd_dtTurning.Value = new DateTime(2000, 1, 1, info.Turning.Hour, info.Turning.Minute, 0);
+            this.tpd_FeeOfTurning.DecimalValue = info.FeeOfTurning;
+            this.chkTuringLimitedOfMax.Checked = info.FeeOfMax > 0;
+            if (this.chkTuringLimitedOfMax.Checked)
+            {
+                this.txtTuringLimitedOfMax.DecimalValue = info.FeeOfMax;
+            }
+        }
+
+        private TariffOfTurningLimited GetTariffOfTurningLimitedFromInput()
+        {
+            TariffOfTurningLimited tariff = new TariffOfTurningLimited();
+            tariff.FreeMinutes = (byte)this.tpd_txtFreeMinutes.IntergerValue;
+            tariff.FirstFee = this.tpd_txtFirstFee.DecimalValue;
+            tariff.Turning = new TimeEntity(tpd_dtTurning.Value.Hour, tpd_dtTurning.Value.Minute);
+            tariff.FeeOfTurning = this.tpd_FeeOfTurning.DecimalValue;
+            tariff.FeeOfMax = this.chkTuringLimitedOfMax.Checked ? this.txtTuringLimitedOfMax.DecimalValue : 0;
+            return tariff;
+        }
+
+        private void rdTariffOfTurningLimited_CheckChanged(object sender, EventArgs e)
+        {
+            this.tpd_txtFreeMinutes.Enabled = this.rdTariffOfTurningLimited.Checked;
+            this.tpd_txtFirstFee.Enabled = this.rdTariffOfTurningLimited.Checked;
+            this.tpd_FeeOfTurning.Enabled = this.rdTariffOfTurningLimited.Checked;
+            this.tpd_dtTurning.Enabled = this.rdTariffOfTurningLimited.Checked;
+            this.chkTuringLimitedOfMax.Enabled = this.rdTariffOfTurningLimited.Checked;
+            this.txtTuringLimitedOfMax.Enabled = this.rdTariffOfTurningLimited.Checked;
         }
         #endregion
 
@@ -497,6 +606,164 @@ namespace Ralid.Park.UI
         }
         #endregion
 
+        #region 三个时段收费标准
+        private bool CheckInputOfTariffOfThreeTimeZone()
+        {
+            TimeEntity time1Begin = new TimeEntity(tThree_dtTime1Begin.Value.Hour, tThree_dtTime1Begin.Value.Minute);
+            TimeEntity time1End = new TimeEntity(tThree_dtTime1End.Value.Hour, tThree_dtTime1End.Value.Minute);
+
+            TimeEntity time2Begin = new TimeEntity(tThree_dtTime2Begin.Value.Hour, tThree_dtTime2Begin.Value.Minute);
+            TimeEntity time2End = new TimeEntity(tThree_dtTime2End.Value.Hour, tThree_dtTime2End.Value.Minute);
+
+            TimeEntity time3Begin = new TimeEntity(tThree_dtTime3Begin.Value.Hour, tThree_dtTime3Begin.Value.Minute);
+            TimeEntity time3End = new TimeEntity(tThree_dtTime3End.Value.Hour, tThree_dtTime3End.Value.Minute);
+
+            if (!(time1Begin.TotalMinutes == time3End.TotalMinutes
+                && time1End.TotalMinutes == time2Begin.TotalMinutes
+                && time2End.TotalMinutes == time3Begin.TotalMinutes))
+            {
+                this.tThree_dtTime1Begin.Focus();
+                MessageBox.Show(Resource1.FrmTariffSelection_InvalidThreeTimezone);
+                return false;
+            }
+            return true;
+        }
+
+
+        private void ShowTariff(TariffOfThreeTimeZone info)
+        {
+            this.rdTariffOfThreeTimeZone.Checked = true;
+            this.tThree_txtFreeMinutes.IntergerValue = info.FreeMinutes;
+            this.tThree_chkFeeOf24.Checked = info.FeeOf24Hour > 0;
+            if (this.tThree_chkFeeOf24.Checked)
+            {
+                this.tThree_txtFeeOf24.DecimalValue = info.FeeOf24Hour;
+            }
+            this.tThree_chkFeeOfMax.Checked = info.FeeOfMax > 0;
+            if (this.tThree_chkFeeOfMax.Checked)
+            {
+                this.tThree_txtFeeOfMax.DecimalValue = info.FeeOfMax;
+            }
+
+            //时段1
+            this.tThree_dtTime1Begin.Value = new DateTime(2000, 1, 1, info.Timezone1.Beginning.Hour, info.Timezone1.Beginning.Minute, 0);
+            this.tThree_dtTime1End.Value = new DateTime(2000, 1, 1, info.Timezone1.Ending.Hour, info.Timezone1.Ending.Minute, 0);
+            this.tThree_txtTime1Minutes.IntergerValue = info.Timezone1.RegularCharge.Minutes;
+            this.tThree_txtTime1Fee.DecimalValue = info.Timezone1.RegularCharge.Fee;
+            if (info.Timezone1.LimiteFee.HasValue && info.Timezone1.LimiteFee.Value > 0)
+            {
+                this.tThree_chkTime1LimitFee.Checked = true;
+                this.tThree_txtTime1LimitFee.DecimalValue = info.Timezone1.LimiteFee.Value;
+            }
+            else
+            {
+                this.tThree_chkTime1LimitFee.Checked = false;
+            }
+
+            //时段2
+            this.tThree_dtTime2Begin.Value = new DateTime(2000, 1, 1, info.Timezone2.Beginning.Hour, info.Timezone2.Beginning.Minute, 0);
+            this.tThree_dtTime2End.Value = new DateTime(2000, 1, 1, info.Timezone2.Ending.Hour, info.Timezone2.Ending.Minute, 0);
+            this.tThree_txtTime2Minutes.IntergerValue = info.Timezone2.RegularCharge.Minutes;
+            this.tThree_txtTime2Fee.DecimalValue = info.Timezone2.RegularCharge.Fee;
+            if (info.Timezone2.LimiteFee.HasValue && info.Timezone2.LimiteFee.Value > 0)
+            {
+                this.tThree_chkTime2LimitFee.Checked = true;
+                this.tThree_txtTime2LimitFee.DecimalValue = info.Timezone2.LimiteFee.Value;
+            }
+            else
+            {
+                this.tThree_chkTime2LimitFee.Checked = false;
+            }
+
+            //时段3
+            this.tThree_dtTime3Begin.Value = new DateTime(2000, 1, 1, info.Timezone3.Beginning.Hour, info.Timezone3.Beginning.Minute, 0);
+            this.tThree_dtTime3End.Value = new DateTime(2000, 1, 1, info.Timezone3.Ending.Hour, info.Timezone3.Ending.Minute, 0);
+            this.tThree_txtTime3Minutes.IntergerValue = info.Timezone3.RegularCharge.Minutes;
+            this.tThree_txtTime3Fee.DecimalValue = info.Timezone3.RegularCharge.Fee;
+            if (info.Timezone3.LimiteFee.HasValue && info.Timezone3.LimiteFee.Value > 0)
+            {
+                this.tThree_chkTime3LimitFee.Checked = true;
+                this.tThree_txtTime3LimitFee.DecimalValue = info.Timezone3.LimiteFee.Value;
+            }
+            else
+            {
+                this.tThree_chkTime3LimitFee.Checked = false;
+            }
+        }
+
+        private TariffOfThreeTimeZone GetTariffOfThreeTimeZoneFromInput()
+        {
+            TariffOfThreeTimeZone tariff = new TariffOfThreeTimeZone();
+            tariff.FreeMinutes = (byte)this.tThree_txtFreeMinutes.IntergerValue;
+            tariff.FeeOf24Hour = this.tThree_chkFeeOf24.Checked ? this.tThree_txtFeeOf24.DecimalValue : 0;
+            tariff.FeeOfMax = this.tThree_chkFeeOfMax.Checked ? this.tThree_txtFeeOfMax.DecimalValue : 0;
+            
+            //时段1
+            tariff.Timezone1 = new TariffTimeZone();
+            tariff.Timezone1.Beginning = new TimeEntity(this.tThree_dtTime1Begin.Value);
+            tariff.Timezone1.Ending = new TimeEntity(this.tThree_dtTime1End.Value);
+            tariff.Timezone1.RegularCharge = new ChargeUnit();
+            tariff.Timezone1.RegularCharge.Minutes = (short)this.tThree_txtTime1Minutes.IntergerValue;
+            tariff.Timezone1.RegularCharge.Fee = this.tThree_txtTime1Fee.DecimalValue;
+            if (this.tThree_chkTime1LimitFee.Checked && this.tThree_txtTime1LimitFee.DecimalValue > 0)
+            {
+                tariff.Timezone1.LimiteFee = this.tThree_txtTime1LimitFee.DecimalValue;
+            }
+
+            //时段2
+            tariff.Timezone2 = new TariffTimeZone();
+            tariff.Timezone2.Beginning = new TimeEntity(this.tThree_dtTime2Begin.Value);
+            tariff.Timezone2.Ending = new TimeEntity(this.tThree_dtTime2End.Value);
+            tariff.Timezone2.RegularCharge = new ChargeUnit();
+            tariff.Timezone2.RegularCharge.Minutes = (short)this.tThree_txtTime2Minutes.IntergerValue;
+            tariff.Timezone2.RegularCharge.Fee = this.tThree_txtTime2Fee.DecimalValue;
+            if (this.tThree_chkTime2LimitFee.Checked && this.tThree_txtTime2LimitFee.DecimalValue > 0)
+            {
+                tariff.Timezone2.LimiteFee = this.tThree_txtTime2LimitFee.DecimalValue;
+            }
+
+            //时段3
+            tariff.Timezone3 = new TariffTimeZone();
+            tariff.Timezone3.Beginning = new TimeEntity(this.tThree_dtTime3Begin.Value);
+            tariff.Timezone3.Ending = new TimeEntity(this.tThree_dtTime3End.Value);
+            tariff.Timezone3.RegularCharge = new ChargeUnit();
+            tariff.Timezone3.RegularCharge.Minutes = (short)this.tThree_txtTime3Minutes.IntergerValue;
+            tariff.Timezone3.RegularCharge.Fee = this.tThree_txtTime3Fee.DecimalValue;
+            if (this.tThree_chkTime3LimitFee.Checked && this.tThree_txtTime3LimitFee.DecimalValue > 0)
+            {
+                tariff.Timezone3.LimiteFee = this.tThree_txtTime3LimitFee.DecimalValue;
+            }
+            return tariff;
+        }
+
+        private void rdTariffOfThreeTimeZone_CheckedChanged(object sender, EventArgs e)
+        {
+            tThree_txtFreeMinutes.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_chkFeeOf24.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtFeeOf24.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_chkFeeOfMax.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtFeeOfMax.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime1Begin.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime1End.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime1Minutes.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime1Fee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_chkTime1LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime1LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime2Begin.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime2End.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime2Minutes.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime2Fee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_chkTime2LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime2LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime3Begin.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_dtTime3End.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime3Minutes.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime3Fee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_chkTime3LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+            tThree_txtTime3LimitFee.Enabled = rdTariffOfThreeTimeZone.Checked;
+        }
+        #endregion
+
         #region 事件处理
         private void btnOk_Click(object sender, EventArgs e)
         {
@@ -513,6 +780,10 @@ namespace Ralid.Park.UI
             {
                 tf = GetTariffOfTurningFromInput();
             }
+            else if (this.rdTariffOfTurningLimited.Checked && CheckInputOfTariffOfTurningLimited())
+            {
+                tf = GetTariffOfTurningLimitedFromInput();
+            }
             else if (this.rdTariffOfLimitation.Checked && CheckInputOfTariffOfLimitation())
             {
                 tf = GetTariffOfLimitationFromInput();
@@ -525,6 +796,10 @@ namespace Ralid.Park.UI
             {
                 tf = GetTariffOfTimezoneLimitationFromInput();
             }
+            else if (this.rdTariffOfThreeTimeZone.Checked && CheckInputOfTariffOfThreeTimeZone())
+            {
+                tf = GetTariffOfThreeTimeZoneFromInput();
+            }
             if (tf != null)
             {
                 this.SelectedTariff = tf;
@@ -536,7 +811,8 @@ namespace Ralid.Park.UI
         private void FrmTariffSelection_Load(object sender, EventArgs e)
         {
             this.btnOk.Enabled = OperatorInfo.CurrentOperator.Permit(Ralid.Park.BusinessModel.Enum.Permission.EditSysSetting);
-
+                        
+            InitControl();
             if (SelectedTariff != null)
             {
                 ShowTariff(SelectedTariff);
@@ -548,6 +824,7 @@ namespace Ralid.Park.UI
             this.Close();
         }
         #endregion
+
 
     }
 }

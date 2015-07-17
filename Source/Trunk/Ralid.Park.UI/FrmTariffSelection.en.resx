@@ -176,7 +176,7 @@
     <value>Yuan</value>
   </data>
   <data name="chkFirstCharge.Location" type="System.Drawing.Point, System.Drawing">
-    <value>252, 170</value>
+    <value>252, 242</value>
   </data>
   <data name="chkFirstCharge.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 16</value>
@@ -185,7 +185,7 @@
     <value>First</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 170</value>
+    <value>467, 243</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -194,7 +194,7 @@
     <value>Yuan</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>703, 170</value>
+    <value>703, 243</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -203,13 +203,13 @@
     <value>Yuan</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>499, 169</value>
+    <value>499, 242</value>
   </data>
   <data name="label11.Text" xml:space="preserve">
     <value>Then Per</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 169</value>
+    <value>361, 242</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -218,7 +218,7 @@
     <value>Minutes</value>
   </data>
   <data name="label24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>599, 170</value>
+    <value>599, 243</value>
   </data>
   <data name="label24.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -296,7 +296,7 @@
     <value>Free</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 170</value>
+    <value>192, 243</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -305,7 +305,7 @@
     <value>Minutes</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 169</value>
+    <value>117, 242</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -320,13 +320,13 @@
     <value>DayNight</value>
   </data>
   <data name="txtNightMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 288</value>
+    <value>333, 360</value>
   </data>
   <data name="txtNightLimitFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 288</value>
+    <value>589, 360</value>
   </data>
   <data name="chkNightLimite.Location" type="System.Drawing.Point, System.Drawing">
-    <value>503, 290</value>
+    <value>503, 362</value>
   </data>
   <data name="chkNightLimite.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 16</value>
@@ -335,7 +335,7 @@
     <value>Limitation</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>641, 291</value>
+    <value>641, 363</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -344,19 +344,19 @@
     <value>Yuan</value>
   </data>
   <data name="dtNightEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>237, 288</value>
+    <value>237, 360</value>
   </data>
   <data name="dtNightBegin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 288</value>
+    <value>158, 360</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>223, 291</value>
+    <value>223, 363</value>
   </data>
   <data name="txtNightFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 288</value>
+    <value>413, 360</value>
   </data>
   <data name="label22.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 294</value>
+    <value>468, 366</value>
   </data>
   <data name="label22.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -365,7 +365,7 @@
     <value>Yuan</value>
   </data>
   <data name="label30.Location" type="System.Drawing.Point, System.Drawing">
-    <value>313, 292</value>
+    <value>313, 364</value>
   </data>
   <data name="label30.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 12</value>
@@ -374,7 +374,7 @@
     <value>Per</value>
   </data>
   <data name="label41.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 292</value>
+    <value>361, 364</value>
   </data>
   <data name="label41.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -389,10 +389,10 @@
     <value>Night</value>
   </data>
   <data name="txtDayLimitFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>590, 260</value>
+    <value>590, 332</value>
   </data>
   <data name="chkDayLimite.Location" type="System.Drawing.Point, System.Drawing">
-    <value>503, 262</value>
+    <value>503, 334</value>
   </data>
   <data name="chkDayLimite.Size" type="System.Drawing.Size, System.Drawing">
     <value>84, 16</value>
@@ -401,7 +401,7 @@
     <value>Limitation</value>
   </data>
   <data name="label15.Location" type="System.Drawing.Point, System.Drawing">
-    <value>641, 263</value>
+    <value>641, 335</value>
   </data>
   <data name="label15.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -410,22 +410,22 @@
     <value>Yuan</value>
   </data>
   <data name="txtDayMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>333, 260</value>
+    <value>333, 332</value>
   </data>
   <data name="dtDayEnd.Location" type="System.Drawing.Point, System.Drawing">
-    <value>237, 259</value>
+    <value>237, 331</value>
   </data>
   <data name="dtDayBegin.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 259</value>
+    <value>158, 331</value>
   </data>
   <data name="label43.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 263</value>
+    <value>222, 335</value>
   </data>
   <data name="txtDayFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 260</value>
+    <value>413, 332</value>
   </data>
   <data name="label46.Location" type="System.Drawing.Point, System.Drawing">
-    <value>467, 264</value>
+    <value>467, 336</value>
   </data>
   <data name="label46.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -434,7 +434,7 @@
     <value>Yuan</value>
   </data>
   <data name="label47.Location" type="System.Drawing.Point, System.Drawing">
-    <value>313, 264</value>
+    <value>313, 336</value>
   </data>
   <data name="label47.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 12</value>
@@ -443,7 +443,7 @@
     <value>Per</value>
   </data>
   <data name="label50.Location" type="System.Drawing.Point, System.Drawing">
-    <value>361, 264</value>
+    <value>361, 336</value>
   </data>
   <data name="label50.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -458,7 +458,7 @@
     <value>Day</value>
   </data>
   <data name="label52.Location" type="System.Drawing.Point, System.Drawing">
-    <value>468, 236</value>
+    <value>468, 310</value>
   </data>
   <data name="label52.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -467,7 +467,7 @@
     <value>Yuan</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 234</value>
+    <value>117, 308</value>
   </data>
   <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -476,7 +476,7 @@
     <value>Free</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>192, 234</value>
+    <value>192, 308</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -488,25 +488,25 @@
     <value>604, 112</value>
   </data>
   <data name="label35.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 12</value>
+    <value>29, 12</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
-    <value>Yuan(Loop)</value>
+    <value>Yuan</value>
   </data>
   <data name="txtRegularMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>558, 166</value>
+    <value>558, 239</value>
   </data>
   <data name="txtFirstMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>312, 167</value>
+    <value>312, 240</value>
   </data>
   <data name="txtFreeMinutes5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 231</value>
+    <value>153, 305</value>
   </data>
   <data name="txtFeePerDay4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 231</value>
+    <value>413, 305</value>
   </data>
   <data name="txtFreeMinutes4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 167</value>
+    <value>153, 240</value>
   </data>
   <data name="txtFeePerTime.Location" type="System.Drawing.Point, System.Drawing">
     <value>299, 10</value>
@@ -524,20 +524,16 @@
     <value>153, 45</value>
   </data>
   <data name="txtRegularFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>649, 166</value>
+    <value>649, 239</value>
   </data>
   <data name="txtFirstFee1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>413, 166</value>
+    <value>413, 239</value>
   </data>
   <data name="txtFirstFee.Location" type="System.Drawing.Point, System.Drawing">
     <value>299, 109</value>
   </data>
   <data name="txtFeeOfMidNight.Location" type="System.Drawing.Point, System.Drawing">
     <value>550, 109</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ck_Is12Hour.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="ck_Is12Hour.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 16</value>
@@ -546,7 +542,7 @@
     <value>12 Hours Limitation</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>307, 199</value>
+    <value>307, 269</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -554,11 +550,8 @@
   <data name="label4.Text" xml:space="preserve">
     <value>Yuan</value>
   </data>
-  <data name="ck_Is24Hour.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="ck_Is24Hour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>342, 198</value>
+    <value>342, 268</value>
   </data>
   <data name="ck_Is24Hour.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 16</value>
@@ -567,7 +560,7 @@
     <value>24 Hours Limitation</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>541, 200</value>
+    <value>541, 270</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -576,10 +569,10 @@
     <value>Yuan</value>
   </data>
   <data name="txtFee24Hour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>486, 196</value>
+    <value>486, 266</value>
   </data>
   <data name="txtFee12Hour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>257, 195</value>
+    <value>257, 265</value>
   </data>
   <data name="dtTurning.Location" type="System.Drawing.Point, System.Drawing">
     <value>450, 109</value>
@@ -600,13 +593,13 @@
     <value>Then</value>
   </data>
   <data name="tl_txtRegularMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>504, 357</value>
+    <value>504, 429</value>
   </data>
   <data name="tl_txtFreeMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>153, 329</value>
+    <value>153, 402</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>194, 331</value>
+    <value>194, 404</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -615,7 +608,7 @@
     <value>Minutes</value>
   </data>
   <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 330</value>
+    <value>117, 403</value>
   </data>
   <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -624,10 +617,10 @@
     <value>Free</value>
   </data>
   <data name="tl_txtRegularFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>598, 356</value>
+    <value>598, 428</value>
   </data>
   <data name="label27.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 359</value>
+    <value>652, 431</value>
   </data>
   <data name="label27.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -636,13 +629,13 @@
     <value>Yuan</value>
   </data>
   <data name="label28.Location" type="System.Drawing.Point, System.Drawing">
-    <value>452, 360</value>
+    <value>452, 432</value>
   </data>
   <data name="label28.Text" xml:space="preserve">
     <value>Then Per</value>
   </data>
   <data name="label31.Location" type="System.Drawing.Point, System.Drawing">
-    <value>548, 360</value>
+    <value>548, 432</value>
   </data>
   <data name="label31.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -650,6 +643,7 @@
   <data name="label31.Text" xml:space="preserve">
     <value>Minutes</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="rdTimezoneLimitation.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -660,13 +654,13 @@
     <value>Timezone Limitation</value>
   </data>
   <data name="tl_txtFirstFeeMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>268, 356</value>
+    <value>268, 428</value>
   </data>
   <data name="tl_txtFirstFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>363, 356</value>
+    <value>363, 428</value>
   </data>
   <data name="label21.Location" type="System.Drawing.Point, System.Drawing">
-    <value>417, 360</value>
+    <value>417, 432</value>
   </data>
   <data name="label21.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -675,7 +669,7 @@
     <value>Yuan</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 360</value>
+    <value>117, 431</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>35, 12</value>
@@ -684,7 +678,7 @@
     <value>First</value>
   </data>
   <data name="label32.Location" type="System.Drawing.Point, System.Drawing">
-    <value>314, 359</value>
+    <value>314, 431</value>
   </data>
   <data name="label32.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
@@ -699,16 +693,16 @@
     <value>Minutes Per</value>
   </data>
   <data name="tl_Timezone2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 388</value>
+    <value>260, 457</value>
   </data>
   <data name="tl_Timezone1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>176, 388</value>
+    <value>176, 457</value>
   </data>
   <data name="label44.Location" type="System.Drawing.Point, System.Drawing">
-    <value>244, 391</value>
+    <value>244, 460</value>
   </data>
   <data name="label45.Location" type="System.Drawing.Point, System.Drawing">
-    <value>117, 391</value>
+    <value>117, 460</value>
   </data>
   <data name="label45.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -717,10 +711,10 @@
     <value>Timezone</value>
   </data>
   <data name="tl_txtLimitation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>601, 388</value>
+    <value>601, 457</value>
   </data>
   <data name="label48.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 391</value>
+    <value>652, 460</value>
   </data>
   <data name="label48.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -729,7 +723,7 @@
     <value>Yuan</value>
   </data>
   <data name="label49.Location" type="System.Drawing.Point, System.Drawing">
-    <value>530, 391</value>
+    <value>530, 460</value>
   </data>
   <data name="label49.Size" type="System.Drawing.Size, System.Drawing">
     <value>65, 12</value>
@@ -737,11 +731,8 @@
   <data name="label49.Text" xml:space="preserve">
     <value>Limitation</value>
   </data>
-  <data name="tl_txtPerDay.Location" type="System.Drawing.Point, System.Drawing">
-    <value>431, 326</value>
-  </data>
   <data name="label54.Location" type="System.Drawing.Point, System.Drawing">
-    <value>486, 329</value>
+    <value>486, 402</value>
   </data>
   <data name="label54.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -750,13 +741,13 @@
     <value>Yuan</value>
   </data>
   <data name="tl_txtLimitationMinutes.Location" type="System.Drawing.Point, System.Drawing">
-    <value>367, 388</value>
+    <value>367, 457</value>
   </data>
   <data name="tl_txtLimitationFee.Location" type="System.Drawing.Point, System.Drawing">
-    <value>445, 388</value>
+    <value>445, 457</value>
   </data>
   <data name="label56.Location" type="System.Drawing.Point, System.Drawing">
-    <value>495, 391</value>
+    <value>495, 460</value>
   </data>
   <data name="label56.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -765,7 +756,7 @@
     <value>Yuan</value>
   </data>
   <data name="label57.Location" type="System.Drawing.Point, System.Drawing">
-    <value>338, 391</value>
+    <value>338, 460</value>
   </data>
   <data name="label57.Size" type="System.Drawing.Size, System.Drawing">
     <value>23, 12</value>
@@ -774,16 +765,13 @@
     <value>Per</value>
   </data>
   <data name="label58.Location" type="System.Drawing.Point, System.Drawing">
-    <value>392, 391</value>
+    <value>392, 460</value>
   </data>
   <data name="label58.Size" type="System.Drawing.Size, System.Drawing">
     <value>47, 12</value>
   </data>
   <data name="label58.Text" xml:space="preserve">
     <value>Minutes</value>
-  </data>
-  <data name="chkOverDay.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
   </data>
   <data name="chkOverDay.Size" type="System.Drawing.Size, System.Drawing">
     <value>54, 16</value>
@@ -809,9 +797,6 @@
   <data name="label60.Text" xml:space="preserve">
     <value>Yuan</value>
   </data>
-  <data name="chkPerDayFeeOfMax.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="chkPerDayFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
   </data>
@@ -830,9 +815,6 @@
   <data name="label62.Text" xml:space="preserve">
     <value>Yuan</value>
   </data>
-  <data name="chkTuringFeeOfMax.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="chkTuringFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
   </data>
@@ -840,10 +822,10 @@
     <value>Max Fee</value>
   </data>
   <data name="txtLimitFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>649, 197</value>
+    <value>649, 267</value>
   </data>
   <data name="label63.Location" type="System.Drawing.Point, System.Drawing">
-    <value>703, 200</value>
+    <value>703, 270</value>
   </data>
   <data name="label63.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -851,11 +833,8 @@
   <data name="label63.Text" xml:space="preserve">
     <value>Yuan</value>
   </data>
-  <data name="chkLimitFeeOfMax.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="chkLimitFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>583, 199</value>
+    <value>583, 269</value>
   </data>
   <data name="chkLimitFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
@@ -864,10 +843,10 @@
     <value>Max Fee</value>
   </data>
   <data name="txtGuangZhouFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>589, 231</value>
+    <value>589, 305</value>
   </data>
   <data name="label64.Location" type="System.Drawing.Point, System.Drawing">
-    <value>641, 235</value>
+    <value>641, 309</value>
   </data>
   <data name="label64.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -876,7 +855,7 @@
     <value>Yuan</value>
   </data>
   <data name="chkGuangZhouFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>517, 233</value>
+    <value>517, 307</value>
   </data>
   <data name="chkGuangZhouFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
@@ -885,10 +864,10 @@
     <value>Max Fee</value>
   </data>
   <data name="tl_txtFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>598, 327</value>
+    <value>598, 400</value>
   </data>
   <data name="label65.Location" type="System.Drawing.Point, System.Drawing">
-    <value>652, 330</value>
+    <value>652, 403</value>
   </data>
   <data name="label65.Size" type="System.Drawing.Size, System.Drawing">
     <value>29, 12</value>
@@ -896,11 +875,8 @@
   <data name="label65.Text" xml:space="preserve">
     <value>Yuan</value>
   </data>
-  <data name="tl_chkFeeOfMax.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="tl_chkFeeOfMax.Location" type="System.Drawing.Point, System.Drawing">
-    <value>529, 329</value>
+    <value>529, 402</value>
   </data>
   <data name="tl_chkFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
     <value>66, 16</value>
@@ -909,7 +885,7 @@
     <value>Max Fee</value>
   </data>
   <data name="chkGuangZhouFeeOf24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>270, 233</value>
+    <value>270, 307</value>
   </data>
   <data name="chkGuangZhouFeeOf24.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 16</value>
@@ -917,17 +893,311 @@
   <data name="chkGuangZhouFeeOf24.Text" xml:space="preserve">
     <value>24 Hours Limitation</value>
   </data>
-  <data name="tl_chkFeeOf24.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
-  </data>
   <data name="tl_chkFeeOf24.Location" type="System.Drawing.Point, System.Drawing">
-    <value>287, 326</value>
+    <value>287, 399</value>
   </data>
   <data name="tl_chkFeeOf24.Size" type="System.Drawing.Size, System.Drawing">
     <value>138, 16</value>
   </data>
   <data name="tl_chkFeeOf24.Text" xml:space="preserve">
     <value>24 Hours Limitation</value>
+  </data>
+  <data name="txtTuringLimitedOfMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>340, 175</value>
+  </data>
+  <data name="label53.Location" type="System.Drawing.Point, System.Drawing">
+    <value>397, 179</value>
+  </data>
+  <data name="label53.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label53.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="chkTuringLimitedOfMax.Location" type="System.Drawing.Point, System.Drawing">
+    <value>268, 179</value>
+  </data>
+  <data name="chkTuringLimitedOfMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 16</value>
+  </data>
+  <data name="chkTuringLimitedOfMax.Text" xml:space="preserve">
+    <value>Max Fee</value>
+  </data>
+  <data name="label55.Location" type="System.Drawing.Point, System.Drawing">
+    <value>515, 205</value>
+  </data>
+  <data name="label55.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label55.Text" xml:space="preserve">
+    <value>Then</value>
+  </data>
+  <data name="label66.Location" type="System.Drawing.Point, System.Drawing">
+    <value>285, 205</value>
+  </data>
+  <data name="label66.Size" type="System.Drawing.Size, System.Drawing">
+    <value>167, 12</value>
+  </data>
+  <data name="label66.Text" xml:space="preserve">
+    <value>More Than 24 Hours Turn At </value>
+  </data>
+  <data name="tpd_dtTurning.Location" type="System.Drawing.Point, System.Drawing">
+    <value>450, 201</value>
+  </data>
+  <data name="tpd_txtFreeMinutes.Location" type="System.Drawing.Point, System.Drawing">
+    <value>153, 175</value>
+  </data>
+  <data name="label67.Location" type="System.Drawing.Point, System.Drawing">
+    <value>192, 179</value>
+  </data>
+  <data name="label67.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="label67.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="label68.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label68.Text" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="label69.Location" type="System.Drawing.Point, System.Drawing">
+    <value>604, 204</value>
+  </data>
+  <data name="label69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label69.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="tpd_txtFirstFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>191, 201</value>
+  </data>
+  <data name="tpd_FeeOfTurning.Location" type="System.Drawing.Point, System.Drawing">
+    <value>550, 201</value>
+  </data>
+  <data name="label70.Location" type="System.Drawing.Point, System.Drawing">
+    <value>242, 205</value>
+  </data>
+  <data name="label70.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label70.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label71.Location" type="System.Drawing.Point, System.Drawing">
+    <value>117, 205</value>
+  </data>
+  <data name="label71.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label71.Text" xml:space="preserve">
+    <value>In 24 Hours</value>
+  </data>
+  <data name="rdTariffOfTurningLimited.Size" type="System.Drawing.Size, System.Drawing">
+    <value>104, 41</value>
+  </data>
+  <data name="rdTariffOfTurningLimited.Text" xml:space="preserve">
+    <value>Turning Limited</value>
+  </data>
+  <data name="label72.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="label72.Text" xml:space="preserve">
+    <value>(Loop)</value>
+  </data>
+  <data name="label73.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 204</value>
+  </data>
+  <data name="label73.Size" type="System.Drawing.Size, System.Drawing">
+    <value>41, 12</value>
+  </data>
+  <data name="label73.Text" xml:space="preserve">
+    <value>(Loop)</value>
+  </data>
+  <data name="rdTariffOfThreeTimeZone.AutoSize" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="rdTariffOfThreeTimeZone.Size" type="System.Drawing.Size, System.Drawing">
+    <value>99, 30</value>
+  </data>
+  <data name="rdTariffOfThreeTimeZone.Text" xml:space="preserve">
+    <value>Three Timezone</value>
+  </data>
+  <data name="tThree_chkFeeOf24.Location" type="System.Drawing.Point, System.Drawing">
+    <value>287, 501</value>
+  </data>
+  <data name="tThree_chkFeeOf24.Size" type="System.Drawing.Size, System.Drawing">
+    <value>138, 16</value>
+  </data>
+  <data name="tThree_chkFeeOf24.Text" xml:space="preserve">
+    <value>24 Hours Limitation</value>
+  </data>
+  <data name="label74.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label74.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="tThree_chkFeeOfMax.Size" type="System.Drawing.Size, System.Drawing">
+    <value>66, 16</value>
+  </data>
+  <data name="tThree_chkFeeOfMax.Text" xml:space="preserve">
+    <value>Max Fee</value>
+  </data>
+  <data name="tThree_txtTime3LimitFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 581</value>
+  </data>
+  <data name="tThree_txtTime2LimitFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 554</value>
+  </data>
+  <data name="tThree_chkTime3LimitFee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="tThree_chkTime3LimitFee.Text" xml:space="preserve">
+    <value>Limitation</value>
+  </data>
+  <data name="tThree_chkTime2LimitFee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="tThree_chkTime2LimitFee.Text" xml:space="preserve">
+    <value>Limitation</value>
+  </data>
+  <data name="label95.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 584</value>
+  </data>
+  <data name="label95.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label95.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label75.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 557</value>
+  </data>
+  <data name="label75.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label75.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="tThree_txtTime1LimitFee.Location" type="System.Drawing.Point, System.Drawing">
+    <value>629, 527</value>
+  </data>
+  <data name="tThree_chkTime1LimitFee.Size" type="System.Drawing.Size, System.Drawing">
+    <value>84, 16</value>
+  </data>
+  <data name="tThree_chkTime1LimitFee.Text" xml:space="preserve">
+    <value>Limitation</value>
+  </data>
+  <data name="label94.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label94.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label76.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label76.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label77.Location" type="System.Drawing.Point, System.Drawing">
+    <value>703, 530</value>
+  </data>
+  <data name="label77.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label77.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label93.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 585</value>
+  </data>
+  <data name="label93.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 12</value>
+  </data>
+  <data name="label93.Text" xml:space="preserve">
+    <value>Per</value>
+  </data>
+  <data name="label78.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 558</value>
+  </data>
+  <data name="label78.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 12</value>
+  </data>
+  <data name="label78.Text" xml:space="preserve">
+    <value>Per</value>
+  </data>
+  <data name="label92.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="label92.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="label79.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="label79.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="label90.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label90.Text" xml:space="preserve">
+    <value>Timezone3</value>
+  </data>
+  <data name="label81.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label81.Text" xml:space="preserve">
+    <value>Timezone2</value>
+  </data>
+  <data name="label83.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label83.Text" xml:space="preserve">
+    <value>Yuan</value>
+  </data>
+  <data name="label84.Location" type="System.Drawing.Point, System.Drawing">
+    <value>324, 531</value>
+  </data>
+  <data name="label84.Size" type="System.Drawing.Size, System.Drawing">
+    <value>23, 12</value>
+  </data>
+  <data name="label84.Text" xml:space="preserve">
+    <value>Per</value>
+  </data>
+  <data name="label85.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="label85.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="label86.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 12</value>
+  </data>
+  <data name="label86.Text" xml:space="preserve">
+    <value>Timezone1</value>
+  </data>
+  <data name="label87.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label87.Text" xml:space="preserve">
+    <value>Free</value>
+  </data>
+  <data name="label88.Size" type="System.Drawing.Size, System.Drawing">
+    <value>47, 12</value>
+  </data>
+  <data name="label88.Text" xml:space="preserve">
+    <value>Minutes</value>
+  </data>
+  <data name="label89.Size" type="System.Drawing.Size, System.Drawing">
+    <value>29, 12</value>
+  </data>
+  <data name="label89.Text" xml:space="preserve">
+    <value>Yuan</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>Tariff Selection</value>

@@ -79,6 +79,13 @@ namespace Ralid.Park.UI
                     MessageBox.Show(Resource1.FrmMain_SoftDogNoRights, Resource1.Form_Alert);
                     result = false;
                 }
+                else if (info.ExpiredDate < DateTime.Today && info.ExpiredDate.AddDays(15) >= DateTime.Today) //已经过期
+                {
+                    DateTime expire = info.ExpiredDate.AddDays(15);
+                    TimeSpan ts = new TimeSpan(expire.Ticks - DateTime.Today.Ticks);
+                    MessageBox.Show(string.Format(Resource1.FrmMain_SoftDogExpiredAlert, (int)(ts.TotalDays + 1)), Resource1.Form_Alert);
+                    result = false;
+                }
                 else if (info.ExpiredDate.AddDays(15) < DateTime.Today)
                 {
                     MessageBox.Show(Resource1.FrmMain_SoftDogExpired, Resource1.Form_Alert);

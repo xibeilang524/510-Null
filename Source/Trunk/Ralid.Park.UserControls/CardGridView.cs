@@ -25,8 +25,10 @@ namespace Ralid.Park.UserControls
 
         DataGridViewTextBoxColumn colOwnerName;
         DataGridViewTextBoxColumn colCardID;
+        DataGridViewTextBoxColumn colDepartment;
         DataGridViewTextBoxColumn colCarPlate;
         DataGridViewTextBoxColumn colCardCertificate;
+        DataGridViewTextBoxColumn colListType;
         DataGridViewTextBoxColumn colCardType;
         DataGridViewTextBoxColumn colChargeType;
         DataGridViewTextBoxColumn colStatus;
@@ -48,8 +50,10 @@ namespace Ralid.Park.UserControls
         {
             colOwnerName = new DataGridViewTextBoxColumn();
             colCardID = new DataGridViewTextBoxColumn();
+            colDepartment = new DataGridViewTextBoxColumn();
             colCarPlate = new DataGridViewTextBoxColumn();
             colCardCertificate = new DataGridViewTextBoxColumn();
+            colListType = new DataGridViewTextBoxColumn();
             colCardType = new DataGridViewTextBoxColumn();
             colChargeType = new DataGridViewTextBoxColumn();
             colStatus = new DataGridViewTextBoxColumn();
@@ -79,6 +83,13 @@ namespace Ralid.Park.UserControls
             colCardID.ReadOnly = true;
             colCardID.Width = 70;
             // 
+            // colDepartment
+            // 
+            colDepartment.HeaderText = Resources.Resource1.CardGridHeader_Department;
+            colDepartment.Name = "colDepartment";
+            colDepartment.ReadOnly = true;
+            colDepartment.Width = 90;
+            // 
             // colCarNum
             // 
             colCarPlate.HeaderText = Resources.Resource1.CardGridHeader_CarPlate;
@@ -91,6 +102,14 @@ namespace Ralid.Park.UserControls
             colCardCertificate.HeaderText = Resources.Resource1.CardGridHeader_Certificate;
             colCardCertificate.Name = "colCardCertificate";
             colCardCertificate.Width = 80;
+            // 
+            // colListType
+            // 
+            colListType.HeaderText = Resources.Resource1.CardGridHeader_ListType;
+            colListType.Name = "colListType";
+            colListType.ReadOnly = true;
+            colListType.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            colListType.Width = 80;
             // 
             // colCardType
             // 
@@ -201,9 +220,11 @@ namespace Ralid.Park.UserControls
             this.Columns.Clear();
             this.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             colOwnerName,
+            colDepartment,
             colCardID,
             colCardCertificate ,
             colCarPlate,
+            colListType,
             colCardType,
             colChargeType,
             colStatus,
@@ -435,9 +456,17 @@ namespace Ralid.Park.UserControls
         /// </summary>
         public DataGridViewColumn ColOwnerName { get { return colOwnerName; } }
         /// <summary>
+        /// 车主部门列
+        /// </summary>
+        public DataGridViewColumn ColDepartment { get { return colDepartment; } }
+        /// <summary>
         /// 车牌号码列
         /// </summary>
         public DataGridViewColumn ColCarNum { get { return colCarPlate; } }
+        /// <summary>
+        /// 名单类型列
+        /// </summary>
+        public DataGridViewColumn ColListType { get { return colListType; } }
         /// <summary>
         /// 卡片类型列
         /// </summary>
@@ -483,9 +512,11 @@ namespace Ralid.Park.UserControls
             row.Tag = info;
             row.Cells["colCardID"].Value = info.CardID;
             row.Cells["colOwnerName"].Value = info.OwnerName;
+            row.Cells["colDepartment"].Value = info.Department;
             row.Cells["colCardCertificate"].Value = info.CardCertificate;
             row.Cells["colCarPlate"].Value = info.CarPlate;
             row.Cells["colStatus"].Value = Ralid.Park.BusinessModel.Resouce.CardStatusDescription.GetDescription(info.Status);
+            row.Cells["colListType"].Value = Ralid.Park.BusinessModel.Resouce.CardListTypeDescription.GetDescription(info.ListType);
             row.Cells["colCardType"].Value = info.CardType.ToString();
             row.Cells["colChargeType"].Value = CarTypeSetting.Current.GetDescription(info.CarType);
             row.Cells["colBalance"].Value = info.Balance;

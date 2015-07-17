@@ -133,7 +133,13 @@
   <data name="btnOk.Text" xml:space="preserve">
     <value>Settle(&amp;O)</value>
   </data>
+  <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>35, 82</value>
+  </data>
+  <data name="label2.Text" xml:space="preserve">
+    <value>HandInPos</value>
+  </data>
   <data name="$this.Text" xml:space="preserve">
-    <value>Operator HandInCash Confirm</value>
+    <value>Operator HandIn Confirm</value>
   </data>
 </root>

@@ -124,8 +124,29 @@
     <value>Other</value>
   </data>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="deptComboBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 54</value>
+  </data>
+  <data name="deptComboBox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 20</value>
+  </data>
+  <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 57</value>
+  </data>
+  <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label1.Text" xml:space="preserve">
+    <value>Department</value>
+  </data>
+  <data name="operatorCombobox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>66, 18</value>
+  </data>
+  <data name="operatorCombobox1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>189, 20</value>
+  </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 44</value>
+    <value>16, 21</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>53, 12</value>
@@ -178,8 +199,74 @@
   <data name="label3.Text" xml:space="preserve">
     <value>Operator:</value>
   </data>
+  <data name="groupBox5.Text" xml:space="preserve">
+    <value>Statistical Information</value>
+  </data>
+  <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 28</value>
+  </data>
+  <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label10.Text" xml:space="preserve">
+    <value>Cash Total</value>
+  </data>
+  <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
+    <value>28, 128</value>
+  </data>
+  <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 12</value>
+  </data>
+  <data name="label7.Text" xml:space="preserve">
+    <value>POS HandIn</value>
+  </data>
+  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 103</value>
+  </data>
+  <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
+    <value>83, 12</value>
+  </data>
+  <data name="label4.Text" xml:space="preserve">
+    <value>NonCash Total</value>
+  </data>
+  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 78</value>
+  </data>
+  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
+    <value>89, 12</value>
+  </data>
+  <data name="label5.Text" xml:space="preserve">
+    <value>Cash Diffrence</value>
+  </data>
+  <data name="lblTotalCashDiffrence.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 75</value>
+  </data>
+  <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
+    <value>22, 53</value>
+  </data>
+  <data name="label6.Size" type="System.Drawing.Size, System.Drawing">
+    <value>71, 12</value>
+  </data>
+  <data name="label6.Text" xml:space="preserve">
+    <value>Cash HandIn</value>
+  </data>
+  <data name="lblTotalHandInPOS.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 125</value>
+  </data>
+  <data name="lblTotalNonCash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 100</value>
+  </data>
+  <data name="lblTotalCash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 25</value>
+  </data>
+  <data name="lblTotalHandInCash.Location" type="System.Drawing.Point, System.Drawing">
+    <value>93, 50</value>
+  </data>
   <data name="colOperatorID.HeaderText" xml:space="preserve">
     <value>Operator</value>
+  </data>
+  <data name="colDept.HeaderText" xml:space="preserve">
+    <value>Department</value>
   </data>
   <data name="colSettleDateTime.HeaderText" xml:space="preserve">
     <value>Settle DateTime</value>
@@ -189,6 +276,9 @@
   </data>
   <data name="colCashOperatorCard.HeaderText" xml:space="preserve">
     <value>Cash OperatorCard</value>
+  </data>
+  <data name="colCashOfPOS.HeaderText" xml:space="preserve">
+    <value>Cash POS</value>
   </data>
   <data name="colCashDiscount.HeaderText" xml:space="preserve">
     <value>Cash Discount</value>
@@ -204,6 +294,9 @@
   </data>
   <data name="colCashOfCardRecycle.HeaderText" xml:space="preserve">
     <value>Cash Return</value>
+  </data>
+  <data name="colCashOfRefund.HeaderText" xml:space="preserve">
+    <value>Cash Refund</value>
   </data>
   <data name="colTotalCash.HeaderText" xml:space="preserve">
     <value>Cash Total</value>
@@ -231,6 +324,9 @@
   </data>
   <data name="colTotalNonCash.HeaderText" xml:space="preserve">
     <value>NonCash Total</value>
+  </data>
+  <data name="colHandInPOS.HeaderText" xml:space="preserve">
+    <value>POS HandIn</value>
   </data>
   <data name="colOpenDoorCount.HeaderText" xml:space="preserve">
     <value>Open Door</value>

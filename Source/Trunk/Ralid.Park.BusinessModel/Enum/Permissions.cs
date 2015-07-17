@@ -107,6 +107,12 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Card", Description = "数据转换")]
         CardDataConvert = 75,
+
+        /// <summary>
+        /// 强制删除
+        /// </summary>
+        [OperatorRight(Catalog = "Card", Description = "强制删除")]
+        DeleteAtAll = 102,
         #endregion
 
         #region 停车场及其硬件
@@ -184,6 +190,16 @@ namespace Ralid.Park.BusinessModel.Enum
         [OperatorRight(Catalog = "Data", Description = "中山通设置")]
         ZSTSetting = 70,
         /// <summary>
+        /// 车辆信息显示屏设置
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "车辆信息显示屏设置")]
+        VehicleLedSetting = 94,
+        /// <summary>
+        /// 服务器切换设置
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "服务器切换设置")]
+        HostStandbySetting = 95,
+        /// <summary>
         /// 同步数据到备用数据库
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "同步数据到备用数据库")]
@@ -198,6 +214,16 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "编辑系统设置")]
         EditSysSetting = 26,
+        /// <summary>
+        /// 查看本地设置
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "查看本地设置")]
+        ReadLocalSetting = 89,
+        /// <summary>
+        /// 编辑本地设置
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "编辑本地设置")]
+        EditLocalSetting = 90,
         /// <summary>
         /// 查看工作站信息
         /// </summary>
@@ -260,19 +286,29 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "编辑角色信息")]
         EditRole = 33,
+        /// <summary>
+        /// 查看部门信息
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "查看部门信息")]
+        ReadDept = 97,
+        /// <summary>
+        /// 编辑部门信息
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "编辑部门信息")]
+        EditDept = 98,
 
         /// <summary>
         /// 导出系统参数设置
         /// </summary>
-        [OperatorRight (Catalog="Data",Description="导出系统参数设置")]
-        ExportParameter=78,
+        [OperatorRight(Catalog = "Data", Description = "导出系统参数设置")]
+        ExportParameter = 78,
 
         /// <summary>
         /// 导入记录
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "导入记录")]
         ImportRecord = 79,
-        
+
         /// <summary>
         /// 查看通道路口信息
         /// </summary>
@@ -298,6 +334,26 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Data", Description = "手持机同步工具")]
         POSSyncTool = 85,
+        /// <summary>
+        /// 卡片直接出场
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "卡片直接出场")]
+        CardOut = 87,
+        /// <summary>
+        /// 缴费机退款
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "缴费机退款")]
+        APMRefund = 93,
+        /// <summary>
+        /// 无卡挂失
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "无卡挂失")]
+        NoCardLost = 99,
+        /// <summary>
+        /// 超速违章处理
+        /// </summary>
+        [OperatorRight(Catalog = "Data", Description = "超速违章处理")]
+        SpeedingProcess = 100,
         #endregion
 
         #region 报表
@@ -422,13 +478,25 @@ namespace Ralid.Park.BusinessModel.Enum
         /// <summary>
         /// 自助缴费机日志查询
         /// </summary>
-        [OperatorRight(Catalog = "Report", Description = "自助缴费机日志查询")]
+        [OperatorRight(Catalog = "Report", Description = "自助缴费机日志报表")]
         PayOperationLogReport = 54,
+
+        /// <summary>
+        /// 自助缴费机结账记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "自助缴费机结账报表")]
+        APMCheckOutRecordReport = 91,
+
+        /// <summary>
+        /// 自助缴费机退款记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "自助缴费机退款报表")]
+        APMRefundRecordReport = 92,
 
         /// <summary>
         /// 羊城通扣费记录查询
         /// </summary>
-        [OperatorRight(Catalog = "Report", Description = "羊城通扣费记录查询")]
+        [OperatorRight(Catalog = "Report", Description = "羊城通扣费报表")]
         YangChenTongLogReport = 71,
 
         /// <summary>
@@ -442,6 +510,30 @@ namespace Ralid.Park.BusinessModel.Enum
         /// </summary>
         [OperatorRight(Catalog = "Report", Description = "卡片查询")]
         CardReport = 77,
+
+        /// <summary>
+        /// 免费授权记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "免费授权报表")]
+        FreeAuthorizationLogReport = 86,
+
+        /// <summary>
+        /// 下发命令记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "下发命令报表")]
+        WaitingCommandReport = 88,
+
+        /// <summary>
+        /// 服务器切换记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "服务器切换记录查询")]
+        ServerSwitchReport = 96,
+
+        /// <summary>
+        /// 超速违章记录查询
+        /// </summary>
+        [OperatorRight(Catalog = "Report", Description = "超速违章记录查询")]
+        SpeedingReport = 101,
         #endregion
     }
 

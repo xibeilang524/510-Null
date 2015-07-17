@@ -217,27 +217,6 @@
   <data name="label7.Text" xml:space="preserve">
     <value>Name:</value>
   </data>
-  <data name="txtEventPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>323, 226</value>
-  </data>
-  <data name="txtControlPort.Location" type="System.Drawing.Point, System.Drawing">
-    <value>222, 226</value>
-  </data>
-  <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>242, 231</value>
-  </data>
-  <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
-    <value>77, 12</value>
-  </data>
-  <data name="label5.Text" xml:space="preserve">
-    <value>ControlPort:</value>
-  </data>
-  <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>158, 231</value>
-  </data>
-  <data name="label4.Text" xml:space="preserve">
-    <value>EventPort:</value>
-  </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
     <value>60, 109</value>
   </data>
@@ -268,6 +247,39 @@
   <data name="tabPage2.Text" xml:space="preserve">
     <value>Advance</value>
   </data>
+  <data name="chkPrinterUseNotch.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 293</value>
+  </data>
+  <data name="chkPrinterUseNotch.Size" type="System.Drawing.Size, System.Drawing">
+    <value>162, 16</value>
+  </data>
+  <data name="chkPrinterUseNotch.Text" xml:space="preserve">
+    <value>TicketPrinter Use Notch</value>
+  </data>
+  <data name="chkWeigand34.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 123</value>
+  </data>
+  <data name="chkWeigand34.Text" xml:space="preserve">
+    <value>Use Wiegand 34</value>
+  </data>
+  <data name="cmbTicketReader2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>260, 292</value>
+  </data>
+  <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
+    <value>172, 295</value>
+  </data>
+  <data name="label14.Text" xml:space="preserve">
+    <value>TicketReader2:</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 145</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>234, 16</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Text" xml:space="preserve">
+    <value>Online Handle When Card Not On List</value>
+  </data>
   <data name="chkUseAsACS.Location" type="System.Drawing.Point, System.Drawing">
     <value>10, 101</value>
   </data>
@@ -282,6 +294,12 @@
   </data>
   <data name="chkValid.Text" xml:space="preserve">
     <value>Entrance Valid</value>
+  </data>
+  <data name="groupBox2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-15, 248</value>
+  </data>
+  <data name="groupBox1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>-15, 160</value>
   </data>
   <data name="chkNoParkingCount.Location" type="System.Drawing.Point, System.Drawing">
     <value>180, 101</value>
@@ -302,13 +320,16 @@
     <value>ExportCharge</value>
   </data>
   <data name="chkEnableParkvacantLed.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 167</value>
+    <value>180, 204</value>
   </data>
   <data name="chkEnableParkvacantLed.Size" type="System.Drawing.Size, System.Drawing">
     <value>120, 16</value>
   </data>
   <data name="chkEnableParkvacantLed.Text" xml:space="preserve">
     <value>Vacant LEDScreen</value>
+  </data>
+  <data name="chkOnlyTempReaderAfterButtonClick.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 226</value>
   </data>
   <data name="chkOnlyTempReaderAfterButtonClick.Size" type="System.Drawing.Size, System.Drawing">
     <value>222, 16</value>
@@ -317,7 +338,7 @@
     <value>Only TempReader After ButtonClick</value>
   </data>
   <data name="chkPrepayCardWaitWhenOut.Location" type="System.Drawing.Point, System.Drawing">
-    <value>180, 145</value>
+    <value>180, 182</value>
   </data>
   <data name="chkPrepayCardWaitWhenOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>162, 16</value>
@@ -325,11 +346,17 @@
   <data name="chkPrepayCardWaitWhenOut.Text" xml:space="preserve">
     <value>PrepayCard Need Confirm</value>
   </data>
+  <data name="chkMonthCardWaitWhenOut.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 182</value>
+  </data>
   <data name="chkMonthCardWaitWhenOut.Size" type="System.Drawing.Size, System.Drawing">
     <value>156, 16</value>
   </data>
   <data name="chkMonthCardWaitWhenOut.Text" xml:space="preserve">
     <value>MonthCard Need Confirm</value>
+  </data>
+  <data name="chkNoReaderOnCardCaptuer.Location" type="System.Drawing.Point, System.Drawing">
+    <value>10, 204</value>
   </data>
   <data name="chkNoReaderOnCardCaptuer.Size" type="System.Drawing.Size, System.Drawing">
     <value>168, 16</value>
@@ -338,19 +365,19 @@
     <value>No Reader on CardCaptuer</value>
   </data>
   <data name="cmbTicketReader.Location" type="System.Drawing.Point, System.Drawing">
-    <value>260, 233</value>
+    <value>260, 267</value>
   </data>
   <data name="cmbTicketPrinter.Location" type="System.Drawing.Point, System.Drawing">
-    <value>100, 233</value>
+    <value>100, 267</value>
   </data>
   <data name="label6.Location" type="System.Drawing.Point, System.Drawing">
-    <value>178, 237</value>
+    <value>178, 271</value>
   </data>
   <data name="label6.Text" xml:space="preserve">
     <value>TicketReader:</value>
   </data>
   <data name="label9.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 237</value>
+    <value>8, 271</value>
   </data>
   <data name="label9.Size" type="System.Drawing.Size, System.Drawing">
     <value>89, 12</value>
@@ -392,7 +419,7 @@
     <value>Forbid When Card Expired</value>
   </data>
   <data name="txtCardReadInterval.Location" type="System.Drawing.Point, System.Drawing">
-    <value>133, 258</value>
+    <value>133, 320</value>
   </data>
   <data name="txtCardReadInterval.Size" type="System.Drawing.Size, System.Drawing">
     <value>33, 21</value>
@@ -407,7 +434,7 @@
     <value>LightOn When CarArrive</value>
   </data>
   <data name="label29.Location" type="System.Drawing.Point, System.Drawing">
-    <value>8, 261</value>
+    <value>8, 323</value>
   </data>
   <data name="label29.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 12</value>

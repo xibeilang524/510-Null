@@ -70,10 +70,28 @@ namespace Ralid.Park.BusinessModel.Resouce
                     return Resource1.INV_NotActive;
                 case EventInvalidType.INV_NoAccessRight:
                     return Resource1.INV_NoAccessRight;
-                case EventInvalidType .INV_Balance :
+                case EventInvalidType.INV_Balance:
                     return Resource1.INV_Balance;
-                case EventInvalidType .INV_ReadCard :
+                case EventInvalidType.INV_ReadCard:
                     return Resource1.INV_ReadCard;
+                case EventInvalidType.INV_Speeding:
+                    return Resource1.INV_Speeding;
+                case EventInvalidType.INV_CarPlateFail:
+                    return Resource1.INV_CarPlateFail;
+                case EventInvalidType.INV_NotOnTheList:
+                    return Resource1.INV_NotOnTheList;
+                case EventInvalidType.INV_Expired:
+                    return Resource1.INV_Expired;
+                case EventInvalidType.INV_NoAccess:
+                    return Resource1.INV_NoAccess;
+                case EventInvalidType.INV_ListType:
+                    return Resource1.INV_ListType;
+                case EventInvalidType.INV_ListNotEnabled:
+                    return Resource1.INV_ListNotEnabled;
+                case EventInvalidType.INV_CarIsIn:
+                    return Resource1.INV_CarIsIn;
+                case EventInvalidType.INV_CarIsOut:
+                    return Resource1.INV_CarIsOut;
                 default:
                     return Resource1.INV_Unknow;
             }

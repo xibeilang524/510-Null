@@ -117,6 +117,21 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="rdbCarPlateAndCardMode.Text" xml:space="preserve">
+    <value>車牌 + 卡片</value>
+  </data>
+  <data name="rdbCarPlateMode.Text" xml:space="preserve">
+    <value>車牌</value>
+  </data>
+  <data name="label31.Text" xml:space="preserve">
+    <value>進出憑證</value>
+  </data>
+  <data name="chkWeigand34.Text" xml:space="preserve">
+    <value>使用韋根34協議</value>
+  </data>
+  <data name="chkOnlineHandleWhenNotOnList.Text" xml:space="preserve">
+    <value>卡片不在名單中轉在線處理</value>
+  </data>
   <data name="chkRoadGateModel.Text" xml:space="preserve">
     <value>路閘模式</value>
   </data>
@@ -147,6 +162,12 @@
   <data name="chkTakeCardNeedCarSense.Text" xml:space="preserve">
     <value>取卡要求壓地感</value>
   </data>
+  <data name="rdOnline.Text" xml:space="preserve">
+    <value>在線</value>
+  </data>
+  <data name="rdOffLine.Text" xml:space="preserve">
+    <value>脫機</value>
+  </data>
   <data name="label34.Text" xml:space="preserve">
     <value>出入類型</value>
   </data>
@@ -155,12 +176,6 @@
   </data>
   <data name="groupBox3.Text" xml:space="preserve">
     <value>選項</value>
-  </data>
-  <data name="rdOnline.Text" xml:space="preserve">
-    <value>在線</value>
-  </data>
-  <data name="rdOffLine.Text" xml:space="preserve">
-    <value>脫機</value>
   </data>
   <data name="label35.Text" xml:space="preserve">
     <value>序列號</value>

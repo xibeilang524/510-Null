@@ -44,7 +44,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             plEvent.Clear();
             plLastEvent.Clear();
             this.Text = string.Format("{0}", snapshotDatetime.ToString("yyyy-MM-dd HH:mm:ss"));
-            SnapShotBll bll = ConnectStandby ? new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect) : new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
+            SnapShotBll bll = ConnectStandby ? new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect) : new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> shots = bll.GetSnapShots(snapshotDatetime, cardID);
             if (shots != null && shots.Count > 0)
             {
@@ -57,7 +57,7 @@ namespace Ralid.Park.UI.ReportAndStatistics
             plEvent.Clear();
             plLastEvent.Clear();
             this.Text = string.Format("{0}", eventDateTime.ToString("yyyy-MM-dd HH:mm:ss"));
-            SnapShotBll bll = ConnectStandby ? new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect) : new SnapShotBll(AppSettings.CurrentSetting.ParkConnect);
+            SnapShotBll bll = ConnectStandby ? new SnapShotBll(AppSettings.CurrentSetting.CurrentStandbyConnect) : new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> items = bll.GetSnapShots(eventDateTime, cardID);
             if (items != null && items.Count > 0)
             {

@@ -48,6 +48,8 @@ namespace Ralid.Park.UI
             row.Cells["colWorkstationID"].Value = info.StationName;
             DataGridViewCheckBoxCell c = row.Cells["colCenterCharge"] as DataGridViewCheckBoxCell;
             c.Value = info.IsCenterCharge;
+            if (info.Dept != null)
+                row.Cells["colDeptName"].Value = info.Dept.DeptName;
         }
 
         protected override bool DeletingItem(object item)

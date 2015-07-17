@@ -27,6 +27,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
         {
             DataLoadOptions opt = new DataLoadOptions();
             opt.LoadWith<OperatorInfo>(o => o.Role);
+            opt.LoadWith<OperatorInfo>(o => o.Dept);
             parking.LoadOptions = opt;
             return parking.Operator.SingleOrDefault(o => o.OperatorID == id);
         }
@@ -35,6 +36,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
         {
             DataLoadOptions opt = new DataLoadOptions();
             opt.LoadWith<OperatorInfo>(o => o.Role);
+            opt.LoadWith<OperatorInfo>(o => o.Dept);
             parking.LoadOptions = opt;
             return parking.Operator.ToList();
         }
@@ -47,6 +49,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 OperatorSearchCondition con = search as OperatorSearchCondition;
                 DataLoadOptions opt = new DataLoadOptions();
                 opt.LoadWith<OperatorInfo>(o => o.Role);
+                opt.LoadWith<OperatorInfo>(o => o.Dept);
                 parking.LoadOptions = opt;
                 IQueryable<OperatorInfo> result = parking.Operator.AsQueryable();
                 if (!string.IsNullOrEmpty(con.RoleID))
@@ -56,6 +59,18 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 if (con.OperatorNum != null)
                 {
                     result = result.Where(o => o.OperatorNum == con.OperatorNum.Value);
+                }
+                if (!string.IsNullOrEmpty(con.OperatorID))
+                {
+                    result = result.Where(o => o.OperatorID == con.OperatorID);
+                }
+                if (!string.IsNullOrEmpty(con.OperatorName))
+                {
+                    result = result.Where(o => o.OperatorName == con.OperatorName);
+                }
+                if (!(con.DeptID == null || con.DeptID == Guid.Empty))
+                {
+                    result = result.Where(o => o.DeptID == con.DeptID);
                 }
                 return result.ToList();
             }
@@ -68,6 +83,7 @@ namespace Ralid.Park.DAL.LinqDataProvider
         protected override void InsertingItem(OperatorInfo info, ParkDataContext parking)
         {
             if (info.Role != null) parking.GetTable<RoleInfo>().Attach(info.Role);//不需要在插入操作员时同时插入操作员的角色
+            if (info.Dept != null) parking.GetTable<DeptInfo>().Attach(info.Dept);//不需要在插入操作员时同时插入操作员的部门
             base.InsertingItem(info, parking);
         }
 

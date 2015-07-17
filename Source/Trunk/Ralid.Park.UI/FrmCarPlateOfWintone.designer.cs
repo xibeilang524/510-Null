@@ -152,7 +152,6 @@
             // 
             // groupBox1
             // 
-            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Controls.Add(this.chkTractor_On);
             this.groupBox1.Controls.Add(this.chkEmbassy_On);
             this.groupBox1.Controls.Add(this.chkArmPolice_On);
@@ -162,6 +161,7 @@
             this.groupBox1.Controls.Add(this.chkTwoRowArmy_On);
             this.groupBox1.Controls.Add(this.chkOnly_TwoRowYellow_On);
             this.groupBox1.Controls.Add(this.chkIndividual_On);
+            resources.ApplyResources(this.groupBox1, "groupBox1");
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.TabStop = false;
             // 
@@ -177,7 +177,6 @@
             // 
             // groupBox2
             // 
-            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Controls.Add(this.txtProvince);
             this.groupBox2.Controls.Add(this.txtPlateLocate_Th);
             this.groupBox2.Controls.Add(this.txtOCR_Th);
@@ -192,6 +191,7 @@
             this.groupBox2.Controls.Add(this.label3);
             this.groupBox2.Controls.Add(this.label6);
             this.groupBox2.Controls.Add(this.label7);
+            resources.ApplyResources(this.groupBox2, "groupBox2");
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.TabStop = false;
             // 
@@ -206,6 +206,7 @@
             this.txtPlateLocate_Th.MaxValue = 9;
             this.txtPlateLocate_Th.MinValue = 0;
             this.txtPlateLocate_Th.Name = "txtPlateLocate_Th";
+            this.txtPlateLocate_Th.NumberWithCommas = false;
             // 
             // txtOCR_Th
             // 
@@ -213,6 +214,7 @@
             this.txtOCR_Th.MaxValue = 9;
             this.txtOCR_Th.MinValue = 0;
             this.txtOCR_Th.Name = "txtOCR_Th";
+            this.txtOCR_Th.NumberWithCommas = false;
             // 
             // label5
             // 
@@ -235,6 +237,7 @@
             this.txtMaxPlateWidth.MaxValue = 2147483647;
             this.txtMaxPlateWidth.MinValue = 0;
             this.txtMaxPlateWidth.Name = "txtMaxPlateWidth";
+            this.txtMaxPlateWidth.NumberWithCommas = false;
             // 
             // txtMaxImageWidth
             // 
@@ -242,6 +245,7 @@
             this.txtMaxImageWidth.MaxValue = 2147483647;
             this.txtMaxImageWidth.MinValue = 0;
             this.txtMaxImageWidth.Name = "txtMaxImageWidth";
+            this.txtMaxImageWidth.NumberWithCommas = false;
             // 
             // txtMaxImageHeight
             // 
@@ -249,6 +253,7 @@
             this.txtMaxImageHeight.MaxValue = 2147483647;
             this.txtMaxImageHeight.MinValue = 0;
             this.txtMaxImageHeight.Name = "txtMaxImageHeight";
+            this.txtMaxImageHeight.NumberWithCommas = false;
             // 
             // txtMinPlateWidth
             // 
@@ -256,15 +261,16 @@
             this.txtMinPlateWidth.MaxValue = 2147483647;
             this.txtMinPlateWidth.MinValue = 0;
             this.txtMinPlateWidth.Name = "txtMinPlateWidth";
+            this.txtMinPlateWidth.NumberWithCommas = false;
             // 
             // groupBox3
             // 
-            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Controls.Add(this.chkLeanCorrection);
             this.groupBox3.Controls.Add(this.chkMovingImage);
             this.groupBox3.Controls.Add(this.chkIsNight);
             this.groupBox3.Controls.Add(this.chkIsFieldImage);
             this.groupBox3.Controls.Add(this.chkVertCompress);
+            resources.ApplyResources(this.groupBox3, "groupBox3");
             this.groupBox3.Name = "groupBox3";
             this.groupBox3.TabStop = false;
             // 
