@@ -70,14 +70,26 @@ namespace Ralid.OpenCard.UI
         }
         #endregion
 
-        private void btnCancel_Click(object sender, EventArgs e)
+        #region 事件处理
+        private void FrmYCTDetail_Load(object sender, EventArgs e)
         {
-            this.Close();
+            txtID.Init();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
+            if (txtID.ComPort <= 0)
+            {
+                MessageBox.Show("没有设置串口");
+                return;
+            }
             this.DialogResult = DialogResult.OK;
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+        #endregion
     }
 }

@@ -31,6 +31,14 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Interop.MSCommLib">
+      <HintPath>..\Reference\Interop.MSCommLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Interop.ZSTLib">
+      <HintPath>..\Reference\Interop.ZSTLib.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
     <Reference Include="Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Reference\Ralid.GeneralLibrary.dll</HintPath>

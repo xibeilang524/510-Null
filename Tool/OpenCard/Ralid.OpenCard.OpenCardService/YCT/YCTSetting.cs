@@ -8,13 +8,22 @@ namespace Ralid.OpenCard.OpenCardService.YCT
     [DataContract]
     public class YCTSetting
     {
+        #region 构造函数
+        public YCTSetting()
+        {
+            Items = new List<YCTItem>();
+        }
+        #endregion
+
+        #region 公共属性
         [DataMember]
-        public string ServiceCode { get; set; }
+        public int ServiceCode { get; set; }
         /// <summary>
         /// 获取或设置服务器管理的所有POS机
         /// </summary>
         [DataMember]
         public List<YCTItem> Items { get; set; }
+        #endregion
     }
 
     /// <summary>
@@ -33,6 +42,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// </summary>
         [DataMember]
         public int? EntranceID { get; set; }
+        /// <summary>
+        /// 获取或设置读卡器
+        /// </summary>
+        public YCTReader Reader { get; set; }
         /// <summary>
         /// 获取或设置说明信息
         /// </summary>

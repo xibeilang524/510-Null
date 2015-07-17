@@ -36,7 +36,7 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.txtMemo = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
-            this.txtID = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox (this.components);
+            this.txtID = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
             this.SuspendLayout();
             // 
             // label1
@@ -108,7 +108,7 @@
             this.txtID.ImeMode = System.Windows.Forms.ImeMode.On;
             this.txtID.Location = new System.Drawing.Point(15, 31);
             this.txtID.Name = "txtID";
-            this.txtID.Size = new System.Drawing.Size(226, 21);
+            this.txtID.Size = new System.Drawing.Size(226, 20);
             this.txtID.TabIndex = 8;
             // 
             // FrmYCTDetail
@@ -132,6 +132,7 @@
             this.Name = "FrmYCTDetail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "驿停POS";
+            this.Load += new System.EventHandler(this.FrmYCTDetail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

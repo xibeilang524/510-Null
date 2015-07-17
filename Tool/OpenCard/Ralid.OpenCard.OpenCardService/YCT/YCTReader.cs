@@ -96,11 +96,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
-        public bool SetServiceCode(string code)
+        public bool SetServiceCode(int code)
         {
-            int temp = 0;
-            if (!int.TryParse(code, out temp) || temp < 1000 || temp > 9999) throw new InvalidCastException("商家编号不正确，应该为四位数字");
-            byte[] bcd = new byte[] { BCDConverter.IntToBCD(int.Parse(code.Substring(0, 2))), BCDConverter.IntToBCD(int.Parse(code.Substring(2, 2))) };
+            code = code % 10000; //取数值的低四位
+            byte[] bcd = new byte[] { BCDConverter.IntToBCD(code / 100), BCDConverter.IntToBCD(code % 100) };
             var response = Request(YCTCommandType.SetServiceCode, bcd);
             return (response != null && response.IsCommandExcuteOk);
         }

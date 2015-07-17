@@ -241,7 +241,7 @@ namespace Ralid.OpenCard.OpenCardService
         {
             if (!_Services.ContainsKey(yct.GetType()))
             {
-                IOpenCardService s = new YCT.YCTService();
+                IOpenCardService s = new YCT.YCTService(yct);
                 s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);

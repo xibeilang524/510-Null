@@ -67,7 +67,6 @@ namespace Ralid.OpenCard.OpenCardService
                 {
                     CardID = e.CardID,
                     CardType = "中山通",
-                    DeviceID = e.ReaderIP,
                     EntranceID = entrance.EntranceID,
                     EntranceName =entrance.EntranceName ,
                 };
@@ -78,7 +77,6 @@ namespace Ralid.OpenCard.OpenCardService
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
                     CardID = e.CardID,
-                    DeviceID = e.ReaderIP,
                 };
                 if (entrance != null)
                 {
@@ -114,7 +112,6 @@ namespace Ralid.OpenCard.OpenCardService
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
                     CardID = e.CardID,
-                    DeviceID = e.ReaderIP,
                     Paid = _WaitingPayingCards[e.ReaderIP].Accounts, //默认是直接扣除应收款所以如果扣款成功,已交费用等于应收费用
                     PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer,
                     PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong,
@@ -131,7 +128,6 @@ namespace Ralid.OpenCard.OpenCardService
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.CardID,
-                DeviceID = e.ReaderIP,
             };
             if (this.OnPaidFail != null) this.OnPaidFail(this, args);
         }

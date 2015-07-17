@@ -53,6 +53,7 @@ namespace Ralid.OpenCard.UI
             YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<YCTSetting>();
             if (yct != null)
             {
+                txtServiceCode.IntergerValue = yct.ServiceCode;
                 dataGridView1.Rows.Clear();
                 if (yct.Items != null && yct.Items.Count > 0)
                 {
@@ -118,7 +119,13 @@ namespace Ralid.OpenCard.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
+            if (txtServiceCode.IntergerValue < 1000 || txtServiceCode.IntergerValue > 9999)
+            {
+                MessageBox.Show("服务商代码设置不正确");
+                return;
+            }
             YCTSetting yct = new YCTSetting();
+            yct.ServiceCode = txtServiceCode.IntergerValue;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))

@@ -31,8 +31,6 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共属性
-        public string DeviceID { get; set; }
-
         public string CardID { get; set; }
 
         public int? EntranceID { get; set; }

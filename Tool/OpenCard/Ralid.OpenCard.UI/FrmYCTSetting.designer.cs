@@ -30,14 +30,16 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colReaderIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Update = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Delete = new System.Windows.Forms.ToolStripMenuItem();
             this.btnSave = new System.Windows.Forms.Button();
-            this.colReaderIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtServiceCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -63,6 +65,27 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(625, 219);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // colReaderIP
+            // 
+            this.colReaderIP.HeaderText = "读卡器串口";
+            this.colReaderIP.Name = "colReaderIP";
+            this.colReaderIP.ReadOnly = true;
+            this.colReaderIP.Width = 150;
+            // 
+            // colEntrance
+            // 
+            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEntrance.HeaderText = "通道";
+            this.colEntrance.Name = "colEntrance";
+            this.colEntrance.ReadOnly = true;
+            // 
+            // colMemo
+            // 
+            this.colMemo.HeaderText = "说明";
+            this.colMemo.Name = "colMemo";
+            this.colMemo.ReadOnly = true;
+            this.colMemo.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -105,32 +128,34 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
-            // colReaderIP
+            // label1
             // 
-            this.colReaderIP.HeaderText = "读卡器串口";
-            this.colReaderIP.Name = "colReaderIP";
-            this.colReaderIP.ReadOnly = true;
-            this.colReaderIP.Width = 150;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(143, 12);
+            this.label1.TabIndex = 3;
+            this.label1.Text = "服务商代码(1000 - 9999)";
             // 
-            // colEntrance
+            // txtServiceCode
             // 
-            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEntrance.HeaderText = "通道";
-            this.colEntrance.Name = "colEntrance";
-            this.colEntrance.ReadOnly = true;
-            // 
-            // colMemo
-            // 
-            this.colMemo.HeaderText = "说明";
-            this.colMemo.Name = "colMemo";
-            this.colMemo.ReadOnly = true;
-            this.colMemo.Width = 200;
+            this.txtServiceCode.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtServiceCode.Location = new System.Drawing.Point(162, 10);
+            this.txtServiceCode.MaxValue = 9999;
+            this.txtServiceCode.MinValue = 0;
+            this.txtServiceCode.Name = "txtServiceCode";
+            this.txtServiceCode.NumberWithCommas = false;
+            this.txtServiceCode.Size = new System.Drawing.Size(115, 21);
+            this.txtServiceCode.TabIndex = 8;
+            this.txtServiceCode.Text = "1000";
             // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(626, 319);
+            this.Controls.Add(this.txtServiceCode);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmYCTSetting";
@@ -140,6 +165,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -154,6 +180,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colReaderIP;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMemo;
+        private System.Windows.Forms.Label label1;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtServiceCode;
 
     }
 }
