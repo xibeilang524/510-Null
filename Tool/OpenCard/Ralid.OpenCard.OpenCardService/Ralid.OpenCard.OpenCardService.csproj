@@ -75,6 +75,7 @@
     <Compile Include="YCT\YCTBuffer.cs" />
     <Compile Include="YCT\YCTCommandType.cs" />
     <Compile Include="YCT\YCTPacket.cs" />
+    <Compile Include="YCT\YCTPaymentInfo.cs" />
     <Compile Include="YCT\YCTPOS.cs" />
     <Compile Include="YCT\YCTService.cs" />
     <Compile Include="YCT\YCTSetting.cs" />

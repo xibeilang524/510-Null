@@ -51,6 +51,88 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             ret.AddRange(CRC32Helper.CRC32(ret));
             return ret.ToArray();
         }
+
+        private YCTPaymentInfo GetPaymentInfoFromM1(YCTPacket packet)
+        {
+            byte[] data = packet.Data;
+            if (data == null || data.Length == 0) return null;
+            try
+            {
+                YCTPaymentInfo payment = new YCTPaymentInfo();
+                payment.终端交易流水号 = BEBinaryConverter.BytesToInt(Slice(data, 0, 4));
+                payment.逻辑卡号 = HexStringConverter.HexToString(Slice(data, 4, 8), string.Empty);
+                payment.物理卡号 = HexStringConverter.HexToString(Slice(data, 12, 4), string.Empty);
+                payment.上次交易设备编号 = HexStringConverter.HexToString(Slice(data, 16, 4), string.Empty);
+                payment.上次交易日期时间 = HexStringConverter.HexToString(Slice(data, 20, 7), string.Empty);
+                payment.本次交易设备编号 = HexStringConverter.HexToString(Slice(data, 27, 4), string.Empty);
+                payment.本次交易日期时间 = DateTime.ParseExact(HexStringConverter.HexToString(Slice(data, 31, 7), string.Empty), "yyyyMMddHHmmss", null);
+                payment.交易金额 = BEBinaryConverter.BytesToInt(Slice(data, 38, 4));
+                payment.本次余额 = BEBinaryConverter.BytesToInt(Slice(data, 42, 4));
+                payment.票价 = BEBinaryConverter.BytesToInt(Slice(data, 46, 4));
+                payment.交易类型 = Slice(data, 50, 1)[0];
+                payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 51, 2));
+                payment.累计门槛月份 = HexStringConverter.HexToString(Slice(data, 53, 2), string.Empty);
+                payment.公交门槛计数 = Slice(data, 55, 1)[0];
+                payment.地铁门槛计数 = Slice(data, 56, 1)[0];
+                payment.联乘门槛计数 = Slice(data, 57, 1)[0];
+                payment.本次交易入口设备编号 = HexStringConverter.HexToString(Slice(data, 58, 4), string.Empty);
+                payment.本次交易入口日期时间 = HexStringConverter.HexToString(Slice(data, 62, 7), string.Empty);
+                payment.交易认证码 = HexStringConverter.HexToString(Slice(data, 69, 4), string.Empty);
+                return payment;
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return null;
+        }
+
+        private YCTPaymentInfo GetPaymentInfoFromCPU(YCTPacket packet)
+        {
+            byte[] data = packet.Data;
+            if (data == null || data.Length == 0) return null;
+            try
+            {
+                YCTPaymentInfo payment = new YCTPaymentInfo();
+                payment.本次交易设备编号 = HexStringConverter.HexToString(Slice(data, 0, 6), string.Empty);
+                payment.终端交易流水号 = BEBinaryConverter.BytesToInt(Slice(data, 6, 4));
+                payment.本次交易日期时间 = DateTime.ParseExact(HexStringConverter.HexToString(Slice(data, 10, 7), string.Empty), "yyyyMMddHHmmss", null);
+                payment.逻辑卡号 = HexStringConverter.HexToString(Slice(data, 17, 8), string.Empty);
+                payment.物理卡号 = HexStringConverter.HexToString(Slice(data, 25, 8), string.Empty);
+                payment.交易金额 = BEBinaryConverter.BytesToInt(Slice(data, 33, 4));
+                payment.票价 = BEBinaryConverter.BytesToInt(Slice(data, 37, 4));
+                payment.本次余额 = BEBinaryConverter.BytesToInt(Slice(data, 41, 4));
+                payment.交易类型 = Slice(data, 45, 1)[0];
+                payment.附加交易类型 = Slice(data, 46, 1)[0];
+                payment.票卡充值交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 47, 2));
+                payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 49, 2));
+                payment.累计门槛月份 = HexStringConverter.HexToString(Slice(data, 51, 2), string.Empty);
+                payment.公交门槛计数 = Slice(data, 52, 1)[0];
+                payment.地铁门槛计数 = Slice(data, 53, 1)[0];
+                payment.联乘门槛计数 = Slice(data, 54, 1)[0];
+                payment.本次交易入口设备编号 = HexStringConverter.HexToString(Slice(data, 55, 6), string.Empty);
+                payment.本次交易入口日期时间 = HexStringConverter.HexToString(Slice(data, 61, 7), string.Empty);
+                payment.上次交易设备编号 = HexStringConverter.HexToString(Slice(data, 68, 6), string.Empty);
+                payment.上次交易日期时间 = HexStringConverter.HexToString(Slice(data, 74, 4), string.Empty);
+                payment.区域代码 = HexStringConverter.HexToString(Slice(data, 78, 1), string.Empty);
+                payment.区域卡类型 = HexStringConverter.HexToString(Slice(data, 79, 2), string.Empty);
+                payment.区域子码 = HexStringConverter.HexToString(Slice(data, 81, 1), string.Empty);
+                payment.交易认证码 = HexStringConverter.HexToString(Slice(data, 82, 4), string.Empty);
+                return payment;
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+            return null;
+        }
+
+        private byte[] Slice(byte[] source, int index, int count)
+        {
+            byte[] ret = new byte[count];
+            Array.Copy(source, index, ret, 0, count);
+            return ret;
+        }
         #endregion
 
         #region 公共方法(串口管理)
@@ -102,7 +184,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             _Port.SendData(request);
             if (_Responsed.WaitOne(2000))
             {
-                if (_Response != null && _Response.Command == (byte)cmd)
+                if (_Response != null && _Response.CheckCRC() && _Response.Command == (byte)cmd)
                 {
                     _LastError = _Response.Status;
                     return _Response;
@@ -149,9 +231,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// 预消费
         /// </summary>
         /// <param name="paid">消费金额(分为单位)</param>
+        /// <param name="walletType">钱包类型 1表示M1 2表示CPU</param>
         /// <param name="maxOfflineMonth">离线过期月数</param>
         /// <returns></returns>
-        public YCTPaymentRecord Prepaid(int paid, int maxOfflineMonth = 12)
+        public YCTPaymentInfo Prepaid(int paid, int walletType, int maxOfflineMonth = 12)
         {
             DateTime dt = DateTime.Now;
             List<byte> data = new List<byte>();
@@ -167,6 +250,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             data.Add((byte)(maxOfflineMonth > 0 ? 0x01 : 0x00));
             data.Add(BCDConverter.IntToBCD(maxOfflineMonth));
             var response = Request(YCTCommandType.Prepaid, data.ToArray());
+            if (response != null && response.IsCommandExcuteOk)
+            {
+                if (walletType == 1) return GetPaymentInfoFromM1(response);
+                if (walletType == 2) return GetPaymentInfoFromCPU(response);
+            }
             return null;
         }
         /// <summary>

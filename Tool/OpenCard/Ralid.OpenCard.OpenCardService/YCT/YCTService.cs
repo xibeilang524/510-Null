@@ -145,9 +145,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private bool Paid(YCTItem item, YCTWallet w, decimal paid)
         {
-            YCTPaymentRecord record = item.Reader.Prepaid((int)(paid * 100));
-            if (record == null) return false;
+            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid * 100), w.WalletType);
+            if (payment == null) return false;
             //这里应该保存记录,保存记录成功然后再进行下一步
+            YCTPaymentRecord record = CreateRecord(payment);
             YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
             CommandResult result = bll.Insert(record);
             if (result.Result != ResultCode.Successful) return false;
@@ -160,14 +161,15 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 return false;
             }
             YCTPaymentRecord newVal = record.Clone();
-            if (w.WalletType == 0x02)
-            {
-                newVal.TAC = tac;
-            }
-            newVal.UploadString = string.Empty; //这里要将记录的字符串生成好
+            if (w.WalletType == 0x02) newVal.TAC = tac; //cpu钱包将TAC写到记录中
             newVal.State = YCTPaymentRecordState.Completed; //标记为完成
             result = bll.Update(newVal, record);
             return result.Result == ResultCode.Successful;
+        }
+
+        private YCTPaymentRecord CreateRecord(YCTPaymentInfo payment)
+        {
+            return null;
         }
         #endregion
 
