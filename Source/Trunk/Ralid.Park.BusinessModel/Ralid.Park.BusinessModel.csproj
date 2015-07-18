@@ -245,6 +245,8 @@
     <Compile Include="Model\VehicleLedSetting.cs" />
     <Compile Include="Model\WintoneCarPlateSetting.cs" />
     <Compile Include="Model\YangChenTongLog.cs" />
+    <Compile Include="Model\YCTBlacklist.cs" />
+    <Compile Include="Model\YCTPaymentRecord.cs" />
     <Compile Include="Model\ZSTSetting.cs" />
     <Compile Include="Notify\DeviceModeNotify.cs" />
     <Compile Include="Notify\EntranceSwitchNotify.cs" />

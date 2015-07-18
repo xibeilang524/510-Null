@@ -162,6 +162,8 @@
     <Compile Include="IDAL\IWorkstationProvider.cs" />
     <Compile Include="IDAL\IProvider.cs" />
     <Compile Include="IDAL\IYangChenTongLogProvider.cs" />
+    <Compile Include="IDAL\IYCTBlacklistProvider.cs" />
+    <Compile Include="IDAL\IYCTPaymentRecordProvider.cs" />
     <Compile Include="LinqDataProvider\APMCheckOutRecordProvider.cs" />
     <Compile Include="LinqDataProvider\APMProvider.cs" />
     <Compile Include="LinqDataProvider\APMRefundRecordProvider.cs" />
@@ -207,6 +209,8 @@
     <Compile Include="LinqDataProvider\WorkstationProvider.cs" />
     <Compile Include="LinqDataProvider\UnitWork.cs" />
     <Compile Include="LinqDataProvider\YangChenTongLogProvider.cs" />
+    <Compile Include="LinqDataProvider\YCTBlacklistProvider.cs" />
+    <Compile Include="LinqDataProvider\YCTPaymentRecordProvider.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="IDAL\ProviderFactory.cs" />
   </ItemGroup>

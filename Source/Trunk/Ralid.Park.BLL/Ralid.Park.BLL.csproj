@@ -175,6 +175,8 @@
     <Compile Include="WaitingCommandBLL.cs" />
     <Compile Include="WorkstationBll.cs" />
     <Compile Include="YangChenTongLogBLL.cs" />
+    <Compile Include="YCTBlacklistBll.cs" />
+    <Compile Include="YCTPaymentRecordBll.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Ralid.Park.BusinessModel\Ralid.Park.BusinessModel.csproj">

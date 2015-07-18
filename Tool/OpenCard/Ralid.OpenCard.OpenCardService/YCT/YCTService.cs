@@ -4,6 +4,8 @@ using System.Threading;
 using System.Linq;
 using System.Text;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Result;
+using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BLL;
 
 namespace Ralid.OpenCard.OpenCardService.YCT
@@ -52,7 +54,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         }
                         else
                         {
-                            HandleWallet(item,w, entrance);
+                            HandleWallet(item, w, entrance);
                         }
                     }
                 }
@@ -103,7 +105,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     }
                     else //扣费
                     {
-                        if (Paid(item, args.Payment.Accounts))
+                        if (Paid(item, w, args.Payment.Accounts))
                         {
                             args.Paid = args.Payment.Accounts;
                             if (this.OnPaidOk != null) this.OnPaidOk(this, args);
@@ -122,22 +124,28 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             YCTPaymentRecord record = item.Reader.Prepaid((int)(paid * 100));
             if (record == null) return false;
+            //这里应该保存记录,保存记录成功然后再进行下一步
+            YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
+            CommandResult result = bll.Insert(record);
+            if (result.Result != ResultCode.Successful) return false;
+
             string tac = item.Reader.CompletePaid();
             if (string.IsNullOrEmpty(tac))
             {
                 int err = item.Reader.LastError;
-                if (err == -1) return false;
-                //保存未完成记录
-                record.State = 0; //标记为未完成
+                if (err == 1) //失败 删除记录
+                {
+                    bll.Delete(record);
+                    return false;
+                }
             }
             if (w.WalletType == 0x02)
             {
                 record.TAC = tac;
             }
-            record.State = 1; //标记为完成
-            //这里应该保存记录到数据库中
-
-            return record.State == 1;
+            record.State = YCTPaymentRecordState.Completed; //标记为完成
+            result = bll.Update(record);
+            return result.Result == ResultCode.Successful;
         }
         #endregion
 

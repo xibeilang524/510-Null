@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ralid.GeneralLibrary;
+using Ralid.Park.BusinessModel.Model;
 
 namespace Ralid.OpenCard.OpenCardService.YCT
 {

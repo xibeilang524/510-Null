@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Ralid.OpenCard.OpenCardService.YCT
+namespace Ralid.Park.BusinessModel.Model
 {
     public class YCTPaymentRecord
     {
@@ -40,6 +40,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// </summary>
         public string LogicCardID { get; set; }
         /// <summary>
+        /// 获取或设置钱包类型 1表示M1钱包 2表示CPU钱包
+        /// </summary>
+        public int WalletType { get; set; }
+        /// <summary>
         /// 获取或设置交易金额(分为单位)
         /// </summary>
         public int Paid { get; set; }
@@ -56,13 +60,29 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// </summary>
         public string TAC { get; set; }
         /// <summary>
-        /// 获取或设置记录状态
+        /// 获取或设置记录状态 
         /// </summary>
-        public int State { get; set; }
+        public YCTPaymentRecordState State { get; set; }
         /// <summary>
         /// 获取或设置上传字符串
         /// </summary>
         public string UploadString { get; set; }
         #endregion
+    }
+
+    public enum YCTPaymentRecordState
+    {
+        /// <summary>
+        /// 表示未处理完成
+        /// </summary>
+        Uncompleted = 0,
+        /// <summary>
+        /// 处理完成
+        /// </summary>
+        Completed = 1,
+        /// <summary>
+        /// 羊城通服务器接受其为有效记录
+        /// </summary>
+        ServiceAccepted = 2
     }
 }
