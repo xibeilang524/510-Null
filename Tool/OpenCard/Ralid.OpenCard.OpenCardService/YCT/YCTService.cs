@@ -26,6 +26,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #region 私有变量
         private List<YCTItem> _Readers = new List<YCTItem>();
         private Dictionary<YCTItem, Thread> _PollRoutes = new Dictionary<YCTItem, Thread>();
+        private Timer _ChkComport = null;
         #endregion
 
         #region 公共属性
@@ -33,29 +34,51 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 私有方法
+        private void CheckComport(object state)
+        {
+            foreach (var item in _Readers)
+            {
+                if (item.Reader != null && !item.Reader.IsOpened)
+                {
+                    item.Reader.Open();
+                    if (item.Reader.IsOpened) //需要正常初始化后才能加到列表中
+                    {
+                        item.Reader.SetServiceCode(Setting.ServiceCode);
+                        item.Reader.InitPaidMode();
+                    }
+                }
+            }
+        }
+
         private void PollRoute(object obj)
         {
             YCTItem item = obj as YCTItem;
-            if (item == null) return;
-            if (item.Reader == null || !item.Reader.IsOpened) return;
+            if (item == null || item.Reader == null) return;
             EntranceInfo entrance = null;
             if (item.EntranceID != null) entrance = ParkBuffer.Current.GetEntrance(item.EntranceID.Value);
             try
             {
-                while (item.Reader.IsOpened)
+                while (true)
                 {
-                    YCTWallet w = item.Reader.Poll();
-                    if (w != null)
+                    if (item.Reader.IsOpened)
                     {
-                        //此处应该先判断黑名单
-                        if (InBlackList(w.PhysicalCardID, w.LogicCardID))
+                        YCTWallet w = item.Reader.Poll();
+                        if (w != null)
                         {
-                            item.Reader.CatchBlackList();
+                            //此处应该先判断黑名单
+                            if (InBlackList(w.PhysicalCardID, w.LogicCardID))
+                            {
+                                item.Reader.CatchBlackList();
+                            }
+                            else
+                            {
+                                HandleWallet(item, w, entrance);
+                            }
                         }
-                        else
-                        {
-                            HandleWallet(item, w, entrance);
-                        }
+                    }
+                    else
+                    {
+                        Thread.Sleep(3000);
                     }
                 }
             }
@@ -133,18 +156,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             if (string.IsNullOrEmpty(tac))
             {
                 int err = item.Reader.LastError;
-                if (err == 1) //失败 删除记录
-                {
-                    bll.Delete(record);
-                    return false;
-                }
+                if (err == 0x01) bll.Delete(record); //失败 删除记录
+                return false;
             }
+            YCTPaymentRecord newVal = record.Clone();
             if (w.WalletType == 0x02)
             {
-                record.TAC = tac;
+                newVal.TAC = tac;
             }
-            record.State = YCTPaymentRecordState.Completed; //标记为完成
-            result = bll.Update(record);
+            newVal.UploadString = string.Empty; //这里要将记录的字符串生成好
+            newVal.State = YCTPaymentRecordState.Completed; //标记为完成
+            result = bll.Update(newVal, record);
             return result.Result == ResultCode.Successful;
         }
         #endregion
@@ -161,6 +183,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public void Init()
         {
             if (Setting == null) throw new InvalidOperationException("没有提供羊城通参数");
+            if (_ChkComport != null) _ChkComport.Dispose();
             Dictionary<YCTPOS, YCTItem> temp = new Dictionary<YCTPOS, YCTItem>();
             List<YCTItem> keys = _Readers.ToList();
             if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
@@ -194,31 +217,26 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     {
                         var reader = new YCTPOS((byte)item.Comport, 57600);
                         reader.Open();
+                        item.Reader = reader;
+                        _Readers.Add(item);
+                        Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
+                        t.IsBackground = true;
+                        _PollRoutes[item] = t;
+                        t.Start(item);
                         if (reader.IsOpened) //需要正常初始化后才能加到列表中
                         {
-                            bool sucess = reader.SetServiceCode(Setting.ServiceCode);
-                            if (sucess) reader.InitPaidMode();
-                            if (sucess)
-                            {
-                                item.Reader = reader;
-                                _Readers.Add(item);
-                                Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
-                                t.IsBackground = true;
-                                _PollRoutes[item] = t;
-                                t.Start(item);
-                            }
-                            else
-                            {
-                                reader.Close(); //没有正常的读卡器最后要关闭
-                            }
+                            reader.SetServiceCode(Setting.ServiceCode);
+                            reader.InitPaidMode();
                         }
                     }
                 }
             }
+            _ChkComport = new Timer(new TimerCallback(CheckComport), null, 5000, 10000); //启动检查串口状态的定时器
         }
 
         public void Dispose()
         {
+            if (_ChkComport != null) _ChkComport.Dispose();
             foreach (var item in _Readers)
             {
                 if (item.Reader != null && item.Reader.IsOpened) item.Reader.Close();

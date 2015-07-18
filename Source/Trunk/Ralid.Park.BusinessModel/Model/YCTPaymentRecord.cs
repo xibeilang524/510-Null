@@ -5,6 +5,7 @@ using System.Text;
 
 namespace Ralid.Park.BusinessModel.Model
 {
+    [Serializable]
     public class YCTPaymentRecord
     {
         #region 构造函数
@@ -67,6 +68,13 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置上传字符串
         /// </summary>
         public string UploadString { get; set; }
+        #endregion
+
+        #region 公共方法
+        public YCTPaymentRecord Clone()
+        {
+            return this.MemberwiseClone() as YCTPaymentRecord;
+        }
         #endregion
     }
 

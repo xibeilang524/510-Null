@@ -11,9 +11,11 @@ namespace Ralid.Park.BLL
 {
     public class DeptBll
     {
-        #region 构造函数
+        #region 构造函数
+
         /// <summary>
-        /// 构造函数
+        /// 构造函数
+
         /// </summary>
         /// <param name="repoUri">存储层的资源标识(可以是数据库连接字符串或文件名等，根据存储层的不同可以设置不同的值)</param>
         public DeptBll(string repoUri)

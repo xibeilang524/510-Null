@@ -51,6 +51,11 @@ namespace Ralid.Park.BLL
                 return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
             }
         }
+		
+		public CommandResult Update(YCTPaymentRecord newVal,YCTPaymentRecord oldVal)
+        {
+            return _Provider.Update(newVal,oldVal);
+        }
 
         public CommandResult Delete(YCTPaymentRecord info)
         {

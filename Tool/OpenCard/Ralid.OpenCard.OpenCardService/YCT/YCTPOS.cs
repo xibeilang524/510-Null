@@ -194,7 +194,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public bool CatchBlackList()
         {
             var response = Request(YCTCommandType.CatchBlack, null);
-            return (response != null && response.IsCommandExcuteOk)
+            return (response != null && response.IsCommandExcuteOk);
         }
         #endregion
     }
