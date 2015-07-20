@@ -31,6 +31,12 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Ftp">
+      <HintPath>..\packages\Ftp.dll.2.0.15174.1121\lib\Ftp.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib">
+      <HintPath>..\packages\SharpZipLib.0.86.0\lib\20\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
     <Reference Include="Interop.MSCommLib">
       <HintPath>..\Reference\Interop.MSCommLib.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
@@ -85,6 +91,9 @@
     <Compile Include="YiTingShanFuService.cs" />
     <Compile Include="YiTingShanFuSetting.cs" />
     <Compile Include="ZSTService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
