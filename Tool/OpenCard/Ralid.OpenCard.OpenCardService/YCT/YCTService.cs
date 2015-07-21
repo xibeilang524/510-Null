@@ -192,7 +192,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 foreach (var key in keys)
                 {
-                    var item = Setting.Items != null ? Setting.Items.SingleOrDefault(it => it.Comport == key.Comport) : null;
+                    var item = Setting.Items != null ? Setting.Items.SingleOrDefault(it => it.ID == key.ID) : null;
                     if (item == null)
                     {
                         var reader = key.Reader;
@@ -215,7 +215,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 foreach (var item in Setting.Items)
                 {
-                    if (_Readers == null || !_Readers.Exists(it => it.Comport == item.Comport))
+                    if (_Readers == null || !_Readers.Exists(it => it.ID == item.ID))
                     {
                         var reader = new YCTPOS((byte)item.Comport, 57600);
                         reader.Open();

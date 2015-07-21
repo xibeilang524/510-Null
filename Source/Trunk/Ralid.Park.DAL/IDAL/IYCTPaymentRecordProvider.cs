@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Ralid.Park.DAL.IDAL
 {
-    public interface IYCTPaymentRecordProvider : IProvider<Ralid.Park.BusinessModel.Model.YCTPaymentRecord, Guid>
+    public interface IYCTPaymentRecordProvider : IProvider<Ralid.Park.BusinessModel.Model.YCTPaymentRecord, int>
     {
     }
 }

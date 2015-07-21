@@ -5,6 +5,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.OpenCard.OpenCardServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.OpenCard.UI", "Ralid.OpenCard.UI\Ralid.OpenCard.UI.csproj", "{C819595C-C5CC-4E99-B80A-1D771F4BB751}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftptest", "Ftptest\Ftptest.csproj", "{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -35,6 +37,16 @@ Global
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|x86.ActiveCfg = Release|x86
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|x86.Build.0 = Release|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|x86.ActiveCfg = Debug|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|x86.Build.0 = Debug|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Any CPU.ActiveCfg = Release|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Mixed Platforms.Build.0 = Release|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|x86.ActiveCfg = Release|x86
+		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

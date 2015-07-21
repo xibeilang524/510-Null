@@ -41,7 +41,7 @@ namespace Ralid.Park.BLL
 
         public CommandResult Update(YCTBlacklist newVal)
         {
-            YCTBlacklist original = _Provider.GetByID(newVal.ID).QueryObject;
+            YCTBlacklist original = _Provider.GetByID(newVal.CardID).QueryObject;
             if (original != null)
             {
                 return _Provider.Update(newVal, original);

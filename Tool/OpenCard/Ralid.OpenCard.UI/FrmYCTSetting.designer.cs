@@ -30,9 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.colReaderIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Update = new System.Windows.Forms.ToolStripMenuItem();
@@ -40,6 +37,10 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtServiceCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colComport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -54,7 +55,8 @@
             this.dataGridView1.BackgroundColor = System.Drawing.Color.White;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colReaderIP,
+            this.colID,
+            this.colComport,
             this.colEntrance,
             this.colMemo});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
@@ -65,27 +67,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(625, 219);
             this.dataGridView1.TabIndex = 0;
-            // 
-            // colReaderIP
-            // 
-            this.colReaderIP.HeaderText = "读卡器串口";
-            this.colReaderIP.Name = "colReaderIP";
-            this.colReaderIP.ReadOnly = true;
-            this.colReaderIP.Width = 150;
-            // 
-            // colEntrance
-            // 
-            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEntrance.HeaderText = "通道";
-            this.colEntrance.Name = "colEntrance";
-            this.colEntrance.ReadOnly = true;
-            // 
-            // colMemo
-            // 
-            this.colMemo.HeaderText = "说明";
-            this.colMemo.Name = "colMemo";
-            this.colMemo.ReadOnly = true;
-            this.colMemo.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -149,6 +130,34 @@
             this.txtServiceCode.TabIndex = 8;
             this.txtServiceCode.Text = "1000";
             // 
+            // colID
+            // 
+            this.colID.HeaderText = "读卡器编号";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 150;
+            // 
+            // colComport
+            // 
+            this.colComport.HeaderText = "串口";
+            this.colComport.Name = "colComport";
+            this.colComport.ReadOnly = true;
+            this.colComport.Width = 150;
+            // 
+            // colEntrance
+            // 
+            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEntrance.HeaderText = "所在通道";
+            this.colEntrance.Name = "colEntrance";
+            this.colEntrance.ReadOnly = true;
+            // 
+            // colMemo
+            // 
+            this.colMemo.HeaderText = "说明";
+            this.colMemo.Name = "colMemo";
+            this.colMemo.ReadOnly = true;
+            this.colMemo.Width = 200;
+            // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -177,11 +186,12 @@
         private System.Windows.Forms.ToolStripMenuItem mnu_Add;
         private System.Windows.Forms.ToolStripMenuItem mnu_Update;
         private System.Windows.Forms.ToolStripMenuItem mnu_Delete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colReaderIP;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colMemo;
         private System.Windows.Forms.Label label1;
         private GeneralLibrary.WinformControl.IntergerTextBox txtServiceCode;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colComport;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colMemo;
 
     }
 }

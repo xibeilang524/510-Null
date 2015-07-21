@@ -7,10 +7,11 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using Ralid.Park .BusinessModel .Model ;
+using Ralid.OpenCard .OpenCardService .YCT ;
 
 namespace Ralid.OpenCard.UI
 {
-    public partial class FrmYCTDetail :Form 
+    public partial class FrmYCTDetail : Form
     {
         public FrmYCTDetail()
         {
@@ -19,70 +20,44 @@ namespace Ralid.OpenCard.UI
         }
 
         #region 公共属性
-        /// <summary>
-        /// 获取或设置中山通读卡器IP
-        /// </summary>
-        public string ReaderID
-        {
-            get
-            {
-                return txtID.ComPort.ToString();
-            }
-            set
-            {
-                txtID.ComPort = byte.Parse(value);
-                txtID.Enabled = false;
-            }
-        }
-        /// <summary>
-        /// 获取或设置相关停车场通道ID
-        /// </summary>
-        public int EntranceID
-        {
-            get
-            {
-                return comEntrance.SelectedEntranceID;
-            }
-            set
-            {
-                comEntrance.SelectedEntranceID = value;
-            }
-        }
-        /// <summary>
-        /// 获取相关停车场通道的名称
-        /// </summary>
-        public string EntranceName
-        {
-            get
-            {
-                return comEntrance.SelectedEntranceName;
-            }
-        }
-        /// <summary>
-        /// 获取说明信息
-        /// </summary>
-        public string Memo
-        {
-            get
-            {
-                return txtMemo.Text;
-            }
-        }
+        public YCTItem YCTItem { get; set; }
         #endregion
 
         #region 事件处理
         private void FrmYCTDetail_Load(object sender, EventArgs e)
         {
-            txtID.Init();
+            txtComport.Init();
+            if (YCTItem != null)
+            {
+                txtID.Text = YCTItem.ID;
+                txtID.Enabled = false;
+                txtComport.ComPort = YCTItem.Comport;
+                if (YCTItem.EntranceID.HasValue) comEntrance.SelectedEntranceID = YCTItem.EntranceID.Value;
+                txtMemo.Text = YCTItem.Memo;
+            }
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (txtID.ComPort <= 0)
+            if (string.IsNullOrEmpty(txtID.Text))
+            {
+                MessageBox.Show("没有设置读卡器编号");
+                return;
+            }
+            if (txtComport.ComPort <= 0)
             {
                 MessageBox.Show("没有设置串口");
                 return;
             }
+            if (YCTItem == null)
+            {
+                YCTItem = new YCTItem();
+                YCTItem.ID = txtID.Text.Trim();
+            }
+            YCTItem.Comport = txtComport.ComPort;
+            if (string.IsNullOrEmpty(comEntrance.Text)) YCTItem.EntranceID = null;
+            else YCTItem.EntranceID = comEntrance.SelectedEntranceID;
+            YCTItem.Memo = txtMemo.Text;
             this.DialogResult = DialogResult.OK;
         }
 

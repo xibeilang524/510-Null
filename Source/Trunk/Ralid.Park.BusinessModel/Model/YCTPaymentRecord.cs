@@ -15,59 +15,119 @@ namespace Ralid.Park.BusinessModel.Model
         #endregion
 
         #region 公共属性
-        public Guid ID { get; set; }
-        /// <summary>
-        /// 获取或设置停车消费的入场时间
-        /// </summary>
-        public DateTime EnterDateTime { get; set; }
+        public int ID { get; set; }
         /// <summary>
         /// 获取或设置消费的设备ID
         /// </summary>
-        public string DeviceID { get; set; }
+        public string PID { get; set; }
         /// <summary>
         /// 获取或设置消费流水号
         /// </summary>
-        public string SerialNum { get; set; }
+        public string PSN { get; set; }
         /// <summary>
         /// 获取或设置消费时间
         /// </summary>
-        public DateTime PaymentDateTime { get; set; }
+        public DateTime TIM { get; set; }
         /// <summary>
         /// 获取或设置物理卡号
         /// </summary>
-        public string PhysicalCardID { get; set; }
+        public string FCN { get; set; }
         /// <summary>
         /// 获取或设置逻辑卡号
         /// </summary>
-        public string LogicCardID { get; set; }
+        public string LCN { get; set; }
         /// <summary>
-        /// 获取或设置钱包类型 1表示M1钱包 2表示CPU钱包
+        /// 获取或设置票价(分为单位)
         /// </summary>
-        public int WalletType { get; set; }
+        public int TF { get; set; }
         /// <summary>
         /// 获取或设置交易金额(分为单位)
         /// </summary>
-        public int Paid { get; set; }
+        public int FEE { get; set; }
         /// <summary>
         /// 获取或设置交易后卡片的余额(以分为单位)
         /// </summary>
-        public int Balance { get; set; }
+        public int BAL { get; set; }
+        /// <summary>
+        /// 获取或设置交易类型
+        /// </summary>
+        public byte TT { get; set; }
+        /// <summary>
+        /// 获取或设置附加交易类型
+        /// </summary>
+        public byte ATT { get; set; }
+        /// <summary>
+        /// 获取或设置充值交易计数
+        /// </summary>
+        public int CRN { get; set; }
         /// <summary>
         /// 获取或设置消费交易计数
         /// </summary>
-        public int Count { get; set; }
+        public int XRN { get; set; }
+        /// <summary>
+        /// 获取或设置累计月份门槛
+        /// </summary>
+        public string DMON { get; set; }
+        /// <summary>
+        /// 获取或设置公交门槛计数
+        /// </summary>
+        public int BDCT { get; set; }
+        /// <summary>
+        /// 获取或设置地铁门槛计数
+        /// </summary>
+        public int MDCT { get; set; }
+        /// <summary>
+        /// 获取或设置联乘门槛计数
+        /// </summary>
+        public int UDCT { get; set; }
+        /// <summary>
+        /// 获取或设置入口交易设备编号
+        /// </summary>
+        public string EPID { get; set; }
+        /// <summary>
+        /// 获取或设置入口交易时间
+        /// </summary>
+        public string ETIM { get; set; }
+        /// <summary>
+        /// 获取或设置上次交易设备编号
+        /// </summary>
+        public string LPID { get; set; }
+        /// <summary>
+        /// 获取或设置上次交易时间
+        /// </summary>
+        public string LTIM { get; set; }
+        /// <summary>
+        /// 获取或设置区域代码
+        /// </summary>
+        public string AREA { get; set; }
+        /// <summary>
+        /// 获取或设置区域卡类型
+        /// </summary>
+        public string ACT { get; set; }
+        /// <summary>
+        /// 获取或设置区域子码
+        /// </summary>
+        public string SAREA { get; set; }
         /// <summary>
         /// 获取或设置交易验证码
         /// </summary>
         public string TAC { get; set; }
         /// <summary>
+        /// 获取或设置说明信息
+        /// </summary>
+        public string MEM { get; set; }
+        /// <summary>
+        /// 获取或设置钱包类型 1表示M1钱包 2表示CPU钱包
+        /// </summary>
+        public int WalletType { get; set; }
+        /// <summary>
+        /// 获取或设置停车消费的入场时间
+        /// </summary>
+        public DateTime EnterDateTime { get; set; }
+        /// <summary>
         /// 获取或设置记录状态 
         /// </summary>
         public YCTPaymentRecordState State { get; set; }
-        /// <summary>
-        /// 获取或设置上传字符串
-        /// </summary>
-        public string UploadString { get; set; }
         #endregion
 
         #region 公共方法

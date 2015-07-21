@@ -374,6 +374,7 @@
     <Compile Include="SearchCondition\SnapShotSearchCondition.cs" />
     <Compile Include="SearchCondition\WaitingCommandSearchCondition.cs" />
     <Compile Include="SearchCondition\WorkstationSearchCondition.cs" />
+    <Compile Include="SearchCondition\YCTPaymentRecordSearchCondition.cs" />
     <Compile Include="Security\CryptoTripleDes.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

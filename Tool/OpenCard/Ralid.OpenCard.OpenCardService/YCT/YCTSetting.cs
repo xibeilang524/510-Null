@@ -32,11 +32,13 @@ namespace Ralid.OpenCard.OpenCardService.YCT
     [DataContract]
     public class YCTItem
     {
+        [DataMember]
+        public string ID { get; set; }
         /// <summary>
         /// 获取或设置串口
         /// </summary>
         [DataMember]
-        public int Comport { get; set; }
+        public byte Comport { get; set; }
         /// <summary>
         /// 获取或设置通道ID，如果没有指定的话为0
         /// </summary>

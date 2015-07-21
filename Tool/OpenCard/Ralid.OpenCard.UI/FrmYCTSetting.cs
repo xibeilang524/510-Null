@@ -20,24 +20,26 @@ namespace Ralid.OpenCard.UI
         #endregion
 
         #region 私有方法
-        private void ShowItemOnRow(DataGridViewRow row, string ip, string entranceName, int? entranceID, string memo)
+        private void ShowItemOnRow(DataGridViewRow row, YCTItem item)
         {
-            row.Cells["colReaderIP"].Value = ip;
-            row.Cells["colEntrance"].Value = entranceName;
-            row.Cells["colEntrance"].Tag = entranceID;
-            row.Cells["colMemo"].Value = memo;
+            EntranceInfo entrance = item.EntranceID != null ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
+            row.Cells["colID"].Value = item.ID;
+            row.Cells["colComport"].Value = item.Comport;
+            row.Cells["colEntrance"].Value = entrance != null ? entrance.EntranceName : string.Empty;
+            row.Cells["colMemo"].Value = item.Memo;
+            row.Tag = item;
         }
 
         /// <summary>
         /// 获取某读卡器IP在网格中所在行的行号,如果没有找到,返回-1
         /// </summary>
-        /// <param name="ip"></param>
+        /// <param name="id"></param>
         /// <returns></returns>
-        private int FindRow(string ip)
+        private int FindRow(string id)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (row.Cells["colReaderIP"].Value.ToString() == ip)
+                if (row.Cells["colID"].Value.ToString() == id)
                 {
                     return row.Index;
                 }
@@ -59,9 +61,8 @@ namespace Ralid.OpenCard.UI
                 {
                     foreach (YCTItem item in yct.Items)
                     {
-                        EntranceInfo entrance = item.EntranceID != null ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
                         int row = dataGridView1.Rows.Add();
-                        ShowItemOnRow(dataGridView1.Rows[row], item.Comport.ToString(), entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
+                        ShowItemOnRow(dataGridView1.Rows[row], item);
                     }
                 }
             }
@@ -72,14 +73,15 @@ namespace Ralid.OpenCard.UI
             FrmYCTDetail frm = new FrmYCTDetail();
             if (frm.ShowDialog() == DialogResult.OK)
             {
-                if (FindRow(frm.ReaderID) >= 0)
+                YCTItem item = frm.YCTItem;
+                if (FindRow(item.ID) >= 0)
                 {
-                    MessageBox.Show("ID为 " + frm.ReaderID + " 的读卡器已经存在");
+                    MessageBox.Show("编号为 " + item.ID + " 的读卡器已经存在");
                 }
                 else
                 {
                     int row = dataGridView1.Rows.Add();
-                    ShowItemOnRow(dataGridView1.Rows[row], frm.ReaderID, frm.EntranceName, frm.EntranceID, frm.Memo);
+                    ShowItemOnRow(dataGridView1.Rows[row], item);
                 }
             }
         }
@@ -89,18 +91,11 @@ namespace Ralid.OpenCard.UI
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 FrmYCTDetail frm = new FrmYCTDetail();
-                frm.ReaderID = dataGridView1.SelectedRows[0].Cells["colReaderIP"].Value as string;
-                frm.EntranceID = (int)dataGridView1.SelectedRows[0].Cells["colEntrance"].Tag;
+                frm.YCTItem = dataGridView1.SelectedRows[0].Tag as YCTItem;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
-                    if (FindRow(frm.ReaderID) != dataGridView1.SelectedRows[0].Index)
-                    {
-                        MessageBox.Show("ID为 " + frm.ReaderID + " 的读卡器已经存在");
-                    }
-                    else
-                    {
-                        ShowItemOnRow(dataGridView1.SelectedRows[0], frm.ReaderID, frm.EntranceName, frm.EntranceID, frm.Memo);
-                    }
+                    YCTItem item = frm.YCTItem;
+                    ShowItemOnRow(dataGridView1.SelectedRows[0], item);
                 }
             }
         }
@@ -119,35 +114,17 @@ namespace Ralid.OpenCard.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            if (txtServiceCode.IntergerValue < 1000 || txtServiceCode.IntergerValue > 9999)
+            if (txtServiceCode.IntergerValue < 0 || txtServiceCode.IntergerValue > 9999)
             {
                 MessageBox.Show("服务商代码设置不正确");
                 return;
             }
             YCTSetting yct = new YCTSetting();
+            yct.Items.Clear();
             yct.ServiceCode = txtServiceCode.IntergerValue;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))
-                {
-                    YCTItem item = new YCTItem
-                    {
-                        Comport = Convert.ToInt32(row.Cells["colReaderIP"].Value),
-                        EntranceID = (int)row.Cells["colEntrance"].Tag,
-                        Memo = (string)row.Cells["colMemo"].Value
-                    };
-                    yct.Items.Add(item);
-                }
-                else
-                {
-                    YCTItem item = new YCTItem
-                    {
-                        Comport = Convert.ToInt32(row.Cells["colReaderIP"].Value),
-                        EntranceID = 0,
-                        Memo = (string)row.Cells["colMemo"].Value
-                    };
-                    yct.Items.Add(item);
-                }
+                yct.Items.Add(row.Tag as YCTItem);
             }
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<YCTSetting>(yct);
             if (ret.Result == ResultCode.Successful)

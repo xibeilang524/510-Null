@@ -24,7 +24,7 @@ namespace Ralid.Park.BLL
         #endregion
 
         #region 公共方法
-        public QueryResult<YCTPaymentRecord> GetByID(Guid id)
+        public QueryResult<YCTPaymentRecord> GetByID(int id)
         {
             return _Provider.GetByID(id);
         }

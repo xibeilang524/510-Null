@@ -31,11 +31,12 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private void _Port_OnDataArrivedEvent(object sender, byte[] data)
         {
             _buffer.Write(data);
-            var p = _buffer.Read();
+            YCTPacket p = _buffer.Read();
             if (p != null)
             {
                 _Response = p;
                 _Responsed.Set();
+                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "接收数据: " + HexStringConverter.HexToString(p.AllBytes, " "));
             }
         }
 
@@ -48,13 +49,13 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             ret.AddRange(temp);
             ret.Add((byte)cmd);
             if (data != null) ret.AddRange(data);
-            ret.AddRange(CRC32Helper.CRC32(ret));
+            ret.AddRange(BEBinaryConverter.IntToBytes(CRC32Helper.CRC32(ret.ToArray())));
             return ret.ToArray();
         }
 
         private YCTPaymentInfo GetPaymentInfoFromM1(YCTPacket packet)
         {
-            byte[] data = packet.Data;
+            byte[] data = packet.Data; //73个字节
             if (data == null || data.Length == 0) return null;
             try
             {
@@ -89,7 +90,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private YCTPaymentInfo GetPaymentInfoFromCPU(YCTPacket packet)
         {
-            byte[] data = packet.Data;
+            byte[] data = packet.Data; //86字节
             if (data == null || data.Length == 0) return null;
             try
             {
@@ -176,6 +177,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public YCTPacket Request(YCTCommandType cmd, byte[] data)
         {
             byte[] request = CreateRequest(cmd, data);
+            Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
             _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
             _buffer.Clear();
             _Responsed.Reset();

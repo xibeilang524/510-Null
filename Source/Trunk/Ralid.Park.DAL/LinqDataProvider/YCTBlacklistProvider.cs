@@ -24,24 +24,13 @@ namespace Ralid.Park.DAL.LinqDataProvider
         #region 重写基类方法
         protected override YCTBlacklist GetingItemByID(string id, ParkDataContext parking)
         {
-            return parking.GetTable<YCTBlacklist>().SingleOrDefault(item => item.ID == id);
+            return parking.GetTable<YCTBlacklist>().SingleOrDefault(item => item.CardID == id);
         }
 
         protected override List<YCTBlacklist> GetingItems(ParkDataContext parking, SearchCondition search)
         {
-            if (search is RecordSearchCondition)
-            {
-                IQueryable<YCTBlacklist> result = parking.GetTable<YCTBlacklist>();
-                RecordSearchCondition condition = search as RecordSearchCondition;
-                //result = result.Where(item => item.LogDateTime >= condition.RecordDateTimeRange.Begin &&
-                //    item.LogDateTime <= condition.RecordDateTimeRange.End);
-                //if (!string.IsNullOrEmpty(condition.CardID))
-                //{
-                //    result = result.Where(item => item.CardID == condition.CardID);
-                //}
-                return result.ToList();
-            }
-            return new List<YCTBlacklist>();
+            IQueryable<YCTBlacklist> result = parking.GetTable<YCTBlacklist>();
+            return result.ToList();
         }
         #endregion
     }

@@ -67,6 +67,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 return null;
             }
         }
+
+        public byte[] AllBytes
+        {
+            get
+            {
+                return _Packet;
+            }
+        }
         #endregion
 
         #region 公共方法
@@ -76,7 +84,12 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <returns></returns>
         public bool CheckCRC()
         {
-            return true;
+            byte[] temp = new byte[_Packet.Length - 4];
+            Array.Copy(_Packet, 0, temp, 0, temp.Length);
+            int crc = CRC32Helper.CRC32(temp);
+            byte[] crcBytes = new byte[4];
+            Array.Copy(_Packet, temp.Length, crcBytes, 0, crcBytes.Length);
+            return Ralid.GeneralLibrary.BEBinaryConverter.BytesToInt(crcBytes) == crc;
         }
         #endregion
     }

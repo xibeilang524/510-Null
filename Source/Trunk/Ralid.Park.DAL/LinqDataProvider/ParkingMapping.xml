@@ -604,7 +604,6 @@
       <Column Name="Memo" Member="Memo"  DbType="nvarchar(200) NOT NULL" />
     </Type>
   </Table>
-
   <Table Name="dbo.SpeedingLog" Member="Ralid.Park.BusinessModel.Model.SpeedingLog">
     <Type Name="Ralid.Park.BusinessModel.Model.SpeedingLog">
       <Column Name="SpeedingID" Member="SpeedingID"  DbType="uniqueidentifier NOT NULL" CanBeNull="false" IsPrimaryKey="true" />
@@ -617,6 +616,46 @@
       <Column Name="DealOperatorID" Member="DealOperatorID"  DbType="nvarchar(50) NULL" />
       <Column Name="DealDateTime" Member="DealDateTime"  DbType="datetime NULL" />
       <Column Name="DealMemo" Member="DealMemo"  DbType="nvarchar(200) NULL" />
+    </Type>
+  </Table>
+  <Table Name="dbo.YCTBlacklist" Member="Ralid.Park.BusinessModel.Model.YCTBlacklist">
+    <Type Name="Ralid.Park.BusinessModel.Model.YCTBlacklist">
+      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL" IsPrimaryKey="true" />
+      <Column Name="Reason" Member="Reason"  DbType="int NOT NULL" UpdateCheck="Never"/>/>
+      <Column Name="AddDateTime" Member="AddDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>/>
+    </Type>
+  </Table>
+  <Table Name="dbo.YCTPaymentRecord" Member="Ralid.Park.BusinessModel.Model.YCTPaymentRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.YCTPaymentRecord">
+      <Column Name="ID" Member="ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="PID" Member="PID"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="PSN" Member="PSN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="TIM" Member="TIM"  DbType="DATETIME NOT NULL" UpdateCheck="Never"/>
+      <Column Name="LCN" Member="LCN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="FCN" Member="FCN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="TF" Member="TF"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="FEE" Member="FEE"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="BAL" Member="BAL"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="TT" Member="TT"  DbType="TINYINT NOT NULL" UpdateCheck="Never"/>
+      <Column Name="ATT" Member="ATT"  DbType="TINYINT NOT NULL" UpdateCheck="Never"/>
+      <Column Name="CRN" Member="CRN"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="XRN" Member="XRN"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="DMON" Member="DMON"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="BDCT" Member="BDCT"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="MDCT" Member="MDCT"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="UDCT" Member="UDCT"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="EPID" Member="EPID"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="ETIM" Member="ETIM"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="LPID" Member="LPID"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="LTIM" Member="LTIM"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="AREA" Member="AREA"  DbType="NVARCHAR(50) NULL" UpdateCheck="Never"/>
+      <Column Name="ACT" Member="ACT"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="SAREA" Member="SAREA"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="TAC" Member="TAC"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
+      <Column Name="MEM" Member="MEM"  DbType="NVARCHAR(200)  NULL" UpdateCheck="Never"/>
+      <Column Name="EnterDateTime" Member="EnterDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>
+      <Column Name="WalletType" Member="WalletType"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="State" Member="State"  DbType="int NOT NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
 </Database>
