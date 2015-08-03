@@ -44,7 +44,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             ////包结构 头(1byte) + 包长(2byte) + Command(1byte) + data(nbyte) + checksum32(4byte)
             List<byte> ret = new List<byte>();
-            ret.Add(0xFC); //头
+            ret.Add(0xDA); //头
             byte[] temp = BEBinaryConverter.ShortToBytes((short)(5 + (data != null ? data.Length : 0))); //命令+数据+crc的长度
             ret.AddRange(temp);
             ret.Add((byte)cmd);

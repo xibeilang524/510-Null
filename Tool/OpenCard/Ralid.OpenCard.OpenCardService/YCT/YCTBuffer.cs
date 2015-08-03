@@ -18,7 +18,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private List<byte> _Buffer = new List<byte>();
         private object _BufferLocker = new object();
 
-        private byte _Header = 0xFD;
+        private byte _Header = 0xDB;
         #endregion
 
         #region 公共方法
