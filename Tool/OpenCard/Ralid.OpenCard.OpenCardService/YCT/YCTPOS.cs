@@ -222,9 +222,20 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public YCTWallet Poll()
         {
             var response = Request(YCTCommandType.Poll, null);
-            if (response != null && response.IsCommandExcuteOk)
+            if (response != null && response.IsCommandExcuteOk && response.Data !=null && response .Data .Length ==52)
             {
-
+                byte[] data=response .Data ;
+                YCTWallet w = new YCTWallet();
+                w.WalletType = data[0];
+                w.PhysicalCardID = HexStringConverter.HexToString(Slice(data, 1, 8), string.Empty);
+                w.LogicCardID = HexStringConverter.HexToString(Slice(data, 9, 8), string.Empty);
+                w.Balance = BEBinaryConverter.BytesToInt(Slice(data,17, 4));
+                w.Count = BEBinaryConverter.BytesToInt(Slice(data, 21, 2));
+                w.CardType = HexStringConverter.HexToString(Slice(data, 23, 2), string.Empty);
+                w.MinBalance = data[25] * 100;
+                w.MaxBalance = BEBinaryConverter.BytesToInt(Slice(data, 26, 3));
+                w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
+                return w;
             }
             return null;
         }

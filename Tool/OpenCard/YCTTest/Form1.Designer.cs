@@ -94,7 +94,7 @@
             -2147483648});
             this.txtBalance.Name = "txtBalance";
             this.txtBalance.NumberWithCommas = false;
-            this.txtBalance.PointCount = 2;
+            this.txtBalance.PointCount = 0;
             this.txtBalance.Size = new System.Drawing.Size(132, 21);
             this.txtBalance.TabIndex = 15;
             this.txtBalance.Text = "0.00";
@@ -115,7 +115,7 @@
             -2147483648});
             this.txtAmount.Name = "txtAmount";
             this.txtAmount.NumberWithCommas = false;
-            this.txtAmount.PointCount = 2;
+            this.txtAmount.PointCount = 0;
             this.txtAmount.Size = new System.Drawing.Size(132, 21);
             this.txtAmount.TabIndex = 10;
             this.txtAmount.Text = "0.00";
@@ -131,7 +131,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(16, 77);
+            this.label2.Location = new System.Drawing.Point(43, 91);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 16;
