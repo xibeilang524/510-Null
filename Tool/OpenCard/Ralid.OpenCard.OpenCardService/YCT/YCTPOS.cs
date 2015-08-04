@@ -15,12 +15,12 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #region 构造函数
         public YCTPOS(byte comport, int baud)
         {
-            _Port = new CommPort(comport, baud);
+            _Port = new ComPort(comport, baud);
         }
         #endregion
 
         #region 私有变量
-        private CommPort _Port;
+        private ComPort _Port;
         private YCTBuffer _buffer = new YCTBuffer();
         private System.Threading.AutoResetEvent _Responsed = new System.Threading.AutoResetEvent(false);
         private YCTPacket _Response = null;
@@ -42,14 +42,13 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private byte[] CreateRequest(YCTCommandType cmd, byte[] data)
         {
-            ////包结构 头(1byte) + 包长(2byte) + Command(1byte) + data(nbyte) + checksum32(4byte)
+            ////包结构 头(1byte) + 包长(1byte) + Command(1byte) + data(nbyte) + checksum(1byte)
             List<byte> ret = new List<byte>();
-            ret.Add(0xDA); //头
-            byte[] temp = BEBinaryConverter.ShortToBytes((short)(5 + (data != null ? data.Length : 0))); //命令+数据+crc的长度
-            ret.AddRange(temp);
+            ret.Add(0xBA); //头
+            ret.Add((byte)(2 + (data != null ? data.Length : 0))); //命令+数据+crc的长度
             ret.Add((byte)cmd);
             if (data != null) ret.AddRange(data);
-            ret.AddRange(BEBinaryConverter.IntToBytes(CRC32Helper.CRC32(ret.ToArray())));
+            ret.Add(CRCHelper.CalCRC(ret));
             return ret.ToArray();
         }
 

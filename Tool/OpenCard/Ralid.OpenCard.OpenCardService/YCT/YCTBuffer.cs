@@ -18,7 +18,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private List<byte> _Buffer = new List<byte>();
         private object _BufferLocker = new object();
 
-        private byte _Header = 0xDB;
+        private byte _Header = 0xBD;
         #endregion
 
         #region 公共方法
@@ -53,16 +53,16 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 lock (_BufferLocker)
                 {
-                    for (int i = 0; i < _Buffer.Count - 2; i++) //减2表示找到头后,紧跟的两个字节是数据长度
+                    for (int i = 0; i < _Buffer.Count - 1; i++) //减1表示找到头后,紧跟的一个字节是数据长度
                     {
                         if (_Buffer[i] == _Header)
                         {
-                            int dlen = BEBinaryConverter.BytesToInt(new byte[] { _Buffer[i + 1], _Buffer[i + 2] });
-                            if (_Buffer.Count >= i + 3 + dlen)
+                            int dlen = _Buffer[i + 1];
+                            if (_Buffer.Count >= i + 2 + dlen)
                             {
-                                byte[] packet = new byte[3 + dlen];
+                                byte[] packet = new byte[2 + dlen];
                                 _Buffer.CopyTo(i, packet, 0, packet.Length);
-                                _Buffer.RemoveRange(0, i + 3 + dlen);
+                                _Buffer.RemoveRange(0, i + 2 + dlen);
                                 return new YCTPacket(packet);
                             }
                         }

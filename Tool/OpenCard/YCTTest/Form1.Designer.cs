@@ -36,11 +36,12 @@
             this.txtBalance = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.txtAmount = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.comPort = new Ralid.GeneralLibrary.WinformControl.ComPortComboBox(this.components);
+            this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(33, 60);
+            this.btnConnect.Location = new System.Drawing.Point(181, 20);
             this.btnConnect.Name = "btnConnect";
             this.btnConnect.Size = new System.Drawing.Size(129, 23);
             this.btnConnect.TabIndex = 0;
@@ -50,21 +51,21 @@
             // 
             // btnReadCurCard
             // 
-            this.btnReadCurCard.Location = new System.Drawing.Point(33, 100);
+            this.btnReadCurCard.Location = new System.Drawing.Point(342, 331);
             this.btnReadCurCard.Name = "btnReadCurCard";
             this.btnReadCurCard.Size = new System.Drawing.Size(129, 23);
             this.btnReadCurCard.TabIndex = 1;
-            this.btnReadCurCard.Text = "读取读卡器上的卡片";
+            this.btnReadCurCard.Text = "读  卡";
             this.btnReadCurCard.UseVisualStyleBackColor = true;
             this.btnReadCurCard.Click += new System.EventHandler(this.btnReadCurCard_Click);
             // 
             // btnReduceBalance
             // 
-            this.btnReduceBalance.Location = new System.Drawing.Point(31, 141);
+            this.btnReduceBalance.Location = new System.Drawing.Point(181, 331);
             this.btnReduceBalance.Name = "btnReduceBalance";
             this.btnReduceBalance.Size = new System.Drawing.Size(129, 23);
             this.btnReduceBalance.TabIndex = 8;
-            this.btnReduceBalance.Text = "扣款";
+            this.btnReduceBalance.Text = "扣  款";
             this.btnReduceBalance.UseVisualStyleBackColor = true;
             this.btnReduceBalance.Click += new System.EventHandler(this.btnReduceBalance_Click);
             // 
@@ -127,11 +128,22 @@
             this.comPort.Size = new System.Drawing.Size(70, 20);
             this.comPort.TabIndex = 4;
             // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(16, 77);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(29, 12);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "类型";
+            this.label2.Click += new System.EventHandler(this.label2_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(348, 175);
+            this.ClientSize = new System.Drawing.Size(580, 382);
+            this.Controls.Add(this.label2);
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAmount);
@@ -156,6 +168,7 @@
         private Ralid.GeneralLibrary.WinformControl.DecimalTextBox txtAmount;
         private System.Windows.Forms.Label label1;
         private Ralid.GeneralLibrary.WinformControl.DecimalTextBox txtBalance;
+        private System.Windows.Forms.Label label2;
     }
 }
 

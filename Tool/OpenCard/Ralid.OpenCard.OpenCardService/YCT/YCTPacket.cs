@@ -8,7 +8,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
     public class YCTPacket
     {
 
-        //包结构 头(1byte) + 包长(2byte) + Command(1byte) + status(1byte) + data(nbyte) + checksum32(4byte)
+        //包结构 头(1byte) + 包长(1byte) + Command(1byte) + status(1byte) + data(nbyte) + checksum(1byte)
         #region 构造函数
         public YCTPacket(byte[] packet)
         {
@@ -28,7 +28,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             get
             {
-                return _Packet[3];
+                return _Packet[2];
             }
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             get
             {
-                return _Packet[4];
+                return _Packet[3];
             }
         }
         /// <summary>
@@ -58,10 +58,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             get
             {
-                if (_Packet.Length > 9)
+                if (_Packet.Length > 5)
                 {
-                    byte[] ret = new byte[_Packet.Length - 9];
-                    Array.Copy(_Packet, 5, ret, 0, ret.Length);
+                    byte[] ret = new byte[_Packet.Length - 5];
+                    Array.Copy(_Packet, 4, ret, 0, ret.Length);
                     return ret;
                 }
                 return null;
@@ -84,12 +84,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <returns></returns>
         public bool CheckCRC()
         {
-            byte[] temp = new byte[_Packet.Length - 4];
+            byte[] temp = new byte[_Packet.Length - 1];
             Array.Copy(_Packet, 0, temp, 0, temp.Length);
-            int crc = CRC32Helper.CRC32(temp);
-            byte[] crcBytes = new byte[4];
-            Array.Copy(_Packet, temp.Length, crcBytes, 0, crcBytes.Length);
-            return Ralid.GeneralLibrary.BEBinaryConverter.BytesToInt(crcBytes) == crc;
+            byte crc = CRCHelper.CalCRC(temp);
+            return crc == _Packet[_Packet.Length - 1];
         }
         #endregion
     }
