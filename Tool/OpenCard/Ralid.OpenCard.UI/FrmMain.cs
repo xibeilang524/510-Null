@@ -184,7 +184,7 @@ namespace Ralid.OpenCard.UI
             if (report is CardEventReport)
             {
                 CardEventReport cr = report as CardEventReport;
-                if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡"))
+                if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡" || cr.CardType.Name == "羊城通卡"))
                 {
                     InsertMessage(cr.Description, Color.Black);
                 }

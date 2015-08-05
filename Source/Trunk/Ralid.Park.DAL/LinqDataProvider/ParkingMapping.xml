@@ -621,8 +621,8 @@
   <Table Name="dbo.YCTBlacklist" Member="Ralid.Park.BusinessModel.Model.YCTBlacklist">
     <Type Name="Ralid.Park.BusinessModel.Model.YCTBlacklist">
       <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL" IsPrimaryKey="true" />
-      <Column Name="Reason" Member="Reason"  DbType="int NOT NULL" UpdateCheck="Never"/>/>
-      <Column Name="AddDateTime" Member="AddDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>/>
+      <Column Name="Reason" Member="Reason"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="AddDateTime" Member="AddDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.YCTPaymentRecord" Member="Ralid.Park.BusinessModel.Model.YCTPaymentRecord">

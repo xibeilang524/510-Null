@@ -85,7 +85,7 @@ namespace Ralid.OpenCard.OpenCardService
             _WaitingPayingCards.Remove(e.CardID);
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
-
+            if (!card.IsInPark) return;
             CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
             e.Payment = payment;
             _WaitingPayingCards[e.CardID] = payment;
@@ -248,6 +248,7 @@ namespace Ralid.OpenCard.OpenCardService
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
                 _Services[yct.GetType()] = s;
             }
+            (_Services[yct.GetType()] as YCT.YCTService).Setting = yct;
             _Services[yct.GetType()].Init();
         }
         #endregion

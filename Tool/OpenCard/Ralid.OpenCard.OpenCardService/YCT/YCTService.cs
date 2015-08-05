@@ -74,6 +74,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             {
                                 HandleWallet(item, w, entrance);
                             }
+                            Thread.Sleep(3000);
+                        }
+                        else
+                        {
+                            Thread.Sleep(500);
                         }
                     }
                     else
@@ -98,8 +103,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
-                    CardID = w.PhysicalCardID,
-                    CardType = "羊城通",
+                    CardID = w.LogicCardID,
+                    CardType = "羊城通卡",
                     EntranceID = entrance.EntranceID,
                     EntranceName = entrance.EntranceName,
                 };
@@ -108,7 +113,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             else
             {
                 OpenCardEventArgs args = new OpenCardEventArgs();
-                args.CardID = w.PhysicalCardID;
+                args.CardID = w.LogicCardID;
                 if (entrance != null)
                 {
                     args.EntranceID = entrance.EntranceID;
@@ -128,7 +133,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     }
                     else //扣费
                     {
-                        if (Paid(item, w, args.Payment.Accounts))
+                        if (Paid(item, w, args.Payment))
                         {
                             args.Paid = args.Payment.Accounts;
                             if (this.OnPaidOk != null) this.OnPaidOk(this, args);
@@ -143,12 +148,15 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private bool Paid(YCTItem item, YCTWallet w, decimal paid)
+        private bool Paid(YCTItem item, YCTWallet w, CardPaymentInfo paid)
         {
-            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid * 100), w.WalletType);
+            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.Accounts * 100), w.WalletType);
             if (payment == null) return false;
             //这里应该保存记录,保存记录成功然后再进行下一步
             YCTPaymentRecord record = CreateRecord(payment);
+            record.WalletType = w.WalletType;
+            record.EnterDateTime = paid.EnterDateTime.Value;
+            record.State = YCTPaymentRecordState.Uncompleted;
             YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
             CommandResult result = bll.Insert(record);
             if (result.Result != ResultCode.Successful) return false;
@@ -169,7 +177,32 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private YCTPaymentRecord CreateRecord(YCTPaymentInfo payment)
         {
-            return null;
+            YCTPaymentRecord record = new YCTPaymentRecord();
+            record.PID = payment.本次交易设备编号;
+            record.PSN = payment.终端交易流水号.ToString();
+            record.TIM = payment.本次交易日期时间;
+            record.FCN = payment.物理卡号;
+            record.LCN = payment.逻辑卡号;
+            record.TF = payment.票价;
+            record.FEE = payment.交易金额;
+            record.BAL = payment.本次余额;
+            record.TT = payment.交易类型;
+            record.ATT = payment.附加交易类型;
+            record.CRN = payment.票卡充值交易计数;
+            record.XRN = payment.票卡消费交易计数;
+            record.DMON = payment.累计门槛月份;
+            record.BDCT = payment.公交门槛计数;
+            record.MDCT = payment.地铁门槛计数;
+            record.UDCT = payment.联乘门槛计数;
+            record.EPID = payment.本次交易入口设备编号;
+            record.ETIM = payment.本次交易入口日期时间;
+            record.LPID = payment.上次交易设备编号;
+            record.LTIM = payment.上次交易日期时间;
+            record.AREA = payment.区域代码;
+            record.ACT = payment.区域卡类型;
+            record.SAREA = payment.区域子码;
+            record.TAC = payment.交易认证码;
+            return record;
         }
         #endregion
 
