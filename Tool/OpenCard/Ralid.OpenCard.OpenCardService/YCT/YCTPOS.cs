@@ -222,14 +222,21 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public YCTWallet Poll()
         {
             var response = Request(YCTCommandType.Poll, null);
-            if (response != null && response.IsCommandExcuteOk && response.Data !=null && response .Data .Length ==52)
+            if (response != null && response.IsCommandExcuteOk && response.Data != null && response.Data.Length == 52)
             {
-                byte[] data=response .Data ;
+                byte[] data = response.Data;
                 YCTWallet w = new YCTWallet();
                 w.WalletType = data[0];
-                w.PhysicalCardID = HexStringConverter.HexToString(Slice(data, 1, 8), string.Empty);
+                if (w.WalletType == 1)
+                {
+                    w.PhysicalCardID = HexStringConverter.HexToString(Slice(data, 1, 4), string.Empty); //M1钱包物理卡只取前四字节
+                }
+                else
+                {
+                    w.PhysicalCardID = HexStringConverter.HexToString(Slice(data, 1, 8), string.Empty);
+                }
                 w.LogicCardID = HexStringConverter.HexToString(Slice(data, 9, 8), string.Empty);
-                w.Balance = BEBinaryConverter.BytesToInt(Slice(data,17, 4));
+                w.Balance = BEBinaryConverter.BytesToInt(Slice(data, 17, 4));
                 w.Count = BEBinaryConverter.BytesToInt(Slice(data, 21, 2));
                 w.CardType = HexStringConverter.HexToString(Slice(data, 23, 2), string.Empty);
                 w.MinBalance = data[25] * 100;

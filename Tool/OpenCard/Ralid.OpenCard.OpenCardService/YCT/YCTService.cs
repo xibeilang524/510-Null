@@ -186,7 +186,6 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             if (Setting == null) throw new InvalidOperationException("没有提供羊城通参数");
             if (_ChkComport != null) _ChkComport.Dispose();
-            Dictionary<YCTPOS, YCTItem> temp = new Dictionary<YCTPOS, YCTItem>();
             List<YCTItem> keys = _Readers.ToList();
             if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
             {
