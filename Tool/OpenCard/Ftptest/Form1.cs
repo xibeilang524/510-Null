@@ -58,7 +58,7 @@ namespace Ftptest
                             int count = 0;
                             while (!r.EndOfStream)
                             {
-                                Console.WriteLine(r.ReadLine());
+                                //Console.WriteLine(r.ReadLine());
                                 count++;
                             }
                             Console.WriteLine("共读到 {0} 行数据", count);
