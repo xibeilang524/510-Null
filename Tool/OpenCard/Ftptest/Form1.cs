@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.IO;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using Limilabs.FTP.Client;
@@ -46,10 +47,24 @@ namespace Ftptest
             OpenFileDialog dig = new OpenFileDialog();
             if (dig.ShowDialog() == DialogResult.OK)
             {
-                ZipFile zip = new ZipFile(dig.FileName);
-                foreach (var item in zip)
+                using (ZipInputStream s = new ZipInputStream(File.OpenRead(dig.FileName)))
                 {
-                    
+                    ZipEntry theEntry;
+                    while ((theEntry = s.GetNextEntry()) != null)
+                    {
+                        if (theEntry.IsFile && Path.GetFileName(theEntry.Name).IndexOf("MD") == 0)
+                        {
+                            StreamReader r = new StreamReader(s);
+                            int count = 0;
+                            while (!r.EndOfStream)
+                            {
+                                Console.WriteLine(r.ReadLine());
+                                count++;
+                            }
+                            Console.WriteLine("共读到 {0} 行数据", count);
+                        }
+                        Console.WriteLine(theEntry.Name);
+                    }
                 }
             }
         }
