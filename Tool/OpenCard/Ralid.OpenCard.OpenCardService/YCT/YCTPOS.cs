@@ -21,6 +21,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         #region 私有变量
         private ComPort _Port;
+        private object  _PortLocker=new  object ();
         private YCTBuffer _buffer = new YCTBuffer();
         private System.Threading.AutoResetEvent _Responsed = new System.Threading.AutoResetEvent(false);
         private YCTPacket _Response = null;
@@ -102,7 +103,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 payment.交易金额 = BEBinaryConverter.BytesToInt(Slice(data, 33, 4));
                 payment.票价 = BEBinaryConverter.BytesToInt(Slice(data, 37, 4));
                 payment.本次余额 = BEBinaryConverter.BytesToInt(Slice(data, 41, 4));
-                payment.交易类型 = Slice(data, 45, 1)[0];
+                payment.交易类型 = (byte)BCDConverter.BCDtoInt(Slice(data, 45, 1)[0]);
                 payment.附加交易类型 = Slice(data, 46, 1)[0];
                 payment.票卡充值交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 47, 2));
                 payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 49, 2));
@@ -173,22 +174,25 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <param name="cmd">请求的命令</param>
         /// <param name="data">请求中包含的数据</param>
         /// <returns></returns>
-        public YCTPacket Request(YCTCommandType cmd, byte[] data)
+        private YCTPacket Request(YCTCommandType cmd, byte[] data)
         {
-            byte[] request = CreateRequest(cmd, data);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
-            _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
-            _buffer.Clear();
-            _Responsed.Reset();
-            _Response = null;
-            _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
-            _Port.SendData(request);
-            if (_Responsed.WaitOne(2000))
+            lock (_PortLocker)
             {
-                if (_Response != null && _Response.CheckCRC() && _Response.Command == (byte)cmd)
+                byte[] request = CreateRequest(cmd, data);
+                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
+                _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
+                _buffer.Clear();
+                _Responsed.Reset();
+                _Response = null;
+                _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
+                _Port.SendData(request);
+                if (_Responsed.WaitOne(5000))
                 {
-                    _LastError = _Response.Status;
-                    return _Response;
+                    if (_Response != null && _Response.CheckCRC() && _Response.Command == (byte)cmd)
+                    {
+                        _LastError = _Response.Status;
+                        return _Response;
+                    }
                 }
             }
             _LastError = -1;

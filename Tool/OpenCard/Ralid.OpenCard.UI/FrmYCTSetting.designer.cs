@@ -30,6 +30,10 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colComport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Update = new System.Windows.Forms.ToolStripMenuItem();
@@ -37,10 +41,9 @@
             this.btnSave = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.txtServiceCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colComport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.button1 = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
+            this.button3 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -65,8 +68,36 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(625, 219);
+            this.dataGridView1.Size = new System.Drawing.Size(615, 258);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "读卡器编号";
+            this.colID.Name = "colID";
+            this.colID.ReadOnly = true;
+            this.colID.Width = 150;
+            // 
+            // colComport
+            // 
+            this.colComport.HeaderText = "串口";
+            this.colComport.Name = "colComport";
+            this.colComport.ReadOnly = true;
+            this.colComport.Width = 150;
+            // 
+            // colEntrance
+            // 
+            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colEntrance.HeaderText = "所在通道";
+            this.colEntrance.Name = "colEntrance";
+            this.colEntrance.ReadOnly = true;
+            // 
+            // colMemo
+            // 
+            this.colMemo.HeaderText = "说明";
+            this.colMemo.Name = "colMemo";
+            this.colMemo.ReadOnly = true;
+            this.colMemo.Width = 200;
             // 
             // contextMenuStrip1
             // 
@@ -101,7 +132,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(512, 273);
+            this.btnSave.Location = new System.Drawing.Point(502, 312);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(102, 34);
             this.btnSave.TabIndex = 2;
@@ -130,39 +161,47 @@
             this.txtServiceCode.TabIndex = 8;
             this.txtServiceCode.Text = "1000";
             // 
-            // colID
+            // button1
             // 
-            this.colID.HeaderText = "读卡器编号";
-            this.colID.Name = "colID";
-            this.colID.ReadOnly = true;
-            this.colID.Width = 150;
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Location = new System.Drawing.Point(328, 312);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(102, 34);
+            this.button1.TabIndex = 9;
+            this.button1.Text = "删除";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.mnu_Delete_Click);
             // 
-            // colComport
+            // button2
             // 
-            this.colComport.HeaderText = "串口";
-            this.colComport.Name = "colComport";
-            this.colComport.ReadOnly = true;
-            this.colComport.Width = 150;
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button2.Location = new System.Drawing.Point(208, 312);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(102, 34);
+            this.button2.TabIndex = 10;
+            this.button2.Text = "修改";
+            this.button2.UseVisualStyleBackColor = true;
+            this.button2.Click += new System.EventHandler(this.mnu_Update_Click);
             // 
-            // colEntrance
+            // button3
             // 
-            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colEntrance.HeaderText = "所在通道";
-            this.colEntrance.Name = "colEntrance";
-            this.colEntrance.ReadOnly = true;
-            // 
-            // colMemo
-            // 
-            this.colMemo.HeaderText = "说明";
-            this.colMemo.Name = "colMemo";
-            this.colMemo.ReadOnly = true;
-            this.colMemo.Width = 200;
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button3.Location = new System.Drawing.Point(79, 312);
+            this.button3.Name = "button3";
+            this.button3.Size = new System.Drawing.Size(102, 34);
+            this.button3.TabIndex = 11;
+            this.button3.Text = "增加";
+            this.button3.UseVisualStyleBackColor = true;
+            this.button3.Click += new System.EventHandler(this.mnu_Add_Click);
             // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(626, 319);
+            this.ClientSize = new System.Drawing.Size(616, 358);
+            this.Controls.Add(this.button3);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.txtServiceCode);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnSave);
@@ -192,6 +231,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colComport;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
         private System.Windows.Forms.DataGridViewTextBoxColumn colMemo;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button button3;
 
     }
 }

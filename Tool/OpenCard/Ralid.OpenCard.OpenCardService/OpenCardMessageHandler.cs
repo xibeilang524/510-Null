@@ -85,8 +85,8 @@ namespace Ralid.OpenCard.OpenCardService
             _WaitingPayingCards.Remove(e.CardID);
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
-            if (!card.IsInPark) return;
             CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
+            if (!card.IsInPark && payment != null) payment.Accounts = 0; //已经出场的卡片收费都为0
             e.Payment = payment;
             _WaitingPayingCards[e.CardID] = payment;
 
@@ -111,7 +111,7 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 pad = ParkingAdapterManager.Instance[entrance.RootParkID];
             }
-            else
+            else //中央收费,默认用第一个停车场的费率来收取费用
             {
                 if (ParkingAdapterManager.Instance != null && ParkingAdapterManager.Instance.ParkAdapters != null)
                     pad = ParkingAdapterManager.Instance.ParkAdapters[0];
@@ -171,6 +171,11 @@ namespace Ralid.OpenCard.OpenCardService
                 if (entrance != null)
                 {
                     e.EntranceName = entrance.EntranceName;
+                    IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+                    if (pad != null)
+                    {
+                        pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, "扣款失败", false, 0));
+                    }
                 }
             }
             _WaitingPayingCards.Remove(e.CardID);

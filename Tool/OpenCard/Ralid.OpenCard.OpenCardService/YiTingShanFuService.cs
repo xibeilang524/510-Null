@@ -171,26 +171,22 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 if (args.Payment.Accounts == 0)
                 {
-                    OpenCardEventArgs args1 = new OpenCardEventArgs()
-                    {
-                        CardID = args.CardID,
-                        Paid = 0,
-                        PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer,
-                        PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos,
-                    };
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
-                List<byte> temp = new List<byte>();
-                temp.AddRange(data.Take(26)); //取包的前26字节
-                temp.AddRange(new byte[5]); //车位号
-                temp.AddRange(YiTingPacket.GetDateBytes(args.Payment.EnterDateTime.Value)); //入场时间
-                temp.AddRange(YiTingPacket.GetIntervalBytes(args.Payment.EnterDateTime.Value, args.Payment.ChargeDateTime));
-                temp.AddRange(YiTingPacket.GetMoneyBytes(args.Payment.Accounts)); //金额
-                temp.Add(0x00);  //未出场
-                YiTingPacket response = packet.CreateResponse(temp.ToArray());
-                byte[] r = response.ToBytes();
-                socket.SendData(r);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                else
+                {
+                    List<byte> temp = new List<byte>();
+                    temp.AddRange(data.Take(26)); //取包的前26字节
+                    temp.AddRange(new byte[5]); //车位号
+                    temp.AddRange(YiTingPacket.GetDateBytes(args.Payment.EnterDateTime.Value)); //入场时间
+                    temp.AddRange(YiTingPacket.GetIntervalBytes(args.Payment.EnterDateTime.Value, args.Payment.ChargeDateTime));
+                    temp.AddRange(YiTingPacket.GetMoneyBytes(args.Payment.Accounts)); //金额
+                    temp.Add(0x00);  //未出场
+                    YiTingPacket response = packet.CreateResponse(temp.ToArray());
+                    byte[] r = response.ToBytes();
+                    socket.SendData(r);
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                }
             }
         }
 

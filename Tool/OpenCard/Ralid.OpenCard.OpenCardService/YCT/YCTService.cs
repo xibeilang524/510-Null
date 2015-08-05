@@ -54,8 +54,6 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             YCTItem item = obj as YCTItem;
             if (item == null || item.Reader == null) return;
-            EntranceInfo entrance = null;
-            if (item.EntranceID != null) entrance = ParkBuffer.Current.GetEntrance(item.EntranceID.Value);
             try
             {
                 while (true)
@@ -65,13 +63,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         YCTWallet w = item.Reader.Poll();
                         if (w != null)
                         {
-                            //此处应该先判断黑名单
-                            if (InBlackList(w.PhysicalCardID, w.LogicCardID))
+                            if (InBlackList(w.LogicCardID))//此处应该先判断黑名单
                             {
                                 item.Reader.CatchBlackList();
                             }
                             else
                             {
+                                EntranceInfo entrance = null;
+                                if (item.EntranceID != null) entrance = ParkBuffer.Current.GetEntrance(item.EntranceID.Value);
                                 HandleWallet(item, w, entrance);
                             }
                             Thread.Sleep(3000);
@@ -92,9 +91,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private bool InBlackList(string physicalCardID, string logicCardID)
+        private bool InBlackList(string logicCardID)
         {
-            return false;
+            YCTBlacklist black = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(logicCardID).QueryObject;
+            return black != null;
         }
 
         private void HandleWallet(YCTItem item, YCTWallet w, EntranceInfo entrance)
@@ -136,6 +136,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         if (Paid(item, w, args.Payment))
                         {
                             args.Paid = args.Payment.Accounts;
+                            args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                            args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
                             if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                         }
                         else
@@ -253,15 +255,15 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         reader.Open();
                         item.Reader = reader;
                         _Readers.Add(item);
-                        Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
-                        t.IsBackground = true;
-                        _PollRoutes[item] = t;
-                        t.Start(item);
                         if (reader.IsOpened) //需要正常初始化后才能加到列表中
                         {
                             reader.SetServiceCode(Setting.ServiceCode);
                             reader.InitPaidMode();
                         }
+                        Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
+                        t.IsBackground = true;
+                        _PollRoutes[item] = t;
+                        t.Start(item);
                     }
                 }
             }

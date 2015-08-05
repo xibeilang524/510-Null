@@ -29,8 +29,6 @@ namespace Ralid.OpenCard.UI
             txtComport.Init();
             if (YCTItem != null)
             {
-                txtID.Text = YCTItem.ID;
-                txtID.Enabled = false;
                 txtComport.ComPort = YCTItem.Comport;
                 if (YCTItem.EntranceID.HasValue) comEntrance.SelectedEntranceID = YCTItem.EntranceID.Value;
                 txtMemo.Text = YCTItem.Memo;
@@ -39,11 +37,6 @@ namespace Ralid.OpenCard.UI
 
         private void btnOK_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(txtID.Text))
-            {
-                MessageBox.Show("没有设置读卡器编号");
-                return;
-            }
             if (txtComport.ComPort <= 0)
             {
                 MessageBox.Show("没有设置串口");
@@ -52,8 +45,8 @@ namespace Ralid.OpenCard.UI
             if (YCTItem == null)
             {
                 YCTItem = new YCTItem();
-                YCTItem.ID = txtID.Text.Trim();
             }
+            YCTItem.ID = "COM" + txtComport.ComPort.ToString();
             YCTItem.Comport = txtComport.ComPort;
             if (string.IsNullOrEmpty(comEntrance.Text)) YCTItem.EntranceID = null;
             else YCTItem.EntranceID = comEntrance.SelectedEntranceID;

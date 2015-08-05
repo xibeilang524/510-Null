@@ -39,12 +39,12 @@
             this.mnu_SelOperator = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_SelStation = new System.Windows.Forms.ToolStripMenuItem();
             this.参数设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_YCT = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.chkCardEvent = new System.Windows.Forms.CheckBox();
             this.chkOpenEvent = new System.Windows.Forms.CheckBox();
-            this.mnu_YCT = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -128,6 +128,13 @@
             this.参数设置ToolStripMenuItem.Size = new System.Drawing.Size(68, 21);
             this.参数设置ToolStripMenuItem.Text = "参数设置";
             // 
+            // mnu_YCT
+            // 
+            this.mnu_YCT.Name = "mnu_YCT";
+            this.mnu_YCT.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YCT.Text = "羊城通";
+            this.mnu_YCT.Click += new System.EventHandler(this.mnu_YCT_Click);
+            // 
             // mnu_YiTing
             // 
             this.mnu_YiTing.Name = "mnu_YiTing";
@@ -140,6 +147,7 @@
             this.mnu_ZST.Name = "mnu_ZST";
             this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
             this.mnu_ZST.Text = "中山通";
+            this.mnu_ZST.Visible = false;
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
             // 
             // eventList
@@ -178,13 +186,6 @@
             this.chkOpenEvent.TabIndex = 8;
             this.chkOpenEvent.Text = "开放卡片事件";
             this.chkOpenEvent.UseVisualStyleBackColor = true;
-            // 
-            // mnu_YCT
-            // 
-            this.mnu_YCT.Name = "mnu_YCT";
-            this.mnu_YCT.Size = new System.Drawing.Size(152, 22);
-            this.mnu_YCT.Text = "羊城通";
-            this.mnu_YCT.Click += new System.EventHandler(this.mnu_YCT_Click);
             // 
             // FrmMain
             // 
