@@ -16,8 +16,25 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 公共属性
+        /// <summary>
+        /// 获取或设置服务商代码
+        /// </summary>
         [DataMember]
         public int ServiceCode { get; set; }
+        /// <summary>
+        /// 获取或设置刷卡点编码
+        /// </summary>
+        [DataMember ]
+        public int ReaderCode { get; set; }
+        
+        [DataMember ]
+        public string FTPServer { get; set; }
+
+        [DataMember]
+        public string FTPUser { get; set; }
+
+        [DataMember]
+        public string FTPPassword { get; set; }
         /// <summary>
         /// 获取或设置服务器管理的所有POS机
         /// </summary>

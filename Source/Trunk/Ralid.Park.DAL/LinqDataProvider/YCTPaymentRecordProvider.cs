@@ -29,14 +29,19 @@ namespace Ralid.Park.DAL.LinqDataProvider
 
         protected override List<YCTPaymentRecord> GetingItems(ParkDataContext parking, SearchCondition search)
         {
+            IQueryable<YCTPaymentRecord> result = parking.GetTable<YCTPaymentRecord>();
             if (search is YCTPaymentRecordSearchCondition)
             {
-                IQueryable<YCTPaymentRecord> result = parking.GetTable<YCTPaymentRecord>();
-                YCTPaymentRecordSearchCondition condition = search as YCTPaymentRecordSearchCondition;
-                result = result.Where(item => item.TIM >= condition.PaymentDateTimeRange.Begin && item.TIM <= condition.PaymentDateTimeRange.End);
-                if (!string.IsNullOrEmpty(condition.PID)) result = result.Where(item => item.PID == condition.PID);
-                if (!string.IsNullOrEmpty(condition.CardID)) result = result.Where(item => item.FCN == condition.CardID);
-                if (condition.State.HasValue) result = result.Where(item => (int)item.State == condition.State.Value);
+                YCTPaymentRecordSearchCondition con = search as YCTPaymentRecordSearchCondition;
+                if (con.PaymentDateTimeRange != null) result = result.Where(item => item.TIM >= con.PaymentDateTimeRange.Begin && item.TIM <= con.PaymentDateTimeRange.End);
+                if (!string.IsNullOrEmpty(con.PID)) result = result.Where(item => item.PID == con.PID);
+                if (con.PSN.HasValue) result = result.Where(item => item.PSN == con.PSN.Value);
+                if (con.TIM.HasValue) result = result.Where(item => item.TIM == con.TIM.Value);
+                if (!string.IsNullOrEmpty(con.LCN)) result = result.Where(item => item.LCN == con.LCN);
+                if (con.WalletType.HasValue) result = result.Where(item => item.WalletType == con.WalletType.Value);
+                if (con.State.HasValue) result = result.Where(item => (int)item.State == con.State.Value);
+                if (!string.IsNullOrEmpty(con.UploadFile)) result = result.Where(item => item.UploadFile == con.UploadFile);
+                if (con.UnUploaded) result = result.Where(item => item.UploadFile == null);
                 return result.ToList();
             }
             return new List<YCTPaymentRecord>();

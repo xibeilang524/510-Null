@@ -83,6 +83,12 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Ralid.OpenCard.OpenCardService\Ralid.OpenCard.OpenCardService.csproj">
+      <Project>{395FC1D8-17EA-4CBC-9A6D-B81E91D56BFF}</Project>
+      <Name>Ralid.OpenCard.OpenCardService</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -11,8 +11,18 @@ namespace Ralid.Park.BusinessModel.SearchCondition
 
         public string PID { get; set; }
 
-        public string CardID { get; set; }
+        public int? PSN { get; set; }
+
+        public string LCN { get; set; }
+
+        public DateTime? TIM { get; set; }
+
+        public int? WalletType { get; set; }
 
         public int? State { get; set; }
+
+        public string UploadFile { get; set; }
+
+        public bool UnUploaded { get; set; }
     }
 }

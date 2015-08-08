@@ -158,7 +158,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             YCTPaymentRecord record = CreateRecord(payment);
             record.WalletType = w.WalletType;
             record.EnterDateTime = paid.EnterDateTime.Value;
-            record.State = YCTPaymentRecordState.Uncompleted;
+            record.State = YCTPaymentRecordState.PaidFail;
             YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
             CommandResult result = bll.Insert(record);
             if (result.Result != ResultCode.Successful) return false;
@@ -172,7 +172,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
             YCTPaymentRecord newVal = record.Clone();
             if (w.WalletType == 0x02) newVal.TAC = tac; //cpu钱包将TAC写到记录中
-            newVal.State = YCTPaymentRecordState.Completed; //标记为完成
+            newVal.State = YCTPaymentRecordState.PaidOk; //标记为完成
             result = bll.Update(newVal, record);
             return result.Result == ResultCode.Successful;
         }
@@ -181,7 +181,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             YCTPaymentRecord record = new YCTPaymentRecord();
             record.PID = payment.本次交易设备编号;
-            record.PSN = payment.终端交易流水号.ToString();
+            record.PSN = payment.终端交易流水号;
             record.TIM = payment.本次交易日期时间;
             record.FCN = payment.物理卡号;
             record.LCN = payment.逻辑卡号;

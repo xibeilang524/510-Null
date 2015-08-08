@@ -23,7 +23,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// <summary>
         /// 获取或设置消费流水号
         /// </summary>
-        public string PSN { get; set; }
+        public int PSN { get; set; }
         /// <summary>
         /// 获取或设置消费时间
         /// </summary>
@@ -128,6 +128,14 @@ namespace Ralid.Park.BusinessModel.Model
         /// 获取或设置记录状态 
         /// </summary>
         public YCTPaymentRecordState State { get; set; }
+        /// <summary>
+        /// 获取或设置记录的上传文件
+        /// </summary>
+        public string UploadFile { get; set; }
+        /// <summary>
+        /// 获取或设置读卡器产生的交易数据
+        /// </summary>
+        public string Data { get; set; }
         #endregion
 
         #region 公共方法
@@ -141,16 +149,20 @@ namespace Ralid.Park.BusinessModel.Model
     public enum YCTPaymentRecordState
     {
         /// <summary>
-        /// 表示未处理完成
+        /// 表示支付失败的记录,需要再次确认的记录
         /// </summary>
-        Uncompleted = 0,
+        PaidFail = 0,
         /// <summary>
-        /// 处理完成
+        /// 支付成功的记录
         /// </summary>
-        Completed = 1,
+        PaidOk = 1,
         /// <summary>
         /// 羊城通服务器接受其为有效记录
         /// </summary>
-        ServiceAccepted = 2
+        ServiceAccepted = 2,
+        /// <summary>
+        /// 上传到服务器被服务器认定是无效的记录
+        /// </summary>
+        ServiceDenied = 3,
     }
 }

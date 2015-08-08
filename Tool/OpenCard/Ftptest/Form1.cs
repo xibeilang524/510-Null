@@ -9,7 +9,7 @@ using System.IO;
 using System.Windows.Forms;
 using System.Net.Sockets;
 using Limilabs.FTP.Client;
-using ICSharpCode.SharpZipLib.Zip;
+using Ralid.OpenCard.OpenCardService.YCT;
 
 namespace Ftptest
 {
@@ -22,51 +22,28 @@ namespace Ftptest
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string file = "123.zip";
-            using (Ftp ftp = new Ftp())
+            try
             {
-                ftp.Connect("192.168.0.102", 10021);
-                if (ftp.Connected)
+                string zip = Path.Combine(Application.StartupPath, string.Format("{0}.zip", DateTime.Now.ToString("yyyyMMddHHmmss")));
+                using (ZipFileWriter writer = new ZipFileWriter(zip))
                 {
-                    ftp.LoginAnonymous();
-                    if (ftp.FileExists(file))
+                    for (int i = 1; i < 11; i++)
                     {
-                        ftp.Download(file, System.IO.Path.Combine(@"f:\yct", file));
-                        ZipFile zip = new ZipFile(System.IO.Path.Combine(@"f:\yct", file));
-                        foreach (ZipEntry item in zip)
-                        {
-                            var stream = zip.GetInputStream(item);
-                        }
+                        string txt = string.Format("{0}.txt", i);
+                        writer.WriteFile(txt, ASCIIEncoding.ASCII.GetBytes(txt));
                     }
                 }
+                MessageBox.Show("生成成功 ,文件名:" + zip);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("生成失败, 原因:" + ex.Message);
             }
         }
 
         private void button2_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dig = new OpenFileDialog();
-            if (dig.ShowDialog() == DialogResult.OK)
-            {
-                using (ZipInputStream s = new ZipInputStream(File.OpenRead(dig.FileName)))
-                {
-                    ZipEntry theEntry;
-                    while ((theEntry = s.GetNextEntry()) != null)
-                    {
-                        if (theEntry.IsFile && Path.GetFileName(theEntry.Name).IndexOf("MD") == 0)
-                        {
-                            StreamReader r = new StreamReader(s);
-                            int count = 0;
-                            while (!r.EndOfStream)
-                            {
-                                //Console.WriteLine(r.ReadLine());
-                                count++;
-                            }
-                            Console.WriteLine("共读到 {0} 行数据", count);
-                        }
-                        Console.WriteLine(theEntry.Name);
-                    }
-                }
-            }
+            
         }
     }
 }

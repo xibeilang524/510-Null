@@ -629,7 +629,7 @@
     <Type Name="Ralid.Park.BusinessModel.Model.YCTPaymentRecord">
       <Column Name="ID" Member="ID" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
       <Column Name="PID" Member="PID"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
-      <Column Name="PSN" Member="PSN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="PSN" Member="PSN"  DbType="INT NOT NULL" UpdateCheck="Never"/>
       <Column Name="TIM" Member="TIM"  DbType="DATETIME NOT NULL" UpdateCheck="Never"/>
       <Column Name="LCN" Member="LCN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
       <Column Name="FCN" Member="FCN"  DbType="NVARCHAR(50) NOT NULL" UpdateCheck="Never"/>
@@ -656,6 +656,8 @@
       <Column Name="EnterDateTime" Member="EnterDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>
       <Column Name="WalletType" Member="WalletType"  DbType="int NOT NULL" UpdateCheck="Never"/>
       <Column Name="State" Member="State"  DbType="int NOT NULL" UpdateCheck="Never"/>
+      <Column Name="Data" Member="Data"  DbType="NVARCHAR(1000)  NULL" UpdateCheck="Never"/>
+      <Column Name="UploadFile" Member="UploadFile"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
 </Database>

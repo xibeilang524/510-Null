@@ -56,6 +56,10 @@ namespace Ralid.OpenCard.UI
             if (yct != null)
             {
                 txtServiceCode.IntergerValue = yct.ServiceCode;
+                txtReaderCode.IntergerValue = yct.ReaderCode;
+                txtFTPServer.Text = yct.FTPServer;
+                txtFTPUser.Text = yct.FTPUser;
+                txtFTPPwd.Text = yct.FTPPassword;
                 dataGridView1.Rows.Clear();
                 if (yct.Items != null && yct.Items.Count > 0)
                 {
@@ -66,6 +70,10 @@ namespace Ralid.OpenCard.UI
                     }
                 }
             }
+
+            string ftpPath = AppSettings.CurrentSetting.GetConfigContent("YCTFtpPath");
+            if (string.IsNullOrEmpty(ftpPath)) ftpPath = System.IO.Path.Combine(Application.StartupPath, "羊城通FTP");
+            txtFTPPath.Text = ftpPath;
         }
 
         private void mnu_Add_Click(object sender, EventArgs e)
@@ -112,16 +120,37 @@ namespace Ralid.OpenCard.UI
             }
         }
 
-        private void btnSave_Click(object sender, EventArgs e)
+        private bool CheckInput()
         {
             if (txtServiceCode.IntergerValue < 0 || txtServiceCode.IntergerValue > 9999)
             {
                 MessageBox.Show("服务商代码设置不正确");
-                return;
+                return false;
             }
+            if (txtReaderCode.IntergerValue < 0 || txtReaderCode.IntergerValue > 9999)
+            {
+                MessageBox.Show("刷卡点代码设置不正确");
+                return false;
+            }
+            if (string.IsNullOrEmpty(txtFTPPath.Text))
+            {
+                MessageBox.Show("羊城通FTP文件夹没有设置");
+                return false;
+            }
+            return true;
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            if (!CheckInput()) return;
+            AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", txtFTPPath.Text);
             YCTSetting yct = new YCTSetting();
             yct.Items.Clear();
             yct.ServiceCode = txtServiceCode.IntergerValue;
+            yct.ReaderCode = txtReaderCode.IntergerValue;
+            yct.FTPServer = txtFTPServer.Text;
+            yct.FTPUser = txtFTPUser.Text;
+            yct.FTPPassword = txtFTPPwd.Text;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 yct.Items.Add(row.Tag as YCTItem);
@@ -143,5 +172,19 @@ namespace Ralid.OpenCard.UI
         }
         #endregion
 
+        private void btnBrowser_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog dig = new FolderBrowserDialog();
+            if (dig.ShowDialog() == DialogResult.OK) txtFTPPath.Text = dig.SelectedPath;
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+            string zip= YCTUploadFileFactory.CreateM1UploadFile();
+            if (!string.IsNullOrEmpty(zip))
+            {
+
+            }
+        }
     }
 }
