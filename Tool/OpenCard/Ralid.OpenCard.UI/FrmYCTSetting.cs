@@ -7,6 +7,7 @@ using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BLL;
 using Ralid.OpenCard.OpenCardService;
 using Ralid.OpenCard.OpenCardService.YCT;
+using Limilabs.FTP.Client;
 
 namespace Ralid.OpenCard.UI
 {
@@ -58,6 +59,7 @@ namespace Ralid.OpenCard.UI
                 txtServiceCode.IntergerValue = yct.ServiceCode;
                 txtReaderCode.IntergerValue = yct.ReaderCode;
                 txtFTPServer.Text = yct.FTPServer;
+                txtFTPPort.IntergerValue = yct.FTPPort;
                 txtFTPUser.Text = yct.FTPUser;
                 txtFTPPwd.Text = yct.FTPPassword;
                 dataGridView1.Rows.Clear();
@@ -149,6 +151,7 @@ namespace Ralid.OpenCard.UI
             yct.ServiceCode = txtServiceCode.IntergerValue;
             yct.ReaderCode = txtReaderCode.IntergerValue;
             yct.FTPServer = txtFTPServer.Text;
+            yct.FTPPort = txtFTPPort.IntergerValue;
             yct.FTPUser = txtFTPUser.Text;
             yct.FTPPassword = txtFTPPwd.Text;
             foreach (DataGridViewRow row in dataGridView1.Rows)
@@ -170,7 +173,6 @@ namespace Ralid.OpenCard.UI
                 MessageBox.Show(ret.Message);
             }
         }
-        #endregion
 
         private void btnBrowser_Click(object sender, EventArgs e)
         {
@@ -180,11 +182,41 @@ namespace Ralid.OpenCard.UI
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string zip= YCTUploadFileFactory.CreateM1UploadFile();
+            string zip = YCTUploadFileFactory.CreateM1UploadFile();
             if (!string.IsNullOrEmpty(zip))
             {
 
             }
         }
+
+        private void btnFTPTest_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                using (Ftp ftp = new Ftp())
+                {
+                    ftp.Connect(txtFTPServer.Text, txtFTPPort.IntergerValue);
+                    if (ftp.Connected)
+                    {
+                        if (string.IsNullOrEmpty(txtFTPUser.Text))
+                        {
+                            ftp.LoginAnonymous();
+                        }
+                        else
+                        {
+                            ftp.Login(txtFTPUser.Text, txtFTPPwd.Text);
+                        }
+                        //string pwd = ftp.GetCurrentFolder();
+                        //ftp.Download(file, System.IO.Path.Combine(@"f:\yct", file));
+                    }
+                }
+                MessageBox.Show("连接FTP服务器成功");
+            }
+            catch (FtpException ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+        #endregion
     }
 }

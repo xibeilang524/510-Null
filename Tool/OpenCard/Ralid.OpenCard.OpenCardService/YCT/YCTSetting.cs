@@ -24,11 +24,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <summary>
         /// 获取或设置刷卡点编码
         /// </summary>
-        [DataMember ]
+        [DataMember]
         public int ReaderCode { get; set; }
-        
-        [DataMember ]
+
+        [DataMember]
         public string FTPServer { get; set; }
+
+        [DataMember]
+        public int FTPPort { get; set; }
 
         [DataMember]
         public string FTPUser { get; set; }

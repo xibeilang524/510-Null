@@ -57,6 +57,8 @@
             this.label6 = new System.Windows.Forms.Label();
             this.btnFTPTest = new System.Windows.Forms.Button();
             this.button4 = new System.Windows.Forms.Button();
+            this.label7 = new System.Windows.Forms.Label();
+            this.txtFTPPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -156,16 +158,16 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(19, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(143, 12);
+            this.label1.Size = new System.Drawing.Size(65, 12);
             this.label1.TabIndex = 3;
-            this.label1.Text = "服务商代码(0000 - 9999)";
+            this.label1.Text = "服务商代码";
             // 
             // txtServiceCode
             // 
             this.txtServiceCode.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtServiceCode.Location = new System.Drawing.Point(162, 10);
+            this.txtServiceCode.Location = new System.Drawing.Point(90, 10);
             this.txtServiceCode.MaxValue = 9999;
             this.txtServiceCode.MinValue = 0;
             this.txtServiceCode.Name = "txtServiceCode";
@@ -210,21 +212,21 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(287, 13);
+            this.label2.Location = new System.Drawing.Point(318, 13);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(143, 12);
+            this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 12;
-            this.label2.Text = "刷卡点代码(0000 - 9999)";
+            this.label2.Text = "读卡点代码";
             // 
             // txtReaderCode
             // 
             this.txtReaderCode.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtReaderCode.Location = new System.Drawing.Point(436, 10);
+            this.txtReaderCode.Location = new System.Drawing.Point(389, 10);
             this.txtReaderCode.MaxValue = 9999;
             this.txtReaderCode.MinValue = 0;
             this.txtReaderCode.Name = "txtReaderCode";
             this.txtReaderCode.NumberWithCommas = false;
-            this.txtReaderCode.Size = new System.Drawing.Size(115, 21);
+            this.txtReaderCode.Size = new System.Drawing.Size(162, 21);
             this.txtReaderCode.TabIndex = 13;
             this.txtReaderCode.Text = "1000";
             // 
@@ -268,14 +270,14 @@
             // 
             this.txtFTPServer.Location = new System.Drawing.Point(91, 48);
             this.txtFTPServer.Name = "txtFTPServer";
-            this.txtFTPServer.Size = new System.Drawing.Size(460, 21);
+            this.txtFTPServer.Size = new System.Drawing.Size(241, 21);
             this.txtFTPServer.TabIndex = 18;
             // 
             // txtFTPUser
             // 
             this.txtFTPUser.Location = new System.Drawing.Point(91, 81);
             this.txtFTPUser.Name = "txtFTPUser";
-            this.txtFTPUser.Size = new System.Drawing.Size(148, 21);
+            this.txtFTPUser.Size = new System.Drawing.Size(241, 21);
             this.txtFTPUser.TabIndex = 20;
             // 
             // label5
@@ -289,7 +291,7 @@
             // 
             // txtFTPPwd
             // 
-            this.txtFTPPwd.Location = new System.Drawing.Point(386, 79);
+            this.txtFTPPwd.Location = new System.Drawing.Point(386, 81);
             this.txtFTPPwd.Name = "txtFTPPwd";
             this.txtFTPPwd.PasswordChar = '*';
             this.txtFTPPwd.Size = new System.Drawing.Size(165, 21);
@@ -298,7 +300,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(354, 83);
+            this.label6.Location = new System.Drawing.Point(354, 85);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(29, 12);
             this.label6.TabIndex = 21;
@@ -306,12 +308,13 @@
             // 
             // btnFTPTest
             // 
-            this.btnFTPTest.Location = new System.Drawing.Point(558, 79);
+            this.btnFTPTest.Location = new System.Drawing.Point(558, 80);
             this.btnFTPTest.Name = "btnFTPTest";
             this.btnFTPTest.Size = new System.Drawing.Size(80, 23);
             this.btnFTPTest.TabIndex = 23;
             this.btnFTPTest.Text = "测试连接";
             this.btnFTPTest.UseVisualStyleBackColor = true;
+            this.btnFTPTest.Click += new System.EventHandler(this.btnFTPTest_Click);
             // 
             // button4
             // 
@@ -324,11 +327,34 @@
             this.button4.UseVisualStyleBackColor = true;
             this.button4.Click += new System.EventHandler(this.button4_Click);
             // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(354, 51);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(29, 12);
+            this.label7.TabIndex = 25;
+            this.label7.Text = "密码";
+            // 
+            // txtFTPPort
+            // 
+            this.txtFTPPort.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtFTPPort.Location = new System.Drawing.Point(389, 48);
+            this.txtFTPPort.MaxValue = 65535;
+            this.txtFTPPort.MinValue = 0;
+            this.txtFTPPort.Name = "txtFTPPort";
+            this.txtFTPPort.NumberWithCommas = false;
+            this.txtFTPPort.Size = new System.Drawing.Size(162, 21);
+            this.txtFTPPort.TabIndex = 26;
+            this.txtFTPPort.Text = "21";
+            // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 495);
+            this.Controls.Add(this.txtFTPPort);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.button4);
             this.Controls.Add(this.btnFTPTest);
             this.Controls.Add(this.txtFTPPwd);
@@ -390,6 +416,8 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnFTPTest;
         private System.Windows.Forms.Button button4;
+        private System.Windows.Forms.Label label7;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtFTPPort;
 
     }
 }
