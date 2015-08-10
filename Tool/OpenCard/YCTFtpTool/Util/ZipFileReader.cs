@@ -6,7 +6,7 @@ using System.IO;
 using ICSharpCode.SharpZipLib;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace Ralid.OpenCard.OpenCardService.YCT
+namespace Ralid.OpenCard.YCTFtpTool
 {
     public class ZipFileReader : IDisposable
     {

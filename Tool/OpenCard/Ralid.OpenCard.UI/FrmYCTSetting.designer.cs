@@ -46,19 +46,6 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtReaderCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtFTPPath = new System.Windows.Forms.TextBox();
-            this.btnBrowser = new System.Windows.Forms.Button();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtFTPServer = new System.Windows.Forms.TextBox();
-            this.txtFTPUser = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtFTPPwd = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
-            this.btnFTPTest = new System.Windows.Forms.Button();
-            this.button4 = new System.Windows.Forms.Button();
-            this.label7 = new System.Windows.Forms.Label();
-            this.txtFTPPort = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -78,12 +65,12 @@
             this.colEntrance,
             this.colMemo});
             this.dataGridView1.ContextMenuStrip = this.contextMenuStrip1;
-            this.dataGridView1.Location = new System.Drawing.Point(1, 143);
+            this.dataGridView1.Location = new System.Drawing.Point(1, 49);
             this.dataGridView1.Name = "dataGridView1";
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(656, 300);
+            this.dataGridView1.Size = new System.Drawing.Size(656, 295);
             this.dataGridView1.TabIndex = 0;
             // 
             // colID
@@ -147,7 +134,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(543, 449);
+            this.btnSave.Location = new System.Drawing.Point(543, 350);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(102, 34);
             this.btnSave.TabIndex = 2;
@@ -179,7 +166,7 @@
             // button1
             // 
             this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(369, 449);
+            this.button1.Location = new System.Drawing.Point(369, 350);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 34);
             this.button1.TabIndex = 9;
@@ -190,7 +177,7 @@
             // button2
             // 
             this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(249, 449);
+            this.button2.Location = new System.Drawing.Point(249, 350);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 34);
             this.button2.TabIndex = 10;
@@ -201,7 +188,7 @@
             // button3
             // 
             this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(120, 449);
+            this.button3.Location = new System.Drawing.Point(120, 350);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(102, 34);
             this.button3.TabIndex = 11;
@@ -230,142 +217,11 @@
             this.txtReaderCode.TabIndex = 13;
             this.txtReaderCode.Text = "1000";
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(13, 119);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(71, 12);
-            this.label3.TabIndex = 14;
-            this.label3.Text = "Ftp文件位置";
-            // 
-            // txtFTPPath
-            // 
-            this.txtFTPPath.Enabled = false;
-            this.txtFTPPath.Location = new System.Drawing.Point(91, 115);
-            this.txtFTPPath.Name = "txtFTPPath";
-            this.txtFTPPath.Size = new System.Drawing.Size(460, 21);
-            this.txtFTPPath.TabIndex = 15;
-            // 
-            // btnBrowser
-            // 
-            this.btnBrowser.Location = new System.Drawing.Point(558, 114);
-            this.btnBrowser.Name = "btnBrowser";
-            this.btnBrowser.Size = new System.Drawing.Size(80, 23);
-            this.btnBrowser.TabIndex = 16;
-            this.btnBrowser.Text = "...";
-            this.btnBrowser.UseVisualStyleBackColor = true;
-            this.btnBrowser.Click += new System.EventHandler(this.btnBrowser_Click);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(25, 52);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(59, 12);
-            this.label4.TabIndex = 17;
-            this.label4.Text = "FTP服务器";
-            // 
-            // txtFTPServer
-            // 
-            this.txtFTPServer.Location = new System.Drawing.Point(91, 48);
-            this.txtFTPServer.Name = "txtFTPServer";
-            this.txtFTPServer.Size = new System.Drawing.Size(241, 21);
-            this.txtFTPServer.TabIndex = 18;
-            // 
-            // txtFTPUser
-            // 
-            this.txtFTPUser.Location = new System.Drawing.Point(91, 81);
-            this.txtFTPUser.Name = "txtFTPUser";
-            this.txtFTPUser.Size = new System.Drawing.Size(241, 21);
-            this.txtFTPUser.TabIndex = 20;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(43, 85);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(41, 12);
-            this.label5.TabIndex = 19;
-            this.label5.Text = "用户名";
-            // 
-            // txtFTPPwd
-            // 
-            this.txtFTPPwd.Location = new System.Drawing.Point(386, 81);
-            this.txtFTPPwd.Name = "txtFTPPwd";
-            this.txtFTPPwd.PasswordChar = '*';
-            this.txtFTPPwd.Size = new System.Drawing.Size(165, 21);
-            this.txtFTPPwd.TabIndex = 22;
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(354, 85);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(29, 12);
-            this.label6.TabIndex = 21;
-            this.label6.Text = "密码";
-            // 
-            // btnFTPTest
-            // 
-            this.btnFTPTest.Location = new System.Drawing.Point(558, 80);
-            this.btnFTPTest.Name = "btnFTPTest";
-            this.btnFTPTest.Size = new System.Drawing.Size(80, 23);
-            this.btnFTPTest.TabIndex = 23;
-            this.btnFTPTest.Text = "测试连接";
-            this.btnFTPTest.UseVisualStyleBackColor = true;
-            this.btnFTPTest.Click += new System.EventHandler(this.btnFTPTest_Click);
-            // 
-            // button4
-            // 
-            this.button4.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button4.Location = new System.Drawing.Point(12, 449);
-            this.button4.Name = "button4";
-            this.button4.Size = new System.Drawing.Size(72, 34);
-            this.button4.TabIndex = 24;
-            this.button4.Text = "生成ZIP";
-            this.button4.UseVisualStyleBackColor = true;
-            this.button4.Click += new System.EventHandler(this.button4_Click);
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(354, 51);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(29, 12);
-            this.label7.TabIndex = 25;
-            this.label7.Text = "密码";
-            // 
-            // txtFTPPort
-            // 
-            this.txtFTPPort.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtFTPPort.Location = new System.Drawing.Point(389, 48);
-            this.txtFTPPort.MaxValue = 65535;
-            this.txtFTPPort.MinValue = 0;
-            this.txtFTPPort.Name = "txtFTPPort";
-            this.txtFTPPort.NumberWithCommas = false;
-            this.txtFTPPort.Size = new System.Drawing.Size(162, 21);
-            this.txtFTPPort.TabIndex = 26;
-            this.txtFTPPort.Text = "21";
-            // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 495);
-            this.Controls.Add(this.txtFTPPort);
-            this.Controls.Add(this.label7);
-            this.Controls.Add(this.button4);
-            this.Controls.Add(this.btnFTPTest);
-            this.Controls.Add(this.txtFTPPwd);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.txtFTPUser);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.txtFTPServer);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.btnBrowser);
-            this.Controls.Add(this.txtFTPPath);
-            this.Controls.Add(this.label3);
+            this.ClientSize = new System.Drawing.Size(657, 396);
             this.Controls.Add(this.txtReaderCode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
@@ -405,19 +261,6 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
         private GeneralLibrary.WinformControl.IntergerTextBox txtReaderCode;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.TextBox txtFTPPath;
-        private System.Windows.Forms.Button btnBrowser;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox txtFTPServer;
-        private System.Windows.Forms.TextBox txtFTPUser;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.TextBox txtFTPPwd;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button btnFTPTest;
-        private System.Windows.Forms.Button button4;
-        private System.Windows.Forms.Label label7;
-        private GeneralLibrary.WinformControl.IntergerTextBox txtFTPPort;
 
     }
 }

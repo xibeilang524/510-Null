@@ -58,10 +58,6 @@ namespace Ralid.OpenCard.UI
             {
                 txtServiceCode.IntergerValue = yct.ServiceCode;
                 txtReaderCode.IntergerValue = yct.ReaderCode;
-                txtFTPServer.Text = yct.FTPServer;
-                txtFTPPort.IntergerValue = yct.FTPPort;
-                txtFTPUser.Text = yct.FTPUser;
-                txtFTPPwd.Text = yct.FTPPassword;
                 dataGridView1.Rows.Clear();
                 if (yct.Items != null && yct.Items.Count > 0)
                 {
@@ -72,10 +68,6 @@ namespace Ralid.OpenCard.UI
                     }
                 }
             }
-
-            string ftpPath = AppSettings.CurrentSetting.GetConfigContent("YCTFtpPath");
-            if (string.IsNullOrEmpty(ftpPath)) ftpPath = System.IO.Path.Combine(Application.StartupPath, "羊城通FTP");
-            txtFTPPath.Text = ftpPath;
         }
 
         private void mnu_Add_Click(object sender, EventArgs e)
@@ -134,26 +126,16 @@ namespace Ralid.OpenCard.UI
                 MessageBox.Show("刷卡点代码设置不正确");
                 return false;
             }
-            if (string.IsNullOrEmpty(txtFTPPath.Text))
-            {
-                MessageBox.Show("羊城通FTP文件夹没有设置");
-                return false;
-            }
             return true;
         }
 
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!CheckInput()) return;
-            AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", txtFTPPath.Text);
-            YCTSetting yct = new YCTSetting();
+            YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetOrCreateSetting<YCTSetting>();
             yct.Items.Clear();
             yct.ServiceCode = txtServiceCode.IntergerValue;
             yct.ReaderCode = txtReaderCode.IntergerValue;
-            yct.FTPServer = txtFTPServer.Text;
-            yct.FTPPort = txtFTPPort.IntergerValue;
-            yct.FTPUser = txtFTPUser.Text;
-            yct.FTPPassword = txtFTPPwd.Text;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 yct.Items.Add(row.Tag as YCTItem);
@@ -171,50 +153,6 @@ namespace Ralid.OpenCard.UI
             else
             {
                 MessageBox.Show(ret.Message);
-            }
-        }
-
-        private void btnBrowser_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dig = new FolderBrowserDialog();
-            if (dig.ShowDialog() == DialogResult.OK) txtFTPPath.Text = dig.SelectedPath;
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            string zip = YCTUploadFileFactory.CreateM1UploadFile();
-            if (!string.IsNullOrEmpty(zip))
-            {
-
-            }
-        }
-
-        private void btnFTPTest_Click(object sender, EventArgs e)
-        {
-            try
-            {
-                using (Ftp ftp = new Ftp())
-                {
-                    ftp.Connect(txtFTPServer.Text, txtFTPPort.IntergerValue);
-                    if (ftp.Connected)
-                    {
-                        if (string.IsNullOrEmpty(txtFTPUser.Text))
-                        {
-                            ftp.LoginAnonymous();
-                        }
-                        else
-                        {
-                            ftp.Login(txtFTPUser.Text, txtFTPPwd.Text);
-                        }
-                        //string pwd = ftp.GetCurrentFolder();
-                        //ftp.Download(file, System.IO.Path.Combine(@"f:\yct", file));
-                    }
-                }
-                MessageBox.Show("连接FTP服务器成功");
-            }
-            catch (FtpException ex)
-            {
-                MessageBox.Show(ex.Message);
             }
         }
         #endregion

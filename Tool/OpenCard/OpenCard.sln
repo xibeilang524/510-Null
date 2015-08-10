@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.OpenCard.OpenCardServ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ralid.OpenCard.UI", "Ralid.OpenCard.UI\Ralid.OpenCard.UI.csproj", "{C819595C-C5CC-4E99-B80A-1D771F4BB751}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ftptest", "Ftptest\Ftptest.csproj", "{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCTTest", "YCTTest\YCTTest.csproj", "{E37F7C02-070F-47D5-A26D-36AA2107C8CA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{783EDD43-9027-4361-84B1-16016352BF48}"
@@ -15,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{783EDD
 		.nuget\NuGet.exe = .nuget\NuGet.exe
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCTFtpTool", "YCTFtpTool\YCTFtpTool.csproj", "{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,16 +46,6 @@ Global
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|Mixed Platforms.Build.0 = Release|x86
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|x86.ActiveCfg = Release|x86
 		{C819595C-C5CC-4E99-B80A-1D771F4BB751}.Release|x86.Build.0 = Release|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|x86.ActiveCfg = Debug|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Debug|x86.Build.0 = Debug|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Any CPU.ActiveCfg = Release|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|Mixed Platforms.Build.0 = Release|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|x86.ActiveCfg = Release|x86
-		{50DD59AB-15E6-4ACD-BEEE-AB62C22AF769}.Release|x86.Build.0 = Release|x86
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
@@ -68,6 +58,16 @@ Global
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Release|Mixed Platforms.Build.0 = Release|x86
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Release|x86.ActiveCfg = Release|x86
 		{E37F7C02-070F-47D5-A26D-36AA2107C8CA}.Release|x86.Build.0 = Release|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Debug|x86.ActiveCfg = Debug|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Debug|x86.Build.0 = Debug|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|Any CPU.ActiveCfg = Release|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|Mixed Platforms.Build.0 = Release|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|x86.ActiveCfg = Release|x86
+		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

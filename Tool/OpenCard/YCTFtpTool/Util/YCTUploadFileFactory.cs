@@ -8,9 +8,10 @@ using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.SearchCondition;
+using Ralid.OpenCard.OpenCardService.YCT;
 using ICSharpCode.SharpZipLib.Zip;
 
-namespace Ralid.OpenCard.OpenCardService.YCT
+namespace Ralid.OpenCard.YCTFtpTool
 {
     public class YCTUploadFileFactory
     {
@@ -121,7 +122,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "0002", fsy, index.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(9, '0').Insert(7, ".")));
             rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "0003", fmd, "0".PadLeft(10, '0'), "0".PadLeft(9, '0').Insert(7, ".")));
 
-            string path = FTPFolderFactory.CreateUploadFolder(dt);
+            string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
             string zip = Path.Combine(path, string.Format("{0}{1}.Zip", "XF", prefix));
             try
@@ -189,7 +190,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00002", fqs, index.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(11, '0').Insert(9, ".")));
             rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00003", fmd, "0".PadLeft(10, '0'), "0".PadLeft(11, '0').Insert(9, ".")));
 
-            string path = FTPFolderFactory.CreateUploadFolder(dt);
+            string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
             string zip = Path.Combine(path, string.Format("{0}{1}.Zip", "CX", prefix));
             try

@@ -17,6 +17,8 @@ namespace Ralid.OpenCard.OpenCardService
 
         event EventHandler<OpenCardEventArgs> OnPaidFail;
 
+        event EventHandler<OpenCardEventArgs> OnError;
+
         void Init();
 
         void Dispose();
@@ -38,6 +40,8 @@ namespace Ralid.OpenCard.OpenCardService
         public string EntranceName { get; set; }
 
         public string CardType { get; set; }
+
+        public decimal Balance { get; set; }
 
         public CardPaymentInfo Payment { get; set; }
 

@@ -107,6 +107,7 @@ namespace Ralid.OpenCard.UI
             handler.OnPaying += new EventHandler<OpenCardEventArgs>(handler_OnPaying);
             handler.OnPaidOk += new EventHandler<OpenCardEventArgs>(handler_OnPaidOk);
             handler.OnPaidFail += new EventHandler<OpenCardEventArgs>(handler_OnPaidFail);
+            handler.OnError += new EventHandler<OpenCardEventArgs>(handler_OnError);
 
             SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
             ZSTSetting zst = ssb.GetSetting<ZSTSetting>();
@@ -127,6 +128,15 @@ namespace Ralid.OpenCard.UI
             }
         }
 
+        private void handler_OnError(object sender, OpenCardEventArgs e)
+        {
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 卡号:{2} 原因:{3}",
+                                                 DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                 e.EntranceName,
+                                                 e.CardID,
+                                                 e.LastError), Color.Blue);
+        }
+
         private void handler_OnPaidFail(object sender, OpenCardEventArgs e)
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2} 原因:{3}",
@@ -138,11 +148,12 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnPaidOk(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2} 实收:{3}",
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2} 实收:{3} 余额:{4}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.EntranceName,
                                                   e.CardID,
-                                                  e.Paid), Color.Blue);
+                                                  e.Paid,
+                                                  e.Balance.ToString("F2")), Color.Blue);
         }
 
         private void handler_OnPaying(object sender, OpenCardEventArgs e)
@@ -156,10 +167,11 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnReadCard(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 入场读卡 卡号:{2}",
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 入场读卡 卡号:{2} 余额:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.EntranceName,
-                                                  e.CardID), Color.Blue);
+                                                  e.CardID,
+                                                  e.Balance.ToString("F2")), Color.Blue);
         }
 
         private void InsertMessage(string msg, Color color)

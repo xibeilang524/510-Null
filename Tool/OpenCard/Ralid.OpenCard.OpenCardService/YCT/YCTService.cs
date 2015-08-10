@@ -66,6 +66,18 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             if (InBlackList(w.LogicCardID))//此处应该先判断黑名单
                             {
                                 item.Reader.CatchBlackList();
+                                EntranceInfo entrance = null;
+                                if (this.OnError != null) //
+                                {
+                                    OpenCardEventArgs args = new OpenCardEventArgs()
+                                    {
+                                        CardID = w.LogicCardID,
+                                        EntranceID = entrance != null ? entrance.EntranceID : 0,
+                                        EntranceName = entrance != null ? entrance.EntranceName : null,
+                                        LastError = "黑名单羊城通卡",
+                                    };
+                                    this.OnError(this, args);
+                                }
                             }
                             else
                             {
@@ -99,59 +111,49 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private void HandleWallet(YCTItem item, YCTWallet w, EntranceInfo entrance)
         {
+            OpenCardEventArgs args = new OpenCardEventArgs()
+            {
+                CardID = w.LogicCardID,
+                CardType = "羊城通卡",
+                EntranceID = entrance != null ? entrance.EntranceID : 0,
+                EntranceName = entrance != null ? entrance.EntranceName : "中央收费",
+                Balance = (decimal)w.Balance / 100,
+            };
             if (entrance != null && !entrance.IsExitDevice) //入口
             {
-                OpenCardEventArgs args = new OpenCardEventArgs()
-                {
-                    CardID = w.LogicCardID,
-                    CardType = "羊城通卡",
-                    EntranceID = entrance.EntranceID,
-                    EntranceName = entrance.EntranceName,
-                };
                 if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
             else
             {
-                OpenCardEventArgs args = new OpenCardEventArgs();
-                args.CardID = w.LogicCardID;
-                if (entrance != null)
+                if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
+                if (args.Payment == null) return;
+                if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
                 {
-                    args.EntranceID = entrance.EntranceID;
-                    args.EntranceName = entrance.EntranceName;
+                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
-                else
+                else //扣费
                 {
-                    args.EntranceName = "中央收费";
-                }
-                if (this.OnPaying != null)
-                {
-                    this.OnPaying(this, args); //产生收费事件
-                    if (args.Payment == null) return;
-                    if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
+                    int balance;
+                    if (Paid(item, w, args.Payment, out balance))
                     {
+                        args.Paid = args.Payment.Accounts;
+                        args.Balance = (decimal)balance / 100;
+                        args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                        args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
                         if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                     }
-                    else //扣费
+                    else
                     {
-                        if (Paid(item, w, args.Payment))
-                        {
-                            args.Paid = args.Payment.Accounts;
-                            args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                            args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
-                            if (this.OnPaidOk != null) this.OnPaidOk(this, args);
-                        }
-                        else
-                        {
-                            args.LastError = item.Reader.LastError.ToString();
-                            if (this.OnPaidFail != null) this.OnPaidFail(this, args);
-                        }
+                        args.LastError = item.Reader.LastError.ToString();
+                        if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                     }
                 }
             }
         }
 
-        private bool Paid(YCTItem item, YCTWallet w, CardPaymentInfo paid)
+        private bool Paid(YCTItem item, YCTWallet w, CardPaymentInfo paid, out int balance)
         {
+            balance = 0;
             YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.Accounts * 100), w.WalletType);
             if (payment == null) return false;
             //这里应该保存记录,保存记录成功然后再进行下一步
@@ -174,6 +176,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             if (w.WalletType == 0x02) newVal.TAC = tac; //cpu钱包将TAC写到记录中
             newVal.State = YCTPaymentRecordState.PaidOk; //标记为完成
             result = bll.Update(newVal, record);
+            balance = record.BAL; //返回余额
             return result.Result == ResultCode.Successful;
         }
 
@@ -216,6 +219,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public event EventHandler<OpenCardEventArgs> OnPaidOk;
 
         public event EventHandler<OpenCardEventArgs> OnPaidFail;
+
+        public event EventHandler<OpenCardEventArgs> OnError;
 
         public void Init()
         {

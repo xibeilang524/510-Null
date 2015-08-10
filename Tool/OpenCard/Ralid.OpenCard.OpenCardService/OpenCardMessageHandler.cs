@@ -182,6 +182,22 @@ namespace Ralid.OpenCard.OpenCardService
             _WaitingExitCards.Remove(e.CardID);
             if (this.OnPaidFail != null) this.OnPaidFail(sender, e);
         }
+
+        private void s_OnError(object sender, OpenCardEventArgs e)
+        {
+            if (e.EntranceID == null) return;
+            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
+            if (entrance != null)
+            {
+                //通过远程读卡方式
+                IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+                if (pad != null)
+                {
+                    pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, e.LastError, false, 0));
+                }
+            }
+            if (this.OnError != null) this.OnError(this, e);
+        }
         #endregion
 
         #region 事件
@@ -192,6 +208,8 @@ namespace Ralid.OpenCard.OpenCardService
         public event EventHandler<OpenCardEventArgs> OnPaidOk;
 
         public event EventHandler<OpenCardEventArgs> OnPaidFail;
+
+        public event EventHandler<OpenCardEventArgs> OnError;
         #endregion
 
         #region 公共方法

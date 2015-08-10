@@ -245,6 +245,8 @@ namespace Ralid.OpenCard.OpenCardService
         /// 收费失败时产生此事件
         /// </summary>
         public event EventHandler<OpenCardEventArgs> OnPaidFail;
+
+        public event EventHandler<OpenCardEventArgs> OnError;
         /// <summary>
         /// 初始化
         /// </summary>
