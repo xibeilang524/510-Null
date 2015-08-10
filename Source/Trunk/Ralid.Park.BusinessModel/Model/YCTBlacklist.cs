@@ -24,7 +24,7 @@ namespace Ralid.Park.BusinessModel.Model
         /// <summary>
         /// 获取或设置进入黑名单的原因
         /// </summary>
-        public int Reason { get; set; }
+        public string Reason { get; set; }
         /// <summary>
         /// 获取或设置设置成黑名单的日期时间
         /// </summary>
