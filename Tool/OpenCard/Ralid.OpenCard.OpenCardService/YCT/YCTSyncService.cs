@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Limilabs.FTP.Client;
 
 namespace Ralid.OpenCard.OpenCardService.YCT
 {
@@ -16,11 +17,20 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         #endregion
 
-        #region 公共属性
+        #region 私有变量
+
+        #endregion
+
+        #region 私有方法
 
         #endregion
 
         #region 公共方法
+        public void Init()
+        {
+
+        }
+
         public string CreateM1UploadFile()
         {
 

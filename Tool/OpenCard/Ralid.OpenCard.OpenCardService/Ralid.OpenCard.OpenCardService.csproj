@@ -91,6 +91,7 @@
     <Compile Include="YCT\YCTSetting.cs" />
     <Compile Include="YCT\YCTUploadFileFactory.cs" />
     <Compile Include="YCT\YCTWallet.cs" />
+    <Compile Include="YCT\ZipFileReader.cs" />
     <Compile Include="YCT\ZipFileWriter.cs" />
     <Compile Include="YiTingBuffer.cs" />
     <Compile Include="YiTingPacket.cs" />

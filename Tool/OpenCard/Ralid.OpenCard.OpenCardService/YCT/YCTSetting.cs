@@ -22,7 +22,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         [DataMember]
         public int ServiceCode { get; set; }
         /// <summary>
-        /// 获取或设置刷卡点编码
+        /// 获取或设置采集点编码
         /// </summary>
         [DataMember]
         public int ReaderCode { get; set; }

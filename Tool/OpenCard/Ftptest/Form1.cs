@@ -43,7 +43,16 @@ namespace Ftptest
 
         private void button2_Click(object sender, EventArgs e)
         {
-            
+            OpenFileDialog dig = new OpenFileDialog();
+            if (dig.ShowDialog() == DialogResult.OK)
+            {
+                using (ZipFileReader reader = new ZipFileReader(dig.FileName))
+                {
+                    string file = "MD" + Path.GetFileNameWithoutExtension(dig.FileName).Substring(2) + ".txt";
+                    byte[] data = reader.ReadFile(file);
+                    string temp = ASCIIEncoding.ASCII.GetString(data);
+                }
+            }
         }
     }
 }

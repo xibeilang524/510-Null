@@ -23,6 +23,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 公共方法
+        /// <summary>
+        /// 将内容添加到压缩文件
+        /// </summary>
+        /// <param name="file">文件名</param>
+        /// <param name="data">文件内容</param>
         public void WriteFile(string file, byte[] data)
         {
             if (_Stream != null)
