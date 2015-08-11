@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Security.AccessControl;
 using Ralid.Park.BusinessModel.Configuration;
 
 namespace Ralid.OpenCard.YCTFtpTool
@@ -46,8 +47,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path = Path.Combine(path, "下载");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                //path = Path.Combine(path, dt.ToString("yyyy年MM月"));
-                //if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
             catch (Exception ex)

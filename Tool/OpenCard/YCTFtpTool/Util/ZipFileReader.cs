@@ -42,6 +42,30 @@ namespace Ralid.OpenCard.YCTFtpTool
             }
             return null;
         }
+        /// <summary>
+        /// 读取第一个以某个前缀开头的文件
+        /// </summary>
+        /// <param name="filePrefix"></param>
+        /// <returns></returns>
+        public byte[] ReadFirst(string filePrefix)
+        {
+            if (_Zip != null)
+            {
+                foreach (ZipEntry f in _Zip)
+                {
+                    if (f.IsFile && f.Name.ToUpper().IndexOf(filePrefix.ToUpper()) == 0 && f.Size > 0)
+                    {
+                        byte[] data = new byte[f.Size];
+                        using (var s = _Zip.GetInputStream(f))
+                        {
+                            s.Read(data, 0, data.Length);
+                            return data;
+                        }
+                    }
+                }
+            }
+            return null;
+        }
 
         public void Dispose()
         {

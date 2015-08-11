@@ -54,7 +54,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                        r.CRN.ToString().PadLeft(5, '0'),
                        r.XRN.ToString().PadLeft(5, '0'),
                        r.DMON,
-                       r.BDCT .ToString().PadLeft (3,'0'),
+                       r.BDCT.ToString().PadLeft(3, '0'),
                        r.MDCT.ToString().PadLeft(3, '0'),
                        r.UDCT.ToString().PadLeft(3, '0'),
                        r.EPID,
@@ -64,8 +64,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                        r.AREA,
                        r.ACT,
                        r.SAREA,
-                       r.TAC ,
-                       r.MEM 
+                       r.TAC,
+                       r.MEM
                 );
         }
         #endregion
@@ -76,6 +76,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为M1钱包且未上传的记录
             {
                 WalletType = 1,
+                State = (int)YCTPaymentRecordState.PaidOk,
                 UnUploaded = true
             };
             List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
@@ -148,6 +149,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
             {
                 WalletType = 2,
+                State = (int)YCTPaymentRecordState.PaidOk,
                 UnUploaded = true
             };
             List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
@@ -159,7 +161,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                        where !string.IsNullOrEmpty(it.TAC)  //TAC字段不能为空
                        select it).ToList(); //按交易设备号和流水号排序
             DateTime dt = DateTime.Now;
-            string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'),  DateTime.Today.ToString("yyyyMMddHH"));
+            string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
             string fqs = string.Format("{0}{1}.txt", "QS", prefix);
             string frz = string.Format("{0}{1}.txt", "RZ", prefix);
