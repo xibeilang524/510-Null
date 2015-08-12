@@ -108,17 +108,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 payment.票卡充值交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 47, 2));
                 payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 49, 2));
                 payment.累计门槛月份 = HexStringConverter.HexToString(Slice(data, 51, 2), string.Empty);
-                payment.公交门槛计数 = Slice(data, 52, 1)[0];
-                payment.地铁门槛计数 = Slice(data, 53, 1)[0];
-                payment.联乘门槛计数 = Slice(data, 54, 1)[0];
-                payment.本次交易入口设备编号 = HexStringConverter.HexToString(Slice(data, 55, 6), string.Empty);
-                payment.本次交易入口日期时间 = HexStringConverter.HexToString(Slice(data, 61, 7), string.Empty);
-                payment.上次交易设备编号 = HexStringConverter.HexToString(Slice(data, 68, 6), string.Empty);
-                payment.上次交易日期时间 = HexStringConverter.HexToString(Slice(data, 74, 4), string.Empty);
-                payment.区域代码 = HexStringConverter.HexToString(Slice(data, 78, 1), string.Empty);
-                payment.区域卡类型 = HexStringConverter.HexToString(Slice(data, 79, 2), string.Empty);
-                payment.区域子码 = HexStringConverter.HexToString(Slice(data, 81, 1), string.Empty);
-                payment.交易认证码 = HexStringConverter.HexToString(Slice(data, 82, 4), string.Empty);
+                payment.公交门槛计数 = Slice(data, 53, 1)[0];
+                payment.地铁门槛计数 = Slice(data, 54, 1)[0];
+                payment.联乘门槛计数 = Slice(data, 55, 1)[0];
+                payment.本次交易入口设备编号 = HexStringConverter.HexToString(Slice(data, 56, 6), string.Empty);
+                payment.本次交易入口日期时间 = HexStringConverter.HexToString(Slice(data, 62, 7), string.Empty);
+                payment.上次交易设备编号 = HexStringConverter.HexToString(Slice(data, 69, 6), string.Empty);
+                payment.上次交易日期时间 = HexStringConverter.HexToString(Slice(data, 75, 4), string.Empty);
+                payment.区域代码 = HexStringConverter.HexToString(Slice(data, 79, 1), string.Empty);
+                payment.区域卡类型 = HexStringConverter.HexToString(Slice(data, 80, 2), string.Empty);
+                payment.区域子码 = HexStringConverter.HexToString(Slice(data, 82, 1), string.Empty);
+                payment.交易认证码 = HexStringConverter.HexToString(Slice(data, 83, 4), string.Empty);
                 return payment;
             }
             catch (Exception ex)
