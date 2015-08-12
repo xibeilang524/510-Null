@@ -133,6 +133,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                         using (FileStream fs = new FileStream(zip, FileMode.Open, FileAccess.Read))
                         {
                             ftp.Upload(m1Zip, fs);
+                            new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(records, m1Zip);
                         }
                     }
                 }
@@ -224,6 +225,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             Action action = delegate()
             {
                 this.eventList.Items.Add(string.Format("【{0}】 {1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), msg));
+                this.eventList.Refresh();
             };
             if (this.InvokeRequired)
             {
@@ -286,15 +288,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                 MessageBox.Show(ex.Message);
                 InsertMsg("连接FTP服务器失败");
             }
-        }
-
-        private void button4_Click(object sender, EventArgs e)
-        {
-            //string zip = YCTUploadFileFactory.CreateM1UploadFile();
-            //if (!string.IsNullOrEmpty(zip))
-            //{
-
-            //}
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)

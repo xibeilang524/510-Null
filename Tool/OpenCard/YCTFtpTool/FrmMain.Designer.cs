@@ -170,7 +170,7 @@
             this.eventList.Dock = System.Windows.Forms.DockStyle.Fill;
             this.eventList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
             this.eventList.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.eventList.ItemHeight = 12;
+            this.eventList.ItemHeight = 15;
             this.eventList.Location = new System.Drawing.Point(0, 76);
             this.eventList.Name = "eventList";
             this.eventList.Size = new System.Drawing.Size(983, 463);

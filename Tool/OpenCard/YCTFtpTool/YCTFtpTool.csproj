@@ -94,6 +94,7 @@
     <Compile Include="FrmPayment.Designer.cs">
       <DependentUpon>FrmPayment.cs</DependentUpon>
     </Compile>
+    <Compile Include="Util\BLLExtension.cs" />
     <Compile Include="Util\FtpClientExtension.cs" />
     <Compile Include="Util\FTPFolderFactory.cs" />
     <Compile Include="Program.cs" />
