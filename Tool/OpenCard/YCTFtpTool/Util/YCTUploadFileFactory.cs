@@ -71,22 +71,11 @@ namespace Ralid.OpenCard.YCTFtpTool
         #endregion
 
         #region 公共方法
-        public static string CreateM1UploadFile()
+        public static string CreateM1UploadFile(DateTime dt, YCTSetting yctSetting, List<YCTPaymentRecord> records)
         {
-            YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为M1钱包且未上传的记录
-            {
-                WalletType = 1,
-                State = (int)YCTPaymentRecordState.PaidOk,
-                UnUploaded = true
-            };
-            List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
-            if (records == null || records.Count == 0) return null;
-            YCTSetting yctSetting = new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).GetSetting<YCTSetting>();
-            if (yctSetting == null) return null;
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
                        select it).ToList(); //按交易设备号和流水号排序
-            DateTime dt = DateTime.Now;
             string sdt = DateTime.Today.ToString("yyyyMMdd");
             string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'), sdt);
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
@@ -144,23 +133,12 @@ namespace Ralid.OpenCard.YCTFtpTool
             return null;
         }
 
-        public static string CreateCPUUploadFile()
+        public static string CreateCPUUploadFile(DateTime dt, YCTSetting yctSetting, List<YCTPaymentRecord> records)
         {
-            YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
-            {
-                WalletType = 2,
-                State = (int)YCTPaymentRecordState.PaidOk,
-                UnUploaded = true
-            };
-            List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
-            if (records == null || records.Count == 0) return null;
-            YCTSetting yctSetting = new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).GetSetting<YCTSetting>();
-            if (yctSetting == null) return null;
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
                        where !string.IsNullOrEmpty(it.TAC)  //TAC字段不能为空
                        select it).ToList(); //按交易设备号和流水号排序
-            DateTime dt = DateTime.Now;
             string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
             string fqs = string.Format("{0}{1}.txt", "QS", prefix);

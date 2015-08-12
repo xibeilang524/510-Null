@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Data.SqlClient;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.GeneralLibrary;
 
 namespace Ralid.OpenCard.UI
 {

@@ -9,10 +9,11 @@ using System.IO;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Windows.Forms;
-using Limilabs.FTP.Client;
+using System.Net.FtpClient;
 using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.OpenCard.OpenCardService.YCT;
 
 namespace Ralid.OpenCard.YCTFtpTool
@@ -47,65 +48,160 @@ namespace Ralid.OpenCard.YCTFtpTool
             }
         }
 
-        private void Download_Thread()
+        private void ExtraFile(string file)
+        {
+            InsertMsg("解析黑名单...");
+            if (Path.GetExtension(file).ToUpper() == ".ZIP")
+            {
+                string[] mds = ReadMD(file);
+                if (mds != null && mds.Length > 0)
+                {
+                    int count = 0;
+                    List<YCTBlacklist> bl = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects;
+                    Dictionary<string, YCTBlacklist> blacks = new Dictionary<string, YCTBlacklist>();
+                    bl.ForEach(it => blacks.Add(it.CardID, it));
+                    foreach (var md in mds)
+                    {
+                        string[] temp = md.Split('\t');
+                        if (!blacks.ContainsKey(temp[0]))
+                        {
+                            YCTBlacklist yb = new YCTBlacklist();
+                            yb.CardID = temp[0];
+                            if (temp.Length >= 3) yb.Reason = temp[2];
+                            yb.AddDateTime = DateTime.Now;
+                            new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).Insert(yb);
+                            count++;
+                        }
+                    }
+                    InsertMsg(string.Format("系统新增 {0} 条黑名单记录", count));
+                }
+            }
+            //InsertMsg("解析错误记录...");
+        }
+
+        private void SyncDownloadFiles(FtpClient ftp)
+        {
+            //原理： 将本地目录中不存在的ZIP文件从远程目录中下载回来
+            if (!ftp.DirectoryExists("/READ")) return;
+            ftp.SetWorkingDirectory("/READ"); //定位到文件下载目录
+            InsertMsg("定位到: " + ftp.GetWorkingDirectory());
+            string localFolder = FTPFolderFactory.CreateDownloadFolder();
+            string[] files = Directory.GetFiles(localFolder);
+            foreach (var fi in ftp.GetListing())
+            {
+                if (fi.Type == FtpFileSystemObjectType.File && !files.Contains(Path.Combine(localFolder, fi.Name)))
+                {
+                    InsertMsg("下载文件 " + fi.Name);
+                    string file = Path.Combine(localFolder, fi.Name); //本地文件
+                    using (var fs = new FileStream(file, FileMode.Create, FileAccess.Write))
+                    {
+                        ftp.Download(fi.Name, fs);
+                    }
+                    if (File.Exists(file))
+                    {
+                        InsertMsg("解析文件 " + fi.Name);
+                        ExtraFile(file);
+                    }
+                }
+            }
+        }
+
+        private void SyncUploadFiles(FtpClient ftp, YCTSetting yct)
+        {
+            if (!ftp.DirectoryExists("WRITE")) return;
+            ftp.SetWorkingDirectory("/WRITE"); //定位到文件下载目录
+            InsertMsg("定位到: " + ftp.GetWorkingDirectory());
+            DateTime dt = DateTime.Now;
+            string m1Zip = string.Format("XF{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMdd"));
+            string cpuZip = string.Format("CX{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
+            var item = ftp.GetListing();
+            if (item == null && item.Length == 0 || item.Count(it => it.Name == m1Zip) == 0)
+            {
+                YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为M1钱包且未上传的记录
+                {
+                    WalletType = 1,
+                    State = (int)YCTPaymentRecordState.PaidOk,
+                    UnUploaded = true
+                };
+                List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
+                if (records != null && records.Count > 0)
+                {
+                    string zip = YCTUploadFileFactory.CreateM1UploadFile(dt, yct, records);
+                    if (!string.IsNullOrEmpty(zip))
+                    {
+                        InsertMsg("上传文件" + m1Zip);
+                        using (FileStream fs = new FileStream(zip, FileMode.Open, FileAccess.Read))
+                        {
+                            ftp.Upload(m1Zip, fs);
+                        }
+                    }
+                }
+            }
+
+            if (item == null && item.Length == 0 || item.Count(it => it.Name == cpuZip) == 0)
+            {
+                YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
+                {
+                    WalletType = 2,
+                    State = (int)YCTPaymentRecordState.PaidOk,
+                    UnUploaded = true
+                };
+                List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
+                if (records != null && records.Count > 0)
+                {
+                    string zip = YCTUploadFileFactory.CreateCPUUploadFile(dt, yct, records);
+                    if (!string.IsNullOrEmpty(zip))
+                    {
+                        InsertMsg("上传文件" + cpuZip);
+                        using (FileStream fs = new FileStream(zip, FileMode.Open, FileAccess.Read))
+                        {
+                            ftp.Upload(cpuZip, fs);
+                        }
+                    }
+                }
+            }
+        }
+
+        private void SyncFile_Thread()
         {
             while (true)
+            {
+                try
+                {
+                    Thread.Sleep(1000 * 60);
+                    DoSync();
+                    Thread.Sleep(1000 * 60 * 5);
+                }
+                catch (ThreadAbortException)
+                {
+                }
+            }
+        }
+
+        private void DoSync()
+        {
+            try
             {
                 YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).GetSetting<YCTSetting>();
                 if (yct != null && !string.IsNullOrEmpty(yct.FTPServer) && yct.FTPPort > 0)
                 {
-                    using (Ftp ftp = new Ftp())
+                    using (FtpClient ftp = new FtpClient())
                     {
-                        ftp.Connect(yct.FTPServer, yct.FTPPort);
-                        if (ftp.Connected)
-                        {
-                            if (!string.IsNullOrEmpty(yct.FTPUser) && !string.IsNullOrEmpty(yct.FTPPassword))
-                            {
-                                ftp.Login(yct.FTPUser, yct.FTPPassword);
-                            }
-                            else
-                            {
-                                ftp.LoginAnonymous();
-                            }
-                            ftp.ChangeFolder("/"); //定位到文件下载目录
-                            string localFolder = FTPFolderFactory.CreateDownloadFolder();
-                            string[] files = Directory.GetFiles(localFolder);
-                            foreach (FtpItem fi in ftp.GetList())
-                            {
-                                if (fi.IsFile && !files.Contains(Path.Combine(localFolder, fi.Name)))
-                                {
-                                    using (var fs = new FileStream(Path.Combine(localFolder, fi.Name), FileMode.Create, FileAccess.Write))
-                                    {
-                                        ftp.Download(fi.Name, fs);
-                                    }
-                                    if (Path.GetExtension(fi.Name).ToUpper() == ".ZIP")
-                                    {
-                                        string[] mds = ReadMD(Path.Combine(localFolder, fi.Name));
-                                        if (mds != null && mds.Length > 0)
-                                        {
-                                            List<YCTBlacklist> bl = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects;
-                                            Dictionary<string, YCTBlacklist> blacks = new Dictionary<string, YCTBlacklist>();
-                                            bl.ForEach(it => blacks.Add(it.CardID, it));
-                                            foreach (var md in mds)
-                                            {
-                                                string[] temp = md.Split('\t');
-                                                if (!blacks.ContainsKey(temp[0]))
-                                                {
-                                                    YCTBlacklist yb = new YCTBlacklist();
-                                                    yb.CardID = temp[0];
-                                                    if (temp.Length >= 3) yb.Reason = temp[2];
-                                                    yb.AddDateTime = DateTime.Now;
-                                                    new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).Insert(yb);
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-                        }
+                        ftp.Host = yct.FTPServer;
+                        ftp.Port = yct.FTPPort;
+                        ftp.Credentials = new System.Net.NetworkCredential(string.IsNullOrEmpty(yct.FTPUser) ? "anonymous" : yct.FTPUser, string.IsNullOrEmpty(yct.FTPPassword) ? "huihai.com" : yct.FTPPassword);
+
+                        SyncDownloadFiles(ftp); //同步下载目录，
+
+                        ftp.SetWorkingDirectory("/"); //退回到根目录
+                        SyncUploadFiles(ftp, yct);  //同频上传目录
+                        InsertMsg(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     }
                 }
-                Thread.Sleep(5000);
+            }
+            catch (Exception ex)
+            {
+                InsertMsg(ex.Message);
             }
         }
 
@@ -123,6 +219,21 @@ namespace Ralid.OpenCard.YCTFtpTool
             return null;
         }
 
+        private void InsertMsg(string msg)
+        {
+            Action action = delegate()
+            {
+                this.eventList.Items.Add(string.Format("【{0}】 {1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), msg));
+            };
+            if (this.InvokeRequired)
+            {
+                this.Invoke(action);
+            }
+            else
+            {
+                action();
+            }
+        }
         #endregion
 
         #region 事件处理程序
@@ -144,12 +255,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                 txtFTPUser.Text = yct.FTPUser;
                 txtFTPPwd.Text = yct.FTPPassword;
             }
-            string ftpPath = AppSettings.CurrentSetting.GetConfigContent("YCTFtpPath");
-            if (string.IsNullOrEmpty(ftpPath)) ftpPath = System.IO.Path.Combine(Application.StartupPath, "羊城通FTP");
-            txtFTPPath.Text = ftpPath;
-            AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", txtFTPPath.Text);
 
-            Thread t = new Thread(new ThreadStart(Download_Thread));
+            Thread t = new Thread(new ThreadStart(SyncFile_Thread));
             t.IsBackground = true;
             t.Start();
         }
@@ -165,49 +272,29 @@ namespace Ralid.OpenCard.YCTFtpTool
 
             try
             {
-                using (Ftp ftp = new Ftp())
+                using (FtpClient ftp = new FtpClient())
                 {
-                    ftp.Connect(txtFTPServer.Text, txtFTPPort.IntergerValue);
-                    if (ftp.Connected)
-                    {
-                        if (string.IsNullOrEmpty(txtFTPUser.Text))
-                        {
-                            ftp.LoginAnonymous();
-                        }
-                        else
-                        {
-                            ftp.Login(txtFTPUser.Text, txtFTPPwd.Text);
-                        }
-                        //string pwd = ftp.GetCurrentFolder();
-                        //ftp.Download(file, System.IO.Path.Combine(@"f:\yct", file));
-                    }
+                    ftp.Host = yct.FTPServer;
+                    ftp.Port = yct.FTPPort;
+                    ftp.Credentials = new System.Net.NetworkCredential(string.IsNullOrEmpty(yct.FTPUser) ? "anonymous" : yct.FTPUser, string.IsNullOrEmpty(yct.FTPPassword) ? "huihai.com" : yct.FTPPassword);
+                    ftp.Connect();
+                    InsertMsg("连接FTP服务器" + (ftp.IsConnected ? "成功" : "失败"));
                 }
-                lblFtpState.Text = "连接FTP服务器成功";
             }
-            catch (FtpException ex)
+            catch (System.Net.FtpClient.FtpException ex)
             {
                 MessageBox.Show(ex.Message);
-                lblFtpState.Text = "连接FTP服务器失败";
-            }
-        }
-
-        private void btnBrowser_Click(object sender, EventArgs e)
-        {
-            FolderBrowserDialog dig = new FolderBrowserDialog();
-            if (dig.ShowDialog() == DialogResult.OK)
-            {
-                txtFTPPath.Text = dig.SelectedPath;
-                AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", txtFTPPath.Text);
+                InsertMsg("连接FTP服务器失败");
             }
         }
 
         private void button4_Click(object sender, EventArgs e)
         {
-            string zip = YCTUploadFileFactory.CreateM1UploadFile();
-            if (!string.IsNullOrEmpty(zip))
-            {
+            //string zip = YCTUploadFileFactory.CreateM1UploadFile();
+            //if (!string.IsNullOrEmpty(zip))
+            //{
 
-            }
+            //}
         }
 
         private void Form1_FormClosing(object sender, FormClosingEventArgs e)
@@ -216,17 +303,18 @@ namespace Ralid.OpenCard.YCTFtpTool
             {
                 this.ShowInTaskbar = false;
                 _LastState = this.WindowState;
-                this.WindowState = FormWindowState.Minimized;
+                this.Hide();
                 e.Cancel = true;
             }
         }
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            if (this.WindowState == FormWindowState.Minimized)
+            if (!this.Visible )
             {
                 this.WindowState = _LastState;
                 this.ShowInTaskbar = true;
+                this.Visible = true;
             }
             this.Activate();
         }
@@ -250,6 +338,20 @@ namespace Ralid.OpenCard.YCTFtpTool
             FrmPayment frm = new FrmPayment();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
+        }
+
+        private void btnSync_Click(object sender, EventArgs e)
+        {
+            DoSync();
+        }
+
+        private void FrmMain_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.ShowInTaskbar = false;
+                this.Hide();
+            }
         }
     }
 }

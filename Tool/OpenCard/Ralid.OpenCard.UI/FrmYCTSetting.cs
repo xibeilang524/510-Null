@@ -7,7 +7,6 @@ using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BLL;
 using Ralid.OpenCard.OpenCardService;
 using Ralid.OpenCard.OpenCardService.YCT;
-using Limilabs.FTP.Client;
 
 namespace Ralid.OpenCard.UI
 {

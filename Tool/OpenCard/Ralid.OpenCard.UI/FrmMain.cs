@@ -57,6 +57,20 @@ namespace Ralid.OpenCard.UI
             }
         }
 
+        private bool UpGradeDataBase()
+        {
+            bool result = false;
+            string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DbUpdate.sql");
+            if (System.IO.File.Exists(path))
+            {
+                SqlClientHelper.SqlClient client = new SqlClientHelper.SqlClient(AppSettings.CurrentSetting.MasterParkConnect);
+                client.Connect();
+                client.ExecuteSQLFile(path);
+            }
+            return result;
+        }
+
+
         private void InitSystemParameters()
         {
             //初始化系统设置
@@ -221,6 +235,7 @@ namespace Ralid.OpenCard.UI
                     return;
                 }
             }
+            UpGradeDataBase(); //生成需要的一些表
             ParkBuffer.Current = new ParkBuffer(AppSettings.CurrentSetting.MasterParkConnect);
             ParkBuffer.Current.InValid(AppSettings.CurrentSetting.MasterParkConnect);  //获取所有硬件信息
             SetCurrentOperator(); //设置当前操作员

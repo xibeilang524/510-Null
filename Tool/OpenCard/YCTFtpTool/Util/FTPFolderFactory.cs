@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
+using System.Windows.Forms;
 using System.Security.AccessControl;
 using Ralid.Park.BusinessModel.Configuration;
 
@@ -19,12 +20,11 @@ namespace Ralid.OpenCard.YCTFtpTool
             try
             {
                 string path = AppSettings.CurrentSetting.GetConfigContent("YCTFtpPath");
-                if (string.IsNullOrEmpty(path)) return null;
+                if (string.IsNullOrEmpty(path)) path = System.IO.Path.Combine(Application.StartupPath, "FTP");
+                AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", path);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path = Path.Combine(path, "上传");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                //path = Path.Combine(path, dt.ToString("yyyy年MM月"));
-                //if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
             catch (Exception ex)
@@ -43,7 +43,8 @@ namespace Ralid.OpenCard.YCTFtpTool
             try
             {
                 string path = AppSettings.CurrentSetting.GetConfigContent("YCTFtpPath");
-                if (string.IsNullOrEmpty(path)) return null;
+                if (string.IsNullOrEmpty(path)) path = System.IO.Path.Combine(Application.StartupPath, "FTP");
+                AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", path);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path = Path.Combine(path, "下载");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
