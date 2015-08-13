@@ -42,11 +42,16 @@
             this.mnu_YCT = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
-            this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
-            this.chkCardEvent = new System.Windows.Forms.CheckBox();
+            this.pnlPark = new System.Windows.Forms.Panel();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.chkOpenEvent = new System.Windows.Forms.CheckBox();
+            this.chkCardEvent = new System.Windows.Forms.CheckBox();
+            this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // statusStrip1
@@ -86,6 +91,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.系统ToolStripMenuItem,
             this.参数设置ToolStripMenuItem});
@@ -131,61 +137,87 @@
             // mnu_YCT
             // 
             this.mnu_YCT.Name = "mnu_YCT";
-            this.mnu_YCT.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YCT.Size = new System.Drawing.Size(124, 22);
             this.mnu_YCT.Text = "羊城通";
             this.mnu_YCT.Click += new System.EventHandler(this.mnu_YCT_Click);
             // 
             // mnu_YiTing
             // 
             this.mnu_YiTing.Name = "mnu_YiTing";
-            this.mnu_YiTing.Size = new System.Drawing.Size(152, 22);
+            this.mnu_YiTing.Size = new System.Drawing.Size(124, 22);
             this.mnu_YiTing.Text = "驿停闪付";
             this.mnu_YiTing.Click += new System.EventHandler(this.mnu_YiTing_Click);
             // 
             // mnu_ZST
             // 
             this.mnu_ZST.Name = "mnu_ZST";
-            this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
+            this.mnu_ZST.Size = new System.Drawing.Size(124, 22);
             this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Visible = false;
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
             // 
-            // eventList
+            // pnlPark
             // 
-            this.eventList.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.eventList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
-            this.eventList.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.eventList.ItemHeight = 12;
-            this.eventList.Location = new System.Drawing.Point(0, 61);
-            this.eventList.Name = "eventList";
-            this.eventList.Size = new System.Drawing.Size(713, 376);
-            this.eventList.TabIndex = 5;
+            this.pnlPark.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnlPark.Location = new System.Drawing.Point(0, 383);
+            this.pnlPark.Name = "pnlPark";
+            this.pnlPark.Size = new System.Drawing.Size(713, 60);
+            this.pnlPark.TabIndex = 10;
             // 
-            // chkCardEvent
+            // splitter1
             // 
-            this.chkCardEvent.AutoSize = true;
-            this.chkCardEvent.Checked = true;
-            this.chkCardEvent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkCardEvent.Location = new System.Drawing.Point(12, 39);
-            this.chkCardEvent.Name = "chkCardEvent";
-            this.chkCardEvent.Size = new System.Drawing.Size(108, 16);
-            this.chkCardEvent.TabIndex = 7;
-            this.chkCardEvent.Text = "停车场进出事件";
-            this.chkCardEvent.UseVisualStyleBackColor = true;
+            this.splitter1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.splitter1.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.splitter1.Location = new System.Drawing.Point(0, 377);
+            this.splitter1.Name = "splitter1";
+            this.splitter1.Size = new System.Drawing.Size(713, 6);
+            this.splitter1.TabIndex = 11;
+            this.splitter1.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.chkOpenEvent);
+            this.panel2.Controls.Add(this.chkCardEvent);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 25);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(713, 43);
+            this.panel2.TabIndex = 12;
             // 
             // chkOpenEvent
             // 
             this.chkOpenEvent.AutoSize = true;
             this.chkOpenEvent.Checked = true;
             this.chkOpenEvent.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkOpenEvent.Location = new System.Drawing.Point(145, 39);
+            this.chkOpenEvent.Location = new System.Drawing.Point(145, 15);
             this.chkOpenEvent.Name = "chkOpenEvent";
             this.chkOpenEvent.Size = new System.Drawing.Size(96, 16);
-            this.chkOpenEvent.TabIndex = 8;
+            this.chkOpenEvent.TabIndex = 10;
             this.chkOpenEvent.Text = "开放卡片事件";
             this.chkOpenEvent.UseVisualStyleBackColor = true;
+            // 
+            // chkCardEvent
+            // 
+            this.chkCardEvent.AutoSize = true;
+            this.chkCardEvent.Checked = true;
+            this.chkCardEvent.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkCardEvent.Location = new System.Drawing.Point(12, 15);
+            this.chkCardEvent.Name = "chkCardEvent";
+            this.chkCardEvent.Size = new System.Drawing.Size(108, 16);
+            this.chkCardEvent.TabIndex = 9;
+            this.chkCardEvent.Text = "停车场进出事件";
+            this.chkCardEvent.UseVisualStyleBackColor = true;
+            // 
+            // eventList
+            // 
+            this.eventList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.eventList.DrawMode = System.Windows.Forms.DrawMode.OwnerDrawFixed;
+            this.eventList.Font = new System.Drawing.Font("宋体", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.eventList.ItemHeight = 12;
+            this.eventList.Location = new System.Drawing.Point(0, 68);
+            this.eventList.Name = "eventList";
+            this.eventList.Size = new System.Drawing.Size(713, 309);
+            this.eventList.TabIndex = 13;
             // 
             // FrmMain
             // 
@@ -193,9 +225,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(713, 469);
-            this.Controls.Add(this.chkOpenEvent);
-            this.Controls.Add(this.chkCardEvent);
             this.Controls.Add(this.eventList);
+            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.splitter1);
+            this.Controls.Add(this.pnlPark);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.menuStrip1);
             this.IsMdiContainer = true;
@@ -208,6 +241,8 @@
             this.statusStrip1.PerformLayout();
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
+            this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -227,10 +262,14 @@
         private System.Windows.Forms.ToolStripMenuItem mnu_YiTing;
         private System.Windows.Forms.ToolStripMenuItem mnu_SelOperator;
         private System.Windows.Forms.ToolStripMenuItem mnu_SelStation;
-        private Ralid.Park.UserControls.EventReportListBox eventList;
-        private System.Windows.Forms.CheckBox chkCardEvent;
-        private System.Windows.Forms.CheckBox chkOpenEvent;
         private System.Windows.Forms.ToolStripMenuItem mnu_YCT;
+        private System.Windows.Forms.Panel pnlPark;
+        private System.Windows.Forms.Splitter splitter1;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.CheckBox chkOpenEvent;
+        private System.Windows.Forms.CheckBox chkCardEvent;
+        private Park.UserControls.EventReportListBox eventList;
+        private System.Windows.Forms.ToolTip toolTip1;
     }
 }
 

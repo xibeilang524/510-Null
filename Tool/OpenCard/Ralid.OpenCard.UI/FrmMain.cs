@@ -95,6 +95,17 @@ namespace Ralid.OpenCard.UI
             this.lblStation.Text = string.Format("工作站：{0}", WorkStationInfo.CurrentStation.StationName);
         }
 
+        private void InitParkPanel()
+        {
+            foreach (ParkInfo park in ParkBuffer.Current.Parks)
+            {
+                if (park.IsRootPark)
+                {
+                    AddPark(park);
+                }
+            }
+        }
+
         private void InitParkingCommunication(object obj)
         {
             foreach (ParkInfo park in ParkBuffer.Current.Parks)
@@ -105,11 +116,47 @@ namespace Ralid.OpenCard.UI
                     pad.ParkID = park.ParkID;
                     ParkingAdapterManager.Instance.Add(park.ParkID, pad);
                     pad.Reporting += ProcessReport;
-                    //pad.ParkAdapterConnectFail += new EventHandler(pad_ParkAdapterConnectFail);
-                    //pad.ParkApaterReconnected += new EventHandler(pad_ParkApaterReconnected);
+                    pad.ParkAdapterConnectFail += new EventHandler(pad_ParkAdapterConnectFail);
+                    pad.ParkApaterReconnected += new EventHandler(pad_ParkApaterReconnected);
                     pad.ConnectServer();
                 }
             }
+        }
+
+        private void pad_ParkApaterReconnected(object sender, EventArgs e)
+        {
+            this.Invoke((Action)(() =>
+                {
+                    foreach (Control c in pnlPark.Controls)
+                    {
+                        if (c is PictureBox)
+                        {
+                            ParkInfo park = c.Tag as ParkInfo;
+                            if (park != null && park.ParkID == (sender as ParkingAdapter).ParkID)
+                            {
+                                (c as PictureBox).Image = global::Ralid.OpenCard.UI.Properties.Resources.serverOK;
+                            }
+                        }
+                    }
+                }));
+        }
+
+        private void pad_ParkAdapterConnectFail(object sender, EventArgs e)
+        {
+            this.Invoke((Action)(() =>
+                {
+                    foreach (Control c in pnlPark.Controls)
+                    {
+                        if (c is PictureBox)
+                        {
+                            ParkInfo park = c.Tag as ParkInfo;
+                            if (park != null && park.ParkID == (sender as ParkingAdapter).ParkID)
+                            {
+                                (c as PictureBox).Image = global::Ralid.OpenCard.UI.Properties.Resources.serverFail;
+                            }
+                        }
+                    }
+                } ));
         }
 
         private void InitOpenCardServices(object obj)
@@ -215,6 +262,24 @@ namespace Ralid.OpenCard.UI
             //    }
             //}
         }
+
+        private void AddPark(ParkInfo park)
+        {
+            PictureBox pic = new PictureBox();
+            pic.Tag = park;
+            pic.Image = global::Ralid.OpenCard.UI.Properties.Resources.serverFail;
+            pic.MouseEnter += new EventHandler(pic_MouseEnter);
+            pic.Dock = DockStyle.Left;
+            pic.SizeMode = PictureBoxSizeMode.Zoom;
+            pic.BorderStyle = BorderStyle.FixedSingle;
+            this.pnlPark .Controls.Add(pic);
+        }
+
+        private void pic_MouseEnter(object sender, EventArgs e)
+        {
+            ParkInfo park = (sender as PictureBox).Tag as ParkInfo;
+            this.toolTip1.SetToolTip(sender as Control, park.ParkName);
+        }
         #endregion
 
         #region 事件处理程序
@@ -245,6 +310,7 @@ namespace Ralid.OpenCard.UI
             _DatetimeSyncService.Start();
             this.lblStartFrom.Text = string.Format("启动时间:{0}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
             //初始化停车场通讯
+            InitParkPanel();
             ThreadPool.QueueUserWorkItem((WaitCallback)InitParkingCommunication);
             //初始化开放卡片服务
             ThreadPool.QueueUserWorkItem((WaitCallback)InitOpenCardServices);
