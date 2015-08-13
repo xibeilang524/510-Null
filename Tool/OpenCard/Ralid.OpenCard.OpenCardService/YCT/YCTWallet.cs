@@ -16,7 +16,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         #region 公共属性
         /// <summary>
-        /// 获取或设置钱包类别 1为M1钱包 2为CPU钱包
+        /// 获取或设置钱包类别0表示其它IC卡 1为M1钱包 2为CPU钱包
         /// </summary>
         public byte WalletType { get; set; }
         /// <summary>

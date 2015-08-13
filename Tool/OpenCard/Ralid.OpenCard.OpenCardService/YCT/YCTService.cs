@@ -86,39 +86,23 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         YCTWallet w = item.Reader.Poll();
                         if (w != null)
                         {
-                            if (InBlackList(w.LogicCardID, w.PhysicalCardID))//此处应该先判断黑名单
-                            {
-                                item.Reader.CatchBlackList();
-                                EntranceInfo entrance = null;
-                                if (this.OnError != null) //
-                                {
-                                    OpenCardEventArgs args = new OpenCardEventArgs()
-                                    {
-                                        CardID = w.LogicCardID,
-                                        EntranceID = entrance != null ? entrance.EntranceID : 0,
-                                        EntranceName = entrance != null ? entrance.EntranceName : null,
-                                        LastError = "黑名单羊城通卡",
-                                    };
-                                    this.OnError(this, args);
-                                }
-                            }
-                            else
-                            {
-                                EntranceInfo entrance = null;
-                                if (item.EntranceID != null) entrance = ParkBuffer.Current.GetEntrance(item.EntranceID.Value);
-                                HandleWallet(item, w, entrance);
-                            }
-                            Thread.Sleep(3000);
+                            if (InBlackList(w.LogicCardID, w.PhysicalCardID)) HandleBlacklist(item, w);
+                            else HandleWallet(item, w);
                         }
                         else
                         {
-                            Thread.Sleep(500);
+                            if (item.Reader.LastError ==0x80) //没有卡片，继续读卡
+                            {
+                                Thread.Sleep(500);
+                                continue ;
+                            }
+                            else
+                            {
+                                HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError));
+                            }
                         }
                     }
-                    else
-                    {
-                        Thread.Sleep(3000);
-                    }
+                    Thread.Sleep(3000);
                 }
             }
             catch (ThreadAbortException)
@@ -141,21 +125,18 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             return false;
         }
 
-        private void HandleWallet(YCTItem item, YCTWallet w, EntranceInfo entrance)
+        private void HandleWallet(YCTItem item, YCTWallet w)
         {
+            EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = w.LogicCardID,
-                CardType = "羊城通卡",
+                CardType = w.WalletType == 0 ? string.Empty : "羊城通卡",
                 EntranceID = entrance != null ? entrance.EntranceID : 0,
                 EntranceName = entrance != null ? entrance.EntranceName : "中央收费",
                 Balance = (decimal)w.Balance / 100,
             };
-            if (entrance != null && !entrance.IsExitDevice) //入口
-            {
-                if (this.OnReadCard != null) this.OnReadCard(this, args);
-            }
-            else
+            if (entrance != null && entrance.IsExitDevice && args.CardType == "羊城通卡") //出口,并且是羊城通卡,则产生收费记录
             {
                 if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
                 if (args.Payment == null) return;
@@ -180,6 +161,31 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                     }
                 }
+            }
+            else
+            {
+                if (this.OnReadCard != null) this.OnReadCard(this, args);
+            }
+        }
+
+        private void HandleBlacklist(YCTItem item, YCTWallet w)
+        {
+            item.Reader.CatchBlackList();
+            HandleError(item, "黑名单卡");
+        }
+
+        private void HandleError(YCTItem item, string error)
+        {
+            EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
+            if (this.OnError != null) //
+            {
+                OpenCardEventArgs args = new OpenCardEventArgs()
+                {
+                    EntranceID = entrance != null ? entrance.EntranceID : 0,
+                    EntranceName = entrance != null ? entrance.EntranceName : null,
+                    LastError = error,
+                };
+                this.OnError(this, args);
             }
         }
 

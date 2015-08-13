@@ -56,25 +56,22 @@ namespace Ralid.OpenCard.OpenCardService
             if (e.EntranceID == null) return;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
             if (entrance == null) return;
-            if (!entrance.IsExitDevice) //入口
+            e.EntranceName = entrance.EntranceName;
+
+            CardType ct = CustomCardTypeSetting.Current.GetCardType(e.CardType);
+            if (ct != null && !entrance.IsExitDevice ) //入口刷卡时,如果卡片类型为开放卡片类型,则在系统中增加此卡片信息
             {
-                e.EntranceName = entrance.EntranceName;
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
-                if (card == null) //保存卡片信息
-                {
-                    CardType ct = CustomCardTypeSetting.Current.GetCardType(e.CardType);
-                    if (ct == null) return; //系统不支持的卡片类型
-                    if (!SaveOpenCard(e.CardID, ct)) return;
-                }
-                //通过远程读卡方式
-                IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
-                if (pad != null)
-                {
-                    pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
-                        OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
-                }
+                if (card == null) SaveOpenCard(e.CardID, ct);
             }
 
+            //通过远程读卡方式
+            IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+            if (pad != null)
+            {
+                pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
+                    OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+            }
             if (this.OnReadCard != null) this.OnReadCard(sender, e);
         }
 
@@ -107,7 +104,7 @@ namespace Ralid.OpenCard.OpenCardService
             CardPaymentInfo ret = null;
             IParkingAdapter pad = null;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
-            if (entrance != null) //入口
+            if (entrance != null) 
             {
                 pad = ParkingAdapterManager.Instance[entrance.RootParkID];
             }
@@ -127,22 +124,19 @@ namespace Ralid.OpenCard.OpenCardService
         {
             if (string.IsNullOrEmpty(e.CardID)) return;
             if (!_WaitingPayingCards.ContainsKey(e.CardID)) return;
-
-            if (_WaitingPayingCards.ContainsKey(e.CardID))
+            CardPaymentInfo pay = _WaitingPayingCards[e.CardID];
+            if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
             {
-                CardPaymentInfo pay = _WaitingPayingCards[e.CardID];
-                if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
-                {
-                    pay.Paid = e.Paid;
-                    pay.PaymentMode = e.PaymentMode;
-                    pay.PaymentCode = e.PaymentCode;
-                    pay.IsCenterCharge = true;
-                    pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
-                    pay.StationID = WorkStationInfo.CurrentStation.StationName;
-                    CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
-                }
-                _WaitingPayingCards.Remove(e.CardID);
+                pay.Paid = e.Paid;
+                pay.PaymentMode = e.PaymentMode;
+                pay.PaymentCode = e.PaymentCode;
+                pay.IsCenterCharge = true;
+                pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
+                pay.StationID = WorkStationInfo.CurrentStation.StationName;
+                CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
             }
+            _WaitingPayingCards.Remove(e.CardID);
+
 
             if (_WaitingExitCards.ContainsKey(e.CardID)) //如果是出口，远程读卡
             {

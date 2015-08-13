@@ -70,7 +70,6 @@ namespace Ralid.OpenCard.UI
             return result;
         }
 
-
         private void InitSystemParameters()
         {
             //初始化系统设置
@@ -144,11 +143,10 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnError(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 卡号:{2} 原因:{3}",
+            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 {2}",
                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                  e.EntranceName,
-                                                 e.CardID,
-                                                 e.LastError), Color.Blue);
+                                                 e.LastError), Color.Red);
         }
 
         private void handler_OnPaidFail(object sender, OpenCardEventArgs e)
@@ -207,14 +205,15 @@ namespace Ralid.OpenCard.UI
         private void ProcessReport(object sender, ReportBase report)
         {
             if (!chkCardEvent.Checked) return;
-            if (report is CardEventReport)
-            {
-                CardEventReport cr = report as CardEventReport;
-                if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡" || cr.CardType.Name == "羊城通卡"))
-                {
-                    InsertMessage(cr.Description, Color.Black);
-                }
-            }
+            InsertMessage(report.Description, Color.Black);
+            //if (report is CardEventReport)
+            //{
+            //    CardEventReport cr = report as CardEventReport;
+            //    if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡" || cr.CardType.Name == "羊城通卡"))
+            //    {
+            //        InsertMessage(cr.Description, Color.Black);
+            //    }
+            //}
         }
         #endregion
 

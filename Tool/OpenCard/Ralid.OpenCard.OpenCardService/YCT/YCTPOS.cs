@@ -307,6 +307,74 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             var response = Request(YCTCommandType.CatchBlack, null);
             return (response != null && response.IsCommandExcuteOk);
         }
+        /// <summary>
+        /// 获取错误代码的文字说明
+        /// </summary>
+        /// <param name="error"></param>
+        /// <returns></returns>
+        public string GetErrDescr(int error)
+        {
+            switch (error)
+            {
+                case 0: return "操作正常";
+                case 0x0F: return "离线月份参数非法";
+                case 0x60: return "没有安装SAM卡";
+                case 0x61:return "SAM卡初始化错误或未初始化";
+                case 0x62: return "SAM卡检验PIN错误";
+                case 0x63: return "SAM卡类型与交易类型不匹配";
+                case 0x64: return "SAM卡选择文件错误";
+                case 0x65: return "SAM卡读错误";
+                case 0x66: return "SAM卡写错误";
+                case 0x67: return "SAM卡认证错误";
+                case 0x68: return "SAM卡随机数错误";
+                case 0x69: return "SAM卡DES计算错误";
+                case 0x6A: return "SAM卡生成钱包密钥错误";
+                case 0x71: return "PKI卡RSA计算错误";
+                case 0x72: return "PKI卡DES计算错误";
+                case 0x7E: return "SAM卡执行APDU命令错误";
+                case 0x7F: return "SAM卡操作超时";
+                case 0x80: return "没有卡";
+                case 0x81: return "选择卡片错误";
+                case 0x82: return "停用卡片错误";
+                case 0x83: return "认证卡片错误";
+                case 0x84: return "卡片读操作错误";
+                case 0x85: return "卡片写操作错误";
+                case 0x86: return "卡片写操作中途中断";
+                case 0x87:return "充值卡片无响应";
+                case 0x90: return "不是本系统的标准卡片";
+                case 0x91: return "卡片超出有效期";
+                case 0x92: return "城市代码或应用代码错误";
+                case 0x93: return "非法卡";
+                case 0x94: return "黑名单卡";
+                case 0x95: return "钱包余额不足";
+                case 0x96: return "钱包余额超出上限";
+                case 0x97: return "钱包未启用";
+                case 0x98: return "钱包已停用";
+                case 0x99: return "钱包正本被破坏";
+                case 0x9A: return "钱包已停用";
+                case 0x9F: return "公共信息区被破坏";
+                case 0xAF: return "卡片操作超时";
+                case 0xB0: return "交易操作中途中断";
+                case 0xB1: return "交易中断";
+                case 0xB2: return "前一步指令未执行或失败";
+                case 0xCF: return "交易操作超时";
+                case 0xD0: return "远程读写器执行错";
+                case 0xE0: return "Mifare硬件初始化错误";
+                case 0xE1: return "SAM硬件初始化错误";
+                case 0xE2: return "命令错误";
+                case 0xE3: return "参数错误";
+                case 0xE4: return "检验和错误";
+                case 0xE5: return "线路通讯超时";
+                case 0xE6: return "内部FLASH写错误";
+                case 0x30: return "报文头错";
+                case 0x31: return "卡片不一致";
+                case 0x32: return "流水号不一致";
+                case 0x33: return "MAC错";
+                case 0x3F: return "不支付的命令";
+                case 0x1A: return "物理卡号不一致";
+            }
+            return "未知错误";
+        }
         #endregion
     }
 }
