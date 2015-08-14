@@ -16,6 +16,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{783EDD
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCTFtpTool", "YCTFtpTool\YCTFtpTool.csproj", "{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OpenCardSetup", "OpenCardSetup\OpenCardSetup.vdproj", "{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -68,6 +70,12 @@ Global
 		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|Mixed Platforms.Build.0 = Release|x86
 		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|x86.ActiveCfg = Release|x86
 		{0904F4B6-BF0A-4F54-8A2F-4E5604EB5358}.Release|x86.Build.0 = Release|x86
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Debug|Any CPU.ActiveCfg = Debug
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Debug|x86.ActiveCfg = Debug
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Release|Any CPU.ActiveCfg = Release
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Release|Mixed Platforms.ActiveCfg = Release
+		{F9775EE7-E72B-413A-A0EC-8A3A3B26F1A9}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

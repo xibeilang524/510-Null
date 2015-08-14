@@ -234,7 +234,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "开放卡片停车支付";
+            this.Text = "开放卡片管理系统";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
