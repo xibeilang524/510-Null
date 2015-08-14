@@ -83,8 +83,8 @@ namespace Ralid.OpenCard.OpenCardService
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
             CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
-            if (!card.IsInPark && payment != null) payment.Accounts = 0; //已经出场的卡片收费都为0
-            e.Payment = payment;
+            if (!card.IsInPark && payment != null) payment.Accounts = 0;
+            e.Payment = payment;//已经出场的卡片收费都为0
             _WaitingPayingCards[e.CardID] = payment;
 
             if (e.EntranceID != null)
@@ -216,6 +216,7 @@ namespace Ralid.OpenCard.OpenCardService
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
                 s.Init();
                 _Services[typeof(ZSTSetting)] = s;
             }
@@ -249,6 +250,7 @@ namespace Ralid.OpenCard.OpenCardService
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
                 _Services[yt.GetType()] = s;
                 s.Init();
             }
@@ -263,6 +265,7 @@ namespace Ralid.OpenCard.OpenCardService
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
                 _Services[yct.GetType()] = s;
             }
             (_Services[yct.GetType()] as YCT.YCTService).Setting = yct;

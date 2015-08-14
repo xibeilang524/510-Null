@@ -75,39 +75,42 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private void PollRoute(object obj)
         {
+            string lastCard = null;
+            DateTime lastDT = DateTime.Now;
             YCTItem item = obj as YCTItem;
             if (item == null || item.Reader == null) return;
             try
             {
                 while (true)
                 {
+                    Thread.Sleep(500);
                     if (item.Reader.IsOpened)
                     {
                         YCTWallet w = item.Reader.Poll();
                         if (w != null)
                         {
-                            if (InBlackList(w.LogicCardID, w.PhysicalCardID)) HandleBlacklist(item, w);
+                            if (w.LogicCardID == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                            lastCard = w.LogicCardID;
+                            lastDT = DateTime.Now;
+                            if (InBlackList(w.LogicCardID, w.PhysicalCardID)) HandleBlacklist(item, w); //先处理黑名单
                             else HandleWallet(item, w);
                         }
                         else
                         {
-                            if (item.Reader.LastError ==0x80) //没有卡片，继续读卡
-                            {
-                                Thread.Sleep(500);
-                                continue ;
-                            }
-                            else
-                            {
-                                HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError));
-                            }
+                            if (item.Reader.LastError != 0x80) HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError)); //没有卡片，继续读卡
                         }
                     }
-                    Thread.Sleep(3000);
                 }
             }
             catch (ThreadAbortException)
             {
             }
+        }
+
+        private double  CalInterval(DateTime dt1, DateTime dt2)
+        {
+            TimeSpan ts = new TimeSpan(dt2.Ticks - dt1.Ticks);
+            return ts.TotalSeconds;
         }
 
         private bool InBlackList(string logicCardID, string physicalCardID)
@@ -136,35 +139,48 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 EntranceName = entrance != null ? entrance.EntranceName : "中央收费",
                 Balance = (decimal)w.Balance / 100,
             };
-            if (entrance != null && entrance.IsExitDevice && args.CardType == "羊城通卡") //出口,并且是羊城通卡,则产生收费记录
+            if (entrance == null)
             {
-                if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
-                if (args.Payment == null) return;
-                if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
-                {
-                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
-                }
-                else //扣费
-                {
-                    int balance;
-                    if (Paid(item, w, args.Payment, out balance))
-                    {
-                        args.Paid = args.Payment.Accounts;
-                        args.Balance = (decimal)balance / 100;
-                        args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                        args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
-                        if (this.OnPaidOk != null) this.OnPaidOk(this, args);
-                    }
-                    else
-                    {
-                        args.LastError = item.Reader.LastError.ToString();
-                        if (this.OnPaidFail != null) this.OnPaidFail(this, args);
-                    }
-                }
+                HandlePayment(item, w, args);
             }
             else
             {
-                if (this.OnReadCard != null) this.OnReadCard(this, args);
+                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+                if (!p.IsNested &&  entrance.IsExitDevice && args.CardType == "羊城通卡") //非嵌套车场的出口,并且是羊城通卡,则进行收费处理
+                {
+                    HandlePayment(item, w, args);
+                }
+                else
+                {
+                    if (this.OnReadCard != null) this.OnReadCard(this, args);
+                }
+            }
+        }
+
+        private void HandlePayment(YCTItem item, YCTWallet w, OpenCardEventArgs args)
+        {
+            if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
+            if (args.Payment == null) return;
+            if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
+            {
+                if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+            }
+            else //扣费
+            {
+                int balance;
+                if (Paid(item, w, args.Payment, out balance))
+                {
+                    args.Paid = args.Payment.Accounts;
+                    args.Balance = (decimal)balance / 100;
+                    args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
+                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                }
+                else
+                {
+                    args.LastError = item.Reader.GetErrDescr(item.Reader.LastError);
+                    if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                }
             }
         }
 
