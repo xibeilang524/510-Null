@@ -15,6 +15,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         }
         #endregion
 
+        public static readonly string CardTyte = "羊城通卡";
+
         #region 公共属性
         /// <summary>
         /// 获取或设置服务商代码

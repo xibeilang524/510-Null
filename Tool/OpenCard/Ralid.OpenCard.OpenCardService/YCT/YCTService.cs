@@ -97,7 +97,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         }
                         else
                         {
-                            if (item.Reader.LastError != 0x80) HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError)); //没有卡片，继续读卡
+                            if (item.Reader.LastError == 0x80) //没有卡片
+                            {
+                            }
+                            else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
+                            {
+
+                            }
+                            else
+                            {
+                                HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError));
+                            }
                         }
                     }
                 }
@@ -134,26 +144,19 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = w.LogicCardID,
-                CardType = w.WalletType == 0 ? string.Empty : "羊城通卡",
+                CardType = w.WalletType == 0 ? string.Empty : YCTSetting.CardTyte,
                 EntranceID = entrance != null ? entrance.EntranceID : 0,
                 EntranceName = entrance != null ? entrance.EntranceName : "中央收费",
                 Balance = (decimal)w.Balance / 100,
             };
-            if (entrance == null)
+            if (args.CardType == YCTSetting.CardTyte)
             {
-                HandlePayment(item, w, args);
+                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+                if (entrance == null || (!p.IsNested && entrance.IsExitDevice)) HandlePayment(item, w, args);//中央收费处和非嵌套车场的出口,并且是羊城通卡,则进行收费处理
             }
             else
             {
-                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                if (!p.IsNested &&  entrance.IsExitDevice && args.CardType == "羊城通卡") //非嵌套车场的出口,并且是羊城通卡,则进行收费处理
-                {
-                    HandlePayment(item, w, args);
-                }
-                else
-                {
-                    if (this.OnReadCard != null) this.OnReadCard(this, args);
-                }
+                if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
         }
 

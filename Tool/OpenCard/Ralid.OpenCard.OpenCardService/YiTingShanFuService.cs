@@ -132,12 +132,13 @@ namespace Ralid.OpenCard.OpenCardService
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = YiTingPacket.GetCardID(data.Take(19).ToArray()),
-                CardType = data[19] == 0x01 ? "闪付卡" : "临时IC卡",
+                CardType = data[19] == 0x01 ? YiTingShanFuSetting.CardType : string.Empty,
             };
             string device = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] });
             YiTingPOS pos = Setting.GetReader(device);
             if (pos != null) args.EntranceID = pos.EntranceID;
             if (this.OnReadCard != null) this.OnReadCard(this, args);
+
             List<byte> temp = new List<byte>();
             temp.AddRange(data);
             byte[] carPlate = UnicodeEncoding.Unicode.GetBytes("粤A24M55");

@@ -172,9 +172,9 @@ namespace Ralid.OpenCard.UI
                 }
             }
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>(zst);
-            if (CustomCardTypeSetting.Current.GetCardType("中山通") == null) //增加自定义卡片类型
+            if (CustomCardTypeSetting.Current.GetCardType(Ralid.OpenCard.OpenCardService.ZSTSetting.CardType) == null) //增加自定义卡片类型
             {
-                CustomCardTypeSetting.Current.AddCardType("中山通", (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
+                CustomCardTypeSetting.Current.AddCardType(Ralid.OpenCard.OpenCardService.ZSTSetting.CardType, (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
                 new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
             }
             if (ret.Result == ResultCode.Successful)

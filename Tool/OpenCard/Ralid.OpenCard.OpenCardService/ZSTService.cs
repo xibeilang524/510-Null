@@ -66,9 +66,9 @@ namespace Ralid.OpenCard.OpenCardService
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
                     CardID = e.CardID,
-                    CardType = "中山通",
+                    CardType = ZSTSetting.CardType,
                     EntranceID = entrance.EntranceID,
-                    EntranceName =entrance.EntranceName ,
+                    EntranceName = entrance.EntranceName,
                 };
                 if (this.OnReadCard != null) this.OnReadCard(this, args);
             }

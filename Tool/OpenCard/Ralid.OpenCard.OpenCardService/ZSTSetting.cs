@@ -9,6 +9,7 @@ namespace Ralid.OpenCard.OpenCardService
     [DataContract]
     public class ZSTSetting
     {
+        public readonly static string CardType = "中山通";
         #region 构造函数
         public ZSTSetting()
         {

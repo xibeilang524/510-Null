@@ -13,6 +13,8 @@ namespace Ralid.OpenCard.OpenCardService
     [DataContract]
     public class YiTingShanFuSetting
     {
+        public static readonly string CardType = "闪付卡";
+
         #region 构造函数
         public YiTingShanFuSetting()
         {
