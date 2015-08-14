@@ -245,8 +245,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             record.TIM = payment.本次交易日期时间;
             record.FCN = payment.物理卡号;
             record.LCN = payment.逻辑卡号;
-            record.TF = payment.票价;
-            record.FEE = payment.交易金额;
+            record.TF = payment.交易金额;
+            record.FEE = payment.票价;
             record.BAL = payment.本次余额;
             record.TT = payment.交易类型;
             record.ATT = payment.附加交易类型;

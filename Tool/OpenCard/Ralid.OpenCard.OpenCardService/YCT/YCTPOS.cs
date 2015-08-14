@@ -70,7 +70,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 payment.交易金额 = BEBinaryConverter.BytesToInt(Slice(data, 38, 4));
                 payment.本次余额 = BEBinaryConverter.BytesToInt(Slice(data, 42, 4));
                 payment.票价 = BEBinaryConverter.BytesToInt(Slice(data, 46, 4));
-                payment.交易类型 = (byte)BCDConverter.BCDtoInt(Slice(data, 50, 1)[0]);
+                payment.交易类型 = Slice(data, 50, 1)[0];
                 payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 51, 2));
                 payment.累计门槛月份 = HexStringConverter.HexToString(Slice(data, 53, 2), string.Empty);
                 payment.公交门槛计数 = Slice(data, 55, 1)[0];
@@ -103,7 +103,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 payment.交易金额 = BEBinaryConverter.BytesToInt(Slice(data, 33, 4));
                 payment.票价 = BEBinaryConverter.BytesToInt(Slice(data, 37, 4));
                 payment.本次余额 = BEBinaryConverter.BytesToInt(Slice(data, 41, 4));
-                payment.交易类型 = (byte)BCDConverter.BCDtoInt(Slice(data, 45, 1)[0]);
+                payment.交易类型 = Slice(data, 45, 1)[0];
                 payment.附加交易类型 = Slice(data, 46, 1)[0];
                 payment.票卡充值交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 47, 2));
                 payment.票卡消费交易计数 = BEBinaryConverter.BytesToInt(Slice(data, 49, 2));
