@@ -204,15 +204,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\atm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\atm_Alarm.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Resources\atm_Disable.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\serverFail.png" />
   </ItemGroup>
   <ItemGroup>

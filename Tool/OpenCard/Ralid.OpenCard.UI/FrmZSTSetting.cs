@@ -60,10 +60,10 @@ namespace Ralid.OpenCard.UI
                 Ralid.OpenCard.OpenCardService.GlobalSettings.Current.Set<ZSTReader>(_Reader);
             }
             dataGridView1.Rows.Clear();
-            ZSTSetting _ZSTSetting = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<ZSTSetting>();
+            Ralid.OpenCard.OpenCardService.ZSTSetting _ZSTSetting = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>();
             if (_ZSTSetting != null && _ZSTSetting.Items != null && _ZSTSetting.Items.Count > 0)
             {
-                foreach (ZSTItem item in _ZSTSetting.Items)
+                foreach (Ralid.OpenCard.OpenCardService.ZSTItem item in _ZSTSetting.Items)
                 {
                     EntranceInfo entrance = ParkBuffer.Current.GetEntrance(item.EntranceID);
                     int row = dataGridView1.Rows.Add();
@@ -147,12 +147,12 @@ namespace Ralid.OpenCard.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            ZSTSetting zst = new ZSTSetting();
+            Ralid.OpenCard.OpenCardService.ZSTSetting zst = new Ralid.OpenCard.OpenCardService.ZSTSetting();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))
                 {
-                    ZSTItem item = new ZSTItem()
+                    Ralid.OpenCard.OpenCardService.ZSTItem item = new Ralid.OpenCard.OpenCardService.ZSTItem()
                     {
                         ReaderIP = (string)row.Cells["colReaderIP"].Value,
                         EntranceID = (int)row.Cells["colEntrance"].Tag,
@@ -162,16 +162,21 @@ namespace Ralid.OpenCard.UI
                 }
                 else
                 {
-                    ZSTItem item = new ZSTItem()
-                    {
-                        ReaderIP = (string)row.Cells["colReaderIP"].Value,
-                        EntranceID = 0,
-                        Memo = (string)row.Cells["colMemo"].Value
-                    };
+                    Ralid.OpenCard.OpenCardService.ZSTItem item = new Ralid.OpenCard.OpenCardService.ZSTItem()
+                     {
+                         ReaderIP = (string)row.Cells["colReaderIP"].Value,
+                         EntranceID = 0,
+                         Memo = (string)row.Cells["colMemo"].Value
+                     };
                     zst.Items.Add(item);
                 }
             }
-            CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<ZSTSetting>(zst);
+            CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>(zst);
+            if (CustomCardTypeSetting.Current.GetCardType("中山通") == null) //增加自定义卡片类型
+            {
+                CustomCardTypeSetting.Current.AddCardType("中山通", (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
+                new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
+            }
             if (ret.Result == ResultCode.Successful)
             {
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();

@@ -170,7 +170,7 @@ namespace Ralid.OpenCard.UI
             handler.OnError += new EventHandler<OpenCardEventArgs>(handler_OnError);
 
             SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
-            ZSTSetting zst = ssb.GetSetting<ZSTSetting>();
+            Ralid.OpenCard.OpenCardService.ZSTSetting zst = ssb.GetSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>();
             if (zst != null)
             {
                 handler.Init(zst);

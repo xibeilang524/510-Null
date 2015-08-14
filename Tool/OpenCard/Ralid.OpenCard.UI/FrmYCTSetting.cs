@@ -140,6 +140,11 @@ namespace Ralid.OpenCard.UI
                 yct.Items.Add(row.Tag as YCTItem);
             }
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<YCTSetting>(yct);
+            if (CustomCardTypeSetting.Current.GetCardType("羊城通卡") == null) //增加自定义卡片类型
+            {
+                CustomCardTypeSetting.Current.AddCardType("羊城通卡", (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
+                new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
+            }
             if (ret.Result == ResultCode.Successful)
             {
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();

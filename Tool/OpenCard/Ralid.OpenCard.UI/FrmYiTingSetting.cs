@@ -154,6 +154,11 @@ namespace Ralid.OpenCard.UI
                 }
             }
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<YiTingShanFuSetting>(yt);
+            if (CustomCardTypeSetting.Current.GetCardType("闪付卡") == null) //增加自定义卡片类型
+            {
+                CustomCardTypeSetting.Current.AddCardType("闪付卡", (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
+                new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
+            }
             if (ret.Result == ResultCode.Successful)
             {
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();

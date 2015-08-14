@@ -121,6 +121,7 @@
     <Compile Include="YiTingShanFuService.cs" />
     <Compile Include="YiTingShanFuSetting.cs" />
     <Compile Include="ZSTService.cs" />
+    <Compile Include="ZSTSetting.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
