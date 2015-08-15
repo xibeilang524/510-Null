@@ -7,11 +7,11 @@ using System.Runtime .Serialization ;
 namespace Ralid.OpenCard.OpenCardService
 {
     [DataContract]
-    public class ZSTSetting
+    public class ZSTSettings
     {
         public readonly static string CardType = "中山通";
         #region 构造函数
-        public ZSTSetting()
+        public ZSTSettings()
         {
             Items = new List<ZSTItem>();
         }

@@ -60,7 +60,7 @@ namespace Ralid.OpenCard.UI
                 Ralid.OpenCard.OpenCardService.GlobalSettings.Current.Set<ZSTReader>(_Reader);
             }
             dataGridView1.Rows.Clear();
-            Ralid.OpenCard.OpenCardService.ZSTSetting _ZSTSetting = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>();
+            ZSTSettings _ZSTSetting = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<ZSTSettings>();
             if (_ZSTSetting != null && _ZSTSetting.Items != null && _ZSTSetting.Items.Count > 0)
             {
                 foreach (Ralid.OpenCard.OpenCardService.ZSTItem item in _ZSTSetting.Items)
@@ -70,6 +70,7 @@ namespace Ralid.OpenCard.UI
                     ShowItemOnRow(dataGridView1.Rows[row], item.ReaderIP, entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
                 }
             }
+            chkEnable.Checked = GlobalSettings.Current.Get<OpenCardMessageHandler>().ContainService<ZSTSettings>();
         }
 
         private void btnSearch_Click(object sender, EventArgs e)
@@ -147,7 +148,7 @@ namespace Ralid.OpenCard.UI
 
         private void btnSave_Click(object sender, EventArgs e)
         {
-            Ralid.OpenCard.OpenCardService.ZSTSetting zst = new Ralid.OpenCard.OpenCardService.ZSTSetting();
+            ZSTSettings zst = new ZSTSettings();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 if (!string.IsNullOrEmpty(row.Cells["colEntrance"].Value.ToString()))
@@ -171,18 +172,23 @@ namespace Ralid.OpenCard.UI
                     zst.Items.Add(item);
                 }
             }
-            CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>(zst);
-            if (CustomCardTypeSetting.Current.GetCardType(Ralid.OpenCard.OpenCardService.ZSTSetting.CardType) == null) //增加自定义卡片类型
+            CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).SaveSetting<ZSTSettings>(zst);
+            if (CustomCardTypeSetting.Current.GetCardType(ZSTSettings.CardType) == null) //增加自定义卡片类型
             {
-                CustomCardTypeSetting.Current.AddCardType(Ralid.OpenCard.OpenCardService.ZSTSetting.CardType, (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
+                CustomCardTypeSetting.Current.AddCardType(ZSTSettings.CardType, (byte)Ralid.Park.BusinessModel.Enum.CardType.MonthRentCard);
                 new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect).SaveSetting<CustomCardTypeSetting>(CustomCardTypeSetting.Current);
             }
             if (ret.Result == ResultCode.Successful)
             {
+                AppSettings.CurrentSetting.SaveConfig("EnableZST", chkEnable.Checked.ToString());
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
-                if (handler != null)
+                if (chkEnable.Checked)
                 {
-                    handler.Init(zst);
+                    handler.InitService(zst);
+                }
+                else
+                {
+                    handler.CloseService<ZSTSettings>();
                 }
                 this.DialogResult = DialogResult.OK;
             }

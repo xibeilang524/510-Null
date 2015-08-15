@@ -60,7 +60,10 @@ namespace Ralid.OpenCard.OpenCardService
         {
             lock (_BuffersLocker)
             {
-                _Buffers.Remove(sender as LJHSocket);
+                LJHSocket s = sender as LJHSocket;
+                _Buffers.Remove(s);
+                s.OnDataArrivedEvent -= socket_OnDataArrivedEvent;
+                s.OnClosed -= new EventHandler(s_OnClosed);
             }
         }
 

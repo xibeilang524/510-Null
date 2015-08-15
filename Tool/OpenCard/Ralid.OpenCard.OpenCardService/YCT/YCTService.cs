@@ -27,7 +27,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private List<YCTItem> _Readers = new List<YCTItem>();
         private Dictionary<YCTItem, Thread> _PollRoutes = new Dictionary<YCTItem, Thread>();
         private Timer _ChkComport = null;
-        private Timer _FreshBlacklist=null ;
+        private Timer _FreshBlacklist = null;
         private Dictionary<string, YCTBlacklist> _Blacklists = new Dictionary<string, YCTBlacklist>();
         private ReaderWriterLock _BlacklistLocker = new ReaderWriterLock();
         #endregion
@@ -117,7 +117,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private double  CalInterval(DateTime dt1, DateTime dt2)
+        private double CalInterval(DateTime dt1, DateTime dt2)
         {
             TimeSpan ts = new TimeSpan(dt2.Ticks - dt1.Ticks);
             return ts.TotalSeconds;
@@ -341,6 +341,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             foreach (var item in _Readers)
             {
                 if (item.Reader != null && item.Reader.IsOpened) item.Reader.Close();
+                if (_PollRoutes.ContainsKey(item)) _PollRoutes[item].Abort();
             }
             _Readers.Clear();
         }

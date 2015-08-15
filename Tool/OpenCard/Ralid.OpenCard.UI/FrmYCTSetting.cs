@@ -67,6 +67,7 @@ namespace Ralid.OpenCard.UI
                     }
                 }
             }
+            chkEnable.Checked = GlobalSettings.Current.Get<OpenCardMessageHandler>().ContainService<YCTSetting>();
         }
 
         private void mnu_Add_Click(object sender, EventArgs e)
@@ -147,10 +148,15 @@ namespace Ralid.OpenCard.UI
             }
             if (ret.Result == ResultCode.Successful)
             {
+                AppSettings.CurrentSetting.SaveConfig("EnableYCT", chkEnable.Checked.ToString());
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
-                if (handler != null)
+                if (chkEnable.Checked)
                 {
-                    handler.Init(yct);
+                    handler.InitService(yct);
+                }
+                else
+                {
+                    handler.CloseService<YCTSetting>();
                 }
                 this.DialogResult = DialogResult.OK;
             }

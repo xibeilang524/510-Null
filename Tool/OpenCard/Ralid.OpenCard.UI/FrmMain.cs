@@ -156,7 +156,7 @@ namespace Ralid.OpenCard.UI
                             }
                         }
                     }
-                } ));
+                }));
         }
 
         private void InitOpenCardServices(object obj)
@@ -170,22 +170,39 @@ namespace Ralid.OpenCard.UI
             handler.OnError += new EventHandler<OpenCardEventArgs>(handler_OnError);
 
             SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
-            Ralid.OpenCard.OpenCardService.ZSTSetting zst = ssb.GetSetting<Ralid.OpenCard.OpenCardService.ZSTSetting>();
-            if (zst != null)
+            string temp = AppSettings.CurrentSetting.GetConfigContent("EnableZST");
+            bool enabled = false;
+            if (!string.IsNullOrEmpty(temp) && bool.TryParse(temp, out enabled) && enabled)
             {
-                handler.Init(zst);
+                ZSTSettings zst = ssb.GetSetting<ZSTSettings>();
+                if (zst != null)
+                {
+                    handler.InitService(zst);
+                }
             }
-            YiTingShanFuSetting yt = ssb.GetSetting<YiTingShanFuSetting>();
-            if (yt != null)
+
+            temp = AppSettings.CurrentSetting.GetConfigContent("EnableYiTingShanFu");
+            if (!string.IsNullOrEmpty(temp) && bool.TryParse(temp, out enabled) && enabled)
             {
-                AppSettings.CurrentSetting.GetYiTingConfig(yt);
-                handler.Init(yt);
+                YiTingShanFuSetting yt = ssb.GetSetting<YiTingShanFuSetting>();
+                if (yt != null)
+                {
+                    AppSettings.CurrentSetting.GetYiTingConfig(yt);
+                    handler.InitService(yt);
+                }
             }
-            YCTSetting yct = ssb.GetSetting<YCTSetting>();
-            if (yct != null)
+
+            temp = AppSettings.CurrentSetting.GetConfigContent("EnableYCT");
+            if (!string.IsNullOrEmpty(temp) && bool.TryParse(temp, out enabled) && enabled)
             {
-                handler.Init(yct);
+                YCTSetting yct = ssb.GetSetting<YCTSetting>();
+                if (yct != null)
+                {
+                    handler.InitService(yct);
+                }
             }
+
+            this.Invoke((Action)(() => { ShowServiceState(); }));
         }
 
         private void handler_OnError(object sender, OpenCardEventArgs e)
@@ -272,13 +289,22 @@ namespace Ralid.OpenCard.UI
             pic.Dock = DockStyle.Left;
             pic.SizeMode = PictureBoxSizeMode.Zoom;
             pic.BorderStyle = BorderStyle.FixedSingle;
-            this.pnlPark .Controls.Add(pic);
+            this.pnlPark.Controls.Add(pic);
         }
 
         private void pic_MouseEnter(object sender, EventArgs e)
         {
             ParkInfo park = (sender as PictureBox).Tag as ParkInfo;
             this.toolTip1.SetToolTip(sender as Control, park.ParkName);
+        }
+
+        private void ShowServiceState()
+        {
+            OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
+            lblYCT.Text = handler.ContainService<YCTSetting>() ? "羊城通服务启动" : string.Empty;
+            lblZST.Text = handler.ContainService<ZSTSettings>() ? "中山通服务启动" : string.Empty;
+            lblYiTingShanFu.Text = handler.ContainService<YiTingShanFuSetting>() ? "驿停闪付服务启动" : string.Empty;
+            statusStrip1.Refresh();
         }
         #endregion
 
@@ -360,6 +386,7 @@ namespace Ralid.OpenCard.UI
             FrmYCTSetting frm = new FrmYCTSetting();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
+            ShowServiceState();
         }
 
         private void mnu_ZST_Click(object sender, EventArgs e)
@@ -367,6 +394,7 @@ namespace Ralid.OpenCard.UI
             FrmZSTSetting frm = new FrmZSTSetting();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
+            ShowServiceState();
         }
 
         private void mnu_YiTing_Click(object sender, EventArgs e)
@@ -374,6 +402,7 @@ namespace Ralid.OpenCard.UI
             FrmYiTingSetting frm = new FrmYiTingSetting();
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
+            ShowServiceState();
         }
         #endregion
     }

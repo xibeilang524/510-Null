@@ -65,6 +65,7 @@ namespace Ralid.OpenCard.UI
                         ShowItemOnRow(dataGridView1.Rows[row], item.ID, entrance != null ? entrance.EntranceName : string.Empty, entrance != null ? entrance.EntranceID : 0, item.Memo);
                     }
                 }
+                chkEnable.Checked = GlobalSettings.Current.Get<OpenCardMessageHandler>().ContainService<YiTingShanFuSetting>();
             }
             else
             {
@@ -161,10 +162,15 @@ namespace Ralid.OpenCard.UI
             }
             if (ret.Result == ResultCode.Successful)
             {
+                AppSettings.CurrentSetting.SaveConfig("EnableYiTingShanFu", chkEnable.Checked.ToString());
                 OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
-                if (handler != null)
+                if (chkEnable.Checked)
                 {
-                    handler.Init(yt);
+                    handler.InitService(yt);
+                }
+                else
+                {
+                    handler.CloseService<YiTingShanFuSetting>();
                 }
                 this.DialogResult = DialogResult.OK;
             }

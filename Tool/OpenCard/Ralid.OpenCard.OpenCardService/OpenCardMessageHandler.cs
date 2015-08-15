@@ -59,7 +59,7 @@ namespace Ralid.OpenCard.OpenCardService
             e.EntranceName = entrance.EntranceName;
 
             CardType ct = CustomCardTypeSetting.Current.GetCardType(e.CardType);
-            if (ct != null && !entrance.IsExitDevice ) //入口刷卡时,如果卡片类型为开放卡片类型,则在系统中增加此卡片信息
+            if (ct != null && !entrance.IsExitDevice) //入口刷卡时,如果卡片类型为开放卡片类型,则在系统中增加此卡片信息
             {
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
                 if (card == null) SaveOpenCard(e.CardID, ct);
@@ -104,7 +104,7 @@ namespace Ralid.OpenCard.OpenCardService
             CardPaymentInfo ret = null;
             IParkingAdapter pad = null;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(e.EntranceID.Value);
-            if (entrance != null) 
+            if (entrance != null)
             {
                 pad = ParkingAdapterManager.Instance[entrance.RootParkID];
             }
@@ -207,27 +207,34 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共方法
-        public void Init(ZSTSetting setting)
+        /// <summary>
+        /// 初始化服务
+        /// </summary>
+        /// <param name="setting"></param>
+        public void InitService(ZSTSettings setting)
         {
-            if (!_Services.ContainsKey(typeof(ZSTSetting)))
+            if (!_Services.ContainsKey(typeof(ZSTSettings)))
             {
-                ZSTService s = new ZSTService(setting as ZSTSetting);
+                ZSTService s = new ZSTService(setting as ZSTSettings);
                 s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
                 s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
                 s.Init();
-                _Services[typeof(ZSTSetting)] = s;
+                _Services[typeof(ZSTSettings)] = s;
             }
             else
             {
-                ZSTService s = _Services[typeof(ZSTSetting)] as ZSTService;
-                s.Setting = setting as ZSTSetting;
+                ZSTService s = _Services[typeof(ZSTSettings)] as ZSTService;
+                s.Setting = setting as ZSTSettings;
             }
         }
-
-        public void Init(YiTingShanFuSetting yt)
+        /// <summary>
+        /// 初始化服务
+        /// </summary>
+        /// <param name="yt"></param>
+        public void InitService(YiTingShanFuSetting yt)
         {
             YiTingShanFuService s = null;
             if (_Services.ContainsKey(yt.GetType()))
@@ -255,8 +262,11 @@ namespace Ralid.OpenCard.OpenCardService
                 s.Init();
             }
         }
-
-        public void Init(YCT.YCTSetting yct)
+        /// <summary>
+        /// 初始化服务
+        /// </summary>
+        /// <param name="yct"></param>
+        public void InitService(YCT.YCTSetting yct)
         {
             if (!_Services.ContainsKey(yct.GetType()))
             {
@@ -270,6 +280,27 @@ namespace Ralid.OpenCard.OpenCardService
             }
             (_Services[yct.GetType()] as YCT.YCTService).Setting = yct;
             _Services[yct.GetType()].Init();
+        }
+        /// <summary>
+        /// 查看是否已经启动某个类型的服务
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        /// <returns></returns>
+        public bool ContainService<T>()
+        {
+            return _Services.ContainsKey(typeof(T));
+        }
+        /// <summary>
+        /// 关闭属于某个类型的服务
+        /// </summary>
+        /// <typeparam name="T">类型</typeparam>
+        public void CloseService<T>()
+        {
+            if (_Services.ContainsKey(typeof(T)))
+            {
+                _Services[typeof(T)].Dispose();
+                _Services.Remove(typeof(T));
+            }
         }
         #endregion
     }

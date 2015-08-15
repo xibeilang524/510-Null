@@ -46,6 +46,7 @@
             this.button3 = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtReaderCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.chkEnable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -70,7 +71,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(656, 295);
+            this.dataGridView1.Size = new System.Drawing.Size(637, 295);
             this.dataGridView1.TabIndex = 0;
             // 
             // colID
@@ -134,7 +135,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(543, 350);
+            this.btnSave.Location = new System.Drawing.Point(524, 350);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(102, 34);
             this.btnSave.TabIndex = 2;
@@ -165,8 +166,8 @@
             // 
             // button1
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Location = new System.Drawing.Point(369, 350);
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button1.Location = new System.Drawing.Point(261, 350);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(102, 34);
             this.button1.TabIndex = 9;
@@ -176,8 +177,8 @@
             // 
             // button2
             // 
-            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button2.Location = new System.Drawing.Point(249, 350);
+            this.button2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button2.Location = new System.Drawing.Point(141, 350);
             this.button2.Name = "button2";
             this.button2.Size = new System.Drawing.Size(102, 34);
             this.button2.TabIndex = 10;
@@ -187,8 +188,8 @@
             // 
             // button3
             // 
-            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button3.Location = new System.Drawing.Point(120, 350);
+            this.button3.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.button3.Location = new System.Drawing.Point(12, 350);
             this.button3.Name = "button3";
             this.button3.Size = new System.Drawing.Size(102, 34);
             this.button3.TabIndex = 11;
@@ -217,11 +218,25 @@
             this.txtReaderCode.TabIndex = 13;
             this.txtReaderCode.Text = "1000";
             // 
+            // chkEnable
+            // 
+            this.chkEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkEnable.AutoSize = true;
+            this.chkEnable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chkEnable.ForeColor = System.Drawing.Color.Red;
+            this.chkEnable.Location = new System.Drawing.Point(423, 356);
+            this.chkEnable.Name = "chkEnable";
+            this.chkEnable.Size = new System.Drawing.Size(95, 20);
+            this.chkEnable.TabIndex = 16;
+            this.chkEnable.Text = "启动服务";
+            this.chkEnable.UseVisualStyleBackColor = true;
+            // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 396);
+            this.ClientSize = new System.Drawing.Size(638, 396);
+            this.Controls.Add(this.chkEnable);
             this.Controls.Add(this.txtReaderCode);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.button3);
@@ -261,6 +276,7 @@
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Label label2;
         private GeneralLibrary.WinformControl.IntergerTextBox txtReaderCode;
+        private System.Windows.Forms.CheckBox chkEnable;
 
     }
 }

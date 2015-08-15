@@ -17,7 +17,7 @@ namespace Ralid.OpenCard.OpenCardService
         {
         }
 
-        public ZSTService(ZSTSetting setting)
+        public ZSTService(ZSTSettings setting)
         {
             Setting = setting;
         }
@@ -66,7 +66,7 @@ namespace Ralid.OpenCard.OpenCardService
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
                     CardID = e.CardID,
-                    CardType = ZSTSetting.CardType,
+                    CardType = ZSTSettings.CardType,
                     EntranceID = entrance.EntranceID,
                     EntranceName = entrance.EntranceName,
                 };
@@ -137,7 +137,7 @@ namespace Ralid.OpenCard.OpenCardService
         /// <summary>
         /// 获取或设置配置参数
         /// </summary>
-        public ZSTSetting Setting { get; set; }
+        public ZSTSettings Setting { get; set; }
         #endregion
 
         #region 实现IOpenCardService
