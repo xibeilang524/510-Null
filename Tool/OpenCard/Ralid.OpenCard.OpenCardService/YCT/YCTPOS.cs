@@ -199,6 +199,24 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             return null;
         }
         /// <summary>
+        /// 获取卡片序列号
+        /// </summary>
+        /// <returns></returns>
+        public string ReadSN()
+        {
+            string ret = null;
+            var response = Request(YCTCommandType.ReadSerialNumber, null);
+            if (response != null && response.IsCommandExcuteOk)
+            {
+                byte[] data = response.Data;
+                if (data != null && data.Length >= 4)
+                {
+                    ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                }
+            }
+            return ret;
+        }
+        /// <summary>
         /// 获取读卡器版本
         /// </summary>
         /// <returns></returns>

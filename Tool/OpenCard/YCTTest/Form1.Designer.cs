@@ -53,6 +53,8 @@
             this.button1 = new System.Windows.Forms.Button();
             this.label10 = new System.Windows.Forms.Label();
             this.txtVersion = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.txtSN = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
+            this.label11 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -324,11 +326,30 @@
             this.txtVersion.Size = new System.Drawing.Size(395, 21);
             this.txtVersion.TabIndex = 32;
             // 
+            // txtSN
+            // 
+            this.txtSN.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtSN.Location = new System.Drawing.Point(364, 97);
+            this.txtSN.Name = "txtSN";
+            this.txtSN.Size = new System.Drawing.Size(139, 21);
+            this.txtSN.TabIndex = 34;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(300, 101);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(41, 12);
+            this.label11.TabIndex = 33;
+            this.label11.Text = "序列号";
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 382);
+            this.Controls.Add(this.txtSN);
+            this.Controls.Add(this.label11);
             this.Controls.Add(this.txtVersion);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.button1);
@@ -387,6 +408,8 @@
         private System.Windows.Forms.Button button1;
         private System.Windows.Forms.Label label10;
         private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtVersion;
+        private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtSN;
+        private System.Windows.Forms.Label label11;
     }
 }
 

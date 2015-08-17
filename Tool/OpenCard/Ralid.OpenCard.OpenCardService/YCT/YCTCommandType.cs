@@ -7,6 +7,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
     public enum YCTCommandType : byte
     {
         /// <summary>
+        /// 读取序列号
+        /// </summary>
+        ReadSerialNumber=0x0E,
+        /// <summary>
         /// 获取版本号
         /// </summary>
         GetVersion=0x60,

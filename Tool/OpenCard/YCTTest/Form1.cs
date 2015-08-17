@@ -28,6 +28,7 @@ namespace YCTTest
                 reader = null;
                 btnReadCurCard.Enabled = false;
                 btnReduceBalance.Enabled = false;
+                button1.Enabled = false;
                 btnConnect.Text = "连接";
             }
             else
@@ -37,6 +38,7 @@ namespace YCTTest
                     reader = new YCTPOS(comPort.ComPort, 57600);
                     reader.Open();
                     btnReadCurCard.Enabled = reader.IsOpened;
+                    button1.Enabled = reader.IsOpened;
                     btnConnect.Text = reader.IsOpened ? "断开" : "连接";
                     txtVersion.Text = reader.GetVersion(); //获取版本号
                 }
@@ -52,6 +54,7 @@ namespace YCTTest
         {
             if (reader != null && reader.IsOpened)
             {
+                txtSN.Text = reader.ReadSN();
                 var wallet = reader.Poll();
                 if (wallet != null)
                 {
@@ -62,7 +65,7 @@ namespace YCTTest
                 else
                 {
                     btnReduceBalance.Enabled = false;
-                    MessageBox.Show("读羊城通失败");
+                    MessageBox.Show(reader.GetErrDescr(reader.LastError));
                 }
             }
         }
@@ -101,7 +104,7 @@ namespace YCTTest
         {
             for (int i = 0; i < 256; i++)
             {
-                if (!Enum.IsDefined(typeof(YCTCommandType), i)) //未列出的命令
+                if (!Enum.IsDefined(typeof(YCTCommandType), (byte)i)) //未列出的命令
                 {
                     var ret = reader.Request((YCTCommandType)i, null);
                     if (ret != null && ret.IsCommandExcuteOk && ret.Data != null && ret.Data.Length > 0)

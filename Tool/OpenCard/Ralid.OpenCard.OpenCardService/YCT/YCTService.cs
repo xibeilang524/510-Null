@@ -102,7 +102,12 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             }
                             else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
                             {
-
+                                string sn=item.Reader .ReadSN ();
+                                if(sn!=null)
+                                {
+                                    w = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                                    HandleWallet(item, w);
+                                }
                             }
                             else
                             {
@@ -152,7 +157,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             if (args.CardType == YCTSetting.CardTyte)
             {
                 ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                if (entrance == null || (!p.IsNested && entrance.IsExitDevice)) HandlePayment(item, w, args);//中央收费处和非嵌套车场的出口,并且是羊城通卡,则进行收费处理
+                if (entrance == null || (!p.IsNested && entrance.IsExitDevice))
+                {
+                    HandlePayment(item, w, args);//中央收费处和非嵌套车场的出口,并且是羊城通卡,则进行收费处理
+                }
+                else
+                {
+                    if (this.OnReadCard != null) this.OnReadCard(this, args);
+                }
             }
             else
             {
