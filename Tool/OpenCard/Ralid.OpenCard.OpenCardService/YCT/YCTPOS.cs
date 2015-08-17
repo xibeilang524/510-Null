@@ -169,6 +169,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
         /// <summary>
+        /// 获取最后一次操作的错误描述
+        /// </summary>
+        public string LastErrorDescr
+        {
+            get
+            {
+                return GetErrDescr(_LastError);
+            }
+        }
+
+        /// <summary>
         /// 向读卡器请求命令，并取得返回包
         /// </summary>
         /// <param name="cmd">请求的命令</param>
@@ -199,10 +210,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             return null;
         }
         /// <summary>
-        /// 获取卡片序列号
+        /// 获取卡片序列号,wgType=0表示WEGEN 34, wgType=1表示WEGEN26协议
         /// </summary>
         /// <returns></returns>
-        public string ReadSN()
+        public string ReadSN(int wgType=0)
         {
             string ret = null;
             var response = Request(YCTCommandType.ReadSerialNumber, null);
@@ -211,7 +222,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 byte[] data = response.Data;
                 if (data != null && data.Length >= 4)
                 {
-                    ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                    if (wgType == 1)
+                    {
+                        ret = BEBinaryConverter.BytesToLong(Slice(data, 1, 4)).ToString(); //取低三字节
+                    }
+                    else
+                    {
+                        ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                    }
                 }
             }
             return ret;

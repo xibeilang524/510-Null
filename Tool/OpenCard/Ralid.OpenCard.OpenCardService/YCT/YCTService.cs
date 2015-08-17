@@ -7,6 +7,7 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BLL;
+using Ralid.GeneralLibrary.CardReader;
 
 namespace Ralid.OpenCard.OpenCardService.YCT
 {
@@ -102,7 +103,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             }
                             else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
                             {
-                                string sn=item.Reader .ReadSN ();
+                                string sn=item.Reader .ReadSN (UserSetting .Current !=null && UserSetting .Current .WegenType ==WegenType .Wengen26 ?1:0);
                                 if(sn!=null)
                                 {
                                     w = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
