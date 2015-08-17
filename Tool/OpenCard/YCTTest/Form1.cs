@@ -38,6 +38,7 @@ namespace YCTTest
                     reader.Open();
                     btnReadCurCard.Enabled = reader.IsOpened;
                     btnConnect.Text = reader.IsOpened ? "断开" : "连接";
+                    txtVersion.Text = reader.GetVersion(); //获取版本号
                 }
             }
         }
@@ -93,6 +94,21 @@ namespace YCTTest
                     }
                 }
                 MessageBox.Show("扣款失败, 错误:" + reader.LastError.ToString());
+            }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 256; i++)
+            {
+                if (!Enum.IsDefined(typeof(YCTCommandType), i)) //未列出的命令
+                {
+                    var ret = reader.Request((YCTCommandType)i, null);
+                    if (ret != null && ret.IsCommandExcuteOk && ret.Data != null && ret.Data.Length > 0)
+                    {
+
+                    }
+                }
             }
         }
     }

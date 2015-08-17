@@ -174,7 +174,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <param name="cmd">请求的命令</param>
         /// <param name="data">请求中包含的数据</param>
         /// <returns></returns>
-        private YCTPacket Request(YCTCommandType cmd, byte[] data)
+        public YCTPacket Request(YCTCommandType cmd, byte[] data)
         {
             lock (_PortLocker)
             {
@@ -197,6 +197,27 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
             _LastError = -1;
             return null;
+        }
+        /// <summary>
+        /// 获取读卡器版本
+        /// </summary>
+        /// <returns></returns>
+        public string GetVersion()
+        {
+            string ret = null;
+            var resoponse = Request(YCTCommandType.GetVersion, null);
+            if (resoponse != null && resoponse.IsCommandExcuteOk)
+            {
+                byte[] data = resoponse.Data;
+                if (data != null && data.Length == 60)
+                {
+                    ret = string.Format("{0}-{1}-{2}",
+                        ASCIIEncoding.ASCII.GetString(Slice(data, 0, 8)),
+                        ASCIIEncoding.ASCII.GetString(Slice(data, 8, 32)),
+                        ASCIIEncoding.ASCII.GetString(Slice(data, 40, 20)));
+                }
+            }
+            return ret;
         }
         /// <summary>
         /// 设置商家编号

@@ -7,6 +7,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
     public enum YCTCommandType : byte
     {
         /// <summary>
+        /// 获取版本号
+        /// </summary>
+        GetVersion=0x60,
+        /// <summary>
         /// 设置服务商代码
         /// </summary>
         SetServiceCode=0x61,
@@ -34,5 +38,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// 捕捉黑名单
         /// </summary>
         CatchBlack=0xB8,
+        /// <summary>
+        /// 进入BOOTLOAD状态
+        /// </summary>
+        Bootload=0xDF,    
     }
 }

@@ -50,6 +50,9 @@
             this.txtDeposit = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.txtCount = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label9 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            this.label10 = new System.Windows.Forms.Label();
+            this.txtVersion = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.SuspendLayout();
             // 
             // btnConnect
@@ -65,7 +68,7 @@
             // btnReadCurCard
             // 
             this.btnReadCurCard.Enabled = false;
-            this.btnReadCurCard.Location = new System.Drawing.Point(207, 243);
+            this.btnReadCurCard.Location = new System.Drawing.Point(207, 252);
             this.btnReadCurCard.Name = "btnReadCurCard";
             this.btnReadCurCard.Size = new System.Drawing.Size(129, 36);
             this.btnReadCurCard.TabIndex = 1;
@@ -76,7 +79,7 @@
             // btnReduceBalance
             // 
             this.btnReduceBalance.Enabled = false;
-            this.btnReduceBalance.Location = new System.Drawing.Point(278, 315);
+            this.btnReduceBalance.Location = new System.Drawing.Point(278, 324);
             this.btnReduceBalance.Name = "btnReduceBalance";
             this.btnReduceBalance.Size = new System.Drawing.Size(129, 36);
             this.btnReduceBalance.TabIndex = 8;
@@ -96,7 +99,7 @@
             // txtBalance
             // 
             this.txtBalance.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtBalance.Location = new System.Drawing.Point(364, 157);
+            this.txtBalance.Location = new System.Drawing.Point(364, 166);
             this.txtBalance.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -117,7 +120,7 @@
             // txtAmount
             // 
             this.txtAmount.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAmount.Location = new System.Drawing.Point(160, 323);
+            this.txtAmount.Location = new System.Drawing.Point(160, 332);
             this.txtAmount.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -146,7 +149,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(76, 91);
+            this.label2.Location = new System.Drawing.Point(73, 100);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(29, 12);
             this.label2.TabIndex = 16;
@@ -159,7 +162,7 @@
             "",
             "1-M1钱包",
             "2-CPU钱包"});
-            this.cmbWType.Location = new System.Drawing.Point(113, 88);
+            this.cmbWType.Location = new System.Drawing.Point(113, 97);
             this.cmbWType.Name = "cmbWType";
             this.cmbWType.Size = new System.Drawing.Size(139, 20);
             this.cmbWType.TabIndex = 17;
@@ -167,7 +170,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(52, 126);
+            this.label3.Location = new System.Drawing.Point(49, 135);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(53, 12);
             this.label3.TabIndex = 18;
@@ -176,7 +179,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(302, 126);
+            this.label4.Location = new System.Drawing.Point(302, 135);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 12);
             this.label4.TabIndex = 19;
@@ -185,7 +188,7 @@
             // txtPhysicalID
             // 
             this.txtPhysicalID.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtPhysicalID.Location = new System.Drawing.Point(113, 122);
+            this.txtPhysicalID.Location = new System.Drawing.Point(113, 131);
             this.txtPhysicalID.Name = "txtPhysicalID";
             this.txtPhysicalID.Size = new System.Drawing.Size(139, 21);
             this.txtPhysicalID.TabIndex = 20;
@@ -193,7 +196,7 @@
             // txtLogicID
             // 
             this.txtLogicID.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtLogicID.Location = new System.Drawing.Point(364, 122);
+            this.txtLogicID.Location = new System.Drawing.Point(364, 131);
             this.txtLogicID.Name = "txtLogicID";
             this.txtLogicID.Size = new System.Drawing.Size(139, 21);
             this.txtLogicID.TabIndex = 21;
@@ -201,7 +204,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(52, 161);
+            this.label5.Location = new System.Drawing.Point(49, 170);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(53, 12);
             this.label5.TabIndex = 22;
@@ -210,7 +213,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(302, 161);
+            this.label6.Location = new System.Drawing.Point(302, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(53, 12);
             this.label6.TabIndex = 23;
@@ -219,7 +222,7 @@
             // txtCardType
             // 
             this.txtCardType.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtCardType.Location = new System.Drawing.Point(113, 157);
+            this.txtCardType.Location = new System.Drawing.Point(113, 166);
             this.txtCardType.Name = "txtCardType";
             this.txtCardType.Size = new System.Drawing.Size(139, 21);
             this.txtCardType.TabIndex = 24;
@@ -227,7 +230,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(64, 198);
+            this.label7.Location = new System.Drawing.Point(61, 207);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(41, 12);
             this.label7.TabIndex = 25;
@@ -236,7 +239,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(326, 198);
+            this.label8.Location = new System.Drawing.Point(326, 207);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(29, 12);
             this.label8.TabIndex = 26;
@@ -245,7 +248,7 @@
             // txtDeposit
             // 
             this.txtDeposit.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtDeposit.Location = new System.Drawing.Point(364, 194);
+            this.txtDeposit.Location = new System.Drawing.Point(364, 203);
             this.txtDeposit.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -266,7 +269,7 @@
             // txtCount
             // 
             this.txtCount.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtCount.Location = new System.Drawing.Point(113, 194);
+            this.txtCount.Location = new System.Drawing.Point(113, 203);
             this.txtCount.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -287,17 +290,48 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(252, 327);
+            this.label9.Location = new System.Drawing.Point(252, 336);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 12);
             this.label9.TabIndex = 29;
             this.label9.Text = "元";
+            // 
+            // button1
+            // 
+            this.button1.Enabled = false;
+            this.button1.Location = new System.Drawing.Point(364, 252);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(129, 36);
+            this.button1.TabIndex = 30;
+            this.button1.Text = "测试命令";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(25, 58);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(77, 12);
+            this.label10.TabIndex = 31;
+            this.label10.Text = "读卡器版本号";
+            // 
+            // txtVersion
+            // 
+            this.txtVersion.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtVersion.Location = new System.Drawing.Point(108, 55);
+            this.txtVersion.Name = "txtVersion";
+            this.txtVersion.Size = new System.Drawing.Size(395, 21);
+            this.txtVersion.TabIndex = 32;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(540, 382);
+            this.Controls.Add(this.txtVersion);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtCount);
             this.Controls.Add(this.txtDeposit);
@@ -350,6 +384,9 @@
         private Ralid.GeneralLibrary.WinformControl.DecimalTextBox txtDeposit;
         private Ralid.GeneralLibrary.WinformControl.DecimalTextBox txtCount;
         private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Label label10;
+        private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtVersion;
     }
 }
 
