@@ -274,7 +274,7 @@ namespace Ralid.Park.UI
         {
             CommandResult result = null;
             cardPayment.Paid = txtPaid.DecimalValue;
-            
+
             //优惠金额
             decimal discount = cardPayment.Accounts - cardPayment.Paid;//总优惠
             string artificialMemo = string.Empty;
@@ -302,11 +302,11 @@ namespace Ralid.Park.UI
             bool offlineHandleCard = AppSettings.CurrentSetting.EnableWriteCard
                 && _cardInfo != null
                 && !_processingEvent.OnlineHandleWhenOfflineMode;
-                //&& (paymentMode == PaymentMode.Cash || paymentMode == PaymentMode.Prepay);2014-12-11 注销 写卡与收费模式无关
+            //&& (paymentMode == PaymentMode.Cash || paymentMode == PaymentMode.Prepay);2014-12-11 注销 写卡与收费模式无关
 
             CardInfo payBefore = _cardInfo == null ? null : _cardInfo.Clone();
             result = cbll.PayParkFee(_cardInfo, cardPayment, AppSettings.CurrentSetting.CurrentStandbyConnect, both, offlineHandleCard);
-            
+
             if (result.Result != ResultCode.Successful && offlineHandleCard)
             {
                 //与主数据库通信故障时，脱机模式时按脱机模式处理的卡片，收费信息写入本地数据库，待通信正在时，上传到主数据库
@@ -456,7 +456,7 @@ namespace Ralid.Park.UI
                                 if (AppSettings.CurrentSetting.EnableWriteCard
                                     && _cardInfo != null
                                     && _cardInfo.CardID != eventInfo.CardID)
-                                { 
+                                {
                                     //当前读到卡片与事件卡片不一致
                                 }
                                 else
@@ -488,7 +488,7 @@ namespace Ralid.Park.UI
                                             _cardInfo.Balance = eventInfo.Balance;
                                         CardOperationManager.Instance.WriteCardLoop(_cardInfo);
                                     }
-                                    _cardInfo = null; 
+                                    _cardInfo = null;
                                 }
 
                                 if (_processingEvent != null && _processingEvent.EntranceID == report1.EntranceID)  //只有待处理事件与有效事件是同一个通道时才清空
@@ -742,7 +742,7 @@ namespace Ralid.Park.UI
                             return;
                         }
                         else
-                        { 
+                        {
                         }
                     }
                     else
@@ -978,7 +978,7 @@ namespace Ralid.Park.UI
             }
 
             EntranceInfo entrance = null;
-            if(this.entrancePanel1.SelectedEntranceID>0)
+            if (this.entrancePanel1.SelectedEntranceID > 0)
             {
                 entrance = ParkBuffer.Current.GetEntrance(this.entrancePanel1.SelectedEntranceID);
             }
@@ -1108,7 +1108,7 @@ namespace Ralid.Park.UI
             {
                 buttons.Add(btnCoupon);
             }
-            LayoutCarTypeButtons(pnlCash,buttons, btnCash.Height, 3);
+            LayoutCarTypeButtons(pnlCash, buttons, btnCash.Height, 3);
         }
 
         private void LayoutCarTypeButtons(Panel container, List<Button> buttons, int buttonHeight, int buttonMargin)
@@ -1140,7 +1140,7 @@ namespace Ralid.Park.UI
             List<Button> buttons = new List<Button>();
             buttons.Add(btnCardOk);
             buttons.Add(btnInvalidEvent);
-            LayoutCarTypeButtons(panel6,buttons, btnCardOk.Height, 3);
+            LayoutCarTypeButtons(panel6, buttons, btnCardOk.Height, 3);
         }
 
         private void FrmCardPaying_Activated(object sender, EventArgs e)
@@ -1238,8 +1238,8 @@ namespace Ralid.Park.UI
                 _YCTReader.ReadCard(out c);
                 if (c != null)
                 {
-                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = c.CardID  };
-                    this.TicketReader_BarCodeRead(_YCTPOS, args);
+                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = c.CardID };
+                    this.TicketReader_BarCodeRead(_YCTReader, args);
                     tmr_YCT.Enabled = false; //停止读卡
                 }
             }
