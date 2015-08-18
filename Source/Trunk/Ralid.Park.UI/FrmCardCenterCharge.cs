@@ -105,7 +105,7 @@ namespace Ralid.Park.UI
             }
             else
             {
-                this.btnYCT.Enabled = (_YCTReader != null || _YCTPOS != null) ? true : false;
+                this.btnYCT.Enabled = (_YCTReader != null || _YCTPOS != null);
             }
             this.btnCancel.Enabled = true;
             this.btnRepay.Enabled = _cardInfo.IsPaid;
@@ -171,7 +171,7 @@ namespace Ralid.Park.UI
             this.lblDiscountMemo.Text = string.Empty;
             this.txtMemo.Text = string.Empty;
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
-            tmr_YCT.Enabled = true;
+            tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
         }
 
         /// <summary>
@@ -503,6 +503,7 @@ namespace Ralid.Park.UI
                     _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
                     _YCTReader.Open();
                 }
+                tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
             }
 
             this.txtMemo.Items.Clear();

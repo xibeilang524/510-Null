@@ -934,7 +934,7 @@
     <value>txtCardID</value>
   </data>
   <data name="&gt;&gt;txtCardID.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1405,7 +1405,7 @@
     <value>txtPaid</value>
   </data>
   <data name="&gt;&gt;txtPaid.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2014.1225, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtPaid.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1980,6 +1980,9 @@
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
+  <metadata name="tmr_YCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2000,6 +2003,12 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>车辆进出收费</value>
+  </data>
+  <data name="&gt;&gt;tmr_YCT.Name" xml:space="preserve">
+    <value>tmr_YCT</value>
+  </data>
+  <data name="&gt;&gt;tmr_YCT.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmCardPaying</value>

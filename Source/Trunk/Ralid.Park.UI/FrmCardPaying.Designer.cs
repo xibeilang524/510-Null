@@ -89,6 +89,7 @@
             this.picIn = new Ralid.Park.UserControls.UCPictureListView();
             this.ucVideoes = new Ralid.Park.UserControls.VideoPanels.UCVideoListView();
             this.spliterLeft = new System.Windows.Forms.Splitter();
+            this.tmr_YCT = new System.Windows.Forms.Timer(this.components);
             this.paymentPanel.SuspendLayout();
             this.buttonPnl.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -521,6 +522,11 @@
             this.spliterLeft.Name = "spliterLeft";
             this.spliterLeft.TabStop = false;
             // 
+            // tmr_YCT
+            // 
+            this.tmr_YCT.Interval = 500;
+            this.tmr_YCT.Tick += new System.EventHandler(this.tmr_YCT_Tick);
+            // 
             // FrmCardPaying
             // 
             resources.ApplyResources(this, "$this");
@@ -613,6 +619,7 @@
         private System.Windows.Forms.Label lblDiscountMemo;
         private System.Windows.Forms.Button btnPos;
         private System.Windows.Forms.Button btnCoupon;
+        private System.Windows.Forms.Timer tmr_YCT;
 
     }
 }

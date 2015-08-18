@@ -15,6 +15,7 @@ using Ralid.Park.ParkAdapter;
 using Ralid.Park.UserControls.VideoPanels;
 using Ralid.GeneralLibrary.Printer;
 using Ralid.GeneralLibrary .CardReader ;
+using Ralid.GeneralLibrary.CardReader.YCT;
 using Ralid.GeneralLibrary.LED;
 using Ralid.GeneralLibrary.Speech;
 using Ralid.Park.UI.Resources;
@@ -36,6 +37,7 @@ namespace Ralid.Park.UI
         private EpsonmodePrinter _BillPrinter;
         private IParkingLed _ChargeLed = null;
         private YangChengTongReader _YCTReader;
+        private YCTPOS _YCTPOS;  //2015-8-18 bruce
         private CardEventBll _CardEventBll = new CardEventBll(AppSettings.CurrentSetting.ParkConnect);
         private UCVideoListView _EnterVideoes;
 
@@ -99,7 +101,7 @@ namespace Ralid.Park.UI
                 }
                 else
                 {
-                    this.btnYCT.Enabled = (_YCTReader != null) ? true : false;
+                    this.btnYCT.Enabled = (_YCTReader != null || _YCTPOS != null);
                 }
                 this.btnInvalidEvent.Enabled = true;
                 if (UserSetting.Current.OneKeyOpenDoor)
@@ -148,7 +150,9 @@ namespace Ralid.Park.UI
             _processingEvent = null;
             _cardInfo = null;
             this.lblDiscountHour.Text = string.Empty;
+            this.txtCardID.Focus();
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
+            tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
         }
 
         private void CardPaidOk()
@@ -270,8 +274,21 @@ namespace Ralid.Park.UI
         {
             CommandResult result = null;
             cardPayment.Paid = txtPaid.DecimalValue;
-            cardPayment.Discount = cardPayment.Accounts - cardPayment.Paid;
-            cardPayment.Memo = this.lblDiscountMemo.Text + this.txtMemo.Text;
+            
+            //优惠金额
+            decimal discount = cardPayment.Accounts - cardPayment.Paid;//总优惠
+            string artificialMemo = string.Empty;
+            if (discount != cardPayment.Discount)
+            {
+                //总优惠与电子优惠不相同时，记录人工优惠
+                decimal artificialDiscount = discount - cardPayment.Discount;
+                artificialMemo = string.Format(Resource1.FrmCardPaying_ArtificialDiscount, artificialDiscount);
+
+                cardPayment.Discount = discount;
+            }
+            //cardPayment.Discount = cardPayment.Accounts - cardPayment.Paid;
+
+            cardPayment.Memo = this.lblDiscountMemo.Text + artificialMemo + this.txtMemo.Text;
             cardPayment.PaymentMode = paymentMode;
             cardPayment.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
             cardPayment.OperatorDeptID = OperatorInfo.CurrentOperator.DeptID;
@@ -567,8 +584,17 @@ namespace Ralid.Park.UI
             }
             if (AppSettings.CurrentSetting.YCTReaderCOMPort > 0)
             {
-                _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
-                _YCTReader.Open();
+                if (UserSetting.Current.YCTReadType == 0)
+                {
+                    _YCTPOS = new YCTPOS(AppSettings.CurrentSetting.YCTReaderCOMPort, 57600);
+                    _YCTPOS.Open();
+                }
+                else if (UserSetting.Current.YCTReadType == 1)
+                {
+                    _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
+                    _YCTReader.Open();
+                }
+                tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
             }
 
             // 启用一键开闸
@@ -638,12 +664,25 @@ namespace Ralid.Park.UI
                 }
                 else
                 {
-                    FrmYCTPayment frmYCT = new FrmYCTPayment();
-                    frmYCT.Reader = this._YCTReader;
-                    frmYCT.Payment = this.txtPaid.DecimalValue;
-                    if (frmYCT.ShowDialog() == DialogResult.OK)
+                    if (_YCTReader != null)
                     {
-                        result = SaveCardPayment(_processingEvent.CardPaymentInfo, PaymentMode.YangChengTong);
+                        FrmYCTPayment frmYCT = new FrmYCTPayment();
+                        frmYCT.Reader = this._YCTReader;
+                        frmYCT.Payment = this.txtPaid.DecimalValue;
+                        if (frmYCT.ShowDialog() == DialogResult.OK)
+                        {
+                            result = SaveCardPayment(_processingEvent.CardPaymentInfo, PaymentMode.YangChengTong);
+                        }
+                    }
+                    else if (_YCTPOS != null)
+                    {
+                        FrmYCTPOSPayment frmYCT = new FrmYCTPOSPayment();
+                        frmYCT.Reader = _YCTPOS;
+                        frmYCT.Payment = this.txtPaid.DecimalValue;
+                        if (frmYCT.ShowDialog() == DialogResult.OK)
+                        {
+                            result = SaveCardPayment(_processingEvent.CardPaymentInfo, PaymentMode.YangChengTong);
+                        }
                     }
                 }
                 if (result != null)
@@ -1030,7 +1069,7 @@ namespace Ralid.Park.UI
                 if (_processingEvent.CardType.IsPrepayCard)
                 {
                     btnCash.Enabled = _processingEvent.Balance < txtPaid.DecimalValue;
-                    btnYCT.Enabled = (_processingEvent.Balance < txtPaid.DecimalValue && _YCTReader != null);
+                    btnYCT.Enabled = (_processingEvent.Balance < txtPaid.DecimalValue && (_YCTReader != null || _YCTPOS != null));
                     btnCardOk.Enabled = _processingEvent.Balance >= txtPaid.DecimalValue;
                 }
             }
@@ -1044,6 +1083,7 @@ namespace Ralid.Park.UI
             if (_TicketReader != null) _TicketReader.Close();
             if (_BillPrinter != null) _BillPrinter.Close();
             if (_YCTReader != null) _YCTReader.Close();
+            if (_YCTPOS != null) _YCTPOS.Close();
             if (_ChargeLed != null) _ChargeLed.Close();
 
             if (AppSettings.CurrentSetting.EnableZST)
@@ -1180,9 +1220,29 @@ namespace Ralid.Park.UI
         }
         #endregion
 
-
-
-
-
+        private void tmr_YCT_Tick(object sender, EventArgs e)
+        {
+            if (_YCTPOS != null && _YCTPOS.IsOpened)
+            {
+                var w = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
+                if (w != null)
+                {
+                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = w.LogicCardID };
+                    this.TicketReader_BarCodeRead(_YCTPOS, args);
+                    tmr_YCT.Enabled = false; //停止读卡
+                }
+            }
+            else if (_YCTReader != null)
+            {
+                YangChengTongCardInfo c = null;
+                _YCTReader.ReadCard(out c);
+                if (c != null)
+                {
+                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = c.CardID  };
+                    this.TicketReader_BarCodeRead(_YCTPOS, args);
+                    tmr_YCT.Enabled = false; //停止读卡
+                }
+            }
+        }
     }
 }
