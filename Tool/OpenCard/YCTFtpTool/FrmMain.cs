@@ -126,7 +126,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)
                 {
-                    string zip = YCTUploadFileFactory.CreateM1UploadFile(dt, yct, records);
+                    string zip = YCTUploadFileFactory.CreateM1UploadFile(dt, m1Zip, records);
                     if (!string.IsNullOrEmpty(zip))
                     {
                         InsertMsg("上传文件" + m1Zip);
@@ -150,13 +150,14 @@ namespace Ralid.OpenCard.YCTFtpTool
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)
                 {
-                    string zip = YCTUploadFileFactory.CreateCPUUploadFile(dt, yct, records);
+                    string zip = YCTUploadFileFactory.CreateCPUUploadFile(dt, cpuZip, records);
                     if (!string.IsNullOrEmpty(zip))
                     {
                         InsertMsg("上传文件" + cpuZip);
                         using (FileStream fs = new FileStream(zip, FileMode.Open, FileAccess.Read))
                         {
                             ftp.Upload(cpuZip, fs);
+                            new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(records, cpuZip);
                         }
                     }
                 }
@@ -191,9 +192,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                         ftp.Host = yct.FTPServer;
                         ftp.Port = yct.FTPPort;
                         ftp.Credentials = new System.Net.NetworkCredential(string.IsNullOrEmpty(yct.FTPUser) ? "anonymous" : yct.FTPUser, string.IsNullOrEmpty(yct.FTPPassword) ? "huihai.com" : yct.FTPPassword);
-
                         SyncDownloadFiles(ftp); //同步下载目录，
-
                         ftp.SetWorkingDirectory("/"); //退回到根目录
                         SyncUploadFiles(ftp, yct);  //同频上传目录
                         InsertMsg(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");

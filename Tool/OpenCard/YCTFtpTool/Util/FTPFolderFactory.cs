@@ -23,7 +23,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 if (string.IsNullOrEmpty(path)) path = System.IO.Path.Combine(Application.StartupPath, "FTP");
                 AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", path);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                path = Path.Combine(path, "上传");
+                path = Path.Combine(path, "发送");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }
@@ -46,7 +46,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 if (string.IsNullOrEmpty(path)) path = System.IO.Path.Combine(Application.StartupPath, "FTP");
                 AppSettings.CurrentSetting.SaveConfig("YCTFtpPath", path);
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-                path = Path.Combine(path, "下载");
+                path = Path.Combine(path, "接收");
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 return path;
             }

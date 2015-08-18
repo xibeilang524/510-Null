@@ -71,13 +71,12 @@ namespace Ralid.OpenCard.YCTFtpTool
         #endregion
 
         #region 公共方法
-        public static string CreateM1UploadFile(DateTime dt, YCTSetting yctSetting, List<YCTPaymentRecord> records)
+        public static string CreateM1UploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records)
         {
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
                        select it).ToList(); //按交易设备号和流水号排序
-            string sdt = DateTime.Today.ToString("yyyyMMdd");
-            string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'), sdt);
+            string prefix = Path.GetFileNameWithoutExtension(zip).Substring(2); //从压缩文件名中取出其它文件需要的相同部分,
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
             string fsy = string.Format("{0}{1}.txt", "SY", prefix);
             string frz = string.Format("{0}{1}.txt", "RZ", prefix);
@@ -114,17 +113,17 @@ namespace Ralid.OpenCard.YCTFtpTool
 
             string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
-            string zip = Path.Combine(path, string.Format("{0}{1}.Zip", "XF", prefix));
+            string localZip = Path.Combine(path, zip);
             try
             {
-                using (ZipFileWriter writer = new ZipFileWriter(zip))
+                using (ZipFileWriter writer = new ZipFileWriter(localZip))
                 {
                     writer.WriteFile(fjy, ASCIIEncoding.ASCII.GetBytes(jy.ToString()));
                     writer.WriteFile(fsy, ASCIIEncoding.ASCII.GetBytes(sy.ToString()));
                     writer.WriteFile(fmd, null);
                     writer.WriteFile(frz, ASCIIEncoding.ASCII.GetBytes(rz.ToString()));
                 }
-                return zip;
+                return localZip;
             }
             catch (Exception ex)
             {
@@ -133,13 +132,13 @@ namespace Ralid.OpenCard.YCTFtpTool
             return null;
         }
 
-        public static string CreateCPUUploadFile(DateTime dt, YCTSetting yctSetting, List<YCTPaymentRecord> records)
+        public static string CreateCPUUploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records)
         {
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
                        where !string.IsNullOrEmpty(it.TAC)  //TAC字段不能为空
                        select it).ToList(); //按交易设备号和流水号排序
-            string prefix = string.Format("{0}{1}{2}", yctSetting.ServiceCode.ToString().PadLeft(4, '0'), yctSetting.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
+            string prefix = Path.GetFileNameWithoutExtension(zip).Substring(2); //从压缩文件名中取出其它文件需要的相同部分,
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
             string fqs = string.Format("{0}{1}.txt", "QS", prefix);
             string frz = string.Format("{0}{1}.txt", "RZ", prefix);
@@ -172,17 +171,17 @@ namespace Ralid.OpenCard.YCTFtpTool
 
             string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
-            string zip = Path.Combine(path, string.Format("{0}{1}.Zip", "CX", prefix));
+            string localZip = Path.Combine(path,zip);
             try
             {
-                using (ZipFileWriter writer = new ZipFileWriter(zip))
+                using (ZipFileWriter writer = new ZipFileWriter(localZip))
                 {
                     writer.WriteFile(fjy, ASCIIEncoding.ASCII.GetBytes(jy.ToString()));
                     writer.WriteFile(fqs, ASCIIEncoding.ASCII.GetBytes(qs.ToString()));
                     writer.WriteFile(fmd, null);
                     writer.WriteFile(frz, ASCIIEncoding.ASCII.GetBytes(rz.ToString()));
                 }
-                return zip;
+                return localZip;
             }
             catch (Exception ex)
             {

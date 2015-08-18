@@ -212,7 +212,7 @@
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(29, 12);
             this.label7.TabIndex = 46;
-            this.label7.Text = "密码";
+            this.label7.Text = "端口";
             // 
             // btnConnect
             // 
@@ -243,7 +243,7 @@
             // 
             // txtFTPUser
             // 
-            this.txtFTPUser.Location = new System.Drawing.Point(467, 15);
+            this.txtFTPUser.Location = new System.Drawing.Point(475, 15);
             this.txtFTPUser.Name = "txtFTPUser";
             this.txtFTPUser.Size = new System.Drawing.Size(96, 21);
             this.txtFTPUser.TabIndex = 42;
@@ -251,7 +251,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(419, 19);
+            this.label5.Location = new System.Drawing.Point(427, 19);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(41, 12);
             this.label5.TabIndex = 41;
