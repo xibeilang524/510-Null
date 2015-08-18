@@ -15,6 +15,7 @@ using Ralid.GeneralLibrary.LED;
 using Ralid.GeneralLibrary.Speech;
 using Ralid.GeneralLibrary.Printer;
 using Ralid.GeneralLibrary.CardReader;
+using Ralid.GeneralLibrary .CardReader .YCT ;
 using Ralid.Park.UI.Resources;
 using Ralid.Park.LocalDataBase.BLL;
 using Ralid.Park.LocalDataBase.Model;
@@ -33,6 +34,7 @@ namespace Ralid.Park.UI
         private CardInfo _cardInfo;
         private BarCodeReader _TicketReader;
         private YangChengTongReader _YCTReader;
+        private YCTPOS _YCTPOS;  //2015-8-18 bruce
         private EpsonmodePrinter _BillPrinter;
         private IParkingLed _ChargeLed = null;
         //private CardBll _CardBll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
@@ -82,7 +84,7 @@ namespace Ralid.Park.UI
             this.lblDiscountMemo.Text = string.IsNullOrEmpty(cardPayment.Memo) ? string.Empty : cardPayment.Memo;
 
             this.picIn.Clear();
-            SnapShotBll _SnapShotBll  = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
+            SnapShotBll _SnapShotBll = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> imgs = _SnapShotBll.GetSnapShots(cardPayment.EnterDateTime.Value, cardPayment.CardID);
             if (imgs != null && imgs.Count > 0)
             {
@@ -95,7 +97,7 @@ namespace Ralid.Park.UI
             this.carTypePanel1.SelectedCarType = cardPayment.CarType;
             this.btnCash.Enabled = true;
             this.btnCash.Focus();
-            if (cardPayment.CardType.Name.Contains ("中山通") && 
+            if (cardPayment.CardType.Name.Contains("中山通") &&
                 AppSettings.CurrentSetting.EnableZST && !string.IsNullOrEmpty(AppSettings.CurrentSetting.ZSTReaderIP))
             {
                 this.btnYCT.Text = "中山通[&F10]";
@@ -103,7 +105,7 @@ namespace Ralid.Park.UI
             }
             else
             {
-                this.btnYCT.Enabled = (_YCTReader != null) ? true : false;
+                this.btnYCT.Enabled = (_YCTReader != null || _YCTPOS != null) ? true : false;
             }
             this.btnCancel.Enabled = true;
             this.btnRepay.Enabled = _cardInfo.IsPaid;
@@ -169,6 +171,7 @@ namespace Ralid.Park.UI
             this.lblDiscountMemo.Text = string.Empty;
             this.txtMemo.Text = string.Empty;
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
+            tmr_YCT.Enabled = true;
         }
 
         /// <summary>
@@ -177,7 +180,7 @@ namespace Ralid.Park.UI
         /// <param name="ldb_cbll">本地数据库连接</param>
         /// <param name="info">缴费前的卡片信息</param>
         /// <param name="record">收费记录</param>
-        private void PaymentRollback(LDB_CardPaymentRecordBll ldb_cbll,CardInfo info,CardPaymentInfo record)
+        private void PaymentRollback(LDB_CardPaymentRecordBll ldb_cbll, CardInfo info, CardPaymentInfo record)
         {
             if (info != null)
             {
@@ -276,13 +279,13 @@ namespace Ralid.Park.UI
         {
             if (report.ChargeAsTempCard) return; //有收费的肯定不会要确认放行,就回来收费
             //只处理车片对比失败要确认放行的事件
-            if (report.ComparisonResult==CarPlateComparisonResult.Fail
-                ||report.EventStatus == CardEventStatus.CarPlateFail) //待处理的卡片事件
+            if (report.ComparisonResult == CarPlateComparisonResult.Fail
+                || report.EventStatus == CardEventStatus.CarPlateFail) //待处理的卡片事件
             {
                 AddCardEventReportToGridView(report);
                 if (AppSettings.CurrentSetting.EnableTTS) TTSSpeech.Instance.Speek(string.Format(Resource1.FrmCardPaying_CardWaitExitSpeech, report.SourceName));
             }
-            else if (report.EventStatus == CardEventStatus.Valid 
+            else if (report.EventStatus == CardEventStatus.Valid
                 && report.ComparisonResult != CarPlateComparisonResult.Fail)
             {
                 RemoveCardEventReportFromGridView(report);
@@ -366,7 +369,7 @@ namespace Ralid.Park.UI
             if (AppSettings.CurrentSetting.EnableWriteCard
                 && _cardInfo != null
                 && !_cardInfo.OnlineHandleWhenOfflineMode
-                &&_cardInfo.IsCardList)
+                && _cardInfo.IsCardList)
             {
                 //需要检查收费金额是否有效
                 if (this.txtPaid.DecimalValue > 167772.15M)
@@ -488,10 +491,18 @@ namespace Ralid.Park.UI
                 _BillPrinter = new EpsonmodePrinter(AppSettings.CurrentSetting.BillPrinterCOMPort, 9600);
                 _BillPrinter.Open();
             }
-            if (AppSettings.CurrentSetting.YCTReaderCOMPort > 0)
+            if (AppSettings.CurrentSetting.YCTReaderCOMPort > 0) //2015-8-18 bruce
             {
-                _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
-                _YCTReader.Open();
+                if (UserSetting.Current.YCTReadType == 0)
+                {
+                    _YCTPOS = new YCTPOS(AppSettings.CurrentSetting.YCTReaderCOMPort, 57600);
+                    _YCTPOS.Open();
+                }
+                else if (UserSetting.Current.YCTReadType == 1)
+                {
+                    _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
+                    _YCTReader.Open();
+                }
             }
 
             this.txtMemo.Items.Clear();
@@ -526,7 +537,7 @@ namespace Ralid.Park.UI
             //写卡模式不允许输入卡号
             //this.txtCardID.Enabled = !GlobalVariables.IsNETParkAndOffLie;
 
-            this.comPark.Init(string.Empty,true);
+            this.comPark.Init(string.Empty, true);
             //this.label1.Visible = false;
             //this.comPark.Visible = false;
             //this.label1.Visible = false;
@@ -584,12 +595,25 @@ namespace Ralid.Park.UI
                 }
                 else
                 {
-                    FrmYCTPayment frmYCT = new FrmYCTPayment();
-                    frmYCT.Reader = this._YCTReader;
-                    frmYCT.Payment = this.txtPaid.DecimalValue;
-                    if (frmYCT.ShowDialog() == DialogResult.OK)
+                    if (_YCTReader != null)
                     {
-                        result = SaveCardPayment(PaymentMode.YangChengTong);
+                        FrmYCTPayment frmYCT = new FrmYCTPayment();
+                        frmYCT.Reader = this._YCTReader;
+                        frmYCT.Payment = this.txtPaid.DecimalValue;
+                        if (frmYCT.ShowDialog() == DialogResult.OK)
+                        {
+                            result = SaveCardPayment(PaymentMode.YangChengTong);
+                        }
+                    }
+                    else if (_YCTPOS != null)
+                    {
+                        FrmYCTPOSPayment frmYCT = new FrmYCTPOSPayment();
+                        frmYCT.Reader = _YCTPOS;
+                        frmYCT.Payment = this.txtPaid.DecimalValue;
+                        if (frmYCT.ShowDialog() == DialogResult.OK)
+                        {
+                            result = SaveCardPayment(PaymentMode.YangChengTong);
+                        }
                     }
                 }
                 if (result != null)
@@ -845,9 +869,9 @@ namespace Ralid.Park.UI
 
         //    msg = string.Empty;
         //    return true;
-            
+
         //}
-        
+
         /// <summary>
         /// 获取卡片详细信息
         /// </summary>
@@ -883,8 +907,8 @@ namespace Ralid.Park.UI
 
                 //在线处理的卡片,主数据库连上，有备份数据库的，需要与获取备用数据库的卡片信息进行比对
                 if (!offlineHandleCard
-                    &&DataBaseConnectionsManager.Current.MasterConnected
-                    &&WorkStationInfo.CurrentStation.HasStandbyDatabase)
+                    && DataBaseConnectionsManager.Current.MasterConnected
+                    && WorkStationInfo.CurrentStation.HasStandbyDatabase)
                 {
                     if (mastercard == null && standbycard == null)
                     {
@@ -952,7 +976,7 @@ namespace Ralid.Park.UI
             else if (AppSettings.CurrentSetting.EnableWriteCard
                 && !card.OnlineHandleWhenOfflineMode
                 && !CardDateResolver.Instance.CopyPaidDataToCard(card, info))//只复制缴费相关的信息，如果复制了所有的信息，会覆盖数据库内的卡片状态，如挂失，禁用等状态
-                //&& !CardDateResolver.Instance.CopyCardDataToCard(card, info))
+            //&& !CardDateResolver.Instance.CopyCardDataToCard(card, info))
             {
                 //写卡模式时，卡片信息从扇区数据中获取
                 msg = Resource1.FrmCardCenterCharge_CardDataErr;
@@ -1234,6 +1258,7 @@ namespace Ralid.Park.UI
             if (_TicketReader != null) _TicketReader.Close();
             if (_BillPrinter != null) _BillPrinter.Close();
             if (_YCTReader != null) _YCTReader.Close();
+            if (_YCTPOS != null) _YCTPOS.Close();
             if (_ChargeLed != null) _ChargeLed.Close();
         }
         #endregion
@@ -1380,6 +1405,33 @@ namespace Ralid.Park.UI
                     this.lblDiscountMemo.Text = string.IsNullOrEmpty(discountMemo) ? string.Empty : discountMemo;
 
                     this.txtPaid.DecimalValue = _ChargeRecord.Accounts - discount;
+                }
+            }
+        }
+
+        private void tmr_YCT_Tick(object sender, EventArgs e)
+        {
+            if (_YCTPOS != null && _YCTPOS.IsOpened)
+            {
+                var w = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
+                if (w != null)
+                {
+                    ClearInput();
+                    string cardID = w.LogicCardID;
+                    ReadCardIDHandler(cardID, null);
+                    tmr_YCT.Enabled = false; //停止读卡
+                }
+            }
+            else if (_YCTReader != null)
+            {
+                YangChengTongCardInfo c = null;
+                _YCTReader.ReadCard(out c);
+                if (c != null)
+                {
+                    ClearInput();
+                    string cardID = c.CardID;
+                    ReadCardIDHandler(cardID, null);
+                    tmr_YCT.Enabled = false; //停止读卡
                 }
             }
         }

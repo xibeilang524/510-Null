@@ -141,6 +141,11 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public string ParkingImageConnStr { get; set; }
+        /// <summary>
+        /// 羊城通读卡器类别,0表示gzyct,1表示铭鸿
+        /// </summary>
+        [DataMember]
+        public int YCTReadType { get; set; }
         #endregion
 
         #region 车牌识别选项

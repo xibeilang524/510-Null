@@ -425,6 +425,12 @@
     <Compile Include="FrmWorkstationsSelection.designer.cs">
       <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmYCTPayment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmYCTPayment.designer.cs">
+      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmZSTParameter.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -567,11 +573,11 @@
     <Compile Include="frmTempCardSetting.Designer.cs">
       <DependentUpon>frmTempCardSetting.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmYCTPayment.cs">
+    <Compile Include="FrmYCTPOSPayment.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmYCTPayment.Designer.cs">
-      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    <Compile Include="FrmYCTPOSPayment.Designer.cs">
+      <DependentUpon>FrmYCTPOSPayment.cs</DependentUpon>
     </Compile>
     <Compile Include="EventArgument\GetAccessesHandler.cs" />
     <Compile Include="EventArgument\EntranceEventArgs.cs" />
@@ -1279,6 +1285,15 @@
     <EmbeddedResource Include="FrmWorkstationsSelection.zh-Hant.resx">
       <DependentUpon>FrmWorkstationsSelection.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="FrmYCTPayment.en.resx">
+      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmYCTPayment.resx">
+      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmYCTPayment.zh-Hant.resx">
+      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTParameter.resx">
       <DependentUpon>FrmZSTParameter.cs</DependentUpon>
     </EmbeddedResource>
@@ -1631,14 +1646,14 @@
     <EmbeddedResource Include="FrmWorkstationSelection.zh-Hant.resx">
       <DependentUpon>FrmWorkstationSelection.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmYCTPayment.en.resx">
-      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    <EmbeddedResource Include="FrmYCTPOSPayment.en.resx">
+      <DependentUpon>FrmYCTPOSPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmYCTPayment.resx">
-      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    <EmbeddedResource Include="FrmYCTPOSPayment.resx">
+      <DependentUpon>FrmYCTPOSPayment.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmYCTPayment.zh-Hant.resx">
-      <DependentUpon>FrmYCTPayment.cs</DependentUpon>
+    <EmbeddedResource Include="FrmYCTPOSPayment.zh-Hant.resx">
+      <DependentUpon>FrmYCTPOSPayment.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OutdoorLed\FrmAreaDetail.en.resx">
       <DependentUpon>FrmAreaDetail.cs</DependentUpon>
