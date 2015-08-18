@@ -3,9 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ralid.GeneralLibrary;
-using Ralid.Park.BusinessModel.Model;
 
-namespace Ralid.OpenCard.OpenCardService.YCT
+namespace Ralid.GeneralLibrary.CardReader.YCT
 {
     /// <summary>
     /// 表示羊城通POS机
@@ -51,6 +50,37 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             if (data != null) ret.AddRange(data);
             ret.Add(CRCHelper.CalCRC(ret));
             return ret.ToArray();
+        }
+
+        /// <summary>
+        /// 向读卡器请求命令，并取得返回包
+        /// </summary>
+        /// <param name="cmd">请求的命令</param>
+        /// <param name="data">请求中包含的数据</param>
+        /// <returns></returns>
+        private YCTPacket Request(YCTCommandType cmd, byte[] data)
+        {
+            lock (_PortLocker)
+            {
+                byte[] request = CreateRequest(cmd, data);
+                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
+                _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
+                _buffer.Clear();
+                _Responsed.Reset();
+                _Response = null;
+                _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
+                _Port.SendData(request);
+                if (_Responsed.WaitOne(5000))
+                {
+                    if (_Response != null && _Response.CheckCRC() && _Response.Command == (byte)cmd)
+                    {
+                        _LastError = _Response.Status;
+                        return _Response;
+                    }
+                }
+            }
+            _LastError = -1;
+            return null;
         }
 
         private YCTPaymentInfo GetPaymentInfoFromM1(YCTPacket packet)
@@ -134,7 +164,6 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             Array.Copy(source, index, ret, 0, count);
             return ret;
         }
-
         /// <summary>
         /// 获取错误代码的文字说明
         /// </summary>
@@ -203,6 +232,61 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
             return "未知错误";
         }
+        /// <summary>
+        /// 获取卡片序列号,wgType=0表示WEGEN 34, wgType=1表示WEGEN26协议
+        /// </summary>
+        /// <returns></returns>
+        private string ReadSN(int wgType = 0)
+        {
+            string ret = null;
+            var response = Request(YCTCommandType.ReadSerialNumber, null);
+            if (response != null && response.IsCommandExcuteOk)
+            {
+                byte[] data = response.Data;
+                if (data != null && data.Length >= 4)
+                {
+                    if (wgType == 1)
+                    {
+                        ret = BEBinaryConverter.BytesToLong(Slice(data, 1, 4)).ToString(); //取低三字节
+                    }
+                    else
+                    {
+                        ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                    }
+                }
+            }
+            return ret;
+        }
+        /// <summary>
+        /// 预消费
+        /// </summary>
+        /// <param name="paid">消费金额(分为单位)</param>
+        /// <param name="walletType">钱包类型 1表示M1 2表示CPU</param>
+        /// <param name="maxOfflineMonth">离线过期月数</param>
+        /// <returns></returns>
+        private YCTPaymentInfo Prepaid(int paid, int walletType, int maxOfflineMonth = 12)
+        {
+            DateTime dt = DateTime.Now;
+            List<byte> data = new List<byte>();
+            data.AddRange(BEBinaryConverter.IntToBytes(paid));
+            data.AddRange(BEBinaryConverter.IntToBytes(paid));
+            data.Add(BCDConverter.IntToBCD(dt.Year / 100));
+            data.Add(BCDConverter.IntToBCD(dt.Year % 100));
+            data.Add(BCDConverter.IntToBCD(dt.Month));
+            data.Add(BCDConverter.IntToBCD(dt.Day));
+            data.Add(BCDConverter.IntToBCD(dt.Hour));
+            data.Add(BCDConverter.IntToBCD(dt.Minute));
+            data.Add(BCDConverter.IntToBCD(dt.Second));
+            data.Add((byte)(maxOfflineMonth > 0 ? 0x01 : 0x00));
+            data.Add(BCDConverter.IntToBCD(maxOfflineMonth));
+            var response = Request(YCTCommandType.Prepaid, data.ToArray());
+            if (response != null && response.IsCommandExcuteOk)
+            {
+                if (walletType == 1) return GetPaymentInfoFromM1(response);
+                if (walletType == 2) return GetPaymentInfoFromCPU(response);
+            }
+            return null;
+        }
         #endregion
 
         #region 公共方法(串口管理)
@@ -227,61 +311,6 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         #endregion
 
         #region 公共方法
-        /// <summary>
-        /// 向读卡器请求命令，并取得返回包
-        /// </summary>
-        /// <param name="cmd">请求的命令</param>
-        /// <param name="data">请求中包含的数据</param>
-        /// <returns></returns>
-        public YCTPacket Request(YCTCommandType cmd, byte[] data)
-        {
-            lock (_PortLocker)
-            {
-                byte[] request = CreateRequest(cmd, data);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
-                _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
-                _buffer.Clear();
-                _Responsed.Reset();
-                _Response = null;
-                _Port.OnDataArrivedEvent += _Port_OnDataArrivedEvent;
-                _Port.SendData(request);
-                if (_Responsed.WaitOne(5000))
-                {
-                    if (_Response != null && _Response.CheckCRC() && _Response.Command == (byte)cmd)
-                    {
-                        _LastError = _Response.Status;
-                        return _Response;
-                    }
-                }
-            }
-            _LastError = -1;
-            return null;
-        }
-        /// <summary>
-        /// 获取卡片序列号,wgType=0表示WEGEN 34, wgType=1表示WEGEN26协议
-        /// </summary>
-        /// <returns></returns>
-        public string ReadSN(int wgType=0)
-        {
-            string ret = null;
-            var response = Request(YCTCommandType.ReadSerialNumber, null);
-            if (response != null && response.IsCommandExcuteOk)
-            {
-                byte[] data = response.Data;
-                if (data != null && data.Length >= 4)
-                {
-                    if (wgType == 1)
-                    {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 1, 4)).ToString(); //取低三字节
-                    }
-                    else
-                    {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
-                    }
-                }
-            }
-            return ret;
-        }
         /// <summary>
         /// 获取读卡器版本
         /// </summary>
@@ -328,7 +357,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// 询卡
         /// </summary>
         /// <returns></returns>
-        public YCTWallet Poll()
+        public YCTWallet ReadCard(WegenType wg = WegenType.Wengen34)
         {
             var response = Request(YCTCommandType.Poll, null);
             if (response != null && response.IsCommandExcuteOk && response.Data != null && response.Data.Length == 52)
@@ -353,64 +382,36 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
                 return w;
             }
+            else if (LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
+            {
+                string sn = ReadSN(wg == WegenType.Wengen26 ? 1 : 0);
+                if (sn != null)
+                {
+                    return new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                }
+            }
             return null;
         }
         /// <summary>
-        /// 预消费
+        /// 消费,返回消费记录,如果返回null,通过 GetlastError获取错误代码
         /// </summary>
         /// <param name="paid">消费金额(分为单位)</param>
         /// <param name="walletType">钱包类型 1表示M1 2表示CPU</param>
         /// <param name="maxOfflineMonth">离线过期月数</param>
         /// <returns></returns>
-        public YCTPaymentInfo Prepaid(int paid, int walletType, int maxOfflineMonth = 12)
+        public YCTPaymentInfo  Paid(int paid, int walletType, int maxOfflineMonth = 12)
         {
-            DateTime dt = DateTime.Now;
-            List<byte> data = new List<byte>();
-            data.AddRange(BEBinaryConverter.IntToBytes(paid));
-            data.AddRange(BEBinaryConverter.IntToBytes(paid));
-            data.Add(BCDConverter.IntToBCD(dt.Year / 100));
-            data.Add(BCDConverter.IntToBCD(dt.Year % 100));
-            data.Add(BCDConverter.IntToBCD(dt.Month));
-            data.Add(BCDConverter.IntToBCD(dt.Day));
-            data.Add(BCDConverter.IntToBCD(dt.Hour));
-            data.Add(BCDConverter.IntToBCD(dt.Minute));
-            data.Add(BCDConverter.IntToBCD(dt.Second));
-            data.Add((byte)(maxOfflineMonth > 0 ? 0x01 : 0x00));
-            data.Add(BCDConverter.IntToBCD(maxOfflineMonth));
-            var response = Request(YCTCommandType.Prepaid, data.ToArray());
-            if (response != null && response.IsCommandExcuteOk)
+            var ret = Prepaid(paid, walletType, maxOfflineMonth);
+            if (ret != null)
             {
-                if (walletType == 1) return GetPaymentInfoFromM1(response);
-                if (walletType == 2) return GetPaymentInfoFromCPU(response);
+                var response = Request(YCTCommandType.CompletePaid, null);
+                if (response != null && response.IsCommandExcuteOk)
+                {
+                    if(walletType ==2)ret.交易认证码=HexStringConverter.HexToString(response.Data, string.Empty);
+                    return ret;
+                }
             }
             return null;
-        }
-        /// <summary>
-        /// 完成消费,返回TAC,如果返回空通过 GetlastError获取错误代码
-        /// </summary>
-        /// <returns></returns>
-        public string CompletePaid()
-        {
-            var response = Request(YCTCommandType.CompletePaid, null);
-            if (response != null && response.IsCommandExcuteOk)
-            {
-                return HexStringConverter.HexToString(response.Data, string.Empty);
-            }
-            return null;
-        }
-
-        public bool RestorePaid()
-        {
-            return false;
-        }
-        /// <summary>
-        /// 捕捉黑名单
-        /// </summary>
-        /// <returns></returns>
-        public bool CatchBlackList()
-        {
-            var response = Request(YCTCommandType.CatchBlack, null);
-            return (response != null && response.IsCommandExcuteOk);
         }
         /// <summary>
         /// 获取最后一次操作的错误代码

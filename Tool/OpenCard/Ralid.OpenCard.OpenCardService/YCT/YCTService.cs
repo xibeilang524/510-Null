@@ -103,8 +103,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             }
                             else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
                             {
-                                string sn=item.Reader .ReadSN (UserSetting .Current !=null && UserSetting .Current .WegenType ==WegenType .Wengen26 ?1:0);
-                                if(sn!=null)
+                                string sn = item.Reader.ReadSN(UserSetting.Current != null && UserSetting.Current.WegenType == WegenType.Wengen26 ? 1 : 0);
+                                if (sn != null)
                                 {
                                     w = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
                                     HandleWallet(item, w);
@@ -112,7 +112,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                             }
                             else
                             {
-                                HandleError(item, item.Reader.GetErrDescr(item.Reader.LastError));
+                                HandleError(item, item.Reader.LastErrorDescr);
                             }
                         }
                     }
@@ -194,7 +194,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 }
                 else
                 {
-                    args.LastError = item.Reader.GetErrDescr(item.Reader.LastError);
+                    args.LastError = item.Reader.LastErrorDescr;
                     if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                 }
             }
