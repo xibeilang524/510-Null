@@ -49,7 +49,7 @@ namespace Ralid.Park.UI
                         var w = Reader.ReadCard();
                         if (w != null && w.WalletType != 0)
                         {
-                            int p = (int)Payment * 100;
+                            int p = (int)(Payment * 100);
                             if (w.Balance >= p)
                             {
                                 var payment = Reader.Paid(p, w.WalletType);
@@ -57,6 +57,7 @@ namespace Ralid.Park.UI
                                 {
                                     YCTPaymentRecord record = CreateRecord(payment);
                                     record.WalletType = w.WalletType;
+                                    record.EnterDateTime = DateTime.Now;
                                     record.State = YCTPaymentRecordState.PaidOk;
                                     YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
                                     CommandResult result = bll.Insert(record);

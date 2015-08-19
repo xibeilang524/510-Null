@@ -132,6 +132,7 @@ namespace Ralid.Park.UI
                 ShowCardChargeInfo(info.CardPaymentInfo);
             }
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).StopReadCard();
+            tmr_YCT.Enabled = false; //停止读卡
         }
 
         private void ClearCardEvent()
@@ -1224,12 +1225,11 @@ namespace Ralid.Park.UI
         {
             if (_YCTPOS != null && _YCTPOS.IsOpened)
             {
-                var w = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
-                if (w != null)
+                var c = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
+                if (c != null)
                 {
-                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = w.LogicCardID };
-                    this.TicketReader_BarCodeRead(_YCTPOS, args);
-                    tmr_YCT.Enabled = false; //停止读卡
+                    CardReadEventArgs args =new CardReadEventArgs { CardID = c.LogicCardID };
+                    CardReadHandler(this, args);
                 }
             }
             else if (_YCTReader != null)
@@ -1238,9 +1238,8 @@ namespace Ralid.Park.UI
                 _YCTReader.ReadCard(out c);
                 if (c != null)
                 {
-                    BarCodeReadEventArgs args = new BarCodeReadEventArgs() { BarCode = c.CardID };
-                    this.TicketReader_BarCodeRead(_YCTReader, args);
-                    tmr_YCT.Enabled = false; //停止读卡
+                    CardReadEventArgs args = new CardReadEventArgs { CardID = c.CardID  };
+                    CardReadHandler(this, args);
                 }
             }
         }

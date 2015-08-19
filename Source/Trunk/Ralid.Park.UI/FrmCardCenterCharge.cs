@@ -147,6 +147,7 @@ namespace Ralid.Park.UI
             }
 
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).StopReadCard();
+            tmr_YCT.Enabled = false; //停止读卡
         }
 
         private void ClearInput()
@@ -1437,7 +1438,6 @@ namespace Ralid.Park.UI
                     ClearInput();
                     string cardID = w.LogicCardID;
                     ReadCardIDHandler(cardID, null);
-                    tmr_YCT.Enabled = false; //停止读卡
                 }
             }
             else if (_YCTReader != null)
@@ -1449,7 +1449,6 @@ namespace Ralid.Park.UI
                     ClearInput();
                     string cardID = c.CardID;
                     ReadCardIDHandler(cardID, null);
-                    tmr_YCT.Enabled = false; //停止读卡
                 }
             }
         }
