@@ -41,7 +41,6 @@
             this.btnPos = new System.Windows.Forms.Button();
             this.btnCash = new System.Windows.Forms.Button();
             this.btnYCT = new System.Windows.Forms.Button();
-            this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
@@ -71,7 +70,6 @@
             this.lblLastWorkstation = new System.Windows.Forms.Label();
             this.txtPaid = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label17 = new System.Windows.Forms.Label();
-            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblCurrDiscountHour = new System.Windows.Forms.Label();
@@ -84,9 +82,13 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
+            this.splitter1 = new System.Windows.Forms.Splitter();
+            this.splitTop = new System.Windows.Forms.Splitter();
+            this.videoPanel = new System.Windows.Forms.Panel();
+            this.spliterLeft = new System.Windows.Forms.Splitter();
+            this.tmr_YCT = new System.Windows.Forms.Timer(this.components);
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.ucapmMonitor1 = new Ralid.Park.UserControls.UCAPMMonitor();
-            this.splitter1 = new System.Windows.Forms.Splitter();
             this.GridView = new Ralid.Park.UserControls.CustomDataGridView(this.components);
             this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -96,11 +98,9 @@
             this.colLastCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.splitTop = new System.Windows.Forms.Splitter();
-            this.videoPanel = new System.Windows.Forms.Panel();
             this.picIn = new Ralid.Park.UserControls.UCPictureGrid();
-            this.spliterLeft = new System.Windows.Forms.Splitter();
-            this.tmr_YCT = new System.Windows.Forms.Timer(this.components);
+            this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
+            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
             this.paymentPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -109,8 +109,8 @@
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.videoPanel.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
             this.SuspendLayout();
             // 
             // paymentPanel
@@ -198,13 +198,6 @@
             this.btnYCT.Name = "btnYCT";
             this.btnYCT.UseVisualStyleBackColor = false;
             this.btnYCT.Click += new System.EventHandler(this.btnYCT_Click);
-            // 
-            // carTypePanel1
-            // 
-            this.carTypePanel1.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.carTypePanel1, "carTypePanel1");
-            this.carTypePanel1.Name = "carTypePanel1";
-            this.carTypePanel1.CarTypeSelectedChanged += new System.EventHandler(this.CarType_Selected);
             // 
             // tableLayoutPanel1
             // 
@@ -413,13 +406,6 @@
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
-            // comPark
-            // 
-            resources.ApplyResources(this.comPark, "comPark");
-            this.comPark.FormattingEnabled = true;
-            this.comPark.Name = "comPark";
-            this.comPark.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
-            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
@@ -499,6 +485,39 @@
             this.splitter2.Name = "splitter2";
             this.splitter2.TabStop = false;
             // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.splitter1, "splitter1");
+            this.splitter1.Name = "splitter1";
+            this.splitter1.TabStop = false;
+            // 
+            // splitTop
+            // 
+            this.splitTop.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.splitTop, "splitTop");
+            this.splitTop.Name = "splitTop";
+            this.splitTop.TabStop = false;
+            // 
+            // videoPanel
+            // 
+            this.videoPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.videoPanel.Controls.Add(this.picIn);
+            resources.ApplyResources(this.videoPanel, "videoPanel");
+            this.videoPanel.Name = "videoPanel";
+            // 
+            // spliterLeft
+            // 
+            this.spliterLeft.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.spliterLeft, "spliterLeft");
+            this.spliterLeft.Name = "spliterLeft";
+            this.spliterLeft.TabStop = false;
+            // 
+            // tmr_YCT
+            // 
+            this.tmr_YCT.Interval = 500;
+            this.tmr_YCT.Tick += new System.EventHandler(this.tmr_YCT_Tick);
+            // 
             // eventList
             // 
             resources.ApplyResources(this.eventList, "eventList");
@@ -511,13 +530,6 @@
             this.ucapmMonitor1.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.ucapmMonitor1, "ucapmMonitor1");
             this.ucapmMonitor1.Name = "ucapmMonitor1";
-            // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.splitter1, "splitter1");
-            this.splitter1.Name = "splitter1";
-            this.splitter1.TabStop = false;
             // 
             // GridView
             // 
@@ -605,36 +617,24 @@
             this.colOperatorID.ReadOnly = true;
             this.colOperatorID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
-            // splitTop
-            // 
-            this.splitTop.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.splitTop, "splitTop");
-            this.splitTop.Name = "splitTop";
-            this.splitTop.TabStop = false;
-            // 
-            // videoPanel
-            // 
-            this.videoPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.videoPanel.Controls.Add(this.picIn);
-            resources.ApplyResources(this.videoPanel, "videoPanel");
-            this.videoPanel.Name = "videoPanel";
-            // 
             // picIn
             // 
             resources.ApplyResources(this.picIn, "picIn");
             this.picIn.Name = "picIn";
             // 
-            // spliterLeft
+            // carTypePanel1
             // 
-            this.spliterLeft.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.spliterLeft, "spliterLeft");
-            this.spliterLeft.Name = "spliterLeft";
-            this.spliterLeft.TabStop = false;
+            this.carTypePanel1.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.carTypePanel1, "carTypePanel1");
+            this.carTypePanel1.Name = "carTypePanel1";
+            this.carTypePanel1.CarTypeSelectedChanged += new System.EventHandler(this.CarType_Selected);
             // 
-            // tmr_YCT
+            // comPark
             // 
-            this.tmr_YCT.Interval = 500;
-            this.tmr_YCT.Tick += new System.EventHandler(this.tmr_YCT_Tick);
+            resources.ApplyResources(this.comPark, "comPark");
+            this.comPark.FormattingEnabled = true;
+            this.comPark.Name = "comPark";
+            this.comPark.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
             // 
             // FrmCardCenterCharge
             // 
@@ -661,8 +661,8 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.videoPanel.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
             this.ResumeLayout(false);
 
         }

@@ -84,7 +84,7 @@ namespace Ralid.Park.UI
             this.lblDiscountMemo.Text = string.IsNullOrEmpty(cardPayment.Memo) ? string.Empty : cardPayment.Memo;
 
             this.picIn.Clear();
-            SnapShotBll _SnapShotBll = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
+            SnapShotBll _SnapShotBll  = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> imgs = _SnapShotBll.GetSnapShots(cardPayment.EnterDateTime.Value, cardPayment.CardID);
             if (imgs != null && imgs.Count > 0)
             {
@@ -97,7 +97,7 @@ namespace Ralid.Park.UI
             this.carTypePanel1.SelectedCarType = cardPayment.CarType;
             this.btnCash.Enabled = true;
             this.btnCash.Focus();
-            if (cardPayment.CardType.Name.Contains("中山通") &&
+            if (cardPayment.CardType.Name.Contains ("中山通") && 
                 AppSettings.CurrentSetting.EnableZST && !string.IsNullOrEmpty(AppSettings.CurrentSetting.ZSTReaderIP))
             {
                 this.btnYCT.Text = "中山通[&F10]";
@@ -108,7 +108,12 @@ namespace Ralid.Park.UI
                 this.btnYCT.Enabled = (_YCTReader != null || _YCTPOS != null);
             }
             this.btnCancel.Enabled = true;
-            this.btnRepay.Enabled = _cardInfo.IsPaid;
+
+            if (!_cardInfo.EnableHotelApp)
+            {
+                //做了免费授权的，不再允许重新收费，应为不能确认免费授权是收费前做的还是收费后做的
+                this.btnRepay.Enabled = _cardInfo.IsPaid;
+            }
 
             if (_cardInfo.IsCompletedPaid && TariffSetting.Current.IsInFreeTime(_cardInfo.PaidDateTime.Value, cardPayment.ChargeDateTime))
             {
@@ -180,7 +185,7 @@ namespace Ralid.Park.UI
         /// <param name="ldb_cbll">本地数据库连接</param>
         /// <param name="info">缴费前的卡片信息</param>
         /// <param name="record">收费记录</param>
-        private void PaymentRollback(LDB_CardPaymentRecordBll ldb_cbll, CardInfo info, CardPaymentInfo record)
+        private void PaymentRollback(LDB_CardPaymentRecordBll ldb_cbll,CardInfo info,CardPaymentInfo record)
         {
             if (info != null)
             {
@@ -222,9 +227,21 @@ namespace Ralid.Park.UI
             _ChargeRecord.StationID = WorkStationInfo.CurrentStation.StationName;
             _ChargeRecord.StationDeptID = WorkStationInfo.CurrentStation.DeptID;
             _ChargeRecord.Paid = this.txtPaid.DecimalValue;
-            _ChargeRecord.Discount = _ChargeRecord.Accounts - this.txtPaid.DecimalValue;
+            
+            //优惠金额
+            decimal discount = _ChargeRecord.Accounts - this.txtPaid.DecimalValue;//总优惠
+            string artificialMemo = string.Empty;
+            if (discount != _ChargeRecord.Discount)
+            {
+                //总优惠与电子优惠不相同时，记录人工优惠
+                decimal artificialDiscount = discount - _ChargeRecord.Discount;
+                artificialMemo = string.Format(Resource1.FrmCardPaying_ArtificialDiscount, artificialDiscount);
+
+                _ChargeRecord.Discount = discount;
+            }
+
             _ChargeRecord.IsCenterCharge = true;
-            _ChargeRecord.Memo = this.lblDiscountMemo.Text + this.txtMemo.Text;
+            _ChargeRecord.Memo = this.lblDiscountMemo.Text + artificialMemo + this.txtMemo.Text;
 
             LDB_CardPaymentRecordBll ldb_cbll = null;
             CardBll cbll = new CardBll(AppSettings.CurrentSetting.CurrentMasterConnect);
@@ -279,13 +296,13 @@ namespace Ralid.Park.UI
         {
             if (report.ChargeAsTempCard) return; //有收费的肯定不会要确认放行,就回来收费
             //只处理车片对比失败要确认放行的事件
-            if (report.ComparisonResult == CarPlateComparisonResult.Fail
-                || report.EventStatus == CardEventStatus.CarPlateFail) //待处理的卡片事件
+            if (report.ComparisonResult==CarPlateComparisonResult.Fail
+                ||report.EventStatus == CardEventStatus.CarPlateFail) //待处理的卡片事件
             {
                 AddCardEventReportToGridView(report);
                 if (AppSettings.CurrentSetting.EnableTTS) TTSSpeech.Instance.Speek(string.Format(Resource1.FrmCardPaying_CardWaitExitSpeech, report.SourceName));
             }
-            else if (report.EventStatus == CardEventStatus.Valid
+            else if (report.EventStatus == CardEventStatus.Valid 
                 && report.ComparisonResult != CarPlateComparisonResult.Fail)
             {
                 RemoveCardEventReportFromGridView(report);
@@ -369,7 +386,7 @@ namespace Ralid.Park.UI
             if (AppSettings.CurrentSetting.EnableWriteCard
                 && _cardInfo != null
                 && !_cardInfo.OnlineHandleWhenOfflineMode
-                && _cardInfo.IsCardList)
+                &&_cardInfo.IsCardList)
             {
                 //需要检查收费金额是否有效
                 if (this.txtPaid.DecimalValue > 167772.15M)
@@ -538,7 +555,7 @@ namespace Ralid.Park.UI
             //写卡模式不允许输入卡号
             //this.txtCardID.Enabled = !GlobalVariables.IsNETParkAndOffLie;
 
-            this.comPark.Init(string.Empty, true);
+            this.comPark.Init(string.Empty,true);
             //this.label1.Visible = false;
             //this.comPark.Visible = false;
             //this.label1.Visible = false;
@@ -870,9 +887,9 @@ namespace Ralid.Park.UI
 
         //    msg = string.Empty;
         //    return true;
-
+            
         //}
-
+        
         /// <summary>
         /// 获取卡片详细信息
         /// </summary>
@@ -908,8 +925,8 @@ namespace Ralid.Park.UI
 
                 //在线处理的卡片,主数据库连上，有备份数据库的，需要与获取备用数据库的卡片信息进行比对
                 if (!offlineHandleCard
-                    && DataBaseConnectionsManager.Current.MasterConnected
-                    && WorkStationInfo.CurrentStation.HasStandbyDatabase)
+                    &&DataBaseConnectionsManager.Current.MasterConnected
+                    &&WorkStationInfo.CurrentStation.HasStandbyDatabase)
                 {
                     if (mastercard == null && standbycard == null)
                     {
@@ -977,7 +994,7 @@ namespace Ralid.Park.UI
             else if (AppSettings.CurrentSetting.EnableWriteCard
                 && !card.OnlineHandleWhenOfflineMode
                 && !CardDateResolver.Instance.CopyPaidDataToCard(card, info))//只复制缴费相关的信息，如果复制了所有的信息，会覆盖数据库内的卡片状态，如挂失，禁用等状态
-            //&& !CardDateResolver.Instance.CopyCardDataToCard(card, info))
+                //&& !CardDateResolver.Instance.CopyCardDataToCard(card, info))
             {
                 //写卡模式时，卡片信息从扇区数据中获取
                 msg = Resource1.FrmCardCenterCharge_CardDataErr;
@@ -1370,7 +1387,7 @@ namespace Ralid.Park.UI
                 else
                 {
                     CardBll bll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
-                    CardInfo card = bll.GetFirstCarPlateList(frm.CarPlate);
+                    CardInfo card = bll.GetCarPlateListDetail(frm.CarPlate);
                     if (card != null)
                     {
                         ReadCardIDHandler(card.CardID, card);
