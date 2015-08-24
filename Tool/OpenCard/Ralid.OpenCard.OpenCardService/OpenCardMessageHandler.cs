@@ -181,7 +181,7 @@ namespace Ralid.OpenCard.OpenCardService
                     IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                     if (pad != null)
                     {
-                        pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, e.LastError, false, 0));
+                        pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.IsNullOrEmpty(e.LastError) ? "扣款失败" : e.LastError, false, 0));
                     }
                 }
             }
