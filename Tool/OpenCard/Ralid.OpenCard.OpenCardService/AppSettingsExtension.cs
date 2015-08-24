@@ -33,5 +33,18 @@ namespace Ralid.OpenCard.OpenCardService
             aps.SaveConfig("YiTingIP", yt.IP);
             aps.SaveConfig("YiTingPort", yt.Port.ToString());
         }
+
+        public static int GetShowBalanceInterval(this AppSettings aps)
+        {
+            int ret = 0;
+            string temp = aps.GetConfigContent("ShowBalanceInterval");
+            if (!string.IsNullOrEmpty(temp)) int.TryParse(temp, out ret);
+            return ret <= 0 ? 3 : ret;
+        }
+
+        public static void SetShowBalanceInterval(this AppSettings aps, int val)
+        {
+            aps.SaveConfig("ShowBalanceInterval", val.ToString());
+        }
     }
 }

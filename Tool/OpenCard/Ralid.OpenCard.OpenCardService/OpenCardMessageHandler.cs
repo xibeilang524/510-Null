@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Ralid.Park.BLL;
+using System.Threading;
 using Ralid.Park.ParkAdapter;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Factory;
@@ -71,6 +72,12 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
                     OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+                WaitCallback wc = (WaitCallback)((object state) =>
+                {
+                    System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
+                    pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", (decimal)e.Balance / 100), false, 0));
+                });
+                ThreadPool.QueueUserWorkItem(wc);
             }
             if (this.OnReadCard != null) this.OnReadCard(sender, e);
         }
@@ -149,6 +156,12 @@ namespace Ralid.OpenCard.OpenCardService
                     {
                         pad.RemoteReadCard(new RemoteReadCardNotify(entrance.RootParkID, entrance.EntranceID, e.CardID, string.Empty,
                             OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+                        WaitCallback wc = (WaitCallback)((object state) =>
+                        {
+                            System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
+                            pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", (decimal)e.Balance / 100), false, 0));
+                        });
+                        ThreadPool.QueueUserWorkItem(wc);
                     }
                 }
                 _WaitingExitCards.Remove(e.CardID);
@@ -168,7 +181,7 @@ namespace Ralid.OpenCard.OpenCardService
                     IParkingAdapter pad = ParkingAdapterManager.Instance[entrance.RootParkID];
                     if (pad != null)
                     {
-                        pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, "扣款失败", false, 0));
+                        pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, e.LastError, false, 0));
                     }
                 }
             }
