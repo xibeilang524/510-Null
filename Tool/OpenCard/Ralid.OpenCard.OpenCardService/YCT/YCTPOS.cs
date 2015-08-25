@@ -261,7 +261,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// 获取卡片序列号,wgType=0表示WEGEN 34, wgType=1表示WEGEN26协议
         /// </summary>
         /// <returns></returns>
-        public string ReadSN(int wgType=0)
+        public string ReadSN(int wgType = 0)
         {
             string ret = null;
             var response = Request(YCTCommandType.ReadSerialNumber, null);
@@ -272,11 +272,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 {
                     if (wgType == 1)
                     {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 1, 4)).ToString(); //取低三字节
+                        ret = SEBinaryConverter.BytesToLong(Slice(data, 0, 3)).ToString(); //取前三字节
                     }
                     else
                     {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                        ret = SEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
                     }
                 }
             }

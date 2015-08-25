@@ -75,7 +75,7 @@ namespace Ralid.OpenCard.OpenCardService
                 WaitCallback wc = (WaitCallback)((object state) =>
                 {
                     System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
-                    pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", (decimal)e.Balance / 100), false, 0));
+                    pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
                 });
                 ThreadPool.QueueUserWorkItem(wc);
             }
@@ -159,7 +159,7 @@ namespace Ralid.OpenCard.OpenCardService
                         WaitCallback wc = (WaitCallback)((object state) =>
                         {
                             System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
-                            pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", (decimal)e.Balance / 100), false, 0));
+                            pad.LedDisplay(new SetLedDisplayNotify(entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
                         });
                         ThreadPool.QueueUserWorkItem(wc);
                     }
