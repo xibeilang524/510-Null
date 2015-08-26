@@ -33,9 +33,9 @@
             this.lblOperator = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStation = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblStartFrom = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblZST = new System.Windows.Forms.ToolStripStatusLabel();
-            this.lblYiTingShanFu = new System.Windows.Forms.ToolStripStatusLabel();
             this.lblYCT = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblYiTingShanFu = new System.Windows.Forms.ToolStripStatusLabel();
+            this.lblZST = new System.Windows.Forms.ToolStripStatusLabel();
             this.tmrCheckDog = new System.Windows.Forms.Timer(this.components);
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.系统ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -98,14 +98,14 @@
             this.lblStartFrom.Text = "启动时间";
             this.lblStartFrom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // lblZST
+            // lblYCT
             // 
-            this.lblZST.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.lblZST.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.lblZST.ForeColor = System.Drawing.Color.Blue;
-            this.lblZST.Name = "lblZST";
-            this.lblZST.Size = new System.Drawing.Size(48, 21);
-            this.lblZST.Text = "中山通";
+            this.lblYCT.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.lblYCT.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.lblYCT.ForeColor = System.Drawing.Color.Blue;
+            this.lblYCT.Name = "lblYCT";
+            this.lblYCT.Size = new System.Drawing.Size(48, 21);
+            this.lblYCT.Text = "羊城通";
             // 
             // lblYiTingShanFu
             // 
@@ -116,14 +116,14 @@
             this.lblYiTingShanFu.Size = new System.Drawing.Size(60, 21);
             this.lblYiTingShanFu.Text = "驿停闪付";
             // 
-            // lblYCT
+            // lblZST
             // 
-            this.lblYCT.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
-            this.lblYCT.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
-            this.lblYCT.ForeColor = System.Drawing.Color.Blue;
-            this.lblYCT.Name = "lblYCT";
-            this.lblYCT.Size = new System.Drawing.Size(48, 21);
-            this.lblYCT.Text = "羊城通";
+            this.lblZST.BorderSides = System.Windows.Forms.ToolStripStatusLabelBorderSides.Right;
+            this.lblZST.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
+            this.lblZST.ForeColor = System.Drawing.Color.Blue;
+            this.lblZST.Name = "lblZST";
+            this.lblZST.Size = new System.Drawing.Size(48, 21);
+            this.lblZST.Text = "中山通";
             // 
             // menuStrip1
             // 
@@ -270,7 +270,7 @@
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FrmMain";
-            this.Text = "开放卡片管理系统";
+            this.Text = "瑞立德开放卡片管理系统";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmMain_FormClosed);
             this.Load += new System.EventHandler(this.FrmMain_Load);
             this.statusStrip1.ResumeLayout(false);
