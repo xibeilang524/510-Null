@@ -151,8 +151,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 CardID = w.LogicCardID,
                 CardType = w.WalletType == 0 ? string.Empty : YCTSetting.CardTyte,
-                EntranceID = entrance != null ? entrance.EntranceID : 0,
-                EntranceName = entrance != null ? entrance.EntranceName : "中央收费",
+                Entrance =entrance ,
                 Balance = (decimal)w.Balance / 100,
             };
             if (args.CardType == YCTSetting.CardTyte)
@@ -187,9 +186,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 if (Paid(item, w, args.Payment, out balance))
                 {
                     args.Paid = args.Payment.Accounts;
+                    args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
                     args.Balance = (decimal)balance / 100;
-                    args.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                    args.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
                 else
@@ -213,8 +212,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
-                    EntranceID = entrance != null ? entrance.EntranceID : 0,
-                    EntranceName = entrance != null ? entrance.EntranceName : null,
+                    Entrance = entrance,
                     LastError = error,
                 };
                 this.OnError(this, args);

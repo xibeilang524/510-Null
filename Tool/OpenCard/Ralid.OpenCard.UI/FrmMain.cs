@@ -209,7 +209,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 {2}",
                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                 e.EntranceName,
+                                                 e.Entrance!=null?e.Entrance .EntranceName :"中央收费处",
                                                  e.LastError), Color.Red);
         }
 
@@ -217,7 +217,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2} 原因:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                  e.EntranceName,
+                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.LastError), Color.Blue);
         }
@@ -226,7 +226,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2} 实收:{3} 余额:{4}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                  e.EntranceName,
+                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Paid,
                                                   e.Balance.ToString("F2")), Color.Blue);
@@ -236,7 +236,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 查询费用 卡号:{2} 应收:{3}元",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                  e.EntranceName,
+                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Payment != null ? e.Payment.Accounts : 0), Color.Blue);
         }
@@ -245,7 +245,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 入场读卡 卡号:{2} 余额:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                  e.EntranceName,
+                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Balance.ToString("F2")), Color.Blue);
         }

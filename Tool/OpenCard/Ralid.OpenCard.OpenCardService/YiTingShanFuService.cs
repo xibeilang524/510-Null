@@ -5,6 +5,7 @@ using System.Text;
 using System.Net;
 using System.Net.Sockets;
 using System.Threading;
+using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Model;
 
 namespace Ralid.OpenCard.OpenCardService
@@ -29,6 +30,8 @@ namespace Ralid.OpenCard.OpenCardService
         private object _BuffersLocker = new object();
         private Thread _ListenThread = null;
         private byte _OK = 0x59;
+        private Dictionary<string, OpenCardEventArgs> _WaitingPayingCards = new Dictionary<string, OpenCardEventArgs>(); //等待交费的卡片
+        private object _WaitingPayingCardsLocker = new object();
         #endregion
 
         #region 私有方法
@@ -124,7 +127,7 @@ namespace Ralid.OpenCard.OpenCardService
             YiTingPacket response = packet.CreateResponse(d.ToArray());
             byte[] r = response.ToBytes();
             socket.SendData(r);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "回复心跳 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
         }
 
         private void HandleEnterRead(LJHSocket socket, YiTingPacket packet)
@@ -139,7 +142,7 @@ namespace Ralid.OpenCard.OpenCardService
             };
             string device = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] });
             YiTingPOS pos = Setting.GetReader(device);
-            if (pos != null) args.EntranceID = pos.EntranceID;
+            if (pos != null && pos.EntranceID.HasValue) args.Entrance = ParkBuffer.Current.GetEntrance(pos.EntranceID.Value);
             if (this.OnReadCard != null) this.OnReadCard(this, args);
 
             List<byte> temp = new List<byte>();
@@ -154,7 +157,7 @@ namespace Ralid.OpenCard.OpenCardService
             YiTingPacket response = packet.CreateResponse(temp.ToArray());
             byte[] r = response.ToBytes();
             socket.SendData(r);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "回复读卡 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
         }
 
         private void HandlePayingRequst(LJHSocket socket, YiTingPacket packet)
@@ -168,7 +171,7 @@ namespace Ralid.OpenCard.OpenCardService
             };
             string device = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] });
             YiTingPOS pos = Setting.GetReader(device);
-            if (pos != null) args.EntranceID = pos.EntranceID;
+            if (pos != null && pos.EntranceID.HasValue) args.Entrance = ParkBuffer.Current.GetEntrance(pos.EntranceID.Value);
             if (this.OnPaying != null) this.OnPaying(this, args);
 
             if (args.Payment != null)
@@ -179,6 +182,10 @@ namespace Ralid.OpenCard.OpenCardService
                 }
                 else
                 {
+                    lock (_WaitingPayingCardsLocker)
+                    {
+                        _WaitingPayingCards[args.CardID] = args; //保存某个读卡器目前正在处理的收费记录
+                    }
                     List<byte> temp = new List<byte>();
                     temp.AddRange(data.Take(26)); //取包的前26字节
                     temp.AddRange(new byte[5]); //车位号
@@ -189,7 +196,7 @@ namespace Ralid.OpenCard.OpenCardService
                     YiTingPacket response = packet.CreateResponse(temp.ToArray());
                     byte[] r = response.ToBytes();
                     socket.SendData(r);
-                    Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "回复扣款 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
                 }
             }
         }
@@ -198,30 +205,41 @@ namespace Ralid.OpenCard.OpenCardService
         {
             byte[] data = packet.Data;
             if (data == null || data.Length < 42) return;
-            OpenCardEventArgs args = new OpenCardEventArgs();
-            args.CardID = YiTingPacket.GetCardID(data.Take(19).ToArray());
-            if (data[41] == 0x01)
+            string cardID = YiTingPacket.GetCardID(data.Take(19).ToArray());
+            OpenCardEventArgs args = null;
+            lock (_WaitingPayingCardsLocker)
             {
-                byte[] paid = new byte[6];
-                Array.Copy(data, 34, paid, 0, paid.Length);
-                args.Paid = YiTingPacket.GetMoney(paid);
-                args.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer;
-                args.PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos;
-                if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                if (_WaitingPayingCards.ContainsKey(cardID))
+                {
+                    args = _WaitingPayingCards[cardID];
+                    _WaitingPayingCards.Remove(cardID);
+                }
             }
-            else if (data[41] == 0x02)
+            if (args != null)
             {
-                if (this.OnPaidFail != null) this.OnPaidFail(this, args);
-            }
+                if (data[41] == 0x01)
+                {
+                    byte[] paid = new byte[6];
+                    Array.Copy(data, 34, paid, 0, paid.Length);
+                    args.Paid = YiTingPacket.GetMoney(paid);
+                    args.Payment.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.Payment.PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos;
+                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                }
+                else if (data[41] == 0x02)
+                {
+                    if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                }
 
-            List<byte> temp = new List<byte>();
-            temp.AddRange(data.Take(19)); //取包的前19字节
-            temp.Add(_OK);
-            temp.Add(0x00);  //未出场
-            YiTingPacket response = packet.CreateResponse(temp.ToArray());
-            byte[] r = response.ToBytes();
-            socket.SendData(r);
-            Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "发送数据 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+                List<byte> temp = new List<byte>();
+                temp.AddRange(data.Take(19)); //取包的前19字节
+                temp.Add(_OK);
+                temp.Add(0x00);  //未出场
+                YiTingPacket response = packet.CreateResponse(temp.ToArray());
+                byte[] r = response.ToBytes();
+                socket.SendData(r);
+                Ralid.GeneralLibrary.LOG.FileLog.Log("驿停闪付", "回复扣款状态 " + Ralid.GeneralLibrary.HexStringConverter.HexToString(r, " "));
+            }
         }
         #endregion
 

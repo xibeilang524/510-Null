@@ -33,24 +33,33 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 公共属性
+        /// <summary>
+        /// 获取或设置刷卡通道
+        /// </summary>
+        public EntranceInfo Entrance { get; set; }
+        /// <summary>
+        /// 获取或设置卡号
+        /// </summary>
         public string CardID { get; set; }
-
-        public int? EntranceID { get; set; }
-
-        public string EntranceName { get; set; }
-
+        /// <summary>
+        /// 获取或设置卡片类型
+        /// </summary>
         public string CardType { get; set; }
-
+        /// <summary>
+        /// 获取或设置卡片余额
+        /// </summary>
         public decimal Balance { get; set; }
-
+        /// <summary>
+        /// 获取或设置卡片收费信息
+        /// </summary>
         public CardPaymentInfo Payment { get; set; }
-
+        /// <summary>
+        /// 获取或设置已经成功收取的费用
+        /// </summary>
         public decimal Paid { get; set; }
-
-        public PaymentCode PaymentCode { get; set; }
-
-        public PaymentMode PaymentMode { get; set; }
-
+        /// <summary>
+        /// 获取或设置系统最近一次产生的错误
+        /// </summary>
         public string LastError { get; set; }
         #endregion
     }

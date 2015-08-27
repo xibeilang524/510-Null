@@ -247,11 +247,11 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 {
                     if (wgType == 1)
                     {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 1, 4)).ToString(); //取低三字节
+                        ret = SEBinaryConverter.BytesToLong(Slice(data, 0, 3)).ToString(); //取前三字节
                     }
                     else
                     {
-                        ret = BEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
+                        ret = SEBinaryConverter.BytesToLong(Slice(data, 0, 4)).ToString();
                     }
                 }
             }
