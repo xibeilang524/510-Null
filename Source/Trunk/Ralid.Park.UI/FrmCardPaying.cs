@@ -680,6 +680,7 @@ namespace Ralid.Park.UI
                         FrmYCTPOSPayment frmYCT = new FrmYCTPOSPayment();
                         frmYCT.Reader = _YCTPOS;
                         frmYCT.Payment = this.txtPaid.DecimalValue;
+                        frmYCT.ChargeLed = _ChargeLed;
                         if (frmYCT.ShowDialog() == DialogResult.OK)
                         {
                             result = SaveCardPayment(_processingEvent.CardPaymentInfo, PaymentMode.YangChengTong);

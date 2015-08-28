@@ -7,12 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Windows.Forms;
+using Ralid.GeneralLibrary.LED;
 using Ralid.GeneralLibrary.CardReader;
 using Ralid.GeneralLibrary.CardReader.YCT;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BLL;
+
 
 namespace Ralid.Park.UI
 {
@@ -32,6 +34,10 @@ namespace Ralid.Park.UI
         /// 获取或设置以元为单位的扣款金额
         /// </summary>
         public decimal Payment { get; set; }
+        /// <summary>
+        /// 获取或设置收费显示屏
+        /// </summary>
+        public IParkingLed ChargeLed { get; set; }
         #endregion
 
         #region 私有变量
@@ -61,14 +67,16 @@ namespace Ralid.Park.UI
                                     record.State = YCTPaymentRecordState.PaidOk;
                                     YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
                                     CommandResult result = bll.Insert(record);
-                                    ShowMessage(string.Format("初始余额 {0}   扣款 {1}  剩余 {2}", (decimal)w.Balance / 100, Payment, (decimal)payment.本次余额 / 100));
-                                    if (AppSettings.CurrentSetting.EnableTTS) Ralid.GeneralLibrary.Speech.TTSSpeech.Instance.Speek(Resources.Resource1.FrmYCTPayment_Success);
+                                    string msg = string.Format("扣款{0}元  余额{1}元", Payment, (decimal)payment.本次余额 / 100);
+                                    ShowMessage(msg);
+                                    if (AppSettings.CurrentSetting.EnableTTS) Ralid.GeneralLibrary.Speech.TTSSpeech.Instance.Speek(msg);
+                                    if (ChargeLed != null) ChargeLed.DisplayMsg(msg);
                                     this.DialogResult = DialogResult.OK;
                                     break;
                                 }
                                 else
                                 {
-                                    ShowMessage(Resources.Resource1.FrmYCTPayment_Fail + "  Reason:" + Reader.LastErrorDescr);
+                                    ShowMessage(Resources.Resource1.FrmYCTPayment_Fail + "  原因:" + Reader.LastErrorDescr);
                                     if (AppSettings.CurrentSetting.EnableTTS) Ralid.GeneralLibrary.Speech.TTSSpeech.Instance.Speek(Resources.Resource1.FrmYCTPayment_Fail);
                                 }
                             }
