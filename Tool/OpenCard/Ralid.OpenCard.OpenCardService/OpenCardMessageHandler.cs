@@ -40,7 +40,7 @@ namespace Ralid.OpenCard.OpenCardService
                 ParkingStatus = ParkingStatus.Out,
                 LastDateTime = DateTime.Now,
                 LastEntrance = 0,
-                ActivationDate = DateTime.Now,
+                ActivationDate = new DateTime(2000, 1, 1),
                 ValidDate = new DateTime(2099, 12, 31),
                 Balance = 0,
             };

@@ -11,6 +11,7 @@ using System.Windows.Forms;
 using Ralid.Park.BLL;
 using Ralid.Park.ParkAdapter;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Enum;
 using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.OpenCard.OpenCardService;
@@ -271,14 +272,23 @@ namespace Ralid.OpenCard.UI
         {
             if (!chkCardEvent.Checked) return;
             InsertMessage(report.Description, Color.Black);
-            //if (report is CardEventReport)
-            //{
-            //    CardEventReport cr = report as CardEventReport;
-            //    if (cr.CardType != null && (cr.CardType.Name == "中山通" || cr.CardType.Name == "闪付卡" || cr.CardType.Name == "羊城通卡"))
-            //    {
-            //        InsertMessage(cr.Description, Color.Black);
-            //    }
-            //}
+
+            if (report is CardEventReport) //出场时删除开放卡片
+            {
+                CardEventReport cr = report as CardEventReport;
+                if (cr.IsExitEvent && cr.EventStatus == CardEventStatus.Valid)
+                {
+                    if (cr.CardType != null && (cr.CardType.Name == YiTingShanFuSetting.CardType || cr.CardType.Name == YCTSetting.CardTyte))
+                    {
+                        CardBll bll = new CardBll(AppSettings.CurrentSetting.MasterParkConnect);
+                        CardInfo card = bll.GetCardByID(cr.CardID).QueryObject;
+                        if (card != null && (card.ParkingStatus & ParkingStatus.Out) == ParkingStatus.Out) //只有在卡片已经出场的情况下才删除它
+                        {
+                            bll.DeleteCardAtAll(card);
+                        }
+                    }
+                }
+            }
         }
 
         private void AddPark(ParkInfo park)

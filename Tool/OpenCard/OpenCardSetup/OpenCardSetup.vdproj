@@ -898,7 +898,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RALID开放卡片管理系统"
         "ProductCode" = "8:{9200CD53-4CB2-4D4C-93CA-4165938EB4C7}"
-        "PackageCode" = "8:{EE256DE7-92CB-49B0-80A8-578474DA80AF}"
+        "PackageCode" = "8:{18AC6AC7-BC9C-4005-8D73-D93F144262B4}"
         "UpgradeCode" = "8:{6382E263-569B-4EA1-AD2A-935057F2BA15}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
