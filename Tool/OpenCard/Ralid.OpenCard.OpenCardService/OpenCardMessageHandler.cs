@@ -164,7 +164,6 @@ namespace Ralid.OpenCard.OpenCardService
                     pay.IsCenterCharge = true;
                     pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
                     pay.StationID = WorkStationInfo.CurrentStation.StationName;
-                    Ralid.GeneralLibrary.LOG.FileLog.Log("收费记录", SerilPayment(pay));
                     CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
                 }
                 if (e.Entrance != null)
