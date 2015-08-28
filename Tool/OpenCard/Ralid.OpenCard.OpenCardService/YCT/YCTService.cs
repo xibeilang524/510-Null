@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Linq;
 using System.Text;
+using Ralid.OpenCard.OpenCardService;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
@@ -176,7 +177,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
             if (args.Payment == null) return;
-            if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
+            if (args.Payment.GetPaying() <= 0) //不用收费直接返回收款成功事件
             {
                 if (this.OnPaidOk != null) this.OnPaidOk(this, args);
             }
@@ -185,7 +186,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 int balance;
                 if (Paid(item, w, args.Payment, out balance))
                 {
-                    args.Paid = args.Payment.Accounts;
+                    args.Paid = args.Payment.GetPaying();
                     args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                     args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
                     args.Balance = (decimal)balance / 100;
@@ -222,7 +223,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private bool Paid(YCTItem item, YCTWallet w, CardPaymentInfo paid, out int balance)
         {
             balance = 0;
-            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.Accounts * 100), w.WalletType);
+            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.GetPaying() * 100), w.WalletType);
             if (payment == null) return false;
             //这里应该保存记录,保存记录成功然后再进行下一步
             YCTPaymentRecord record = CreateRecord(payment);

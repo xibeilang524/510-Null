@@ -67,44 +67,6 @@ namespace Ralid.OpenCard.OpenCardService
             }
             return ret;
         }
-
-        private string SerilPayment(CardPaymentInfo pay)
-        {
-            try
-            {
-                return string.Format("{0},{1},{2},{3},{4},{5},{6},{7},{8},{9},{10},{11},{12},{13},{14},{15},{16},{17},{18},{19},{20},{21},{22},{23},{24})",
-                        SQLStringHelper.FromInt(pay.ID),
-                        SQLStringHelper.FromString(pay.CardID),
-                        SQLStringHelper.FromString(pay.CardCertificate),
-                        SQLStringHelper.FromString(pay.CarPlate),
-                        SQLStringHelper.FromDateTime(pay.ChargeDateTime),
-                        SQLStringHelper.FromDateTime(pay.EnterDateTime),
-                        SQLStringHelper.FromByte((byte)pay.CardType),
-                        SQLStringHelper.FromByte(pay.CarType),
-                        SQLStringHelper.FromByte((byte)pay.TariffType),
-                        SQLStringHelper.FromDecimal(pay.LastTotalPaid),
-                        SQLStringHelper.FromDecimal(pay.LastTotalDiscount),
-                        SQLStringHelper.FromDecimal(pay.Accounts),
-                        SQLStringHelper.FromDecimal(pay.Paid),
-                        SQLStringHelper.FromDecimal(pay.Discount),
-                        SQLStringHelper.FromByte((byte)pay.PaymentMode),
-                        SQLStringHelper.FromByte((byte)pay.DiscountHour),
-                        SQLStringHelper.FromBool(pay.IsCenterCharge),
-                        SQLStringHelper.FromString(pay.OperatorID),
-                        SQLStringHelper.FromString(pay.StationID),
-                        SQLStringHelper.FromDateTime(pay.SettleDateTime),
-                        SQLStringHelper.FromString(pay.Memo),
-                        SQLStringHelper.FromDecimal(pay.ParkFee),
-                        SQLStringHelper.FromByte((byte)pay.PaymentCode),
-                        SQLStringHelper.FromString(pay.OperatorCardID),
-                        SQLStringHelper.FromBool(pay.UpdateFlag));
-            }
-            catch (Exception ex)
-            {
-                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
-            }
-            return null;
-        }
         #endregion
 
         #region 事件处理程序
@@ -147,7 +109,7 @@ namespace Ralid.OpenCard.OpenCardService
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
             CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
-            if (!card.IsInPark && payment != null) payment.Accounts = 0; //停车场获取收费信息时已经出场的卡片也会产生费用信息，所以这里对这种情况处理为应收0元
+            if (!card.IsInPark && payment != null) { payment.Accounts = 0; payment.Discount = 0; }//停车场获取收费信息时已经出场的卡片也会产生费用信息，所以这里对这种情况处理为应收0元
             e.Payment = payment;
             if (this.OnPaying != null) this.OnPaying(sender, e);
         }

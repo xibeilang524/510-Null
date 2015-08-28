@@ -77,7 +77,7 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
                 if (args.Payment == null) return;
-                if (args.Payment.Accounts == 0) //不用收费直接返回收款成功事件
+                if (args.Payment.GetPaying() == 0) //不用收费直接返回收款成功事件
                 {
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
@@ -87,7 +87,7 @@ namespace Ralid.OpenCard.OpenCardService
                     {
                         _WaitingPayingCards[e.CardID] = args; //保存某个读卡器目前正在处理的收费记录
                     }
-                    _Reader.Consumption(e.ReaderIP, args.Payment.Accounts);  //直接扣款
+                    _Reader.Consumption(e.ReaderIP, args.Payment.GetPaying());  //直接扣款
                 }
             }
         }
@@ -106,7 +106,7 @@ namespace Ralid.OpenCard.OpenCardService
             }
             if (args != null)
             {
-                args.Paid = args.Payment.Accounts; //默认是直接扣除应收款所以如果扣款成功,已交费用等于应收费用
+                args.Paid = args.Payment.GetPaying(); //默认是直接扣除应收款所以如果扣款成功,已交费用等于应收费用
                 args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                 args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong;
                 args.Balance = e.Balance;

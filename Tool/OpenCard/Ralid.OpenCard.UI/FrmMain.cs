@@ -211,7 +211,7 @@ namespace Ralid.OpenCard.UI
         {
             if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 {2}",
                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
-                                                 e.Entrance!=null?e.Entrance .EntranceName :"中央收费处",
+                                                 e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                  e.LastError), Color.Red);
         }
 
@@ -240,7 +240,7 @@ namespace Ralid.OpenCard.UI
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
-                                                  e.Payment != null ? e.Payment.Accounts : 0), Color.Blue);
+                                                  e.Payment != null ? e.Payment.GetPaying() : 0), Color.Blue);
         }
 
         private void handler_OnReadCard(object sender, OpenCardEventArgs e)

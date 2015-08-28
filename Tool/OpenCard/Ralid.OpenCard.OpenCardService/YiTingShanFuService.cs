@@ -177,7 +177,7 @@ namespace Ralid.OpenCard.OpenCardService
 
             if (args.Payment != null)
             {
-                if (args.Payment.Accounts == 0)
+                if (args.Payment.GetPaying() == 0)
                 {
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
@@ -192,7 +192,7 @@ namespace Ralid.OpenCard.OpenCardService
                     temp.AddRange(new byte[5]); //车位号
                     temp.AddRange(YiTingPacket.GetDateBytes(args.Payment.EnterDateTime.Value)); //入场时间
                     temp.AddRange(YiTingPacket.GetIntervalBytes(args.Payment.EnterDateTime.Value, args.Payment.ChargeDateTime));
-                    temp.AddRange(YiTingPacket.GetMoneyBytes(args.Payment.Accounts)); //金额
+                    temp.AddRange(YiTingPacket.GetMoneyBytes(args.Payment.GetPaying())); //金额
                     temp.Add(0x00);  //未出场
                     YiTingPacket response = packet.CreateResponse(temp.ToArray());
                     byte[] r = response.ToBytes();

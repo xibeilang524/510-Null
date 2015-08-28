@@ -63,4 +63,17 @@ namespace Ralid.OpenCard.OpenCardService
         public string LastError { get; set; }
         #endregion
     }
+
+    public static class CardpaymentExtention
+    {
+        /// <summary>
+        /// 获取应支付的金额
+        /// </summary>
+        /// <param name="pay"></param>
+        /// <returns></returns>
+        public static decimal GetPaying(this CardPaymentInfo pay)
+        {
+            return pay.Accounts - pay.Discount;
+        }
+    }
 }
