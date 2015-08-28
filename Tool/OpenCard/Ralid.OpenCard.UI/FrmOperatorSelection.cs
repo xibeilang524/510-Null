@@ -19,6 +19,7 @@ namespace Ralid.OpenCard.UI
 
         #region 公共属性
         public Ralid.Park.BusinessModel.Model.OperatorInfo SelectedOperator { get; set; }
+
         #endregion
 
         private void FrmOperatorSelection_Load(object sender, EventArgs e)

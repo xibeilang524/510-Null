@@ -128,12 +128,15 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 pad.RemoteReadCard(new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
                     OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
-                WaitCallback wc = (WaitCallback)((object state) =>
+                if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
                 {
-                    System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
-                    pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
-                });
-                ThreadPool.QueueUserWorkItem(wc);
+                    WaitCallback wc = (WaitCallback)((object state) =>
+                    {
+                        System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
+                        pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
+                    });
+                    ThreadPool.QueueUserWorkItem(wc);
+                }
             }
             if (this.OnReadCard != null) this.OnReadCard(sender, e);
         }
@@ -151,33 +154,44 @@ namespace Ralid.OpenCard.OpenCardService
 
         private void s_OnPaidOk(object sender, OpenCardEventArgs e)
         {
-            if (string.IsNullOrEmpty(e.CardID)) return;
-            CardPaymentInfo pay = e.Payment;
-            if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
+            try
             {
-                pay.Paid = e.Paid;
-                pay.IsCenterCharge = true;
-                pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
-                pay.StationID = WorkStationInfo.CurrentStation.StationName;
-                Ralid.GeneralLibrary.LOG.FileLog.Log("收费记录", SerilPayment(pay));
-                CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
-            }
-            if (e.Entrance != null)
-            {
-                IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
-                if (pad != null)
+                if (string.IsNullOrEmpty(e.CardID)) return;
+                CardPaymentInfo pay = e.Payment;
+                if (pay != null && (pay.Accounts > 0 || pay.Discount > 0)) //只有要收费的记录才保存
                 {
-                    pad.RemoteReadCard(new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
-                        OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
-                    WaitCallback wc = (WaitCallback)((object state) =>
-                    {
-                        System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
-                        pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
-                    });
-                    ThreadPool.QueueUserWorkItem(wc);
+                    pay.Paid = e.Paid;
+                    pay.IsCenterCharge = true;
+                    pay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
+                    pay.StationID = WorkStationInfo.CurrentStation.StationName;
+                    Ralid.GeneralLibrary.LOG.FileLog.Log("收费记录", SerilPayment(pay));
+                    CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(pay);
                 }
+                if (e.Entrance != null)
+                {
+                    IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
+                    if (pad != null)
+                    {
+                        pad.RemoteReadCard(new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
+                            OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+                        if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
+                        {
+                            WaitCallback wc = (WaitCallback)((object state) =>
+                            {
+                                System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
+                                pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
+                            });
+                            ThreadPool.QueueUserWorkItem(wc);
+                        }
+                    }
+                }
+                if (this.OnPaidOk != null) this.OnPaidOk(sender, e);
             }
-            if (this.OnPaidOk != null) this.OnPaidOk(sender, e);
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                throw ex;
+            }
         }
 
         private void s_OnPaidFail(object sender, OpenCardEventArgs e)

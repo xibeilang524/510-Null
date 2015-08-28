@@ -168,6 +168,7 @@ namespace Ralid.OpenCard.OpenCardService
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = YiTingPacket.GetCardID(data.Take(19).ToArray()),
+                CardType = data[19] == 0x01 ? YiTingShanFuSetting.CardType : string.Empty,
             };
             string device = YiTingPacket.ConvertToAsc(new byte[] { data[20], data[21], data[22], data[23], data[24], data[25] });
             YiTingPOS pos = Setting.GetReader(device);
