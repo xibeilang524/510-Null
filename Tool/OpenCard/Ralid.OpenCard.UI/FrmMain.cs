@@ -75,6 +75,7 @@ namespace Ralid.OpenCard.UI
             //初始化系统设置
             SysParaSettingsBll ssb = new SysParaSettingsBll(AppSettings.CurrentSetting.AvailableParkConnect);
             UserSetting.Current = ssb.GetOrCreateSetting<UserSetting>();
+            TariffSetting.Current = ssb.GetOrCreateSetting<TariffSetting>();
             CustomCardTypeSetting.Current = ssb.GetOrCreateSetting<CustomCardTypeSetting>();
         }
 
