@@ -270,25 +270,8 @@ namespace Ralid.OpenCard.UI
 
         private void ProcessReport(object sender, ReportBase report)
         {
-            if (!chkCardEvent.Checked) return;
-            InsertMessage(report.Description, Color.Black);
-
-            if (report is CardEventReport) //出场时删除开放卡片
-            {
-                CardEventReport cr = report as CardEventReport;
-                if (cr.IsExitEvent && cr.EventStatus == CardEventStatus.Valid)
-                {
-                    if (cr.CardType != null && (cr.CardType.Name == YiTingShanFuSetting.CardType || cr.CardType.Name == YCTSetting.CardTyte))
-                    {
-                        CardBll bll = new CardBll(AppSettings.CurrentSetting.MasterParkConnect);
-                        CardInfo card = bll.GetCardByID(cr.CardID).QueryObject;
-                        if (card != null && (card.ParkingStatus & ParkingStatus.Out) == ParkingStatus.Out) //只有在卡片已经出场的情况下才删除它
-                        {
-                            bll.DeleteCardAtAll(card);
-                        }
-                    }
-                }
-            }
+            if (chkCardEvent.Checked) InsertMessage(report.Description, Color.Black);
+            if (report is CardEventReport) GlobalSettings.Current.Get<OpenCardMessageHandler>().HandleCardEvent(report as CardEventReport);
         }
 
         private void AddPark(ParkInfo park)

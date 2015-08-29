@@ -152,13 +152,14 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 CardID = w.LogicCardID,
                 CardType = w.WalletType == 0 ? string.Empty : YCTSetting.CardTyte,
-                Entrance =entrance ,
+                Entrance = entrance,
                 Balance = (decimal)w.Balance / 100,
             };
             if (args.CardType == YCTSetting.CardTyte)
             {
                 ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                if (entrance == null || (!p.IsNested && entrance.IsExitDevice))
+                CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.LogicCardID).QueryObject;
+                if (card != null && (entrance == null || (!p.IsNested && entrance.IsExitDevice)))
                 {
                     HandlePayment(item, w, args);//中央收费处和非嵌套车场的出口,并且是羊城通卡,则进行收费处理
                 }

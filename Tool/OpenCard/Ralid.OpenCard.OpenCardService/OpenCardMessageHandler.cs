@@ -26,7 +26,7 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 私有方法
-        private bool SaveOpenCard(string cardID, CardType cardType)
+        private bool SaveOpenCard(string cardID, CardType cardType, decimal balance)
         {
             CardInfo card = new CardInfo()
             {
@@ -42,7 +42,7 @@ namespace Ralid.OpenCard.OpenCardService
                 LastEntrance = 0,
                 ActivationDate = new DateTime(2000, 1, 1),
                 ValidDate = new DateTime(2099, 12, 31),
-                Balance = 0,
+                Balance = balance,
             };
             return (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).AddCard(card).Result == ResultCode.Successful;
         }
@@ -80,7 +80,7 @@ namespace Ralid.OpenCard.OpenCardService
                 if (ct != null)
                 {
                     CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
-                    if (card == null) SaveOpenCard(e.CardID, ct);
+                    if (card == null) SaveOpenCard(e.CardID, ct, e.Balance);
                 }
             }
 
@@ -140,7 +140,7 @@ namespace Ralid.OpenCard.OpenCardService
                             WaitCallback wc = (WaitCallback)((object state) =>
                             {
                                 System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
-                                pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("余额{0}元", e.Balance), false, 0));
+                                pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("车费{0}元 余额{1}元", e.Paid, e.Balance), false, 0));
                             });
                             ThreadPool.QueueUserWorkItem(wc);
                         }
@@ -289,6 +289,33 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 _Services[typeof(T)].Dispose();
                 _Services.Remove(typeof(T));
+            }
+        }
+
+        public void HandleCardEvent(CardEventReport report)
+        {
+            if (report.EventStatus != CardEventStatus.Valid) return;
+            if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte)) //
+            {
+                if (report.IsExitEvent) //出场后,将开放卡片从系统中删除
+                {
+                    CardBll bll = new CardBll(AppSettings.CurrentSetting.MasterParkConnect);
+                    CardInfo card = bll.GetCardByID(report.CardID).QueryObject;
+                    if (card != null && (card.ParkingStatus & ParkingStatus.Out) == ParkingStatus.Out) //只有在卡片已经出场的情况下才删除它
+                    {
+                        bll.DeleteCardAtAll(card);
+                    }
+                }
+                //else //入场后,将卡片的余额设置成0, 因为开放卡片可能是以储值卡的方式加到系统中的,在卡片中设置余额只是在出入场时显示在屏上,但这个余额是不能直接被停车场使用的,所以入场后就要清空
+                //{
+                //    CardBll bll = new CardBll(AppSettings.CurrentSetting.MasterParkConnect);
+                //    CardInfo card = bll.GetCardByID(report.CardID).QueryObject;
+                //    if (card != null && card.Balance > 0)
+                //    {
+                //        card.Balance = 0;
+                //        bll.UpdateCard(card);
+                //    }
+                //}
             }
         }
         #endregion

@@ -144,6 +144,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             switch (error)
             {
+                case -1: return "读卡器无响应或通讯串口关闭";
                 case 0: return "操作正常";
                 case 0x0F: return "离线月份参数非法";
                 case 0x60: return "没有安装SAM卡";
