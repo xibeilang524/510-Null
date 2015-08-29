@@ -40,6 +40,36 @@
         "Entry"
         {
         "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
+        "OwnerKey" = "8:_E302B63D68D2258A17EB87603F543849"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
+        "OwnerKey" = "8:_E133CC03565633B2652C4F16E71C6BB9"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
+        "OwnerKey" = "8:_CC2869B56D39AA709DB887FB95D69024"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
+        "OwnerKey" = "8:_2E50B19795B3E11FF7A4EDBF050FA1F6"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
+        "OwnerKey" = "8:_1259A13C1C684BC20D161465371ACBF3"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
+        "MsmKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
         "OwnerKey" = "8:_54200F8980304C4A9D81F4BC01A3CCB0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -111,42 +141,6 @@
         }
         "Entry"
         {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_2902FA3B37EA6273DC40BB82136156DB"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_E133CC03565633B2652C4F16E71C6BB9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_1259A13C1C684BC20D161465371ACBF3"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_CC2869B56D39AA709DB887FB95D69024"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_E302B63D68D2258A17EB87603F543849"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_9CE966B1326069FFD0D28701C750003B"
-        "OwnerKey" = "8:_2E50B19795B3E11FF7A4EDBF050FA1F6"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
         "MsmKey" = "8:_B71529B3C19A4391A9FFB78D2801C563"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -161,12 +155,6 @@
         {
         "MsmKey" = "8:_CC2869B56D39AA709DB887FB95D69024"
         "OwnerKey" = "8:_54200F8980304C4A9D81F4BC01A3CCB0"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_CE37A6FC5403F8BFB5914FD85236E864"
-        "OwnerKey" = "8:_9CE966B1326069FFD0D28701C750003B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -299,12 +287,6 @@
         {
         "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_19BDD9EA3C4F7202F0802376C3AEACD9"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_9CE966B1326069FFD0D28701C750003B"
         "MsmSig" = "8:_UNDEFINED"
         }
         "Entry"
@@ -653,37 +635,6 @@
             "IsDependency" = "11:FALSE"
             "IsolateTo" = "8:"
             }
-            "{9F6F8455-1EF1-4B85-886A-4223BCC8E7F7}:_9CE966B1326069FFD0D28701C750003B"
-            {
-            "AssemblyRegister" = "3:1"
-            "AssemblyIsInGAC" = "11:FALSE"
-            "AssemblyAsmDisplayName" = "8:Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, processorArchitecture=x86"
-                "ScatterAssemblies"
-                {
-                    "_9CE966B1326069FFD0D28701C750003B"
-                    {
-                    "Name" = "8:Ralid.GeneralLibrary.DLL"
-                    "Attributes" = "3:512"
-                    }
-                }
-            "SourcePath" = "8:Ralid.GeneralLibrary.DLL"
-            "TargetName" = "8:"
-            "Tag" = "8:"
-            "Folder" = "8:_E9F9BFB4D3B04C23879FBDFE2FDBE015"
-            "Condition" = "8:"
-            "Transitive" = "11:FALSE"
-            "Vital" = "11:TRUE"
-            "ReadOnly" = "11:FALSE"
-            "Hidden" = "11:FALSE"
-            "System" = "11:FALSE"
-            "Permanent" = "11:FALSE"
-            "SharedLegacy" = "11:FALSE"
-            "PackageAs" = "3:1"
-            "Register" = "3:1"
-            "Exclude" = "11:FALSE"
-            "IsDependency" = "11:TRUE"
-            "IsolateTo" = "8:"
-            }
             "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_B71529B3C19A4391A9FFB78D2801C563"
             {
             "SourcePath" = "8:..\\Reference\\card.ico"
@@ -947,7 +898,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RALID开放卡片管理系统"
         "ProductCode" = "8:{9200CD53-4CB2-4D4C-93CA-4165938EB4C7}"
-        "PackageCode" = "8:{3532D0D3-0E0B-49A6-BD0D-0F42989AC128}"
+        "PackageCode" = "8:{64D784A1-458B-423F-9F65-698074BF68B9}"
         "UpgradeCode" = "8:{6382E263-569B-4EA1-AD2A-935057F2BA15}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"

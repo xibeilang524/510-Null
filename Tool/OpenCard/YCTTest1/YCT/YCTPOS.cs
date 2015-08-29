@@ -20,11 +20,12 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
 
         #region 私有变量
         private ComPort _Port;
-        private object  _PortLocker=new  object ();
+        private object _PortLocker = new object();
         private YCTBuffer _buffer = new YCTBuffer();
         private System.Threading.AutoResetEvent _Responsed = new System.Threading.AutoResetEvent(false);
         private YCTPacket _Response = null;
         private int _LastError = -1;
+        private YCTWallet _LastWallet = null;
         #endregion
 
         #region 私有方法
@@ -380,6 +381,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 w.MinBalance = data[25] * 100;
                 w.MaxBalance = BEBinaryConverter.BytesToInt(Slice(data, 26, 3));
                 w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
+                _LastWallet = w;
                 return w;
             }
             else if (LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
@@ -387,7 +389,8 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 string sn = ReadSN(wg == WegenType.Wengen26 ? 1 : 0);
                 if (sn != null)
                 {
-                    return new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                    _LastWallet = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                    return _LastWallet;
                 }
             }
             return null;
@@ -399,7 +402,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
         /// <param name="walletType">钱包类型 1表示M1 2表示CPU</param>
         /// <param name="maxOfflineMonth">离线过期月数</param>
         /// <returns></returns>
-        public YCTPaymentInfo  Paid(int paid, int walletType, int maxOfflineMonth = 12)
+        public YCTPaymentInfo Paid(int paid, int walletType, int maxOfflineMonth = 12)
         {
             var ret = Prepaid(paid, walletType, maxOfflineMonth);
             if (ret != null)
@@ -407,7 +410,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 var response = Request(YCTCommandType.CompletePaid, null);
                 if (response != null && response.IsCommandExcuteOk)
                 {
-                    if(walletType ==2)ret.交易认证码=HexStringConverter.HexToString(response.Data, string.Empty);
+                    if (walletType == 2) ret.交易认证码 = HexStringConverter.HexToString(response.Data, string.Empty);
                     return ret;
                 }
             }
@@ -431,6 +434,16 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
             get
             {
                 return GetErrDescr(_LastError);
+            }
+        }
+        /// <summary>
+        /// 获取最后一次读到的羊城通钱包
+        /// </summary>
+        public YCTWallet LastWallet
+        {
+            get
+            {
+                return _LastWallet;
             }
         }
         #endregion
