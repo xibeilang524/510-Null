@@ -88,8 +88,13 @@ namespace Ralid.OpenCard.OpenCardService
             IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
             if (pad != null)
             {
-                pad.RemoteReadCard(new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
-                    OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+                var notify = new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
+                    OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID);
+                string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
+                int reader = 0;
+                if (!int.TryParse(temp, out reader)) reader = 0;
+                notify.Reader = (EntranceReader)reader;
+                pad.RemoteReadCard(notify);
                 if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
                 {
                     WaitCallback wc = (WaitCallback)((object state) =>
@@ -133,8 +138,13 @@ namespace Ralid.OpenCard.OpenCardService
                     IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
                     if (pad != null)
                     {
-                        pad.RemoteReadCard(new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
-                            OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID));
+                        var notify = new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
+                            OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID);
+                        string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
+                        int reader = 0;
+                        if (!int.TryParse(temp, out reader)) reader = 0;
+                        notify.Reader = (EntranceReader)reader;
+                        pad.RemoteReadCard(notify);
                         if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
                         {
                             WaitCallback wc = (WaitCallback)((object state) =>

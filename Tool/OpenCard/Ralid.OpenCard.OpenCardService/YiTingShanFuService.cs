@@ -179,6 +179,8 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 if (args.Payment.GetPaying() == 0)
                 {
+                    args.Payment.PaymentCode = Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.Payment.PaymentMode = Park.BusinessModel.Enum.PaymentMode.Pos;
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
                 else

@@ -79,6 +79,8 @@ namespace Ralid.OpenCard.OpenCardService
                 if (args.Payment == null) return;
                 if (args.Payment.GetPaying() == 0) //不用收费直接返回收款成功事件
                 {
+                    args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.ZhongShanTong;
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
                 else
