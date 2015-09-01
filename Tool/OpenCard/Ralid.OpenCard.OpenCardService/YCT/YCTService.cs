@@ -88,32 +88,39 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     Thread.Sleep(500);
                     if (item.Reader.IsOpened)
                     {
-                        YCTWallet w = item.Reader.Poll();
-                        if (w != null)
+                        if (item.Reader.LastError == -1) //如果是没有响应,则说明有可能是断电了,则需要将服务代码重新下发
                         {
-                            if (w.LogicCardID == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
-                            lastCard = w.LogicCardID;
-                            lastDT = DateTime.Now;
-                            if (InBlackList(w.LogicCardID, w.PhysicalCardID)) HandleBlacklist(item, w); //先处理黑名单
-                            else HandleWallet(item, w);
+                            item.Reader.SetServiceCode(Setting.ServiceCode);
                         }
                         else
                         {
-                            if (item.Reader.LastError == 0x80) //没有卡片
+                            YCTWallet w = item.Reader.Poll();
+                            if (w != null)
                             {
-                            }
-                            else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
-                            {
-                                string sn = item.Reader.ReadSN(UserSetting.Current != null && UserSetting.Current.WegenType == WegenType.Wengen26 ? 1 : 0);
-                                if (sn != null)
-                                {
-                                    w = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
-                                    HandleWallet(item, w);
-                                }
+                                if (w.LogicCardID == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                                lastCard = w.LogicCardID;
+                                lastDT = DateTime.Now;
+                                if (InBlackList(w.LogicCardID, w.PhysicalCardID)) HandleBlacklist(item, w); //先处理黑名单
+                                else HandleWallet(item, w);
                             }
                             else
                             {
-                                HandleError(item, item.Reader.LastErrorDescr);
+                                if (item.Reader.LastError == 0x80) //没有卡片
+                                {
+                                }
+                                else if (item.Reader.LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
+                                {
+                                    string sn = item.Reader.ReadSN(UserSetting.Current != null && UserSetting.Current.WegenType == WegenType.Wengen26 ? 1 : 0);
+                                    if (sn != null)
+                                    {
+                                        w = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                                        HandleWallet(item, w);
+                                    }
+                                }
+                                else
+                                {
+                                    HandleError(item, item.Reader.LastErrorDescr);
+                                }
                             }
                         }
                     }
