@@ -20,6 +20,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "OpenCardSetup", "OpenCardSe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YCTTest1", "YCTTest1\YCTTest1.csproj", "{43DFEA82-A1ED-41C3-9036-7C7E63F39BC4}"
 EndProject
+Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "FTPToolSetup", "FTPToolSetup\FTPToolSetup.vdproj", "{19DA0C62-23E0-49AF-9221-6A9BB74DC073}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -90,6 +92,12 @@ Global
 		{43DFEA82-A1ED-41C3-9036-7C7E63F39BC4}.Release|Mixed Platforms.Build.0 = Release|x86
 		{43DFEA82-A1ED-41C3-9036-7C7E63F39BC4}.Release|x86.ActiveCfg = Release|x86
 		{43DFEA82-A1ED-41C3-9036-7C7E63F39BC4}.Release|x86.Build.0 = Release|x86
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Debug|Any CPU.ActiveCfg = Debug
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Debug|Mixed Platforms.ActiveCfg = Debug
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Debug|x86.ActiveCfg = Debug
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Release|Any CPU.ActiveCfg = Release
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Release|Mixed Platforms.ActiveCfg = Release
+		{19DA0C62-23E0-49AF-9221-6A9BB74DC073}.Release|x86.ActiveCfg = Release
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
