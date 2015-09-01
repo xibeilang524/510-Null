@@ -214,12 +214,6 @@
         "Entry"
         {
         "MsmKey" = "8:_UNDEFINED"
-        "OwnerKey" = "8:_3DD0EC2AF6A1D78686394A1FB775DF78"
-        "MsmSig" = "8:_UNDEFINED"
-        }
-        "Entry"
-        {
-        "MsmKey" = "8:_UNDEFINED"
         "OwnerKey" = "8:_CA26F1A6D323435EB3F2E55C158DFAF0"
         "MsmSig" = "8:_UNDEFINED"
         }
@@ -289,6 +283,12 @@
         "OwnerKey" = "8:_4305F453DF985AC087009C6B374F1BCD"
         "MsmSig" = "8:_UNDEFINED"
         }
+        "Entry"
+        {
+        "MsmKey" = "8:_UNDEFINED"
+        "OwnerKey" = "8:_3DD0EC2AF6A1D78686394A1FB775DF78"
+        "MsmSig" = "8:_UNDEFINED"
+        }
     }
     "Configurations"
     {
@@ -344,6 +344,14 @@
         "PrivateKeyFile" = "8:"
         "TimeStampServer" = "8:"
         "InstallerBootstrapper" = "3:2"
+            "BootstrapperCfg:{63ACBE69-63AA-4F98-B2B6-99F9E24495F2}"
+            {
+            "Enabled" = "11:TRUE"
+            "PromptEnabled" = "11:TRUE"
+            "PrerequisitesLocation" = "2:1"
+            "Url" = "8:"
+            "ComponentsUrl" = "8:"
+            }
         }
     }
     "Deployable"
@@ -842,7 +850,7 @@
         "Name" = "8:Microsoft Visual Studio"
         "ProductName" = "8:RALID 羊城通同步工具"
         "ProductCode" = "8:{AD437C66-1AA4-474E-AF0D-BA93BB8042C5}"
-        "PackageCode" = "8:{173F9659-2787-460C-9BF4-268B262E123A}"
+        "PackageCode" = "8:{04B5C008-E2B3-440E-B0E0-79D2F243D010}"
         "UpgradeCode" = "8:{1C9408A6-BECB-40BC-AEFE-9DAA32BDD370}"
         "AspNetVersion" = "8:4.0.30319.0"
         "RestartWWWService" = "11:FALSE"
