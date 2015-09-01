@@ -231,6 +231,7 @@ namespace Ralid.OpenCard.OpenCardService
                 }
                 else if (data[41] == 0x02)
                 {
+                    args.LastError = "余额不足";
                     if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                 }
 

@@ -173,7 +173,40 @@ namespace Ralid.OpenCard.OpenCardService
                 IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
                 if (pad != null)
                 {
-                    pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.IsNullOrEmpty(e.LastError) ? "扣款失败" : e.LastError, false, 0));
+                    if (!e.LastError.Contains("余额不足"))
+                    {
+                        pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.IsNullOrEmpty(e.LastError) ? "扣款失败" : e.LastError, false, 0));
+                    }
+                    else
+                    {
+                        string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
+                        int reader = 0;
+                        if (!int.TryParse(temp, out reader)) reader = 0;
+                        var fuck = new CardEventReport()
+                        {
+                            EntranceID = e.Entrance.EntranceID,
+                            CardID = e.Payment.CardID,
+                            CardType = e.Payment.CardType,
+                            Reader = (EntranceReader)reader,
+                        };
+                        var notify = new EventInvalidNotify()
+                        {
+                            CardEvent = fuck,
+                            Balance = e.Balance,
+                            OperatorNum = OperatorInfo.CurrentOperator.OperatorNum,
+                            InvalidType = EventInvalidType.INV_Balance
+                        };
+                        pad.EventInvalid(notify);
+                        if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
+                        {
+                            WaitCallback wc = (WaitCallback)((object state) =>
+                            {
+                                System.Threading.Thread.Sleep(AppSettings.CurrentSetting.GetShowBalanceInterval() * 1000);
+                                pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, string.Format("车费{0}元 余额{1}元", e.Payment.GetPaying(), e.Balance), false, 0));
+                            });
+                            ThreadPool.QueueUserWorkItem(wc);
+                        }
+                    }
                 }
             }
             if (this.OnPaidFail != null) this.OnPaidFail(sender, e);
