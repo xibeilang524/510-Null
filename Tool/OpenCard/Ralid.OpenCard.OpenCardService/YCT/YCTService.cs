@@ -212,8 +212,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private void HandleBlacklist(YCTItem item, YCTWallet w)
         {
-            item.Reader.CatchBlackList();
-            HandleError(item, "黑名单卡");
+            item.Reader.CatchBlackList(); //捕捉黑名单
+            EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
+            OpenCardEventArgs args = new OpenCardEventArgs()
+            {
+                CardID = w.LogicCardID,
+                CardType = w.WalletType == 0 ? string.Empty : YCTSetting.CardTyte,
+                Entrance = entrance,
+                Balance = (decimal)w.Balance / 100,
+                LastError ="黑名单卡",
+            };
+            if(this.OnError !=null )this.OnError (this,args);
         }
 
         private void HandleError(YCTItem item, string error)
@@ -223,6 +232,8 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 OpenCardEventArgs args = new OpenCardEventArgs()
                 {
+                    CardID = "0",
+                    CardType = YCTSetting.CardTyte,
                     Entrance = entrance,
                     LastError = error,
                 };

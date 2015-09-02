@@ -219,7 +219,31 @@ namespace Ralid.OpenCard.OpenCardService
                 IParkingAdapter pad = ParkingAdapterManager.Instance[e.Entrance.RootParkID];
                 if (pad != null)
                 {
-                    pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, e.LastError, false, 0));
+                    if (e.LastError.Contains("黑名单"))
+                    {
+                        string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
+                        int reader = 0;
+                        if (!int.TryParse(temp, out reader)) reader = 0;
+                        var fuck = new CardEventReport()
+                        {
+                            EntranceID = e.Entrance.EntranceID,
+                            CardID = e.CardID,
+                            CardType = CustomCardTypeSetting.Current.GetCardType(e.CardType),
+                            Reader = (EntranceReader)reader,
+                        };
+                        var notify = new EventInvalidNotify()
+                        {
+                            CardEvent = fuck,
+                            Balance = e.Balance,
+                            OperatorNum = OperatorInfo.CurrentOperator.OperatorNum,
+                            InvalidType = EventInvalidType.INV_Invalid,
+                        };
+                        pad.EventInvalid(notify);
+                    }
+                    else
+                    {
+                        pad.LedDisplay(new SetLedDisplayNotify(e.Entrance.EntranceID, CanAddress.TicketBoxLed, e.LastError, false, 0));
+                    }
                 }
             }
             if (this.OnError != null) this.OnError(this, e);

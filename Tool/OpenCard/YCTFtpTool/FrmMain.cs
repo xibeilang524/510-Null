@@ -57,7 +57,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                 if (mds != null && mds.Length > 0)
                 {
                     int count = 0;
-                    List<YCTBlacklist> bl = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects;
+                    YCTBlacklistBll bll = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect);
+                    List<YCTBlacklist> bl = bll.GetItems(null).QueryObjects;
                     Dictionary<string, YCTBlacklist> blacks = new Dictionary<string, YCTBlacklist>();
                     bl.ForEach(it => blacks.Add(it.CardID, it));
                     foreach (var md in mds)
@@ -69,11 +70,19 @@ namespace Ralid.OpenCard.YCTFtpTool
                             yb.CardID = temp[0];
                             if (temp.Length >= 3) yb.Reason = temp[2];
                             yb.AddDateTime = DateTime.Now;
-                            new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).Insert(yb);
+                            bll.Insert(yb);
                             count++;
                         }
+                        else
+                        {
+                            blacks.Remove(temp[0]); //如果存在则从字典中删除,字典中最后剩余的是不在当前黑名单的信息,要将这些卡号从黑名单列表中删除掉
+                        }
                     }
-                    InsertMsg(string.Format("系统新增 {0} 条黑名单记录", count));
+                    foreach (var item in blacks) //删除不在当前黑名单中的数据
+                    {
+                        bll.Delete(item.Value);
+                    }
+                    InsertMsg("完成黑名单解析");
                 }
             }
             //InsertMsg("解析错误记录...");
