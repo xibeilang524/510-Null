@@ -515,6 +515,7 @@ namespace Ralid.Park.UI
                 {
                     _YCTPOS = new YCTPOS(AppSettings.CurrentSetting.YCTReaderCOMPort, 57600);
                     _YCTPOS.Open();
+                    if (_YCTPOS.IsOpened) _YCTPOS.SetServiceCode(UserSetting.Current.YCTServiceCode);
                 }
                 else if (UserSetting.Current.YCTReadType == 1)
                 {

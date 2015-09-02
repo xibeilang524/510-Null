@@ -36,6 +36,7 @@
             this.colReason = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMsg = new System.Windows.Forms.ToolStripStatusLabel();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -118,11 +119,22 @@
             this.lblMsg.Size = new System.Drawing.Size(587, 17);
             this.lblMsg.Spring = true;
             // 
+            // btnExport
+            // 
+            this.btnExport.Location = new System.Drawing.Point(467, 10);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(123, 34);
+            this.btnExport.TabIndex = 44;
+            this.btnExport.Text = "导出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
+            // 
             // FrmBlackList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(602, 418);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.txtCardID);
@@ -148,5 +160,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colReason;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.ToolStripStatusLabel lblMsg;
+        private System.Windows.Forms.Button btnExport;
     }
 }

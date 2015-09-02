@@ -146,6 +146,11 @@ namespace Ralid.Park.BusinessModel.Model
         /// </summary>
         [DataMember]
         public int YCTReadType { get; set; }
+        /// <summary>
+        /// 获取或设置羊城通服务商代码
+        /// </summary>
+        [DataMember]
+        public int YCTServiceCode { get; set; }
         #endregion
 
         #region 车牌识别选项

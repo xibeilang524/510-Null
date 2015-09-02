@@ -224,6 +224,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             Action action = delegate()
             {
                 this.eventList.Items.Add(string.Format("【{0}】 {1}", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"), msg));
+                this.eventList.SelectedIndex = this.eventList.Items.Count - 1;
                 this.eventList.Refresh();
             };
             if (this.InvokeRequired)

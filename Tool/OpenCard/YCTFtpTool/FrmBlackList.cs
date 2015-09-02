@@ -46,5 +46,29 @@ namespace Ralid.OpenCard.YCTFtpTool
 			if(code=="L")return "非法充值";
             return code;
         }
+
+        private void btnExport_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                DataGridView view = this.dataGridView1;
+                if (view != null)
+                {
+                    SaveFileDialog dig = new SaveFileDialog();
+                    dig.Filter = "Excel文档|*.xls;*.xlsx|所有文件(*.*)|*.*";
+                    dig.InitialDirectory = Environment.GetFolderPath(Environment.SpecialFolder.Desktop);
+                    if (dig.ShowDialog() == DialogResult.OK)
+                    {
+                        string path = dig.FileName;
+                        NPOIExcelHelper.Export(view, path);
+                        MessageBox.Show("导出成功");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("保存到电子表格时出现错误!");
+            }
+        }
     }
 }

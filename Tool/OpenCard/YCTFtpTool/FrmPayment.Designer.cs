@@ -30,6 +30,15 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colPSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colWalletType = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colTIM = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.lblMsg = new System.Windows.Forms.ToolStripStatusLabel();
             this.groupBox4 = new System.Windows.Forms.GroupBox();
@@ -43,15 +52,7 @@
             this.cmbState = new System.Windows.Forms.ComboBox();
             this.btnSearch = new System.Windows.Forms.Button();
             this.chkUnupload = new System.Windows.Forms.CheckBox();
-            this.colPID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colPSN = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colWalletType = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFee = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBAL = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTIM = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colFile = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnExport = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.statusStrip1.SuspendLayout();
             this.groupBox4.SuspendLayout();
@@ -84,6 +85,65 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1125, 373);
             this.dataGridView1.TabIndex = 43;
+            // 
+            // colPID
+            // 
+            this.colPID.HeaderText = "交易设备序列号";
+            this.colPID.Name = "colPID";
+            this.colPID.ReadOnly = true;
+            this.colPID.Width = 150;
+            // 
+            // colPSN
+            // 
+            this.colPSN.HeaderText = "交易流水号";
+            this.colPSN.Name = "colPSN";
+            this.colPSN.ReadOnly = true;
+            this.colPSN.Width = 150;
+            // 
+            // colCardID
+            // 
+            this.colCardID.HeaderText = "卡号";
+            this.colCardID.MinimumWidth = 150;
+            this.colCardID.Name = "colCardID";
+            this.colCardID.ReadOnly = true;
+            this.colCardID.Width = 150;
+            // 
+            // colWalletType
+            // 
+            this.colWalletType.HeaderText = "钱包类型";
+            this.colWalletType.Name = "colWalletType";
+            this.colWalletType.ReadOnly = true;
+            // 
+            // colFee
+            // 
+            this.colFee.HeaderText = "交易金额";
+            this.colFee.Name = "colFee";
+            this.colFee.ReadOnly = true;
+            // 
+            // colBAL
+            // 
+            this.colBAL.HeaderText = "余额";
+            this.colBAL.Name = "colBAL";
+            this.colBAL.ReadOnly = true;
+            // 
+            // colTIM
+            // 
+            this.colTIM.HeaderText = "交易日期";
+            this.colTIM.Name = "colTIM";
+            this.colTIM.ReadOnly = true;
+            this.colTIM.Width = 130;
+            // 
+            // colState
+            // 
+            this.colState.HeaderText = "状态";
+            this.colState.Name = "colState";
+            this.colState.ReadOnly = true;
+            // 
+            // colFile
+            // 
+            this.colFile.HeaderText = "上传文件";
+            this.colFile.Name = "colFile";
+            this.colFile.ReadOnly = true;
             // 
             // statusStrip1
             // 
@@ -216,70 +276,22 @@
             this.chkUnupload.Text = "只显示未上传记录";
             this.chkUnupload.UseVisualStyleBackColor = true;
             // 
-            // colPID
+            // btnExport
             // 
-            this.colPID.HeaderText = "交易设备序列号";
-            this.colPID.Name = "colPID";
-            this.colPID.ReadOnly = true;
-            this.colPID.Width = 150;
-            // 
-            // colPSN
-            // 
-            this.colPSN.HeaderText = "交易流水号";
-            this.colPSN.Name = "colPSN";
-            this.colPSN.ReadOnly = true;
-            this.colPSN.Width = 150;
-            // 
-            // colCardID
-            // 
-            this.colCardID.HeaderText = "卡号";
-            this.colCardID.MinimumWidth = 150;
-            this.colCardID.Name = "colCardID";
-            this.colCardID.ReadOnly = true;
-            this.colCardID.Width = 150;
-            // 
-            // colWalletType
-            // 
-            this.colWalletType.HeaderText = "钱包类型";
-            this.colWalletType.Name = "colWalletType";
-            this.colWalletType.ReadOnly = true;
-            // 
-            // colFee
-            // 
-            this.colFee.HeaderText = "交易金额";
-            this.colFee.Name = "colFee";
-            this.colFee.ReadOnly = true;
-            // 
-            // colBAL
-            // 
-            this.colBAL.HeaderText = "余额";
-            this.colBAL.Name = "colBAL";
-            this.colBAL.ReadOnly = true;
-            // 
-            // colTIM
-            // 
-            this.colTIM.HeaderText = "交易日期";
-            this.colTIM.Name = "colTIM";
-            this.colTIM.ReadOnly = true;
-            this.colTIM.Width = 130;
-            // 
-            // colState
-            // 
-            this.colState.HeaderText = "状态";
-            this.colState.Name = "colState";
-            this.colState.ReadOnly = true;
-            // 
-            // colFile
-            // 
-            this.colFile.HeaderText = "上传文件";
-            this.colFile.Name = "colFile";
-            this.colFile.ReadOnly = true;
+            this.btnExport.Location = new System.Drawing.Point(681, 28);
+            this.btnExport.Name = "btnExport";
+            this.btnExport.Size = new System.Drawing.Size(118, 72);
+            this.btnExport.TabIndex = 54;
+            this.btnExport.Text = "导  出";
+            this.btnExport.UseVisualStyleBackColor = true;
+            this.btnExport.Click += new System.EventHandler(this.btnExport_Click);
             // 
             // FrmPayment
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1125, 519);
+            this.Controls.Add(this.btnExport);
             this.Controls.Add(this.chkUnupload);
             this.Controls.Add(this.btnSearch);
             this.Controls.Add(this.cmbState);
@@ -329,5 +341,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colTIM;
         private System.Windows.Forms.DataGridViewTextBoxColumn colState;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFile;
+        private System.Windows.Forms.Button btnExport;
     }
 }
