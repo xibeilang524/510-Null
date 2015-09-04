@@ -29,9 +29,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private List<YCTItem> _Readers = new List<YCTItem>();
         private Dictionary<YCTItem, Thread> _PollRoutes = new Dictionary<YCTItem, Thread>();
         private Timer _ChkComport = null;
-        private Timer _FreshBlacklist = null;
-        private Dictionary<string, YCTBlacklist> _Blacklists = new Dictionary<string, YCTBlacklist>();
-        private ReaderWriterLock _BlacklistLocker = new ReaderWriterLock();
+        //private Timer _FreshBlacklist = null;
+        //private Dictionary<string, YCTBlacklist> _Blacklists = new Dictionary<string, YCTBlacklist>();
+        //private ReaderWriterLock _BlacklistLocker = new ReaderWriterLock();
         #endregion
 
         #region 公共属性
@@ -57,22 +57,22 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private void FreshBlacklist(object state)
         {
-            List<YCTBlacklist> bls = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects;
-            if (bls != null && bls.Count > 0)
-            {
-                try
-                {
-                    _BlacklistLocker.AcquireWriterLock(20000);
-                    foreach (var bl in bls)
-                    {
-                        if (!_Blacklists.ContainsKey(bl.CardID)) _Blacklists.Add(bl.CardID, bl);
-                    }
-                    _BlacklistLocker.ReleaseWriterLock();
-                }
-                catch (Exception)
-                {
-                }
-            }
+            //List<YCTBlacklist> bls = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects;
+            //if (bls != null && bls.Count > 0)
+            //{
+            //    try
+            //    {
+            //        _BlacklistLocker.AcquireWriterLock(20000);
+            //        foreach (var bl in bls)
+            //        {
+            //            if (!_Blacklists.ContainsKey(bl.CardID)) _Blacklists.Add(bl.CardID, bl);
+            //        }
+            //        _BlacklistLocker.ReleaseWriterLock();
+            //    }
+            //    catch (Exception)
+            //    {
+            //    }
+            //}
         }
 
         private void PollRoute(object obj)
@@ -139,17 +139,19 @@ namespace Ralid.OpenCard.OpenCardService.YCT
 
         private bool InBlackList(string logicCardID, string physicalCardID)
         {
-            try
-            {
-                _BlacklistLocker.AcquireReaderLock(20000);
-                bool ret = _Blacklists.ContainsKey(logicCardID) || _Blacklists.ContainsKey(physicalCardID);
-                _BlacklistLocker.ReleaseReaderLock();
-                return ret;
-            }
-            catch (Exception)
-            {
-            }
-            return false;
+            //try
+            //{
+            //    _BlacklistLocker.AcquireReaderLock(20000);
+            //    bool ret = _Blacklists.ContainsKey(logicCardID) || _Blacklists.ContainsKey(physicalCardID);
+            //    _BlacklistLocker.ReleaseReaderLock();
+            //    return ret;
+            //}
+            //catch (Exception)
+            //{
+            //}
+            //return false;
+            var item = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(logicCardID).QueryObject;
+            return item != null;
         }
 
         private void HandleWallet(YCTItem item, YCTWallet w)
@@ -316,7 +318,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         {
             if (Setting == null) throw new InvalidOperationException("没有提供羊城通参数");
             if (_ChkComport != null) _ChkComport.Dispose();
-            if (_FreshBlacklist != null) _FreshBlacklist.Dispose();
+            //if (_FreshBlacklist != null) _FreshBlacklist.Dispose();
             List<YCTItem> keys = _Readers.ToList();
             if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
             {
@@ -364,13 +366,13 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 }
             }
             _ChkComport = new Timer(new TimerCallback(CheckComport), null, 5000, 10000); //启动检查串口状态的定时器
-            _FreshBlacklist = new Timer(new TimerCallback(FreshBlacklist), null, 5000, 1000 * 60 * 10);//10分钟刷新一次
+            //_FreshBlacklist = new Timer(new TimerCallback(FreshBlacklist), null, 5000, 1000 * 60 * 10);//10分钟刷新一次
         }
 
         public void Dispose()
         {
             if (_ChkComport != null) _ChkComport.Dispose();
-            if (_FreshBlacklist != null) _FreshBlacklist.Dispose();
+            //if (_FreshBlacklist != null) _FreshBlacklist.Dispose();
             foreach (var item in _Readers)
             {
                 if (item.Reader != null && item.Reader.IsOpened) item.Reader.Close();
