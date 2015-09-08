@@ -40,7 +40,7 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private static string GetCPURecord(YCTPaymentRecord r)
         {
-            return string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}\t{21}\t{22}\t{23}\t{24}\r\n",
+            return string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\t{6}\t{7}\t{8}\t{9}\t{10}\t{11}\t{12}\t{13}\t{14}\t{15}\t{16}\t{17}\t{18}\t{19}\t{20}\t{21}\t{22}\t{23}\r\n",
                        r.PID,
                        r.PSN.ToString().PadLeft(10, '0'),
                        r.TIM.ToString("yyyyMMddHHmmss"),
@@ -64,8 +64,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                        r.AREA,
                        r.ACT,
                        r.SAREA,
-                       r.TAC,
-                       r.MEM
+                       r.TAC
                 );
         }
         #endregion
@@ -140,7 +139,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                        select it).ToList(); //按交易设备号和流水号排序
             string prefix = Path.GetFileNameWithoutExtension(zip).Substring(2); //从压缩文件名中取出其它文件需要的相同部分,
             string fjy = string.Format("{0}{1}.txt", "JY", prefix);
-            string fqs = string.Format("{0}{1}.txt", "QS", prefix);
             string frz = string.Format("{0}{1}.txt", "RZ", prefix);
             string fmd = string.Format("{0}{1}.txt", "MD", prefix);
             StringBuilder jy = new StringBuilder();
@@ -166,8 +164,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 qs.Append(strSy);
                 index++;
             }
-            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00002", fqs, index.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(11, '0').Insert(9, ".")));
-            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00003", fmd, "0".PadLeft(10, '0'), "0".PadLeft(11, '0').Insert(9, ".")));
+            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00002", fmd, "0".PadLeft(10, '0'), "0".PadLeft(11, '0').Insert(9, ".")));
 
             string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
@@ -177,7 +174,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                 using (ZipFileWriter writer = new ZipFileWriter(localZip))
                 {
                     writer.WriteFile(fjy, ASCIIEncoding.ASCII.GetBytes(jy.ToString()));
-                    writer.WriteFile(fqs, ASCIIEncoding.ASCII.GetBytes(qs.ToString()));
                     writer.WriteFile(fmd, null);
                     writer.WriteFile(frz, ASCIIEncoding.ASCII.GetBytes(rz.ToString()));
                 }

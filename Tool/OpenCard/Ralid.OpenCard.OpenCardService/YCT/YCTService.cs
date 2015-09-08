@@ -169,18 +169,28 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
             else //扣费
             {
-                int balance;
-                if (Paid(item, w, args.Payment, out balance))
+                //判断余额是否够扣费，否则返回"余额不足",注意钱包单位是分的，这里要转成分比较
+                //因为CPU钱包里有一个余额下限，余额下限是不允许扣费的，如果不比较费用和余额，有可以会扣到余额下限
+                if (((int)(args.Payment.GetPaying()* 100)) <= w.Balance)
                 {
-                    args.Paid = args.Payment.GetPaying();
-                    args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                    args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
-                    args.Balance = (decimal)balance / 100;
-                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                    int balance;
+                    if (Paid(item, w, args.Payment, out balance))
+                    {
+                        args.Paid = args.Payment.GetPaying();
+                        args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                        args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
+                        args.Balance = (decimal)balance / 100;
+                        if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                    }
+                    else
+                    {
+                        args.LastError = item.Reader.LastErrorDescr;
+                        if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                    }
                 }
                 else
                 {
-                    args.LastError = item.Reader.LastErrorDescr;
+                    args.LastError = "余额不足";
                     if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                 }
             }
