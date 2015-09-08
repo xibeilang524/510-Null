@@ -64,18 +64,22 @@ namespace Ralid.OpenCard.YCTFtpTool
                     foreach (var md in mds)
                     {
                         string[] temp = md.Split('\t');
-                        if (!blacks.ContainsKey(temp[0]))
+                        if (temp.Length >= 3)
                         {
-                            YCTBlacklist yb = new YCTBlacklist();
-                            yb.CardID = temp[0];
-                            if (temp.Length >= 3) yb.Reason = temp[2];
-                            yb.AddDateTime = DateTime.Now;
-                            bll.Insert(yb);
-                            count++;
-                        }
-                        else
-                        {
-                            blacks.Remove(temp[0]); //如果存在则从字典中删除,字典中最后剩余的是不在当前黑名单的信息,要将这些卡号从黑名单列表中删除掉
+                            string cardid = temp[1].Length == 16 ? temp[1] : temp[0]; //CPU名单逻辑卡号在第二个位置, M1卡名单逻辑卡号在第一个位置
+                            if (!blacks.ContainsKey(cardid))
+                            {
+                                YCTBlacklist yb = new YCTBlacklist();
+                                yb.CardID = cardid;
+                                yb.Reason = temp[2];
+                                yb.AddDateTime = DateTime.Now;
+                                bll.Insert(yb);
+                                count++;
+                            }
+                            else
+                            {
+                                blacks.Remove(temp[0]); //如果存在则从字典中删除,字典中最后剩余的是不在当前黑名单的信息,要将这些卡号从黑名单列表中删除掉
+                            }
                         }
                     }
                     foreach (var item in blacks) //删除不在当前黑名单中的数据
@@ -85,7 +89,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                     InsertMsg("完成黑名单解析");
                 }
             }
-            //InsertMsg("解析错误记录...");
         }
 
         private void SyncDownloadFiles(FtpClient ftp)
