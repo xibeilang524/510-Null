@@ -363,7 +363,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <param name="walletType">钱包类型 1表示M1 2表示CPU</param>
         /// <param name="maxOfflineMonth">离线过期月数</param>
         /// <returns></returns>
-        public YCTPaymentInfo Prepaid(int paid, int walletType, int maxOfflineMonth = 12)
+        public YCTPaymentInfo Prepaid(int paid, int walletType, int maxOfflineMonth = 0)
         {
             DateTime dt = DateTime.Now;
             List<byte> data = new List<byte>();
