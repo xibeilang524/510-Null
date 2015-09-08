@@ -243,6 +243,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             newVal.State = YCTPaymentRecordState.PaidOk; //标记为完成
             result = bll.Update(newVal, record);
             balance = record.BAL; //返回余额
+            if (w.WalletType == 2) balance -= w.MinBalance; //CPU钱包可用余额为余额减去最小余额
             return result.Result == ResultCode.Successful;
         }
 

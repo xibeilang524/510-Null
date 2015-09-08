@@ -352,6 +352,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 w.MinBalance = data[25] * 100;
                 w.MaxBalance = BEBinaryConverter.BytesToInt(Slice(data, 26, 3));
                 w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
+                if (w.WalletType == 2) w.Balance -= w.MinBalance; //CPU钱包可用余额为余额减去最小余额
                 return w;
             }
             return null;

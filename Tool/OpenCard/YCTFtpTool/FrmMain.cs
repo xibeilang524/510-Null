@@ -50,12 +50,12 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void ExtraFile(string file)
         {
-            InsertMsg("解析黑名单...");
             if (Path.GetExtension(file).ToUpper() == ".ZIP")
             {
                 string[] mds = ReadMD(file);
                 if (mds != null && mds.Length > 0)
                 {
+                    InsertMsg("解析黑名单...");
                     int count = 0;
                     YCTBlacklistBll bll = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect);
                     List<YCTBlacklist> bl = bll.GetItems(null).QueryObjects;
