@@ -15,6 +15,7 @@ using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.OpenCard.OpenCardService.YCT;
+using Ralid.GeneralLibrary.SQLHelper;
 
 namespace Ralid.OpenCard.YCTFtpTool
 {
@@ -48,6 +49,19 @@ namespace Ralid.OpenCard.YCTFtpTool
             }
         }
 
+        private bool UpGradeDataBase()
+        {
+            bool result = false;
+            string path = System.IO.Path.Combine(Environment.CurrentDirectory, "DbUpdate.sql");
+            if (System.IO.File.Exists(path))
+            {
+                SqlClientHelper.SqlClient client = new SqlClientHelper.SqlClient(AppSettings.CurrentSetting.MasterParkConnect);
+                client.Connect();
+                client.ExecuteSQLFile(path);
+            }
+            return result;
+        }
+
         private void ExtraFile(string file)
         {
             if (Path.GetExtension(file).ToUpper() == ".ZIP")
@@ -60,17 +74,19 @@ namespace Ralid.OpenCard.YCTFtpTool
                     YCTBlacklistBll bll = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect);
                     List<YCTBlacklist> bl = bll.GetItems(null).QueryObjects;
                     Dictionary<string, YCTBlacklist> blacks = new Dictionary<string, YCTBlacklist>();
-                    bl.ForEach(it => blacks.Add(it.CardID, it));
+                    bl.ForEach(it => blacks.Add(it.LCN, it));
                     foreach (var md in mds)
                     {
                         string[] temp = md.Split('\t');
                         if (temp.Length >= 3)
                         {
-                            string cardid = temp[1].Length == 16 ? temp[1] : temp[0]; //CPU名单逻辑卡号在第二个位置, M1卡名单逻辑卡号在第一个位置
-                            if (!blacks.ContainsKey(cardid))
+                            string lcn = temp[1].Length == 16 ? temp[1] : temp[0]; //CPU名单逻辑卡号在第二个位置, M1卡名单逻辑卡号在第一个位置
+                            string fcn = temp[1].Length == 16 ? temp[0] : temp[1]; //物理卡号位置与逻辑卡号刚好相反
+                            if (!blacks.ContainsKey(lcn))
                             {
                                 YCTBlacklist yb = new YCTBlacklist();
-                                yb.CardID = cardid;
+                                yb.LCN = lcn;
+                                yb.FCN = fcn;
                                 yb.Reason = temp[2];
                                 yb.AddDateTime = DateTime.Now;
                                 bll.Insert(yb);
@@ -82,10 +98,10 @@ namespace Ralid.OpenCard.YCTFtpTool
                             }
                         }
                     }
-                    foreach (var item in blacks) //删除不在当前黑名单中的数据
-                    {
-                        bll.Delete(item.Value);
-                    }
+                    //foreach (var item in blacks) //删除不在当前黑名单中的数据
+                    //{
+                    //    bll.Delete(item.Value);
+                    //}
                     InsertMsg("完成黑名单解析");
                 }
             }
@@ -138,7 +154,12 @@ namespace Ralid.OpenCard.YCTFtpTool
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)
                 {
-                    string zip = YCTUploadFileFactory.CreateM1UploadFile(dt, m1Zip, records);
+                    YCTBlacklistSearchCondition ycon = new YCTBlacklistSearchCondition();
+                    ycon.WalletType = 1; //M
+                    ycon.OnlyCatched = true;
+                    ycon.OnlyUnUploaded = true;
+                    List<YCTBlacklist> blacks = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(ycon).QueryObjects;
+                    string zip = YCTUploadFileFactory.CreateM1UploadFile(dt, m1Zip, records, blacks);
                     if (!string.IsNullOrEmpty(zip))
                     {
                         InsertMsg("上传文件" + m1Zip);
@@ -146,6 +167,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                         {
                             ftp.Upload(m1Zip, fs);
                             new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(records, m1Zip);
+                            if (blacks != null && blacks.Count > 0) new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(blacks, m1Zip);
                         }
                     }
                 }
@@ -155,14 +177,19 @@ namespace Ralid.OpenCard.YCTFtpTool
             {
                 YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
                 {
-                    WalletType = 2,
+                    WalletType = 2, 
                     State = (int)YCTPaymentRecordState.PaidOk,
                     UnUploaded = true
                 };
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)
                 {
-                    string zip = YCTUploadFileFactory.CreateCPUUploadFile(dt, cpuZip, records);
+                    YCTBlacklistSearchCondition ycon = new YCTBlacklistSearchCondition();
+                    ycon.WalletType = 2; //cpu
+                    ycon.OnlyCatched = true;
+                    ycon.OnlyUnUploaded = true;
+                    List<YCTBlacklist> blacks = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(ycon).QueryObjects;
+                    string zip = YCTUploadFileFactory.CreateCPUUploadFile(dt, cpuZip, records, blacks);
                     if (!string.IsNullOrEmpty(zip))
                     {
                         InsertMsg("上传文件" + cpuZip);
@@ -170,6 +197,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                         {
                             ftp.Upload(cpuZip, fs);
                             new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(records, cpuZip);
+                            if (blacks != null && blacks.Count > 0) new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).BatchChangeUploadFile(blacks, cpuZip);
                         }
                     }
                 }
@@ -260,6 +288,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                 frm.StartPosition = FormStartPosition.CenterParent;
                 if (frm.ShowDialog() != DialogResult.OK) Environment.Exit(0);
             }
+
+            UpGradeDataBase(); //生成需要的一些表
 
             YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).GetSetting<YCTSetting>();
             if (yct != null)

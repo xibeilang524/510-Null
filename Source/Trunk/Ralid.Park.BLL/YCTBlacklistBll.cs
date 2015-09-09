@@ -16,11 +16,13 @@ namespace Ralid.Park.BLL
         public YCTBlacklistBll(string repoUri)
         {
             _Provider = ProviderFactory.Create<IYCTBlacklistProvider>(repoUri);
+            _RepoURI = repoUri;
         }
         #endregion
 
         #region 私有变量
         IYCTBlacklistProvider _Provider;
+        string _RepoURI;
         #endregion
 
         #region 公共方法
@@ -41,7 +43,7 @@ namespace Ralid.Park.BLL
 
         public CommandResult Update(YCTBlacklist newVal)
         {
-            YCTBlacklist original = _Provider.GetByID(newVal.CardID).QueryObject;
+            YCTBlacklist original = _Provider.GetByID(newVal.LCN).QueryObject;
             if (original != null)
             {
                 return _Provider.Update(newVal, original);
@@ -49,6 +51,26 @@ namespace Ralid.Park.BLL
             else
             {
                 return new CommandResult(ResultCode.NoRecord, ResultCodeDecription.GetDescription(ResultCode.NoRecord));
+            }
+        }
+
+        public CommandResult BatchChangeUploadFile(List<YCTBlacklist> records, string uploadFile)
+        {
+            try
+            {
+                IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoURI);
+                IYCTBlacklistProvider  provider = ProviderFactory.Create<IYCTBlacklistProvider>(_RepoURI);
+                foreach (var item in records)
+                {
+                    var newVal = item.Clone();
+                    newVal.UploadFile = uploadFile;
+                    provider.Update(newVal, item, unitWork);
+                }
+                return unitWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult(ResultCode.Fail, ex.Message);
             }
         }
 

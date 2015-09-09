@@ -41,16 +41,33 @@ CREATE TABLE [dbo].[YCTPaymentRecord](
 END
 GO
 
+--如果YCTBlacklist表没有LCN列,说明是旧的表,删除表
+IF EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[YCTBlacklist]') AND type in (N'U'))
+BEGIN
+	if not exists (SELECT * FROM dbo.syscolumns WHERE name ='LCN' AND id = OBJECT_ID(N'[dbo].[YCTBlacklist]')) 
+	BEGIN
+		exec ('drop table YCTBlacklist')
+	end
+end
+go
+
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[YCTBlacklist]') AND type in (N'U'))
 BEGIN
 CREATE TABLE [dbo].[YCTBlacklist](
-	[CardID] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[LCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
+	[FCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
 	[Reason] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	[WalletType] [int] NULL,
 	[AddDateTime] [datetime] NULL,
+	[CatchAt] [datetime] NULL,
+	[UploadFile] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
  CONSTRAINT [PK_YCTBlacklist] PRIMARY KEY CLUSTERED 
 (
-	[CardID] ASC
+	[LCN] ASC
 )WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
 ) ON [PRIMARY]
 END 
 GO
+
+
+

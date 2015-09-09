@@ -70,6 +70,10 @@
     <Reference Include="Ralid.Park.UserControls">
       <HintPath>..\Reference\Ralid.Park.UserControls.dll</HintPath>
     </Reference>
+    <Reference Include="SqlClientHelper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\Reference\SqlClientHelper.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Net.FtpClient">
@@ -109,7 +113,6 @@
     <Compile Include="FrmPayment.Designer.cs">
       <DependentUpon>FrmPayment.cs</DependentUpon>
     </Compile>
-    <Compile Include="Util\BLLExtension.cs" />
     <Compile Include="Util\FtpClientExtension.cs" />
     <Compile Include="Util\FTPFolderFactory.cs" />
     <Compile Include="Program.cs" />

@@ -77,9 +77,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                                 if (w.LogicCardID == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
                                 lastCard = w.LogicCardID;
                                 lastDT = DateTime.Now;
-                                if (InBlackList(w.LogicCardID, w.PhysicalCardID))
+                                var black = GetBlackList(w.LogicCardID, w.PhysicalCardID);
+                                if (black != null)
                                 {
-                                    HandleBlacklist(item, w); //先处理黑名单
+                                    HandleBlacklist(item, w, black); //先处理黑名单
                                 }
                                 else
                                 {
@@ -120,12 +121,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             return ts.TotalSeconds;
         }
 
-        private bool InBlackList(string logicCardID, string physicalCardID)
+        private YCTBlacklist GetBlackList(string logicCardID, string physicalCardID)
         {
             var item = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(logicCardID).QueryObject;
-            if (item != null) return true;
-            item = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetByID(physicalCardID).QueryObject;
-            return item != null;
+            return item;
         }
 
         private void HandleWallet(YCTItem item, YCTWallet w)
@@ -196,9 +195,16 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
         }
 
-        private void HandleBlacklist(YCTItem item, YCTWallet w)
+        private void HandleBlacklist(YCTItem item, YCTWallet w, YCTBlacklist black)
         {
-            item.Reader.CatchBlackList(); //捕捉黑名单
+            bool catched = item.Reader.CatchBlackList(); //捕捉黑名单
+            if (catched && black.CatchAt == null) //之前没有捕捉日期的才写数据库
+            {
+                black.WalletType = w.WalletType;
+                black.CatchAt = DateTime.Now;
+                black.UploadFile = null;
+                new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).Update(black);
+            }
             EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {

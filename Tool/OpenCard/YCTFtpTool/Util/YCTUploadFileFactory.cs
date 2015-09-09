@@ -70,7 +70,7 @@ namespace Ralid.OpenCard.YCTFtpTool
         #endregion
 
         #region 公共方法
-        public static string CreateM1UploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records)
+        public static string CreateM1UploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records, List<YCTBlacklist> blacks)
         {
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
@@ -83,6 +83,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             StringBuilder jy = new StringBuilder();
             StringBuilder rz = new StringBuilder();
             StringBuilder sy = new StringBuilder();
+            StringBuilder md = new StringBuilder();
             for (int i = 0; i < records.Count; i++)
             {
                 jy.Append(GetM1Record(records[i]));
@@ -108,7 +109,16 @@ namespace Ralid.OpenCard.YCTFtpTool
                 index++;
             }
             rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "0002", fsy, index.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(9, '0').Insert(7, ".")));
-            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "0003", fmd, "0".PadLeft(10, '0'), "0".PadLeft(9, '0').Insert(7, ".")));
+
+            if (blacks != null)
+            {
+                foreach (YCTBlacklist b in blacks)
+                {
+                    md.Append(string.Format("{0}\t{1}\t{2}\r\n", b.FCN, b.LCN, b.Reason));
+                }
+            }
+            string bc = blacks != null ? blacks.Count.ToString() : "0";
+            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "0003", fmd, bc.PadLeft(10, '0'), "0".PadLeft(9, '0').Insert(7, ".")));
 
             string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
@@ -119,7 +129,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 {
                     writer.WriteFile(fjy, ASCIIEncoding.ASCII.GetBytes(jy.ToString()));
                     writer.WriteFile(fsy, ASCIIEncoding.ASCII.GetBytes(sy.ToString()));
-                    writer.WriteFile(fmd, null);
+                    writer.WriteFile(fmd, md.Length == 0 ? null : ASCIIEncoding.ASCII.GetBytes(md.ToString()));
                     writer.WriteFile(frz, ASCIIEncoding.ASCII.GetBytes(rz.ToString()));
                 }
                 return localZip;
@@ -131,7 +141,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             return null;
         }
 
-        public static string CreateCPUUploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records)
+        public static string CreateCPUUploadFile(DateTime dt, string zip, List<YCTPaymentRecord> records, List<YCTBlacklist> blacks)
         {
             records = (from it in records
                        orderby it.PID ascending, it.PSN ascending
@@ -143,38 +153,31 @@ namespace Ralid.OpenCard.YCTFtpTool
             string fmd = string.Format("{0}{1}.txt", "MD", prefix);
             StringBuilder jy = new StringBuilder();
             StringBuilder rz = new StringBuilder();
-            StringBuilder qs = new StringBuilder();
+            StringBuilder md = new StringBuilder();
             for (int i = 0; i < records.Count; i++)
             {
                 jy.Append(GetCPURecord(records[i]));
             }
-            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00001", fjy, records.Count.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(11, '0').Insert(9, ".")));
-
-            var groups = records.GroupBy(it => it.PID);
-            int index = 0;
-            foreach (var group in groups)
+            if (blacks != null)
             {
-                string strSy = string.Format("{0}\t{1}\t{2}\t{3}\t{4}\t{5}\r\n",
-                                                index.ToString().PadLeft(5, '0'),
-                                                group.Key.PadLeft(12, '0'),
-                                                group.Count<YCTPaymentRecord>().ToString().PadLeft(8, '0'),
-                                                "0".PadLeft(8, '0'),
-                                                group.Sum(it => it.FEE).ToString().PadLeft(9, '0').Insert(7, "."),
-                                                "0000000.00");
-                qs.Append(strSy);
-                index++;
+                foreach (YCTBlacklist b in blacks)
+                {
+                    md.Append(string.Format("{0}\t{1}\t{2}\r\n", b.FCN, b.LCN, b.Reason));
+                }
             }
-            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00002", fmd, "0".PadLeft(10, '0'), "0".PadLeft(11, '0').Insert(9, ".")));
+            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00001", fjy, records.Count.ToString().PadLeft(10, '0'), records.Sum(it => it.FEE).ToString().PadLeft(11, '0').Insert(9, ".")));
+            string bc = blacks != null ? blacks.Count.ToString() : "0";
+            rz.Append(string.Format("{0}\t{1}\t{2}\t{3}\r\n", "00002", fmd, bc.PadLeft(10, '0'), "0".PadLeft(11, '0').Insert(9, ".")));
 
             string path = FTPFolderFactory.CreateUploadFolder();
             if (string.IsNullOrEmpty(path)) return null;
-            string localZip = Path.Combine(path,zip);
+            string localZip = Path.Combine(path, zip);
             try
             {
                 using (ZipFileWriter writer = new ZipFileWriter(localZip))
                 {
                     writer.WriteFile(fjy, ASCIIEncoding.ASCII.GetBytes(jy.ToString()));
-                    writer.WriteFile(fmd, null);
+                    writer.WriteFile(fmd, md.Length == 0 ? null : ASCIIEncoding.ASCII.GetBytes(md.ToString()));
                     writer.WriteFile(frz, ASCIIEncoding.ASCII.GetBytes(rz.ToString()));
                 }
                 return localZip;

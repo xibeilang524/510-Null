@@ -8,6 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.BLL;
 
 namespace Ralid.OpenCard.YCTFtpTool
@@ -21,14 +22,23 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void btnSearch_Click(object sender, EventArgs e)
         {
-            List<YCTBlacklist> bls = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(null).QueryObjects ;
-            if (!string.IsNullOrEmpty(txtCardID.Text)) bls = bls.Where(it => it.CardID.Contains(txtCardID.Text)).ToList ();
+            YCTBlacklistSearchCondition con = null;
+            if (chkCatched.Checked)
+            {
+                con = new YCTBlacklistSearchCondition();
+                con.OnlyCatched = true;
+            }
+            List<YCTBlacklist> bls = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
+            if (!string.IsNullOrEmpty(txtCardID.Text)) bls = bls.Where(it => it.LCN.Contains(txtCardID.Text)).ToList();
             dataGridView1.Rows.Clear();
             foreach (var bl in bls)
             {
                 int row = dataGridView1.Rows.Add();
-                dataGridView1.Rows[row].Cells["colCardID"].Value = bl.CardID;
+                dataGridView1.Rows[row].Cells["colLCN"].Value = bl.LCN;
+                dataGridView1.Rows[row].Cells["colFCN"].Value = bl.FCN;
                 dataGridView1.Rows[row].Cells["colReason"].Value = GetReason(bl.Reason);
+                dataGridView1.Rows[row].Cells["colCatchAt"].Value = bl.CatchAt;
+                dataGridView1.Rows[row].Cells["colUploadFile"].Value = bl.UploadFile;
             }
             lblMsg.Text = string.Format("共有 {0} 项", bls != null ? bls.Count : 0);
         }

@@ -16,11 +16,13 @@ namespace Ralid.Park.BLL
         public YCTPaymentRecordBll(string repoUri)
         {
             _Provider = ProviderFactory.Create<IYCTPaymentRecordProvider>(repoUri);
+            _RepoURI = repoUri;
         }
         #endregion
 
         #region 私有变量
         IYCTPaymentRecordProvider _Provider;
+        string _RepoURI = null;
         #endregion
 
         #region 公共方法
@@ -55,6 +57,26 @@ namespace Ralid.Park.BLL
 		public CommandResult Update(YCTPaymentRecord newVal,YCTPaymentRecord oldVal)
         {
             return _Provider.Update(newVal,oldVal);
+        }
+
+        public CommandResult BatchChangeUploadFile(List<YCTPaymentRecord> records, string uploadFile)
+        {
+            try
+            {
+                IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoURI);
+                IYCTPaymentRecordProvider provider = ProviderFactory.Create<IYCTPaymentRecordProvider>(_RepoURI);
+                foreach (var item in records)
+                {
+                    var newVal = item.Clone();
+                    newVal.UploadFile = uploadFile;
+                    provider.Update(newVal, item, unitWork);
+                }
+                return unitWork.Commit();
+            }
+            catch (Exception ex)
+            {
+                return new CommandResult(ResultCode.Fail, ex.Message);
+            }
         }
 
         public CommandResult Delete(YCTPaymentRecord info)

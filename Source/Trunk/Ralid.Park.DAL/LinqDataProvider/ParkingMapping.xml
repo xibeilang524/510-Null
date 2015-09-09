@@ -620,9 +620,13 @@
   </Table>
   <Table Name="dbo.YCTBlacklist" Member="Ralid.Park.BusinessModel.Model.YCTBlacklist">
     <Type Name="Ralid.Park.BusinessModel.Model.YCTBlacklist">
-      <Column Name="CardID" Member="CardID"  DbType="nvarchar(50) NOT NULL" IsPrimaryKey="true" />
+      <Column Name="LCN" Member="LCN"  DbType="nvarchar(50) NOT NULL" IsPrimaryKey="true" />
+      <Column Name="FCN" Member="FCN"  DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
       <Column Name="Reason" Member="Reason"  DbType="nvarchar(50) NULL" UpdateCheck="Never"/>
+      <Column Name="WalletType" Member="WalletType"  DbType="int" UpdateCheck="Never"/>
       <Column Name="AddDateTime" Member="AddDateTime"  DbType="datetime NULL" UpdateCheck="Never"/>
+      <Column Name="CatchAt" Member="CatchAt"  DbType="datetime NULL" UpdateCheck="Never"/>
+      <Column Name="UploadFile" Member="UploadFile"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
   <Table Name="dbo.YCTPaymentRecord" Member="Ralid.Park.BusinessModel.Model.YCTPaymentRecord">

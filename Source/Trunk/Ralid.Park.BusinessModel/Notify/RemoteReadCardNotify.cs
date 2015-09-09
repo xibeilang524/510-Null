@@ -96,6 +96,13 @@ namespace Ralid.Park.BusinessModel.Notify
         /// <summary>
         /// 获取或设置远程读卡的工作站
         /// </summary>
+        [DataMember]
         public string Station { get; set; }
+
+        /// <summary>
+        /// 获取或设置远程读卡的工作站
+        /// </summary>
+        [DataMember]
+        public Ralid.Park.BusinessModel.Enum.EntranceReader? Reader { get; set; }
     }
 }
