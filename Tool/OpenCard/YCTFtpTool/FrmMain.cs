@@ -135,7 +135,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             string[] files = Directory.GetFiles(localFolder);
             foreach (var fi in ftp.GetListing())
             {
-                if (fi.Type == FtpFileSystemObjectType.File && !files.Contains(Path.Combine(localFolder, fi.Name)))
+                if (fi.Type == FtpFileSystemObjectType.File && Path.GetExtension(fi.Name).ToUpper() == "ZIP" && !files.Contains(Path.Combine(localFolder, fi.Name)))
                 {
                     InsertMsg("下载文件 " + fi.Name);
                     string file = Path.Combine(localFolder, fi.Name); //本地文件
@@ -254,6 +254,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                     {
                         ftp.Host = yct.FTPServer;
                         ftp.Port = yct.FTPPort;
+                        ftp.DataConnectionType = FtpDataConnectionType.AutoActive;  //数据传输设置成主动
                         ftp.Credentials = new System.Net.NetworkCredential(string.IsNullOrEmpty(yct.FTPUser) ? "anonymous" : yct.FTPUser, string.IsNullOrEmpty(yct.FTPPassword) ? "huihai.com" : yct.FTPPassword);
                         SyncDownloadFiles(ftp); //同步下载目录，
                         ftp.SetWorkingDirectory("/"); //退回到根目录
