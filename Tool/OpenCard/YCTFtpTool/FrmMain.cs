@@ -29,8 +29,8 @@ namespace Ralid.OpenCard.YCTFtpTool
         #region 私有变量
         private FormWindowState _LastState = FormWindowState.Normal;
         private bool _Dosyncing = false;
-        private string _ReadFolder = "/READ";
-        private string _WriteFolder = "/WRITE";
+        private string _ReadFolder = "/output";
+        private string _WriteFolder = "/input";
         #endregion
 
         #region 私有方法
@@ -246,6 +246,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             try
             {
                 _Dosyncing = true;
+                InsertMsg("开始进行同步...");
                 YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).GetSetting<YCTSetting>();
                 if (yct != null && !string.IsNullOrEmpty(yct.FTPServer) && yct.FTPPort > 0)
                 {
@@ -257,7 +258,6 @@ namespace Ralid.OpenCard.YCTFtpTool
                         SyncDownloadFiles(ftp); //同步下载目录，
                         ftp.SetWorkingDirectory("/"); //退回到根目录
                         SyncUploadFiles(ftp, yct);  //同频上传目录
-                        InsertMsg(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                     }
                 }
             }
@@ -268,6 +268,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             finally
             {
                 _Dosyncing = false;
+                InsertMsg(" >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
             }
         }
 
@@ -355,10 +356,10 @@ namespace Ralid.OpenCard.YCTFtpTool
                     InsertMsg("连接FTP服务器" + (ftp.IsConnected ? "成功" : "失败"));
                 }
             }
-            catch (System.Net.FtpClient.FtpException ex)
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
-                InsertMsg("连接FTP服务器失败");
+                InsertMsg("连接FTP服务器失败:" + ex.Message);
             }
         }
 
