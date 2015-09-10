@@ -47,6 +47,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtReaderCode = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.chkEnable = new System.Windows.Forms.CheckBox();
+            this.txtMaxofflineMonth = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.label3 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -160,7 +162,7 @@
             this.txtServiceCode.MinValue = 0;
             this.txtServiceCode.Name = "txtServiceCode";
             this.txtServiceCode.NumberWithCommas = false;
-            this.txtServiceCode.Size = new System.Drawing.Size(115, 21);
+            this.txtServiceCode.Size = new System.Drawing.Size(69, 21);
             this.txtServiceCode.TabIndex = 8;
             this.txtServiceCode.Text = "1000";
             // 
@@ -200,7 +202,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(318, 13);
+            this.label2.Location = new System.Drawing.Point(182, 13);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(65, 12);
             this.label2.TabIndex = 12;
@@ -209,12 +211,12 @@
             // txtReaderCode
             // 
             this.txtReaderCode.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtReaderCode.Location = new System.Drawing.Point(389, 10);
+            this.txtReaderCode.Location = new System.Drawing.Point(253, 10);
             this.txtReaderCode.MaxValue = 9999;
             this.txtReaderCode.MinValue = 0;
             this.txtReaderCode.Name = "txtReaderCode";
             this.txtReaderCode.NumberWithCommas = false;
-            this.txtReaderCode.Size = new System.Drawing.Size(162, 21);
+            this.txtReaderCode.Size = new System.Drawing.Size(69, 21);
             this.txtReaderCode.TabIndex = 13;
             this.txtReaderCode.Text = "1000";
             // 
@@ -231,11 +233,34 @@
             this.chkEnable.Text = "启动服务";
             this.chkEnable.UseVisualStyleBackColor = true;
             // 
+            // txtMaxofflineMonth
+            // 
+            this.txtMaxofflineMonth.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtMaxofflineMonth.Location = new System.Drawing.Point(506, 10);
+            this.txtMaxofflineMonth.MaxValue = 12;
+            this.txtMaxofflineMonth.MinValue = 0;
+            this.txtMaxofflineMonth.Name = "txtMaxofflineMonth";
+            this.txtMaxofflineMonth.NumberWithCommas = false;
+            this.txtMaxofflineMonth.Size = new System.Drawing.Size(69, 21);
+            this.txtMaxofflineMonth.TabIndex = 18;
+            this.txtMaxofflineMonth.Text = "0";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(339, 13);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(161, 12);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "羊城通卡离线月份限制(0-12)";
+            // 
             // FrmYCTSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(638, 396);
+            this.Controls.Add(this.txtMaxofflineMonth);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.chkEnable);
             this.Controls.Add(this.txtReaderCode);
             this.Controls.Add(this.label2);
@@ -277,6 +302,8 @@
         private System.Windows.Forms.Label label2;
         private GeneralLibrary.WinformControl.IntergerTextBox txtReaderCode;
         private System.Windows.Forms.CheckBox chkEnable;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtMaxofflineMonth;
+        private System.Windows.Forms.Label label3;
 
     }
 }

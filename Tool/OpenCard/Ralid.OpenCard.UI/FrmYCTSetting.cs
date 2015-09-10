@@ -57,6 +57,7 @@ namespace Ralid.OpenCard.UI
             {
                 txtServiceCode.IntergerValue = yct.ServiceCode;
                 txtReaderCode.IntergerValue = yct.ReaderCode;
+                txtMaxofflineMonth.IntergerValue = yct.MaxOfflineMonth;
                 dataGridView1.Rows.Clear();
                 if (yct.Items != null && yct.Items.Count > 0)
                 {
@@ -136,6 +137,7 @@ namespace Ralid.OpenCard.UI
             yct.Items.Clear();
             yct.ServiceCode = txtServiceCode.IntergerValue;
             yct.ReaderCode = txtReaderCode.IntergerValue;
+            yct.MaxOfflineMonth = txtMaxofflineMonth.IntergerValue;
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
                 yct.Items.Add(row.Tag as YCTItem);

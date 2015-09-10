@@ -236,7 +236,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         private bool Paid(YCTItem item, YCTWallet w, CardPaymentInfo paid, out int balance)
         {
             balance = 0;
-            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.GetPaying() * 100), w.WalletType);
+            YCTPaymentInfo payment = item.Reader.Prepaid((int)(paid.GetPaying() * 100), w.WalletType, Setting.MaxOfflineMonth);
             if (payment == null) return false;
             //这里应该保存记录,保存记录成功然后再进行下一步
             YCTPaymentRecord record = CreateRecord(payment);

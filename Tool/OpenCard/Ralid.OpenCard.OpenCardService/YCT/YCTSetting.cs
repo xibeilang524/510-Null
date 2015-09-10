@@ -30,6 +30,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         public int ReaderCode { get; set; }
 
         [DataMember]
+        public int MaxOfflineMonth { get; set; }
+
+        [DataMember]
         public string FTPServer { get; set; }
 
         [DataMember]

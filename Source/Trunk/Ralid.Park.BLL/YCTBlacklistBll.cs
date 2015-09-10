@@ -54,6 +54,17 @@ namespace Ralid.Park.BLL
             }
         }
 
+        public CommandResult BatchInsert(List<YCTBlacklist> records)
+        {
+            IUnitWork unitWork = ProviderFactory.Create<IUnitWork>(_RepoURI);
+            IYCTBlacklistProvider provider = ProviderFactory.Create<IYCTBlacklistProvider>(_RepoURI);
+            foreach (var item in records)
+            {
+                provider.Insert(item, unitWork);
+            }
+            return unitWork.Commit();
+        }
+
         public CommandResult BatchChangeUploadFile(List<YCTBlacklist> records, string uploadFile)
         {
             try

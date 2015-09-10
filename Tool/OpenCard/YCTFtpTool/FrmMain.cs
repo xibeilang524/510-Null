@@ -28,6 +28,9 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         #region 私有变量
         private FormWindowState _LastState = FormWindowState.Normal;
+        private bool _Dosyncing = false;
+        private string _ReadFolder = "/READ";
+        private string _WriteFolder = "/WRITE";
         #endregion
 
         #region 私有方法
@@ -70,11 +73,11 @@ namespace Ralid.OpenCard.YCTFtpTool
                 if (mds != null && mds.Length > 0)
                 {
                     InsertMsg("解析黑名单...");
-                    int count = 0;
                     YCTBlacklistBll bll = new YCTBlacklistBll(AppSettings.CurrentSetting.MasterParkConnect);
                     List<YCTBlacklist> bl = bll.GetItems(null).QueryObjects;
                     Dictionary<string, YCTBlacklist> blacks = new Dictionary<string, YCTBlacklist>();
                     bl.ForEach(it => blacks.Add(it.LCN, it));
+                    List<YCTBlacklist> addings = new List<YCTBlacklist>();
                     foreach (var md in mds)
                     {
                         string[] temp = md.Split('\t');
@@ -89,19 +92,34 @@ namespace Ralid.OpenCard.YCTFtpTool
                                 yb.FCN = fcn;
                                 yb.Reason = temp[2];
                                 yb.AddDateTime = DateTime.Now;
-                                bll.Insert(yb);
-                                count++;
-                            }
-                            else
-                            {
-                                blacks.Remove(temp[0]); //如果存在则从字典中删除,字典中最后剩余的是不在当前黑名单的信息,要将这些卡号从黑名单列表中删除掉
+                                addings.Add(yb);
                             }
                         }
                     }
-                    //foreach (var item in blacks) //删除不在当前黑名单中的数据
-                    //{
-                    //    bll.Delete(item.Value);
-                    //}
+                    if (addings.Count > 0)
+                    {
+                        int count = 0;
+                        List<YCTBlacklist> temp = new List<YCTBlacklist>();
+                        foreach (YCTBlacklist it in addings)
+                        {
+                            if (temp.Count < 1000)
+                            {
+                                temp.Add(it);
+                                count++;
+                            }
+                            if (temp.Count == 1000)
+                            {
+                                bll.BatchInsert(temp);
+                                temp.Clear();
+                                InsertMsg(string.Format("导入黑名单完成 {0:P}", (decimal)count / addings.Count));
+                            }
+                        }
+                        if (temp.Count > 0)
+                        {
+                            bll.BatchInsert(temp);
+                            temp.Clear();
+                        }
+                    }
                     InsertMsg("完成黑名单解析");
                 }
             }
@@ -110,8 +128,8 @@ namespace Ralid.OpenCard.YCTFtpTool
         private void SyncDownloadFiles(FtpClient ftp)
         {
             //原理： 将本地目录中不存在的ZIP文件从远程目录中下载回来
-            if (!ftp.DirectoryExists("/READ")) return;
-            ftp.SetWorkingDirectory("/READ"); //定位到文件下载目录
+            if (!ftp.DirectoryExists(_ReadFolder)) return;
+            ftp.SetWorkingDirectory(_ReadFolder); //定位到文件下载目录
             InsertMsg("定位到: " + ftp.GetWorkingDirectory());
             string localFolder = FTPFolderFactory.CreateDownloadFolder();
             string[] files = Directory.GetFiles(localFolder);
@@ -121,14 +139,17 @@ namespace Ralid.OpenCard.YCTFtpTool
                 {
                     InsertMsg("下载文件 " + fi.Name);
                     string file = Path.Combine(localFolder, fi.Name); //本地文件
-                    using (var fs = new FileStream(file, FileMode.Create, FileAccess.Write))
+                    string tempFile = Path.Combine(localFolder, fi.Name + ".temp.ZIP");
+                    using (var fs = new FileStream(tempFile, FileMode.Create, FileAccess.Write))
                     {
                         ftp.Download(fi.Name, fs);
                     }
-                    if (File.Exists(file))
+                    if (File.Exists(tempFile))
                     {
                         InsertMsg("解析文件 " + fi.Name);
-                        ExtraFile(file);
+                        ExtraFile(tempFile);
+                        File.Copy(tempFile, file);
+                        File.Delete(tempFile);
                     }
                 }
             }
@@ -136,8 +157,8 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void SyncUploadFiles(FtpClient ftp, YCTSetting yct)
         {
-            if (!ftp.DirectoryExists("WRITE")) return;
-            ftp.SetWorkingDirectory("/WRITE"); //定位到文件下载目录
+            if (!ftp.DirectoryExists(_WriteFolder)) return;
+            ftp.SetWorkingDirectory(_WriteFolder); //定位到文件下载目录
             InsertMsg("定位到: " + ftp.GetWorkingDirectory());
             DateTime dt = DateTime.Now;
             string m1Zip = string.Format("XF{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMdd"));
@@ -177,7 +198,7 @@ namespace Ralid.OpenCard.YCTFtpTool
             {
                 YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
                 {
-                    WalletType = 2, 
+                    WalletType = 2,
                     State = (int)YCTPaymentRecordState.PaidOk,
                     UnUploaded = true
                 };
@@ -210,9 +231,9 @@ namespace Ralid.OpenCard.YCTFtpTool
             {
                 try
                 {
-                    Thread.Sleep(1000 * 60);
-                    DoSync();
-                    Thread.Sleep(1000 * 60 * 5);
+                    Thread.Sleep(1000 * 10);
+                    if (!_Dosyncing) DoSync();
+                    Thread.Sleep(1000 * 60 * 10);
                 }
                 catch (ThreadAbortException)
                 {
@@ -224,6 +245,7 @@ namespace Ralid.OpenCard.YCTFtpTool
         {
             try
             {
+                _Dosyncing = true;
                 YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).GetSetting<YCTSetting>();
                 if (yct != null && !string.IsNullOrEmpty(yct.FTPServer) && yct.FTPPort > 0)
                 {
@@ -242,6 +264,10 @@ namespace Ralid.OpenCard.YCTFtpTool
             catch (Exception ex)
             {
                 InsertMsg(ex.Message);
+            }
+            finally
+            {
+                _Dosyncing = false;
             }
         }
 
@@ -288,8 +314,12 @@ namespace Ralid.OpenCard.YCTFtpTool
                 frm.StartPosition = FormStartPosition.CenterParent;
                 if (frm.ShowDialog() != DialogResult.OK) Environment.Exit(0);
             }
-
             UpGradeDataBase(); //生成需要的一些表
+
+            string temp = AppSettings.CurrentSetting.GetConfigContent("WriteFolder");
+            if (!string.IsNullOrEmpty(temp)) _WriteFolder = temp;
+            temp = AppSettings.CurrentSetting.GetConfigContent("ReadFolder");
+            if (!string.IsNullOrEmpty(temp)) _ReadFolder = temp;
 
             YCTSetting yct = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).GetSetting<YCTSetting>();
             if (yct != null)
@@ -345,7 +375,7 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void notifyIcon1_DoubleClick(object sender, EventArgs e)
         {
-            if (!this.Visible )
+            if (!this.Visible)
             {
                 this.WindowState = _LastState;
                 this.ShowInTaskbar = true;
@@ -377,7 +407,11 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void btnSync_Click(object sender, EventArgs e)
         {
-            DoSync();
+            if (!_Dosyncing)
+            {
+                Thread t = new Thread(new ThreadStart(DoSync));
+                t.Start();
+            }
         }
 
         private void FrmMain_Resize(object sender, EventArgs e)
