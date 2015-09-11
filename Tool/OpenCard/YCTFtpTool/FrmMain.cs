@@ -9,6 +9,7 @@ using System.IO;
 using System.Threading;
 using System.Data.SqlClient;
 using System.Windows.Forms;
+using System.Diagnostics;
 using System.Net.FtpClient;
 using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Model;
@@ -128,12 +129,12 @@ namespace Ralid.OpenCard.YCTFtpTool
         private void SyncDownloadFiles(FtpClient ftp)
         {
             //原理： 将本地目录中不存在的ZIP文件从远程目录中下载回来
-            if (!ftp.DirectoryExists(_ReadFolder)) return;
-            ftp.SetWorkingDirectory(_ReadFolder); //定位到文件下载目录
-            InsertMsg("定位到: " + ftp.GetWorkingDirectory());
+            InsertMsg("定位到: " + _ReadFolder );
             string localFolder = FTPFolderFactory.CreateDownloadFolder();
             string[] files = Directory.GetFiles(localFolder);
-            foreach (var fi in ftp.GetListing())
+            var remoteFiles = ftp.GetListing(_ReadFolder);
+            if (remoteFiles == null || remoteFiles.Length == 0) return;
+            foreach (var fi in remoteFiles)
             {
                 if (fi.Type == FtpFileSystemObjectType.File && Path.GetExtension(fi.Name).ToUpper() == "ZIP" && !files.Contains(Path.Combine(localFolder, fi.Name)))
                 {
@@ -157,14 +158,12 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void SyncUploadFiles(FtpClient ftp, YCTSetting yct)
         {
-            if (!ftp.DirectoryExists(_WriteFolder)) return;
-            ftp.SetWorkingDirectory(_WriteFolder); //定位到文件下载目录
-            InsertMsg("定位到: " + ftp.GetWorkingDirectory());
+            InsertMsg("定位到: " + _WriteFolder);
             DateTime dt = DateTime.Now;
             string m1Zip = string.Format("XF{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMdd"));
             string cpuZip = string.Format("CX{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
-            var item = ftp.GetListing();
-            if (item == null && item.Length == 0 || item.Count(it => it.Name == m1Zip) == 0)
+            var items = ftp.GetListing(_WriteFolder);
+            if (items == null && items.Length == 0 || items.Count(it => it.Name == m1Zip) == 0)
             {
                 YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为M1钱包且未上传的记录
                 {
@@ -194,7 +193,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 }
             }
 
-            if (item == null && item.Length == 0 || item.Count(it => it.Name == cpuZip) == 0)
+            if (items == null && items.Length == 0 || items.Count(it => it.Name == cpuZip) == 0)
             {
                 YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition() //获取所有钱包类型为CPU钱包且未上传的记录
                 {
@@ -254,11 +253,12 @@ namespace Ralid.OpenCard.YCTFtpTool
                     {
                         ftp.Host = yct.FTPServer;
                         ftp.Port = yct.FTPPort;
-                        ftp.DataConnectionType = FtpDataConnectionType.AutoActive;  //数据传输设置成主动
+                        ftp.DataConnectionType = FtpDataConnectionType.PORT;  //数据传输设置成主动   
+                        ftp.EnableThreadSafeDataConnections = false;
                         ftp.Credentials = new System.Net.NetworkCredential(string.IsNullOrEmpty(yct.FTPUser) ? "anonymous" : yct.FTPUser, string.IsNullOrEmpty(yct.FTPPassword) ? "huihai.com" : yct.FTPPassword);
-                        SyncDownloadFiles(ftp); //同步下载目录，
-                        ftp.SetWorkingDirectory("/"); //退回到根目录
+                        //FtpTrace.AddListener(new ConsoleTraceListener()); //日志输出到 CONSOLE
                         SyncUploadFiles(ftp, yct);  //同频上传目录
+                        SyncDownloadFiles(ftp); //同步下载目录，
                     }
                 }
             }
