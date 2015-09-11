@@ -42,7 +42,7 @@ namespace Ralid.OpenCard.OpenCardService
                 LastEntrance = 0,
                 ActivationDate = new DateTime(2000, 1, 1),
                 ValidDate = new DateTime(2099, 12, 31),
-                Balance = balance,
+                //Balance = balance,
             };
             return (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).AddCard(card).Result == ResultCode.Successful;
         }
