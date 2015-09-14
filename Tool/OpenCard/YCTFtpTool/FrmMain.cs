@@ -232,7 +232,7 @@ namespace Ralid.OpenCard.YCTFtpTool
                 {
                     Thread.Sleep(1000 * 10);
                     if (!_Dosyncing) DoSync();
-                    //Thread.Sleep(1000 * 60 * 10);
+                    Thread.Sleep(1000 * 60 * 10);
                 }
                 catch (ThreadAbortException)
                 {
