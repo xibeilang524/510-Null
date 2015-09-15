@@ -54,6 +54,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtFTPServer = new System.Windows.Forms.TextBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.chkFTPTrace = new System.Windows.Forms.CheckBox();
             this.statusStrip1.SuspendLayout();
             this.contextMenuStrip1.SuspendLayout();
             this.toolStrip1.SuspendLayout();
@@ -178,6 +179,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.chkFTPTrace);
             this.panel1.Controls.Add(this.txtFTPPort);
             this.panel1.Controls.Add(this.label7);
             this.panel1.Controls.Add(this.btnConnect);
@@ -273,6 +275,17 @@
             this.label4.TabIndex = 39;
             this.label4.Text = "FTP服务器";
             // 
+            // chkFTPTrace
+            // 
+            this.chkFTPTrace.AutoSize = true;
+            this.chkFTPTrace.Location = new System.Drawing.Point(850, 19);
+            this.chkFTPTrace.Name = "chkFTPTrace";
+            this.chkFTPTrace.Size = new System.Drawing.Size(114, 16);
+            this.chkFTPTrace.TabIndex = 48;
+            this.chkFTPTrace.Text = "显示FTP通讯明细";
+            this.chkFTPTrace.UseVisualStyleBackColor = true;
+            this.chkFTPTrace.CheckedChanged += new System.EventHandler(this.chkFTPTrace_CheckedChanged);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -326,6 +339,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton btnSync;
+        private System.Windows.Forms.CheckBox chkFTPTrace;
     }
 }
 
