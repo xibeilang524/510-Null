@@ -340,6 +340,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     if (_Readers == null || !_Readers.Exists(it => it.ID == item.ID))
                     {
                         var reader = new YCTPOS((byte)item.Comport, 57600);
+                        reader.Log = AppSettings.CurrentSetting.Debug; //处理调试模式才启动日志功能
                         reader.Open();
                         item.Reader = reader;
                         _Readers.Add(item);

@@ -37,7 +37,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             {
                 _Response = p;
                 _Responsed.Set();
-                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "接收数据: " + HexStringConverter.HexToString(p.AllBytes, " "));
+                if (Log) Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "接收数据: " + HexStringConverter.HexToString(p.AllBytes, " "));
             }
         }
 
@@ -225,6 +225,10 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// 获取读卡器是否已经打开
         /// </summary>
         public bool IsOpened { get { return _Port.PortOpened; } }
+        /// <summary>
+        /// 获取或设置是否记录日志
+        /// </summary>
+        public bool Log { get; set; }
         #endregion
 
         #region 公共方法
@@ -239,7 +243,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             lock (_PortLocker)
             {
                 byte[] request = CreateRequest(cmd, data);
-                Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
+                if(Log) Ralid.GeneralLibrary.LOG.FileLog.Log("羊城通读卡器", "发送数据: " + HexStringConverter.HexToString(request, " "));
                 _Port.OnDataArrivedEvent -= _Port_OnDataArrivedEvent;
                 _buffer.Clear();
                 _Responsed.Reset();
