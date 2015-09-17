@@ -382,6 +382,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 w.MaxBalance = BEBinaryConverter.BytesToInt(Slice(data, 26, 3));
                 w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
                 _LastWallet = w;
+                Beep(1000, 300);
                 return w;
             }
             else if (LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
@@ -390,6 +391,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 if (sn != null)
                 {
                     _LastWallet = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
+                    Beep(1000, 300);
                     return _LastWallet;
                 }
             }
@@ -423,9 +425,9 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
         /// <param name="delay"></param>
         public void Beep(int tong, int delay)
         {
-            List<byte> data=new List<byte> ();
-            data.AddRange (BEBinaryConverter .IntToBytes (tong));
-            data.AddRange (BEBinaryConverter .IntToBytes (delay ));
+            List<byte> data = new List<byte>();
+            data.AddRange(BEBinaryConverter.IntToBytes(tong));
+            data.AddRange(BEBinaryConverter.IntToBytes(delay));
             var response = Request(YCTCommandType.Beep, data.ToArray());
         }
         /// <summary>
