@@ -417,6 +417,18 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
             return null;
         }
         /// <summary>
+        /// 控制蜂鸣器响
+        /// </summary>
+        /// <param name="tong"></param>
+        /// <param name="delay"></param>
+        public void Beep(int tong, int delay)
+        {
+            List<byte> data=new List<byte> ();
+            data.AddRange (BEBinaryConverter .IntToBytes (tong));
+            data.AddRange (BEBinaryConverter .IntToBytes (delay ));
+            var response = Request(YCTCommandType.Beep, data.ToArray());
+        }
+        /// <summary>
         /// 获取最后一次操作的错误代码
         /// </summary>
         public int LastError
