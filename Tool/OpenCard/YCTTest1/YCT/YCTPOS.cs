@@ -426,8 +426,8 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
         public void Beep(int tong, int delay)
         {
             List<byte> data = new List<byte>();
-            data.AddRange(BEBinaryConverter.IntToBytes(tong));
-            data.AddRange(BEBinaryConverter.IntToBytes(delay));
+            data.AddRange(SEBinaryConverter.IntToBytes(tong));
+            data.AddRange(SEBinaryConverter.IntToBytes(delay));
             var response = Request(YCTCommandType.Beep, data.ToArray());
         }
         /// <summary>
