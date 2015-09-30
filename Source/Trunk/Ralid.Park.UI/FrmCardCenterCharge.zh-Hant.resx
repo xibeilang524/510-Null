@@ -190,6 +190,9 @@
   <data name="label18.Text" xml:space="preserve">
     <value>優惠說明:</value>
   </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>卡片編號:</value>
+  </data>
   <data name="btnCarPlateList.Text" xml:space="preserve">
     <value>車牌名單[F8]</value>
   </data>
@@ -216,6 +219,10 @@
   </data>
   <data name="colOperatorID.HeaderText" xml:space="preserve">
     <value>操作員</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>Inherit</value>
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>中央收費</value>

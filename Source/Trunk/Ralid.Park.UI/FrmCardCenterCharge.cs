@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System.Threading; 
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BLL;
 using Ralid.Park.BusinessModel.Result;
@@ -35,6 +36,7 @@ namespace Ralid.Park.UI
         private BarCodeReader _TicketReader;
         private YangChengTongReader _YCTReader;
         private YCTPOS _YCTPOS;  //2015-8-18 bruce
+        private System.Threading.Timer _TmrYCT = null;
         private EpsonmodePrinter _BillPrinter;
         private IParkingLed _ChargeLed = null;
         //private CardBll _CardBll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
@@ -55,6 +57,8 @@ namespace Ralid.Park.UI
 
         private string _OperatorCardID;//授权卡卡号
         private string _OperatorOwnerName;//授权卡持卡人
+        private string _LastOpenCardID = string.Empty;//开发卡片读卡器最后一次读到的卡号
+
         #endregion
 
         #region 私有方法
@@ -66,8 +70,12 @@ namespace Ralid.Park.UI
                 this._frmSpeedingDetail.CloseSpeedingDetail();
             }
 
+            this.txtMemo.Text = string.Empty;
+
             this.txtCardID.Text = cardPayment.CardID;
             this.txtCardID.SelectAll();
+            this.txtCertificate.Text = cardPayment.CardCertificate;
+            this.txtCertificate.ReadOnly = true;
             this.lblOwnerName.Text = cardPayment.OwnerName;
             this.lblCarNum.Text = cardPayment.CarPlate;
             this.lblEnterDateTime.Text = cardPayment.EnterDateTime.Value.ToString("yyyy-MM-dd HH:mm:ss");
@@ -84,7 +92,7 @@ namespace Ralid.Park.UI
             this.lblDiscountMemo.Text = string.IsNullOrEmpty(cardPayment.Memo) ? string.Empty : cardPayment.Memo;
 
             this.picIn.Clear();
-            SnapShotBll _SnapShotBll  = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
+            SnapShotBll _SnapShotBll = new SnapShotBll(AppSettings.CurrentSetting.ImageDBConnStr);
             List<SnapShot> imgs = _SnapShotBll.GetSnapShots(cardPayment.EnterDateTime.Value, cardPayment.CardID);
             if (imgs != null && imgs.Count > 0)
             {
@@ -97,7 +105,7 @@ namespace Ralid.Park.UI
             this.carTypePanel1.SelectedCarType = cardPayment.CarType;
             this.btnCash.Enabled = true;
             this.btnCash.Focus();
-            if (cardPayment.CardType.Name.Contains ("中山通") && 
+            if (cardPayment.CardType.Name.Contains("中山通") &&
                 AppSettings.CurrentSetting.EnableZST && !string.IsNullOrEmpty(AppSettings.CurrentSetting.ZSTReaderIP))
             {
                 this.btnYCT.Text = "中山通[&F10]";
@@ -147,12 +155,13 @@ namespace Ralid.Park.UI
             }
 
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).StopReadCard();
-            tmr_YCT.Enabled = false; //停止读卡
+            if (_TmrYCT != null) _TmrYCT.Change(3000, System.Threading.Timeout.Infinite); //停止读卡
         }
 
         private void ClearInput()
         {
             this.txtCardID.Text = string.Empty;
+            this.txtCertificate.Text = string.Empty;
             this.lblOwnerName.Text = string.Empty;
             this.lblCarNum.Text = string.Empty;
             this.lblEnterDateTime.Text = string.Empty;
@@ -174,10 +183,11 @@ namespace Ralid.Park.UI
             this._ChargeRecord = null;
             this.picIn.Clear();
             this.txtCardID.ReadOnly = false;
+            this.txtCertificate.ReadOnly = false;
             this.lblDiscountMemo.Text = string.Empty;
             this.txtMemo.Text = string.Empty;
             CardReaderManager.GetInstance(UserSetting.Current.WegenType).BeginReadCard();
-            tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
+            if (_YCTPOS != null || _YCTReader != null) _TmrYCT.Change(3000, 500);
         }
 
         /// <summary>
@@ -514,7 +524,7 @@ namespace Ralid.Park.UI
                 if (UserSetting.Current.YCTReadType == 0)
                 {
                     _YCTPOS = new YCTPOS(AppSettings.CurrentSetting.YCTReaderCOMPort, 57600);
-                    _YCTPOS.Open();
+                    _YCTPOS.Open(); 
                     if (_YCTPOS.IsOpened) _YCTPOS.SetServiceCode(UserSetting.Current.YCTServiceCode);
                 }
                 else if (UserSetting.Current.YCTReadType == 1)
@@ -522,7 +532,11 @@ namespace Ralid.Park.UI
                     _YCTReader = new YangChengTongReader(AppSettings.CurrentSetting.YCTReaderCOMPort, 1);
                     _YCTReader.Open();
                 }
-                tmr_YCT.Enabled = _YCTPOS != null || _YCTReader != null;
+                if (_YCTPOS != null || _YCTReader != null)
+                {
+                    _TmrYCT = new System.Threading.Timer(tmr_YCT_Tick, null, 3000, 500);
+                    
+                }
             }
 
             this.txtMemo.Items.Clear();
@@ -622,6 +636,10 @@ namespace Ralid.Park.UI
                         frmYCT.Payment = this.txtPaid.DecimalValue;
                         if (frmYCT.ShowDialog() == DialogResult.OK)
                         {
+                            if (this._YCTReader.LastCard != null)
+                            {
+                                this._LastOpenCardID = this._YCTReader.LastCard.CardID;
+                            }
                             result = SaveCardPayment(PaymentMode.YangChengTong);
                         }
                     }
@@ -633,6 +651,12 @@ namespace Ralid.Park.UI
                         frmYCT.ChargeLed = _ChargeLed;
                         if (frmYCT.ShowDialog() == DialogResult.OK)
                         {
+                            //如果羊城通扣费成功，开发读卡器最后一次读到的卡号为扣费的羊城通卡号
+                            //这是为了防止当IC卡缴费使用羊城通缴费时，羊城通扣费成功后，马上又读到了扣费的羊城通，进入该羊城通的停车场缴费处理流程
+                            if (this._YCTPOS.LastWallet != null)
+                            {
+                                this._LastOpenCardID = this._YCTPOS.LastWallet.LogicCardID;
+                            }
                             result = SaveCardPayment(PaymentMode.YangChengTong);
                         }
                     }
@@ -971,6 +995,8 @@ namespace Ralid.Park.UI
         private void ReadCardIDHandler(string cardID, CardInfo info)
         {
             txtCardID.TextChanged -= txtCardID_TextChanged;
+            this.txtCertificate.TextChanged -= this.txtCertificate_TextChanged;
+
             this.txtCardID.Text = cardID;
             this.txtCardID.ReadOnly = true;
             string msg = string.Empty;
@@ -1042,10 +1068,15 @@ namespace Ralid.Park.UI
                 if (AppSettings.CurrentSetting.EnableTTS) TTSSpeech.Instance.Speek(msg);
                 ClearInput();
                 this.txtCardID.Text = cardID;
+                if (card != null)
+                {
+                    this.txtCertificate.Text = card.CardCertificate;
+                }
                 this.eventList.InsertMessage(msg);
                 this.txtMemo.Text = msg;
             }
             txtCardID.TextChanged += txtCardID_TextChanged;
+            this.txtCertificate.TextChanged += this.txtCertificate_TextChanged;
         }
 
         private void FrmCardCenterCharge_KeyDown(object sender, KeyEventArgs e)
@@ -1219,11 +1250,26 @@ namespace Ralid.Park.UI
         {
             if (!string.IsNullOrEmpty(txtCardID.Text))
             {
+                this.txtCertificate.Text = string.Empty;
                 CardBll _CardBll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
                 CardInfo card = _CardBll.GetCardByID(this.txtCardID.Text).QueryObject;
                 if (card != null)
                 {
                     ReadCardIDHandler(txtCardID.Text, card);
+                }
+            }
+        }
+        
+        private void txtCertificate_TextChanged(object sender, EventArgs e)
+        {
+            if (!string.IsNullOrEmpty(this.txtCertificate.Text))
+            {
+                this.txtCardID.Text = string.Empty;
+                CardBll _CardBll = new CardBll(AppSettings.CurrentSetting.ParkConnect);
+                CardInfo card = _CardBll.GetCardByCardCertificate(this.txtCertificate.Text).QueryObject;
+                if (card != null)
+                {
+                    ReadCardIDHandler(card.CardID, card);
                 }
             }
         }
@@ -1437,22 +1483,88 @@ namespace Ralid.Park.UI
                 var w = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
                 if (w != null)
                 {
-                    ClearInput();
                     string cardID = w.LogicCardID;
-                    ReadCardIDHandler(cardID, null);
+                    if (_LastOpenCardID != cardID)
+                    {
+                        _LastOpenCardID = cardID;
+
+                        ClearInput();
+                        ReadCardIDHandler(cardID, null);
+                    }
                 }
-            }
-            else if (_YCTReader != null)
-            {
-                YangChengTongCardInfo c = null;
-                _YCTReader.ReadCard(out c);
-                if (c != null)
+                else
                 {
-                    ClearInput();
-                    string cardID = c.CardID;
-                    ReadCardIDHandler(cardID, null);
+                    _LastOpenCardID = string.Empty;
                 }
             }
+            //这里只支持龙杰的羊城通读卡器进行读卡，铭鸿的羊城通读卡器只作为缴费使用
+            //else if (_YCTReader != null)
+            //{
+            //    YangChengTongCardInfo c = null;
+            //    _YCTReader.ReadCard(out c);
+            //    if (c != null)
+            //    {
+            //        string cardID = c.CardID;
+            //        if (_LastOpenCardID != cardID)
+            //        {
+            //            _LastOpenCardID = cardID;
+
+            //            ClearInput();
+            //            ReadCardIDHandler(cardID, null);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        _LastOpenCardID = string.Empty;
+            //    }
+            //}
+        }
+
+
+        private void tmr_YCT_Tick(object state)
+        {
+            if (_YCTPOS != null && _YCTPOS.IsOpened)
+            {
+                var w = _YCTPOS.ReadCard(UserSetting.Current.WegenType);
+                if (w != null)
+                {
+                    string cardID = w.LogicCardID;
+                    if (_LastOpenCardID != cardID)
+                    {
+                        _LastOpenCardID = cardID;
+                        this.Invoke((Action)(() =>   //其它线程访问UI控件
+                            {
+                                ClearInput();
+                                ReadCardIDHandler(cardID, null);
+                            }));
+                    }
+                }
+                else
+                {
+                    _LastOpenCardID = string.Empty;
+                }
+            }
+            //这里只支持龙杰的羊城通读卡器进行读卡，铭鸿的羊城通读卡器只作为缴费使用
+            //else if (_YCTReader != null)
+            //{
+            //    YangChengTongCardInfo c = null;
+            //    _YCTReader.ReadCard(out c);
+            //    if (c != null)
+            //    {
+            //        string cardID = c.CardID;
+            //        if (_LastOpenCardID != cardID)
+            //        {
+            //            _LastOpenCardID = cardID;
+
+            //            ClearInput();
+            //            ReadCardIDHandler(cardID, null);
+            //        }
+            //    }
+            //    else
+            //    {
+            //        _LastOpenCardID = string.Empty;
+            //    }
+            //}
         }
     }
 }

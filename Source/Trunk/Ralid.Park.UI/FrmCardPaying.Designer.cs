@@ -75,6 +75,8 @@
             this.lblDiscountHour = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblDiscountMemo = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.lblCertificate = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.label15 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -89,7 +91,6 @@
             this.picIn = new Ralid.Park.UserControls.UCPictureListView();
             this.ucVideoes = new Ralid.Park.UserControls.VideoPanels.UCVideoListView();
             this.spliterLeft = new System.Windows.Forms.Splitter();
-            this.tmr_YCT = new System.Windows.Forms.Timer(this.components);
             this.paymentPanel.SuspendLayout();
             this.buttonPnl.SuspendLayout();
             this.panel6.SuspendLayout();
@@ -206,37 +207,39 @@
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 16);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 13);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 17);
             this.tableLayoutPanel1.Controls.Add(this.txtCardID, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblOwnerName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblCarNum, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblEnterDateTime, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblExitDateTime, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblParkingTime, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblCardType, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lblTariffType, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 16);
-            this.tableLayoutPanel1.Controls.Add(this.label19, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lblDiscountHour, 1, 14);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 15);
-            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblOwnerName, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblCarNum, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblEnterDateTime, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblExitDateTime, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lblParkingTime, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblCardType, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.lblTariffType, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 17);
+            this.tableLayoutPanel1.Controls.Add(this.label19, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountHour, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 16);
+            this.tableLayoutPanel1.Controls.Add(this.label18, 0, 1);
+            this.tableLayoutPanel1.Controls.Add(this.lblCertificate, 1, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             // 
             // label9
@@ -424,6 +427,16 @@
             resources.ApplyResources(this.lblDiscountMemo, "lblDiscountMemo");
             this.lblDiscountMemo.Name = "lblDiscountMemo";
             // 
+            // label18
+            // 
+            resources.ApplyResources(this.label18, "label18");
+            this.label18.Name = "label18";
+            // 
+            // lblCertificate
+            // 
+            resources.ApplyResources(this.lblCertificate, "lblCertificate");
+            this.lblCertificate.Name = "lblCertificate";
+            // 
             // panel5
             // 
             this.panel5.BackColor = System.Drawing.SystemColors.ActiveBorder;
@@ -522,11 +535,6 @@
             this.spliterLeft.Name = "spliterLeft";
             this.spliterLeft.TabStop = false;
             // 
-            // tmr_YCT
-            // 
-            this.tmr_YCT.Interval = 500;
-            this.tmr_YCT.Tick += new System.EventHandler(this.tmr_YCT_Tick);
-            // 
             // FrmCardPaying
             // 
             resources.ApplyResources(this, "$this");
@@ -619,7 +627,8 @@
         private System.Windows.Forms.Label lblDiscountMemo;
         private System.Windows.Forms.Button btnPos;
         private System.Windows.Forms.Button btnCoupon;
-        private System.Windows.Forms.Timer tmr_YCT;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.Label lblCertificate;
 
     }
 }

@@ -41,7 +41,9 @@
             this.btnPos = new System.Windows.Forms.Button();
             this.btnCash = new System.Windows.Forms.Button();
             this.btnYCT = new System.Windows.Forms.Button();
+            this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.txtCertificate = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label9 = new System.Windows.Forms.Label();
             this.label10 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -70,11 +72,13 @@
             this.lblLastWorkstation = new System.Windows.Forms.Label();
             this.txtPaid = new Ralid.GeneralLibrary.WinformControl.DecimalTextBox(this.components);
             this.label17 = new System.Windows.Forms.Label();
+            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.lblCurrDiscountHour = new System.Windows.Forms.Label();
             this.label18 = new System.Windows.Forms.Label();
             this.lblDiscountMemo = new System.Windows.Forms.Label();
+            this.label20 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.btnCarPlateList = new System.Windows.Forms.Button();
             this.label15 = new System.Windows.Forms.Label();
@@ -82,13 +86,9 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.splitter2 = new System.Windows.Forms.Splitter();
-            this.splitter1 = new System.Windows.Forms.Splitter();
-            this.splitTop = new System.Windows.Forms.Splitter();
-            this.videoPanel = new System.Windows.Forms.Panel();
-            this.spliterLeft = new System.Windows.Forms.Splitter();
-            this.tmr_YCT = new System.Windows.Forms.Timer(this.components);
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.ucapmMonitor1 = new Ralid.Park.UserControls.UCAPMMonitor();
+            this.splitter1 = new System.Windows.Forms.Splitter();
             this.GridView = new Ralid.Park.UserControls.CustomDataGridView(this.components);
             this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardType = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -98,9 +98,10 @@
             this.colLastCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCarPlate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colOperatorID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.splitTop = new System.Windows.Forms.Splitter();
+            this.videoPanel = new System.Windows.Forms.Panel();
             this.picIn = new Ralid.Park.UserControls.UCPictureGrid();
-            this.carTypePanel1 = new Ralid.Park.UserControls.CarTypePanel();
-            this.comPark = new Ralid.Park.UserControls.ParkCombobox(this.components);
+            this.spliterLeft = new System.Windows.Forms.Splitter();
             this.paymentPanel.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel7.SuspendLayout();
@@ -109,8 +110,8 @@
             this.panel5.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel3.SuspendLayout();
-            this.videoPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).BeginInit();
+            this.videoPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // paymentPanel
@@ -199,45 +200,63 @@
             this.btnYCT.UseVisualStyleBackColor = false;
             this.btnYCT.Click += new System.EventHandler(this.btnYCT_Click);
             // 
+            // carTypePanel1
+            // 
+            this.carTypePanel1.BackColor = System.Drawing.SystemColors.Control;
+            resources.ApplyResources(this.carTypePanel1, "carTypePanel1");
+            this.carTypePanel1.Name = "carTypePanel1";
+            this.carTypePanel1.CarTypeSelectedChanged += new System.EventHandler(this.CarType_Selected);
+            // 
             // tableLayoutPanel1
             // 
             resources.ApplyResources(this.tableLayoutPanel1, "tableLayoutPanel1");
             this.tableLayoutPanel1.BackColor = System.Drawing.SystemColors.ButtonFace;
+            this.tableLayoutPanel1.Controls.Add(this.txtCertificate, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.label9, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 2);
-            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 3);
-            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 4);
-            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 5);
-            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 6);
-            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 7);
-            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 9);
-            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 11);
-            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 13);
-            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label10, 0, 2);
+            this.tableLayoutPanel1.Controls.Add(this.label11, 0, 3);
+            this.tableLayoutPanel1.Controls.Add(this.label3, 0, 4);
+            this.tableLayoutPanel1.Controls.Add(this.label12, 0, 5);
+            this.tableLayoutPanel1.Controls.Add(this.label5, 0, 6);
+            this.tableLayoutPanel1.Controls.Add(this.label8, 0, 7);
+            this.tableLayoutPanel1.Controls.Add(this.label2, 0, 8);
+            this.tableLayoutPanel1.Controls.Add(this.label13, 0, 10);
+            this.tableLayoutPanel1.Controls.Add(this.label14, 0, 12);
+            this.tableLayoutPanel1.Controls.Add(this.label16, 0, 14);
+            this.tableLayoutPanel1.Controls.Add(this.label7, 0, 13);
             this.tableLayoutPanel1.Controls.Add(this.txtCardID, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.lblOwnerName, 1, 1);
-            this.tableLayoutPanel1.Controls.Add(this.lblCarNum, 1, 2);
-            this.tableLayoutPanel1.Controls.Add(this.lblEnterDateTime, 1, 3);
-            this.tableLayoutPanel1.Controls.Add(this.lblExitDateTime, 1, 4);
-            this.tableLayoutPanel1.Controls.Add(this.lblParkingTime, 1, 5);
-            this.tableLayoutPanel1.Controls.Add(this.lblCardType, 1, 6);
-            this.tableLayoutPanel1.Controls.Add(this.lblTariffType, 1, 7);
-            this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 9);
-            this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 11);
-            this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 13);
-            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 16);
-            this.tableLayoutPanel1.Controls.Add(this.label19, 0, 10);
-            this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 10);
-            this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 12);
-            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 16);
-            this.tableLayoutPanel1.Controls.Add(this.comPark, 1, 17);
-            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 17);
-            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 14);
-            this.tableLayoutPanel1.Controls.Add(this.lblCurrDiscountHour, 1, 14);
-            this.tableLayoutPanel1.Controls.Add(this.label18, 0, 15);
-            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblOwnerName, 1, 2);
+            this.tableLayoutPanel1.Controls.Add(this.lblCarNum, 1, 3);
+            this.tableLayoutPanel1.Controls.Add(this.lblEnterDateTime, 1, 4);
+            this.tableLayoutPanel1.Controls.Add(this.lblExitDateTime, 1, 5);
+            this.tableLayoutPanel1.Controls.Add(this.lblParkingTime, 1, 6);
+            this.tableLayoutPanel1.Controls.Add(this.lblCardType, 1, 7);
+            this.tableLayoutPanel1.Controls.Add(this.lblTariffType, 1, 8);
+            this.tableLayoutPanel1.Controls.Add(this.lblLastTotalPaid, 1, 10);
+            this.tableLayoutPanel1.Controls.Add(this.lblAccounts, 1, 12);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscount, 1, 14);
+            this.tableLayoutPanel1.Controls.Add(this.txtMemo, 1, 17);
+            this.tableLayoutPanel1.Controls.Add(this.label19, 0, 11);
+            this.tableLayoutPanel1.Controls.Add(this.lblLastWorkstation, 1, 11);
+            this.tableLayoutPanel1.Controls.Add(this.txtPaid, 1, 13);
+            this.tableLayoutPanel1.Controls.Add(this.label17, 0, 17);
+            this.tableLayoutPanel1.Controls.Add(this.comPark, 1, 18);
+            this.tableLayoutPanel1.Controls.Add(this.label1, 0, 18);
+            this.tableLayoutPanel1.Controls.Add(this.label4, 0, 15);
+            this.tableLayoutPanel1.Controls.Add(this.lblCurrDiscountHour, 1, 15);
+            this.tableLayoutPanel1.Controls.Add(this.label18, 0, 16);
+            this.tableLayoutPanel1.Controls.Add(this.lblDiscountMemo, 1, 16);
+            this.tableLayoutPanel1.Controls.Add(this.label20, 0, 1);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
+            // 
+            // txtCertificate
+            // 
+            this.txtCertificate.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            resources.ApplyResources(this.txtCertificate, "txtCertificate");
+            this.txtCertificate.Name = "txtCertificate";
+            this.txtCertificate.TextChanged += new System.EventHandler(this.txtCertificate_TextChanged);
+            this.txtCertificate.Enter += new System.EventHandler(this.txt_Enter);
+            this.txtCertificate.Leave += new System.EventHandler(this.txt_Leave);
             // 
             // label9
             // 
@@ -406,6 +425,13 @@
             resources.ApplyResources(this.label17, "label17");
             this.label17.Name = "label17";
             // 
+            // comPark
+            // 
+            resources.ApplyResources(this.comPark, "comPark");
+            this.comPark.FormattingEnabled = true;
+            this.comPark.Name = "comPark";
+            this.comPark.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
+            // 
             // label1
             // 
             resources.ApplyResources(this.label1, "label1");
@@ -430,6 +456,11 @@
             // 
             resources.ApplyResources(this.lblDiscountMemo, "lblDiscountMemo");
             this.lblDiscountMemo.Name = "lblDiscountMemo";
+            // 
+            // label20
+            // 
+            resources.ApplyResources(this.label20, "label20");
+            this.label20.Name = "label20";
             // 
             // panel5
             // 
@@ -485,39 +516,6 @@
             this.splitter2.Name = "splitter2";
             this.splitter2.TabStop = false;
             // 
-            // splitter1
-            // 
-            this.splitter1.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.splitter1, "splitter1");
-            this.splitter1.Name = "splitter1";
-            this.splitter1.TabStop = false;
-            // 
-            // splitTop
-            // 
-            this.splitTop.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.splitTop, "splitTop");
-            this.splitTop.Name = "splitTop";
-            this.splitTop.TabStop = false;
-            // 
-            // videoPanel
-            // 
-            this.videoPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
-            this.videoPanel.Controls.Add(this.picIn);
-            resources.ApplyResources(this.videoPanel, "videoPanel");
-            this.videoPanel.Name = "videoPanel";
-            // 
-            // spliterLeft
-            // 
-            this.spliterLeft.BackColor = System.Drawing.Color.Gray;
-            resources.ApplyResources(this.spliterLeft, "spliterLeft");
-            this.spliterLeft.Name = "spliterLeft";
-            this.spliterLeft.TabStop = false;
-            // 
-            // tmr_YCT
-            // 
-            this.tmr_YCT.Interval = 500;
-            this.tmr_YCT.Tick += new System.EventHandler(this.tmr_YCT_Tick);
-            // 
             // eventList
             // 
             resources.ApplyResources(this.eventList, "eventList");
@@ -530,6 +528,13 @@
             this.ucapmMonitor1.BackColor = System.Drawing.Color.White;
             resources.ApplyResources(this.ucapmMonitor1, "ucapmMonitor1");
             this.ucapmMonitor1.Name = "ucapmMonitor1";
+            // 
+            // splitter1
+            // 
+            this.splitter1.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.splitter1, "splitter1");
+            this.splitter1.Name = "splitter1";
+            this.splitter1.TabStop = false;
             // 
             // GridView
             // 
@@ -617,24 +622,31 @@
             this.colOperatorID.ReadOnly = true;
             this.colOperatorID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
+            // splitTop
+            // 
+            this.splitTop.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.splitTop, "splitTop");
+            this.splitTop.Name = "splitTop";
+            this.splitTop.TabStop = false;
+            // 
+            // videoPanel
+            // 
+            this.videoPanel.BackColor = System.Drawing.SystemColors.ActiveBorder;
+            this.videoPanel.Controls.Add(this.picIn);
+            resources.ApplyResources(this.videoPanel, "videoPanel");
+            this.videoPanel.Name = "videoPanel";
+            // 
             // picIn
             // 
             resources.ApplyResources(this.picIn, "picIn");
             this.picIn.Name = "picIn";
             // 
-            // carTypePanel1
+            // spliterLeft
             // 
-            this.carTypePanel1.BackColor = System.Drawing.SystemColors.Control;
-            resources.ApplyResources(this.carTypePanel1, "carTypePanel1");
-            this.carTypePanel1.Name = "carTypePanel1";
-            this.carTypePanel1.CarTypeSelectedChanged += new System.EventHandler(this.CarType_Selected);
-            // 
-            // comPark
-            // 
-            resources.ApplyResources(this.comPark, "comPark");
-            this.comPark.FormattingEnabled = true;
-            this.comPark.Name = "comPark";
-            this.comPark.SelectedIndexChanged += new System.EventHandler(this.parkCombobox1_SelectedIndexChanged);
+            this.spliterLeft.BackColor = System.Drawing.Color.Gray;
+            resources.ApplyResources(this.spliterLeft, "spliterLeft");
+            this.spliterLeft.Name = "spliterLeft";
+            this.spliterLeft.TabStop = false;
             // 
             // FrmCardCenterCharge
             // 
@@ -661,8 +673,8 @@
             this.panel5.PerformLayout();
             this.panel4.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
-            this.videoPanel.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.GridView)).EndInit();
+            this.videoPanel.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -738,6 +750,7 @@
         private System.Windows.Forms.Button btnCarPlateList;
         private System.Windows.Forms.Button btnPos;
         private System.Windows.Forms.Button btnCoupon;
-        private System.Windows.Forms.Timer tmr_YCT;
+        private GeneralLibrary.WinformControl.DBCTextBox txtCertificate;
+        private System.Windows.Forms.Label label20;
     }
 }

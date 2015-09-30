@@ -187,6 +187,9 @@
   <data name="label4.Text" xml:space="preserve">
     <value>優惠說明:</value>
   </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>卡片編號:</value>
+  </data>
   <data name="label15.Text" xml:space="preserve">
     <value>卡片收費明細</value>
   </data>

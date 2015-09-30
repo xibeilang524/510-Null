@@ -81,6 +81,12 @@ namespace Ralid.Park.BLL
         {
             return _Provider.GetByID(id);
         }
+
+        public QueryResult<CardInfo> GetCardByCardCertificate(string certificate)
+        {
+            return null;
+        }
+
         /// <summary>
         /// 通过卡号获取卡片的信息（信息中包括最近一条收费记录)
         /// </summary>

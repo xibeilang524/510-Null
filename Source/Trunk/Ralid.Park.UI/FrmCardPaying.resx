@@ -418,10 +418,10 @@
     <value>Fill</value>
   </data>
   <data name="buttonPnl.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 428</value>
+    <value>0, 449</value>
   </data>
   <data name="buttonPnl.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 133</value>
+    <value>219, 112</value>
   </data>
   <data name="buttonPnl.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -493,7 +493,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+    <value>4, 43</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -529,7 +529,7 @@
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 43</value>
+    <value>4, 64</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -565,7 +565,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 64</value>
+    <value>4, 85</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -601,7 +601,7 @@
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 85</value>
+    <value>4, 106</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -637,7 +637,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 106</value>
+    <value>4, 127</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 29</value>
@@ -673,7 +673,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 136</value>
+    <value>4, 157</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -709,7 +709,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 157</value>
+    <value>4, 178</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -745,7 +745,7 @@
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 179</value>
+    <value>4, 200</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -781,7 +781,7 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 221</value>
+    <value>4, 242</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -817,7 +817,7 @@
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 293</value>
+    <value>4, 314</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -853,7 +853,7 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 242</value>
+    <value>4, 263</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 50</value>
@@ -889,7 +889,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 376</value>
+    <value>4, 397</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 26</value>
@@ -934,7 +934,7 @@
     <value>txtCardID</value>
   </data>
   <data name="&gt;&gt;txtCardID.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.922, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -955,7 +955,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblOwnerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 22</value>
+    <value>90, 43</value>
   </data>
   <data name="lblOwnerName.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -991,7 +991,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblCarNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 43</value>
+    <value>90, 64</value>
   </data>
   <data name="lblCarNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1027,7 +1027,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblEnterDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 64</value>
+    <value>90, 85</value>
   </data>
   <data name="lblEnterDateTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1063,7 +1063,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblExitDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 85</value>
+    <value>90, 106</value>
   </data>
   <data name="lblExitDateTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1096,7 +1096,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblParkingTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 106</value>
+    <value>90, 127</value>
   </data>
   <data name="lblParkingTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 29</value>
@@ -1132,7 +1132,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 136</value>
+    <value>90, 157</value>
   </data>
   <data name="lblCardType.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1165,7 +1165,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblTariffType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 157</value>
+    <value>90, 178</value>
   </data>
   <data name="lblTariffType.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1198,7 +1198,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblLastTotalPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 179</value>
+    <value>90, 200</value>
   </data>
   <data name="lblLastTotalPaid.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1231,7 +1231,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblAccounts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 221</value>
+    <value>90, 242</value>
   </data>
   <data name="lblAccounts.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1264,7 +1264,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiscount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 293</value>
+    <value>90, 314</value>
   </data>
   <data name="lblDiscount.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1291,7 +1291,7 @@
     <value>Fill</value>
   </data>
   <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 379</value>
+    <value>90, 400</value>
   </data>
   <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1321,7 +1321,7 @@
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 200</value>
+    <value>4, 221</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -1357,7 +1357,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblLastWorkstation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 200</value>
+    <value>90, 221</value>
   </data>
   <data name="lblLastWorkstation.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1390,7 +1390,7 @@
     <value>On</value>
   </data>
   <data name="txtPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 245</value>
+    <value>90, 266</value>
   </data>
   <data name="txtPaid.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 44</value>
@@ -1405,7 +1405,7 @@
     <value>txtPaid</value>
   </data>
   <data name="&gt;&gt;txtPaid.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2015.922, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtPaid.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
@@ -1423,7 +1423,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 314</value>
+    <value>4, 335</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -1459,7 +1459,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiscountHour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 314</value>
+    <value>90, 335</value>
   </data>
   <data name="lblDiscountHour.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1492,7 +1492,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 335</value>
+    <value>4, 356</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 40</value>
@@ -1525,7 +1525,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiscountMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 335</value>
+    <value>90, 356</value>
   </data>
   <data name="lblDiscountMemo.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 40</value>
@@ -1548,6 +1548,69 @@
   <data name="&gt;&gt;lblDiscountMemo.ZOrder" xml:space="preserve">
     <value>31</value>
   </data>
+  <data name="label18.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label18.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="label18.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="label18.Text" xml:space="preserve">
+    <value>卡片编号:</value>
+  </data>
+  <data name="label18.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label18.Name" xml:space="preserve">
+    <value>label18</value>
+  </data>
+  <data name="&gt;&gt;label18.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label18.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
+    <value>32</value>
+  </data>
+  <data name="lblCertificate.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="lblCertificate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="lblCertificate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 22</value>
+  </data>
+  <data name="lblCertificate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 20</value>
+  </data>
+  <data name="lblCertificate.TabIndex" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="lblCertificate.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleLeft</value>
+  </data>
+  <data name="&gt;&gt;lblCertificate.Name" xml:space="preserve">
+    <value>lblCertificate</value>
+  </data>
+  <data name="&gt;&gt;lblCertificate.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;lblCertificate.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;lblCertificate.ZOrder" xml:space="preserve">
+    <value>33</value>
+  </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
   </data>
@@ -1555,10 +1618,10 @@
     <value>0, 25</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 403</value>
+    <value>219, 424</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>64</value>
@@ -1576,7 +1639,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCardID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblOwnerName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCarNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblEnterDateTime" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblExitDateTime" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblParkingTime" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCardType" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTariffType" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblLastTotalPaid" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblAccounts" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscount" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtMemo" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLastWorkstation" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtPaid" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountHour" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountMemo" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,85,AutoSize,0" /&gt;&lt;Rows Styles="Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,AutoSize,0,Absolute,20,Absolute,20,Absolute,0,Absolute,20,Absolute,20,Absolute,20,Absolute,50,Absolute,20,Absolute,20,Absolute,40,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCardID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblOwnerName" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCarNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblEnterDateTime" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblExitDateTime" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblParkingTime" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCardType" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTariffType" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblLastTotalPaid" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblAccounts" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscount" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtMemo" Row="17" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLastWorkstation" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtPaid" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountHour" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountMemo" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblCertificate" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,85,AutoSize,0" /&gt;&lt;Rows Styles="Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,AutoSize,0,Absolute,20,Absolute,20,Absolute,0,Absolute,20,Absolute,20,Absolute,20,Absolute,50,Absolute,20,Absolute,20,Absolute,40,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="label15.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1980,9 +2043,6 @@
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="tmr_YCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2003,12 +2063,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>车辆进出收费</value>
-  </data>
-  <data name="&gt;&gt;tmr_YCT.Name" xml:space="preserve">
-    <value>tmr_YCT</value>
-  </data>
-  <data name="&gt;&gt;tmr_YCT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;$this.Name" xml:space="preserve">
     <value>FrmCardPaying</value>

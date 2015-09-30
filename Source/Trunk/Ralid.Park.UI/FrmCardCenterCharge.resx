@@ -382,10 +382,10 @@
     <value>Fill</value>
   </data>
   <data name="panel1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 446</value>
+    <value>0, 467</value>
   </data>
   <data name="panel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 115</value>
+    <value>219, 94</value>
   </data>
   <data name="panel1.TabIndex" type="System.Int32, mscorlib">
     <value>69</value>
@@ -410,6 +410,33 @@
   </data>
   <data name="tableLayoutPanel1.ColumnCount" type="System.Int32, mscorlib">
     <value>2</value>
+  </data>
+  <data name="txtCertificate.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="txtCertificate.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>On</value>
+  </data>
+  <data name="txtCertificate.Location" type="System.Drawing.Point, System.Drawing">
+    <value>90, 25</value>
+  </data>
+  <data name="txtCertificate.Size" type="System.Drawing.Size, System.Drawing">
+    <value>125, 14</value>
+  </data>
+  <data name="txtCertificate.TabIndex" type="System.Int32, mscorlib">
+    <value>94</value>
+  </data>
+  <data name="&gt;&gt;txtCertificate.Name" xml:space="preserve">
+    <value>txtCertificate</value>
+  </data>
+  <data name="&gt;&gt;txtCertificate.Type" xml:space="preserve">
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.922, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;txtCertificate.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;txtCertificate.ZOrder" xml:space="preserve">
+    <value>0</value>
   </data>
   <data name="label9.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -445,7 +472,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label9.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="label10.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -457,7 +484,7 @@
     <value>NoControl</value>
   </data>
   <data name="label10.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 22</value>
+    <value>4, 43</value>
   </data>
   <data name="label10.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -481,7 +508,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label10.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="label11.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -493,7 +520,7 @@
     <value>NoControl</value>
   </data>
   <data name="label11.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 43</value>
+    <value>4, 64</value>
   </data>
   <data name="label11.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -517,7 +544,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label11.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="label3.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -529,7 +556,7 @@
     <value>NoControl</value>
   </data>
   <data name="label3.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 64</value>
+    <value>4, 85</value>
   </data>
   <data name="label3.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -553,7 +580,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label3.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="label12.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -565,7 +592,7 @@
     <value>NoControl</value>
   </data>
   <data name="label12.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 85</value>
+    <value>4, 106</value>
   </data>
   <data name="label12.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -589,7 +616,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label12.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="label5.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -601,7 +628,7 @@
     <value>NoControl</value>
   </data>
   <data name="label5.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 106</value>
+    <value>4, 127</value>
   </data>
   <data name="label5.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -625,7 +652,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label5.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="label8.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -637,7 +664,7 @@
     <value>NoControl</value>
   </data>
   <data name="label8.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 127</value>
+    <value>4, 148</value>
   </data>
   <data name="label8.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -661,7 +688,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label8.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="label2.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -673,7 +700,7 @@
     <value>NoControl</value>
   </data>
   <data name="label2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 148</value>
+    <value>4, 169</value>
   </data>
   <data name="label2.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -697,7 +724,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label2.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="label13.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -709,7 +736,7 @@
     <value>NoControl</value>
   </data>
   <data name="label13.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 170</value>
+    <value>4, 191</value>
   </data>
   <data name="label13.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -733,7 +760,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label13.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="label14.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -745,7 +772,7 @@
     <value>NoControl</value>
   </data>
   <data name="label14.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 212</value>
+    <value>4, 233</value>
   </data>
   <data name="label14.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -769,7 +796,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label14.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="label16.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -781,7 +808,7 @@
     <value>NoControl</value>
   </data>
   <data name="label16.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 284</value>
+    <value>4, 305</value>
   </data>
   <data name="label16.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -805,7 +832,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label16.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="label7.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -817,7 +844,7 @@
     <value>NoControl</value>
   </data>
   <data name="label7.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 233</value>
+    <value>4, 254</value>
   </data>
   <data name="label7.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 50</value>
@@ -841,7 +868,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label7.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="txtCardID.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -862,13 +889,13 @@
     <value>txtCardID</value>
   </data>
   <data name="&gt;&gt;txtCardID.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DBCTextBox, Ralid.GeneralLibrary, Version=2.0.2015.922, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtCardID.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;txtCardID.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="lblOwnerName.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -883,7 +910,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblOwnerName.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 22</value>
+    <value>90, 43</value>
   </data>
   <data name="lblOwnerName.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -904,7 +931,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblOwnerName.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="lblCarNum.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -919,7 +946,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblCarNum.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 43</value>
+    <value>90, 64</value>
   </data>
   <data name="lblCarNum.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -940,7 +967,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblCarNum.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="lblEnterDateTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -955,7 +982,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblEnterDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 64</value>
+    <value>90, 85</value>
   </data>
   <data name="lblEnterDateTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -976,7 +1003,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblEnterDateTime.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="lblExitDateTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -991,7 +1018,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblExitDateTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 85</value>
+    <value>90, 106</value>
   </data>
   <data name="lblExitDateTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1012,7 +1039,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblExitDateTime.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="lblParkingTime.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1027,7 +1054,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblParkingTime.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 106</value>
+    <value>90, 127</value>
   </data>
   <data name="lblParkingTime.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1048,7 +1075,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblParkingTime.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="lblCardType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1063,7 +1090,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblCardType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 127</value>
+    <value>90, 148</value>
   </data>
   <data name="lblCardType.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1084,7 +1111,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblCardType.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="lblTariffType.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1096,7 +1123,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblTariffType.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 148</value>
+    <value>90, 169</value>
   </data>
   <data name="lblTariffType.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1117,7 +1144,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblTariffType.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="lblLastTotalPaid.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1129,7 +1156,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblLastTotalPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 170</value>
+    <value>90, 191</value>
   </data>
   <data name="lblLastTotalPaid.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1150,7 +1177,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblLastTotalPaid.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="lblAccounts.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1162,7 +1189,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblAccounts.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 212</value>
+    <value>90, 233</value>
   </data>
   <data name="lblAccounts.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1183,7 +1210,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblAccounts.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="lblDiscount.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1195,7 +1222,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiscount.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 284</value>
+    <value>90, 305</value>
   </data>
   <data name="lblDiscount.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1216,13 +1243,13 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblDiscount.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="txtMemo.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="txtMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 370</value>
+    <value>90, 391</value>
   </data>
   <data name="txtMemo.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1240,7 +1267,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;txtMemo.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="label19.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1252,7 +1279,7 @@
     <value>NoControl</value>
   </data>
   <data name="label19.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 191</value>
+    <value>4, 212</value>
   </data>
   <data name="label19.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -1276,7 +1303,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label19.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="lblLastWorkstation.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1288,7 +1315,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblLastWorkstation.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 191</value>
+    <value>90, 212</value>
   </data>
   <data name="lblLastWorkstation.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1309,7 +1336,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblLastWorkstation.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="txtPaid.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -1321,7 +1348,7 @@
     <value>On</value>
   </data>
   <data name="txtPaid.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 236</value>
+    <value>90, 257</value>
   </data>
   <data name="txtPaid.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 44</value>
@@ -1336,13 +1363,13 @@
     <value>txtPaid</value>
   </data>
   <data name="&gt;&gt;txtPaid.Type" xml:space="preserve">
-    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2015.818, Culture=neutral, PublicKeyToken=null</value>
+    <value>Ralid.GeneralLibrary.WinformControl.DecimalTextBox, Ralid.GeneralLibrary, Version=2.0.2015.922, Culture=neutral, PublicKeyToken=null</value>
   </data>
   <data name="&gt;&gt;txtPaid.Parent" xml:space="preserve">
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;txtPaid.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="label17.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1354,7 +1381,7 @@
     <value>NoControl</value>
   </data>
   <data name="label17.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 367</value>
+    <value>4, 388</value>
   </data>
   <data name="label17.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 26</value>
@@ -1378,13 +1405,13 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label17.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="comPark.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
   <data name="comPark.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 397</value>
+    <value>90, 418</value>
   </data>
   <data name="comPark.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1402,7 +1429,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;comPark.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="label1.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1414,7 +1441,7 @@
     <value>NoControl</value>
   </data>
   <data name="label1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 394</value>
+    <value>4, 415</value>
   </data>
   <data name="label1.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 26</value>
@@ -1438,7 +1465,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label1.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="label4.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1450,7 +1477,7 @@
     <value>NoControl</value>
   </data>
   <data name="label4.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 305</value>
+    <value>4, 326</value>
   </data>
   <data name="label4.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 20</value>
@@ -1474,7 +1501,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label4.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
   <data name="lblCurrDiscountHour.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1486,7 +1513,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblCurrDiscountHour.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 305</value>
+    <value>90, 326</value>
   </data>
   <data name="lblCurrDiscountHour.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 20</value>
@@ -1507,7 +1534,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblCurrDiscountHour.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="label18.AutoSize" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -1519,7 +1546,7 @@
     <value>NoControl</value>
   </data>
   <data name="label18.Location" type="System.Drawing.Point, System.Drawing">
-    <value>4, 326</value>
+    <value>4, 347</value>
   </data>
   <data name="label18.Size" type="System.Drawing.Size, System.Drawing">
     <value>79, 40</value>
@@ -1543,7 +1570,7 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;label18.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>33</value>
   </data>
   <data name="lblDiscountMemo.Anchor" type="System.Windows.Forms.AnchorStyles, System.Windows.Forms">
     <value>Top, Bottom, Left, Right</value>
@@ -1552,7 +1579,7 @@
     <value>NoControl</value>
   </data>
   <data name="lblDiscountMemo.Location" type="System.Drawing.Point, System.Drawing">
-    <value>90, 326</value>
+    <value>90, 347</value>
   </data>
   <data name="lblDiscountMemo.Size" type="System.Drawing.Size, System.Drawing">
     <value>125, 40</value>
@@ -1573,7 +1600,43 @@
     <value>tableLayoutPanel1</value>
   </data>
   <data name="&gt;&gt;lblDiscountMemo.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>34</value>
+  </data>
+  <data name="label20.AutoSize" type="System.Boolean, mscorlib">
+    <value>True</value>
+  </data>
+  <data name="label20.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="label20.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
+    <value>NoControl</value>
+  </data>
+  <data name="label20.Location" type="System.Drawing.Point, System.Drawing">
+    <value>4, 22</value>
+  </data>
+  <data name="label20.Size" type="System.Drawing.Size, System.Drawing">
+    <value>79, 20</value>
+  </data>
+  <data name="label20.TabIndex" type="System.Int32, mscorlib">
+    <value>93</value>
+  </data>
+  <data name="label20.Text" xml:space="preserve">
+    <value>卡片编号:</value>
+  </data>
+  <data name="label20.TextAlign" type="System.Drawing.ContentAlignment, System.Drawing">
+    <value>MiddleRight</value>
+  </data>
+  <data name="&gt;&gt;label20.Name" xml:space="preserve">
+    <value>label20</value>
+  </data>
+  <data name="&gt;&gt;label20.Type" xml:space="preserve">
+    <value>System.Windows.Forms.Label, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;label20.Parent" xml:space="preserve">
+    <value>tableLayoutPanel1</value>
+  </data>
+  <data name="&gt;&gt;label20.ZOrder" xml:space="preserve">
+    <value>35</value>
   </data>
   <data name="tableLayoutPanel1.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Top</value>
@@ -1582,10 +1645,10 @@
     <value>0, 25</value>
   </data>
   <data name="tableLayoutPanel1.RowCount" type="System.Int32, mscorlib">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="tableLayoutPanel1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>219, 421</value>
+    <value>219, 442</value>
   </data>
   <data name="tableLayoutPanel1.TabIndex" type="System.Int32, mscorlib">
     <value>65</value>
@@ -1603,7 +1666,7 @@
     <value>1</value>
   </data>
   <data name="tableLayoutPanel1.LayoutSettings" type="System.Windows.Forms.TableLayoutSettings, System.Windows.Forms">
-    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="9" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCardID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblOwnerName" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCarNum" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblEnterDateTime" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblExitDateTime" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblParkingTime" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCardType" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTariffType" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblLastTotalPaid" Row="9" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblAccounts" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscount" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtMemo" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLastWorkstation" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtPaid" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comPark" Row="17" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblCurrDiscountHour" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountMemo" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,85,AutoSize,0" /&gt;&lt;Rows Styles="Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,0,Absolute,20,Absolute,20,Absolute,20,Absolute,50,Absolute,20,Absolute,20,Absolute,40,AutoSize,0,AutoSize,0" /&gt;&lt;/TableLayoutSettings&gt;</value>
+    <value>&lt;?xml version="1.0" encoding="utf-16"?&gt;&lt;TableLayoutSettings&gt;&lt;Controls&gt;&lt;Control Name="txtCertificate" Row="1" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label9" Row="0" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label10" Row="2" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label11" Row="3" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label3" Row="4" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label12" Row="5" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label5" Row="6" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label8" Row="7" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label2" Row="8" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label13" Row="10" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label14" Row="12" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label16" Row="14" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label7" Row="13" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="txtCardID" Row="0" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblOwnerName" Row="2" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCarNum" Row="3" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblEnterDateTime" Row="4" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblExitDateTime" Row="5" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblParkingTime" Row="6" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblCardType" Row="7" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblTariffType" Row="8" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblLastTotalPaid" Row="10" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblAccounts" Row="12" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscount" Row="14" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtMemo" Row="17" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label19" Row="11" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblLastWorkstation" Row="11" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="txtPaid" Row="13" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label17" Row="17" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="comPark" Row="18" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label1" Row="18" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="label4" Row="15" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblCurrDiscountHour" Row="15" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label18" Row="16" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;Control Name="lblDiscountMemo" Row="16" RowSpan="1" Column="1" ColumnSpan="1" /&gt;&lt;Control Name="label20" Row="1" RowSpan="1" Column="0" ColumnSpan="1" /&gt;&lt;/Controls&gt;&lt;Columns Styles="Absolute,85,AutoSize,0" /&gt;&lt;Rows Styles="Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,20,Absolute,0,Absolute,20,Absolute,20,Absolute,20,Absolute,50,Absolute,20,Absolute,20,Absolute,40,AutoSize,0,AutoSize,0,Absolute,20" /&gt;&lt;/TableLayoutSettings&gt;</value>
   </data>
   <data name="btnCarPlateList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Right</value>
@@ -2103,9 +2166,6 @@
   <data name="&gt;&gt;panel4.ZOrder" xml:space="preserve">
     <value>0</value>
   </data>
-  <metadata name="tmr_YCT.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>22, 12</value>
-  </metadata>
   <metadata name="$this.Localizable" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -2115,9 +2175,6 @@
   <data name="$this.ClientSize" type="System.Drawing.Size, System.Drawing">
     <value>899, 573</value>
   </data>
-  <data name="$this.ImeMode" type="System.Windows.Forms.ImeMode, System.Windows.Forms">
-    <value>NoControl</value>
-  </data>
   <data name="$this.Padding" type="System.Windows.Forms.Padding, System.Windows.Forms">
     <value>0, 6, 6, 6</value>
   </data>
@@ -2126,12 +2183,6 @@
   </data>
   <data name="$this.Text" xml:space="preserve">
     <value>中央收费</value>
-  </data>
-  <data name="&gt;&gt;tmr_YCT.Name" xml:space="preserve">
-    <value>tmr_YCT</value>
-  </data>
-  <data name="&gt;&gt;tmr_YCT.Type" xml:space="preserve">
-    <value>System.Windows.Forms.Timer, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;colCardID.Name" xml:space="preserve">
     <value>colCardID</value>
