@@ -201,6 +201,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 case 0x33: return "MAC错";
                 case 0x3F: return "不支付的命令";
                 case 0x1A: return "物理卡号不一致";
+                case 0xC2: return "根据输入的条件，无对应的记录";
             }
             return "未知错误";
         }
@@ -404,11 +405,41 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             }
             return null;
         }
-
-        public bool RestorePaid()
+        /// <summary>
+        /// 未完整交易记录处理,返回TAC（M1钱包时为4个字节0x00）,如果返回空通过 GetlastError获取错误代码
+        /// </summary>
+        /// <param name="lcn">逻辑卡号（BCD类型）</param>
+        /// <param name="fcn">物理卡号（HEX类型）</param>
+        /// <param name="xrn">票卡交易计数器</param>
+        /// <param name="fee">交易金额</param>
+        /// <param name="bal">本次余额</param>
+        /// <returns></returns>
+        public string RestorePaid(string lcn, string fcn, int xrn, int fee, int bal)
         {
-            return false;
+            try
+            {                
+                List<byte> data = new List<byte>();
+                data.AddRange(HexStringConverter.StringToHex(lcn));
+                string fcnTemp = fcn.PadRight(16, '0');//M1卡时，物理卡号只有4字节，向右填充0到8字节字符串
+                data.AddRange(HexStringConverter.StringToHex(fcnTemp));
+                data.AddRange(BEBinaryConverter.ShortToBytes((short)xrn));
+                data.AddRange(BEBinaryConverter.IntToBytes(fee));
+                data.AddRange(BEBinaryConverter.IntToBytes(bal));
+                var response = Request(YCTCommandType.RestorePay, data.ToArray());
+                if (response != null && response.IsCommandExcuteOk)
+                {
+                    return HexStringConverter.HexToString(response.Data, string.Empty);
+                }
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+            }
+
+            return null;
         }
+
         /// <summary>
         /// 捕捉黑名单
         /// </summary>

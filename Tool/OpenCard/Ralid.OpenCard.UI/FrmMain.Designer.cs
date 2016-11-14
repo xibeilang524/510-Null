@@ -48,6 +48,7 @@
             this.pnlPark = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkDebug = new System.Windows.Forms.CheckBox();
             this.chkOpenEvent = new System.Windows.Forms.CheckBox();
             this.chkCardEvent = new System.Windows.Forms.CheckBox();
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
@@ -212,6 +213,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkDebug);
             this.panel2.Controls.Add(this.chkOpenEvent);
             this.panel2.Controls.Add(this.chkCardEvent);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -219,6 +221,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(713, 43);
             this.panel2.TabIndex = 12;
+            // 
+            // chkDebug
+            // 
+            this.chkDebug.AutoSize = true;
+            this.chkDebug.Checked = true;
+            this.chkDebug.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDebug.Location = new System.Drawing.Point(605, 15);
+            this.chkDebug.Name = "chkDebug";
+            this.chkDebug.Size = new System.Drawing.Size(96, 16);
+            this.chkDebug.TabIndex = 10;
+            this.chkDebug.Text = "启用日志记录";
+            this.chkDebug.UseVisualStyleBackColor = true;
+            this.chkDebug.CheckedChanged += new System.EventHandler(this.chkDebug_CheckedChanged);
             // 
             // chkOpenEvent
             // 
@@ -309,6 +324,7 @@
         private System.Windows.Forms.ToolStripStatusLabel lblZST;
         private System.Windows.Forms.ToolStripStatusLabel lblYiTingShanFu;
         private System.Windows.Forms.ToolStripStatusLabel lblYCT;
+        private System.Windows.Forms.CheckBox chkDebug;
     }
 }
 

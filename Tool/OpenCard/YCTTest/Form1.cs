@@ -114,5 +114,20 @@ namespace YCTTest
                 }
             }
         }
+
+        private void btnRestorePay_Click(object sender, EventArgs e)
+        {
+            if (txtAmount.DecimalValue > 0 && _Wallet != null && reader.IsOpened)
+            {
+                var tac = reader.RestorePaid(this.txtLogicID.Text, this.txtPhysicalID.Text, (int)this.txtCount.DecimalValue, (int)this.txtAmount.DecimalValue * 100, (int)this.txtBalance.DecimalValue * 100);
+
+                if (!string.IsNullOrEmpty(tac))
+                {
+                    MessageBox.Show("未完成交易记录处理成功");
+                    return;
+                }
+                MessageBox.Show("未完成交易记录处理失败, 错误代码:" + reader.LastError.ToString() + "，错误描述：" + reader.LastErrorDescr);
+            }
+        }
     }
 }

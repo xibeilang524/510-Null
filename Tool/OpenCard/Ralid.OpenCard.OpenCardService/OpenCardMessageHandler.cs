@@ -25,6 +25,13 @@ namespace Ralid.OpenCard.OpenCardService
         private Dictionary<Type, IOpenCardService> _Services = new Dictionary<Type, IOpenCardService>();
         #endregion
 
+        #region 公共属性
+        /// <summary>
+        /// 获取或设置是否启用日志记录功能
+        /// </summary>
+        public bool Debug { get; set; }
+        #endregion
+
         #region 私有方法
         private bool SaveOpenCard(string cardID, CardType cardType, decimal balance)
         {
@@ -94,7 +101,10 @@ namespace Ralid.OpenCard.OpenCardService
                 int reader = 0;
                 if (!int.TryParse(temp, out reader)) reader = 0;
                 notify.Reader = (EntranceReader)reader;
-                pad.RemoteReadCard(notify);
+                if (!pad.RemoteReadCard(notify))
+                {
+                    if (Debug) Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance.EntranceName, string.Format("【{0}】 读卡事件 远程读卡失败", e.CardID));
+                }
                 if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
                 {
                     WaitCallback wc = (WaitCallback)((object state) =>
@@ -111,12 +121,36 @@ namespace Ralid.OpenCard.OpenCardService
         private void s_OnPaying(object sender, OpenCardEventArgs e)
         {
             if (string.IsNullOrEmpty(e.CardID)) return;
+
+            //add by Jan 2016-04-27 增加对上次未完成的收费信息的处理
+            CardPaymentInfo unPay = e.UnFinishedPayment;
+            if (unPay != null && (unPay.Accounts > 0 || unPay.Discount > 0)) //只有要收费的记录才保存
+            {
+                //先保存上次未完成的收费信息的处理
+                unPay.IsCenterCharge = true;
+                unPay.OperatorID = OperatorInfo.CurrentOperator.OperatorName;
+                unPay.StationID = WorkStationInfo.CurrentStation.StationName;
+                CommandResult ret = (new CardBll(AppSettings.CurrentSetting.MasterParkConnect)).PayParkFee(unPay);
+                if (ret.Result != ResultCode.Successful)
+                {
+                    e.Payment = null;
+                    return;//如果保存失败的，就不需要继续了
+                }
+            }
+            //end add by  Jan 2016-04-27
+
             CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
             if (card == null) return;
-            CardPaymentInfo payment = GetPaymentInfo(card, e, DateTime.Now);
+            DateTime dt = e.ChargeDateTime.HasValue ? e.ChargeDateTime.Value : DateTime.Now; //add by Jan 2016-04-27 有输入计费时间时，用输入的计费时间
+            CardPaymentInfo payment = GetPaymentInfo(card, e, dt);
             if (!card.IsInPark && payment != null) { payment.Accounts = 0; payment.Discount = 0; }//停车场获取收费信息时已经出场的卡片也会产生费用信息，所以这里对这种情况处理为应收0元
             e.Payment = payment;
             if (this.OnPaying != null) this.OnPaying(sender, e);
+
+            //add by Jan 2016-04-27 清空上次未完成的收费信息
+            e.UnFinishedPayment = null;
+            e.ChargeDateTime = null;
+            //end add by  Jan 2016-04-27
         }
 
         private void s_OnPaidOk(object sender, OpenCardEventArgs e)
@@ -144,7 +178,10 @@ namespace Ralid.OpenCard.OpenCardService
                         int reader = 0;
                         if (!int.TryParse(temp, out reader)) reader = 0;
                         notify.Reader = (EntranceReader)reader;
-                        pad.RemoteReadCard(notify);
+                        if (!pad.RemoteReadCard(notify))
+                        {
+                            if (Debug) Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance.EntranceName, string.Format("【{0}】 缴费事件 远程读卡失败", e.CardID));
+                        }
                         if (!string.IsNullOrEmpty(e.CardType)) //只有开放卡片才显示余额
                         {
                             WaitCallback wc = (WaitCallback)((object state) =>

@@ -11,10 +11,6 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
         /// </summary>
         ReadSerialNumber=0x0E,
         /// <summary>
-        /// 蜂鸣
-        /// </summary>
-        Beep=0x42,
-        /// <summary>
         /// 获取版本号
         /// </summary>
         GetVersion=0x60,

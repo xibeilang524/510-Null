@@ -55,6 +55,7 @@
             this.txtVersion = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.txtSN = new Ralid.GeneralLibrary.WinformControl.DBCTextBox(this.components);
             this.label11 = new System.Windows.Forms.Label();
+            this.btnRestorePay = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnConnect
@@ -81,7 +82,7 @@
             // btnReduceBalance
             // 
             this.btnReduceBalance.Enabled = false;
-            this.btnReduceBalance.Location = new System.Drawing.Point(278, 324);
+            this.btnReduceBalance.Location = new System.Drawing.Point(181, 323);
             this.btnReduceBalance.Name = "btnReduceBalance";
             this.btnReduceBalance.Size = new System.Drawing.Size(129, 36);
             this.btnReduceBalance.TabIndex = 8;
@@ -122,7 +123,7 @@
             // txtAmount
             // 
             this.txtAmount.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtAmount.Location = new System.Drawing.Point(160, 332);
+            this.txtAmount.Location = new System.Drawing.Point(63, 331);
             this.txtAmount.MaxValue = new decimal(new int[] {
             -1,
             -1,
@@ -292,7 +293,7 @@
             // label9
             // 
             this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(252, 336);
+            this.label9.Location = new System.Drawing.Point(155, 335);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(17, 12);
             this.label9.TabIndex = 29;
@@ -344,6 +345,17 @@
             this.label11.TabIndex = 33;
             this.label11.Text = "序列号";
             // 
+            // btnRestorePay
+            // 
+            this.btnRestorePay.Enabled = false;
+            this.btnRestorePay.Location = new System.Drawing.Point(343, 323);
+            this.btnRestorePay.Name = "btnRestorePay";
+            this.btnRestorePay.Size = new System.Drawing.Size(129, 36);
+            this.btnRestorePay.TabIndex = 8;
+            this.btnRestorePay.Text = "未完成交易处理";
+            this.btnRestorePay.UseVisualStyleBackColor = true;
+            this.btnRestorePay.Click += new System.EventHandler(this.btnRestorePay_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -371,6 +383,7 @@
             this.Controls.Add(this.txtBalance);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtAmount);
+            this.Controls.Add(this.btnRestorePay);
             this.Controls.Add(this.btnReduceBalance);
             this.Controls.Add(this.comPort);
             this.Controls.Add(this.btnReadCurCard);
@@ -411,6 +424,7 @@
         private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtVersion;
         private Ralid.GeneralLibrary.WinformControl.DBCTextBox txtSN;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Button btnRestorePay;
     }
 }
 

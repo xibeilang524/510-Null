@@ -161,9 +161,10 @@ namespace Ralid.OpenCard.YCTFtpTool
 
         private void SyncUploadFiles(FtpClient ftp, YCTSetting yct)
         {
-            DateTime dt = DateTime.Now;
-            string m1Zip = string.Format("XF{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMdd"));
-            string cpuZip = string.Format("CX{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), DateTime.Today.ToString("yyyyMMddHH"));
+            //DateTime dt = DateTime.Now;
+            DateTime dt = DateTime.Today.AddMilliseconds(-1);
+            string m1Zip = string.Format("XF{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), dt.ToString("yyyyMMdd"));
+            string cpuZip = string.Format("CX{0}{1}{2}.ZIP", yct.ServiceCode.ToString().PadLeft(4, '0'), yct.ReaderCode.ToString().PadLeft(4, '0'), dt.ToString("yyyyMMddHH"));
             
             InsertMsg("定位到: " + _WriteFolder );
             ftp.SetWorkingDirectory(_WriteFolder);
@@ -174,7 +175,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                 {
                     WalletType = 1,
                     State = (int)YCTPaymentRecordState.PaidOk,
-                    UnUploaded = true
+                    UnUploaded = true,
+                    PaymentDateTimeRange = new DateTimeRange(new DateTime(2010, 1, 1), dt)
                 };
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)
@@ -204,7 +206,8 @@ namespace Ralid.OpenCard.YCTFtpTool
                 {
                     WalletType = 2,
                     State = (int)YCTPaymentRecordState.PaidOk,
-                    UnUploaded = true
+                    UnUploaded = true,
+                    PaymentDateTimeRange = new DateTimeRange(new DateTime(2010, 1, 1), dt)
                 };
                 List<YCTPaymentRecord> records = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect).GetItems(con).QueryObjects;
                 if (records != null && records.Count > 0)

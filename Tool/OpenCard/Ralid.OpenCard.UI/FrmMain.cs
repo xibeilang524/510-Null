@@ -165,6 +165,7 @@ namespace Ralid.OpenCard.UI
         {
             OpenCardMessageHandler handler = new OpenCardMessageHandler();
             GlobalSettings.Current.Set<OpenCardMessageHandler>(handler);
+            handler.Debug = this.chkDebug.Checked;
             handler.OnReadCard += new EventHandler<OpenCardEventArgs>(handler_OnReadCard);
             handler.OnPaying += new EventHandler<OpenCardEventArgs>(handler_OnPaying);
             handler.OnPaidOk += new EventHandler<OpenCardEventArgs>(handler_OnPaidOk);
@@ -209,47 +210,93 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnError(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 发生错误 {2}",
+            string msg = string.Format("【{0} ＠ {1}】 发生错误 {2}",
                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
-                                                 e.LastError), Color.Red);
+                                                 e.LastError);
+            if (chkOpenEvent.Checked) InsertMessage(msg, Color.Red);
+            if (chkDebug.Checked)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+            }
         }
 
         private void handler_OnPaidFail(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2} 原因:{3}",
+            string msg = string.Format("【{0} ＠ {1}】 缴费失败 卡号:{2} 原因:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
-                                                  e.LastError), Color.Blue);
+                                                  e.LastError);
+            if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
+            if (chkDebug.Checked)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+            }
         }
 
         private void handler_OnPaidOk(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2} 实收:{3} 余额:{4}",
+            string msg = string.Format("【{0} ＠ {1}】 缴费成功 卡号:{2} 实收:{3} 余额:{4}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Paid,
-                                                  e.Balance.ToString("F2")), Color.Blue);
+                                                  e.Balance.ToString("F2"));
+            if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
+            if (chkDebug.Checked)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+            }
         }
 
         private void handler_OnPaying(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 查询费用 卡号:{2} 应收:{3}元",
+            string msg = string.Empty;
+
+            //add by Jan 2016-04-27 增加对上次未完成的收费信息的处理
+            if (e.UnFinishedPayment != null)
+            {
+                msg = string.Format("【{0} ＠ {1}】 上次未完成缴费处理成功 卡号:{2} 计费:{3} 实收:{4} 余额:{5}",
+                                                    DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                    e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
+                                                    e.CardID,
+                                                    e.UnFinishedPayment.ChargeDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+                                                    e.UnFinishedPayment.Paid,
+                                                    e.Balance.ToString("F2"));
+                if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
+                if (chkDebug.Checked)
+                {
+                    Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+                }
+            }
+            //end add by  Jan 2016-04-27
+
+            msg = string.Format("【{0} ＠ {1}】 查询费用 卡号:{2} 应收:{3} 余额:{4}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
-                                                  e.Payment != null ? e.Payment.GetPaying() : 0), Color.Blue);
+                                                  e.Payment != null ? e.Payment.GetPaying() : 0,
+                                                  e.Balance.ToString("F2"));
+            if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
+            if (chkDebug.Checked)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+            }
         }
 
         private void handler_OnReadCard(object sender, OpenCardEventArgs e)
         {
-            if (chkOpenEvent.Checked) InsertMessage(string.Format("【{0} ＠ {1}】 入场读卡 卡号:{2} 余额:{3}",
+            string msg = string.Format("【{0} ＠ {1}】 读卡事件 卡号:{2} 余额:{3}",
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
-                                                  e.Balance.ToString("F2")), Color.Blue);
+                                                  e.Balance.ToString("F2"));
+            if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
+            if (chkDebug.Checked)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log(e.Entrance != null ? e.Entrance.EntranceName : "中央收费处", "正在处理事件 " + msg);
+            }
         }
 
         private void InsertMessage(string msg, Color color)
@@ -410,6 +457,15 @@ namespace Ralid.OpenCard.UI
             frm.ShowDialog();
             ShowServiceState();
         }
+        private void chkDebug_CheckedChanged(object sender, EventArgs e)
+        {
+            OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
+            if (handler != null)
+            {
+                handler.Debug = this.chkDebug.Checked;
+            }
+        }
         #endregion
+
     }
 }

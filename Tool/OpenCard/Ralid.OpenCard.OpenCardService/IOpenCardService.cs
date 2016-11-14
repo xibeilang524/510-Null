@@ -61,6 +61,16 @@ namespace Ralid.OpenCard.OpenCardService
         /// 获取或设置系统最近一次产生的错误
         /// </summary>
         public string LastError { get; set; }
+        //add by Jan 2016-04-27 新增两字段用于处理未完整交易记录
+        /// <summary>
+        /// 获取或设置卡片计费时间
+        /// </summary>
+        public DateTime? ChargeDateTime { get; set; }
+        /// <summary>
+        /// 获取或设置卡片上次未完成的收费信息
+        /// </summary>
+        public CardPaymentInfo UnFinishedPayment { get; set; }
+        //end add by Jan 2016-04-27
         #endregion
     }
 

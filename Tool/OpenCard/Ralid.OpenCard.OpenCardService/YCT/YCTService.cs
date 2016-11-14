@@ -7,6 +7,7 @@ using Ralid.OpenCard.OpenCardService;
 using Ralid.Park.BusinessModel.Model;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
+using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.BLL;
 using Ralid.GeneralLibrary.CardReader;
 
@@ -58,11 +59,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             DateTime lastDT = DateTime.Now;
             YCTItem item = obj as YCTItem;
             if (item == null || item.Reader == null) return;
-            try
+            while (true)
             {
-                while (true)
+                Thread.Sleep(500);
+                try
                 {
-                    Thread.Sleep(500);
                     if (item.Reader.IsOpened)
                     {
                         if (item.Reader.LastError == -1) //如果是没有响应,则说明有可能是断电了,则需要将服务代码重新下发
@@ -109,9 +110,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                         }
                     }
                 }
-            }
-            catch (ThreadAbortException)
-            {
+                catch (ThreadAbortException)
+                {
+                }
             }
         }
 
@@ -143,6 +144,17 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.LogicCardID).QueryObject;
                 if (card != null && (entrance == null || (!p.IsNested && entrance.IsExitDevice)))
                 {
+                    //add by Jan 2016-04-27 增加未完整交易记录判断
+                    YCTPaymentRecord record = GetUnFinishedPayment(card);
+                    if (record != null)
+                    {
+                        if (HandleUnFinishedPayment(item, w, record, args) == false)//处理未完整交易记录
+                        {
+                            return;//如果处理未完整交易记录失败了，就不需要继续了
+                        }
+                    }
+                    //end add by Jan 2016-04-27
+
                     HandlePayment(item, w, args);//中央收费处和非嵌套车场的出口,并且是羊城通卡,则进行收费处理
                 }
                 else
@@ -292,6 +304,80 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             record.TAC = payment.交易认证码;
             return record;
         }
+
+        //add by Jan 2016-04-27 新增未完整交易记录处理
+        #region 未完整交易记录处理
+        /// <summary>
+        /// 获取最近一次未完成的交易记录
+        /// </summary>
+        /// <param name="card">羊城通卡</param>
+        /// <returns></returns>
+        private YCTPaymentRecord GetUnFinishedPayment(CardInfo card)
+        {
+            //已入场的才查询是否有未完成的交易
+            if (card.IsInPark)
+            {
+                YCTPaymentRecordSearchCondition con = new YCTPaymentRecordSearchCondition();
+                con.LCN = card.CardID;
+                con.EnterDateTime = card.LastDateTime;
+                con.OrderByTIMDescending = true;
+                con.State = (int)YCTPaymentRecordState.PaidFail;
+
+                List<YCTPaymentRecord> records = (new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect)).GetItems(con).QueryObjects;
+                if (records != null && records.Count > 0)
+                {
+                    return records[0];
+                }
+            }
+
+            return null;
+        }
+
+        /// <summary>
+        /// 处理未完成交易记录
+        /// </summary>
+        /// <param name="item"></param>
+        /// <param name="w"></param>
+        /// <param name="record"></param>
+        private bool HandleUnFinishedPayment(YCTItem item, YCTWallet w, YCTPaymentRecord record, OpenCardEventArgs args)
+        {
+            string tac = item.Reader.RestorePaid(record.LCN, record.FCN, record.XRN, record.FEE, record.BAL);
+            if (string.IsNullOrEmpty(tac))
+            {
+                //处理失败
+                int err = item.Reader.LastError;
+                if (err == 0xC2)//返回无对应的记录
+                {
+                    //无对应交易记录 删除记录
+                    (new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect)).Delete(record);
+                    return true;
+                }
+                return false;
+            }
+
+            //处理成功，生成保存上一次的收费记录
+            args.ChargeDateTime = record.TIM;
+            if (this.OnPaying != null) this.OnPaying(this, args); //产生上一次的收费事件
+            if (args.Payment == null) return false;
+            args.UnFinishedPayment = args.Payment;//设置上次未完成的收费信息
+            args.Payment = null;//重置收费记录
+            args.ChargeDateTime = null;//重置计费时间
+
+            args.UnFinishedPayment.Paid = record.TF * 1.00M / 100.00M;//设置实收费用，羊城通记录里的交易金额是分为单位的，所以这里需要转换成元
+            args.UnFinishedPayment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+            args.UnFinishedPayment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
+            
+            //更新未完整交易记录
+            YCTPaymentRecord newVal = record.Clone();
+            if (record.WalletType == 0x02) newVal.TAC = tac; //cpu钱包将TAC写到记录中
+            newVal.State = YCTPaymentRecordState.PaidOk; //标记为完成
+            YCTPaymentRecordBll bll = new YCTPaymentRecordBll(AppSettings.CurrentSetting.MasterParkConnect);
+            CommandResult result = bll.Update(newVal, record);
+
+            return result.Result == ResultCode.Successful;
+        }
+        #endregion
+        //end add by Jan 2016-04-27
         #endregion
 
         #region 实现接口IOpenCardService
@@ -340,7 +426,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
                     if (_Readers == null || !_Readers.Exists(it => it.ID == item.ID))
                     {
                         var reader = new YCTPOS((byte)item.Comport, 57600);
-                        reader.Log = AppSettings.CurrentSetting.Debug; //处理调试模式才启动日志功能
+                        //reader.Log = AppSettings.CurrentSetting.Debug; //处理调试模式才启动日志功能
                         reader.Open();
                         item.Reader = reader;
                         _Readers.Add(item);

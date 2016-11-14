@@ -358,7 +358,7 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
         /// 询卡
         /// </summary>
         /// <returns></returns>
-        public YCTWallet ReadCard(WegenType wg = WegenType.Wengen34, bool beep = true)
+        public YCTWallet ReadCard(WegenType wg = WegenType.Wengen34)
         {
             var response = Request(YCTCommandType.Poll, null);
             if (response != null && response.IsCommandExcuteOk && response.Data != null && response.Data.Length == 52)
@@ -382,7 +382,6 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 w.MaxBalance = BEBinaryConverter.BytesToInt(Slice(data, 26, 3));
                 w.Deposit = BEBinaryConverter.BytesToInt(Slice(data, 29, 4));
                 _LastWallet = w;
-                if (beep) Beep(1000, 300);
                 return w;
             }
             else if (LastError == 0x83) //验证出错,说明卡片是其它IC卡,继续读其序列号
@@ -391,7 +390,6 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 if (sn != null)
                 {
                     _LastWallet = new YCTWallet() { LogicCardID = sn, PhysicalCardID = sn, CardType = string.Empty };
-                    if (beep) Beep(1000, 300);
                     return _LastWallet;
                 }
             }
@@ -417,18 +415,6 @@ namespace Ralid.GeneralLibrary.CardReader.YCT
                 }
             }
             return null;
-        }
-        /// <summary>
-        /// 控制蜂鸣器响
-        /// </summary>
-        /// <param name="tong"></param>
-        /// <param name="delay"></param>
-        public void Beep(int tong, int delay)
-        {
-            List<byte> data = new List<byte>();
-            data.AddRange(SEBinaryConverter.IntToBytes(tong));
-            data.AddRange(SEBinaryConverter.IntToBytes(delay));
-            var response = Request(YCTCommandType.Beep, data.ToArray());
         }
         /// <summary>
         /// 获取最后一次操作的错误代码

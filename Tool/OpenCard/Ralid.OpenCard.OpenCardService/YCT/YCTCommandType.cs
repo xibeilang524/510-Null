@@ -9,7 +9,11 @@ namespace Ralid.OpenCard.OpenCardService.YCT
         /// <summary>
         /// 读取序列号
         /// </summary>
-        ReadSerialNumber=0x0E,
+        ReadSerialNumber = 0x0E,
+        /// <summary>
+        /// 蜂鸣
+        /// </summary>
+        Beep = 0x42,
         /// <summary>
         /// 获取版本号
         /// </summary>
