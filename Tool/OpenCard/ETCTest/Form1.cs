@@ -62,5 +62,18 @@ namespace ETCTest
                 row.Cells["colState"].Value = ret == 0 ? "连接正常" : "断开连接";
             }
         }
+
+        private void 天线扣费ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var device = dataGridView1.SelectedRows[0].Tag as ETCDevice;
+                device.DoRSUPay(1); 
+            }
+        }
+
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
     }
 }
