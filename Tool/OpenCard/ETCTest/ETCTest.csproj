@@ -54,7 +54,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ETC\ETCChargeRecord.cs" />
+    <Compile Include="ETC\ETCPaymentRecord.cs" />
     <Compile Include="ETC\ETCController.cs" />
     <Compile Include="ETC\ETCDevice.cs" />
     <Compile Include="ETC\ETCInterop.cs" />

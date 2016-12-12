@@ -143,6 +143,7 @@
     <Compile Include="DatetimeSyncService.cs" />
     <Compile Include="DeptBll.cs" />
     <Compile Include="EntranceBll.cs" />
+    <Compile Include="ETCPaymentRecordBll.cs" />
     <Compile Include="FreeAuthorizationLogBll.cs" />
     <Compile Include="HostStandbySettingBll.cs" />
     <Compile Include="OperatorBll.cs" />

@@ -200,6 +200,7 @@
     <Compile Include="Model\DiscountCalculateSetting.cs" />
     <Compile Include="Model\DiscountMeta.cs" />
     <Compile Include="Model\DiscountRecordInfo.cs" />
+    <Compile Include="Model\ETCPaymentRecord.cs" />
     <Compile Include="Model\FreeAuthorizationLog.cs" />
     <Compile Include="Model\GlobalVariables.cs" />
     <Compile Include="Model\HolidayInfo.cs" />
@@ -364,6 +365,7 @@
     <Compile Include="SearchCondition\CardSearchCondition.cs" />
     <Compile Include="SearchCondition\DateTimeRange.cs" />
     <Compile Include="SearchCondition\EntranceSearchCondition.cs" />
+    <Compile Include="SearchCondition\ETCPaymentRecordSearchCondition.cs" />
     <Compile Include="SearchCondition\OperatorSearchCondition.cs" />
     <Compile Include="SearchCondition\APMLogSearchCondition.cs" />
     <Compile Include="SearchCondition\ParkCarPortSearchCondition.cs" />

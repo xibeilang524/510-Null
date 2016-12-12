@@ -2,31 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Ralid.OpenCard.OpenCardService.ETC.Response;
 
-namespace Ralid.OpenCard.OpenCardService.ETC
+namespace Ralid.Park.BusinessModel.Model
 {
-    public class ETCChargeRecord
+    public class ETCPaymentRecord
     {
         #region 构造函数
-        public ETCChargeRecord()
+        public ETCPaymentRecord()
         {
         }
         #endregion
 
         #region 公共属性
-        /// <summary>
-        /// 用户名（不超过32位）
-        /// </summary>
-        public string UserName { get; set; }
-        /// <summary>
-        /// 省份编码,按照GB/T 2260（2位）
-        /// </summary>
-        public string ProvinceNo { get; set; }
-        /// <summary>
-        /// 城市编码,按照GB/T 2260（2位）
-        /// </summary>
-        public string CityNo { get; set; }
         /// <summary>
         /// 流水类型 0：入口流水  1：出口流水
         /// </summary>
@@ -163,6 +150,19 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// 入口车种,出口时从卡片入口信息文件读取
         /// </summary>
         public int EnVehClass { get; set; }
+        /// <summary>
+        /// 获取或设置创建时间
+        /// </summary>
+        public DateTime CreateTime { get; set; }
+        /// <summary>
+        /// 获取或设置上传到服务器的时间，没有上传的为空
+        /// </summary>
+        public DateTime? UploadTime { get; set; }
         #endregion
+
+        public ETCPaymentRecord Clone()
+        {
+            return this.MemberwiseClone() as ETCPaymentRecord;
+        }
     }
 }

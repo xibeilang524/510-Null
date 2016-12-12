@@ -89,7 +89,9 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         {
             get { return ProvinceNo == "44"; }
         }
-
+        /// <summary>
+        /// 是否是出口设备，否则是入口设备
+        /// </summary>
         public bool IsExit { get; set; }
         #endregion
 
@@ -139,7 +141,6 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             {
             }
         }
-        #endregion
 
         #region 连接设备相关的函数
         private int Connect()
@@ -160,6 +161,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.LaneLogin(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
+                ret.Content = response.ToString();
                 r = ret.ErrorCode;
             }
             return r;
@@ -188,6 +190,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.RSUOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -196,6 +199,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.RSUClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -204,6 +208,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = 30000 }), response);
             var ret = JsonConvert.DeserializeObject<OBUSearchResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -225,12 +230,13 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             if (UseInGD) ETCInterop.GetOBUInfo_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
             else ETCInterop.GetOBUInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
             var ret = JsonConvert.DeserializeObject<GetOBUInfoResponse>(response.ToString());
+            ret.Content = response.ToString();
             ret.OBUID = r.OBUID; //这两个属性返回串中没有，是手动设置上去的，后面用得到，一定需要
             ret.OBUNO = r.OBUNO;
             return ret;
         }
 
-        private ETCResponse RSUWriteCard(GetOBUInfoResponse r, int money, out ETCChargeRecord record)
+        private WriteCardResponse RSUWriteCard(GetOBUInfoResponse r, int money, out ETCPaymentRecord record)
         {
             record = null;
             WriteCardResponse ret = null;
@@ -271,6 +277,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.RSUWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             else
             {
@@ -299,6 +306,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.RSUWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             if (ret.ErrorCode == -1328) //半条记录的情况，需要验证
             {
@@ -319,6 +327,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.RSUTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             if (ret.ErrorCode == 0)
             {
@@ -326,7 +335,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 ret.Balance = r.Balance - money;
                 record = CreateRecord(r, ret);
             }
-            return new ETCResponse() { ErrorCode = r.ErrorCode };
+            return ret;
         }
         #endregion
 
@@ -336,6 +345,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.CardReaderOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -344,6 +354,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.CardReaderClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -352,6 +363,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             StringBuilder response = new StringBuilder(100);
             ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = 30000 }), response);
             var ret = JsonConvert.DeserializeObject<CardSearchResponse>(response.ToString());
+            ret.Content = response.ToString();
             return ret;
         }
 
@@ -367,11 +379,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 ETCInterop.GetCardInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, CardNo = r.CardNo, ReaderID = EcReaderID }), response);
             }
             var ret = JsonConvert.DeserializeObject<GetCardInfoResponse>(response.ToString());
+            ret.Content = response.ToString();
             ret.CardNo = r.CardNo; //由于返回的串中没有这个属性，所以这里设置进去
             return ret;
         }
 
-        private ETCResponse CardReaderWriteCard(GetCardInfoResponse r, int money, out ETCChargeRecord record)
+        private WriteCardResponse CardReaderWriteCard(GetCardInfoResponse r, int money, out ETCPaymentRecord record)
         {
             record = null;
             WriteCardResponse ret = null;
@@ -410,6 +423,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.RSUWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             else
             {
@@ -436,6 +450,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.RSUWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             if (ret.ErrorCode == -2320) //半条记录的情况，需要验证
             {
@@ -454,6 +469,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 };
                 ETCInterop.CardReaderTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+                ret.Content = response.ToString();
             }
             if (ret.ErrorCode == 0)
             {
@@ -461,18 +477,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 ret.Balance = r.Balance - money;
                 record = CreateRecord(r, ret);
             }
-            return new ETCResponse() { ErrorCode = r.ErrorCode };
+            return ret;
         }
         #endregion
 
         #region 收费流水相关的操作
-        private ETCChargeRecord CreateRecord(GetOBUInfoResponse obuInfo, WriteCardResponse writeInfo)
+        private ETCPaymentRecord CreateRecord(GetOBUInfoResponse obuInfo, WriteCardResponse writeInfo)
         {
-            return new ETCChargeRecord()
+            return new ETCPaymentRecord()
             {
-                UserName = UserName,
-                ProvinceNo = ProvinceNo,
-                CityNo = CityNo,
                 ListType = IsExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
                 KeyServiceNo = writeInfo.KeyServiceNo,
@@ -510,13 +523,10 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             };
         }
 
-        private ETCChargeRecord CreateRecord(GetCardInfoResponse cardInfo, WriteCardResponse writeInfo)
+        private ETCPaymentRecord CreateRecord(GetCardInfoResponse cardInfo, WriteCardResponse writeInfo)
         {
-            return new ETCChargeRecord()
+            return new ETCPaymentRecord()
             {
-                UserName = UserName,
-                ProvinceNo = ProvinceNo,
-                CityNo = CityNo,
                 ListType = IsExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
                 KeyServiceNo = writeInfo.KeyServiceNo,
@@ -554,13 +564,55 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             };
         }
 
-        private ETCResponse ListUpLoad(ETCChargeRecord record)
+        private ETCResponse ListUpLoad(ETCPaymentRecord record)
         {
             StringBuilder response = new StringBuilder(100);
-            var request = record;
+            var request = new
+            {
+                UserName = UserName,
+                ProvinceNo = ProvinceNo,
+                CityNo = CityNo,
+                ListType = record.ListType,
+                ListNo = record.ListNo,
+                KeyServiceNo = record.KeyServiceNo,
+                TradeType = record.TradeType,
+                TermCode = record.TermCode,
+                TermTradeNo = record.TermTradeNo,
+                CardTradeNo = record.CardTradeNo,
+                Tac = record.Tac,
+                OBUID = record.OBUID,
+                OBUNO = record.OBUNO,
+                CardNo = record.CardNo,
+                CashMoney = record.CashMoney,
+                Balance = record.Balance,
+                TradeDevice = record.TradeDevice,
+                VehPicture = record.VehPicture,
+                VehPictureLen = record.VehPictureLen,
+                SquadDate = record.SquadDate,
+                ShiftID = record.ShiftID,
+                ExTime = record.ExTime,
+                ExAreaNo = record.ExAreaNo,
+                ExGateNo = record.ExGateNo,
+                ExLaneNo = record.ExLaneNo,
+                ExOperatorNo = record.ExOperatorNo,
+                ExVehPlate = record.ExVehPlate,
+                ExVehType = record.ExVehType,
+                ExVehClass = record.ExVehClass,
+                EnTime = record.EnTime,
+                EnOperatorNo = record.EnOperatorNo,
+                EnAreaNo = record.EnAreaNo,
+                EnGateNo = record.EnGateNo,
+                EnLaneNo = record.EnLaneNo,
+                EnVehPlate = record.EnVehPlate,
+                EnVehType = record.EnVehType,
+                EnVehClass = record.EnVehClass,
+            };
             ETCInterop.RSUTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
-            return JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+            var ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
+            ret.Content = response.ToString();
+            return ret;
         }
+        #endregion
         #endregion
 
         #region 公共方法
@@ -626,7 +678,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             if (r != null && r.ErrorCode == 0) r = GetOBUInfo(r as OBUSearchResponse);
             if (r != null && r.ErrorCode == 0)
             {
-                ETCChargeRecord record = null;
+                ETCPaymentRecord record = null;
                 r = RSUWriteCard(r as GetOBUInfoResponse, money, out record);
                 if (record != null) r = ListUpLoad(record);
             }
@@ -645,7 +697,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             if (r != null && r.ErrorCode == 0) r = GetCardInfoFromReader(r as CardSearchResponse);
             if (r != null && r.ErrorCode == 0)
             {
-                ETCChargeRecord record = null;
+                ETCPaymentRecord record = null;
                 r = CardReaderWriteCard(r as GetCardInfoResponse, money, out record);
                 if (record != null) r = ListUpLoad(record);
             }

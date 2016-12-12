@@ -136,6 +136,7 @@
     <Compile Include="IDAL\ICardReleaseRecordProvider.cs" />
     <Compile Include="IDAL\IDeptProvider.cs" />
     <Compile Include="IDAL\IEntranceProvider.cs" />
+    <Compile Include="IDAL\IETCPaymentRecordProvider.cs" />
     <Compile Include="IDAL\IFreeAuthorizationLogProvider.cs" />
     <Compile Include="IDAL\IOperatorLogProvider.cs" />
     <Compile Include="IDAL\IOperatorProvider.cs" />
@@ -169,6 +170,7 @@
     <Compile Include="LinqDataProvider\APMRefundRecordProvider.cs" />
     <Compile Include="LinqDataProvider\CardDeleteRecordProvider.cs" />
     <Compile Include="LinqDataProvider\DeptProvider.cs" />
+    <Compile Include="LinqDataProvider\ETCPaymentRecordProvider.cs" />
     <Compile Include="LinqDataProvider\FreeAuthorizationLogProvider.cs" />
     <Compile Include="LinqDataProvider\ParkCarPortProvider.cs" />
     <Compile Include="LinqDataProvider\ParkDataContextFactory.cs" />

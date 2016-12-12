@@ -28,6 +28,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     {
                         foreach (var device in ETCDevices)
                         {
+                            device.IsExit = true;
                             device.Init();
                         }
                     }
