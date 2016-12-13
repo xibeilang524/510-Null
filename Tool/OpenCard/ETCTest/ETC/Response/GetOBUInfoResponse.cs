@@ -14,7 +14,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 卡片类型
         /// </summary>
-        public int CardType { get; set; }
+        public string CardType { get; set; }
         /// <summary>
         /// 卡片启用时间
         /// </summary>
@@ -46,11 +46,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 车型
         /// </summary>
-        public int CardVehClass { get; set; }
+        public string CardVehClass { get; set; }
         /// <summary>
         /// 车辆用户类型
         /// </summary>
-        public int CardVehUserType { get; set; }
+        public string CardVehUserType { get; set; }
         /// <summary>
         /// 车牌号
         /// </summary>
@@ -62,11 +62,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 车型
         /// </summary>
-        public int OBUVehClass { get; set; }
+        public string OBUVehClass { get; set; }
         /// <summary>
         /// 车辆用户类型
         /// </summary>
-        public int OBUVehUserType { get; set; }
+        public string OBUVehUserType { get; set; }
         /// <summary>
         /// 车辆尺寸
         /// </summary>
@@ -74,19 +74,19 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 车轮数
         /// </summary>
-        public int OBUWheelNo { get; set; }
+        public string OBUWheelNo { get; set; }
         /// <summary>
         /// 车轴数
         /// </summary>
-        public int OBUAxieNo { get; set; }
+        public string OBUAxieNo { get; set; }
         /// <summary>
         /// 轴距
         /// </summary>
-        public int OBUWheelbase { get; set; }
+        public string OBUWheelbase { get; set; }
         /// <summary>
         /// 车辆载重/座位数
         /// </summary>
-        public int OBUWeight { get; set; }
+        public string OBUWeight { get; set; }
         /// <summary>
         /// OBU号
         /// </summary>
@@ -120,15 +120,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 入/出口车型
         /// </summary>
-        public int VehType { get; set; }
+        public string VehType { get; set; }
         /// <summary>
         /// 入/出口车种
         /// </summary>
-        public int VehClass { get; set; }
+        public string VehClass { get; set; }
         /// <summary>
         /// 入/出口标识（从卡片001A文件中获取）1：已做出口处理  0：未做出口处理
         /// </summary>
-        public int OutFlag { get; set; }
+        public string OutFlag { get; set; }
         /// <summary>
         /// 入/出口收费员工号
         /// </summary>

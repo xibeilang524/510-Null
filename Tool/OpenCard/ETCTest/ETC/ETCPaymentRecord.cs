@@ -114,11 +114,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 出口车型,入口为255。
         /// </summary>
-        public int ExVehType { get; set; }
+        public string ExVehType { get; set; }
         /// <summary>
         /// 出口车种,入口为255。
         /// </summary>
-        public int ExVehClass { get; set; }
+        public string ExVehClass { get; set; }
         /// <summary>
         /// 入口时间（yyyymmddhhmmss）,出口时从卡片读取
         /// </summary>
@@ -146,11 +146,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 入口车型,出口时从卡片入口信息文件读取
         /// </summary>
-        public int EnVehType { get; set; }
+        public string EnVehType { get; set; }
         /// <summary>
         /// 入口车种,出口时从卡片入口信息文件读取
         /// </summary>
-        public int EnVehClass { get; set; }
+        public string EnVehClass { get; set; }
         /// <summary>
         /// 获取或设置上传到服务器的时间，没有上传的为空
         /// </summary>

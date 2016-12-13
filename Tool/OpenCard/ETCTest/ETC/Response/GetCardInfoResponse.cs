@@ -27,11 +27,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 车型
         /// </summary>
-        public int CardVehClass { get; set; }
+        public string CardVehClass { get; set; }
         /// <summary>
         /// 车辆用户类型
         /// </summary>
-        public int CardVehUserType { get; set; }
+        public string CardVehUserType { get; set; }
         #endregion
 
         #region 卡片上次进出属性
@@ -58,15 +58,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// <summary>
         /// 入/出口车型
         /// </summary>
-        public int VehType { get; set; }
+        public string VehType { get; set; }
         /// <summary>
         /// 入/出口车种
         /// </summary>
-        public int VehClass { get; set; }
+        public string VehClass { get; set; }
         /// <summary>
         /// 入/出口标识（从卡片001A文件中获取）1：已做出口处理  0：未做出口处理
         /// </summary>
-        public int OutFlag { get; set; }
+        public string OutFlag { get; set; }
         /// <summary>
         /// 入/出口收费员工号
         /// </summary>

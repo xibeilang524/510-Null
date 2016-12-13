@@ -31,12 +31,6 @@
             this.components = new System.ComponentModel.Container();
             this.btnInit = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.天线扣费ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.读卡器扣费ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
-            this.lblCount = new System.Windows.Forms.ToolStripStatusLabel();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.colLaneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,6 +45,12 @@
             this.colTimeout = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colHeartBeatTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.天线扣费ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.读卡器扣费ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.statusStrip1 = new System.Windows.Forms.StatusStrip();
+            this.lblCount = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.statusStrip1.SuspendLayout();
@@ -99,49 +99,6 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(1028, 272);
             this.dataGridView1.TabIndex = 2;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.天线扣费ToolStripMenuItem,
-            this.读卡器扣费ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
-            // 
-            // 天线扣费ToolStripMenuItem
-            // 
-            this.天线扣费ToolStripMenuItem.Name = "天线扣费ToolStripMenuItem";
-            this.天线扣费ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.天线扣费ToolStripMenuItem.Text = "天线扣费";
-            this.天线扣费ToolStripMenuItem.Click += new System.EventHandler(this.天线扣费ToolStripMenuItem_Click);
-            // 
-            // 读卡器扣费ToolStripMenuItem
-            // 
-            this.读卡器扣费ToolStripMenuItem.Name = "读卡器扣费ToolStripMenuItem";
-            this.读卡器扣费ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
-            this.读卡器扣费ToolStripMenuItem.Text = "读卡器扣费";
-            // 
-            // statusStrip1
-            // 
-            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.lblCount});
-            this.statusStrip1.Location = new System.Drawing.Point(0, 348);
-            this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
-            this.statusStrip1.TabIndex = 3;
-            this.statusStrip1.Text = "statusStrip1";
-            // 
-            // lblCount
-            // 
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(1021, 17);
-            this.lblCount.Spring = true;
-            this.lblCount.Text = "共有 0 项";
-            // 
-            // timer1
-            // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // colLaneNo
             // 
@@ -248,6 +205,50 @@
             this.colState.Name = "colState";
             this.colState.ReadOnly = true;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.天线扣费ToolStripMenuItem,
+            this.读卡器扣费ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(137, 48);
+            // 
+            // 天线扣费ToolStripMenuItem
+            // 
+            this.天线扣费ToolStripMenuItem.Name = "天线扣费ToolStripMenuItem";
+            this.天线扣费ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.天线扣费ToolStripMenuItem.Text = "天线扣费";
+            this.天线扣费ToolStripMenuItem.Click += new System.EventHandler(this.天线扣费ToolStripMenuItem_Click);
+            // 
+            // 读卡器扣费ToolStripMenuItem
+            // 
+            this.读卡器扣费ToolStripMenuItem.Name = "读卡器扣费ToolStripMenuItem";
+            this.读卡器扣费ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.读卡器扣费ToolStripMenuItem.Text = "读卡器扣费";
+            this.读卡器扣费ToolStripMenuItem.Click += new System.EventHandler(this.读卡器扣费ToolStripMenuItem_Click);
+            // 
+            // statusStrip1
+            // 
+            this.statusStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.lblCount});
+            this.statusStrip1.Location = new System.Drawing.Point(0, 348);
+            this.statusStrip1.Name = "statusStrip1";
+            this.statusStrip1.Size = new System.Drawing.Size(1036, 22);
+            this.statusStrip1.TabIndex = 3;
+            this.statusStrip1.Text = "statusStrip1";
+            // 
+            // lblCount
+            // 
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(1021, 17);
+            this.lblCount.Spring = true;
+            this.lblCount.Text = "共有 0 项";
+            // 
+            // timer1
+            // 
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -258,6 +259,7 @@
             this.Controls.Add(this.btnInit);
             this.Name = "Form1";
             this.Text = "ETC设备测试程序";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.Form1_FormClosed);
             this.Load += new System.EventHandler(this.Form1_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

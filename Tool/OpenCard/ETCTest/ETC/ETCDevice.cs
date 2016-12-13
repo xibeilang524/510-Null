@@ -29,15 +29,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 获取或设置端口号
         /// </summary>
-        public int Port { get; set; }
+        public string Port { get; set; }
         /// <summary>
         /// 获取或设置超时时间(单位为秒)
         /// </summary>
-        public int TimeOut { get; set; }
+        public string TimeOut { get; set; }
         /// <summary>
         /// 获取或设置心跳时间(单位为秒)
         /// </summary>
-        public int HeartBeatTime { get; set; }
+        public string HeartBeatTime { get; set; }
         /// <summary>
         /// 获取或设置用户名称
         /// </summary>
@@ -69,11 +69,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 获取或设置天线ID
         /// </summary>
-        public int EcRSUID { get; set; }
+        public string EcRSUID { get; set; }
         /// <summary>
         /// 获取或设置读卡器ID
         /// </summary>
-        public int EcReaderID { get; set; }
+        public string EcReaderID { get; set; }
         /// <summary>
         /// 获取或设置是否不启用天线
         /// </summary>
@@ -145,7 +145,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         #region 连接设备相关的函数
         private int Connect()
         {
-            var r = ETCInterop.connectserver(int.Parse(LaneNo), IPAddr, Port);
+            var r = ETCInterop.connectserver(int.Parse(LaneNo), IPAddr, int.Parse(Port));
             if (r == 0)
             {
                 StringBuilder response = new StringBuilder(100);
@@ -188,7 +188,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private ETCResponse RSUOpen()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.RSUOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
+            var n = ETCInterop.RSUOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
+            if (n != 0) return new ETCResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -197,7 +198,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private ETCResponse RSUClose()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.RSUClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
+            var n = ETCInterop.RSUClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID }), response);
+            if (n != 0) return new ETCResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -206,7 +208,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private OBUSearchResponse OBUSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = 30000 }), response);
+            var n = ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = "2000" }), response);
+            if (n != 0) return new OBUSearchResponse { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<OBUSearchResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -227,8 +230,10 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 OBUID = r.OBUID,
                 OBUNO = r.OBUNO
             };
-            if (UseInGD) ETCInterop.GetOBUInfo_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
-            else ETCInterop.GetOBUInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+            int n = -1;
+            if (UseInGD) n = ETCInterop.GetOBUInfo_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response); //广东接口
+            else n = ETCInterop.GetOBUInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+            if (n != 0) return new GetOBUInfoResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<GetOBUInfoResponse>(response.ToString());
             ret.Content = response.ToString();
             ret.OBUID = r.OBUID; //这两个属性返回串中没有，是手动设置上去的，后面用得到，一定需要
@@ -238,6 +243,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 
         private WriteCardResponse RSUWriteCard(GetOBUInfoResponse r, int money, out ETCPaymentRecord record)
         {
+            int n = -1;
             record = null;
             WriteCardResponse ret = null;
             StringBuilder response = new StringBuilder(3000);
@@ -246,6 +252,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var request = new
                 {
                     UserName = UserName,
+                    Password = Password,
                     ProvinceNo = ProvinceNo,
                     CityNo = CityNo,
                     AreaNo = AreaNo,
@@ -254,16 +261,16 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     OBUID = r.OBUID,
                     OBUNO = r.OBUNO,
                     CardNo = r.CardNo,
-                    CashMoney = money,
+                    CashMoney = money.ToString(), //如果不改成字符串格式，会报错
                     CardAreaNo = AreaNo,
-                    CardGateNo = GateNo,
-                    CardLaneNo = LaneNo,
+                    CardGateNo = GateNo.PadLeft(4, '0'),
+                    CardLaneNo = LaneNo.PadLeft(4, '0'),
                     PassTime = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     VehPlate = r.CardPlate,
                     VehType = r.CardVehClass,
                     VehClass = r.CardVehUserType,
-                    OutFlag = IsExit ? 1 : 0,
-                    OperatorNo = "000001",
+                    OutFlag = IsExit ? "1" : "0",
+                    OperatorNo = "ffff",
                     LittleGateNo = r.LittleGateNo,
                     LittleLaneNo = r.LittleLaneNo,
                     LittlePassTime = r.LittlePassTime,
@@ -271,11 +278,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     LittleTime = r.LittleTime,
                     OfferType = r.OfferType,
                     OfferTime = r.OfferTime,
-                    BackUp = r.BackUp,
+                    BackUp = r.BackUp == null ? string.Empty : r.BackUp, //不能传NULL,
                     CheckCode = r.CheckCode,
                     RSUID = EcRSUID
                 };
-                ETCInterop.RSUWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.RSUWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse() { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -284,6 +292,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var request = new
                 {
                     UserName = UserName,
+                    Password = Password,
                     ProvinceNo = ProvinceNo,
                     CityNo = CityNo,
                     AreaNo = AreaNo,
@@ -292,19 +301,20 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     OBUID = r.OBUID,
                     OBUNO = r.OBUNO,
                     CardNo = r.CardNo,
-                    CashMoney = money,
+                    CashMoney = money.ToString(),
                     CardAreaNo = AreaNo,
-                    CardGateNo = GateNo,
-                    CardLaneNo = LaneNo,
+                    CardGateNo = GateNo.PadLeft(4, '0'),
+                    CardLaneNo = LaneNo.PadLeft(4, '0'),
                     PassTime = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     VehPlate = r.CardPlate,
                     VehType = r.CardVehClass,
                     VehClass = r.CardVehUserType,
-                    OutFlag = IsExit ? 1 : 0,
-                    OperatorNo = "000001",
+                    OutFlag = IsExit ? "1" : "0",
+                    OperatorNo = "ffff",
                     RSUID = EcRSUID
                 };
-                ETCInterop.RSUWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.RSUWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse() { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -325,7 +335,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     RelyServiceNo = ret.KeyServiceNo,
                     RSUID = EcRSUID
                 };
-                ETCInterop.RSUTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.RSUTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse() { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -343,7 +354,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private ETCResponse CardReaderOpen()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.CardReaderOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
+            var n = ETCInterop.CardReaderOpen(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
+            if (n != 0) return new ETCResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -352,7 +364,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private ETCResponse CardReaderOpenClose()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.CardReaderClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
+            var n = ETCInterop.CardReaderClose(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID }), response);
+            if (n != 0) return new ETCResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<ETCResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -361,7 +374,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private CardSearchResponse CardSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = 30000 }), response);
+            var n = ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = "2000" }), response);
+            if (n != 0) return new CardSearchResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<CardSearchResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -369,15 +383,17 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 
         private GetCardInfoResponse GetCardInfoFromReader(CardSearchResponse r)
         {
+            int n = -1;
             StringBuilder response = new StringBuilder(3000);
             if (UseInGD)
             {
-                ETCInterop.GetCardInfo_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, CardNo = r.CardNo, ReaderID = EcReaderID }), response);
+                n = ETCInterop.GetCardInfo_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, CardNo = r.CardNo, ReaderID = EcReaderID }), response);
             }
             else
             {
-                ETCInterop.GetCardInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, CardNo = r.CardNo, ReaderID = EcReaderID }), response);
+                n = ETCInterop.GetCardInfo(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, CardNo = r.CardNo, ReaderID = EcReaderID }), response);
             }
+            if (n != 0) return new GetCardInfoResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<GetCardInfoResponse>(response.ToString());
             ret.Content = response.ToString();
             ret.CardNo = r.CardNo; //由于返回的串中没有这个属性，所以这里设置进去
@@ -386,6 +402,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 
         private WriteCardResponse CardReaderWriteCard(GetCardInfoResponse r, int money, out ETCPaymentRecord record)
         {
+            int n = -1;
             record = null;
             WriteCardResponse ret = null;
             StringBuilder response = new StringBuilder(3000);
@@ -394,22 +411,23 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var request = new
                 {
                     UserName = UserName,
+                    PassWord = Password,
                     ProvinceNo = ProvinceNo,
                     CityNo = CityNo,
                     AreaNo = AreaNo,
                     GateNo = GateNo,
                     LaneNo = LaneNo,
                     CardNo = r.CardNo,
-                    CashMoney = money,
+                    CashMoney = money.ToString(),
                     CardAreaNo = AreaNo,
-                    CardGateNo = GateNo,
-                    CardLaneNo = LaneNo,
+                    CardGateNo = GateNo.PadLeft(4, '0'),
+                    CardLaneNo = LaneNo.PadLeft(4, '0'),
                     PassTime = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     VehPlate = r.CardPlate,
                     VehType = r.CardVehClass,
                     VehClass = r.CardVehUserType,
-                    OutFlag = IsExit ? 1 : 0,
-                    OperatorNo = "000001",
+                    OutFlag = IsExit ? "1" : "0",
+                    OperatorNo = "ffff",
                     LittleGateNo = r.LittleGateNo,
                     LittleLaneNo = r.LittleLaneNo,
                     LittlePassTime = r.LittlePassTime,
@@ -417,11 +435,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     LittleTime = r.LittleTime,
                     OfferType = r.OfferType,
                     OfferTime = r.OfferTime,
-                    BackUp = r.BackUp,
+                    BackUp = r.BackUp == null ? string.Empty : r.BackUp, //不能传NULL
                     CheckCode = r.CheckCode,
                     ReaderID = EcReaderID
                 };
-                ETCInterop.RSUWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.CardReaderWriteCard_GD(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse() { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -430,6 +449,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var request = new
                 {
                     UserName = UserName,
+                    PassWord = Password,
                     ProvinceNo = ProvinceNo,
                     CityNo = CityNo,
                     AreaNo = AreaNo,
@@ -438,17 +458,18 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     CardNo = r.CardNo,
                     CashMoney = money,
                     CardAreaNo = AreaNo,
-                    CardGateNo = GateNo,
-                    CardLaneNo = LaneNo,
+                    CardGateNo = GateNo.PadLeft(4, '0'),
+                    CardLaneNo = LaneNo.PadLeft(4, '0'),
                     PassTime = DateTime.Now.ToString("yyyyMMddHHmmss"),
                     VehPlate = r.CardPlate,
                     VehType = r.CardVehClass,
                     VehClass = r.CardVehUserType,
-                    OutFlag = IsExit ? 1 : 0,
-                    OperatorNo = "000001",
+                    OutFlag = IsExit ? "1" : "0",
+                    OperatorNo = "ffff",
                     ReaderID = EcReaderID
                 };
-                ETCInterop.RSUWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.CardReaderWriteCard(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse() { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -467,7 +488,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     RelyServiceNo = ret.KeyServiceNo,
                     ReaderID = EcReaderID
                 };
-                ETCInterop.CardReaderTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                n = ETCInterop.CardReaderTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+                if (n != 0) return new WriteCardResponse { ErrorCode = n };
                 ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
                 ret.Content = response.ToString();
             }
@@ -484,7 +506,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         #region 收费流水相关的操作
         private ETCPaymentRecord CreateRecord(GetOBUInfoResponse obuInfo, WriteCardResponse writeInfo)
         {
-            return new ETCPaymentRecord()
+            var ret = new ETCPaymentRecord()
             {
                 ListType = IsExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
@@ -508,12 +530,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 ExAreaNo = IsExit ? AreaNo : null,
                 ExGateNo = IsExit ? GateNo : null,
                 ExLaneNo = IsExit ? LaneNo : null,
-                ExOperatorNo = IsExit ? "000001" : null,
+                ExOperatorNo = IsExit ? "ffff" : null,
                 ExVehPlate = IsExit ? obuInfo.CardPlate : null,
-                ExVehType = IsExit ? obuInfo.CardVehClass : 255,
-                ExVehClass = IsExit ? obuInfo.CardVehUserType : 255,
+                ExVehType = IsExit ? obuInfo.CardVehClass : "255",
+                ExVehClass = IsExit ? obuInfo.CardVehUserType : "255",
                 EnTime = IsExit ? obuInfo.PassTime : DateTime.Now.ToString("yyyyMMddHHmmss"),
-                EnOperatorNo = IsExit ? obuInfo.OperatorNo : "000001",
+                EnOperatorNo = IsExit ? obuInfo.OperatorNo : "ffff",
                 EnAreaNo = IsExit ? obuInfo.CardAreaNo : AreaNo,
                 EnGateNo = IsExit ? obuInfo.CardGateNo : GateNo,
                 EnLaneNo = IsExit ? obuInfo.CardLaneNo : LaneNo,
@@ -521,11 +543,16 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 EnVehType = IsExit ? obuInfo.VehType : obuInfo.CardVehClass,
                 EnVehClass = IsExit ? obuInfo.VehClass : obuInfo.CardVehUserType,
             };
+            if (!string.IsNullOrEmpty(ret.ExGateNo) && ret.ExGateNo.Length > 2) ret.ExGateNo = ret.ExGateNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.ExLaneNo) && ret.ExLaneNo.Length > 2) ret.ExLaneNo = ret.ExLaneNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.EnGateNo) && ret.EnGateNo.Length > 2) ret.EnGateNo = ret.EnGateNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.EnLaneNo) && ret.EnLaneNo.Length > 2) ret.EnLaneNo = ret.EnLaneNo.Substring(2);
+            return ret;
         }
 
         private ETCPaymentRecord CreateRecord(GetCardInfoResponse cardInfo, WriteCardResponse writeInfo)
         {
-            return new ETCPaymentRecord()
+            var ret = new ETCPaymentRecord()
             {
                 ListType = IsExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
@@ -549,10 +576,10 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 ExAreaNo = IsExit ? AreaNo : null,
                 ExGateNo = IsExit ? GateNo : null,
                 ExLaneNo = IsExit ? LaneNo : null,
-                ExOperatorNo = IsExit ? "000001" : null,
+                ExOperatorNo = IsExit ? "ffff" : null,
                 ExVehPlate = IsExit ? cardInfo.CardPlate : null,
-                ExVehType = IsExit ? cardInfo.CardVehClass : 255,
-                ExVehClass = IsExit ? cardInfo.CardVehUserType : 255,
+                ExVehType = IsExit ? cardInfo.CardVehClass : "255",
+                ExVehClass = IsExit ? cardInfo.CardVehUserType : "255",
                 EnTime = IsExit ? cardInfo.PassTime : DateTime.Now.ToString("yyyyMMddHHmmss"),
                 EnOperatorNo = IsExit ? cardInfo.OperatorNo : "000001",
                 EnAreaNo = IsExit ? cardInfo.CardAreaNo : AreaNo,
@@ -562,6 +589,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 EnVehType = IsExit ? cardInfo.VehType : cardInfo.CardVehClass,
                 EnVehClass = IsExit ? cardInfo.VehClass : cardInfo.CardVehUserType,
             };
+            if (!string.IsNullOrEmpty(ret.ExGateNo) && ret.ExGateNo.Length > 2) ret.ExGateNo = ret.ExGateNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.ExLaneNo) && ret.ExLaneNo.Length > 2) ret.ExLaneNo = ret.ExLaneNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.EnGateNo) && ret.EnGateNo.Length > 2) ret.EnGateNo = ret.EnGateNo.Substring(2);
+            if (!string.IsNullOrEmpty(ret.EnLaneNo) && ret.EnLaneNo.Length > 2) ret.EnLaneNo = ret.EnLaneNo.Substring(2);
+            return ret;
         }
 
         private ETCResponse ListUpLoad(ETCPaymentRecord record)
@@ -572,22 +604,22 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 UserName = UserName,
                 ProvinceNo = ProvinceNo,
                 CityNo = CityNo,
-                ListType = record.ListType,
+                ListType = record.ListType.ToString(),
                 ListNo = record.ListNo,
                 KeyServiceNo = record.KeyServiceNo,
-                TradeType = record.TradeType,
+                TradeType = record.TradeType.ToString(),
                 TermCode = record.TermCode,
                 TermTradeNo = record.TermTradeNo,
                 CardTradeNo = record.CardTradeNo,
                 Tac = record.Tac,
-                OBUID = record.OBUID,
-                OBUNO = record.OBUNO,
+                OBUID = record.OBUID == null ? string.Empty : record.OBUID,
+                OBUNO = record.OBUNO == null ? string.Empty : record.OBUNO,
                 CardNo = record.CardNo,
-                CashMoney = record.CashMoney,
-                Balance = record.Balance,
-                TradeDevice = record.TradeDevice,
+                CashMoney = record.CashMoney.ToString(),
+                Balance = record.Balance.ToString(),
+                TradeDevice = record.TradeDevice.ToString(),
                 VehPicture = record.VehPicture,
-                VehPictureLen = record.VehPictureLen,
+                VehPictureLen = record.VehPictureLen.ToString(),
                 SquadDate = record.SquadDate,
                 ShiftID = record.ShiftID,
                 ExTime = record.ExTime,
@@ -607,7 +639,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 EnVehType = record.EnVehType,
                 EnVehClass = record.EnVehClass,
             };
-            ETCInterop.RSUTransActionProve(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+            var n = ETCInterop.ListUpLoad(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
+            if (n != 0) return new ETCResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -682,7 +715,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 r = RSUWriteCard(r as GetOBUInfoResponse, money, out record);
                 if (record != null) r = ListUpLoad(record);
             }
-            return r.ErrorCode;
+            if (r != null) return r.ErrorCode;
+            return -1;
         }
 
         /// <summary>

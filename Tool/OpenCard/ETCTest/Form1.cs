@@ -36,6 +36,7 @@ namespace ETCTest
                     dataGridView1.Rows[row].Cells["colProvinceNo"].Value = d.ProvinceNo;
                     dataGridView1.Rows[row].Cells["colCityNo"].Value = d.CityNo;
                     dataGridView1.Rows[row].Cells["colAreaNo"].Value = d.AreaNo;
+                    dataGridView1.Rows[row].Cells["colGateNo"].Value = d.GateNo;
                     dataGridView1.Rows[row].Cells["colEcRSUID"].Value = d.EcRSUID;
                     dataGridView1.Rows[row].Cells["colEcReaderID"].Value = d.EcReaderID;
                     dataGridView1.Rows[row].Cells["colTimeout"].Value = d.TimeOut;
@@ -45,21 +46,28 @@ namespace ETCTest
             lblCount.Text = string.Format("总共 {0} 项", dataGridView1.Rows.Count);
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
+        }
+
         private void btnInit_Click(object sender, EventArgs e)
         {
-            _Controller.Init();
-            AddDeviceToGrid(_Controller.ETCDevices);
-            btnInit.Enabled = false;
-            timer1.Enabled = true;
+            var ret = _Controller.Init();
+            if (ret)
+            {
+                AddDeviceToGrid(_Controller.ETCDevices);
+                btnInit.Enabled = false;
+                timer1.Enabled = true;
+            }
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {
-                ETCDevice d = row.Tag as ETCDevice;
-                var ret = _Controller.HeartBeatEx(d.LaneNo);
-                row.Cells["colState"].Value = ret == 0 ? "连接正常" : "断开连接";
+                //ETCDevice d = row.Tag as ETCDevice;
+                //var ret = _Controller.HeartBeatEx(d.LaneNo);
+                //row.Cells["colState"].Value = ret == 0 ? "连接正常" : "断开连接";
             }
         }
 
@@ -68,12 +76,26 @@ namespace ETCTest
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var device = dataGridView1.SelectedRows[0].Tag as ETCDevice;
-                device.DoRSUPay(1); 
+                var ret = device.DoRSUPay(1);
+                if (ret == 0) MessageBox.Show("扣款成功");
+                else MessageBox.Show(string.Format("扣款失败，errorCode={0}", ret));
             }
         }
 
-        private void Form1_Load(object sender, EventArgs e)
+        private void 读卡器扣费ToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (dataGridView1.SelectedRows.Count == 1)
+            {
+                var device = dataGridView1.SelectedRows[0].Tag as ETCDevice;
+                var ret=device.DoReaderPay(1);
+                if (ret == 0) MessageBox.Show("扣款成功");
+                else MessageBox.Show(string.Format("扣款失败，errorCode={0}", ret));
+            }
+        }
+
+        private void Form1_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            _Controller.UnInit();
         }
     }
 }
