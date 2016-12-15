@@ -76,7 +76,7 @@ namespace ETCTest
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var device = dataGridView1.SelectedRows[0].Tag as ETCDevice;
-                var ret = device.DoRSUPay(1);
+                var ret = device.DoRSUPay(device.IsExit ? 1 : 0);
                 if (ret == 0) MessageBox.Show("扣款成功");
                 else MessageBox.Show(string.Format("扣款失败，errorCode={0}", ret));
             }
@@ -87,7 +87,7 @@ namespace ETCTest
             if (dataGridView1.SelectedRows.Count == 1)
             {
                 var device = dataGridView1.SelectedRows[0].Tag as ETCDevice;
-                var ret=device.DoReaderPay(1);
+                var ret = device.DoReaderPay(device.IsExit ? 1 : 0);
                 if (ret == 0) MessageBox.Show("扣款成功");
                 else MessageBox.Show(string.Format("扣款失败，errorCode={0}", ret));
             }
