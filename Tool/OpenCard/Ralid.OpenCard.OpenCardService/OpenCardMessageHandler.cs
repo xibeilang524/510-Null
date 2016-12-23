@@ -374,6 +374,23 @@ namespace Ralid.OpenCard.OpenCardService
             (_Services[yct.GetType()] as YCT.YCTService).Setting = yct;
             _Services[yct.GetType()].Init();
         }
+
+        public void InitService(ETC.ETCSetting etc)
+        {
+            if (!_Services.ContainsKey(etc.GetType()))
+            {
+                IOpenCardService s = new ETC.ETCService();
+                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
+                _Services[etc.GetType()] = s;
+                s.Init();
+            }
+            (_Services[etc.GetType()] as ETC.ETCService).Setting = etc;
+        }
+
         /// <summary>
         /// 查看是否已经启动某个类型的服务
         /// </summary>
@@ -399,7 +416,7 @@ namespace Ralid.OpenCard.OpenCardService
         public void HandleCardEvent(CardEventReport report)
         {
             if (report.EventStatus != CardEventStatus.Valid) return;
-            if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte)) //
+            if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte || report.CardType.Name == ETC.ETCSetting.CardTyte)) //
             {
                 if (report.IsExitEvent) //出场后,将开放卡片从系统中删除
                 {
@@ -410,16 +427,6 @@ namespace Ralid.OpenCard.OpenCardService
                         bll.DeleteCardAtAll(card);
                     }
                 }
-                //else //入场后,将卡片的余额设置成0, 因为开放卡片可能是以储值卡的方式加到系统中的,在卡片中设置余额只是在出入场时显示在屏上,但这个余额是不能直接被停车场使用的,所以入场后就要清空
-                //{
-                //    CardBll bll = new CardBll(AppSettings.CurrentSetting.MasterParkConnect);
-                //    CardInfo card = bll.GetCardByID(report.CardID).QueryObject;
-                //    if (card != null && card.Balance > 0)
-                //    {
-                //        card.Balance = 0;
-                //        bll.UpdateCard(card);
-                //    }
-                //}
             }
         }
         #endregion

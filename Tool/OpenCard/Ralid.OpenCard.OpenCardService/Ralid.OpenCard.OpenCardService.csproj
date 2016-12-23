@@ -109,7 +109,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AppSettingsExtension.cs" />
-    <Compile Include="ETC\ETCController.cs" />
+    <Compile Include="ETC\ETCDeviceEvent.cs" />
+    <Compile Include="ETC\ETCService.cs" />
+    <Compile Include="ETC\ETCDevice.cs" />
+    <Compile Include="ETC\ETCInterop.cs" />
+    <Compile Include="ETC\ETCPaymentRecord.cs" />
+    <Compile Include="ETC\ETCSetting.cs" />
+    <Compile Include="ETC\Response\CardSearchResponse.cs" />
+    <Compile Include="ETC\Response\ETCResponse.cs" />
+    <Compile Include="ETC\Response\GetCardInfoResponse.cs" />
+    <Compile Include="ETC\Response\GetCardNoResponse.cs" />
+    <Compile Include="ETC\Response\GetOBUInfoResponse.cs" />
+    <Compile Include="ETC\Response\OBUSearchResponse.cs" />
+    <Compile Include="ETC\Response\WriteCardResponse.cs" />
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="IOpenCardService.cs" />
     <Compile Include="OpenCardMessageHandler.cs" />
