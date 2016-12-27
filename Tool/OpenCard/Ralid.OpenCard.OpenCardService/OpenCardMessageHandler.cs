@@ -377,18 +377,23 @@ namespace Ralid.OpenCard.OpenCardService
 
         public void InitService(ETC.ETCSetting etc)
         {
+            ETC.ETCService s = null;
             if (!_Services.ContainsKey(etc.GetType()))
             {
-                IOpenCardService s = new ETC.ETCService();
+                s = new ETC.ETCService();
                 s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
                 s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
                 s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
                 s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
                 s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
                 _Services[etc.GetType()] = s;
-                s.Init();
             }
-            (_Services[etc.GetType()] as ETC.ETCService).Setting = etc;
+            else
+            {
+                s = _Services[etc.GetType()] as ETC.ETCService;
+            }
+            s.Setting = etc;
+            _Services[etc.GetType()].Init();
         }
 
         /// <summary>

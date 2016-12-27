@@ -11,12 +11,14 @@ namespace Ralid.OpenCard.OpenCardService.ETC
     internal class ETCDevice : IDisposable
     {
         #region 构造函数
-        public ETCDevice()
+        public ETCDevice(ETCDeviceInfo info)
         {
+            _DeviceInfo = info;
         }
         #endregion
 
         #region 私有变量
+        private ETCDeviceInfo _DeviceInfo = null;
         private Thread _Thread_RSURead = null;
         private Thread _Thread_ReaderRead = null;
         #endregion
@@ -25,61 +27,63 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 获取或设置IP地址
         /// </summary>
-        public string IPAddr { get; set; }
+        public string IPAddr { get { return _DeviceInfo.IPAddr; } }
         /// <summary>
         /// 获取或设置端口号
         /// </summary>
-        public string Port { get; set; }
+        public string Port { get { return _DeviceInfo.Port; } }
         /// <summary>
         /// 获取或设置超时时间(单位为秒)
         /// </summary>
-        public string TimeOut { get; set; }
+        public string TimeOut { get { return _DeviceInfo.TimeOut; } }
         /// <summary>
         /// 获取或设置心跳时间(单位为秒)
         /// </summary>
-        public string HeartBeatTime { get; set; }
+        public string HeartBeatTime { get { return _DeviceInfo.HeartBeatTime; } }
         /// <summary>
         /// 获取或设置用户名称
         /// </summary>
-        public string UserName { get; set; }
+        public string UserName { get { return _DeviceInfo.UserName; } }
         /// <summary>
         /// 获取或设置用户密码
         /// </summary>
-        public string Password { get; set; }
+        public string Password { get { return _DeviceInfo.Password; } }
         /// <summary>
         /// 获取或设置省份编号
         /// </summary>
-        public string ProvinceNo { get; set; }
+        public string ProvinceNo { get { return _DeviceInfo.ProvinceNo; } }
         /// <summary>
         /// 获取或设置城市编号
         /// </summary>
-        public string CityNo { get; set; }
+        public string CityNo { get { return _DeviceInfo.CityNo; } }
         /// <summary>
         /// 获取或设置区域编号
         /// </summary>
-        public string AreaNo { get; set; }
+        public string AreaNo { get { return _DeviceInfo.AreaNo; } }
         /// <summary>
         /// 获取或设置大门编号
         /// </summary>
-        public string GateNo { get; set; }
+        public string GateNo { get { return _DeviceInfo.GateNo; } }
         /// <summary>
         /// 获取或设置车道编号
         /// </summary>
-        public string LaneNo { get; set; }
+        public string LaneNo { get { return _DeviceInfo.LaneNo; } }
         /// <summary>
         /// 获取或设置天线ID
         /// </summary>
-        public string EcRSUID { get; set; }
+        public string EcRSUID { get { return _DeviceInfo.EcRSUID; } }
         /// <summary>
         /// 获取或设置读卡器ID
         /// </summary>
-        public string EcReaderID { get; set; }
+        public string EcReaderID { get { return _DeviceInfo.EcReaderID; } }
+
+        public int EntranceID { get { return _DeviceInfo.EntranceID; } }
         /// <summary>
         /// 获取或设置是否在广东省内使用此设备
         /// </summary>
         public bool UseInGD
         {
-            get { return ProvinceNo == "44"; }
+            get { return _DeviceInfo.ProvinceNo == "44"; }
         }
         #endregion
 
@@ -107,8 +111,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         {
                             if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = r as GetOBUInfoResponse });
                         }
+                        else
+                        {
+                            Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
+                        }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
 
                     }
@@ -135,8 +143,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         {
                             if (this.OnReadCardInfo != null) this.OnReadCardInfo(this, new ReadCardInfoEventArgs() { CardInfo = r as GetCardInfoResponse });
                         }
+                        else
+                        {
+                            Thread.Sleep(500);  //如果某一个函数调用失败，则休眠一段时间，避免循环太快
+                        }
                     }
-                    catch (Exception ex)
+                    catch (Exception)
                     {
 
                     }

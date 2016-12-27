@@ -16,6 +16,7 @@ using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.OpenCard.OpenCardService;
 using Ralid.OpenCard.OpenCardService.YCT;
+using Ralid.OpenCard.OpenCardService.ETC;
 
 namespace Ralid.OpenCard.UI
 {
@@ -205,6 +206,15 @@ namespace Ralid.OpenCard.UI
                 }
             }
 
+            temp = AppSettings.CurrentSetting.GetConfigContent("EnableETC");
+            if (!string.IsNullOrEmpty(temp) && bool.TryParse(temp, out enabled) && enabled)
+            {
+                ETCSetting etc = ETCSetting.GetSetting();
+                if (etc != null)
+                {
+                    handler.InitService(etc);
+                }
+            }
             this.Invoke((Action)(() => { ShowServiceState(); }));
         }
 
@@ -342,9 +352,10 @@ namespace Ralid.OpenCard.UI
         private void ShowServiceState()
         {
             OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
-            lblYCT.Text = handler.ContainService<YCTSetting>() ? "羊城通服务启动" : string.Empty;
-            lblZST.Text = handler.ContainService<ZSTSettings>() ? "中山通服务启动" : string.Empty;
-            lblYiTingShanFu.Text = handler.ContainService<YiTingShanFuSetting>() ? "驿停闪付服务启动" : string.Empty;
+            lblYCT.Visible = handler.ContainService<YCTSetting>();
+            lblZST.Visible = handler.ContainService<ZSTSettings>();
+            lblYiTingShanFu.Visible = handler.ContainService<YiTingShanFuSetting>();
+            lblETC.Visible = handler.ContainService<ETCSetting>();
             statusStrip1.Refresh();
         }
         #endregion
@@ -442,6 +453,14 @@ namespace Ralid.OpenCard.UI
             ShowServiceState();
         }
 
+        private void mnu_ETC_Click(object sender, EventArgs e)
+        {
+            ETC.FrmETCSetting frm = new ETC.FrmETCSetting();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+            ShowServiceState();
+        }
+
         private void mnu_ZST_Click(object sender, EventArgs e)
         {
             FrmZSTSetting frm = new FrmZSTSetting();
@@ -457,6 +476,7 @@ namespace Ralid.OpenCard.UI
             frm.ShowDialog();
             ShowServiceState();
         }
+
         private void chkDebug_CheckedChanged(object sender, EventArgs e)
         {
             OpenCardMessageHandler handler = GlobalSettings.Current.Get<OpenCardMessageHandler>();
@@ -466,6 +486,5 @@ namespace Ralid.OpenCard.UI
             }
         }
         #endregion
-
     }
 }

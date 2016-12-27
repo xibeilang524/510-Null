@@ -16,19 +16,18 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 {
     public class ETCService : IOpenCardService
     {
-
-        #region 公共属性
-        public ETCSetting Setting { get; set; }
-
-        private ETCDevice[] ETCDevices { get; set; }
+        #region 私有变量
+        private List<ETCDevice> _Devices { get; set; }
         #endregion
+
+        public ETCSetting Setting { get; set; }
 
         #region 读卡事件处理程序
         private void device_OnReadOBUInfo(object sender, ReadOBUInfoEventArgs e)
         {
             ETCDevice device = sender as ETCDevice;
             if (device == null) return;
-            EntranceInfo entrance = GetEntranceOf(device.LaneNo);
+            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(device.EntranceID);
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.OBUInfo.CardNo,
@@ -58,7 +57,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         {
             ETCDevice device = sender as ETCDevice;
             if (device == null) return;
-            EntranceInfo entrance = GetEntranceOf(device.LaneNo);
+            EntranceInfo entrance = ParkBuffer.Current.GetEntrance(device.EntranceID);
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.CardInfo.CardNo,
@@ -126,13 +125,6 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 }
             }
         }
-
-        private EntranceInfo GetEntranceOf(string laneNo)
-        {
-            if (Setting == null || Setting.ETCEntrancePairs == null) return null;
-            if (!Setting.ETCEntrancePairs.ContainsKey(laneNo)) return null;
-            return ParkBuffer.Current.GetEntrance(Setting.ETCEntrancePairs[laneNo]);
-        }
         #endregion
 
         #region 实现接口IOpenCardService
@@ -148,39 +140,32 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 
         public void Init()
         {
-            try
+            if (_Devices != null && _Devices.Count > 0)
             {
-                ETCDevices = null;
-                StringBuilder pRet = new StringBuilder(100 * 1000);
-                StringBuilder err = new StringBuilder(1000);
-                int count = 0;
-                var n = ETCInterop.Initialize(pRet, ref count, err);
-                if (count > 0)
+                foreach (var device in _Devices)
                 {
-                    var str = pRet.ToString().Trim();
-                    ETCDevices = JsonConvert.DeserializeObject<ETCDevice[]>(str);
-                    if (ETCDevices != null && ETCDevices.Length > 0)
-                    {
-                        foreach (var device in ETCDevices)
-                        {
-                            device.OnReadCardInfo += new EventHandler<ReadCardInfoEventArgs>(device_OnReadCardInfo);
-                            device.OnReadOBUInfo += new EventHandler<ReadOBUInfoEventArgs>(device_OnReadOBUInfo);
-                            device.Init();
-                        }
-                    }
+                    device.Dispose();
                 }
             }
-            catch (Exception ex)
+            _Devices = new List<ETCDevice>();
+            if (Setting.Devices != null && Setting.Devices.Count > 0)
             {
-                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
+                foreach (var dinfo in Setting.Devices)
+                {
+                    var device = new ETCDevice(dinfo);
+                    device.OnReadCardInfo += device_OnReadCardInfo;
+                    device.OnReadOBUInfo += device_OnReadOBUInfo;
+                    device.Init();
+                    _Devices.Add(device);
+                }
             }
         }
 
         public void Dispose()
         {
-            if (ETCDevices != null && ETCDevices.Length > 0)
+            if (_Devices != null && _Devices.Count > 0)
             {
-                foreach (var device in ETCDevices)
+                foreach (var device in _Devices)
                 {
                     device.Dispose();
                 }

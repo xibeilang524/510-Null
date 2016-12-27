@@ -110,6 +110,7 @@
   <ItemGroup>
     <Compile Include="AppSettingsExtension.cs" />
     <Compile Include="ETC\ETCDeviceEvent.cs" />
+    <Compile Include="ETC\ETCDeviceInfo.cs" />
     <Compile Include="ETC\ETCService.cs" />
     <Compile Include="ETC\ETCDevice.cs" />
     <Compile Include="ETC\ETCInterop.cs" />

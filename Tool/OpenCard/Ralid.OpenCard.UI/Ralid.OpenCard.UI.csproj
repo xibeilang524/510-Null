@@ -82,6 +82,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ETC\FrmETCSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ETC\FrmETCSetting.Designer.cs">
+      <DependentUpon>FrmETCSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ETC\FrmSetEntrance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ETC\FrmSetEntrance.Designer.cs">
+      <DependentUpon>FrmSetEntrance.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmConnect.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +162,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="ETC\FrmETCSetting.resx">
+      <DependentUpon>FrmETCSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ETC\FrmSetEntrance.resx">
+      <DependentUpon>FrmSetEntrance.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmConnect.resx">
       <DependentUpon>FrmConnect.cs</DependentUpon>
     </EmbeddedResource>
