@@ -39,7 +39,8 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Reference\Newtonsoft.Json.dll</HintPath>
     </Reference>
-    <Reference Include="Ralid.GeneralLibrary">
+    <Reference Include="Ralid.GeneralLibrary, Version=2.0.2016.1123, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Reference\Ralid.GeneralLibrary.dll</HintPath>
     </Reference>
     <Reference Include="System" />

@@ -216,14 +216,14 @@
             // 天线扣费ToolStripMenuItem
             // 
             this.天线扣费ToolStripMenuItem.Name = "天线扣费ToolStripMenuItem";
-            this.天线扣费ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.天线扣费ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.天线扣费ToolStripMenuItem.Text = "天线扣费";
             this.天线扣费ToolStripMenuItem.Click += new System.EventHandler(this.天线扣费ToolStripMenuItem_Click);
             // 
             // 读卡器扣费ToolStripMenuItem
             // 
             this.读卡器扣费ToolStripMenuItem.Name = "读卡器扣费ToolStripMenuItem";
-            this.读卡器扣费ToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.读卡器扣费ToolStripMenuItem.Size = new System.Drawing.Size(136, 22);
             this.读卡器扣费ToolStripMenuItem.Text = "读卡器扣费";
             this.读卡器扣费ToolStripMenuItem.Click += new System.EventHandler(this.读卡器扣费ToolStripMenuItem_Click);
             // 

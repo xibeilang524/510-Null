@@ -90,7 +90,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             if (args.Payment.GetPaying() <= 0) //不用收费直接返回收款成功事件
             {
                 args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
+                args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
                 if (this.OnPaidOk != null) this.OnPaidOk(this, args);
             }
             else //扣费
@@ -108,7 +108,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         device.ListUpLoad(record); //上传流水
                         args.Paid = paid;
                         args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                        args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.YangChengTong;
+                        args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
                         args.Balance = r.Balance;
                         if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                     }
