@@ -110,6 +110,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0)
                         {
                             if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = r as GetOBUInfoResponse });
+                            Thread.Sleep(3000);
                         }
                         else
                         {
@@ -142,6 +143,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0)
                         {
                             if (this.OnReadCardInfo != null) this.OnReadCardInfo(this, new ReadCardInfoEventArgs() { CardInfo = r as GetCardInfoResponse });
+                            Thread.Sleep(3000);
                         }
                         else
                         {
@@ -672,8 +674,13 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 EnVehType = record.EnVehType,
                 EnVehClass = record.EnVehClass,
             };
-            var n = ETCInterop.ListUpLoad(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response);
-            if (n != 0) return new ETCResponse() { ErrorCode = n };
+            var strReq=JsonConvert.SerializeObject(request);
+            var n = ETCInterop.ListUpLoad(int.Parse(LaneNo),strReq  , response);
+            if (n != 0)
+            {
+                Ralid.GeneralLibrary.LOG.FileLog.Log("未成功上传流水" + LaneNo.ToString(), strReq);
+                return new ETCResponse() { ErrorCode = n };
+            }
             var ret = JsonConvert.DeserializeObject<WriteCardResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;

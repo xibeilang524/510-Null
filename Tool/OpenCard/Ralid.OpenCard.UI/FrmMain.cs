@@ -486,5 +486,11 @@ namespace Ralid.OpenCard.UI
             }
         }
         #endregion
+
+        private void 设置停车场数据库连接ToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            FrmConnect frm = new FrmConnect();
+            frm.
+        }
     }
 }

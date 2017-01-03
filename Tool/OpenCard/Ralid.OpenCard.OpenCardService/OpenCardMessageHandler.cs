@@ -219,7 +219,7 @@ namespace Ralid.OpenCard.OpenCardService
                         string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
                         int reader = 0;
                         if (!int.TryParse(temp, out reader)) reader = 0;
-                        var fuck = new CardEventReport()
+                        var ce = new CardEventReport()
                         {
                             EntranceID = e.Entrance.EntranceID,
                             CardID = e.Payment.CardID,
@@ -228,7 +228,7 @@ namespace Ralid.OpenCard.OpenCardService
                         };
                         var notify = new EventInvalidNotify()
                         {
-                            CardEvent = fuck,
+                            CardEvent = ce,
                             Balance = e.Balance,
                             OperatorNum = OperatorInfo.CurrentOperator.OperatorNum,
                             InvalidType = EventInvalidType.INV_Balance

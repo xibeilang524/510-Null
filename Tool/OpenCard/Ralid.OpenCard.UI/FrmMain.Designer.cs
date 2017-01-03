@@ -96,7 +96,7 @@
             // 
             this.lblStartFrom.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.lblStartFrom.Name = "lblStartFrom";
-            this.lblStartFrom.Size = new System.Drawing.Size(175, 21);
+            this.lblStartFrom.Size = new System.Drawing.Size(602, 21);
             this.lblStartFrom.Spring = true;
             this.lblStartFrom.Text = "启动时间";
             this.lblStartFrom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -165,14 +165,14 @@
             // mnu_SelOperator
             // 
             this.mnu_SelOperator.Name = "mnu_SelOperator";
-            this.mnu_SelOperator.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelOperator.Size = new System.Drawing.Size(196, 22);
             this.mnu_SelOperator.Text = "选择当前操作员";
             this.mnu_SelOperator.Click += new System.EventHandler(this.mnu_SelOperator_Click);
             // 
             // mnu_SelStation
             // 
             this.mnu_SelStation.Name = "mnu_SelStation";
-            this.mnu_SelStation.Size = new System.Drawing.Size(160, 22);
+            this.mnu_SelStation.Size = new System.Drawing.Size(196, 22);
             this.mnu_SelStation.Text = "选择当前工作站";
             this.mnu_SelStation.Click += new System.EventHandler(this.mnu_SelStation_Click);
             // 

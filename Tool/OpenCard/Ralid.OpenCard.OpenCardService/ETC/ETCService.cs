@@ -95,21 +95,21 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             }
             else //扣费
             {
-                int paid = (int)(args.Payment.GetPaying() * 100);
                 //判断余额是否够扣费，否则返回"余额不足",注意钱包单位是分的，这里要转成分比较
-                if (paid <= args.Balance)
+                if (args.Payment.GetPaying() <= args.Balance)
                 {
+                    int paid = (int)(args.Payment.GetPaying() * 100);
                     ETCPaymentRecord record = null;
                     WriteCardResponse r = null;
                     if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, paid, true, out record);
                     else r = device.CardReaderWriteCard(cardInfo.CardInfo, paid, true, out record);
                     if (r.ErrorCode == 0)
                     {
-                        device.ListUpLoad(record); //上传流水
-                        args.Paid = paid;
+                        var res = device.ListUpLoad(record); //上传流水
+                        args.Paid = args.Payment.GetPaying();
                         args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                         args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
-                        args.Balance = r.Balance;
+                        args.Balance = (decimal)r.Balance / 100;
                         if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                     }
                     else
