@@ -10,6 +10,25 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 {
     internal class ETCDevice : IDisposable
     {
+        #region 静态函数
+        /// <summary>
+        /// 获取所有的ETC设备
+        /// </summary>
+        /// <returns></returns>
+        public static ETCDeviceInfo[] GetAllDevices()
+        {
+            int count = 0;
+            StringBuilder pRet = new StringBuilder(100 * 1000);
+            StringBuilder err = new StringBuilder(1000);
+            var n = ETCInterop.Initialize(pRet, ref count, err);
+            if (count > 0)
+            {
+                return JsonConvert.DeserializeObject<ETCDeviceInfo[]>(pRet.ToString().Trim());
+            }
+            return null;
+        }
+        #endregion
+
         #region 构造函数
         public ETCDevice(ETCDeviceInfo info)
         {

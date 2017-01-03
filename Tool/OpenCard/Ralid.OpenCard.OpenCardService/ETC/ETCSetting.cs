@@ -23,24 +23,17 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 {
                     _CurSetting = new ETCSetting();
                     _CurSetting.Devices = new List<ETCDeviceInfo>();
-                    StringBuilder pRet = new StringBuilder(100 * 1000);
-                    StringBuilder err = new StringBuilder(1000);
-                    int count = 0;
-                    var n = ETCInterop.Initialize(pRet, ref count, err);
-                    if (count > 0)
+                    var items = ETCDevice.GetAllDevices();
+                    if (items != null && items.Length > 0)
                     {
-                        var items = JsonConvert.DeserializeObject<ETCDeviceInfo[]>(pRet.ToString().Trim());
-                        if (items != null && items.Length > 0)
+                        _CurSetting.Devices.AddRange(items);
+                        var original = new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect).GetSetting<ETCSetting>();
+                        if (original != null && original.Devices != null)
                         {
-                            _CurSetting.Devices.AddRange(items);
-                            var original = new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect).GetSetting<ETCSetting>();
-                            if (original != null && original.Devices != null)
+                            foreach (var item in items)
                             {
-                                foreach (var item in items)
-                                {
-                                    var o = original.Devices.SingleOrDefault(it => it.LaneNo == item.LaneNo);
-                                    item.EntranceID = o != null ? o.EntranceID : 0;
-                                }
+                                var o = original.Devices.SingleOrDefault(it => it.LaneNo == item.LaneNo);
+                                item.EntranceID = o != null ? o.EntranceID : 0;
                             }
                         }
                     }
