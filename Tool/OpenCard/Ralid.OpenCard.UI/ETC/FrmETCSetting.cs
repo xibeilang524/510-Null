@@ -69,6 +69,7 @@ namespace Ralid.OpenCard.UI.ETC
                 ETCDeviceInfo d = this.dataGridView1.SelectedRows[0].Tag as ETCDeviceInfo;
                 FrmSetEntrance frm = new FrmSetEntrance();
                 frm.StartPosition = FormStartPosition.CenterParent;
+                frm.EntranceID = d.EntranceID;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     d.EntranceID = frm.EntranceID;
