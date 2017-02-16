@@ -125,6 +125,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 }
             }
         }
+
+        private void device_OnError(object sender, OpenCardEventArgs e)
+        {
+            if (this.OnError != null) this.OnError(sender, e);
+        }
         #endregion
 
         #region 实现接口IOpenCardService
@@ -155,6 +160,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     var device = new ETCDevice(dinfo);
                     device.OnReadCardInfo += device_OnReadCardInfo;
                     device.OnReadOBUInfo += device_OnReadOBUInfo;
+                    device.OnError += device_OnError;
                     device.Init();
                     _Devices.Add(device);
                 }

@@ -100,9 +100,27 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// <summary>
         /// 获取或设置是否在广东省内使用此设备
         /// </summary>
-        public bool UseInGD
+        public bool UseInGD { get { return _DeviceInfo.ProvinceNo == "44"; } }
+
+        public int State
         {
-            get { return _DeviceInfo.ProvinceNo == "44"; }
+            get { return _DeviceInfo.State; }
+            set
+            {
+                if (_DeviceInfo.State != value)
+                {
+                    _DeviceInfo.State = value;
+                    if (_DeviceInfo.State == 1)
+                    {
+                        OpenCardEventArgs args = new OpenCardEventArgs()
+                        {
+                            Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
+                            LastError = "ETC设备断开",
+                        };
+                        if (this.OnError != null) this.OnError(this, args);
+                    }
+                }
+            }
         }
         #endregion
 
@@ -110,12 +128,16 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         public event EventHandler<ReadOBUInfoEventArgs> OnReadOBUInfo;
 
         public event EventHandler<ReadCardInfoEventArgs> OnReadCardInfo;
+
+        public event EventHandler<OpenCardEventArgs> OnError;
         #endregion
 
         #region 私有方法
         #region 读卡线程
         private void RSURead_Thread()
         {
+            string lastCard = null;
+            DateTime lastDT = DateTime.Now;
             try
             {
                 Thread.Sleep(2000);
@@ -128,11 +150,17 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0) r = GetOBUInfo(r as OBUSearchResponse);
                         if (r != null && r.ErrorCode == 0)
                         {
-                            if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = r as GetOBUInfoResponse });
-                            Thread.Sleep(3000);
+                            var w = r as GetOBUInfoResponse;
+                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                            lastCard = w.CardNo;
+                            lastDT = DateTime.Now;
+                            if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = w });
+                            Thread.Sleep(1000);
+                            State = 0;
                         }
                         else
                         {
+                            if (r.ErrorCode == 2 || r.ErrorCode == 1000) State = 1;
                             Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
@@ -149,6 +177,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
 
         private void ReaderRead_Thread()
         {
+            string lastCard = null;
+            DateTime lastDT = DateTime.Now;
             try
             {
                 Thread.Sleep(2000);
@@ -161,11 +191,17 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0) r = GetCardInfoFromReader(r as CardSearchResponse);
                         if (r != null && r.ErrorCode == 0)
                         {
-                            if (this.OnReadCardInfo != null) this.OnReadCardInfo(this, new ReadCardInfoEventArgs() { CardInfo = r as GetCardInfoResponse });
-                            Thread.Sleep(3000);
+                            var w = r as GetCardInfoResponse;
+                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                            lastCard = w.CardNo;
+                            lastDT = DateTime.Now;
+                            if (this.OnReadCardInfo != null) this.OnReadCardInfo(this, new ReadCardInfoEventArgs() { CardInfo = w });
+                            Thread.Sleep(1000);
+                            State = 0;
                         }
                         else
                         {
+                            if (r.ErrorCode == 2 || r.ErrorCode ==1000) State = 1;
                             Thread.Sleep(500);  //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
@@ -178,6 +214,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             catch (ThreadAbortException)
             {
             }
+        }
+
+        private double CalInterval(DateTime dt1, DateTime dt2)
+        {
+            TimeSpan ts = new TimeSpan(dt2.Ticks - dt1.Ticks);
+            return ts.TotalSeconds;
         }
         #endregion
 
@@ -247,7 +289,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private OBUSearchResponse OBUSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            var n = ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = "2000" }), response);
+            var n = ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = "1000" }), response);
             if (n != 0) return new OBUSearchResponse { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<OBUSearchResponse>(response.ToString());
             ret.Content = response.ToString();
@@ -418,7 +460,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private CardSearchResponse CardSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            var n = ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = "2000" }), response);
+            var n = ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = "1000" }), response);
             if (n != 0) return new CardSearchResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<CardSearchResponse>(response.ToString());
             ret.Content = response.ToString();
@@ -693,8 +735,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 EnVehType = record.EnVehType,
                 EnVehClass = record.EnVehClass,
             };
-            var strReq=JsonConvert.SerializeObject(request);
-            var n = ETCInterop.ListUpLoad(int.Parse(LaneNo),strReq  , response);
+            var strReq = JsonConvert.SerializeObject(request);
+            var n = ETCInterop.ListUpLoad(int.Parse(LaneNo), strReq, response);
             if (n != 0)
             {
                 Ralid.GeneralLibrary.LOG.FileLog.Log("未成功上传流水" + LaneNo.ToString(), strReq);

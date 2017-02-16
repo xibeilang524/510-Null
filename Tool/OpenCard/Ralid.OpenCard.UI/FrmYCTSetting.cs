@@ -79,7 +79,7 @@ namespace Ralid.OpenCard.UI
                 YCTItem item = frm.YCTItem;
                 if (FindRow(item.ID) >= 0)
                 {
-                    MessageBox.Show("编号为 " + item.ID + " 的读卡器已经存在");
+                    MessageBox.Show("串口号为 " + item.ID + " 的读卡器已经存在");
                 }
                 else
                 {
@@ -98,7 +98,15 @@ namespace Ralid.OpenCard.UI
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     YCTItem item = frm.YCTItem;
-                    ShowItemOnRow(dataGridView1.SelectedRows[0], item);
+                    var row = FindRow(item.ID);
+                    if (row >= 0 && row != dataGridView1.SelectedRows[0].Index)
+                    {
+                        MessageBox.Show("串口号为 " + item.ID + " 的读卡器已经存在");
+                    }
+                    else
+                    {
+                        ShowItemOnRow(dataGridView1.SelectedRows[0], item);
+                    }
                 }
             }
         }

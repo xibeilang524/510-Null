@@ -80,6 +80,10 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// </summary>
         [DataMember]
         public int EntranceID { get; set; }
+        /// <summary>
+        /// 获取或设置状态，0表示正常，1表示断开连接
+        /// </summary>
+        public int State { get; set; }
         #endregion
     }
 }

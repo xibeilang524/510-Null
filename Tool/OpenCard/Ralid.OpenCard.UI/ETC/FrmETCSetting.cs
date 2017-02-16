@@ -49,6 +49,7 @@ namespace Ralid.OpenCard.UI.ETC
                     dataGridView1.Rows[row].Cells["colHeartBeatTime"].Value = d.HeartBeatTime;
                     var en = Park.BLL.ParkBuffer.Current.GetEntrance(d.EntranceID);
                     dataGridView1.Rows[row].Cells["colEntrance"].Value = en != null ? en.EntranceName : null;
+                    dataGridView1.Rows[row].Cells["colState"].Value = d.State == 1 ? "设备断开" : null;
                 }
             }
             lblCount.Text = string.Format("总共 {0} 项", dataGridView1.Rows.Count);
