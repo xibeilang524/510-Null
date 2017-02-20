@@ -160,6 +160,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 foreach (var dinfo in Setting.Devices)
                 {
                     var device = new ETCDevice(dinfo);
+                    device.ETCCardReaderEnable = Setting.ETCCardReaderEnable;
                     device.OnReadCardInfo += device_OnReadCardInfo;
                     device.OnReadOBUInfo += device_OnReadOBUInfo;
                     device.OnError += device_OnError;

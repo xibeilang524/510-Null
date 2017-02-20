@@ -52,6 +52,7 @@
             this.lblCount = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.txtReadSameCardInterval = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
+            this.chkETCCardReaderEnable = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +89,7 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(1004, 314);
+            this.dataGridView1.Size = new System.Drawing.Size(1001, 314);
             this.dataGridView1.TabIndex = 3;
             // 
             // colIP
@@ -230,7 +231,7 @@
             this.chkEnable.AutoSize = true;
             this.chkEnable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.chkEnable.ForeColor = System.Drawing.Color.Red;
-            this.chkEnable.Location = new System.Drawing.Point(789, 342);
+            this.chkEnable.Location = new System.Drawing.Point(786, 342);
             this.chkEnable.Name = "chkEnable";
             this.chkEnable.Size = new System.Drawing.Size(95, 20);
             this.chkEnable.TabIndex = 18;
@@ -240,7 +241,7 @@
             // btnSave
             // 
             this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(890, 335);
+            this.btnSave.Location = new System.Drawing.Point(887, 335);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(102, 34);
             this.btnSave.TabIndex = 17;
@@ -263,7 +264,7 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(548, 346);
+            this.label1.Location = new System.Drawing.Point(545, 346);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(137, 12);
             this.label1.TabIndex = 21;
@@ -273,7 +274,7 @@
             // 
             this.txtReadSameCardInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.txtReadSameCardInterval.ImeMode = System.Windows.Forms.ImeMode.On;
-            this.txtReadSameCardInterval.Location = new System.Drawing.Point(690, 342);
+            this.txtReadSameCardInterval.Location = new System.Drawing.Point(687, 342);
             this.txtReadSameCardInterval.MaxValue = 100;
             this.txtReadSameCardInterval.MinValue = 1;
             this.txtReadSameCardInterval.Name = "txtReadSameCardInterval";
@@ -282,11 +283,23 @@
             this.txtReadSameCardInterval.TabIndex = 22;
             this.txtReadSameCardInterval.Text = "30";
             // 
+            // chkETCCardReaderEnable
+            // 
+            this.chkETCCardReaderEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkETCCardReaderEnable.AutoSize = true;
+            this.chkETCCardReaderEnable.Location = new System.Drawing.Point(408, 345);
+            this.chkETCCardReaderEnable.Name = "chkETCCardReaderEnable";
+            this.chkETCCardReaderEnable.Size = new System.Drawing.Size(102, 16);
+            this.chkETCCardReaderEnable.TabIndex = 23;
+            this.chkETCCardReaderEnable.Text = "启用ETC读卡器";
+            this.chkETCCardReaderEnable.UseVisualStyleBackColor = true;
+            // 
             // FrmETCSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1004, 390);
+            this.ClientSize = new System.Drawing.Size(1001, 390);
+            this.Controls.Add(this.chkETCCardReaderEnable);
             this.Controls.Add(this.txtReadSameCardInterval);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCount);
@@ -328,5 +341,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
         private System.Windows.Forms.Label label1;
         private GeneralLibrary.WinformControl.IntergerTextBox txtReadSameCardInterval;
+        private System.Windows.Forms.CheckBox chkETCCardReaderEnable;
     }
 }

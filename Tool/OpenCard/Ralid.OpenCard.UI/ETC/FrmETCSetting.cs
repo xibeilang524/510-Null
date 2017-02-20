@@ -62,6 +62,7 @@ namespace Ralid.OpenCard.UI.ETC
             if (_ETC != null)
             {
                 txtReadSameCardInterval.IntergerValue = _ETC.ReadSameCardInterval;
+                chkETCCardReaderEnable.Checked = _ETC.ETCCardReaderEnable;
                 ShowDevicesOnGrid(_ETC.Devices);
             }
             chkEnable.Checked = GlobalSettings.Current.Get<OpenCardMessageHandler>().ContainService<ETCSetting>();
@@ -87,6 +88,7 @@ namespace Ralid.OpenCard.UI.ETC
         private void btnSave_Click(object sender, EventArgs e)
         {
             _ETC.ReadSameCardInterval = txtReadSameCardInterval.IntergerValue;
+            _ETC.ETCCardReaderEnable = chkETCCardReaderEnable.Checked;
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<ETCSetting>(_ETC);
             if (CustomCardTypeSetting.Current.GetCardType(ETCSetting.CardTyte) == null) //增加自定义卡片类型
             {

@@ -122,6 +122,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 }
             }
         }
+
+        public bool ETCCardReaderEnable { get; set; }
         #endregion
 
         #region 事件
@@ -786,7 +788,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 _Thread_RSURead = new Thread(new ThreadStart(RSURead_Thread));
                 _Thread_RSURead.Start();
             }
-            if (_Thread_ReaderRead == null)
+            if (ETCCardReaderEnable && _Thread_ReaderRead == null)
             {
                 _Thread_ReaderRead = new Thread(new ThreadStart(ReaderRead_Thread));
                 _Thread_ReaderRead.Start();
