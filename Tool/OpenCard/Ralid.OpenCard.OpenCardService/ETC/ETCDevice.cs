@@ -145,13 +145,17 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 {
                     try
                     {
-                        ETCResponse r = RSUOpen();
-                        if (r != null && r.ErrorCode == 0) r = OBUSearch();
+                        ETCResponse r = OBUSearch();
+                        if (r.ErrorCode == -1300 || r.ErrorCode == -1301) //天线未打开
+                        {
+                            r = RSUOpen();
+                            if (r != null && r.ErrorCode == 0) r = OBUSearch();
+                        }
                         if (r != null && r.ErrorCode == 0) r = GetOBUInfo(r as OBUSearchResponse);
                         if (r != null && r.ErrorCode == 0)
                         {
                             var w = r as GetOBUInfoResponse;
-                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < ETCSetting.GetSetting().ReadSameCardInterval) continue; //同一张卡间隔
                             lastCard = w.CardNo;
                             lastDT = DateTime.Now;
                             if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = w });
@@ -161,12 +165,25 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         else
                         {
                             if (r.ErrorCode == 2 || r.ErrorCode == 1000) State = 1;
+                            else
+                            {
+                                var msg = ErrorDescr(r.ErrorCode);
+                                if (!string.IsNullOrEmpty(msg) && this.OnError != null)
+                                {
+                                    OpenCardEventArgs args = new OpenCardEventArgs()
+                                    {
+                                        Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
+                                        LastError = "ETC设备断开",
+                                    };
+                                    this.OnError(this, args);
+                                }
+                            }
                             Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
                     catch (Exception)
                     {
-
+                        Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                     }
                 }
             }
@@ -186,8 +203,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 {
                     try
                     {
-                        ETCResponse r = CardReaderOpen();
-                        if (r != null && r.ErrorCode == 0) r = CardSearch();
+                        ETCResponse r = CardSearch();
+                        if (r.ErrorCode == -2300 || r.ErrorCode == -2301) //读卡器未打开
+                        {
+                            r = CardReaderOpen();
+                            if (r != null && r.ErrorCode == 0) r = CardSearch();
+                        }
                         if (r != null && r.ErrorCode == 0) r = GetCardInfoFromReader(r as CardSearchResponse);
                         if (r != null && r.ErrorCode == 0)
                         {
@@ -201,13 +222,13 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         }
                         else
                         {
-                            if (r.ErrorCode == 2 || r.ErrorCode ==1000) State = 1;
+                            if (r.ErrorCode == 2 || r.ErrorCode == 1000) State = 1;
                             Thread.Sleep(500);  //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
                     catch (Exception)
                     {
-
+                        Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                     }
                 }
             }
@@ -220,6 +241,14 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         {
             TimeSpan ts = new TimeSpan(dt2.Ticks - dt1.Ticks);
             return ts.TotalSeconds;
+        }
+
+        private string ErrorDescr(int errorCode)
+        {
+            if (errorCode == -1300) return "天线未打开";
+            else if (errorCode == -1301) return "天线打开串口失败";
+            else if (errorCode == -1302) return "天线调整功率失败";
+            return null;
         }
         #endregion
 
@@ -289,7 +318,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private OBUSearchResponse OBUSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            var n = ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = "1000" }), response);
+            var n = ETCInterop.OBUSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, RSUID = EcRSUID, TimeOut = "2000" }), response);
             if (n != 0) return new OBUSearchResponse { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<OBUSearchResponse>(response.ToString());
             ret.Content = response.ToString();
@@ -460,7 +489,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private CardSearchResponse CardSearch()
         {
             StringBuilder response = new StringBuilder(100);
-            var n = ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = "1000" }), response);
+            var n = ETCInterop.CardSearch(int.Parse(LaneNo), JsonConvert.SerializeObject(new { UserName = UserName, ReaderID = EcReaderID, TimeOut = "2000" }), response);
             if (n != 0) return new CardSearchResponse() { ErrorCode = n };
             var ret = JsonConvert.DeserializeObject<CardSearchResponse>(response.ToString());
             ret.Content = response.ToString();

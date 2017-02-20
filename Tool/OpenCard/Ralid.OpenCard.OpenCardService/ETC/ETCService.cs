@@ -40,6 +40,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var p = ParkBuffer.Current.GetPark(entrance.ParkID);
                 if (!entrance.IsExitDevice || (p != null && p.IsNested)) //入口或者嵌套车场，
                 {
+                    ETCPaymentRecord pr = null;
+                    device.RSUWriteCard(e.OBUInfo, 0, false, out pr); //这里写卡主要是为了让卡片读卡时产生蜂鸣声
                     if (this.OnReadCard != null) this.OnReadCard(this, args);
                 }
                 else

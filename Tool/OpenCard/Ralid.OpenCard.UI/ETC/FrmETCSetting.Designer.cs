@@ -30,11 +30,6 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.设置停车场通道ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.chkEnable = new System.Windows.Forms.CheckBox();
-            this.btnSave = new System.Windows.Forms.Button();
-            this.lblCount = new System.Windows.Forms.Label();
             this.colIP = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPort = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUserName = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -50,6 +45,13 @@
             this.colHeartBeatTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colState = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.设置停车场通道ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chkEnable = new System.Windows.Forms.CheckBox();
+            this.btnSave = new System.Windows.Forms.Button();
+            this.lblCount = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtReadSameCardInterval = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -86,57 +88,8 @@
             this.dataGridView1.RowHeadersVisible = false;
             this.dataGridView1.RowTemplate.Height = 23;
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dataGridView1.Size = new System.Drawing.Size(998, 314);
+            this.dataGridView1.Size = new System.Drawing.Size(1004, 314);
             this.dataGridView1.TabIndex = 3;
-            // 
-            // contextMenuStrip1
-            // 
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.设置停车场通道ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 26);
-            // 
-            // 设置停车场通道ToolStripMenuItem
-            // 
-            this.设置停车场通道ToolStripMenuItem.Name = "设置停车场通道ToolStripMenuItem";
-            this.设置停车场通道ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
-            this.设置停车场通道ToolStripMenuItem.Text = "设置停车场通道";
-            this.设置停车场通道ToolStripMenuItem.Click += new System.EventHandler(this.设置停车场通道ToolStripMenuItem_Click);
-            // 
-            // chkEnable
-            // 
-            this.chkEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.chkEnable.AutoSize = true;
-            this.chkEnable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.chkEnable.ForeColor = System.Drawing.Color.Red;
-            this.chkEnable.Location = new System.Drawing.Point(783, 343);
-            this.chkEnable.Name = "chkEnable";
-            this.chkEnable.Size = new System.Drawing.Size(95, 20);
-            this.chkEnable.TabIndex = 18;
-            this.chkEnable.Text = "启动服务";
-            this.chkEnable.UseVisualStyleBackColor = true;
-            // 
-            // btnSave
-            // 
-            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnSave.Location = new System.Drawing.Point(884, 336);
-            this.btnSave.Name = "btnSave";
-            this.btnSave.Size = new System.Drawing.Size(102, 34);
-            this.btnSave.TabIndex = 17;
-            this.btnSave.Text = "保存配置";
-            this.btnSave.UseVisualStyleBackColor = true;
-            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
-            // 
-            // lblCount
-            // 
-            this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
-            this.lblCount.AutoSize = true;
-            this.lblCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.lblCount.ForeColor = System.Drawing.Color.Blue;
-            this.lblCount.Location = new System.Drawing.Point(13, 343);
-            this.lblCount.Name = "lblCount";
-            this.lblCount.Size = new System.Drawing.Size(0, 16);
-            this.lblCount.TabIndex = 20;
             // 
             // colIP
             // 
@@ -257,11 +210,85 @@
             this.colEntrance.ReadOnly = true;
             this.colEntrance.Width = 200;
             // 
+            // contextMenuStrip1
+            // 
+            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.设置停车场通道ToolStripMenuItem});
+            this.contextMenuStrip1.Name = "contextMenuStrip1";
+            this.contextMenuStrip1.Size = new System.Drawing.Size(161, 26);
+            // 
+            // 设置停车场通道ToolStripMenuItem
+            // 
+            this.设置停车场通道ToolStripMenuItem.Name = "设置停车场通道ToolStripMenuItem";
+            this.设置停车场通道ToolStripMenuItem.Size = new System.Drawing.Size(160, 22);
+            this.设置停车场通道ToolStripMenuItem.Text = "设置停车场通道";
+            this.设置停车场通道ToolStripMenuItem.Click += new System.EventHandler(this.设置停车场通道ToolStripMenuItem_Click);
+            // 
+            // chkEnable
+            // 
+            this.chkEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkEnable.AutoSize = true;
+            this.chkEnable.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.chkEnable.ForeColor = System.Drawing.Color.Red;
+            this.chkEnable.Location = new System.Drawing.Point(789, 342);
+            this.chkEnable.Name = "chkEnable";
+            this.chkEnable.Size = new System.Drawing.Size(95, 20);
+            this.chkEnable.TabIndex = 18;
+            this.chkEnable.Text = "启动服务";
+            this.chkEnable.UseVisualStyleBackColor = true;
+            // 
+            // btnSave
+            // 
+            this.btnSave.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnSave.Location = new System.Drawing.Point(890, 335);
+            this.btnSave.Name = "btnSave";
+            this.btnSave.Size = new System.Drawing.Size(102, 34);
+            this.btnSave.TabIndex = 17;
+            this.btnSave.Text = "保存配置";
+            this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
+            // 
+            // lblCount
+            // 
+            this.lblCount.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)));
+            this.lblCount.AutoSize = true;
+            this.lblCount.Font = new System.Drawing.Font("宋体", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.lblCount.ForeColor = System.Drawing.Color.Blue;
+            this.lblCount.Location = new System.Drawing.Point(13, 343);
+            this.lblCount.Name = "lblCount";
+            this.lblCount.Size = new System.Drawing.Size(0, 16);
+            this.lblCount.TabIndex = 20;
+            // 
+            // label1
+            // 
+            this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(548, 346);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(137, 12);
+            this.label1.TabIndex = 21;
+            this.label1.Text = "同一张卡读卡间隔（秒）";
+            // 
+            // txtReadSameCardInterval
+            // 
+            this.txtReadSameCardInterval.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.txtReadSameCardInterval.ImeMode = System.Windows.Forms.ImeMode.On;
+            this.txtReadSameCardInterval.Location = new System.Drawing.Point(690, 342);
+            this.txtReadSameCardInterval.MaxValue = 100;
+            this.txtReadSameCardInterval.MinValue = 1;
+            this.txtReadSameCardInterval.Name = "txtReadSameCardInterval";
+            this.txtReadSameCardInterval.NumberWithCommas = false;
+            this.txtReadSameCardInterval.Size = new System.Drawing.Size(69, 21);
+            this.txtReadSameCardInterval.TabIndex = 22;
+            this.txtReadSameCardInterval.Text = "30";
+            // 
             // FrmETCSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(998, 390);
+            this.ClientSize = new System.Drawing.Size(1004, 390);
+            this.Controls.Add(this.txtReadSameCardInterval);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblCount);
             this.Controls.Add(this.chkEnable);
             this.Controls.Add(this.btnSave);
@@ -299,5 +326,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colHeartBeatTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colState;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEntrance;
+        private System.Windows.Forms.Label label1;
+        private GeneralLibrary.WinformControl.IntergerTextBox txtReadSameCardInterval;
     }
 }
