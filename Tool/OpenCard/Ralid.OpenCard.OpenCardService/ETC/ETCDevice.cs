@@ -3,8 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading;
+using System.Net.NetworkInformation;
 using Newtonsoft.Json;
 using Ralid.OpenCard.OpenCardService.ETC.Response;
+using Ralid.Park.BusinessModel.Report;
 
 namespace Ralid.OpenCard.OpenCardService.ETC
 {
@@ -40,6 +42,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         private ETCDeviceInfo _DeviceInfo = null;
         private Thread _Thread_RSURead = null;
         private Thread _Thread_ReaderRead = null;
+        private Thread _Thread_Ping = null;
         #endregion
 
         #region 公共属性
@@ -157,28 +160,27 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0)
                         {
                             var w = r as GetOBUInfoResponse;
+                            if (GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>().ContainsKey(EntranceID))
+                            {
+                                lastCard = GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[EntranceID].CardID;
+                                lastDT = GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[EntranceID].EventDateTime;
+                            }
                             if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < ETCSetting.GetSetting().ReadSameCardInterval) continue; //同一张卡间隔
-                            lastCard = w.CardNo;
-                            lastDT = DateTime.Now;
                             if (this.OnReadOBUInfo != null) this.OnReadOBUInfo(this, new ReadOBUInfoEventArgs() { OBUInfo = w });
                             Thread.Sleep(1000);
                             State = 0;
                         }
                         else
                         {
-                            if (r.ErrorCode == 2 || r.ErrorCode == 1000) State = 1;
-                            else
+                            var msg = ErrorDescr(r.ErrorCode);
+                            if (!string.IsNullOrEmpty(msg) && this.OnError != null)
                             {
-                                var msg = ErrorDescr(r.ErrorCode);
-                                if (!string.IsNullOrEmpty(msg) && this.OnError != null)
+                                OpenCardEventArgs args = new OpenCardEventArgs()
                                 {
-                                    OpenCardEventArgs args = new OpenCardEventArgs()
-                                    {
-                                        Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
-                                        LastError = "ETC设备断开",
-                                    };
-                                    this.OnError(this, args);
-                                }
+                                    Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
+                                    LastError = msg,
+                                };
+                                this.OnError(this, args);
                             }
                             Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
@@ -224,13 +226,44 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         }
                         else
                         {
-                            if (r.ErrorCode == 2 || r.ErrorCode == 1000) State = 1;
                             Thread.Sleep(500);  //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
                     catch (Exception)
                     {
                         Thread.Sleep(500); //如果某一个函数调用失败，则休眠一段时间，避免循环太快
+                    }
+                }
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
+
+        private void HeartBeat_Thread()
+        {
+            int count = 0;
+            var ping = new Ping();
+            try
+            {
+                while (true)
+                {
+                    Thread.Sleep(2000);
+                    try
+                    {
+                        var response = ping.Send(System.Net.IPAddress.Parse(IPAddr), 1000);
+                        if (response.Status == IPStatus.Success)
+                        {
+                            count = 0;
+                        }
+                        else
+                        {
+                            count++;
+                        }
+                        if (count == 5) State = 1;
+                    }
+                    catch (Exception)
+                    {
                     }
                 }
             }
@@ -793,6 +826,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 _Thread_ReaderRead = new Thread(new ThreadStart(ReaderRead_Thread));
                 _Thread_ReaderRead.Start();
             }
+            if (_Thread_Ping == null)
+            {
+                _Thread_Ping = new Thread(new ThreadStart(HeartBeat_Thread));
+                _Thread_Ping.Start();
+            }
         }
 
         public void Dispose()
@@ -806,6 +844,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             {
                 _Thread_ReaderRead.Abort();
                 _Thread_ReaderRead = null;
+            }
+            if (_Thread_Ping != null)
+            {
+                _Thread_Ping.Abort();
+                _Thread_Ping = null;
             }
         }
 

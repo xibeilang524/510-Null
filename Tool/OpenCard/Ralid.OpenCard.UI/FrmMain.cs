@@ -166,6 +166,7 @@ namespace Ralid.OpenCard.UI
         {
             OpenCardMessageHandler handler = new OpenCardMessageHandler();
             GlobalSettings.Current.Set<OpenCardMessageHandler>(handler);
+            GlobalSettings.Current.Set<Dictionary<int, CardEventReport>>(new Dictionary<int, CardEventReport>());
             handler.Debug = this.chkDebug.Checked;
             handler.OnReadCard += new EventHandler<OpenCardEventArgs>(handler_OnReadCard);
             handler.OnPaying += new EventHandler<OpenCardEventArgs>(handler_OnPaying);
@@ -328,7 +329,7 @@ namespace Ralid.OpenCard.UI
         private void ProcessReport(object sender, ReportBase report)
         {
             if (chkCardEvent.Checked) InsertMessage(report.Description, Color.Black);
-            if (report is CardEventReport) GlobalSettings.Current.Get<OpenCardMessageHandler>().HandleCardEvent(report as CardEventReport);
+            GlobalSettings.Current.Get<OpenCardMessageHandler>().HandleReport(report);
         }
 
         private void AddPark(ParkInfo park)

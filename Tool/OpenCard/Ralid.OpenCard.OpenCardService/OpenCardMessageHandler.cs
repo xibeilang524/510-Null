@@ -418,8 +418,24 @@ namespace Ralid.OpenCard.OpenCardService
             }
         }
 
+        public void HandleReport(ReportBase report)
+        {
+            if (report is CardEventReport) HandleCardEvent(report as CardEventReport);
+            else if (report is CardInvalidEventReport)
+            {
+                CardInvalidEventReport ci = report as CardInvalidEventReport;
+                GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[report.EntranceID] = new CardEventReport()
+                {
+                    CardID = ci.CardID,
+                    EventDateTime = ci.EventDateTime,
+                    EntranceID = ci.EntranceID
+                };
+            }
+        }
+
         public void HandleCardEvent(CardEventReport report)
         {
+            GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[report.EntranceID] = report; //
             if (report.EventStatus != CardEventStatus.Valid) return;
             if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte || report.CardType.Name == ETC.ETCSetting.CardTyte)) //
             {
