@@ -85,22 +85,26 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             }
         }
 
-        private void HandlePayment(ETCDevice device, OpenCardEventArgs args, ReadOBUInfoEventArgs obuInfo, ReadCardInfoEventArgs cardInfo)
+        private void HandlePayment(ETCDevice device, OpenCardEventArgs e, ReadOBUInfoEventArgs obuInfo, ReadCardInfoEventArgs cardInfo)
         {
-            if (this.OnPaying != null) this.OnPaying(this, args); //产生收费事件
-            if (args.Payment == null) return;
-            if (args.Payment.GetPaying() <= 0) //不用收费直接返回收款成功事件
+            if (this.OnPaying != null) this.OnPaying(this, e); //产生收费事件
+            if (e.Payment == null)
             {
-                args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
-                if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                if (this.OnReadCard != null) this.OnReadCard(this, e);
+                return;
+            }
+            if (e.Payment.GetPaying() < 0) //不用收费直接返回收款成功事件
+            {
+                e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
+                if (this.OnPaidOk != null) this.OnPaidOk(this, e);
             }
             else //扣费
             {
                 //判断余额是否够扣费，否则返回"余额不足",注意钱包单位是分的，这里要转成分比较
-                if (args.Payment.GetPaying() <= args.Balance)
+                if (e.Payment.GetPaying() <= e.Balance)
                 {
-                    int paid = (int)(args.Payment.GetPaying() * 100);
+                    int paid = (int)(e.Payment.GetPaying() * 100);
                     ETCPaymentRecord record = null;
                     WriteCardResponse r = null;
                     if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, paid, true, out record);
@@ -108,22 +112,22 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     if (r.ErrorCode == 0)
                     {
                         var res = device.ListUpLoad(record); //上传流水
-                        args.Paid = args.Payment.GetPaying();
-                        args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                        args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
-                        args.Balance = (decimal)r.Balance / 100;
-                        if (this.OnPaidOk != null) this.OnPaidOk(this, args);
+                        e.Paid = e.Payment.GetPaying();
+                        e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                        e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
+                        e.Balance = (decimal)r.Balance / 100;
+                        if (this.OnPaidOk != null) this.OnPaidOk(this, e);
                     }
                     else
                     {
-                        args.LastError = "扣款失败";
-                        if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                        e.LastError = "扣款失败";
+                        if (this.OnPaidFail != null) this.OnPaidFail(this, e);
                     }
                 }
                 else
                 {
-                    args.LastError = "余额不足";
-                    if (this.OnPaidFail != null) this.OnPaidFail(this, args);
+                    e.LastError = "余额不足";
+                    if (this.OnPaidFail != null) this.OnPaidFail(this, e);
                 }
             }
         }

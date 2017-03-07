@@ -122,6 +122,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         };
                         if (this.OnError != null) this.OnError(this, args);
                     }
+                    else if (_DeviceInfo.State == 0)
+                    {
+                        OpenCardEventArgs args = new OpenCardEventArgs()
+                        {
+                            Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
+                            LastError = "ETC设备恢复",
+                        };
+                        if (this.OnError != null) this.OnError(this, args);
+                    }
                 }
             }
         }
@@ -156,6 +165,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                             r = RSUOpen();
                             if (r != null && r.ErrorCode == 0) r = OBUSearch();
                         }
+                        if (r.ErrorCode == -1304) State = 0; //返回这个值 表示功能正常了。只是没有搜到卡片
                         if (r != null && r.ErrorCode == 0) r = GetOBUInfo(r as OBUSearchResponse);
                         if (r != null && r.ErrorCode == 0)
                         {
@@ -217,15 +227,28 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         if (r != null && r.ErrorCode == 0)
                         {
                             var w = r as GetCardInfoResponse;
-                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
-                            lastCard = w.CardNo;
-                            lastDT = DateTime.Now;
+                            if (GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>().ContainsKey(EntranceID))
+                            {
+                                lastCard = GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[EntranceID].CardID;
+                                lastDT = GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[EntranceID].EventDateTime;
+                            }
+                            if (w.CardNo == lastCard && CalInterval(lastDT, DateTime.Now) < ETCSetting.GetSetting().ReadSameCardInterval) continue;
                             if (this.OnReadCardInfo != null) this.OnReadCardInfo(this, new ReadCardInfoEventArgs() { CardInfo = w });
                             Thread.Sleep(1000);
                             State = 0;
                         }
                         else
                         {
+                            var msg = ErrorDescr(r.ErrorCode);
+                            if (!string.IsNullOrEmpty(msg) && this.OnError != null)
+                            {
+                                OpenCardEventArgs args = new OpenCardEventArgs()
+                                {
+                                    Entrance = Ralid.Park.BLL.ParkBuffer.Current.GetEntrance(EntranceID),
+                                    LastError = msg,
+                                };
+                                this.OnError(this, args);
+                            }
                             Thread.Sleep(500);  //如果某一个函数调用失败，则休眠一段时间，避免循环太快
                         }
                     }
@@ -283,6 +306,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             if (errorCode == -1300) return "天线未打开";
             else if (errorCode == -1301) return "天线打开串口失败";
             else if (errorCode == -1302) return "天线调整功率失败";
+            else if (errorCode == -2300) return "读卡器未开启";
+            else if (errorCode == -2301) return "读卡器初始化失败";
             return null;
         }
         #endregion
