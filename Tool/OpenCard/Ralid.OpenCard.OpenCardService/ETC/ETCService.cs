@@ -28,6 +28,20 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             ETCDevice device = sender as ETCDevice;
             if (device == null) return;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(device.EntranceID);
+            if (Setting.MonthCardFirst) //如果启用了优先使用车场卡功能
+            {
+                var cards = new CardBll(AppSettings.CurrentSetting.ParkConnect).GetCards(new CardSearchCondition() { CarPlate = e.OBUInfo.CardPlate }).QueryObjects;
+                if (cards != null && cards.Count > 0)
+                {
+                    OpenCardEventArgs err = new OpenCardEventArgs()
+                    {
+                        Entrance = entrance,
+                        LastError = "请读车场卡",
+                    };
+                    if (this.OnError != null) this.OnError(this, err);
+                    return; //退出ETC读卡处理
+                }
+            }
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.OBUInfo.CardNo,

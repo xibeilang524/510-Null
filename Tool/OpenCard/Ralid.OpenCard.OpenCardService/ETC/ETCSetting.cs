@@ -32,6 +32,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         {
                             if (original.ReadSameCardInterval > 0) _CurSetting.ReadSameCardInterval = original.ReadSameCardInterval;
                             _CurSetting.ETCCardReaderEnable = original.ETCCardReaderEnable;
+                            _CurSetting.MonthCardFirst = original.MonthCardFirst;
                             foreach (var item in items)
                             {
                                 var o = original.Devices.SingleOrDefault(it => it.LaneNo == item.LaneNo);
@@ -64,6 +65,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// </summary>
         [DataMember]
         public int ReadSameCardInterval { get; set; }
+
+        /// <summary>
+        /// 获取或设置当ETC卡车主有月卡时是否用月卡入场
+        /// </summary>
+        [DataMember]
+        public bool MonthCardFirst { get; set; }
 
         /// <summary>
         /// 获取或设置是否启用ETC读卡器

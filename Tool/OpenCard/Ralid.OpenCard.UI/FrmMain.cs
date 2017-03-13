@@ -221,7 +221,7 @@ namespace Ralid.OpenCard.UI
 
         private void handler_OnError(object sender, OpenCardEventArgs e)
         {
-            string msg = string.Format("【{0} ＠ {1}】 发生错误 {2}",
+            string msg = string.Format("【{0} ＠ {1}】{2}",
                                                  DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                  e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                  e.LastError);

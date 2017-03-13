@@ -53,6 +53,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.txtReadSameCardInterval = new Ralid.GeneralLibrary.WinformControl.IntergerTextBox(this.components);
             this.chkETCCardReaderEnable = new System.Windows.Forms.CheckBox();
+            this.chkMonthCardFirst = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -287,18 +288,30 @@
             // 
             this.chkETCCardReaderEnable.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.chkETCCardReaderEnable.AutoSize = true;
-            this.chkETCCardReaderEnable.Location = new System.Drawing.Point(408, 345);
+            this.chkETCCardReaderEnable.Location = new System.Drawing.Point(414, 345);
             this.chkETCCardReaderEnable.Name = "chkETCCardReaderEnable";
             this.chkETCCardReaderEnable.Size = new System.Drawing.Size(102, 16);
             this.chkETCCardReaderEnable.TabIndex = 23;
             this.chkETCCardReaderEnable.Text = "启用ETC读卡器";
             this.chkETCCardReaderEnable.UseVisualStyleBackColor = true;
             // 
+            // chkMonthCardFirst
+            // 
+            this.chkMonthCardFirst.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.chkMonthCardFirst.AutoSize = true;
+            this.chkMonthCardFirst.Location = new System.Drawing.Point(140, 346);
+            this.chkMonthCardFirst.Name = "chkMonthCardFirst";
+            this.chkMonthCardFirst.Size = new System.Drawing.Size(258, 16);
+            this.chkMonthCardFirst.TabIndex = 24;
+            this.chkMonthCardFirst.Text = "如果ETC卡车主有车场卡，提示车主刷车场卡";
+            this.chkMonthCardFirst.UseVisualStyleBackColor = true;
+            // 
             // FrmETCSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1001, 390);
+            this.Controls.Add(this.chkMonthCardFirst);
             this.Controls.Add(this.chkETCCardReaderEnable);
             this.Controls.Add(this.txtReadSameCardInterval);
             this.Controls.Add(this.label1);
@@ -342,5 +355,6 @@
         private System.Windows.Forms.Label label1;
         private GeneralLibrary.WinformControl.IntergerTextBox txtReadSameCardInterval;
         private System.Windows.Forms.CheckBox chkETCCardReaderEnable;
+        private System.Windows.Forms.CheckBox chkMonthCardFirst;
     }
 }
