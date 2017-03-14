@@ -664,4 +664,14 @@
       <Column Name="UploadFile" Member="UploadFile"  DbType="NVARCHAR(50)  NULL" UpdateCheck="Never"/>
     </Type>
   </Table>
+  <Table Name="dbo.ETCPaymentRecord" Member="Ralid.Park.BusinessModel.Model.ETCPaymentRecord">
+    <Type Name="Ralid.Park.BusinessModel.Model.ETCPaymentRecord">
+      <Column Name="ID" Member="ID"  DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" AutoSync="OnInsert" />
+      <Column Name="LaneNo" Member="LaneNo" DbType="nvarchar(50) NOT NULL" UpdateCheck="Never"/>
+      <Column Name="Device" Member="Device" DbType="tinyint NOT NULL" UpdateCheck="Never"/>
+      <Column Name="AddTime" Member="AddTime" DbType="datetime not null" UpdateCheck="Never"/>
+      <Column Name="Data" Member="Data" DbType="nvarchar(1000) not null" UpdateCheck="Never"/>
+      <Column Name="UploadTime" Member="UploadTime" DbType="datetime null" UpdateCheck="Never"/>
+    </Type>
+  </Table>
 </Database>

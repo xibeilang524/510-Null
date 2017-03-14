@@ -486,6 +486,13 @@ namespace Ralid.OpenCard.UI
                 handler.Debug = this.chkDebug.Checked;
             }
         }
-        #endregion
+
+        private void eTC消费记录查询ToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ETC.FrmETCRecordReport frm = new ETC.FrmETCRecordReport();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+        }
+        #endregion 
     }
 }

@@ -10,7 +10,7 @@ using Ralid.Park.DAL.IDAL;
 
 namespace Ralid.Park.DAL.LinqDataProvider
 {
-    public class ETCPaymentRecordProvider : ProviderBase<ETCPaymentRecord, string>, IETCPaymentRecordProvider
+    public class ETCPaymentRecordProvider : ProviderBase<ETCPaymentRecord, int>, IETCPaymentRecordProvider
     {
         #region 构造函数
         public ETCPaymentRecordProvider()
@@ -25,9 +25,9 @@ namespace Ralid.Park.DAL.LinqDataProvider
         #endregion
 
         #region 重写基类方法
-        protected override ETCPaymentRecord GetingItemByID(string id, ParkDataContext parking)
+        protected override ETCPaymentRecord GetingItemByID(int id, ParkDataContext parking)
         {
-            return parking.GetTable<ETCPaymentRecord>().SingleOrDefault(it => it.ListNo == id);
+            return parking.GetTable<ETCPaymentRecord>().SingleOrDefault(it => it.ID == id);
         }
 
         protected override List<ETCPaymentRecord> GetingItems(ParkDataContext parking, SearchCondition search)
@@ -37,8 +37,8 @@ namespace Ralid.Park.DAL.LinqDataProvider
                 ETCPaymentRecordSearchCondition con = search as ETCPaymentRecordSearchCondition;
 
                 IQueryable<ETCPaymentRecord> result = parking.GetTable<ETCPaymentRecord>();
-                if (con.CreateTime != null) result = result.Where(it => it.CreateTime >= con.CreateTime.Begin && it.CreateTime <= con.CreateTime.End);
-                if (!string.IsNullOrEmpty(con.ListNoLike)) result = result.Where(it => it.ListNo.Contains(con.ListNoLike));
+                if (con.AddTime != null) result = result.Where(it => it.AddTime >= con.AddTime.Begin && it.AddTime <= con.AddTime.End);
+                if (!string.IsNullOrEmpty(con.LaneNo)) result = result.Where(it => it.LaneNo == con.LaneNo);
                 if (con.WaitingUpload.HasValue)
                 {
                     if (con.WaitingUpload.Value) result = result.Where(it => it.UploadTime == null);

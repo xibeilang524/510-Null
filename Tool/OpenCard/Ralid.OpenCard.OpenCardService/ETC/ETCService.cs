@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading ;
 using Newtonsoft.Json;
 using Ralid.OpenCard.OpenCardService;
 using Ralid.OpenCard.OpenCardService.ETC.Response;
@@ -18,9 +19,45 @@ namespace Ralid.OpenCard.OpenCardService.ETC
     {
         #region 私有变量
         private List<ETCDevice> _Devices { get; set; }
+        private Thread _UploadList = null;
         #endregion
 
         public ETCSetting Setting { get; set; }
+
+        #region 私有方法
+        private void UploadListThread()
+        {
+            try
+            {
+                while (true)
+                {
+                    var bll = new ETCPaymentRecordBll(AppSettings.CurrentSetting.ParkConnect);
+                    Thread.Sleep(1000 * 60); //
+                    var con = new ETCPaymentRecordSearchCondition() { WaitingUpload = true };
+                    var items = bll.GetRecords(con).QueryObjects;
+                    if (items != null && items.Count > 0)
+                    {
+                        foreach (var item in items)
+                        {
+                            var device = _Devices.SingleOrDefault(it => it.LaneNo == item.LaneNo);
+                            if (device != null)
+                            {
+                                var list = JsonConvert.DeserializeObject<ETCPaymentList>(item.Data);
+                                if (list != null)
+                                {
+                                    var res = device.ListUpLoad(list);
+                                    if (res.ErrorCode == 0) bll.UpdateUploadTime(item, DateTime.Now);
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+            catch (ThreadAbortException)
+            {
+            }
+        }
+        #endregion
 
         #region 读卡事件处理程序
         private void device_OnReadOBUInfo(object sender, ReadOBUInfoEventArgs e)
@@ -30,8 +67,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(device.EntranceID);
             if (Setting.MonthCardFirst) //如果启用了优先使用车场卡功能
             {
-                var cards = new CardBll(AppSettings.CurrentSetting.ParkConnect).GetCards(new CardSearchCondition() { CarPlate = e.OBUInfo.CardPlate }).QueryObjects;
-                if (cards != null && cards.Count > 0)
+                var con = new CardSearchCondition();
+                con.CarPlate = e.OBUInfo.CardPlate.Trim();
+                con.Status = Ralid.Park.BusinessModel.Enum.CardStatus.Enabled;
+                var cards = new CardBll(AppSettings.CurrentSetting.ParkConnect).GetCards(con).QueryObjects;
+                if (cards != null && cards.Count > 0 && cards.Exists(it => !it.CardType.IsTempCard))
                 {
                     OpenCardEventArgs err = new OpenCardEventArgs()
                     {
@@ -54,7 +94,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 var p = ParkBuffer.Current.GetPark(entrance.ParkID);
                 if (!entrance.IsExitDevice || (p != null && p.IsNested)) //入口或者嵌套车场，
                 {
-                    ETCPaymentRecord pr = null;
+                    ETCPaymentList pr = null;
                     device.RSUWriteCard(e.OBUInfo, 0, false, out pr); //这里写卡主要是为了让卡片读卡时产生蜂鸣声
                     if (this.OnReadCard != null) this.OnReadCard(this, args);
                 }
@@ -119,13 +159,22 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 if (e.Payment.GetPaying() <= e.Balance)
                 {
                     int paid = (int)(e.Payment.GetPaying() * 100);
-                    ETCPaymentRecord record = null;
+                    ETCPaymentList list = null;
                     WriteCardResponse r = null;
-                    if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, paid, true, out record);
-                    else r = device.CardReaderWriteCard(cardInfo.CardInfo, paid, true, out record);
+                    if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, paid, true, out list);
+                    else r = device.CardReaderWriteCard(cardInfo.CardInfo, paid, true, out list);
                     if (r.ErrorCode == 0)
                     {
-                        var res = device.ListUpLoad(record); //上传流水
+                        var res = device.ListUpLoad(list); //上传流水
+                        var record = new Ralid.Park.BusinessModel.Model.ETCPaymentRecord()
+                        {
+                            LaneNo = device.LaneNo,
+                            Device = obuInfo != null ? 0 : 1,
+                            AddTime = DateTime.Now,
+                            Data = JsonConvert.SerializeObject(list),
+                            UploadTime = res.ErrorCode == 0 ? (DateTime?)DateTime.Now : null,
+                        };
+                        new ETCPaymentRecordBll(AppSettings.CurrentSetting.ParkConnect).Insert(record); //在数据库中保存流水记录
                         e.Paid = e.Payment.GetPaying();
                         e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                         e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
@@ -186,10 +235,21 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     _Devices.Add(device);
                 }
             }
+            if (_UploadList == null)
+            {
+                _UploadList = new Thread(new ThreadStart(UploadListThread));
+                _UploadList.IsBackground = true;
+                _UploadList.Start();
+            }
         }
 
         public void Dispose()
         {
+            if (_UploadList != null)
+            {
+                _UploadList.Abort();
+                _UploadList = null;
+            }
             if (_Devices != null && _Devices.Count > 0)
             {
                 foreach (var device in _Devices)

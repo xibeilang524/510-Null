@@ -133,6 +133,7 @@
     <Compile Include="BinaryConverterTest.cs" />
     <Compile Include="BllTest\CardBllTest.cs" />
     <Compile Include="BllTest\CardPaymentRecordBllTest.cs" />
+    <Compile Include="BllTest\ETCPaymentBllTest.cs" />
     <Compile Include="BllTest\StaticConnectString.cs" />
     <Compile Include="ModalTest\CardEventInfoTest.cs" />
     <Compile Include="DSEncryptTest.cs" />

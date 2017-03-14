@@ -416,7 +416,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// </summary>
         /// <param name="money"></param>
         /// <returns></returns>
-        public WriteCardResponse RSUWriteCard(GetOBUInfoResponse r, int money, bool isExit, out ETCPaymentRecord record)
+        public WriteCardResponse RSUWriteCard(GetOBUInfoResponse r, int money, bool isExit, out ETCPaymentList record)
         {
             int n = -1;
             record = null;
@@ -580,7 +580,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// </summary>
         /// <param name="money"></param>
         /// <returns></returns>
-        public WriteCardResponse CardReaderWriteCard(GetCardInfoResponse r, int money, bool isExit, out ETCPaymentRecord record)
+        public WriteCardResponse CardReaderWriteCard(GetCardInfoResponse r, int money, bool isExit, out ETCPaymentList record)
         {
             int n = -1;
             record = null;
@@ -684,9 +684,9 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         #endregion
 
         #region 收费流水相关的操作
-        private ETCPaymentRecord CreateRecord(GetOBUInfoResponse obuInfo, WriteCardResponse writeInfo, bool isExit)
+        private ETCPaymentList CreateRecord(GetOBUInfoResponse obuInfo, WriteCardResponse writeInfo, bool isExit)
         {
-            var ret = new ETCPaymentRecord()
+            var ret = new ETCPaymentList()
             {
                 ListType = isExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
@@ -730,9 +730,9 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             return ret;
         }
 
-        private ETCPaymentRecord CreateRecord(GetCardInfoResponse cardInfo, WriteCardResponse writeInfo, bool isExit)
+        private ETCPaymentList CreateRecord(GetCardInfoResponse cardInfo, WriteCardResponse writeInfo, bool isExit)
         {
-            var ret = new ETCPaymentRecord()
+            var ret = new ETCPaymentList()
             {
                 ListType = isExit ? 1 : 0,
                 ListNo = string.Format("{0}{1}{2}{3}{4}{5}{6}", ProvinceNo, CityNo, AreaNo, GateNo, LaneNo, DateTime.Now.ToString("yyyyMMddHHmmss"), "00"),
@@ -781,7 +781,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
-        public ETCResponse ListUpLoad(ETCPaymentRecord record)
+        public ETCResponse ListUpLoad(ETCPaymentList record)
         {
             StringBuilder response = new StringBuilder(100);
             var request = new

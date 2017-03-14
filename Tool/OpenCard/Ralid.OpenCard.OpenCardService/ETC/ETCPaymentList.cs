@@ -6,10 +6,10 @@ using Ralid.OpenCard.OpenCardService.ETC.Response;
 
 namespace Ralid.OpenCard.OpenCardService.ETC
 {
-    public class ETCPaymentRecord
+    public class ETCPaymentList
     {
         #region 构造函数
-        public ETCPaymentRecord()
+        public ETCPaymentList()
         {
         }
         #endregion
@@ -151,10 +151,6 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// 入口车种,出口时从卡片入口信息文件读取
         /// </summary>
         public string EnVehClass { get; set; }
-        /// <summary>
-        /// 获取或设置上传到服务器的时间，没有上传的为空
-        /// </summary>
-        public DateTime? UploadTime { get; set; }
         #endregion
     }
 }

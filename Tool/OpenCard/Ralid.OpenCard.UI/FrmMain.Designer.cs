@@ -55,6 +55,8 @@
             this.chkCardEvent = new System.Windows.Forms.CheckBox();
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eTC消费记录查询ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -146,7 +148,8 @@
             this.menuStrip1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.系统ToolStripMenuItem,
-            this.参数设置ToolStripMenuItem});
+            this.参数设置ToolStripMenuItem,
+            this.报表ToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
             this.menuStrip1.Size = new System.Drawing.Size(713, 25);
@@ -165,14 +168,14 @@
             // mnu_SelOperator
             // 
             this.mnu_SelOperator.Name = "mnu_SelOperator";
-            this.mnu_SelOperator.Size = new System.Drawing.Size(196, 22);
+            this.mnu_SelOperator.Size = new System.Drawing.Size(160, 22);
             this.mnu_SelOperator.Text = "选择当前操作员";
             this.mnu_SelOperator.Click += new System.EventHandler(this.mnu_SelOperator_Click);
             // 
             // mnu_SelStation
             // 
             this.mnu_SelStation.Name = "mnu_SelStation";
-            this.mnu_SelStation.Size = new System.Drawing.Size(196, 22);
+            this.mnu_SelStation.Size = new System.Drawing.Size(160, 22);
             this.mnu_SelStation.Text = "选择当前工作站";
             this.mnu_SelStation.Click += new System.EventHandler(this.mnu_SelStation_Click);
             // 
@@ -190,28 +193,28 @@
             // mnu_YCT
             // 
             this.mnu_YCT.Name = "mnu_YCT";
-            this.mnu_YCT.Size = new System.Drawing.Size(124, 22);
+            this.mnu_YCT.Size = new System.Drawing.Size(152, 22);
             this.mnu_YCT.Text = "羊城通";
             this.mnu_YCT.Click += new System.EventHandler(this.mnu_YCT_Click);
             // 
             // mnu_ETC
             // 
             this.mnu_ETC.Name = "mnu_ETC";
-            this.mnu_ETC.Size = new System.Drawing.Size(124, 22);
+            this.mnu_ETC.Size = new System.Drawing.Size(152, 22);
             this.mnu_ETC.Text = "粤通卡";
             this.mnu_ETC.Click += new System.EventHandler(this.mnu_ETC_Click);
             // 
             // mnu_YiTing
             // 
             this.mnu_YiTing.Name = "mnu_YiTing";
-            this.mnu_YiTing.Size = new System.Drawing.Size(124, 22);
+            this.mnu_YiTing.Size = new System.Drawing.Size(152, 22);
             this.mnu_YiTing.Text = "驿停闪付";
             this.mnu_YiTing.Click += new System.EventHandler(this.mnu_YiTing_Click);
             // 
             // mnu_ZST
             // 
             this.mnu_ZST.Name = "mnu_ZST";
-            this.mnu_ZST.Size = new System.Drawing.Size(124, 22);
+            this.mnu_ZST.Size = new System.Drawing.Size(152, 22);
             this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Visible = false;
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
@@ -293,6 +296,21 @@
             this.eventList.Size = new System.Drawing.Size(713, 309);
             this.eventList.TabIndex = 13;
             // 
+            // 报表ToolStripMenuItem
+            // 
+            this.报表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eTC消费记录查询ToolStripMenuItem1});
+            this.报表ToolStripMenuItem.Name = "报表ToolStripMenuItem";
+            this.报表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.报表ToolStripMenuItem.Text = "报表";
+            // 
+            // eTC消费记录查询ToolStripMenuItem1
+            // 
+            this.eTC消费记录查询ToolStripMenuItem1.Name = "eTC消费记录查询ToolStripMenuItem1";
+            this.eTC消费记录查询ToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
+            this.eTC消费记录查询ToolStripMenuItem1.Text = "ETC消费记录查询";
+            this.eTC消费记录查询ToolStripMenuItem1.Click += new System.EventHandler(this.eTC消费记录查询ToolStripMenuItem1_Click);
+            // 
             // FrmMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -350,6 +368,8 @@
         private System.Windows.Forms.CheckBox chkDebug;
         private System.Windows.Forms.ToolStripMenuItem mnu_ETC;
         private System.Windows.Forms.ToolStripStatusLabel lblETC;
+        private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem eTC消费记录查询ToolStripMenuItem1;
     }
 }
 

@@ -114,7 +114,7 @@
     <Compile Include="ETC\ETCService.cs" />
     <Compile Include="ETC\ETCDevice.cs" />
     <Compile Include="ETC\ETCInterop.cs" />
-    <Compile Include="ETC\ETCPaymentRecord.cs" />
+    <Compile Include="ETC\ETCPaymentList.cs" />
     <Compile Include="ETC\ETCSetting.cs" />
     <Compile Include="ETC\Response\CardSearchResponse.cs" />
     <Compile Include="ETC\Response\ETCResponse.cs" />
