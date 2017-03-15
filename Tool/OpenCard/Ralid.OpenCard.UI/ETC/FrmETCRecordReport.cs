@@ -47,16 +47,19 @@ namespace Ralid.OpenCard.UI.ETC
 
         private void ShowPayOperationLogOnRow(DataGridViewRow row, ETCPaymentRecord item)
         {
-            row.Tag = item;
             try
             {
                 ETCPaymentList list = JsonConvert.DeserializeObject<ETCPaymentList>(item.Data);
+                row.Tag = list;
                 row.Cells["colListNo"].Value = list != null ? list.ListNo : null;
                 row.Cells["colLaneNo"].Value = item.LaneNo;
                 row.Cells["colAddTime"].Value = item.AddTime.ToString("yyyy-MM-dd HH:mm:ss");
                 row.Cells["colCardID"].Value = list != null ? list.CardNo : null;
-                row.Cells["colPayment"].Value = list != null ? list.CashMoney / 100 : 0;
-                row.Cells["colBalance"].Value = list != null ? list.Balance / 100 : 0;
+                row.Cells["colCarplate"].Value = list != null ? list.ExVehPlate : null;
+                row.Cells["colPayment"].Value = list != null ? (decimal)list.CashMoney / 100 : 0;
+                row.Cells["colBalance"].Value = list != null ? (decimal)list.Balance / 100 : 0;
+                row.Cells["colUploadTime"].Value = item.UploadTime.HasValue ? item.UploadTime.Value.ToString("yyyy-MM-dd HH:mm:ss") : null;
+                row.Visible = (string.IsNullOrEmpty(txtCarplate.Text) || (list != null && list.ExVehPlate.Contains(txtCarplate.Text)));
             }
             catch (Exception ex)
             {
@@ -64,5 +67,14 @@ namespace Ralid.OpenCard.UI.ETC
             }
         }
         #endregion
+
+        private void txtCarplate_TextChanged(object sender, EventArgs e)
+        {
+            foreach (DataGridViewRow row in customDataGridView1.Rows)
+            {
+                ETCPaymentList list = row.Tag as ETCPaymentList;
+                row.Visible = (string.IsNullOrEmpty(txtCarplate.Text) || (list != null && list.ExVehPlate.Contains(txtCarplate.Text)));
+            }
+        }
     }
 }

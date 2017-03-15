@@ -147,8 +147,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 if (this.OnReadCard != null) this.OnReadCard(this, e);
                 return;
             }
-            if (e.Payment.GetPaying() < 0) //不用收费直接返回收款成功事件
+            if (e.Payment.GetPaying() <= 0) //不用收费直接返回收款成功事件
             {
+                WriteCardResponse r = null;
+                ETCPaymentList list = null;
+                if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, 0, true, out list);
+                else r = device.CardReaderWriteCard(cardInfo.CardInfo, 0, true, out list);
                 e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                 e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
                 if (this.OnPaidOk != null) this.OnPaidOk(this, e);
@@ -189,8 +193,15 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 }
                 else
                 {
-                    e.LastError = "余额不足";
-                    if (this.OnPaidFail != null) this.OnPaidFail(this, e);
+                    if (obuInfo != null)
+                    {
+                        e.LastError = "余额不足";
+                        if (this.OnPaidFail != null) this.OnPaidFail(this, e);
+                    }
+                    else //ETC读卡器上余额不足时产生读卡事件，在收费电脑上显示明细
+                    {
+                        if (this.OnReadCard != null) this.OnReadCard(this, e);
+                    }
                 }
             }
         }

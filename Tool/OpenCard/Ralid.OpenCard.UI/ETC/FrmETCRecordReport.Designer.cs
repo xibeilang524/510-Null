@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             this.ucDateTimeInterval1 = new Ralid.Park.UserControls.UCDateTimeInterval();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.chkUnuploaded = new System.Windows.Forms.CheckBox();
@@ -37,9 +39,13 @@
             this.colLaneNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colAddTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colCardID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colCarplate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colPayment = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBalance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colUploadTime = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colFill = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtCarplate = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.customDataGridView1)).BeginInit();
             this.SuspendLayout();
@@ -99,15 +105,17 @@
             this.colLaneNo,
             this.colAddTime,
             this.colCardID,
+            this.colCarplate,
             this.colPayment,
             this.colBalance,
+            this.colUploadTime,
             this.colFill});
             this.customDataGridView1.Location = new System.Drawing.Point(0, 111);
             this.customDataGridView1.Name = "customDataGridView1";
             this.customDataGridView1.RowHeadersVisible = false;
             this.customDataGridView1.RowTemplate.Height = 23;
             this.customDataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.customDataGridView1.Size = new System.Drawing.Size(790, 272);
+            this.customDataGridView1.Size = new System.Drawing.Size(978, 272);
             this.customDataGridView1.TabIndex = 9;
             // 
             // colListNo
@@ -136,19 +144,37 @@
             this.colCardID.HeaderText = "卡号";
             this.colCardID.Name = "colCardID";
             this.colCardID.ReadOnly = true;
-            this.colCardID.Width = 200;
+            this.colCardID.Width = 150;
+            // 
+            // colCarplate
+            // 
+            this.colCarplate.HeaderText = "车牌号";
+            this.colCarplate.Name = "colCarplate";
+            this.colCarplate.ReadOnly = true;
             // 
             // colPayment
             // 
+            dataGridViewCellStyle3.Format = "C2";
+            dataGridViewCellStyle3.NullValue = null;
+            this.colPayment.DefaultCellStyle = dataGridViewCellStyle3;
             this.colPayment.HeaderText = "扣款金额";
             this.colPayment.Name = "colPayment";
             this.colPayment.ReadOnly = true;
             // 
             // colBalance
             // 
+            dataGridViewCellStyle4.Format = "C2";
+            this.colBalance.DefaultCellStyle = dataGridViewCellStyle4;
             this.colBalance.HeaderText = "卡片余额";
             this.colBalance.Name = "colBalance";
             this.colBalance.ReadOnly = true;
+            // 
+            // colUploadTime
+            // 
+            this.colUploadTime.HeaderText = "上传时间";
+            this.colUploadTime.Name = "colUploadTime";
+            this.colUploadTime.ReadOnly = true;
+            this.colUploadTime.Width = 130;
             // 
             // colFill
             // 
@@ -157,11 +183,30 @@
             this.colFill.Name = "colFill";
             this.colFill.ReadOnly = true;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(266, 66);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(29, 12);
+            this.label1.TabIndex = 10;
+            this.label1.Text = "车牌";
+            // 
+            // txtCarplate
+            // 
+            this.txtCarplate.Location = new System.Drawing.Point(298, 63);
+            this.txtCarplate.Name = "txtCarplate";
+            this.txtCarplate.Size = new System.Drawing.Size(100, 21);
+            this.txtCarplate.TabIndex = 11;
+            this.txtCarplate.TextChanged += new System.EventHandler(this.txtCarplate_TextChanged);
+            // 
             // FrmETCRecordReport
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(790, 408);
+            this.ClientSize = new System.Drawing.Size(978, 408);
+            this.Controls.Add(this.txtCarplate);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.customDataGridView1);
             this.Controls.Add(this.chkUnuploaded);
             this.Controls.Add(this.groupBox1);
@@ -173,6 +218,8 @@
             this.Controls.SetChildIndex(this.btnSaveAs, 0);
             this.Controls.SetChildIndex(this.chkUnuploaded, 0);
             this.Controls.SetChildIndex(this.customDataGridView1, 0);
+            this.Controls.SetChildIndex(this.label1, 0);
+            this.Controls.SetChildIndex(this.txtCarplate, 0);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.customDataGridView1)).EndInit();
             this.ResumeLayout(false);
@@ -190,8 +237,12 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colLaneNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn colAddTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colCardID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colCarplate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colPayment;
         private System.Windows.Forms.DataGridViewTextBoxColumn colBalance;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colUploadTime;
         private System.Windows.Forms.DataGridViewTextBoxColumn colFill;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox txtCarplate;
     }
 }
