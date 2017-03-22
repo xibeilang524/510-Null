@@ -65,23 +65,6 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             ETCDevice device = sender as ETCDevice;
             if (device == null) return;
             EntranceInfo entrance = ParkBuffer.Current.GetEntrance(device.EntranceID);
-            if (Setting.MonthCardFirst) //如果启用了优先使用车场卡功能
-            {
-                var con = new CardSearchCondition();
-                con.CarPlate = e.OBUInfo.CardPlate.Trim();
-                con.Status = Ralid.Park.BusinessModel.Enum.CardStatus.Enabled;
-                var cards = new CardBll(AppSettings.CurrentSetting.ParkConnect).GetCards(con).QueryObjects;
-                if (cards != null && cards.Count > 0 && cards.Exists(it => !it.CardType.IsTempCard))
-                {
-                    OpenCardEventArgs err = new OpenCardEventArgs()
-                    {
-                        Entrance = entrance,
-                        LastError = "请读车场卡",
-                    };
-                    if (this.OnError != null) this.OnError(this, err);
-                    return; //退出ETC读卡处理
-                }
-            }
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
                 CardID = e.OBUInfo.CardNo,
@@ -91,8 +74,38 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             };
             if (entrance != null)
             {
-                var p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                if (!entrance.IsExitDevice || (p != null && p.IsNested)) //入口或者嵌套车场，
+                var park = ParkBuffer.Current.GetPark(entrance.ParkID);
+                //开始处理与已经存在的同车牌号的名单的冲突 bruce 2017-3-22 
+                var con = new CardSearchCondition();
+                con.CarPlateOrLast = e.OBUInfo.CardPlate.Trim();
+                con.Status = Ralid.Park.BusinessModel.Enum.CardStatus.Enabled;
+                var cards = new CardBll(AppSettings.CurrentSetting.ParkConnect).GetCards(con).QueryObjects;
+                if (cards != null) cards = cards.Where(it => it.CardID != e.OBUInfo.CardNo).ToList(); //选出卡号不一样的记录
+                if (cards != null && cards.Count > 0)
+                {
+                    if (cards.Count == 1) //如果系统中只有一个同一车牌号的名单
+                    {
+                        var cardinfo = cards.Single(it => it.CardID != e.OBUInfo.CardNo);
+                        if ((!park.IsWriteCardMode || cardinfo.OnlineHandleWhenOfflineMode) && cardinfo.IsCardList) //如果是在线车场或卡片按在线处理
+                        {
+                            args.CardID = cardinfo.CardID; //用现有名单的卡号去读卡
+                        }
+                        else  //不能在线处理，提示刷卡
+                        {
+                            string err = park.ListMode == Ralid.Park.BusinessModel.Enum.ParkListMode.CarPlate ? "人工处理" : "请读车场卡";
+                            if (this.OnError != null) this.OnError(this, new OpenCardEventArgs() { Entrance = entrance, LastError = err });
+                            return;
+                        }
+                    }
+                    else  //多个同车牌号的名单，提示刷卡
+                    {
+                        string err = park.ListMode == Ralid.Park.BusinessModel.Enum.ParkListMode.CarPlate ? "人工处理" : "请读车场卡";
+                        if (this.OnError != null) this.OnError(this, new OpenCardEventArgs() { Entrance = entrance, LastError = err });
+                        return;
+                    }
+                }
+                //-------------------------------------------结束卡片冲突处理 bruce 2017-3-22 
+                if (!entrance.IsExitDevice || (park != null && park.IsNested)) //入口或者嵌套车场，
                 {
                     ETCPaymentList pr = null;
                     device.RSUWriteCard(e.OBUInfo, 0, false, out pr); //这里写卡主要是为了让卡片读卡时产生蜂鸣声
@@ -183,6 +196,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                         e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                         e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
                         e.Balance = (decimal)r.Balance / 100;
+                        if (obuInfo != null && obuInfo.OBUInfo.CardNo != e.CardID) e.Payment.Memo = "ETC" + obuInfo.OBUInfo.CardNo; //说明收费的卡号与ETC卡是同一个车牌号
                         if (this.OnPaidOk != null) this.OnPaidOk(this, e);
                     }
                     else

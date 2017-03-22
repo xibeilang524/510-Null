@@ -63,10 +63,18 @@ namespace Ralid.OpenCard.OpenCardService
             {
                 pad = ParkingAdapterManager.Instance[entrance.RootParkID];
             }
-            else //中央收费,默认用第一个停车场的费率来收取费用
+            else //中央收费,默认使用卡片的入场停车场来扣费
             {
-                if (ParkingAdapterManager.Instance != null && ParkingAdapterManager.Instance.ParkAdapters != null)
-                    pad = ParkingAdapterManager.Instance.ParkAdapters[0];
+                entrance = ParkBuffer.Current.GetEntrance(card.LastEntrance);
+                if (entrance != null)
+                {
+                    pad = ParkingAdapterManager.Instance[entrance.RootParkID];
+                }
+                else
+                {
+                    if (ParkingAdapterManager.Instance != null && ParkingAdapterManager.Instance.ParkAdapters != null)
+                        pad = ParkingAdapterManager.Instance.ParkAdapters[0];
+                }
             }
             if (pad != null)
             {
