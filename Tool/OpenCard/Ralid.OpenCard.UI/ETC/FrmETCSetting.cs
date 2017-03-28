@@ -43,8 +43,10 @@ namespace Ralid.OpenCard.UI.ETC
                     dataGridView1.Rows[row].Cells["colCityNo"].Value = d.CityNo;
                     dataGridView1.Rows[row].Cells["colAreaNo"].Value = d.AreaNo;
                     dataGridView1.Rows[row].Cells["colGateNo"].Value = d.GateNo;
-                    dataGridView1.Rows[row].Cells["colEcRSUID"].Value = d.EcRSUID;
-                    dataGridView1.Rows[row].Cells["colEcReaderID"].Value = d.EcReaderID;
+                    dataGridView1.Rows[row].Cells["colEcRSUID"].Value = d.RSUID;
+                    dataGridView1.Rows[row].Cells["colEnableRSU"].Value = !d.DisableRSU;
+                    dataGridView1.Rows[row].Cells["colEnableReader"].Value = !d.DisableReader;
+                    dataGridView1.Rows[row].Cells["colEcReaderID"].Value = d.ReaderID;
                     dataGridView1.Rows[row].Cells["colTimeout"].Value = d.TimeOut;
                     dataGridView1.Rows[row].Cells["colHeartBeatTime"].Value = d.HeartBeatTime;
                     var en = Park.BLL.ParkBuffer.Current.GetEntrance(d.EntranceID);
@@ -62,8 +64,6 @@ namespace Ralid.OpenCard.UI.ETC
             if (_ETC != null)
             {
                 txtReadSameCardInterval.IntergerValue = _ETC.ReadSameCardInterval;
-                chkETCCardReaderEnable.Checked = _ETC.ETCCardReaderEnable;
-                chkMonthCardFirst.Checked = _ETC.MonthCardFirst;
                 ShowDevicesOnGrid(_ETC.Devices);
             }
             chkEnable.Checked = GlobalSettings.Current.Get<OpenCardMessageHandler>().ContainService<ETCSetting>();
@@ -77,9 +77,13 @@ namespace Ralid.OpenCard.UI.ETC
                 FrmSetEntrance frm = new FrmSetEntrance();
                 frm.StartPosition = FormStartPosition.CenterParent;
                 frm.EntranceID = d.EntranceID;
+                frm.DisableRSU = d.DisableRSU;
+                frm.DisableReader = d.DisableReader;
                 if (frm.ShowDialog() == DialogResult.OK)
                 {
                     d.EntranceID = frm.EntranceID;
+                    d.DisableReader = frm.DisableReader;
+                    d.DisableRSU = frm.DisableRSU;
                     var en = Park.BLL.ParkBuffer.Current.GetEntrance(d.EntranceID);
                     this.dataGridView1.SelectedRows[0].Cells["colEntrance"].Value = en != null ? en.EntranceName : null;
                 }
@@ -89,8 +93,6 @@ namespace Ralid.OpenCard.UI.ETC
         private void btnSave_Click(object sender, EventArgs e)
         {
             _ETC.ReadSameCardInterval = txtReadSameCardInterval.IntergerValue;
-            _ETC.ETCCardReaderEnable = chkETCCardReaderEnable.Checked;
-            _ETC.MonthCardFirst = chkMonthCardFirst.Checked;
             CommandResult ret = (new SysParaSettingsBll(AppSettings.CurrentSetting.MasterParkConnect)).SaveSetting<ETCSetting>(_ETC);
             if (CustomCardTypeSetting.Current.GetCardType(ETCSetting.CardTyte) == null) //增加自定义卡片类型
             {

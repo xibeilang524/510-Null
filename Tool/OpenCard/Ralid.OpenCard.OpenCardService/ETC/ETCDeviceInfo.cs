@@ -69,17 +69,27 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         /// 获取或设置天线ID
         /// </summary>
         [DataMember]
-        public string EcRSUID { get; set; }
+        public string RSUID { get; set; }
         /// <summary>
         /// 获取或设置读卡器ID
         /// </summary>
         [DataMember]
-        public string EcReaderID { get; set; }
+        public string ReaderID { get; set; }
         /// <summary>
         /// 获取或设置所属的停车场通道ID,没有对应的通道时为零
         /// </summary>
         [DataMember]
         public int EntranceID { get; set; }
+        /// <summary>
+        /// 获取或设置是否禁用天线
+        /// </summary>
+        [DataMember]
+        public bool DisableRSU { get; set; }
+        /// <summary>
+        /// 获取或设置是否禁用读卡器
+        /// </summary>
+        [DataMember]
+        public bool DisableReader { get; set; }
         /// <summary>
         /// 获取或设置状态，0表示正常，1表示断开连接
         /// </summary>

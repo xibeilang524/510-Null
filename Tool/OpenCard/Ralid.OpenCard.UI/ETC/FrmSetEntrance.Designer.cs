@@ -33,6 +33,8 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.comEntrance = new Ralid.Park.UserControls.EntranceComboBox(this.components);
             this.label2 = new System.Windows.Forms.Label();
+            this.chkDisableRSU = new System.Windows.Forms.CheckBox();
+            this.chkDisableReader = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // btnCancel
@@ -40,7 +42,7 @@
             this.btnCancel.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(225, 102);
+            this.btnCancel.Location = new System.Drawing.Point(225, 131);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(115, 32);
             this.btnCancel.TabIndex = 9;
@@ -51,7 +53,7 @@
             // 
             this.btnOK.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
                         | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnOK.Location = new System.Drawing.Point(89, 102);
+            this.btnOK.Location = new System.Drawing.Point(89, 131);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(110, 32);
             this.btnOK.TabIndex = 8;
@@ -79,13 +81,37 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "停车场通道";
             // 
+            // chkDisableRSU
+            // 
+            this.chkDisableRSU.AutoSize = true;
+            this.chkDisableRSU.Location = new System.Drawing.Point(121, 83);
+            this.chkDisableRSU.Name = "chkDisableRSU";
+            this.chkDisableRSU.Size = new System.Drawing.Size(72, 16);
+            this.chkDisableRSU.TabIndex = 10;
+            this.chkDisableRSU.Text = "禁用天线";
+            this.chkDisableRSU.UseVisualStyleBackColor = true;
+            // 
+            // chkDisableReader
+            // 
+            this.chkDisableReader.AutoSize = true;
+            this.chkDisableReader.Checked = true;
+            this.chkDisableReader.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkDisableReader.Location = new System.Drawing.Point(225, 83);
+            this.chkDisableReader.Name = "chkDisableReader";
+            this.chkDisableReader.Size = new System.Drawing.Size(84, 16);
+            this.chkDisableReader.TabIndex = 11;
+            this.chkDisableReader.Text = "禁用读卡器";
+            this.chkDisableReader.UseVisualStyleBackColor = true;
+            // 
             // FrmSetEntrance
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(370, 161);
+            this.ClientSize = new System.Drawing.Size(370, 190);
+            this.Controls.Add(this.chkDisableReader);
+            this.Controls.Add(this.chkDisableRSU);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.comEntrance);
@@ -104,5 +130,7 @@
         private System.Windows.Forms.Button btnOK;
         private Park.UserControls.EntranceComboBox comEntrance;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.CheckBox chkDisableRSU;
+        private System.Windows.Forms.CheckBox chkDisableReader;
     }
 }

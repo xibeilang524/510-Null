@@ -18,15 +18,23 @@ namespace Ralid.OpenCard.UI.ETC
 
         public int EntranceID { get; set; }
 
+        public bool DisableRSU { get; set; }
+
+        public bool DisableReader { get; set; }
+
         private void FrmSetEntrance_Load(object sender, EventArgs e)
         {
             comEntrance.Init();
             comEntrance.SelectedEntranceID = EntranceID;
+            chkDisableReader.Checked = DisableReader;
+            chkDisableRSU.Checked = DisableRSU;
         }
 
         private void btnOK_Click(object sender, EventArgs e)
         {
             EntranceID = comEntrance.SelectedEntranceID;
+            DisableRSU = chkDisableRSU.Checked;
+            DisableReader = chkDisableReader.Checked;
             this.DialogResult = DialogResult.OK;
         }
     }

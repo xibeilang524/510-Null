@@ -108,7 +108,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 if (!entrance.IsExitDevice || (park != null && park.IsNested)) //入口或者嵌套车场，
                 {
                     ETCPaymentList pr = null;
-                    device.RSUWriteCard(e.OBUInfo, 0, false, out pr); //这里写卡主要是为了让卡片读卡时产生蜂鸣声
+                    device.RSUWrite(e.OBUInfo, 0, false, out pr); //这里写卡主要是为了让卡片读卡时产生蜂鸣声
                     if (this.OnReadCard != null) this.OnReadCard(this, args);
                 }
                 else
@@ -164,8 +164,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             {
                 WriteCardResponse r = null;
                 ETCPaymentList list = null;
-                if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, 0, true, out list);
-                else r = device.CardReaderWriteCard(cardInfo.CardInfo, 0, true, out list);
+                if (obuInfo != null) r = device.RSUWrite(obuInfo.OBUInfo, 0, true, out list);
+                else r = device.ReaderWrite(cardInfo.CardInfo, 0, true, out list);
                 e.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
                 e.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.GDETC;
                 if (this.OnPaidOk != null) this.OnPaidOk(this, e);
@@ -178,8 +178,8 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     int paid = (int)(e.Payment.GetPaying() * 100);
                     ETCPaymentList list = null;
                     WriteCardResponse r = null;
-                    if (obuInfo != null) r = device.RSUWriteCard(obuInfo.OBUInfo, paid, true, out list);
-                    else r = device.CardReaderWriteCard(cardInfo.CardInfo, paid, true, out list);
+                    if (obuInfo != null) r = device.RSUWrite(obuInfo.OBUInfo, paid, true, out list);
+                    else r = device.ReaderWrite(cardInfo.CardInfo, paid, true, out list);
                     if (r.ErrorCode == 0)
                     {
                         var res = device.ListUpLoad(list); //上传流水
@@ -252,7 +252,6 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 foreach (var dinfo in Setting.Devices)
                 {
                     var device = new ETCDevice(dinfo);
-                    device.ETCCardReaderEnable = Setting.ETCCardReaderEnable;
                     device.OnReadCardInfo += device_OnReadCardInfo;
                     device.OnReadOBUInfo += device_OnReadOBUInfo;
                     device.OnError += device_OnError;
@@ -282,7 +281,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                     device.Dispose();
                 }
             }
-            ETCInterop.Uninstall();
+            ETCInterop.Uninit();
         }
         #endregion
     }

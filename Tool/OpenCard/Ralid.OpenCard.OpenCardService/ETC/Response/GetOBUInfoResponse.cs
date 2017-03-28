@@ -8,6 +8,14 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
     internal class GetOBUInfoResponse : ETCResponse
     {
         /// <summary>
+        /// OBU号
+        /// </summary>
+        public string OBUID { get; set; }
+        /// <summary>
+        /// OBU应用序列号
+        /// </summary>
+        public string OBUNO { get; set; }
+        /// <summary>
         /// 卡号
         /// </summary>
         public string CardNo { get; set; }
@@ -87,14 +95,7 @@ namespace Ralid.OpenCard.OpenCardService.ETC.Response
         /// 车辆载重/座位数
         /// </summary>
         public string OBUWeight { get; set; }
-        /// <summary>
-        /// OBU号
-        /// </summary>
-        public string OBUID { get; set; }
-        /// <summary>
-        /// OBU应用序列号
-        /// </summary>
-        public string OBUNO { get; set; }
+        
 
         #region 上一次进出写入的信息
         /// <summary>
