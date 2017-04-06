@@ -86,6 +86,8 @@ namespace Ralid.OpenCard.UI.ETC
                     d.DisableRSU = frm.DisableRSU;
                     var en = Park.BLL.ParkBuffer.Current.GetEntrance(d.EntranceID);
                     this.dataGridView1.SelectedRows[0].Cells["colEntrance"].Value = en != null ? en.EntranceName : null;
+                    this.dataGridView1.SelectedRows[0].Cells["colEnableRSU"].Value = !d.DisableRSU;
+                    this.dataGridView1.SelectedRows[0].Cells["colEnableReader"].Value = !d.DisableReader;
                 }
             }
         }

@@ -21,11 +21,11 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             {
                 if (_CurSetting == null)
                 {
-                    _CurSetting = new ETCSetting();
-                    _CurSetting.Devices = new List<ETCDeviceInfo>();
                     var items = ETCDevice.GetAllDevices();
                     if (items != null && items.Length > 0)
                     {
+                        _CurSetting = new ETCSetting();
+                        _CurSetting.Devices = new List<ETCDeviceInfo>();
                         _CurSetting.Devices.AddRange(items);
                         var original = new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect).GetSetting<ETCSetting>();
                         if (original != null && original.Devices != null)
@@ -39,6 +39,10 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                                 item.DisableRSU = o != null ? o.DisableRSU : true;
                             }
                         }
+                    }
+                    else
+                    {
+                        _CurSetting = new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect).GetSetting<ETCSetting>(); 
                     }
                 }
             }

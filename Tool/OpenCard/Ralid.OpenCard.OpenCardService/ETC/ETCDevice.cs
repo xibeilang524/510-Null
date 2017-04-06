@@ -318,13 +318,13 @@ namespace Ralid.OpenCard.OpenCardService.ETC
         {
             int plen = 3000;
             StringBuilder response = new StringBuilder(plen);
-            var request = new
-            {
-                TimeOut = 2000,
-            };
             int n = -1;
-            n = ETCInterop.RSURead(int.Parse(LaneNo), JsonConvert.SerializeObject(request), response, ref plen);
-            if (n != 0) return new GetOBUInfoResponse() { ErrorCode = n };
+            n = ETCInterop.RSURead(int.Parse(LaneNo), JsonConvert.SerializeObject(new { TimeOut = "2000" }), response, ref plen);
+            if (n != 0)
+            {
+                System.Threading.Thread.Sleep(1000);
+                return new GetOBUInfoResponse() { ErrorCode = n };
+            }
             var ret = JsonConvert.DeserializeObject<GetOBUInfoResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;
@@ -387,8 +387,12 @@ namespace Ralid.OpenCard.OpenCardService.ETC
             int n = -1;
             int plen = 3000;
             StringBuilder response = new StringBuilder(plen);
-            n = ETCInterop.ReaderRead(int.Parse(LaneNo), JsonConvert.SerializeObject(new { TimeOut = 2000 }), response, ref plen);
-            if (n != 0) return new GetCardInfoResponse() { ErrorCode = n };
+            n = ETCInterop.ReaderRead(int.Parse(LaneNo), JsonConvert.SerializeObject(new { TimeOut = "2000" }), response, ref plen);
+            if (n != 0)
+            {
+                System.Threading.Thread.Sleep(1000);
+                return new GetCardInfoResponse() { ErrorCode = n };
+            }
             var ret = JsonConvert.DeserializeObject<GetCardInfoResponse>(response.ToString());
             ret.Content = response.ToString();
             return ret;

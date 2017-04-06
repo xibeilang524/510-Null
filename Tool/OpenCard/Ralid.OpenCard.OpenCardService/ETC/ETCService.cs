@@ -247,16 +247,25 @@ namespace Ralid.OpenCard.OpenCardService.ETC
                 }
             }
             _Devices = new List<ETCDevice>();
-            if (Setting.Devices != null && Setting.Devices.Count > 0)
+            var items = ETCDevice.GetAllDevices(); //初始化的时候一定要调用这一个函数
+            if (items != null && items.Length > 0)
             {
-                foreach (var dinfo in Setting.Devices)
+                foreach (var item in items)
                 {
-                    var device = new ETCDevice(dinfo);
-                    device.OnReadCardInfo += device_OnReadCardInfo;
-                    device.OnReadOBUInfo += device_OnReadOBUInfo;
-                    device.OnError += device_OnError;
-                    device.Init();
-                    _Devices.Add(device);
+                    ETCDeviceInfo dinfo = null;
+                    if (Setting.Devices != null) dinfo = Setting.Devices.SingleOrDefault(it => it.LaneNo == item.LaneNo);
+                    if (dinfo != null)
+                    {
+                        item.EntranceID = dinfo.EntranceID;
+                        item.DisableReader = dinfo.DisableReader;
+                        item.DisableRSU = dinfo.DisableRSU;
+                        var device = new ETCDevice(item);
+                        device.OnReadCardInfo += device_OnReadCardInfo;
+                        device.OnReadOBUInfo += device_OnReadOBUInfo;
+                        device.OnError += device_OnError;
+                        device.Init();
+                        _Devices.Add(device);
+                    }
                 }
             }
             if (_UploadList == null)
