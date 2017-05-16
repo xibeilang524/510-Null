@@ -53,19 +53,37 @@ go
 
 IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[YCTBlacklist]') AND type in (N'U'))
 BEGIN
-CREATE TABLE [dbo].[YCTBlacklist](
-	[LCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
-	[FCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[Reason] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
-	[WalletType] [int] NULL,
-	[AddDateTime] [datetime] NULL,
-	[CatchAt] [datetime] NULL,
-	[UploadFile] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
- CONSTRAINT [PK_YCTBlacklist] PRIMARY KEY CLUSTERED 
-(
-	[LCN] ASC
-)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
-) ON [PRIMARY]
+	CREATE TABLE [dbo].[YCTBlacklist](
+		[LCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NOT NULL,
+		[FCN] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+		[Reason] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+		[WalletType] [int] NULL,
+		[AddDateTime] [datetime] NULL,
+		[CatchAt] [datetime] NULL,
+		[UploadFile] [nvarchar](50) COLLATE Chinese_PRC_CI_AS NULL,
+	 CONSTRAINT [PK_YCTBlacklist] PRIMARY KEY CLUSTERED 
+	(
+		[LCN] ASC
+	)WITH (IGNORE_DUP_KEY = OFF) ON [PRIMARY]
+	) ON [PRIMARY]
+END 
+GO
+
+--2017-5-16 生成创建etc消费记录表
+IF NOT EXISTS (SELECT * FROM sys.objects WHERE object_id = OBJECT_ID(N'[dbo].[ETCPaymentRecord]') AND type in (N'U'))
+BEGIN
+	CREATE TABLE [dbo].[ETCPaymentRecord](
+		[ID] [int] IDENTITY(1,1) NOT NULL,
+		[LaneNo] [nvarchar](50) NOT NULL,
+		[Device] [tinyint] NOT NULL,
+		[AddTime] [datetime] NOT NULL,
+		[Data] [nvarchar](1000) NOT NULL,
+		[UploadTime] [datetime] NULL,
+	 CONSTRAINT [PK_ETCPaymentRecord1] PRIMARY KEY CLUSTERED 
+	(
+		[ID] ASC
+	)
+	) ON [PRIMARY]
 END 
 GO
 

@@ -125,6 +125,9 @@
     <Compile Include="ETC\Response\WriteCardResponse.cs" />
     <Compile Include="GlobalSettings.cs" />
     <Compile Include="IOpenCardService.cs" />
+    <Compile Include="LR280\LR280Interop.cs" />
+    <Compile Include="LR280\Request.cs" />
+    <Compile Include="LR280\Response.cs" />
     <Compile Include="OpenCardMessageHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="LJHSocket.cs" />
