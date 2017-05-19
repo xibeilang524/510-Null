@@ -216,6 +216,16 @@ namespace Ralid.OpenCard.UI
                     handler.InitService(etc);
                 }
             }
+
+            temp = AppSettings.CurrentSetting.GetConfigContent("EnableLR280");
+            if (!string.IsNullOrEmpty(temp) && bool.TryParse(temp, out enabled) && enabled)
+            {
+                Ralid.OpenCard.OpenCardService.LR280.LR280Setting lr280 = ssb.GetSetting<OpenCardService.LR280.LR280Setting>();
+                if (lr280 != null)
+                {
+                    handler.InitService(lr280);
+                }
+            }
             this.Invoke((Action)(() => { ShowServiceState(); }));
         }
 
@@ -357,6 +367,7 @@ namespace Ralid.OpenCard.UI
             lblZST.Visible = handler.ContainService<ZSTSettings>();
             lblYiTingShanFu.Visible = handler.ContainService<YiTingShanFuSetting>();
             lblETC.Visible = handler.ContainService<ETCSetting>();
+            lblLR280.Visible = handler.ContainService<Ralid.OpenCard.OpenCardService.LR280.LR280Setting>();
             statusStrip1.Refresh();
         }
         #endregion
@@ -462,6 +473,14 @@ namespace Ralid.OpenCard.UI
             ShowServiceState();
         }
 
+        private void mnu_银联闪付_Click(object sender, EventArgs e)
+        {
+            LR280.FrmLR280Setting frm = new LR280.FrmLR280Setting();
+            frm.StartPosition = FormStartPosition.CenterParent;
+            frm.ShowDialog();
+            ShowServiceState();
+        }
+
         private void mnu_ZST_Click(object sender, EventArgs e)
         {
             FrmZSTSetting frm = new FrmZSTSetting();
@@ -493,6 +512,6 @@ namespace Ralid.OpenCard.UI
             frm.StartPosition = FormStartPosition.CenterParent;
             frm.ShowDialog();
         }
-        #endregion 
+        #endregion
     }
 }

@@ -12,15 +12,28 @@ namespace Ralid.OpenCard.OpenCardService.LR280
     internal class LR280Interop
     {
         /// <summary>
-        /// 业务发起
+        /// 打开设备
         /// </summary>
-        /// <param name="req"></param>
-        /// <param name="end"></param>
+        /// <param name="commport">串口号</param>
+        /// <param name="bps">波特率</param>
         /// <returns></returns>
-        [DllImport("MisProtocol.dll")]
-        public static extern int bankall_back(byte[] req, byte[] rep, callbackfunc cab);
-
-        [DllImport("MisProtocol.dll")]
-        public static extern int bankall(byte[] req, byte[] rep);
+        [DllImport("mis_yt.dll")]
+        public static extern int open_dev(int commport, int bps); 
+        /// <summary>
+        /// 关闭设备
+        /// </summary>
+        /// <param name="commport"></param>
+        /// <returns></returns>
+        [DllImport("mis_yt.dll")]
+        public static extern int close_dev(int commport); //
+        /// <summary>
+        /// 发起业务
+        /// </summary>
+        /// <param name="commport"></param>
+        /// <param name="req"></param>
+        /// <param name="rep"></param>
+        /// <returns></returns>
+        [DllImport("mis_yt.dll")]
+        public static extern int bankall_yt(int commport, byte[] req, byte[] rep); //
     }
 }

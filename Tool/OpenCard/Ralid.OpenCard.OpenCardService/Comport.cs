@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading;
 using System.IO.Ports;
 
-namespace Ralid.OpenCard.OpenCardService.YCT
+namespace Ralid.OpenCard.OpenCardService
 {
     public delegate void DataArrivedDelegate(object sender, byte[] data);
 
@@ -106,6 +106,7 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             try
             {
                 _Port = new SerialPort(portName, baud);
+                _Port.WriteTimeout = 500;
             }
             catch (Exception ex)
             {

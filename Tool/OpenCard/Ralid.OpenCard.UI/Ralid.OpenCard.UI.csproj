@@ -183,6 +183,18 @@
     <Compile Include="FrmZSTSetting.designer.cs">
       <DependentUpon>FrmZSTSetting.cs</DependentUpon>
     </Compile>
+    <Compile Include="LR280\FrmLR280Detail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LR280\FrmLR280Detail.designer.cs">
+      <DependentUpon>FrmLR280Detail.cs</DependentUpon>
+    </Compile>
+    <Compile Include="LR280\FrmLR280Setting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LR280\FrmLR280Setting.designer.cs">
+      <DependentUpon>FrmLR280Setting.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="ETC\FrmETCSetting.resx">
@@ -244,6 +256,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmZSTSetting.resx">
       <DependentUpon>FrmZSTSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LR280\FrmLR280Detail.resx">
+      <DependentUpon>FrmLR280Detail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LR280\FrmLR280Setting.resx">
+      <DependentUpon>FrmLR280Setting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

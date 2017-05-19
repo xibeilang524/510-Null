@@ -405,6 +405,26 @@ namespace Ralid.OpenCard.OpenCardService
         }
 
         /// <summary>
+        /// 初始化服务
+        /// </summary>
+        /// <param name="yct"></param>
+        public void InitService(LR280.LR280Setting lr280)
+        {
+            if (!_Services.ContainsKey(lr280.GetType()))
+            {
+                IOpenCardService s = new LR280.LR280Service(lr280);
+                s.OnReadCard += new EventHandler<OpenCardEventArgs>(s_OnReadCard);
+                s.OnPaying += new EventHandler<OpenCardEventArgs>(s_OnPaying);
+                s.OnPaidOk += new EventHandler<OpenCardEventArgs>(s_OnPaidOk);
+                s.OnPaidFail += new EventHandler<OpenCardEventArgs>(s_OnPaidFail);
+                s.OnError += new EventHandler<OpenCardEventArgs>(s_OnError);
+                _Services[lr280.GetType()] = s;
+            }
+            (_Services[lr280.GetType()] as LR280.LR280Service).Setting = lr280;
+            _Services[lr280.GetType()].Init();
+        }
+
+        /// <summary>
         /// 查看是否已经启动某个类型的服务
         /// </summary>
         /// <typeparam name="T">类型</typeparam>

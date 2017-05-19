@@ -47,6 +47,8 @@
             this.mnu_ETC = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_YiTing = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_ZST = new System.Windows.Forms.ToolStripMenuItem();
+            this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.eTC消费记录查询ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pnlPark = new System.Windows.Forms.Panel();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
@@ -55,8 +57,8 @@
             this.chkCardEvent = new System.Windows.Forms.CheckBox();
             this.eventList = new Ralid.Park.UserControls.EventReportListBox(this.components);
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.报表ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.eTC消费记录查询ToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.mnu_银联闪付 = new System.Windows.Forms.ToolStripMenuItem();
+            this.lblLR280 = new System.Windows.Forms.ToolStripStatusLabel();
             this.statusStrip1.SuspendLayout();
             this.menuStrip1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -71,7 +73,8 @@
             this.lblYCT,
             this.lblETC,
             this.lblYiTingShanFu,
-            this.lblZST});
+            this.lblZST,
+            this.lblLR280});
             this.statusStrip1.Location = new System.Drawing.Point(0, 443);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(713, 26);
@@ -98,7 +101,7 @@
             // 
             this.lblStartFrom.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold);
             this.lblStartFrom.Name = "lblStartFrom";
-            this.lblStartFrom.Size = new System.Drawing.Size(602, 21);
+            this.lblStartFrom.Size = new System.Drawing.Size(71, 21);
             this.lblStartFrom.Spring = true;
             this.lblStartFrom.Text = "启动时间";
             this.lblStartFrom.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -184,6 +187,7 @@
             this.参数设置ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.mnu_YCT,
             this.mnu_ETC,
+            this.mnu_银联闪付,
             this.mnu_YiTing,
             this.mnu_ZST});
             this.参数设置ToolStripMenuItem.Name = "参数设置ToolStripMenuItem";
@@ -218,6 +222,21 @@
             this.mnu_ZST.Text = "中山通";
             this.mnu_ZST.Visible = false;
             this.mnu_ZST.Click += new System.EventHandler(this.mnu_ZST_Click);
+            // 
+            // 报表ToolStripMenuItem
+            // 
+            this.报表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.eTC消费记录查询ToolStripMenuItem1});
+            this.报表ToolStripMenuItem.Name = "报表ToolStripMenuItem";
+            this.报表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
+            this.报表ToolStripMenuItem.Text = "报表";
+            // 
+            // eTC消费记录查询ToolStripMenuItem1
+            // 
+            this.eTC消费记录查询ToolStripMenuItem1.Name = "eTC消费记录查询ToolStripMenuItem1";
+            this.eTC消费记录查询ToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
+            this.eTC消费记录查询ToolStripMenuItem1.Text = "ETC消费记录查询";
+            this.eTC消费记录查询ToolStripMenuItem1.Click += new System.EventHandler(this.eTC消费记录查询ToolStripMenuItem1_Click);
             // 
             // pnlPark
             // 
@@ -296,20 +315,20 @@
             this.eventList.Size = new System.Drawing.Size(713, 309);
             this.eventList.TabIndex = 13;
             // 
-            // 报表ToolStripMenuItem
+            // mnu_银联闪付
             // 
-            this.报表ToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.eTC消费记录查询ToolStripMenuItem1});
-            this.报表ToolStripMenuItem.Name = "报表ToolStripMenuItem";
-            this.报表ToolStripMenuItem.Size = new System.Drawing.Size(44, 21);
-            this.报表ToolStripMenuItem.Text = "报表";
+            this.mnu_银联闪付.Name = "mnu_银联闪付";
+            this.mnu_银联闪付.Size = new System.Drawing.Size(152, 22);
+            this.mnu_银联闪付.Text = "银联闪付";
+            this.mnu_银联闪付.Click += new System.EventHandler(this.mnu_银联闪付_Click);
             // 
-            // eTC消费记录查询ToolStripMenuItem1
+            // lblLR280
             // 
-            this.eTC消费记录查询ToolStripMenuItem1.Name = "eTC消费记录查询ToolStripMenuItem1";
-            this.eTC消费记录查询ToolStripMenuItem1.Size = new System.Drawing.Size(170, 22);
-            this.eTC消费记录查询ToolStripMenuItem1.Text = "ETC消费记录查询";
-            this.eTC消费记录查询ToolStripMenuItem1.Click += new System.EventHandler(this.eTC消费记录查询ToolStripMenuItem1_Click);
+            this.lblLR280.Font = new System.Drawing.Font("Microsoft YaHei UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblLR280.ForeColor = System.Drawing.Color.Blue;
+            this.lblLR280.Name = "lblLR280";
+            this.lblLR280.Size = new System.Drawing.Size(104, 21);
+            this.lblLR280.Text = "银联闪付服务启动";
             // 
             // FrmMain
             // 
@@ -370,6 +389,8 @@
         private System.Windows.Forms.ToolStripStatusLabel lblETC;
         private System.Windows.Forms.ToolStripMenuItem 报表ToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem eTC消费记录查询ToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem mnu_银联闪付;
+        private System.Windows.Forms.ToolStripStatusLabel lblLR280;
     }
 }
 
