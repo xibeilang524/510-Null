@@ -45,12 +45,11 @@ namespace Ralid.OpenCard.OpenCardService
         /// 获取或设置卡片类型
         /// </summary>
         public string CardType { get; set; }
-
-       
         /// <summary>
         /// 获取或设置卡片余额
         /// </summary>
         public decimal Balance { get; set; }
+
         /// <summary>
         /// 获取或设置卡片收费信息
         /// </summary>
@@ -73,10 +72,6 @@ namespace Ralid.OpenCard.OpenCardService
         /// </summary>
         public CardPaymentInfo UnFinishedPayment { get; set; }
         //end add by Jan 2016-04-27
-        /// <summary>
-        /// 获取或设置此次读卡事件是否要取消处理
-        /// </summary>
-        public bool Canceled { get; set; }  //added by bruce 2017-3-22
         #endregion
     }
 

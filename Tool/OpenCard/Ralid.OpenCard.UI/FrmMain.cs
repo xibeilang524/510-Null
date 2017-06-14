@@ -263,7 +263,7 @@ namespace Ralid.OpenCard.UI
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Paid,
-                                                  e.Balance.ToString("F2"));
+                                                  e.Balance > 0 ? e.Balance.ToString("F2") : string.Empty);
             if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
             if (chkDebug.Checked)
             {
@@ -284,7 +284,7 @@ namespace Ralid.OpenCard.UI
                                                     e.CardID,
                                                     e.UnFinishedPayment.ChargeDateTime.ToString("yyyy-MM-dd HH:mm:ss"),
                                                     e.UnFinishedPayment.Paid,
-                                                    e.Balance.ToString("F2"));
+                                                    e.Balance > 0 ? e.Balance.ToString("F2") : string.Empty);
                 if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
                 if (chkDebug.Checked)
                 {
@@ -298,7 +298,7 @@ namespace Ralid.OpenCard.UI
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
                                                   e.Payment != null ? e.Payment.GetPaying() : 0,
-                                                  e.Balance.ToString("F2"));
+                                                  e.Balance > 0 ? e.Balance.ToString("F2") : string.Empty);
             if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
             if (chkDebug.Checked)
             {
@@ -312,7 +312,7 @@ namespace Ralid.OpenCard.UI
                                                   DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"),
                                                   e.Entrance != null ? e.Entrance.EntranceName : "中央收费处",
                                                   e.CardID,
-                                                  e.Balance.ToString("F2"));
+                                                  e.Balance > 0 ? e.Balance.ToString("F2") : string.Empty);
             if (chkOpenEvent.Checked) InsertMessage(msg, Color.Blue);
             if (chkDebug.Checked)
             {

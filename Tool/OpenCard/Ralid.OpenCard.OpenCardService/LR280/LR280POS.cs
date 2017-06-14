@@ -19,8 +19,18 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         #endregion
 
         #region 私有变量
+        private Random _Random = new Random();
         private int _Baud = 0;
         private object _PortLocker = new object();
+
+        /// <summary>
+        /// 获取或设置是否已经打开串口
+        /// </summary>
+        public bool IsOpen { get; set; }
+        /// <summary>
+        /// 获取或设置是否已经签到了
+        /// </summary>
+        public bool CheckIned { get; set; }
         #endregion
 
         #region 私有方法
@@ -31,7 +41,8 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 try
                 {
                     byte[] buffer = new byte[1024];
-                    int ret = LR280Interop.bankall_yt(Commport, GetBytes(r), buffer);
+                    var req = GetBytes(r);
+                    int ret = LR280Interop.bankall_yt(Commport, req, buffer);
                     if (ret == 0)
                     {
                         return GetResponse(buffer);
@@ -62,6 +73,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             ret += string.IsNullOrEmpty(r.原交易日期) ? space.PadRight(8) : r.原交易日期;
             ret += string.IsNullOrEmpty(r.原交易参考号) ? space.PadRight(12) : r.原交易参考号;
             ret += string.IsNullOrEmpty(r.原凭证号) ? space.PadRight(6) : r.原凭证号;
+            r.LRC = _Random.Next(100, 999);
             ret += r.LRC.ToString().PadLeft(3, '0');
             ret += string.IsNullOrEmpty(r.授权码) ? space.PadRight(6) : r.授权码;
             ret += string.IsNullOrEmpty(r.卡号) ? space.PadRight(20) : r.卡号.PadRight(20);
@@ -81,16 +93,16 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             int m;
             var temp = Encoding.GetEncoding("GB2312").GetString(val, 34, 12).TrimStart('0');
             if (int.TryParse(temp, out m)) ret.金额 = m;
-            ret.错误说明 = Encoding.GetEncoding("GB2312").GetString(val, 46, 40);
-            ret.商户号 = Encoding.GetEncoding("GB2312").GetString(val, 86, 15);
-            ret.终端号 = Encoding.GetEncoding("GB2312").GetString(val, 101, 8);
-            ret.批次号 = Encoding.GetEncoding("GB2312").GetString(val, 109, 6);
-            ret.交易日期 = Encoding.GetEncoding("GB2312").GetString(val, 115, 4);
-            ret.交易时间 = Encoding.GetEncoding("GB2312").GetString(val, 119, 6);
-            ret.交易参考号 = Encoding.GetEncoding("GB2312").GetString(val, 125, 12);
-            ret.授权号 = Encoding.GetEncoding("GB2312").GetString(val, 137, 6);
-            ret.清算日期 = Encoding.GetEncoding("GB2312").GetString(val, 143, 4);
-            ret.LRC校验 = Encoding.GetEncoding("GB2312").GetString(val, 147, 3);
+            ret.错误说明 = Encoding.GetEncoding("GB2312").GetString(val, 46, 40).Trim();
+            ret.商户号 = Encoding.GetEncoding("GB2312").GetString(val, 86, 15).Trim();
+            ret.终端号 = Encoding.GetEncoding("GB2312").GetString(val, 101, 8).Trim();
+            ret.批次号 = Encoding.GetEncoding("GB2312").GetString(val, 109, 6).Trim();
+            ret.交易日期 = Encoding.GetEncoding("GB2312").GetString(val, 115, 4).Trim();
+            ret.交易时间 = Encoding.GetEncoding("GB2312").GetString(val, 119, 6).Trim();
+            ret.交易参考号 = Encoding.GetEncoding("GB2312").GetString(val, 125, 12).Trim();
+            ret.授权号 = Encoding.GetEncoding("GB2312").GetString(val, 137, 6).Trim();
+            ret.清算日期 = Encoding.GetEncoding("GB2312").GetString(val, 143, 4).Trim();
+            ret.LRC校验 = Encoding.GetEncoding("GB2312").GetString(val, 147, 3).Trim();
             return ret;
         }
         #endregion
@@ -110,9 +122,11 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// <summary>
         /// 打开
         /// </summary>
-        public void Open()
+        public int Open()
         {
-            LR280Interop.open_dev(Commport, _Baud);
+            var ret= LR280Interop.open_dev(Commport, _Baud);
+            if (ret == 0) IsOpen = true;
+            return ret;
         }
 
         /// <summary>
@@ -148,6 +162,12 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         public LR280Response ReadCard()
         {
             var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.读卡 };
+            return Request(r);
+        }
+
+        public LR280Response 查余额()
+        {
+            var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.查余额 };
             return Request(r);
         }
         /// <summary>

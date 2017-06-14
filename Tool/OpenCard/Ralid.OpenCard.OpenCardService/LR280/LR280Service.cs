@@ -38,6 +38,9 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 Thread.Sleep(500);
                 try
                 {
+                    if (!item.Reader.IsOpen) item.Reader.Open();
+                    if (!item.Reader.IsOpen) continue;
+                    if (!item.Reader.CheckIned) item.Reader.CheckIn(); //没有签到，先签到
                     var w = item.Reader.ReadCard();
                     if (w != null)
                     {
@@ -46,11 +49,12 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                             if (w.卡号 == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
                             lastCard = w.卡号;
                             lastDT = DateTime.Now;
-                            HandleWallet(item, w);
+                            HandleCardRead(item, w);
                         }
                         else if (w.返回码 == "-1") item.Reader.Open();//串口打开失败
                         else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                         else if (w.返回码 == "XA" || w.返回码 == "XB") item.Reader.Clear();//没有结算
+                        else if (w.返回码 == "4") { } //等于4时什么也不做
                         else HandleError(item, string.Format("错误{0}：{1}", w.返回码, w.错误说明));
                     }
                 }
@@ -66,7 +70,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             return ts.TotalSeconds;
         }
 
-        private void HandleWallet(LR280Item item, LR280Response w)
+        private void HandleCardRead(LR280Item item, LR280Response w)
         {
             EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
             OpenCardEventArgs args = new OpenCardEventArgs()
@@ -74,20 +78,16 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 CardID = w.卡号,
                 CardType = LR280Setting.CardTyte,
                 Entrance = entrance,
-                Balance = (decimal)w.金额 / 100,
             };
-            if (args.CardType == LR280Setting.CardTyte)
+            ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+            CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
+            if (card != null && card.CardType.Name == LR280Setting.CardTyte && (entrance == null || (!p.IsNested && entrance.IsExitDevice))) ////中央收费处和非嵌套车场的出口,则进行收费处理
             {
-                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
-                if (card != null && card.CardType.Name == LR280Setting.CardTyte && (entrance == null || (!p.IsNested && entrance.IsExitDevice))) ////中央收费处和非嵌套车场的出口,则进行收费处理
-                {
-                    HandlePayment(item, w, args);
-                }
-                else
-                {
-                    if (this.OnReadCard != null) this.OnReadCard(this, args);
-                }
+                HandlePayment(item, w, args);
+            }
+            else
+            {
+                if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
         }
 
@@ -106,26 +106,17 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 //判断余额是否够扣费，否则返回"余额不足",注意钱包单位是分的，这里要转成分比较
                 //因为CPU钱包里有一个余额下限，余额下限是不允许扣费的，如果不比较费用和余额，有可以会扣到余额下限
                 int fee = (int)(args.Payment.GetPaying() * 100);
-                if (fee <= w.金额)
+                var r = item.Reader.Pay(w.卡号, fee);
+                if (r.返回码 == "00")
                 {
-                    var r = item.Reader.Pay(w.卡号, fee);
-                    if (r.返回码 == "00")
-                    {
-                        args.Paid = args.Payment.GetPaying();
-                        args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
-                        args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.UnionPay;
-                        args.Balance = (decimal)(w.金额 - fee) / 100;
-                        if (this.OnPaidOk != null) this.OnPaidOk(this, args);
-                    }
-                    else
-                    {
-                        args.LastError = string.Format("错误{0}：{1}", r.返回码, r.错误说明);
-                        if (this.OnPaidFail != null) this.OnPaidFail(this, args);
-                    }
+                    args.Paid = args.Payment.GetPaying();
+                    args.Payment.PaymentCode = Ralid.Park.BusinessModel.Enum.PaymentCode.Computer;
+                    args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.UnionPay;
+                    if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
                 else
                 {
-                    args.LastError = "余额不足";
+                    args.LastError = string.Format("错误{0}：{1}", r.返回码, r.错误说明);
                     if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                 }
             }
@@ -196,9 +187,8 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 {
                     if (_LR280Items == null || !_LR280Items.Exists(it => it.Comport == item.Comport))
                     {
-                        var reader = new LR280POS((byte)item.Comport, 57600);
-                        //reader.Log = AppSettings.CurrentSetting.Debug; //处理调试模式才启动日志功能
-                        reader.Open();
+                        var reader = new LR280POS((byte)item.Comport);
+                        var ret=reader.Open();
                         item.Reader = reader;
                         _LR280Items.Add(item);
                         Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
