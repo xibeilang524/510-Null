@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Threading;
 using System.Linq;
 using System.Text;
+using Ralid.Park.BLL;
+using Ralid.Park.ParkAdapter;
 using Ralid.OpenCard.OpenCardService;
 using Ralid.Park.BusinessModel.Model;
+using Ralid.Park.BusinessModel.Notify;
+using Ralid.Park.BusinessModel.Report;
 using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.SearchCondition;
-using Ralid.Park.BLL;
-using Ralid.Park.ParkAdapter;
-using Ralid.Park.BusinessModel.Notify;
 
 namespace Ralid.OpenCard.OpenCardService.LR280
 {
@@ -57,7 +58,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     if (DateTime.Now.Hour == 2 && _NeedClear) //每天凌晨2点结算操作一次
                     {
                         var ret = item.Reader.Clear();
-                        if (ret != null && ret.返回码 == "00") _NeedClear = false;
+                        _NeedClear = false;
                     }
                     else if (DateTime.Now.Hour != 2)
                     {
@@ -66,22 +67,22 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     if (!_CheckIned)
                     {
                         var ret = item.Reader.CheckIn(); //没有签到，先签到
-                        if (ret != null && ret.返回码 == "00") _CheckIned = true;
+                        _CheckIned = true;
                     }
                     var w = item.Reader.ReadCard();
                     if (w != null)
                     {
-                        if (w.返回码 == "00")
+                        if (w.返回码 == "00" && !string.IsNullOrEmpty(w.卡号))
                         {
                             if (w.卡号 == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                            HandleCardRead(item, w);
                             lastCard = w.卡号;
                             lastDT = DateTime.Now;
-                            HandleCardRead(item, w);
                         }
                         else if (w.返回码 == "-1") item.Reader.Open();//串口打开失败
                         else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                         else if (w.返回码 == "XA" || w.返回码 == "XB") item.Reader.Clear();//没有结算
-                        else if (w.返回码 == "4") { } //等于4时什么也不做
+                        else if (w.返回码 == "4" && w.返回码 =="Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
                         else HandleError(item, string.Format("错误{0}：{1}", w.返回码, w.错误说明));
                     }
                 }
