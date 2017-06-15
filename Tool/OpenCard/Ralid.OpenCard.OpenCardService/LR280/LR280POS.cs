@@ -27,10 +27,6 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// 获取或设置是否已经打开串口
         /// </summary>
         public bool IsOpen { get; set; }
-        /// <summary>
-        /// 获取或设置是否已经签到了
-        /// </summary>
-        public bool CheckIned { get; set; }
         #endregion
 
         #region 私有方法
@@ -124,7 +120,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// </summary>
         public int Open()
         {
-            var ret= LR280Interop.open_dev(Commport, _Baud);
+            var ret = LR280Interop.open_dev(Commport, _Baud);
             if (ret == 0) IsOpen = true;
             return ret;
         }
@@ -173,9 +169,11 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// <summary>
         /// 消费
         /// </summary>
-        public LR280Response Pay(string cardID, int money)
+        /// <param name="money">金额（分)</param>
+        /// <returns></returns>
+        public LR280Response Pay(int money)
         {
-            var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.消费, 卡号 = cardID, 金额 = money };
+            var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.消费, 金额 = money };
             return Request(r);
         }
         #endregion

@@ -9,6 +9,8 @@ using Ralid.Park.BusinessModel.Result;
 using Ralid.Park.BusinessModel.Configuration;
 using Ralid.Park.BusinessModel.SearchCondition;
 using Ralid.Park.BLL;
+using Ralid.Park.ParkAdapter;
+using Ralid.Park.BusinessModel.Notify;
 
 namespace Ralid.OpenCard.OpenCardService.LR280
 {
@@ -29,6 +31,9 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         #region 私有事件
         private void PollRoute(object obj)
         {
+            bool _CheckIned = false;
+            bool _NeedCheckIn = true;
+            bool _NeedClear = false;
             string lastCard = null;
             DateTime lastDT = DateTime.Now;
             LR280Item item = obj as LR280Item;
@@ -40,7 +45,29 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 {
                     if (!item.Reader.IsOpen) item.Reader.Open();
                     if (!item.Reader.IsOpen) continue;
-                    if (!item.Reader.CheckIned) item.Reader.CheckIn(); //没有签到，先签到
+                    if (DateTime.Now.Hour == 1 && _NeedCheckIn) //每天凌晨1点钟自动重新签到一次
+                    {
+                        _CheckIned = false;
+                        _NeedCheckIn = false;
+                    }
+                    else if (DateTime.Now.Hour != 1)
+                    {
+                        _NeedCheckIn = true;
+                    }
+                    if (DateTime.Now.Hour == 2 && _NeedClear) //每天凌晨2点结算操作一次
+                    {
+                        var ret = item.Reader.Clear();
+                        if (ret != null && ret.返回码 == "00") _NeedClear = false;
+                    }
+                    else if (DateTime.Now.Hour != 2)
+                    {
+                        _NeedClear = true;
+                    }
+                    if (!_CheckIned)
+                    {
+                        var ret = item.Reader.CheckIn(); //没有签到，先签到
+                        if (ret != null && ret.返回码 == "00") _CheckIned = true;
+                    }
                     var w = item.Reader.ReadCard();
                     if (w != null)
                     {
@@ -106,7 +133,13 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 //判断余额是否够扣费，否则返回"余额不足",注意钱包单位是分的，这里要转成分比较
                 //因为CPU钱包里有一个余额下限，余额下限是不允许扣费的，如果不比较费用和余额，有可以会扣到余额下限
                 int fee = (int)(args.Payment.GetPaying() * 100);
-                var r = item.Reader.Pay(w.卡号, fee);
+                if (args.Entrance != null) //由于扣费时间有点长，所以这里要在LED屏上提示正在扣费
+                {
+                    string msg = string.Format("正在扣费,请不要拿开卡...");
+                    IParkingAdapter pad = ParkingAdapterManager.Instance[args.Entrance.RootParkID];
+                    if (pad != null) pad.LedDisplay(new SetLedDisplayNotify(args.Entrance.EntranceID, CanAddress.TicketBoxLed, msg, false, 0));
+                }
+                var r = item.Reader.Pay(fee);
                 if (r.返回码 == "00")
                 {
                     args.Paid = args.Payment.GetPaying();

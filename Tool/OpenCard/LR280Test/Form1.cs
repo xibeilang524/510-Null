@@ -68,7 +68,7 @@ namespace LR280Test
             if (reader != null)
             {
                 var ret = reader.CheckIn();
-                txtResponse .Text = JsonConvert.SerializeObject(ret);
+                txtResponse.Text = JsonConvert.SerializeObject(ret);
             }
         }
 
@@ -103,11 +103,9 @@ namespace LR280Test
         {
             if (reader != null && txtAmount.DecimalValue >= 0)
             {
-                var ret = reader.Pay("0000000000", (int)(txtAmount.DecimalValue * 100));
+                var ret = reader.Pay((int)(txtAmount.DecimalValue * 100));
                 txtResponse.Text = JsonConvert.SerializeObject(ret);
             }
         }
-
-        
     }
 }
