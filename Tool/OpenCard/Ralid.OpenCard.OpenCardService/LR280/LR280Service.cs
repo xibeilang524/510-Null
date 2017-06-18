@@ -82,7 +82,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                         else if (w.返回码 == "-1") item.Reader.Open();//串口打开失败
                         else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                         else if (w.返回码 == "XA" || w.返回码 == "XB") item.Reader.Clear();//没有结算
-                        else if (w.返回码 == "4" && w.返回码 =="Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
+                        else if (w.返回码 == "4" || w.返回码 =="Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
                         else HandleError(item, string.Format("错误{0}：{1}", w.返回码, w.错误说明));
                     }
                 }
