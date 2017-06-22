@@ -111,7 +111,7 @@
             this.txtComport.Size = new System.Drawing.Size(226, 20);
             this.txtComport.TabIndex = 1;
             // 
-            // FrmYCTDetail
+            // FrmLR280Detail
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -129,12 +129,13 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "FrmYCTDetail";
+            this.Name = "FrmLR280Detail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "羊城通读卡器";
+            this.Text = "LR280读卡器";
             this.Load += new System.EventHandler(this.FrmLR280Detail_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         #endregion

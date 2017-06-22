@@ -30,6 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
+            this.colComport = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.mnu_Add = new System.Windows.Forms.ToolStripMenuItem();
             this.mnu_Update = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,9 +42,6 @@
             this.button2 = new System.Windows.Forms.Button();
             this.button3 = new System.Windows.Forms.Button();
             this.chkEnable = new System.Windows.Forms.CheckBox();
-            this.colComport = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEntrance = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colMemo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.contextMenuStrip1.SuspendLayout();
             this.SuspendLayout();
@@ -67,6 +67,29 @@
             this.dataGridView1.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dataGridView1.Size = new System.Drawing.Size(637, 341);
             this.dataGridView1.TabIndex = 0;
+            // 
+            // colComport
+            // 
+            this.colComport.HeaderText = "串口";
+            this.colComport.Name = "colComport";
+            this.colComport.ReadOnly = true;
+            this.colComport.Width = 80;
+            // 
+            // colEntrance
+            // 
+            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
+            this.colEntrance.HeaderText = "所在通道";
+            this.colEntrance.MinimumWidth = 200;
+            this.colEntrance.Name = "colEntrance";
+            this.colEntrance.ReadOnly = true;
+            this.colEntrance.Width = 200;
+            // 
+            // colMemo
+            // 
+            this.colMemo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.colMemo.HeaderText = "说明";
+            this.colMemo.Name = "colMemo";
+            this.colMemo.ReadOnly = true;
             // 
             // contextMenuStrip1
             // 
@@ -155,29 +178,6 @@
             this.chkEnable.Text = "启动服务";
             this.chkEnable.UseVisualStyleBackColor = true;
             // 
-            // colComport
-            // 
-            this.colComport.HeaderText = "串口";
-            this.colComport.Name = "colComport";
-            this.colComport.ReadOnly = true;
-            this.colComport.Width = 80;
-            // 
-            // colEntrance
-            // 
-            this.colEntrance.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.DisplayedCells;
-            this.colEntrance.HeaderText = "所在通道";
-            this.colEntrance.MinimumWidth = 200;
-            this.colEntrance.Name = "colEntrance";
-            this.colEntrance.ReadOnly = true;
-            this.colEntrance.Width = 200;
-            // 
-            // colMemo
-            // 
-            this.colMemo.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.colMemo.HeaderText = "说明";
-            this.colMemo.Name = "colMemo";
-            this.colMemo.ReadOnly = true;
-            // 
             // FrmLR280Setting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -191,7 +191,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmLR280Setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "LR280设置";
+            this.Text = "银行闪付卡设置";
             this.Load += new System.EventHandler(this.FrmZSTSetting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);

@@ -66,7 +66,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     }
                     if (!_CheckIned)
                     {
-                        var ret = item.Reader.CheckIn(); //没有签到，先签到
+                        //var ret = item.Reader.CheckIn(); //没有签到，先签到
                         _CheckIned = true;
                     }
                     var w = item.Reader.ReadCard();
