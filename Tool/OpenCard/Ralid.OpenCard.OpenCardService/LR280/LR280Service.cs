@@ -48,19 +48,19 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     if (!item.Reader.IsOpen) continue;
                     if (DateTime.Now.Hour == 1 && _NeedCheckIn) //每天凌晨1点钟自动重新签到一次
                     {
-                        _CheckIned = false;
+                        item.Reader.CheckIn(); //没有签到，先签到
                         _NeedCheckIn = false;
                     }
                     else if (DateTime.Now.Hour != 1)
                     {
                         _NeedCheckIn = true;
                     }
-                    if (DateTime.Now.Hour == 2 && _NeedClear) //每天凌晨2点结算操作一次
+                    if (DateTime.Now.Hour == 0 && _NeedClear) //每天凌晨12点结算操作一次
                     {
                         var ret = item.Reader.Clear();
                         _NeedClear = false;
                     }
-                    else if (DateTime.Now.Hour != 2)
+                    else if (DateTime.Now.Hour != 0)
                     {
                         _NeedClear = true;
                     }
@@ -72,18 +72,25 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     var w = item.Reader.ReadCard();
                     if (w != null)
                     {
-                        if (w.返回码 == "00" && !string.IsNullOrEmpty(w.卡号))
+                        if (w.返回码 == "00")
                         {
-                            if (w.卡号 == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
-                            HandleCardRead(item, w);
-                            lastCard = w.卡号;
-                            lastDT = DateTime.Now;
+                            if (!string.IsNullOrEmpty(w.卡号))
+                            {
+                                if (w.卡号 == lastCard && CalInterval(lastDT, DateTime.Now) < 3) continue; //同一张卡间隔至少要3秒才处理
+                                HandleCardRead(item, w);
+                                lastCard = w.卡号;
+                                lastDT = DateTime.Now;
+                            }
                         }
-                        else if (w.返回码 == "-1") item.Reader.Open();//串口打开失败
+                        else if (w.返回码 == "-1" || w.返回码 == "3")//串口打开失败
+                        {
+                            item.Reader.Close();
+                            item.Reader.Open();
+                        }
                         else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                         else if (w.返回码 == "XA" || w.返回码 == "XB") item.Reader.Clear();//没有结算
-                        else if (w.返回码 == "4" || w.返回码 =="Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
-                        else HandleError(item, string.Format("错误{0}：{1}", w.返回码, w.错误说明));
+                        else if (w.返回码 == "4" || w.返回码 == "Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
+                        else if (!string.IsNullOrEmpty(w.错误说明)) HandleError(item, string.Format("{0}", w.错误说明));
                     }
                 }
                 catch (ThreadAbortException)
@@ -107,15 +114,22 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                 CardType = LR280Setting.CardTyte,
                 Entrance = entrance,
             };
-            ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-            CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
-            if (card != null && card.CardType.Name == LR280Setting.CardTyte && (entrance == null || (!p.IsNested && entrance.IsExitDevice))) ////中央收费处和非嵌套车场的出口,则进行收费处理
+            if (entrance != null)
             {
-                HandlePayment(item, w, args);
+                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+                CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
+                if (card != null && card.CardType.Name == LR280Setting.CardTyte && !p.IsNested && entrance.IsExitDevice) ////中央收费处和非嵌套车场的出口,则进行收费处理
+                {
+                    HandlePayment(item, w, args);
+                }
+                else
+                {
+                    if (this.OnReadCard != null) this.OnReadCard(this, args);
+                }
             }
             else
             {
-                if (this.OnReadCard != null) this.OnReadCard(this, args);
+                HandlePayment(item, w, args); //没有指定通道，说明只是收费
             }
         }
 
@@ -148,6 +162,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     args.Payment.PaymentMode = Ralid.Park.BusinessModel.Enum.PaymentMode.UnionPay;
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
+                else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                 else
                 {
                     args.LastError = string.Format("错误{0}：{1}", r.返回码, r.错误说明);

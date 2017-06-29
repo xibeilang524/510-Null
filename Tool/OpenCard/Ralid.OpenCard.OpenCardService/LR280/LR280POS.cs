@@ -122,6 +122,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         {
             var ret = LR280Interop.open_dev(Commport, _Baud);
             if (ret == 0) IsOpen = true;
+            else IsOpen = false;
             return ret;
         }
 

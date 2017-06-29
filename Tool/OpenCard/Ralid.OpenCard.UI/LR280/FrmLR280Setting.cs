@@ -129,6 +129,7 @@ namespace Ralid.OpenCard.UI.LR280
         {
             if (!CheckInput()) return;
             LR280Setting lr280 = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetOrCreateSetting<LR280Setting>();
+            if (lr280.Items == null) lr280.Items = new List<LR280Item>();
             lr280.Items.Clear();
             foreach (DataGridViewRow row in dataGridView1.Rows)
             {

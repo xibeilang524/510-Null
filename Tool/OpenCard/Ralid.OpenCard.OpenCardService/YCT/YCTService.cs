@@ -140,9 +140,9 @@ namespace Ralid.OpenCard.OpenCardService.YCT
             };
             if (args.CardType == YCTSetting.CardTyte)
             {
-                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+                ParkInfo p = entrance != null ? ParkBuffer.Current.GetPark(entrance.ParkID) : null;
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.LogicCardID).QueryObject;
-                if (card != null && (entrance == null || (!p.IsNested && entrance.IsExitDevice)))
+                if (card != null && (entrance == null || (p != null && !p.IsNested && entrance.IsExitDevice)))
                 {
                     //add by Jan 2016-04-27 增加未完整交易记录判断
                     YCTPaymentRecord record = GetUnFinishedPayment(card);

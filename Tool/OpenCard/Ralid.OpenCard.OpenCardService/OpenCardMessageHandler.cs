@@ -465,7 +465,7 @@ namespace Ralid.OpenCard.OpenCardService
         {
             GlobalSettings.Current.Get<Dictionary<int, CardEventReport>>()[report.EntranceID] = report; //
             if (report.EventStatus != CardEventStatus.Valid) return;
-            if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte || report.CardType.Name == ETC.ETCSetting.CardTyte)) //
+            if (report.CardType != null && (report.CardType.Name == YiTingShanFuSetting.CardType || report.CardType.Name == YCT.YCTSetting.CardTyte || report.CardType.Name == ETC.ETCSetting.CardTyte || report.CardType.Name == LR280.LR280Setting.CardTyte)) //
             {
                 if (report.IsExitEvent) //出场后,将开放卡片从系统中删除
                 {

@@ -191,7 +191,7 @@
             this.Controls.Add(this.dataGridView1);
             this.Name = "FrmLR280Setting";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
-            this.Text = "银行闪付卡设置";
+            this.Text = "银联闪付卡设置";
             this.Load += new System.EventHandler(this.FrmZSTSetting_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
             this.contextMenuStrip1.ResumeLayout(false);
