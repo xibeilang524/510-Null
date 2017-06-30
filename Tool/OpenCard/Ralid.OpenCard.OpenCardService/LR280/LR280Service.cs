@@ -207,45 +207,52 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         #region 公共方法
         public void Init()
         {
-            List<LR280Item> keys = _LR280Items.ToList();
-            if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
+            try
             {
-                foreach (var key in keys)
+                List<LR280Item> keys = _LR280Items.ToList();
+                if (keys != null && keys.Count > 0)//将所有不在新设置中的读卡器删除
                 {
-                    var item = Setting.Items != null ? Setting.Items.SingleOrDefault(it => it.Comport == key.Comport) : null;
-                    if (item == null)
+                    foreach (var key in keys)
                     {
-                        key.Reader.Close();
-                        _LR280Items.Remove(key);
-                        if (_PollRoutes.ContainsKey(key))
+                        var item = Setting.Items != null ? Setting.Items.SingleOrDefault(it => it.Comport == key.Comport) : null;
+                        if (item == null)
                         {
-                            Thread t = _PollRoutes[key];
-                            if (t.ThreadState != ThreadState.Stopped) t.Abort();
-                            _PollRoutes.Remove(key);
+                            key.Reader.Close();
+                            _LR280Items.Remove(key);
+                            if (_PollRoutes.ContainsKey(key))
+                            {
+                                Thread t = _PollRoutes[key];
+                                if (t.ThreadState != ThreadState.Stopped) t.Abort();
+                                _PollRoutes.Remove(key);
+                            }
+                        }
+                        else
+                        {
+                            key.EntranceID = item.EntranceID;
                         }
                     }
-                    else
+                }
+                if (Setting.Items != null)
+                {
+                    foreach (var item in Setting.Items)
                     {
-                        key.EntranceID = item.EntranceID;
+                        if (_LR280Items == null || !_LR280Items.Exists(it => it.Comport == item.Comport))
+                        {
+                            var reader = new LR280POS((byte)item.Comport, 9600);
+                            var ret = reader.Open();
+                            item.Reader = reader;
+                            _LR280Items.Add(item);
+                            Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
+                            t.IsBackground = true;
+                            _PollRoutes[item] = t;
+                            t.Start(item);
+                        }
                     }
                 }
             }
-            if (Setting.Items != null)
+            catch (Exception ex)
             {
-                foreach (var item in Setting.Items)
-                {
-                    if (_LR280Items == null || !_LR280Items.Exists(it => it.Comport == item.Comport))
-                    {
-                        var reader = new LR280POS((byte)item.Comport);
-                        var ret=reader.Open();
-                        item.Reader = reader;
-                        _LR280Items.Add(item);
-                        Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
-                        t.IsBackground = true;
-                        _PollRoutes[item] = t;
-                        t.Start(item);
-                    }
-                }
+                Ralid.GeneralLibrary.ExceptionHandling.ExceptionPolicy.HandleException(ex);
             }
         }
 
