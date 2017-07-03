@@ -52,6 +52,8 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// 
         /// </summary>
         public string 卡号 { get; set; }
+
+        public int? 超时时间 { get; set; }
         #endregion
     }
 }

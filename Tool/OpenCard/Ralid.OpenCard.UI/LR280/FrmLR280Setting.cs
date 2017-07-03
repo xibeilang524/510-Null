@@ -55,6 +55,7 @@ namespace Ralid.OpenCard.UI.LR280
             LR280Setting LR280 = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetSetting<LR280Setting>();
             if (LR280 != null)
             {
+                txtTimeout.IntergerValue = LR280.Timeout;
                 dataGridView1.Rows.Clear();
                 if (LR280.Items != null && LR280.Items.Count > 0)
                 {
@@ -122,6 +123,11 @@ namespace Ralid.OpenCard.UI.LR280
 
         private bool CheckInput()
         {
+            if (txtTimeout.IntergerValue <= 0)
+            {
+                MessageBox.Show("读卡器超时时间不能为空");
+                return false;
+            }
             return true;
         }
 
@@ -129,6 +135,7 @@ namespace Ralid.OpenCard.UI.LR280
         {
             if (!CheckInput()) return;
             LR280Setting lr280 = (new SysParaSettingsBll(AppSettings.CurrentSetting.ParkConnect)).GetOrCreateSetting<LR280Setting>();
+            lr280.Timeout = txtTimeout.IntergerValue;
             if (lr280.Items == null) lr280.Items = new List<LR280Item>();
             lr280.Items.Clear();
             foreach (DataGridViewRow row in dataGridView1.Rows)

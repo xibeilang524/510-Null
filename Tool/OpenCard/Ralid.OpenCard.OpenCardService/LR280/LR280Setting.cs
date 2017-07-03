@@ -17,6 +17,11 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         public static readonly string CardTyte = "银联闪付卡";
 
         #region 公共属性
+        /// <summary>
+        /// 获取或设置读卡器超时时间
+        /// </summary>
+        [DataMember]
+        public int Timeout { get; set; }
         /// 获取或设置服务器管理的所有POS机
         /// </summary>
         [DataMember]

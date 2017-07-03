@@ -104,7 +104,7 @@ namespace Ralid.OpenCard.OpenCardService
             if (pad != null)
             {
                 var notify = new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
-                    OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID);
+                    OperatorInfo.CurrentOperator.OperatorName, WorkStationInfo.CurrentStation.StationName);
                 string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
                 int reader = 0;
                 if (!int.TryParse(temp, out reader)) reader = 0;
@@ -181,7 +181,7 @@ namespace Ralid.OpenCard.OpenCardService
                     if (pad != null)
                     {
                         var notify = new RemoteReadCardNotify(e.Entrance.RootParkID, e.Entrance.EntranceID, e.CardID, string.Empty,
-                            OperatorInfo.CurrentOperator.OperatorID, WorkStationInfo.CurrentStation.StationID);
+                            OperatorInfo.CurrentOperator.OperatorName, WorkStationInfo.CurrentStation.StationName);
                         string temp = AppSettings.CurrentSetting.GetConfigContent("RemoteReader");
                         int reader = 0;
                         if (!int.TryParse(temp, out reader)) reader = 0;

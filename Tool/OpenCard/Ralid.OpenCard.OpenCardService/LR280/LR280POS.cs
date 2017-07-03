@@ -73,6 +73,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             ret += r.LRC.ToString().PadLeft(3, '0');
             ret += string.IsNullOrEmpty(r.授权码) ? space.PadRight(6) : r.授权码;
             ret += string.IsNullOrEmpty(r.卡号) ? space.PadRight(20) : r.卡号.PadRight(20);
+            if (r.超时时间.HasValue) ret += r.超时时间.Value.ToString("D3");
             return Encoding.GetEncoding("GB2312").GetBytes(ret);
         }
 
@@ -159,6 +160,12 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         public LR280Response ReadCard()
         {
             var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.读卡 };
+            return Request(r);
+        }
+
+        public LR280Response 设置超时时间(int seconds)
+        {
+            var r = new LR280Request() { 应用类型 = "01", 交易类型标志 = LR280PAYTYPE.设置超时时间, 超时时间 = seconds };
             return Request(r);
         }
 

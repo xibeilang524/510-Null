@@ -33,6 +33,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         private void PollRoute(object obj)
         {
             bool _CheckIned = false;
+            bool _SetTimeout = false;
             bool _NeedCheckIn = true;
             bool _NeedClear = false;
             string lastCard = null;
@@ -64,15 +65,20 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     {
                         _NeedClear = true;
                     }
+                    if (!_SetTimeout)
+                    {
+                        var ret = item.Reader.设置超时时间(Setting.Timeout);
+                        _SetTimeout = true;
+                    }
                     if (!_CheckIned)
                     {
-                        //var ret = item.Reader.CheckIn(); //没有签到，先签到
+                        var ret = item.Reader.CheckIn(); //没有签到，先签到
                         _CheckIned = true;
                     }
                     var w = item.Reader.ReadCard();
                     if (w != null)
                     {
-                        if (w.返回码 == "00")
+                        if (w.返回码 == LR280Response.SUCCESS)
                         {
                             if (!string.IsNullOrEmpty(w.卡号))
                             {
@@ -163,9 +169,9 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     if (this.OnPaidOk != null) this.OnPaidOk(this, args);
                 }
                 else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
-                else
+                else if (!string.IsNullOrEmpty(w.错误说明))
                 {
-                    args.LastError = string.Format("错误{0}：{1}", r.返回码, r.错误说明);
+                    args.LastError = string.Format("{0}", r.错误说明);
                     if (this.OnPaidFail != null) this.OnPaidFail(this, args);
                 }
             }

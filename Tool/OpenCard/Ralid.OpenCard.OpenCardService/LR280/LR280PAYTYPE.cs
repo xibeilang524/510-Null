@@ -20,6 +20,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         public static readonly string 查询状态 = "SQ";
         public static readonly string PING网络测试 = "PI";
         public static readonly string 关闭资源 = "CL";
+        public static readonly string 设置超时时间 = "TI";
         #endregion
     }
 }
