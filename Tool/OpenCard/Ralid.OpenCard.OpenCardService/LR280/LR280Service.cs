@@ -33,7 +33,6 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         private void PollRoute(object obj)
         {
             bool _CheckIned = false;
-            bool _SetTimeout = false;
             bool _NeedCheckIn = true;
             bool _NeedClear = false;
             string lastCard = null;
@@ -65,10 +64,10 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                     {
                         _NeedClear = true;
                     }
-                    if (!_SetTimeout)
+                    if (item.NeedSetTimeout)
                     {
                         var ret = item.Reader.设置超时时间(Setting.Timeout);
-                        _SetTimeout = true;
+                        item.NeedSetTimeout = false;
                     }
                     if (!_CheckIned)
                     {
@@ -124,7 +123,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             {
                 ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
                 CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
-                if (card != null && card.CardType.Name == LR280Setting.CardTyte && !p.IsNested && entrance.IsExitDevice) ////中央收费处和非嵌套车场的出口,则进行收费处理
+                if (card != null && !p.IsNested && entrance.IsExitDevice) ////中央收费处和非嵌套车场的出口,则进行收费处理
                 {
                     HandlePayment(item, w, args);
                 }
@@ -235,6 +234,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                         else
                         {
                             key.EntranceID = item.EntranceID;
+                            key.NeedSetTimeout = true;
                         }
                     }
                 }
@@ -247,6 +247,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                             var reader = new LR280POS((byte)item.Comport, 9600);
                             var ret = reader.Open();
                             item.Reader = reader;
+                            item.NeedSetTimeout = true;
                             _LR280Items.Add(item);
                             Thread t = new Thread(new ParameterizedThreadStart(PollRoute));
                             t.IsBackground = true;

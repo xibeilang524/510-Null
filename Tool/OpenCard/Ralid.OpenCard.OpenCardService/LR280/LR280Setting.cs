@@ -53,6 +53,10 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// </summary>
         public LR280POS Reader { get; set; }
         /// <summary>
+        /// 是否需要设置超时时间
+        /// </summary>
+        public bool NeedSetTimeout { get; set; }
+        /// <summary>
         /// 获取或设置说明信息
         /// </summary>
         [DataMember]
