@@ -100,6 +100,22 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             ret.授权号 = Encoding.GetEncoding("GB2312").GetString(val, 137, 6).Trim();
             ret.清算日期 = Encoding.GetEncoding("GB2312").GetString(val, 143, 4).Trim();
             ret.LRC校验 = Encoding.GetEncoding("GB2312").GetString(val, 147, 3).Trim();
+            if (val.Length >= 171)
+            {
+                ret.卡片类型 = int.Parse(Encoding.GetEncoding("GB2312").GetString(val, 150, 1).Trim());
+                if (ret.卡片类型 == 2)
+                {
+                    ret.卡序列号 = Encoding.GetEncoding("GB2312").GetString(val, 151, 20).Trim();
+                }
+                else
+                {
+                    ret.卡号 = Encoding.GetEncoding("GB2312").GetString(val, 151, 20).Trim();  //非银行卡用卡序列号作为卡号
+                }
+            }
+            else
+            {
+                ret.卡片类型 = 2; //之前为加时只能读银行卡，所以这里是兼容旧的动态库
+            }
             return ret;
         }
         #endregion

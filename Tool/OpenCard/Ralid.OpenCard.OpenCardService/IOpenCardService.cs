@@ -46,6 +46,10 @@ namespace Ralid.OpenCard.OpenCardService
         /// </summary>
         public string CardType { get; set; }
         /// <summary>
+        /// 获取或设置卡片SN
+        /// </summary>
+        public string CardSN { get; set; }
+        /// <summary>
         /// 获取或设置卡片余额
         /// </summary>
         public decimal Balance { get; set; }

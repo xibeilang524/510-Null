@@ -73,6 +73,18 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         /// ANS	3	三位数字，应该和请求一致（可忽略）
         /// </summary>
         public string LRC校验 { get; set; }
+        /// <summary>
+        /// N4
+        /// </summary>
+        public string 有效期 { get; set; }
+        /// <summary>
+        /// 卡片类型 1 M1卡  2 银行卡  N1
+        /// </summary>
+        public int 卡片类型 { get; set; }
+        /// <summary>
+        /// N20
+        /// </summary>
+        public string 卡序列号 { get; set; }
         #endregion
     }
 }

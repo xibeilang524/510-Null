@@ -33,7 +33,7 @@ namespace Ralid.OpenCard.OpenCardService
         #endregion
 
         #region 私有方法
-        private bool SaveOpenCard(string cardID, CardType cardType, decimal balance)
+        private bool SaveOpenCard(string cardID, CardType cardType, decimal balance, string cardSN = null)
         {
             CardInfo card = new CardInfo()
             {
@@ -41,6 +41,7 @@ namespace Ralid.OpenCard.OpenCardService
                 CardType = cardType,
                 CarType = CarTypeSetting.DefaultCarType,
                 CardNum = 1000,
+                CardSN = cardSN,
                 OwnerName = cardType.Name,
                 Options = CardOptions.ForbidRepeatIn | CardOptions.ForbidRepeatOut | CardOptions.HolidayEnable | CardOptions.WithCount,
                 Status = CardStatus.Enabled,
@@ -95,7 +96,7 @@ namespace Ralid.OpenCard.OpenCardService
                 if (ct != null)
                 {
                     CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(e.CardID).QueryObject;
-                    if (card == null) SaveOpenCard(e.CardID, ct, e.Balance);
+                    if (card == null) SaveOpenCard(e.CardID, ct, e.Balance, e.CardSN);
                 }
             }
 

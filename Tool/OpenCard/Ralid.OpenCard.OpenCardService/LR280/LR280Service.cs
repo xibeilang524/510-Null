@@ -115,26 +115,34 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             EntranceInfo entrance = item.EntranceID.HasValue ? ParkBuffer.Current.GetEntrance(item.EntranceID.Value) : null;
             OpenCardEventArgs args = new OpenCardEventArgs()
             {
-                CardID = w.卡号,
-                CardType = LR280Setting.CardTyte,
+                CardID =w.卡号,
+                CardSN = w.卡片类型 == 2 ? w.卡序列号 : null,
+                CardType = w.卡片类型 == 2 ? LR280Setting.CardTyte : string.Empty,
                 Entrance = entrance,
             };
-            if (entrance != null)
+            if (args.CardType != LR280Setting.CardTyte) //非银行卡只进行读卡处理
             {
-                ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
-                CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
-                if (card != null && !p.IsNested && entrance.IsExitDevice) ////中央收费处和非嵌套车场的出口,则进行收费处理
-                {
-                    HandlePayment(item, w, args);
-                }
-                else
-                {
-                    if (this.OnReadCard != null) this.OnReadCard(this, args);
-                }
+                if (this.OnReadCard != null) this.OnReadCard(this, args);
             }
             else
             {
-                HandlePayment(item, w, args); //没有指定通道，说明只是收费
+                if (entrance != null)
+                {
+                    ParkInfo p = ParkBuffer.Current.GetPark(entrance.ParkID);
+                    CardInfo card = (new CardBll(AppSettings.CurrentSetting.ParkConnect)).GetCardByID(w.卡号).QueryObject;
+                    if (card != null && !p.IsNested && entrance.IsExitDevice) ////中央收费处和非嵌套车场的出口,则进行收费处理
+                    {
+                        HandlePayment(item, w, args);
+                    }
+                    else
+                    {
+                        if (this.OnReadCard != null) this.OnReadCard(this, args);
+                    }
+                }
+                else
+                {
+                    HandlePayment(item, w, args); //没有指定通道，说明只是收费
+                }
             }
         }
 
