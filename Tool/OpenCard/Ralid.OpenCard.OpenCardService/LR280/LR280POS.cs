@@ -74,7 +74,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
             ret += string.IsNullOrEmpty(r.授权码) ? space.PadRight(6) : r.授权码;
             ret += string.IsNullOrEmpty(r.卡号) ? space.PadRight(20) : r.卡号.PadRight(20);
             if (r.超时时间.HasValue) ret += r.超时时间.Value.ToString("D3");
-            ret += r.读卡器标志.ToString("D1");
+            ret += (r.读卡器标志 == 0 ? 1 : r.读卡器标志).ToString("D1");
             ret += (r.APDU != null ? r.APDU.Length : 0).ToString("D4");
             return Encoding.GetEncoding("GB2312").GetBytes(ret);
         }
