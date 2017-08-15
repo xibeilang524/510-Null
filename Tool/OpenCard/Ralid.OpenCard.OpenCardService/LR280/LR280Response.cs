@@ -8,6 +8,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
     public class LR280Response
     {
         public static readonly string SUCCESS = "00";
+
         #region 公共属性
         /// <summary>
         /// 返回码	N2	00 表示成功，其它表示失败

@@ -54,6 +54,12 @@ namespace Ralid.OpenCard.OpenCardService.LR280
         public string 卡号 { get; set; }
 
         public int? 超时时间 { get; set; }
+
+        public int 读卡器标志 { get; set; }
+
+        public int APDU长度 { get; set; }
+
+        public byte[] APDU { get; set; }
         #endregion
     }
 }
