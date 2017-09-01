@@ -95,7 +95,7 @@ namespace Ralid.OpenCard.OpenCardService.LR280
                         else if (w.返回码 == "A4") item.Reader.CheckIn();//没有签到
                         else if (w.返回码 == "XA" || w.返回码 == "XB") item.Reader.Clear();//没有结算
                         else if (w.返回码 == "4" || w.返回码 == "Z1") { } //z1表示超时，4表示读卡失败 时什么也不做
-                        else if (!string.IsNullOrEmpty(w.错误说明)) HandleError(item, string.Format("{0}", w.错误说明));
+                        else if (!string.IsNullOrEmpty(w.错误说明) && !w.错误说明.Contains("输入字符串的格式不正确。")) HandleError(item, string.Format("{0}", w.错误说明)); //输入字符串的格式不正确。 这种错误我暂时不知道返回值 ，所以用这种方式来屏掉
                     }
                 }
                 catch (ThreadAbortException)
